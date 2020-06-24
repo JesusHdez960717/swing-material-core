@@ -157,7 +157,7 @@ public class Utils {
 
     /**
      * Ejecuta un sonido del sistema. <\br>
-     * Solo se ejecuta si en las opciones de personalización se encuentra true
+     * Solo se ejecuta si en las opciones de personalizacion se encuentra true
      * el doBeep.
      */
     public static void beep() {

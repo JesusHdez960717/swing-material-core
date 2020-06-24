@@ -51,8 +51,8 @@ public class _LoginPanel extends javax.swing.JPanel {
         textFieldUsuario.setLabel("Usuario");
 
         passwordUsuario.setAccent(new java.awt.Color(0, 0, 0));
-        passwordUsuario.setHint("Introduzca la contraseÃ±a");
-        passwordUsuario.setLabel("ContraseÃ±a");
+        passwordUsuario.setHint("Introduzca la contraseña");
+        passwordUsuario.setLabel("Contraseña");
 
         buttonLogin.setBackground(new java.awt.Color(0, 0, 0));
         buttonLogin.setText("Login");
@@ -196,7 +196,7 @@ public class _LoginPanel extends javax.swing.JPanel {
     }
 
     private void displayWrongCredentials() {
-        labelAnswer.setText("ContraseÃ±a incorrecta".toUpperCase());
+        labelAnswer.setText("Contraseña incorrecta".toUpperCase());
         labelAnswer.setIcon(MaterialIcons.CLOSE.deriveIcon(MaterialColors.RED_900));
         labelAnswer.setForeground(MaterialColors.RED_900);
     }

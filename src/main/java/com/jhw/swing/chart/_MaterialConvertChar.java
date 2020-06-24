@@ -96,8 +96,8 @@ public class _MaterialConvertChar extends _PanelTransparent implements MaterialC
                 changeToLine();
             }
         });
-        buttonBarChart.setToolTipText("Convertir a gráfico de barras.");
-        buttonLineChart.setToolTipText("Convertir a gráfico de lineas.");
+        buttonBarChart.setToolTipText("Convertir a grafico de barras.");
+        buttonLineChart.setToolTipText("Convertir a grafico de lineas.");
     }
 
     private void personalize() {

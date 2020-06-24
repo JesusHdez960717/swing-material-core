@@ -92,7 +92,7 @@ public class IconTTF extends DerivableIcon {
      * @param ch char que se representa el icono.
      * @param color color del que se va a mostrar el icono.
      * @param size tamanno del icono.
-     * @return ImageIcon extraido con las propiedades específicas.
+     * @return ImageIcon extraido con las propiedades especificas.
      */
     public static ImageIcon extractIcon(Font font, char ch, Color color, float size) {
         String str = "" + ch;

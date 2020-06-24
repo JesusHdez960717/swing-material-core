@@ -19,7 +19,7 @@ import com.jhw.swing.util.interfaces.ModelablePanel;
 /**
  * Dialogo para la creacion de modelos.<br/>
  * El clasico donde se crean los modelos, es el encargado de mostrar
- * notificaciones de creado o editado y demás.
+ * notificaciones de creado o editado y demas.
  *
  * Ejemplo: new DialogModelInput(this, new ModelPanelTest(1));
  *

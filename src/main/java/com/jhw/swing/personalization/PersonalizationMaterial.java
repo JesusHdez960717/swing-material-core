@@ -43,7 +43,7 @@ public class PersonalizationMaterial {
         try {//carga configuracion
             act = JACKSON.read(persMatJsonFile, PersonalizationMaterial.class);
         } catch (Exception e) {
-            System.out.println("Error cargando personalización de material. Usando por defecto.");
+            System.out.println("Error cargando personalizacion de material. Usando por defecto.");
             try {
                 JACKSON.write(persMatJsonFile, act);
             } catch (Exception ex) {
@@ -67,7 +67,7 @@ public class PersonalizationMaterial {
     private boolean useAntialiasing = true;
     private boolean useShadow = true;
 
-    private boolean collapse_slow = true;
+    private boolean useAnimations = true;
 
     private boolean double_delete_check = false;
 

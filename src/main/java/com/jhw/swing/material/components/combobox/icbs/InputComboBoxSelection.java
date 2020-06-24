@@ -23,7 +23,7 @@ import com.jhw.swing.util.validations.icbs.ICBSValidation;
 
 /**
  *
- * @author Jesús Hernández Barrios (jhernandzb96@gmail.com) 23:15 24/2/2020
+ * @author Jesus Hernandez Barrios (jhernandzb96@gmail.com)
  */
 public abstract class InputComboBoxSelection<T> extends _PanelTransparent implements Update {
 

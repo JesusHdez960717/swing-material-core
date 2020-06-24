@@ -19,7 +19,7 @@ import com.jhw.swing.util.interfaces.MaterialComponent;
 import com.jhw.swing.material.standars.MaterialColors;
 
 /**
- * Componente extraido su lógica de edisoncorSX.
+ * Componente extraido su logica de edisoncorSX.
  */
 public class _PanelGradient extends JPanel implements MaterialComponent {
 

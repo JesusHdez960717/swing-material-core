@@ -5,7 +5,7 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 
 /**
- * Dialogo vacío que muestra un panel.<br/>
+ * Dialogo vacio que muestra un panel.<br/>
  * Si NO tiene titulo se undecora.
  *
  * Ejemplo: new DialogPanel("123", new EmptyPanel());

@@ -5,7 +5,7 @@ import java.awt.image.BufferedImage;
 import java.io.InputStream;
 
 /**
- * Coleccion de imagenes utiles para el diseÃ±o.
+ * Coleccion de imagenes utiles para el diseño.
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */

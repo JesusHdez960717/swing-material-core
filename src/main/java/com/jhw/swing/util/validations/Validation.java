@@ -6,7 +6,7 @@ package com.jhw.swing.util.validations;
  */
 public abstract class Validation<T> {
 
-    protected String wrongText = "Validación por defecto";
+    protected String wrongText = "Validacion por defecto";
     protected String detailedText = wrongText;
 
     public Validation(String wrongText, String detailedText) {

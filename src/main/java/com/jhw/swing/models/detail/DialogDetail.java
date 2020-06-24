@@ -7,7 +7,7 @@ import com.jhw.swing.util.interfaces.Update;
 
 /**
  * Dialogo para mostrar las ventanas de detalles de los modelos.<\br>
- * Básicamente lo qeu hace es recivir un actualizable y actualizarlo cuando se
+ * Basicamente lo qeu hace es recivir un actualizable y actualizarlo cuando se
  * cierre el dialog.
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)

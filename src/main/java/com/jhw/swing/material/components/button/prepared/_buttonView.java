@@ -6,7 +6,7 @@ import com.jhw.swing.personalization.PersonalizationMaterial;
 
 /**
  * MaterialButton con background getColorButtonView, e icon iconButtonView de la
- * personalización.
+ * personalizacion.
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */

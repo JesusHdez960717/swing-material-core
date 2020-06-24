@@ -6,7 +6,7 @@ import java.util.StringTokenizer;
 /**
  * Clase auxiliar para darle formato predefinido a un String.<\br>
  * Por ejemplo, se quiere convertir el String "12345679.123456" a dinero, la
- * transformación sería el String "$123 456 789.12"
+ * transformacion seria el String "$123 456 789.12"
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */

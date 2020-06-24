@@ -22,7 +22,7 @@ import com.jhw.swing.util.MaterialDrawingUtils;
 import com.jhw.swing.util.interfaces.MaterialComponent;
 
 /**
- * Componente extraido su lógica de edisoncorSX.
+ * Componente extraido su logica de edisoncorSX.
  */
 public class _TabbedPaneHeader extends JTabbedPane implements MaterialComponent {
 

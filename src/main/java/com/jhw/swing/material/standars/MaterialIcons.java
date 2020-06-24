@@ -22,8 +22,8 @@ import javax.swing.ImageIcon;
  * Both the Font and the known chars for each icon are available from here.
  *
  * La clase original incluia solo el trabajo a secas con char y font separado.
- * Por lo que se decidió unirlo todo en DerivableIcon para facilitar el trabajo
- * con cambios de color y tamaño. De aqui salieron los IconTTF para los
+ * Por lo que se decidio unirlo todo en DerivableIcon para facilitar el trabajo
+ * con cambios de color y tama�o. De aqui salieron los IconTTF para los
  * extraidos de ICON_FONT y los IconSVG extraidos directamente de un SVG.
  *
  * @author DragShot
@@ -1021,7 +1021,7 @@ public class MaterialIcons {
      System.out.println("    public static final char "+subs[0]+" = '\\u"+subs[1]+"';");
      }
      }*/
-    /*Metodo que se usó para convertir de los char a lis IconTTF
+    /*Metodo que se uso para convertir de los char a lis IconTTF
      public static void main(String args[]) throws UnsupportedLookAndFeelException {
      Field[] fields = MaterialIcons.class.getDeclaredFields();
      for (Field field : fields) {

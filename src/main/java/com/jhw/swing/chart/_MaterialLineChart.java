@@ -74,7 +74,7 @@ public class _MaterialLineChart extends _MaterialGeneralChart implements Materia
     public void personaliceChart(Paint color) {
         super.personaliceChart(color);
 
-        //personalización del grafico
+        //personalizacion del grafico
         XYPlot plot = (XYPlot) chart.getPlot();
 
         plot.setBackgroundPaint(color);

@@ -10,7 +10,7 @@ import javax.swing.Timer;
 import com.jhw.swing.material.standars.MaterialColors;
 
 /**
- * Dialogo vacío que muestra un panel.<br/>
+ * Dialogo vacio que muestra un panel.<br/>
  * Si NO tiene titulo se undecora.
  *
  * Ejemplo: new DialogToast("123", new EmptyPanel());

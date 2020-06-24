@@ -7,7 +7,7 @@ import javax.swing.ImageIcon;
 
 /**
  * Interfaz a implementar por los Iconos que permiten el derive a diferentes
- * colores y tamaÃ±os.
+ * colores y tamaños.
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */

@@ -4,7 +4,7 @@ import com.jhw.swing.material.components.labels._MaterialLabel;
 import com.jhw.swing.personalization.PersonalizationMaterial;
 
 /**
- * Label con foreground getColorMoneyNegative de la personalización.
+ * Label con foreground getColorMoneyNegative de la personalizacion.
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */

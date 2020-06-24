@@ -60,7 +60,7 @@ public class _MaterialTableByPage extends _PanelTransparent implements Update {
         spinner.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         spinner.setModel(new javax.swing.SpinnerNumberModel(50, 10, 300, 5));
 
-        labelFilas.setText("Filas por página:");
+        labelFilas.setText("Filas por pagina:");
 
         labelSeparator.setBackground(new java.awt.Color(255, 255, 255));
         labelSeparator.setForeground(new java.awt.Color(153, 153, 153));
