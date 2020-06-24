@@ -1,0 +1,5 @@
+rootProject.name = 'MaterialSwing'
+
+include ':utils'
+
+project(':utils').projectDir = "E:\\Trabajos\\Projects\\GIT Projects Gradle\\Utils" as File
