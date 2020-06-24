@@ -1,10 +1,12 @@
 package com.jhw.swing.material.effects;
 
+import static com.jhw.swing.material.effects.ElevationEffect.DURATION;
 import java.util.concurrent.TimeUnit;
 import javax.swing.JComponent;
 import org.jdesktop.core.animation.timing.Animator;
 import org.jdesktop.core.animation.timing.interpolators.SplineInterpolator;
 import com.jhw.swing.personalization.Inistanciables;
+import com.jhw.swing.personalization.PersonalizationMaterial;
 import com.jhw.swing.util.SafePropertySetter;
 
 /**
@@ -25,16 +27,28 @@ public class Line {
         if (animator != null) {
             animator.stop();
         }
-        animator = new Animator.Builder(Inistanciables.getSwingTimerTimingSource())
-                .setDuration(200, TimeUnit.MILLISECONDS)
-                .setEndBehavior(Animator.EndBehavior.HOLD)
-                .setInterpolator(new SplineInterpolator(0.4, 0, 0.2, 1))
-                .addTarget(SafePropertySetter.getTarget(width, width.getValue(), target.isFocusOwner() ? (double) target.getWidth() + 1 : 0d))
-                .build();
-        animator.start();
+        if (PersonalizationMaterial.getInstance().isUseAnimations()) {
+            setWidthAnimated();
+        } else {
+            width.setValue(getTargetWidth());
+        }
     }
 
     public double getWidth() {
         return width.getValue();
+    }
+
+    private void setWidthAnimated() {
+        animator = new Animator.Builder(Inistanciables.getSwingTimerTimingSource())
+                .setDuration(DURATION, TimeUnit.MILLISECONDS)
+                .setEndBehavior(Animator.EndBehavior.HOLD)
+                .setInterpolator(new SplineInterpolator(0.4, 0, 0.2, 1))
+                .addTarget(SafePropertySetter.getTarget(width, width.getValue(), getTargetWidth()))
+                .build();
+        animator.start();
+    }
+
+    private double getTargetWidth() {
+        return target.isFocusOwner() ? (double) target.getWidth() + 1 : 0d;
     }
 }
