@@ -22,15 +22,14 @@ public class ElevationEffect {
     protected final SafePropertySetter.Property<Double> level;
     protected double targetLevel = 0;
 
-    protected final MaterialShadow shadowFast;
+    protected final MaterialShadow shadowFast = new MaterialShadow();
     protected int borderRadius = 2;
 
-    private ElevationEffect(final JComponent component, double level) {
+    private ElevationEffect(JComponent component, double level) {
         this.target = component;
 
-        this.level = SafePropertySetter.animatableProperty(target, level);
         this.targetLevel = level;
-        this.shadowFast = new MaterialShadow();
+        this.level = SafePropertySetter.animatableProperty(target, targetLevel);
     }
 
     /**
@@ -48,26 +47,16 @@ public class ElevationEffect {
      * @param level elevation level [0~5]
      */
     public void setLevel(double level) {
-        if (target.isShowing()) {
-            if (level != targetLevel) {
-                if (animator != null) {
-                    animator.stop();
-                }
-                animator = new Animator.Builder(Inistanciables.getSwingTimerTimingSource())
-                        .setDuration(DURATION, TimeUnit.MILLISECONDS)
-                        .setEndBehavior(Animator.EndBehavior.HOLD)
-                        .setInterpolator(new SplineInterpolator(0.55, 0, 0.1, 1))
-                        .addTarget(SafePropertySetter.getTarget(this.level, this.level.getValue(), (double) level))
-                        .build();
-                animator.start();
-            } else {
-                animator = null;
-            }
-        } else {
-            animator = null;
-            this.level.setValue((double) level);
+        if (animator != null) {
+            animator.stop();
         }
-        targetLevel = level;
+        this.targetLevel = level;
+        this.level.setValue((double) targetLevel);
+        if (target.isShowing()) {
+            if (PersonalizationMaterial.getInstance().isUseAnimations() && level != targetLevel) {
+                setElevationAnimated(level);
+            }
+        }
     }
 
     /**
@@ -145,6 +134,16 @@ public class ElevationEffect {
      */
     public static ElevationEffect applyCirularTo(JComponent target, double level) {
         return new ElevationEffect.Circular(target, level);
+    }
+
+    private void setElevationAnimated(double level) {
+        animator = new Animator.Builder(Inistanciables.getSwingTimerTimingSource())
+                .setDuration(DURATION, TimeUnit.MILLISECONDS)
+                .setEndBehavior(Animator.EndBehavior.HOLD)
+                .setInterpolator(new SplineInterpolator(0.55, 0, 0.1, 1))
+                .addTarget(SafePropertySetter.getTarget(this.level, this.level.getValue(), (double) level))
+                .build();
+        animator.start();
     }
 
     /**
