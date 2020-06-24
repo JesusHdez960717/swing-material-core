@@ -118,6 +118,14 @@ public class DialogToast extends JDialog {
             click.stop();
             click = null;
         }
+        if (upTrue != null) {
+            upTrue.stop();
+            upTrue = null;
+        }
+        if (upFalse != null) {
+            upFalse.stop();
+            upFalse = null;
+        }
         super.dispose();
 
         if (action != null) {

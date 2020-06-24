@@ -15,6 +15,7 @@ import com.jhw.swing.personalization.Inistanciables;
 import com.jhw.swing.util.SafePropertySetter;
 import com.jhw.swing.material.standars.MaterialColors;
 import com.jhw.swing.material.standars.MaterialFontRoboto;
+import com.jhw.swing.personalization.PersonalizationMaterial;
 
 /**
  *
@@ -128,6 +129,9 @@ public class NotificationDialogGeneral extends JDialog {
     private void closeNotif() {
         notif.remove(this);
         moveAll(this);
+        if (anim != null) {
+            anim.cancel();
+        }
         this.dispose();
     }
 
@@ -152,18 +156,11 @@ public class NotificationDialogGeneral extends JDialog {
         if (anim != null) {
             anim.cancel();
         }
-        anim = new Animator.Builder(Inistanciables.getSwingTimerTimingSource())
-                .setDuration(DURATION_MOVE, TimeUnit.MILLISECONDS)
-                .setInterpolator(new SplineInterpolator(0.1, 0.3, 0.45, 1))
-                .addTarget(SafePropertySetter.getTarget(new SafePropertySetter.Setter<Integer>() {
-                    @Override
-                    public void setValue(Integer value) {
-                        if (value != null) {
-                            setLocation(getLocation().x, value);//mantiene x y mueve y
-                        }
-                    }
-                }, getLocation().y, nextY)).build();
-        anim.start();
+        if (PersonalizationMaterial.getInstance().isUseAnimationsNotifications()) {
+            doMoveAnimated(nextY);
+        } else {
+            setLocation(getLocation().x, nextY);//mantiene x y mueve y
+        }
     }
 
     public int getDelay() {
@@ -208,6 +205,21 @@ public class NotificationDialogGeneral extends JDialog {
 
     public void setTextFont(Font textFont) {
         basePanel.getContentArea().setTextFont(textFont);
+    }
+
+    private void doMoveAnimated(int nextY) {
+        anim = new Animator.Builder(Inistanciables.getSwingTimerTimingSource())
+                .setDuration(DURATION_MOVE, TimeUnit.MILLISECONDS)
+                .setInterpolator(new SplineInterpolator(0.1, 0.3, 0.45, 1))
+                .addTarget(SafePropertySetter.getTarget(new SafePropertySetter.Setter<Integer>() {
+                    @Override
+                    public void setValue(Integer value) {
+                        if (value != null) {
+                            setLocation(getLocation().x, value);//mantiene x y mueve y
+                        }
+                    }
+                }, getLocation().y, nextY)).build();
+        anim.start();
     }
 
 }

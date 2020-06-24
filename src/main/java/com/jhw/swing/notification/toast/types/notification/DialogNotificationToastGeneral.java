@@ -12,6 +12,7 @@ import javax.swing.ImageIcon;
 import org.jdesktop.core.animation.timing.Animator;
 import org.jdesktop.core.animation.timing.interpolators.SplineInterpolator;
 import com.jhw.swing.personalization.Inistanciables;
+import com.jhw.swing.personalization.PersonalizationMaterial;
 import com.jhw.swing.util.SafePropertySetter;
 
 /**
@@ -49,6 +50,9 @@ public class DialogNotificationToastGeneral extends DialogToast {
     private void closeNotif() {
         notif.remove(this);
         moveAll(this);
+        if (anim != null) {
+            anim.cancel();
+        }
     }
 
     private int getYPosition() {
@@ -72,6 +76,14 @@ public class DialogNotificationToastGeneral extends DialogToast {
         if (anim != null) {
             anim.cancel();
         }
+        if (PersonalizationMaterial.getInstance().isUseAnimationsNotifications()) {
+            doMoveAnimated(nextY);
+        } else {
+            setLocation(getLocation().x, nextY);//mantiene x y mueve y
+        }
+    }
+
+    private void doMoveAnimated(int nextY) {
         anim = new Animator.Builder(Inistanciables.getSwingTimerTimingSource())
                 .setDuration(DURATION, TimeUnit.MILLISECONDS)
                 .setInterpolator(new SplineInterpolator(0.1, 0.3, 0.45, 1))
