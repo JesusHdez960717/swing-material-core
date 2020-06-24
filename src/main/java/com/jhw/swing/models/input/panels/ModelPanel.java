@@ -6,7 +6,7 @@ import com.jhw.swing.util.interfaces.Update;
 
 /**
  *
- * @author Jesús Hernández Barrios (jhernandezb96@gmail.com)
+ * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  * @param <T> Tipo de modelos que se va a trabajar.
  */
 public abstract class ModelPanel<T> extends _PanelTransparent implements Update, ModelablePanel<T> {

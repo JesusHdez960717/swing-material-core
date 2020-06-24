@@ -10,7 +10,7 @@ import com.jhw.swing.util.interfaces.Update;
  * Básicamente lo qeu hace es recivir un actualizable y actualizarlo cuando se
  * cierre el dialog.
  *
- * @author Jesús Hernández Barrios (jhernandezb96@gmail.com)
+ * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
 public class DialogDetail extends DialogPanel {
 

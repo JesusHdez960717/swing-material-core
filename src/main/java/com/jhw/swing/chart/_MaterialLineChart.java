@@ -23,7 +23,7 @@ import com.jhw.swing.material.standars.MaterialFontRoboto;
 
 /**
  *
- * @author Jessica Aidyl García Albalah (jgarciaalbalah@gmail.com)
+ * @author Jessica Aidyl Garcia Albalah (jgarciaalbalah@gmail.com)
  */
 public class _MaterialLineChart extends _MaterialGeneralChart implements MaterialComponent {
 

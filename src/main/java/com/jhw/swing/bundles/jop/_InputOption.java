@@ -5,7 +5,7 @@ import com.jhw.swing.util.interfaces.MaterialComponent;
 
 /**
  *
- * @author Jessica Aidyl García Albalah (jgarciaalbalah@gmail.com)
+ * @author Jessica Aidyl Garcia Albalah (jgarciaalbalah@gmail.com)
  */
 public class _InputOption extends _MaterialPanel implements MaterialComponent {
 

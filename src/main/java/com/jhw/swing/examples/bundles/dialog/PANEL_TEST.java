@@ -2,7 +2,7 @@ package com.jhw.swing.examples.bundles.dialog;
 
 /**
  *
- * @author Jesús Hernández Barrios (jhernandezb96@gmail.com)
+ * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
 public class PANEL_TEST extends javax.swing.JPanel {
 

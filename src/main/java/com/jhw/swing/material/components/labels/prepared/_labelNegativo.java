@@ -6,7 +6,7 @@ import com.jhw.swing.personalization.PersonalizationMaterial;
 /**
  * Label con foreground getColorMoneyNegative de la personalización.
  *
- * @author Jesús Hernández Barrios (jhernandezb96@gmail.com)
+ * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
 public class _labelNegativo extends _MaterialLabel {
 

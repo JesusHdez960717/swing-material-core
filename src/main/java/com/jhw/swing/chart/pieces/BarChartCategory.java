@@ -4,7 +4,7 @@ import java.awt.Color;
 
 /**
  *
- * @author Jessica Aidyl García Albalah (jgarciaalbalah@gmail.com)
+ * @author Jessica Aidyl Garcia Albalah (jgarciaalbalah@gmail.com)
  */
 public class BarChartCategory {
 

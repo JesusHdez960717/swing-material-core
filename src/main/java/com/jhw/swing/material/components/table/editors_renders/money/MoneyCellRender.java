@@ -13,7 +13,7 @@ import javax.swing.table.TableCellRenderer;
 
 /**
  *
- * @author Jesús Hernández Barrios (jhernandezb96@gmail.com)
+ * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
 public class MoneyCellRender extends DefaultTableCellRenderer implements TableCellRenderer {
 

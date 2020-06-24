@@ -27,13 +27,13 @@ import com.jhw.swing.material.standars.MaterialFontRoboto;
 
 /**
  *
- * @author Jessica Aidyl García Albalah (jgarciaalbalah@gmail.com)
+ * @author Jessica Aidyl Garcia Albalah (jgarciaalbalah@gmail.com)
  */
 public class _MaterialBarChart extends _MaterialGeneralChart implements MaterialComponent {
 
     private CategoryDataset dataset;
-    private ArrayList<BarChartCategory> category = new ArrayList<BarChartCategory>();
-    private ArrayList<BarChartPiece> pieces = new ArrayList<BarChartPiece>();
+    private ArrayList<BarChartCategory> category = new ArrayList<>();
+    private ArrayList<BarChartPiece> pieces = new ArrayList<>();
 
     public _MaterialBarChart() {
         buildChart(pieces);

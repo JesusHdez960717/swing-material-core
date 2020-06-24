@@ -24,7 +24,7 @@ import org.jfree.ui.RectangleEdge;
  * eso se incluyen variso autores.
  *
  * @author Unkwnown
- * @author Jesús Hernández Barrios (jhernandezb96@gmail.com)
+ * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
 public class CustomBarPainter implements BarPainter, Serializable {
 

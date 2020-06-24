@@ -12,7 +12,7 @@ import org.jdesktop.core.animation.timing.interpolators.SplineInterpolator;
 /**
  * A floating label of a text field.
  *
- * @author Jesús Hernández Barrios (jhernandezb96@gmail.com)
+ * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
 public class ColorFadeInto {
 

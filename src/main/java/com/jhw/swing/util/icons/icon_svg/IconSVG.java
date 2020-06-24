@@ -23,7 +23,7 @@ import org.apache.batik.anim.dom.SVGDOMImplementation;
 
 /**
  *
- * @author Jesús Hernández Barrios (jhernandezb96@gmail.com)
+ * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
 public class IconSVG extends DerivableIcon {
 

@@ -4,7 +4,7 @@ import com.jhw.swing.util.interfaces.DateSelected;
 
 /**
  *
- * @author Jesús Hernández Barrios (jhernandezb96@gmail.com)
+ * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
 public class DateNotNullValidation extends DatePickerValidation<DateSelected> {
 

@@ -8,7 +8,7 @@ import java.util.StringTokenizer;
  * Por ejemplo, se quiere convertir el String "12345679.123456" a dinero, la
  * transformación sería el String "$123 456 789.12"
  *
- * @author Jesús Hernández Barrios (jhernandezb96@gmail.com)
+ * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
 public class StringFormating {
 

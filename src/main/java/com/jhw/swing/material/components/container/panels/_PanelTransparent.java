@@ -8,7 +8,7 @@ import com.jhw.swing.util.interfaces.MaterialComponent;
  * Panel transparente. Se usa como container de otras cosas cuando no se quiere
  * ver el fondo.
  *
- * @author Jesús Hernández Barrios (jhernandezb96@gmail.com) el 28/01/2020
+ * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com) el 28/01/2020
  */
 public class _PanelTransparent extends JPanel implements MaterialComponent {
 

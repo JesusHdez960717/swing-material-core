@@ -18,7 +18,7 @@ import com.jhw.swing.material.standars.MaterialIcons;
 /**
  * Icon extracted from a true type font (ttf)
  *
- * @author Jesús Hernández Barrios (jhernandezb96@gmail.com)
+ * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
 public class IconTTF extends DerivableIcon {
 

@@ -18,7 +18,7 @@ import com.jhw.swing.material.standars.MaterialIcons;
  * @see <a
  * href="https://www.google.com/design/spec/components/buttons.html">Buttons
  * (Google design guidelines)</a>
- * @author Jesús Hernández Barrios (jhernandezb96@gmail.com)
+ * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
 public class _MaterialIconButtonTranspRect extends JButton implements MaterialComponent {
 

@@ -27,7 +27,7 @@ import javax.swing.ImageIcon;
  * extraidos de ICON_FONT y los IconSVG extraidos directamente de un SVG.
  *
  * @author DragShot
- * @author Jesús Hernández Barrios (jhernandezb96@gmail.com)
+ * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
 public class MaterialIcons {
 

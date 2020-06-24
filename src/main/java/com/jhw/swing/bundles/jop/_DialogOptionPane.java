@@ -12,7 +12,7 @@ import com.jhw.swing.material.standars.MaterialColors;
 
 /**
  *
- * @author Jessica Aidyl García Albalah (jgarciaalbalah@gmail.com)
+ * @author Jessica Aidyl Garcia Albalah (jgarciaalbalah@gmail.com)
  */
 public class _DialogOptionPane extends JDialog implements MaterialComponent {
 

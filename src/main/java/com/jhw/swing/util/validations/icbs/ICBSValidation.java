@@ -4,7 +4,7 @@ import com.jhw.swing.util.validations.Validation;
 
 /**
  *
- * @author Jesús Hernández Barrios (jhernandezb96@gmail.com)
+ * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
 public abstract class ICBSValidation<T> extends Validation<T> {
 

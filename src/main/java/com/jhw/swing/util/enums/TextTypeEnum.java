@@ -3,7 +3,7 @@ package com.jhw.swing.util.enums;
 /**
  * Enum para identificar el tipo de text que va a contener un text field.
  *
- * @author Jesús Hernández Barrios (jhernandezb96@gmail.com)
+ * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
 public enum TextTypeEnum {
 

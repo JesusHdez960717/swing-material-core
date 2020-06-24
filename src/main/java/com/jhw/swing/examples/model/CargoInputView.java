@@ -8,7 +8,7 @@ import java.util.Random;
 
 /**
  *
- * @author Jesús Hernández Barrios (jhernandezb96@gmail.com) 5/4/2020
+ * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com) 5/4/2020
  */
 public class CargoInputView extends ModelPanel<CargoModel> {
 

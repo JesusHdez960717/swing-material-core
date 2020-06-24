@@ -7,7 +7,7 @@ import javax.swing.JComboBox;
 
 /**
  *
- * @author Jesús Hernández Barrios (jhernandezb96@gmail.com)
+ * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
 public class _YearPicker extends _PanelTransparent implements DateSelected {
 

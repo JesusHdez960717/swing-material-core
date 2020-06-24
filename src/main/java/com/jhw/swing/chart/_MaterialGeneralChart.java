@@ -13,7 +13,7 @@ import com.jhw.swing.util.interfaces.MaterialComponent;
 
 /**
  *
- * @author Aidyl
+ * @author Jessica Aidyl Garcia Albalah (jgarciaalbalah@gmail.com)
  */
 public abstract class _MaterialGeneralChart extends ChartPanel implements MaterialComponent {
 

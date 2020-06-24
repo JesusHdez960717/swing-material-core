@@ -5,7 +5,7 @@ import com.jhw.swing.util.validations.datepicker.DateNotNullValidation;
 
 /**
  *
- * @author Jesús Hernández Barrios (jhernandezb96@gmail.com)
+ * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
 public class _DatePickerNotNull extends _MaterialDatePicker {
 

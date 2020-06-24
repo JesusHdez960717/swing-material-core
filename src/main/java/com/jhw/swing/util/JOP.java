@@ -9,7 +9,7 @@ import com.jhw.swing.material.standars.MaterialImages;
 /**
  * Clase auxiliar que brinda varios JOptionsPane predefinidos.
  *
- * @author Jesús Hernández Barrios (jhernandezb96@gmail.com)
+ * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
 public class JOP {
 

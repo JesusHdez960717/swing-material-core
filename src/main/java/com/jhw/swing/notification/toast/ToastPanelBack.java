@@ -4,7 +4,7 @@ import com.jhw.swing.material.components.container.panels._PanelTransparent;
 
 /**
  *
- * @author Jesús Hernández Barrios (jhernandezb96@gmail.com)
+ * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
 public class ToastPanelBack extends _PanelTransparent {
 

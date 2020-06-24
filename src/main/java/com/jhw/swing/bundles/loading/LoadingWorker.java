@@ -35,7 +35,7 @@ import javax.swing.SwingWorker;
  *
  * </pre>
  *
- * @author Jesús Hernández Barrios (jhernandezb96@gmail.com)
+ * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  * @param <T> Tipo de dato del return del doInBackground();
  */
 public class LoadingWorker<T> extends SwingWorker<T, Void> {

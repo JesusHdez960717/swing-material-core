@@ -4,7 +4,7 @@ package com.jhw.swing.util.interfaces;
  * Interfaz a implementar por los paneles que van a trabajar con la creación y
  * edición de modelos, incluye metodos basicos para su trabajo.
  *
- * @author Jesús Hernández Barrios (jhernandezb96@gmail.com)
+ * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  * @param <T> Tipo de Modelo que va a trabajar.
  */
 public interface ModelablePanel<T> {

@@ -12,7 +12,7 @@ import javax.swing.ImageIcon;
  * background del panel material, pero se puede personalizar creando uno mismo
  * el botón.
  *
- * @author Jesús Hernández Barrios (jhernandezb96@gmail.com)
+ * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
 public class MainPageElement {
 
