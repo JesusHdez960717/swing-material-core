@@ -10,6 +10,7 @@ import com.jhw.swing.material.components.textfield._MaterialTextField;
 import org.jdesktop.core.animation.timing.Animator;
 import org.jdesktop.core.animation.timing.interpolators.SplineInterpolator;
 import com.jhw.swing.personalization.Inistanciables;
+import com.jhw.swing.personalization.PersonalizationMaterial;
 import com.jhw.swing.util.SafePropertySetter;
 import com.jhw.swing.util.Utils;
 import com.jhw.swing.util.enums.TextTypeEnum;
@@ -20,7 +21,7 @@ import com.jhw.swing.util.enums.TextTypeEnum;
 public class FloatingLabel {
 
     public static final int DURATION = 200;
-    
+
     private final JTextField target;
     private Animator animator;
     private final SafePropertySetter.Property<Integer> y;
@@ -48,46 +49,11 @@ public class FloatingLabel {
         if (animator != null) {
             animator.stop();
         }
-        Animator.Builder builder = new Animator.Builder(Inistanciables.getSwingTimerTimingSource())
-                .setDuration(DURATION, TimeUnit.MILLISECONDS)
-                .setEndBehavior(Animator.EndBehavior.HOLD)
-                .setInterpolator(new SplineInterpolator(0.4, 0, 0.2, 1));
-
-        //Font size, si no hay letra es tamaño real, si esta arriba es el 80% del tamaño(1 poquito mas chiquito)
-        float targetFontSize = (target.isFocusOwner() || !target.getText().isEmpty()) ? target.getFont().getSize2D() * 0.8f : target.getFont().getSize2D();
-        if (fontSize.getValue() != targetFontSize) {
-            builder.addTarget(SafePropertySetter.getTarget(fontSize, fontSize.getValue(), targetFontSize));
-        }
-
-        //Y position
-        int targetY = target.isFocusOwner() || !target.getText().isEmpty() ? getYPositionUP() : getYPositionDOWN();
-        if (Math.abs(targetY - y.getValue()) > 0.1) {
-            builder.addTarget(SafePropertySetter.getTarget(y, y.getValue(), targetY));
-        }
-
-        //X position
-        if (target instanceof _MaterialTextField) {
-            _MaterialTextField txtFld = (_MaterialTextField) target;
-            int targetX = 0;
-            if (txtFld.getType() == TextTypeEnum.MONEY && targetY == getYPositionDOWN()) {
-                targetX = _MaterialTextField.MONEY_TRASLATION;
-            }
-            builder.addTarget(SafePropertySetter.getTarget(x, x.getValue(), targetX));
-        }
-
-        //color, varia entre el color de accent y el de Opacity_Mask
-        Color targetColor;
-        if (target.isFocusOwner()) {
-            targetColor = accentColor;
+        if (PersonalizationMaterial.getInstance().isUseAnimations()) {
+            setValuesAnimated();
         } else {
-            targetColor = Utils.applyAlphaMask(target.getForeground(), HINT_OPACITY_MASK);
+            setValuesStatics();
         }
-        if (!targetColor.equals(color.getValue())) {
-            builder.addTarget(SafePropertySetter.getTarget(color, color.getValue(), targetColor));
-        }
-
-        animator = builder.build();
-        animator.start();
     }
 
     public void setAccentColor(Color accentColor) {
@@ -137,4 +103,73 @@ public class FloatingLabel {
         int yPositionDown = yMid + metrics.getAscent() / 2;//un poquito mas arriba del texto
         return yPositionDown;
     }
+
+    public float getTargetFontSize() {
+        return (target.isFocusOwner() || !target.getText().isEmpty()) ? target.getFont().getSize2D() * 0.8f : target.getFont().getSize2D();
+    }
+
+    public int getTargetYPosition() {
+        return target.isFocusOwner() || !target.getText().isEmpty() ? getYPositionUP() : getYPositionDOWN();
+    }
+
+    //Si es un text field de tipo dinero y el floating va para abajo, la x se agranda para no tapar el $, sino va en 0(Estandar)
+    public int getTargetXPosition() {
+        if (target instanceof _MaterialTextField && ((_MaterialTextField) target).getType() == TextTypeEnum.MONEY && getTargetYPosition() == getYPositionDOWN()) {
+            return _MaterialTextField.MONEY_TRASLATION;
+        }
+        return 0;
+    }
+
+    private Color getTargetColor() {
+        return target.isFocusOwner() ? accentColor : Utils.applyAlphaMask(target.getForeground(), HINT_OPACITY_MASK);
+    }
+
+    private void setValuesAnimated() {
+        Animator.Builder builder = new Animator.Builder(Inistanciables.getSwingTimerTimingSource())
+                .setDuration(DURATION, TimeUnit.MILLISECONDS)
+                .setEndBehavior(Animator.EndBehavior.HOLD)
+                .setInterpolator(new SplineInterpolator(0.4, 0, 0.2, 1));
+
+        //Font size, si no hay letra es tamaño real, si esta arriba es el 80% del tamaño(1 poquito mas chiquito)
+        float targetFontSize = getTargetFontSize();
+        if (fontSize.getValue() != targetFontSize) {
+            builder.addTarget(SafePropertySetter.getTarget(fontSize, fontSize.getValue(), targetFontSize));
+        }
+
+        //Y position
+        int targetY = getTargetYPosition();
+        if (Math.abs(targetY - y.getValue()) > 0.1) {
+            builder.addTarget(SafePropertySetter.getTarget(y, y.getValue(), targetY));
+        }
+
+        //X position
+        int targetX = getTargetXPosition();
+        if (Math.abs(targetX - x.getValue()) > 0.1) {
+            builder.addTarget(SafePropertySetter.getTarget(x, x.getValue(), targetX));
+        }
+
+        //color, varia entre el color de accent y el de Opacity_Mask
+        Color targetColor = getTargetColor();
+        if (!targetColor.equals(color.getValue())) {
+            builder.addTarget(SafePropertySetter.getTarget(color, color.getValue(), targetColor));
+        }
+
+        animator = builder.build();
+        animator.start();
+    }
+
+    private void setValuesStatics() {
+        //Font size, si no hay letra es tamaño real, si esta arriba es el 80% del tamaño(1 poquito mas chiquito)
+        fontSize.setValue(getTargetFontSize());
+
+        //Y position
+        y.setValue(getTargetYPosition());
+
+        //X position
+        x.setValue(getTargetXPosition());
+
+        //color, varia entre el color de accent y el de Opacity_Mask
+        color.setValue(getTargetColor());
+    }
+
 }
