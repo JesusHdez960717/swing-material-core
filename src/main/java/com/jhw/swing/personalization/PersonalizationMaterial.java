@@ -40,7 +40,7 @@ public class PersonalizationMaterial {
 
     private static PersonalizationMaterial load() {
         PersonalizationMaterial act = new PersonalizationMaterial();
-        try {//carga configuracion
+        /*try {//carga configuracion
             act = JACKSON.read(persMatJsonFile, PersonalizationMaterial.class);
         } catch (Exception e) {
             System.out.println("Error cargando personalizacion de material. Usando por defecto.");
@@ -49,7 +49,7 @@ public class PersonalizationMaterial {
             } catch (Exception ex) {
                 Logger.getLogger(PersonalizationMaterial.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }
+        }*/
         return act;
     }
 
@@ -67,7 +67,7 @@ public class PersonalizationMaterial {
     private boolean useAntialiasing = true;
     private boolean useShadow = true;
 
-    private boolean useAnimations = true;
+    private boolean useAnimations = false;
 
     private boolean double_delete_check = false;
 

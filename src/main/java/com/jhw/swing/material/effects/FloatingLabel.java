@@ -19,6 +19,8 @@ import com.jhw.swing.util.enums.TextTypeEnum;
  */
 public class FloatingLabel {
 
+    public static final int DURATION = 200;
+    
     private final JTextField target;
     private Animator animator;
     private final SafePropertySetter.Property<Integer> y;
@@ -32,9 +34,7 @@ public class FloatingLabel {
 
         y = SafePropertySetter.animatableProperty(target, 0);//target.getSize().height / 2 + target.getFontMetrics(target.getFont()).getAscent() / 2);
         x = SafePropertySetter.animatableProperty(target, 0);//target.getSize().height / 2 + target.getFontMetrics(target.getFont()).getAscent() / 2);
-
         fontSize = SafePropertySetter.animatableProperty(target, target.getFont().getSize2D());
-
         color = SafePropertySetter.animatableProperty(target, Utils.applyAlphaMask(target.getForeground(), HINT_OPACITY_MASK));
 
         this.updateForeground();
@@ -49,7 +49,7 @@ public class FloatingLabel {
             animator.stop();
         }
         Animator.Builder builder = new Animator.Builder(Inistanciables.getSwingTimerTimingSource())
-                .setDuration(200, TimeUnit.MILLISECONDS)
+                .setDuration(DURATION, TimeUnit.MILLISECONDS)
                 .setEndBehavior(Animator.EndBehavior.HOLD)
                 .setInterpolator(new SplineInterpolator(0.4, 0, 0.2, 1));
 

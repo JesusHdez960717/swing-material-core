@@ -17,7 +17,7 @@ import com.jhw.swing.util.interfaces.Update;
  */
 public class PanelDual extends _PanelTransparent implements Update {
 
-    private final int DURATION;
+    private final int DURATION = 250;
     private Animator anim;
     private final Component left;
     private final Component right;
@@ -25,7 +25,6 @@ public class PanelDual extends _PanelTransparent implements Update {
     public PanelDual(Component a, Component b) {
         this.left = a;
         this.right = b;
-        DURATION = PersonalizationMaterial.getInstance().isCollapse_slow() ? 250 : 10;
     }
 
     public void setLeftComponentSize(int size) {
@@ -36,20 +35,18 @@ public class PanelDual extends _PanelTransparent implements Update {
         if (anim != null) {
             anim.cancel();
         }
-        anim = new Animator.Builder(Inistanciables.getSwingTimerTimingSource())
-                .setDuration(DURATION, TimeUnit.MILLISECONDS)
-                .setInterpolator(new SplineInterpolator(0.1, 0.3, 0.45, 1))
-                .addTarget(SafePropertySetter.getTarget(new SafePropertySetter.Setter<Integer>() {
-                    @Override
-                    public void setValue(Integer value) {
-                        if (value != null) {
-                            left.setSize(new Dimension(value, 0));
-                            update();
-                        }
-                    }
-                }, (int) left.getSize().getWidth(), size))
-                .build();
-        anim.start();
+        if (PersonalizationMaterial.getInstance().isUseAnimations()) {
+            doAnimateMove(size);
+        } else {
+            doMove(size);
+        }
+    }
+
+    private void doMove(Integer value) {
+        if (value != null) {
+            left.setSize(new Dimension(value, 0));
+            update();
+        }
     }
 
     @Override
@@ -58,16 +55,31 @@ public class PanelDual extends _PanelTransparent implements Update {
         this.setLayout(layout);
         layout.setHorizontalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                        .addComponent(left, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, left.getSize().width)
-                        .addGap(0, 0, 0)
-                        .addComponent(right, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createSequentialGroup()
+                                .addComponent(left, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, left.getSize().width)
+                                .addGap(0, 0, 0)
+                                .addComponent(right, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(left, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(right, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(left, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(right, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
+    }
+
+    private void doAnimateMove(int size) {
+        anim = new Animator.Builder(Inistanciables.getSwingTimerTimingSource())
+                .setDuration(DURATION, TimeUnit.MILLISECONDS)
+                .setInterpolator(new SplineInterpolator(0.1, 0.3, 0.45, 1))
+                .addTarget(SafePropertySetter.getTarget(new SafePropertySetter.Setter<Integer>() {
+                    @Override
+                    public void setValue(Integer value) {
+                        doMove(value);
+                    }
+
+                }, (int) left.getSize().getWidth(), size))
+                .build();
+        anim.start();
     }
 
 }
