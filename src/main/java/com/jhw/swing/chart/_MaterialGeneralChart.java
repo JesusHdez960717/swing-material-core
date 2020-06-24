@@ -6,7 +6,7 @@ import java.awt.Paint;
 import java.io.File;
 import java.io.IOException;
 import org.jfree.chart.ChartPanel;
-import org.jfree.chart.ChartUtils;
+import org.jfree.chart.ChartUtilities;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.block.BlockBorder;
 import com.jhw.swing.util.interfaces.MaterialComponent;
@@ -105,7 +105,7 @@ public abstract class _MaterialGeneralChart extends ChartPanel implements Materi
         int height = 480;
 
         try {
-            ChartUtils.saveChartAsPNG(imageFile, chart, width, height);
+            ChartUtilities.saveChartAsPNG(imageFile, chart, width, height);
         } catch (IOException ex) {
             System.err.println(ex);
         }

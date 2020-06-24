@@ -11,12 +11,12 @@ import java.io.InputStream;
  */
 public class MaterialImages {
 
-    public static final BufferedImage TOGGLE_BUTTON_OFF = loadImg("/resources/imgs/toggle_off.png");
-    public static final BufferedImage TOGGLE_BUTTON_ON = loadImg("/resources/imgs/toggle_on.png");
-    public static final BufferedImage ERROR = loadImg("/resources/imgs/error.png");
-    public static final BufferedImage WARNING = loadImg("/resources/imgs/warning.png");
-    public static final BufferedImage QUESTION = loadImg("/resources/imgs/question.png");
-    public static final BufferedImage INFORMATION = loadImg("/resources/imgs/information.png");
+    public static final BufferedImage TOGGLE_BUTTON_OFF = loadImg("/imgs/toggle_off.png");
+    public static final BufferedImage TOGGLE_BUTTON_ON = loadImg("/imgs/toggle_on.png");
+    public static final BufferedImage ERROR = loadImg("/imgs/error.png");
+    public static final BufferedImage WARNING = loadImg("/imgs/warning.png");
+    public static final BufferedImage QUESTION = loadImg("/imgs/question.png");
+    public static final BufferedImage INFORMATION = loadImg("/imgs/information.png");
 
     private MaterialImages() {
     }

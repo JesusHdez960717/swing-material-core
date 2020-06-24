@@ -14,10 +14,10 @@ import org.jfree.chart.renderer.category.BarPainter;
 import org.jfree.chart.renderer.category.BarRenderer;
 import org.jfree.chart.renderer.category.StandardBarPainter;
 import org.jfree.ui.GradientPaintTransformer;
-import org.jfree.ui.RectangleEdge;
 import com.jhw.swing.util.MaterialDrawingUtils;
 import com.jhw.swing.util.enums.GradientEnum;
 import com.jhw.swing.material.standars.MaterialColors;
+import org.jfree.ui.RectangleEdge;
 
 /**
  * Sacado de internet, el autor exacto se desconoce, pero si fue retocado y por

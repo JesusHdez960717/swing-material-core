@@ -317,7 +317,7 @@ public class _MaterialPasswordField extends JPasswordField implements MaterialCo
     @Override
     public void setText(String s) {
         super.setText(s);
-        this.setCaretPosition(getText().length());
+        this.setCaretPosition(getMaxLength());
         floatingLabel.update();
         line.update();
         clearWrong(new KeyEvent(this, 0, 0, 0, 0, '0'));

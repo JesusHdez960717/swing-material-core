@@ -27,11 +27,11 @@ import com.jhw.swing.util.interfaces.MaterialComponent;
 public class _TabbedPaneHeader extends JTabbedPane implements MaterialComponent {
 
     private static final Insets NO_INSETS = new Insets(0, 0, 0, 0);
-    protected BufferedImage background = loadImage("/resources/imgs/header_gradient.png");
-    protected BufferedImage buttonHighlight = loadImage("/resources/imgs/header_halo.png");
+    protected BufferedImage background = loadImage("/imgs/header_gradient.png");
+    protected BufferedImage buttonHighlight = loadImage("/imgs/header_halo.png");
     protected Color colorDeSombra = new Color(173, 173, 173);
-    protected BufferedImage left = loadImage("/resources/imgs/header_slash_left.png");
-    protected BufferedImage right = loadImage("/resources/imgs/header_slash_right.png");
+    protected BufferedImage left = loadImage("/imgs/header_slash_left.png");
+    protected BufferedImage right = loadImage("/imgs/header_slash_right.png");
 
     private class TabbedPaneUI extends BasicTabbedPaneUI {
 
