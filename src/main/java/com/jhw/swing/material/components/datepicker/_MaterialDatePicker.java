@@ -19,7 +19,7 @@ import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 import com.jhw.swing.personalization.PersonalizationMaterial;
 import com.jhw.swing.util.Utils;
-import com.jhw.swing.util.interfaces.Update;
+import com.clean.core.utils.Update;
 import com.jhw.swing.util.interfaces.DateSelected;
 import com.jhw.swing.material.standars.MaterialColors;
 import com.jhw.swing.material.standars.MaterialFontRoboto;

@@ -15,7 +15,7 @@ import javax.swing.ImageIcon;
 import com.jhw.swing.personalization.PersonalizationMaterial;
 import com.jhw.swing.util.Utils;
 import com.jhw.swing.util.enums.GradientEnum;
-import com.jhw.swing.util.interfaces.Update;
+import com.clean.core.utils.Update;
 import com.jhw.swing.material.standars.MaterialColors;
 import com.jhw.swing.material.standars.MaterialIcons;
 

@@ -24,7 +24,9 @@ repositories {
 
 dependencies {
     testCompile 'junit:junit:4.12'
+    
     implementation project(':utils')
+    implementation project(':clean-core')
     
     //batick para svg
     compile group: 'org.apache.xmlgraphics', name: 'batik-transcoder', version: '1.13'

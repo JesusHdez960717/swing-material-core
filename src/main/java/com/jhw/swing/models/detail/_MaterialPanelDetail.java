@@ -27,7 +27,7 @@ import lombok.Setter;
 import com.jhw.utils.others.KMP;
 import com.jhw.utils.security.SHA;
 import com.jhw.swing.util.JOP;
-import com.jhw.swing.util.interfaces.Update;
+import com.clean.core.utils.Update;
 import com.jhw.swing.material.standars.MaterialColors;
 
 /**

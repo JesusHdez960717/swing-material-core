@@ -2,7 +2,7 @@ package com.jhw.swing.models.input.panels;
 
 import com.jhw.swing.util.interfaces.ModelablePanel;
 import com.jhw.swing.material.components.container.panels._PanelTransparent;
-import com.jhw.swing.util.interfaces.Update;
+import com.clean.core.utils.Update;
 
 /**
  *

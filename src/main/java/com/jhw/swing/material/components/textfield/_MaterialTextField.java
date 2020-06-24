@@ -1,6 +1,5 @@
 package com.jhw.swing.material.components.textfield;
 
-import com.jhw.utils.exceptions.ModelInputErrorException;
 import java.awt.*;
 import java.awt.event.FocusEvent;
 import java.awt.event.KeyEvent;

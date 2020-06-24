@@ -1,8 +1,8 @@
 package com.jhw.swing.util;
 
+import com.jhw.utils.interfaces.Update;
 import java.awt.Component;
 import javax.swing.JPanel;
-import com.jhw.swing.util.interfaces.Update;
 
 /**
  * Actualiza recursivamente una serie de elementos que implementes la interfaz

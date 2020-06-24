@@ -5,7 +5,7 @@ import com.jhw.swing.material.components.container.panels._PanelTransparent;
 import com.jhw.swing.material.components.labels._MaterialLabel;
 import java.awt.event.ActionListener;
 import java.io.File;
-import com.jhw.swing.util.interfaces.Update;
+import com.clean.core.utils.Update;
 import com.jhw.swing.material.standars.MaterialColors;
 import com.jhw.swing.material.standars.MaterialIcons;
 

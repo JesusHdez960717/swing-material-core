@@ -6,7 +6,7 @@ import com.jhw.swing.material.components.container.panels._PanelComponent;
 import com.jhw.swing.material.components.container.panels._PanelGradient;
 import java.awt.Color;
 import com.jhw.swing.personalization.PersonalizationMaterial;
-import com.jhw.swing.util.interfaces.Update;
+import com.clean.core.utils.Update;
 import com.jhw.swing.util.interfaces.ModelablePanel;
 import com.jhw.swing.material.standars.MaterialColors;
 import com.jhw.swing.material.standars.MaterialIcons;
