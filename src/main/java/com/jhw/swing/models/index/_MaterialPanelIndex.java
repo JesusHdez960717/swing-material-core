@@ -7,7 +7,7 @@ import javax.swing.JPanel;
 import lombok.Getter;
 import lombok.Setter;
 import com.jhw.swing.util.icons.DerivableIcon;
-import com.clean.core.utils.Update;
+import com.jhw.utils.interfaces.Update;
 import com.jhw.swing.material.standars.MaterialColors;
 import com.jhw.swing.material.standars.MaterialFontRoboto;
 import com.jhw.swing.material.standars.MaterialIcons;

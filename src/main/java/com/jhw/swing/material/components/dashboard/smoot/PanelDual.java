@@ -9,7 +9,7 @@ import org.jdesktop.core.animation.timing.interpolators.SplineInterpolator;
 import com.jhw.swing.personalization.Inistanciables;
 import com.jhw.swing.personalization.PersonalizationMaterial;
 import com.jhw.swing.util.SafePropertySetter;
-import com.clean.core.utils.Update;
+import com.jhw.utils.interfaces.Update;
 
 /**
  *

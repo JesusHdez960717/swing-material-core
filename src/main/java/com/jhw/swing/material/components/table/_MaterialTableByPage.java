@@ -14,7 +14,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
-import com.clean.core.utils.Update;
+import com.jhw.utils.interfaces.Update;
 
 /**
  *

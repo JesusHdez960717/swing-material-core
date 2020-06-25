@@ -1,9 +1,9 @@
 package com.jhw.swing.material.components.combobox.icbs;
 
+import com.clean.core.exceptions.ValidationException;
 import com.jhw.swing.material.components.button._MaterialButtonSimpleIcon;
 import com.jhw.swing.material.components.container.panels._PanelTransparent;
 import com.jhw.swing.material.components.textfield._MaterialTextField;
-import com.jhw.utils.exceptions.ModelInputErrorException;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -16,7 +16,7 @@ import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 import com.jhw.swing.personalization.PersonalizationMaterial;
 import com.jhw.swing.util.Utils;
-import com.clean.core.utils.Update;
+import com.jhw.utils.interfaces.Update;
 import com.jhw.swing.material.standars.MaterialColors;
 import com.jhw.swing.util.validations.Validation;
 import com.jhw.swing.util.validations.icbs.ICBSValidation;
@@ -309,7 +309,7 @@ public abstract class InputComboBoxSelection<T> extends _PanelTransparent implem
             if (!v.validate(this)) {
                 setWrongText(v.getWrongText());
                 wrong();
-                throw new ModelInputErrorException(v.getDetailedText());
+                throw new ValidationException(v.getDetailedText());
             }
         }
     }
@@ -319,7 +319,7 @@ public abstract class InputComboBoxSelection<T> extends _PanelTransparent implem
             if (!v.validate(this)) {
                 setWrongText(v.getWrongText());
                 wrong();
-                throw new ModelInputErrorException(v.getDetailedText());
+                throw new ValidationException(v.getDetailedText());
             }
         }
     }

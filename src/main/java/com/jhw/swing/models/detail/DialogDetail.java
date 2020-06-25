@@ -3,7 +3,7 @@ package com.jhw.swing.models.detail;
 import com.jhw.swing.bundles.dialog.DialogPanel;
 import java.awt.Component;
 import javax.swing.JPanel;
-import com.clean.core.utils.Update;
+import com.jhw.utils.interfaces.Update;
 
 /**
  * Dialogo para mostrar las ventanas de detalles de los modelos.<\br>

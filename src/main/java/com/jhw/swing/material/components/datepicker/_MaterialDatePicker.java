@@ -8,7 +8,7 @@ package com.jhw.swing.material.components.datepicker;
 import com.jhw.swing.material.components.container.panels._PanelTransparent;
 import com.jhw.swing.material.components.labels._MaterialLabel;
 import com.jhw.swing.material.components.textfield._MaterialTextField;
-import com.jhw.utils.exceptions.ModelInputErrorException;
+import com.clean.core.exceptions.ValidationException;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -19,7 +19,7 @@ import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 import com.jhw.swing.personalization.PersonalizationMaterial;
 import com.jhw.swing.util.Utils;
-import com.clean.core.utils.Update;
+import com.jhw.utils.interfaces.Update;
 import com.jhw.swing.util.interfaces.DateSelected;
 import com.jhw.swing.material.standars.MaterialColors;
 import com.jhw.swing.material.standars.MaterialFontRoboto;
@@ -227,7 +227,7 @@ public class _MaterialDatePicker extends _PanelTransparent implements DateSelect
             if (!v.validate(this)) {
                 setWrongText(v.getWrongText());
                 wrong();
-                throw new ModelInputErrorException(v.getDetailedText());
+                throw new ValidationException(v.getDetailedText());
             }
         }
     }
@@ -237,7 +237,7 @@ public class _MaterialDatePicker extends _PanelTransparent implements DateSelect
             if (!v.validate(this)) {
                 setWrongText(v.getWrongText());
                 wrong();
-                throw new ModelInputErrorException(v.getDetailedText());
+                throw new ValidationException(v.getDetailedText());
             }
         }
     }
