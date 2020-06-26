@@ -1,6 +1,6 @@
 package com.jhw.swing.material.components.table.editors_renders.money;
 
-import com.jhw.swing.material.components.container.panels._PanelGradient;
+import com.jhw.swing.material.components.container.panel._PanelGradient;
 import com.jhw.swing.material.components.labels._MaterialLabel;
 import java.awt.Component;
 import java.util.HashMap;

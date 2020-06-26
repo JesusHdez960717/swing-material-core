@@ -1,4 +1,4 @@
-package com.jhw.swing.material.components.container.panels;
+package com.jhw.swing.material.components.container.panel;
 
 import java.awt.Color;
 import java.awt.GradientPaint;

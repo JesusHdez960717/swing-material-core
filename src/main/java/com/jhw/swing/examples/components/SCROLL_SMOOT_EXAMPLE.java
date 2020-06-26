@@ -25,19 +25,19 @@ public class SCROLL_SMOOT_EXAMPLE extends javax.swing.JFrame {
     private void initComponents() {
 
         _MaterialScrollPaneCore1 = new com.jhw.swing.material.components.scrollpane._MaterialScrollPaneCore();
-        _PanelGradient1 = new com.jhw.swing.material.components.container.panels._PanelGradient();
-        _MaterialPanel1 = new com.jhw.swing.material.components.container.panels._MaterialPanel();
-        _MaterialPanel3 = new com.jhw.swing.material.components.container.panels._MaterialPanel();
-        _MaterialPanel4 = new com.jhw.swing.material.components.container.panels._MaterialPanel();
-        _MaterialPanel5 = new com.jhw.swing.material.components.container.panels._MaterialPanel();
-        _MaterialPanel6 = new com.jhw.swing.material.components.container.panels._MaterialPanel();
+        _PanelGradient1 = new com.jhw.swing.material.components.container.panel._PanelGradient();
+        _MaterialPanel1 = new com.jhw.swing.material.components.container.panel._MaterialPanel();
+        _MaterialPanel3 = new com.jhw.swing.material.components.container.panel._MaterialPanel();
+        _MaterialPanel4 = new com.jhw.swing.material.components.container.panel._MaterialPanel();
+        _MaterialPanel5 = new com.jhw.swing.material.components.container.panel._MaterialPanel();
+        _MaterialPanel6 = new com.jhw.swing.material.components.container.panel._MaterialPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        _PanelGradient2 = new com.jhw.swing.material.components.container.panels._PanelGradient();
-        _MaterialPanel2 = new com.jhw.swing.material.components.container.panels._MaterialPanel();
-        _MaterialPanel7 = new com.jhw.swing.material.components.container.panels._MaterialPanel();
-        _MaterialPanel8 = new com.jhw.swing.material.components.container.panels._MaterialPanel();
-        _MaterialPanel9 = new com.jhw.swing.material.components.container.panels._MaterialPanel();
-        _MaterialPanel10 = new com.jhw.swing.material.components.container.panels._MaterialPanel();
+        _PanelGradient2 = new com.jhw.swing.material.components.container.panel._PanelGradient();
+        _MaterialPanel2 = new com.jhw.swing.material.components.container.panel._MaterialPanel();
+        _MaterialPanel7 = new com.jhw.swing.material.components.container.panel._MaterialPanel();
+        _MaterialPanel8 = new com.jhw.swing.material.components.container.panel._MaterialPanel();
+        _MaterialPanel9 = new com.jhw.swing.material.components.container.panel._MaterialPanel();
+        _MaterialPanel10 = new com.jhw.swing.material.components.container.panel._MaterialPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -258,19 +258,19 @@ public class SCROLL_SMOOT_EXAMPLE extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.jhw.swing.material.components.container.panels._MaterialPanel _MaterialPanel1;
-    private com.jhw.swing.material.components.container.panels._MaterialPanel _MaterialPanel10;
-    private com.jhw.swing.material.components.container.panels._MaterialPanel _MaterialPanel2;
-    private com.jhw.swing.material.components.container.panels._MaterialPanel _MaterialPanel3;
-    private com.jhw.swing.material.components.container.panels._MaterialPanel _MaterialPanel4;
-    private com.jhw.swing.material.components.container.panels._MaterialPanel _MaterialPanel5;
-    private com.jhw.swing.material.components.container.panels._MaterialPanel _MaterialPanel6;
-    private com.jhw.swing.material.components.container.panels._MaterialPanel _MaterialPanel7;
-    private com.jhw.swing.material.components.container.panels._MaterialPanel _MaterialPanel8;
-    private com.jhw.swing.material.components.container.panels._MaterialPanel _MaterialPanel9;
+    private com.jhw.swing.material.components.container.panel._MaterialPanel _MaterialPanel1;
+    private com.jhw.swing.material.components.container.panel._MaterialPanel _MaterialPanel10;
+    private com.jhw.swing.material.components.container.panel._MaterialPanel _MaterialPanel2;
+    private com.jhw.swing.material.components.container.panel._MaterialPanel _MaterialPanel3;
+    private com.jhw.swing.material.components.container.panel._MaterialPanel _MaterialPanel4;
+    private com.jhw.swing.material.components.container.panel._MaterialPanel _MaterialPanel5;
+    private com.jhw.swing.material.components.container.panel._MaterialPanel _MaterialPanel6;
+    private com.jhw.swing.material.components.container.panel._MaterialPanel _MaterialPanel7;
+    private com.jhw.swing.material.components.container.panel._MaterialPanel _MaterialPanel8;
+    private com.jhw.swing.material.components.container.panel._MaterialPanel _MaterialPanel9;
     private com.jhw.swing.material.components.scrollpane._MaterialScrollPaneCore _MaterialScrollPaneCore1;
-    private com.jhw.swing.material.components.container.panels._PanelGradient _PanelGradient1;
-    private com.jhw.swing.material.components.container.panels._PanelGradient _PanelGradient2;
+    private com.jhw.swing.material.components.container.panel._PanelGradient _PanelGradient1;
+    private com.jhw.swing.material.components.container.panel._PanelGradient _PanelGradient2;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 

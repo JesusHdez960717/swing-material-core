@@ -24,21 +24,21 @@ public class TABBED_EXAMPLE extends javax.swing.JFrame {
     private void initComponents() {
 
         _TabbedPaneClose1 = new com.jhw.swing.material.components.container.tabbed._TabbedPaneClose();
-        _MaterialPanel1 = new com.jhw.swing.material.components.container.panels._MaterialPanel();
-        _MaterialPanel2 = new com.jhw.swing.material.components.container.panels._MaterialPanel();
-        _MaterialPanel3 = new com.jhw.swing.material.components.container.panels._MaterialPanel();
+        _MaterialPanel1 = new com.jhw.swing.material.components.container.panel._MaterialPanel();
+        _MaterialPanel2 = new com.jhw.swing.material.components.container.panel._MaterialPanel();
+        _MaterialPanel3 = new com.jhw.swing.material.components.container.panel._MaterialPanel();
         _TabbedPaneHeader1 = new com.jhw.swing.material.components.container.tabbed._TabbedPaneHeader();
-        _MaterialPanel4 = new com.jhw.swing.material.components.container.panels._MaterialPanel();
-        _MaterialPanel5 = new com.jhw.swing.material.components.container.panels._MaterialPanel();
-        _MaterialPanel6 = new com.jhw.swing.material.components.container.panels._MaterialPanel();
+        _MaterialPanel4 = new com.jhw.swing.material.components.container.panel._MaterialPanel();
+        _MaterialPanel5 = new com.jhw.swing.material.components.container.panel._MaterialPanel();
+        _MaterialPanel6 = new com.jhw.swing.material.components.container.panel._MaterialPanel();
         _TabbedPaneSelector1 = new com.jhw.swing.material.components.container.tabbed._TabbedPaneSelector();
-        _MaterialPanel7 = new com.jhw.swing.material.components.container.panels._MaterialPanel();
-        _MaterialPanel8 = new com.jhw.swing.material.components.container.panels._MaterialPanel();
-        _MaterialPanel9 = new com.jhw.swing.material.components.container.panels._MaterialPanel();
+        _MaterialPanel7 = new com.jhw.swing.material.components.container.panel._MaterialPanel();
+        _MaterialPanel8 = new com.jhw.swing.material.components.container.panel._MaterialPanel();
+        _MaterialPanel9 = new com.jhw.swing.material.components.container.panel._MaterialPanel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
-        _MaterialPanel10 = new com.jhw.swing.material.components.container.panels._MaterialPanel();
-        _MaterialPanel11 = new com.jhw.swing.material.components.container.panels._MaterialPanel();
-        _MaterialPanel12 = new com.jhw.swing.material.components.container.panels._MaterialPanel();
+        _MaterialPanel10 = new com.jhw.swing.material.components.container.panel._MaterialPanel();
+        _MaterialPanel11 = new com.jhw.swing.material.components.container.panel._MaterialPanel();
+        _MaterialPanel12 = new com.jhw.swing.material.components.container.panel._MaterialPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -242,18 +242,18 @@ public class TABBED_EXAMPLE extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.jhw.swing.material.components.container.panels._MaterialPanel _MaterialPanel1;
-    private com.jhw.swing.material.components.container.panels._MaterialPanel _MaterialPanel10;
-    private com.jhw.swing.material.components.container.panels._MaterialPanel _MaterialPanel11;
-    private com.jhw.swing.material.components.container.panels._MaterialPanel _MaterialPanel12;
-    private com.jhw.swing.material.components.container.panels._MaterialPanel _MaterialPanel2;
-    private com.jhw.swing.material.components.container.panels._MaterialPanel _MaterialPanel3;
-    private com.jhw.swing.material.components.container.panels._MaterialPanel _MaterialPanel4;
-    private com.jhw.swing.material.components.container.panels._MaterialPanel _MaterialPanel5;
-    private com.jhw.swing.material.components.container.panels._MaterialPanel _MaterialPanel6;
-    private com.jhw.swing.material.components.container.panels._MaterialPanel _MaterialPanel7;
-    private com.jhw.swing.material.components.container.panels._MaterialPanel _MaterialPanel8;
-    private com.jhw.swing.material.components.container.panels._MaterialPanel _MaterialPanel9;
+    private com.jhw.swing.material.components.container.panel._MaterialPanel _MaterialPanel1;
+    private com.jhw.swing.material.components.container.panel._MaterialPanel _MaterialPanel10;
+    private com.jhw.swing.material.components.container.panel._MaterialPanel _MaterialPanel11;
+    private com.jhw.swing.material.components.container.panel._MaterialPanel _MaterialPanel12;
+    private com.jhw.swing.material.components.container.panel._MaterialPanel _MaterialPanel2;
+    private com.jhw.swing.material.components.container.panel._MaterialPanel _MaterialPanel3;
+    private com.jhw.swing.material.components.container.panel._MaterialPanel _MaterialPanel4;
+    private com.jhw.swing.material.components.container.panel._MaterialPanel _MaterialPanel5;
+    private com.jhw.swing.material.components.container.panel._MaterialPanel _MaterialPanel6;
+    private com.jhw.swing.material.components.container.panel._MaterialPanel _MaterialPanel7;
+    private com.jhw.swing.material.components.container.panel._MaterialPanel _MaterialPanel8;
+    private com.jhw.swing.material.components.container.panel._MaterialPanel _MaterialPanel9;
     private com.jhw.swing.material.components.container.tabbed._TabbedPaneClose _TabbedPaneClose1;
     private com.jhw.swing.material.components.container.tabbed._TabbedPaneHeader _TabbedPaneHeader1;
     private com.jhw.swing.material.components.container.tabbed._TabbedPaneSelector _TabbedPaneSelector1;

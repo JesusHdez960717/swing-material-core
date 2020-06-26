@@ -1,7 +1,7 @@
 package com.jhw.swing.material.components.button;
 
-import com.jhw.swing.material.components.container.panels._MaterialPanel;
-import com.jhw.swing.material.components.container.panels._PanelTransparent;
+import com.jhw.swing.material.components.container.panel._MaterialPanel;
+import com.jhw.swing.material.components.container.panel._PanelTransparent;
 import com.jhw.swing.material.standars.MaterialColors;
 import com.jhw.swing.material.standars.MaterialIcons;
 
@@ -25,7 +25,7 @@ public class _MaterialButtonDouble extends _PanelTransparent {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        panelBackground = new com.jhw.swing.material.components.container.panels._MaterialPanel();
+        panelBackground = new com.jhw.swing.material.components.container.panel._MaterialPanel();
         buttonLeft = new com.jhw.swing.material.components.button._MaterialButtonSimpleIcon();
         buttonRight = new com.jhw.swing.material.components.button._MaterialButtonSimpleIcon();
 
@@ -77,7 +77,7 @@ public class _MaterialButtonDouble extends _PanelTransparent {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.jhw.swing.material.components.button._MaterialButtonSimpleIcon buttonLeft;
     private com.jhw.swing.material.components.button._MaterialButtonSimpleIcon buttonRight;
-    private com.jhw.swing.material.components.container.panels._MaterialPanel panelBackground;
+    private com.jhw.swing.material.components.container.panel._MaterialPanel panelBackground;
     // End of variables declaration//GEN-END:variables
 
     private void personalize() {

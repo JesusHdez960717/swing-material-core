@@ -26,7 +26,7 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Container class="com.jhw.swing.material.components.container.panels._MaterialPanel" name="panelBackground">
+    <Container class="com.jhw.swing.material.components.container.panel._MaterialPanel" name="panelBackground">
 
       <Layout>
         <DimensionLayout dim="0">

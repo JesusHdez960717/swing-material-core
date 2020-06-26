@@ -60,7 +60,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
       <SubComponents>
-        <Container class="com.jhw.swing.material.components.container.panels._MaterialPanel" name="_MaterialPanel1">
+        <Container class="com.jhw.swing.material.components.container.panel._MaterialPanel" name="_MaterialPanel1">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
               <JTabbedPaneConstraints tabName="tab1">
@@ -82,7 +82,7 @@
             </DimensionLayout>
           </Layout>
         </Container>
-        <Container class="com.jhw.swing.material.components.container.panels._MaterialPanel" name="_MaterialPanel2">
+        <Container class="com.jhw.swing.material.components.container.panel._MaterialPanel" name="_MaterialPanel2">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
               <JTabbedPaneConstraints tabName="tab2">
@@ -104,7 +104,7 @@
             </DimensionLayout>
           </Layout>
         </Container>
-        <Container class="com.jhw.swing.material.components.container.panels._MaterialPanel" name="_MaterialPanel3">
+        <Container class="com.jhw.swing.material.components.container.panel._MaterialPanel" name="_MaterialPanel3">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
               <JTabbedPaneConstraints tabName="tab3">
@@ -132,7 +132,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
       <SubComponents>
-        <Container class="com.jhw.swing.material.components.container.panels._MaterialPanel" name="_MaterialPanel4">
+        <Container class="com.jhw.swing.material.components.container.panel._MaterialPanel" name="_MaterialPanel4">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
               <JTabbedPaneConstraints tabName="tab1">
@@ -154,7 +154,7 @@
             </DimensionLayout>
           </Layout>
         </Container>
-        <Container class="com.jhw.swing.material.components.container.panels._MaterialPanel" name="_MaterialPanel5">
+        <Container class="com.jhw.swing.material.components.container.panel._MaterialPanel" name="_MaterialPanel5">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
               <JTabbedPaneConstraints tabName="tab2">
@@ -176,7 +176,7 @@
             </DimensionLayout>
           </Layout>
         </Container>
-        <Container class="com.jhw.swing.material.components.container.panels._MaterialPanel" name="_MaterialPanel6">
+        <Container class="com.jhw.swing.material.components.container.panel._MaterialPanel" name="_MaterialPanel6">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
               <JTabbedPaneConstraints tabName="tab3">
@@ -204,7 +204,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
       <SubComponents>
-        <Container class="com.jhw.swing.material.components.container.panels._MaterialPanel" name="_MaterialPanel7">
+        <Container class="com.jhw.swing.material.components.container.panel._MaterialPanel" name="_MaterialPanel7">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
               <JTabbedPaneConstraints tabName="tab1">
@@ -226,7 +226,7 @@
             </DimensionLayout>
           </Layout>
         </Container>
-        <Container class="com.jhw.swing.material.components.container.panels._MaterialPanel" name="_MaterialPanel8">
+        <Container class="com.jhw.swing.material.components.container.panel._MaterialPanel" name="_MaterialPanel8">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
               <JTabbedPaneConstraints tabName="tab2">
@@ -248,7 +248,7 @@
             </DimensionLayout>
           </Layout>
         </Container>
-        <Container class="com.jhw.swing.material.components.container.panels._MaterialPanel" name="_MaterialPanel9">
+        <Container class="com.jhw.swing.material.components.container.panel._MaterialPanel" name="_MaterialPanel9">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
               <JTabbedPaneConstraints tabName="tab3">
@@ -276,7 +276,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
       <SubComponents>
-        <Container class="com.jhw.swing.material.components.container.panels._MaterialPanel" name="_MaterialPanel10">
+        <Container class="com.jhw.swing.material.components.container.panel._MaterialPanel" name="_MaterialPanel10">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
               <JTabbedPaneConstraints tabName="tab1">
@@ -298,7 +298,7 @@
             </DimensionLayout>
           </Layout>
         </Container>
-        <Container class="com.jhw.swing.material.components.container.panels._MaterialPanel" name="_MaterialPanel11">
+        <Container class="com.jhw.swing.material.components.container.panel._MaterialPanel" name="_MaterialPanel11">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
               <JTabbedPaneConstraints tabName="tab2">
@@ -320,7 +320,7 @@
             </DimensionLayout>
           </Layout>
         </Container>
-        <Container class="com.jhw.swing.material.components.container.panels._MaterialPanel" name="_MaterialPanel12">
+        <Container class="com.jhw.swing.material.components.container.panel._MaterialPanel" name="_MaterialPanel12">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
               <JTabbedPaneConstraints tabName="tab3">

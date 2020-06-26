@@ -62,8 +62,8 @@ public class _MaterialPanelIndex extends JPanel implements Update {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        panelBackground = new com.jhw.swing.material.components.container.panels._MaterialPanel();
-        panelIcon = new com.jhw.swing.material.components.container.panels._PanelGradient();
+        panelBackground = new com.jhw.swing.material.components.container.panel._MaterialPanel();
+        panelIcon = new com.jhw.swing.material.components.container.panel._PanelGradient();
         labelMain = new com.jhw.swing.material.components.labels._MaterialLabel();
         contentAreaDetail = new com.jhw.swing.material.components.textarea._ContentArea();
         buttonView = new com.jhw.swing.material.components.button.prepared._buttonView();
@@ -153,8 +153,8 @@ public class _MaterialPanelIndex extends JPanel implements Update {
     private com.jhw.swing.material.components.button.prepared._buttonView buttonView;
     private com.jhw.swing.material.components.textarea._ContentArea contentAreaDetail;
     private com.jhw.swing.material.components.labels._MaterialLabel labelMain;
-    private com.jhw.swing.material.components.container.panels._MaterialPanel panelBackground;
-    private com.jhw.swing.material.components.container.panels._PanelGradient panelIcon;
+    private com.jhw.swing.material.components.container.panel._MaterialPanel panelBackground;
+    private com.jhw.swing.material.components.container.panel._PanelGradient panelIcon;
     // End of variables declaration//GEN-END:variables
 
     @Override

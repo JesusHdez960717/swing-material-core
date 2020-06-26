@@ -28,7 +28,7 @@ public class CargoInputView extends ModelPanel<CargoModel> {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        panelBackground = new com.jhw.swing.material.components.container.panels._MaterialPanel();
+        panelBackground = new com.jhw.swing.material.components.container.panel._MaterialPanel();
         labelCargo = new com.jhw.swing.material.components.labels._MaterialLabel();
         textFieldNombre = new com.jhw.swing.material.components.textfield.validated._MaterialTextFieldStringNotEmpty();
         textAreaDescripcion = new com.jhw.swing.material.components.textarea._MaterialTextArea();
@@ -88,7 +88,7 @@ public class CargoInputView extends ModelPanel<CargoModel> {
     private com.jhw.swing.examples.model.CargoICBS cargoICBS1;
     private com.jhw.swing.material.components.filechooser._MaterialFileChooserPanel fileChooserPanel;
     private com.jhw.swing.material.components.labels._MaterialLabel labelCargo;
-    private com.jhw.swing.material.components.container.panels._MaterialPanel panelBackground;
+    private com.jhw.swing.material.components.container.panel._MaterialPanel panelBackground;
     private com.jhw.swing.material.components.textarea._MaterialTextArea textAreaDescripcion;
     private com.jhw.swing.material.components.textfield.validated._MaterialTextFieldStringNotEmpty textFieldNombre;
     // End of variables declaration//GEN-END:variables

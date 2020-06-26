@@ -63,7 +63,7 @@
         <Property name="text" type="java.lang.String" value="Cancel"/>
       </Properties>
     </Component>
-    <Container class="com.jhw.swing.material.components.container.panels._PanelComponent" name="panelOption">
+    <Container class="com.jhw.swing.material.components.container.panel._PanelComponent" name="panelOption">
 
       <Layout>
         <DimensionLayout dim="0">

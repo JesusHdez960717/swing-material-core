@@ -23,13 +23,13 @@ public class PANEL_EXAMPLE extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        _MaterialPanel1 = new com.jhw.swing.material.components.container.panels._MaterialPanel();
-        _PanelAvatarChooser1 = new com.jhw.swing.material.components.container.panels._PanelAvatarChooser();
-        _PanelGradient1 = new com.jhw.swing.material.components.container.panels._PanelGradient();
-        _PanelGradient2 = new com.jhw.swing.material.components.container.panels._PanelGradient();
-        _PanelCurves1 = new com.jhw.swing.material.components.container.panels._PanelCurves();
-        _PanelGradientTranslucid1 = new com.jhw.swing.material.components.container.panels._PanelGradientTranslucid();
-        _PanelTransparent1 = new com.jhw.swing.material.components.container.panels._PanelTransparent();
+        _MaterialPanel1 = new com.jhw.swing.material.components.container.panel._MaterialPanel();
+        _PanelAvatarChooser1 = new com.jhw.swing.material.components.container.panel._PanelAvatarChooser();
+        _PanelGradient1 = new com.jhw.swing.material.components.container.panel._PanelGradient();
+        _PanelGradient2 = new com.jhw.swing.material.components.container.panel._PanelGradient();
+        _PanelCurves1 = new com.jhw.swing.material.components.container.panel._PanelCurves();
+        _PanelGradientTranslucid1 = new com.jhw.swing.material.components.container.panel._PanelGradientTranslucid();
+        _PanelTransparent1 = new com.jhw.swing.material.components.container.panel._PanelTransparent();
         _MaterialLabel1 = new com.jhw.swing.material.components.labels._MaterialLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -167,13 +167,13 @@ public class PANEL_EXAMPLE extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.jhw.swing.material.components.labels._MaterialLabel _MaterialLabel1;
-    private com.jhw.swing.material.components.container.panels._MaterialPanel _MaterialPanel1;
-    private com.jhw.swing.material.components.container.panels._PanelAvatarChooser _PanelAvatarChooser1;
-    private com.jhw.swing.material.components.container.panels._PanelCurves _PanelCurves1;
-    private com.jhw.swing.material.components.container.panels._PanelGradient _PanelGradient1;
-    private com.jhw.swing.material.components.container.panels._PanelGradient _PanelGradient2;
-    private com.jhw.swing.material.components.container.panels._PanelGradientTranslucid _PanelGradientTranslucid1;
-    private com.jhw.swing.material.components.container.panels._PanelTransparent _PanelTransparent1;
+    private com.jhw.swing.material.components.container.panel._MaterialPanel _MaterialPanel1;
+    private com.jhw.swing.material.components.container.panel._PanelAvatarChooser _PanelAvatarChooser1;
+    private com.jhw.swing.material.components.container.panel._PanelCurves _PanelCurves1;
+    private com.jhw.swing.material.components.container.panel._PanelGradient _PanelGradient1;
+    private com.jhw.swing.material.components.container.panel._PanelGradient _PanelGradient2;
+    private com.jhw.swing.material.components.container.panel._PanelGradientTranslucid _PanelGradientTranslucid1;
+    private com.jhw.swing.material.components.container.panel._PanelTransparent _PanelTransparent1;
     // End of variables declaration//GEN-END:variables
 
 }

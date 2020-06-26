@@ -5,7 +5,7 @@
  */
 package com.jhw.swing.material.components.datepicker;
 
-import com.jhw.swing.material.components.container.panels._PanelTransparent;
+import com.jhw.swing.material.components.container.panel._PanelTransparent;
 import com.jhw.swing.material.components.labels._MaterialLabel;
 import com.jhw.swing.material.components.textfield._MaterialTextField;
 import com.clean.core.exceptions.ValidationException;

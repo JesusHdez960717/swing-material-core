@@ -1,7 +1,7 @@
 package com.jhw.swing.material.components.filechooser;
 
 import com.jhw.swing.material.components.button._MaterialButton;
-import com.jhw.swing.material.components.container.panels._PanelTransparent;
+import com.jhw.swing.material.components.container.panel._PanelTransparent;
 import com.jhw.swing.material.components.labels._MaterialLabel;
 import java.awt.event.ActionListener;
 import java.io.File;

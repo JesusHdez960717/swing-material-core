@@ -1,6 +1,6 @@
 package com.jhw.swing.examples.components.login_and_dashboard;
 
-import com.jhw.swing.material.components.container.panels._PanelGradient;
+import com.jhw.swing.material.components.container.panel._PanelGradient;
 
 /**
  *

@@ -1,6 +1,6 @@
 package com.jhw.swing.material.components.dashboard.smoot;
 
-import com.jhw.swing.material.components.container.panels._PanelTransparent;
+import com.jhw.swing.material.components.container.panel._PanelTransparent;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.util.concurrent.TimeUnit;

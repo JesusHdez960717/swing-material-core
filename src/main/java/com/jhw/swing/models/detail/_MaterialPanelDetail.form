@@ -71,7 +71,7 @@
     </Component>
     <Component class="com.jhw.swing.material.components.searchfield._MaterialSearchField" name="searchField">
     </Component>
-    <Container class="com.jhw.swing.material.components.container.panels._PanelTransparent" name="panelOptions">
+    <Container class="com.jhw.swing.material.components.container.panel._PanelTransparent" name="panelOptions">
 
       <Layout>
         <DimensionLayout dim="0">
@@ -101,7 +101,7 @@
             <Property name="text" type="java.lang.String" value="Nuevo"/>
           </Properties>
         </Component>
-        <Container class="com.jhw.swing.material.components.container.panels._PanelTransparent" name="panelOptionsExtra">
+        <Container class="com.jhw.swing.material.components.container.panel._PanelTransparent" name="panelOptionsExtra">
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridLayout">
             <Property name="columns" type="int" value="0"/>

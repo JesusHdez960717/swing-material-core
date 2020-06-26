@@ -4,7 +4,7 @@ import com.jhw.swing.models.detail._MaterialPanelDetail;
 import com.jhw.swing.models.input.dialogs.DialogModelInput;
 import com.jhw.swing.notification.toast.TOAST;
 import com.jhw.swing.material.components.button._MaterialIconButtonTranspRect;
-import com.jhw.swing.material.components.container.panels._PanelGradient;
+import com.jhw.swing.material.components.container.panel._PanelGradient;
 import com.jhw.swing.material.components.table.Column;
 import com.jhw.swing.material.components.table.editors_renders.component.ComponentCellRender;
 import com.jhw.swing.examples.material.MATERIAL_COLORS_EXAMPLE;

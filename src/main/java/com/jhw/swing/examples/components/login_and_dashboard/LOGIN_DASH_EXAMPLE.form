@@ -34,7 +34,7 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Container class="com.jhw.swing.material.components.container.panels._PanelGradient" name="_PanelGradientBackground">
+    <Container class="com.jhw.swing.material.components.container.panel._PanelGradient" name="_PanelGradientBackground">
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridLayout">
         <Property name="columns" type="int" value="1"/>

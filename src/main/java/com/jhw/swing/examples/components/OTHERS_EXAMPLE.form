@@ -180,7 +180,7 @@
         <Property name="text" type="java.lang.String" value="jPasswordField1"/>
       </Properties>
     </Component>
-    <Container class="com.jhw.swing.material.components.container.panels._PanelGradient" name="_PanelGradient1">
+    <Container class="com.jhw.swing.material.components.container.panel._PanelGradient" name="_PanelGradient1">
       <Properties>
         <Property name="toolTipText" type="java.lang.String" value="TTF icon derivated"/>
       </Properties>
@@ -198,7 +198,7 @@
         </DimensionLayout>
       </Layout>
     </Container>
-    <Container class="com.jhw.swing.material.components.container.panels._PanelGradient" name="_PanelGradient2">
+    <Container class="com.jhw.swing.material.components.container.panel._PanelGradient" name="_PanelGradient2">
       <Properties>
         <Property name="toolTipText" type="java.lang.String" value="SVG icon derivated"/>
       </Properties>

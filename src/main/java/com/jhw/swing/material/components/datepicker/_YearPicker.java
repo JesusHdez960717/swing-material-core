@@ -1,7 +1,7 @@
 package com.jhw.swing.material.components.datepicker;
 
 import com.jhw.swing.util.interfaces.DateSelected;
-import com.jhw.swing.material.components.container.panels._PanelTransparent;
+import com.jhw.swing.material.components.container.panel._PanelTransparent;
 import java.util.Date;
 import javax.swing.JComboBox;
 

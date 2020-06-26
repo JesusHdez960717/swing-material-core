@@ -1,7 +1,7 @@
 package com.jhw.swing.material.components.table;
 
 import com.jhw.swing.material.components.button._MaterialButtonDouble;
-import com.jhw.swing.material.components.container.panels._PanelTransparent;
+import com.jhw.swing.material.components.container.panel._PanelTransparent;
 import com.jhw.swing.material.components.labels._MaterialLabel;
 import com.jhw.swing.material.components.scrollpane._MaterialScrollPaneCore;
 import com.jhw.swing.material.components.textfield.validated._MaterialTextFieldIntegerPositive;
@@ -41,7 +41,7 @@ public class _MaterialTableByPage extends _PanelTransparent implements Update {
     private void initComponents() {
 
         table = new com.jhw.swing.material.components.table._MaterialTable();
-        panelPages = new com.jhw.swing.material.components.container.panels._PanelTransparent();
+        panelPages = new com.jhw.swing.material.components.container.panel._PanelTransparent();
         textFieldPage = new com.jhw.swing.material.components.textfield.validated._MaterialTextFieldIntegerPositive();
         labelTotPag = new com.jhw.swing.material.components.labels._MaterialLabel();
         buttonDouble = new com.jhw.swing.material.components.button._MaterialButtonDouble();
@@ -124,7 +124,7 @@ public class _MaterialTableByPage extends _PanelTransparent implements Update {
     private com.jhw.swing.material.components.labels._MaterialLabel labelFilas;
     private com.jhw.swing.material.components.labels._MaterialLabel labelSeparator;
     private com.jhw.swing.material.components.labels._MaterialLabel labelTotPag;
-    private com.jhw.swing.material.components.container.panels._PanelTransparent panelPages;
+    private com.jhw.swing.material.components.container.panel._PanelTransparent panelPages;
     private javax.swing.JSpinner spinner;
     private com.jhw.swing.material.components.table._MaterialTable table;
     private com.jhw.swing.material.components.textfield.validated._MaterialTextFieldIntegerPositive textFieldPage;

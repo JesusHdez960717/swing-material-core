@@ -30,8 +30,8 @@ public class _LoginPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        panelBackground = new com.jhw.swing.material.components.container.panels._PanelGradient();
-        panelBackgroundLogin = new com.jhw.swing.material.components.container.panels._MaterialPanel();
+        panelBackground = new com.jhw.swing.material.components.container.panel._PanelGradient();
+        panelBackgroundLogin = new com.jhw.swing.material.components.container.panel._MaterialPanel();
         labelSecure = new com.jhw.swing.material.components.labels._MaterialLabel();
         textFieldUsuario = new com.jhw.swing.material.components.textfield._MaterialTextField();
         passwordUsuario = new com.jhw.swing.material.components.passwordfield._MaterialPasswordField();
@@ -125,8 +125,8 @@ public class _LoginPanel extends javax.swing.JPanel {
     private com.jhw.swing.material.components.button._MaterialButton buttonLogin;
     private javax.swing.JLabel labelAnswer;
     private com.jhw.swing.material.components.labels._MaterialLabel labelSecure;
-    private com.jhw.swing.material.components.container.panels._PanelGradient panelBackground;
-    private com.jhw.swing.material.components.container.panels._MaterialPanel panelBackgroundLogin;
+    private com.jhw.swing.material.components.container.panel._PanelGradient panelBackground;
+    private com.jhw.swing.material.components.container.panel._MaterialPanel panelBackgroundLogin;
     private com.jhw.swing.material.components.passwordfield._MaterialPasswordField passwordUsuario;
     private com.jhw.swing.material.components.textfield._MaterialTextField textFieldUsuario;
     // End of variables declaration//GEN-END:variables

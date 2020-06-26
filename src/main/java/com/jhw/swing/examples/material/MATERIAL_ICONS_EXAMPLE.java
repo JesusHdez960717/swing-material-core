@@ -73,7 +73,7 @@ public class MATERIAL_ICONS_EXAMPLE extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        _PanelGradient1 = new com.jhw.swing.material.components.container.panels._PanelGradient();
+        _PanelGradient1 = new com.jhw.swing.material.components.container.panel._PanelGradient();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -109,7 +109,7 @@ public class MATERIAL_ICONS_EXAMPLE extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.jhw.swing.material.components.container.panels._PanelGradient _PanelGradient1;
+    private com.jhw.swing.material.components.container.panel._PanelGradient _PanelGradient1;
     // End of variables declaration//GEN-END:variables
 
 }

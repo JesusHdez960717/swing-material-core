@@ -36,7 +36,7 @@
   <SubComponents>
     <Component class="com.jhw.swing.material.components.table._MaterialTable" name="table">
     </Component>
-    <Container class="com.jhw.swing.material.components.container.panels._PanelTransparent" name="panelPages">
+    <Container class="com.jhw.swing.material.components.container.panel._PanelTransparent" name="panelPages">
 
       <Layout>
         <DimensionLayout dim="0">

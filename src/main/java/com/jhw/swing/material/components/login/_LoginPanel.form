@@ -34,7 +34,7 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Container class="com.jhw.swing.material.components.container.panels._PanelGradient" name="panelBackground">
+    <Container class="com.jhw.swing.material.components.container.panel._PanelGradient" name="panelBackground">
 
       <Layout>
         <DimensionLayout dim="0">
@@ -57,7 +57,7 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Container class="com.jhw.swing.material.components.container.panels._MaterialPanel" name="panelBackgroundLogin">
+        <Container class="com.jhw.swing.material.components.container.panel._MaterialPanel" name="panelBackgroundLogin">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="e6" green="e6" red="e6" type="rgb"/>

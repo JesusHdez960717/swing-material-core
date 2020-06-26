@@ -2,7 +2,7 @@ package com.jhw.swing.material.components.combobox.icbs;
 
 import com.clean.core.exceptions.ValidationException;
 import com.jhw.swing.material.components.button._MaterialButtonSimpleIcon;
-import com.jhw.swing.material.components.container.panels._PanelTransparent;
+import com.jhw.swing.material.components.container.panel._PanelTransparent;
 import com.jhw.swing.material.components.textfield._MaterialTextField;
 import java.awt.Color;
 import java.awt.Font;
@@ -65,7 +65,7 @@ public abstract class InputComboBoxSelection<T> extends _PanelTransparent implem
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        panelBackground = new com.jhw.swing.material.components.container.panels._PanelTransparent();
+        panelBackground = new com.jhw.swing.material.components.container.panel._PanelTransparent();
         comboBox = new javax.swing.JComboBox();
         buttonNuevo = new com.jhw.swing.material.components.button._MaterialButtonSimpleIcon();
         labelWrong = new com.jhw.swing.material.components.labels._MaterialLabel();
@@ -118,7 +118,7 @@ public abstract class InputComboBoxSelection<T> extends _PanelTransparent implem
     private com.jhw.swing.material.components.button._MaterialButtonSimpleIcon buttonNuevo;
     private javax.swing.JComboBox comboBox;
     private com.jhw.swing.material.components.labels._MaterialLabel labelWrong;
-    private com.jhw.swing.material.components.container.panels._PanelTransparent panelBackground;
+    private com.jhw.swing.material.components.container.panel._PanelTransparent panelBackground;
     // End of variables declaration//GEN-END:variables
 
     @Override

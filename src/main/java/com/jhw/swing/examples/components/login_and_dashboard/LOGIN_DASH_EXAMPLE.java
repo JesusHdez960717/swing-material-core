@@ -43,7 +43,7 @@ public class LOGIN_DASH_EXAMPLE extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        _PanelGradientBackground = new com.jhw.swing.material.components.container.panels._PanelGradient();
+        _PanelGradientBackground = new com.jhw.swing.material.components.container.panel._PanelGradient();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Meca");
@@ -65,7 +65,7 @@ public class LOGIN_DASH_EXAMPLE extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.jhw.swing.material.components.container.panels._PanelGradient _PanelGradientBackground;
+    private com.jhw.swing.material.components.container.panel._PanelGradient _PanelGradientBackground;
     // End of variables declaration//GEN-END:variables
 
     private void personalize() {

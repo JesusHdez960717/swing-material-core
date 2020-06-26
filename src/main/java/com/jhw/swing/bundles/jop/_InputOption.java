@@ -1,6 +1,6 @@
 package com.jhw.swing.bundles.jop;
 
-import com.jhw.swing.material.components.container.panels._MaterialPanel;
+import com.jhw.swing.material.components.container.panel._MaterialPanel;
 import com.jhw.swing.util.interfaces.MaterialComponent;
 
 /**

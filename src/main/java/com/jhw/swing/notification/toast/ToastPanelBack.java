@@ -1,6 +1,6 @@
 package com.jhw.swing.notification.toast;
 
-import com.jhw.swing.material.components.container.panels._PanelTransparent;
+import com.jhw.swing.material.components.container.panel._PanelTransparent;
 
 /**
  *

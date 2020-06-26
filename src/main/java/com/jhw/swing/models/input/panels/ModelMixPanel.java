@@ -1,7 +1,7 @@
 package com.jhw.swing.models.input.panels;
 
 import com.jhw.swing.material.components.button.prepared._buttonAddEdit;
-import com.jhw.swing.material.components.container.panels._PanelTransparent;
+import com.jhw.swing.material.components.container.panel._PanelTransparent;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -45,10 +45,10 @@ public class ModelMixPanel<T> extends _PanelTransparent {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        panelGeneral = new com.jhw.swing.material.components.container.panels._MaterialPanel();
-        panelInputView = new com.jhw.swing.material.components.container.panels._PanelComponent();
+        panelGeneral = new com.jhw.swing.material.components.container.panel._MaterialPanel();
+        panelInputView = new com.jhw.swing.material.components.container.panel._PanelComponent();
         buttonAddEdit = new com.jhw.swing.material.components.button.prepared._buttonAddEdit();
-        panelExtra = new com.jhw.swing.material.components.container.panels._PanelTransparent();
+        panelExtra = new com.jhw.swing.material.components.container.panel._PanelTransparent();
 
         javax.swing.GroupLayout panelInputViewLayout = new javax.swing.GroupLayout(panelInputView);
         panelInputView.setLayout(panelInputViewLayout);
@@ -107,9 +107,9 @@ public class ModelMixPanel<T> extends _PanelTransparent {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.jhw.swing.material.components.button.prepared._buttonAddEdit buttonAddEdit;
-    private com.jhw.swing.material.components.container.panels._PanelTransparent panelExtra;
-    private com.jhw.swing.material.components.container.panels._MaterialPanel panelGeneral;
-    private com.jhw.swing.material.components.container.panels._PanelComponent panelInputView;
+    private com.jhw.swing.material.components.container.panel._PanelTransparent panelExtra;
+    private com.jhw.swing.material.components.container.panel._MaterialPanel panelGeneral;
+    private com.jhw.swing.material.components.container.panel._PanelComponent panelInputView;
     // End of variables declaration//GEN-END:variables
 
     private void personalize() {

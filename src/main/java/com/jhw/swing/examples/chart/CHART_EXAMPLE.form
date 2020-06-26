@@ -55,7 +55,7 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Container class="com.jhw.swing.material.components.container.panels._PanelTransparent" name="_PanelTransparent1">
+    <Container class="com.jhw.swing.material.components.container.panel._PanelTransparent" name="_PanelTransparent1">
 
       <Layout>
         <DimensionLayout dim="0">
