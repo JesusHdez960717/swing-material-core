@@ -19,8 +19,9 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.Arrays;
 import com.jhw.swing.personalization.PersonalizationMaterial;
-import sun.font.FontDesignMetrics;
+//import sun.font.FontDesignMetrics;
 import com.jhw.swing.material.standars.MaterialColors;
+import java.awt.Canvas;
 
 /**
  * This class provides utilitary methods for Swing Material. These are public
@@ -173,7 +174,8 @@ public class Utils {
      * @return FontMetrics of the font
      */
     public static FontMetrics fontMetrics(Font font) {
-        return FontDesignMetrics.getMetrics(font);
+        return new Canvas().getFontMetrics(font);
+        //return FontDesignMetrics.getMetrics(font);
         //return new BufferedImage(1, 1, BufferedImage.TYPE_4BYTE_ABGR).getGraphics().getFontMetrics();
     }
 
