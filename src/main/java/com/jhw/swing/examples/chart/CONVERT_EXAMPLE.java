@@ -2,7 +2,7 @@ package com.jhw.swing.examples.chart;
 
 import com.jhw.swing.chart._MaterialLineChart;
 import com.jhw.swing.chart._MaterialConvertChar;
-import com.jhw.swing.examples.material.MATERIAL_COLORS_EXAMPLE;
+import com.jhw.swing.examples.standars.MATERIAL_COLORS_EXAMPLE;
 import java.util.Random;
 
 /**

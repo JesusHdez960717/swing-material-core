@@ -1,7 +1,7 @@
 package com.jhw.swing.examples.chart;
 
 import com.jhw.swing.chart._MaterialPieChart;
-import com.jhw.swing.examples.material.MATERIAL_COLORS_EXAMPLE;
+import com.jhw.swing.examples.standars.MATERIAL_COLORS_EXAMPLE;
 import java.util.Random;
 import com.jhw.swing.util.enums.PieChartEnum;
 

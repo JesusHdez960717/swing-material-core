@@ -1,47 +1,67 @@
-package com.jhw.swing.examples.material;
+package com.jhw.swing.examples.standars;
 
-import com.jhw.swing.material.components.container.panel._PanelGradient;
-import java.awt.GridLayout;
-import java.awt.image.BufferedImage;
+import com.jhw.swing.material.components.labels._MaterialLabel;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
-import javax.swing.ImageIcon;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.Random;
+import javax.swing.JFrame;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import com.jhw.swing.ui.MaterialLookAndFeel;
-import com.jhw.swing.material.standars.MaterialImages;
+import com.jhw.swing.util.Utils;
+import com.jhw.swing.util.icons.DerivableIcon;
+import com.jhw.swing.util.icons.icon_ttf.IconTTF;
+import com.jhw.swing.material.standars.MaterialIcons;
 
 /**
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-public class MATERIAL_IMAGES_EXAMPLE extends javax.swing.JFrame {
+public class MATERIAL_ICONS_EXAMPLE extends javax.swing.JFrame {
 
-    Field[] fields = MaterialImages.class.getDeclaredFields();
+    public static final Field[] fields = MaterialIcons.class.getDeclaredFields();
 
-    public MATERIAL_IMAGES_EXAMPLE() {
+    public static DerivableIcon getRandomIcon() {
+        DerivableIcon c = null;
+        for (int i = 0; i < 1000; i++) {
+            try {
+                c = (DerivableIcon) fields[new Random().nextInt(fields.length)].get(null);
+                return c;
+            } catch (Exception e) {
+            }
+        }
+        return MaterialIcons.ADD;
+    }
+
+    public MATERIAL_ICONS_EXAMPLE() {
         initComponents();
-
-        this._PanelGradient1.setLayout(new GridLayout(0, 10));
+        Arrays.sort(fields, new Comparator<Field>() {
+            @Override
+            public int compare(Field o1, Field o2) {
+                return o1.getName().compareToIgnoreCase(o2.getName());
+            }
+        });
 
         for (Field field : fields) {
             if (Modifier.isStatic(field.getModifiers())
-                    && BufferedImage.class.isAssignableFrom(field.getType())) {
+                    && DerivableIcon.class.isAssignableFrom(field.getType())) {
                 try {
-                    ImageIcon im = new ImageIcon((BufferedImage) field.get(null));
+                    DerivableIcon c = (DerivableIcon) field.get(null);
                     String name = field.getName();
-
-                    _PanelGradient mp = new _PanelGradient();
-                    mp.setIcon(im);
-                    mp.setToolTipText(name);
-                    this._PanelGradient1.add(mp);
+                    _MaterialLabel l = new _MaterialLabel();
+                    l.setIcon(c);
+                    l.setToolTipText(name);
+                    this._PanelGradient1.add(l);
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
             }
         }
-        System.out.println("done");
-        this.validate();
+
+        this.setSize(Utils.getScreenSize().getSize());
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);//maximize the window
     }
 
     /**
@@ -59,27 +79,17 @@ public class MATERIAL_IMAGES_EXAMPLE extends javax.swing.JFrame {
 
         _PanelGradient1.setPrimaryColor(new java.awt.Color(204, 204, 204));
         _PanelGradient1.setSecundaryColor(new java.awt.Color(204, 204, 204));
-
-        javax.swing.GroupLayout _PanelGradient1Layout = new javax.swing.GroupLayout(_PanelGradient1);
-        _PanelGradient1.setLayout(_PanelGradient1Layout);
-        _PanelGradient1Layout.setHorizontalGroup(
-            _PanelGradient1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 653, Short.MAX_VALUE)
-        );
-        _PanelGradient1Layout.setVerticalGroup(
-            _PanelGradient1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 374, Short.MAX_VALUE)
-        );
+        _PanelGradient1.setLayout(new java.awt.GridLayout(0, 50));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(_PanelGradient1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(_PanelGradient1, javax.swing.GroupLayout.DEFAULT_SIZE, 697, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(_PanelGradient1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(_PanelGradient1, javax.swing.GroupLayout.DEFAULT_SIZE, 494, Short.MAX_VALUE)
         );
 
         pack();
@@ -93,7 +103,7 @@ public class MATERIAL_IMAGES_EXAMPLE extends javax.swing.JFrame {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MATERIAL_IMAGES_EXAMPLE().setVisible(true);
+                new MATERIAL_ICONS_EXAMPLE().setVisible(true);
             }
         });
     }

@@ -7,7 +7,7 @@ import com.jhw.swing.material.components.button._MaterialIconButtonTranspRect;
 import com.jhw.swing.material.components.container.panel._PanelGradient;
 import com.jhw.swing.material.components.table.Column;
 import com.jhw.swing.material.components.table.editors_renders.component.ComponentCellRender;
-import com.jhw.swing.examples.material.MATERIAL_COLORS_EXAMPLE;
+import com.jhw.swing.examples.standars.MATERIAL_COLORS_EXAMPLE;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
