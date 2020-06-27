@@ -28,7 +28,6 @@ public class BaseModelInputPanel<T> extends _PanelGradient implements Update, Mo
         this.modelPanel = modelPanel;
         this.panelModelCore.setComponent(this.modelPanel);
         personalize();
-        this.repaint();
     }
 
     /**
