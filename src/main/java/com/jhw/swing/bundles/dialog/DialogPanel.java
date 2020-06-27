@@ -1,5 +1,6 @@
 package com.jhw.swing.bundles.dialog;
 
+import java.awt.Dimension;
 import java.awt.GridLayout;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
@@ -36,8 +37,9 @@ public class DialogPanel extends JDialog {
     private void setUpDialog() {
         this.setLayout(new GridLayout(1, 1));
         this.add(basePanel);
-
-        this.setSize(basePanel.getPreferredSize());
+        int w = basePanel.getPreferredSize().width;
+        int h = basePanel.getPreferredSize().height + (isUndecorated() ? 0 : 40);
+        this.setSize(new Dimension(w, h));
         this.setLocationRelativeTo(null);
         this.setResizable(false);
 
