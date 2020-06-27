@@ -3,7 +3,6 @@ package com.jhw.swing.models.input.dialogs;
 import com.jhw.swing.models.input.panels.BaseModelInputPanel;
 import com.jhw.swing.models.input.panels.ModelPanel;
 import com.jhw.swing.notification.toast.TOAST;
-import com.sun.glass.events.KeyEvent;
 import com.jhw.swing.material.components.combobox.icbs.InputComboBoxSelection;
 import java.awt.Component;
 import java.awt.GridLayout;
@@ -14,6 +13,7 @@ import javax.swing.JTextArea;
 import javax.swing.text.JTextComponent;
 import com.jhw.swing.util.JOP;
 import com.jhw.swing.util.interfaces.ModelablePanel;
+import java.awt.event.KeyEvent;
 
 /**
  * Dialogo para la creacion de modelos en los combo boxes.<br/>

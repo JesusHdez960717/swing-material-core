@@ -7,7 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JDialog;
 import com.jhw.swing.models.input.panels.ModelMixPanel;
-import com.sun.glass.events.KeyEvent;
+import java.awt.event.KeyEvent;
 import java.awt.Component;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;

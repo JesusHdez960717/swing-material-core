@@ -3,7 +3,7 @@ package com.jhw.swing.models.input.dialogs;
 import com.jhw.swing.models.input.panels.BaseModelInputPanel;
 import com.jhw.swing.models.input.panels.ModelPanel;
 import com.jhw.swing.notification.toast.TOAST;
-import com.sun.glass.events.KeyEvent;
+import java.awt.event.KeyEvent;
 import java.awt.Component;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
