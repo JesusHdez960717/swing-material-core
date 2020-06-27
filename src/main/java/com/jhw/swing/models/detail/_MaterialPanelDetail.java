@@ -419,6 +419,7 @@ public abstract class _MaterialPanelDetail<T> extends _MaterialPanel implements 
         });
         //builder.buttonsVisibility(true, true, true);//por defecto vienen true
     }
+
     /*private boolean contain(String key, String text) {
      if (key.trim().isEmpty()) {
      return true;
@@ -432,7 +433,6 @@ public abstract class _MaterialPanelDetail<T> extends _MaterialPanel implements 
      }
      return false;
      }*/
-
     public void setActionColumnVisivility(boolean b) {
         int size = b ? table.getRowHeight() : 0;
         int width = builder.getComponents() * size;

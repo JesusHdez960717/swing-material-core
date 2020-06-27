@@ -1021,7 +1021,7 @@ public class MaterialIcons {
      System.out.println("    public static final char "+subs[0]+" = '\\u"+subs[1]+"';");
      }
      }*/
-    /*Metodo que se uso para convertir de los char a lis IconTTF
+ /*Metodo que se uso para convertir de los char a lis IconTTF
      public static void main(String args[]) throws UnsupportedLookAndFeelException {
      Field[] fields = MaterialIcons.class.getDeclaredFields();
      for (Field field : fields) {

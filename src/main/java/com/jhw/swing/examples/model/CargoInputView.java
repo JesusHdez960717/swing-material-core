@@ -41,10 +41,10 @@ public class CargoInputView extends ModelPanel<CargoModel> {
         v.add(labelCargo);
         v.add(textFieldNombre);
         v.add(cargoICBS1);
-        v.add(fileChooserPanel);        
+        v.add(fileChooserPanel);
         v.add(textAreaDescripcion);
         this.setComponent(v);
-    }                     
+    }
 
     // Variables declaration - do not modify
     private com.jhw.swing.examples.model.CargoICBS cargoICBS1;

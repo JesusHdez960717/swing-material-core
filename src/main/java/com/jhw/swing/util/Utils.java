@@ -62,7 +62,7 @@ public class Utils {
                                 new Class[]{java.awt.GraphicsDevice.class})
                         && meth.getExceptionTypes().length == 0
                         && meth.getReturnType()
-                        .equals(java.awt.Rectangle.class)) {
+                                .equals(java.awt.Rectangle.class)) {
                     //We found it!
                     getMethod = meth;
                     found = true;

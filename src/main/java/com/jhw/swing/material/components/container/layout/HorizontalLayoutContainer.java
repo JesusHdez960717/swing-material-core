@@ -37,10 +37,10 @@ public class HorizontalLayoutContainer extends _PanelGradient {
     }
 
     public Component add(Component component, boolean adjust) {
-        if (adjust || component.getPreferredSize().getHeight()> heightMax) {
+        if (adjust || component.getPreferredSize().getHeight() > heightMax) {
             component.setPreferredSize(new Dimension((int) component.getPreferredSize().getWidth(), heightMax));
         }
-        
+
         super.add(component);
         adjustSize();
         return component;

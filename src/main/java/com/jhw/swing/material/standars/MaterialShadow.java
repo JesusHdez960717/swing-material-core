@@ -139,7 +139,7 @@ public class MaterialShadow {
      * Creates a {@link BufferedImage} containing a shadow projected from a
      * circular component of the given radius.
      *
-     * 
+     *
      * @param width in pixels of circle diameter
      * @param height in pixels of circle diameter
      * @param level the elevation level [0~5]
