@@ -8,7 +8,7 @@ import com.jhw.swing.ui.MaterialLookAndFeel;
 
 /**
  *
- * @author Jesús Hernández Barrios (jhernandezb96@gmail.com)
+ * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
 public class CHART_EXAMPLE extends javax.swing.JFrame {
 
@@ -25,7 +25,7 @@ public class CHART_EXAMPLE extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        _PanelTransparent1 = new com.jhw.swing.material.components.container.panels._PanelTransparent();
+        _PanelTransparent1 = new com.jhw.swing.material.components.container.panel._PanelTransparent();
         _MaterialButton1 = new com.jhw.swing.material.components.button._MaterialButton();
         _MaterialButton2 = new com.jhw.swing.material.components.button._MaterialButton();
         _MaterialButton3 = new com.jhw.swing.material.components.button._MaterialButton();
@@ -152,7 +152,7 @@ public class CHART_EXAMPLE extends javax.swing.JFrame {
     private com.jhw.swing.material.components.button._MaterialButton _MaterialButton3;
     private com.jhw.swing.material.components.button._MaterialButton _MaterialButton4;
     private com.jhw.swing.material.components.button._MaterialButton _MaterialButton5;
-    private com.jhw.swing.material.components.container.panels._PanelTransparent _PanelTransparent1;
+    private com.jhw.swing.material.components.container.panel._PanelTransparent _PanelTransparent1;
     // End of variables declaration//GEN-END:variables
 
     private void putChart(JPanel panel) {

@@ -11,7 +11,7 @@ import javax.swing.table.TableCellEditor;
 
 /**
  *
- * @author Jesús Hernández Barrios (jhernandezb96@gmail.com)
+ * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
 @Deprecated
 public class MoneyCellEditor extends AbstractCellEditor implements TableCellEditor {

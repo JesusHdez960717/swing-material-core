@@ -1,4 +1,4 @@
-package com.jhw.swing.material.components.container.panels;
+package com.jhw.swing.material.components.container.panel;
 
 import java.awt.*;
 import java.awt.geom.RoundRectangle2D;

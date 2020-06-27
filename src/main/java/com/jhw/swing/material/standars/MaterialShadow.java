@@ -49,7 +49,7 @@ public class MaterialShadow {
      */
     public static final double ELEVATION_HIGHTEST = 2;
 
-    //Solo con dos frames y la interpolación automática se hacen el resto de las sombras con una calidad excelente
+    //Solo con dos frames y la interpolacion automatica se hacen el resto de las sombras con una calidad excelente
     private static final KeyFrames<Float> opacityKeyFrame = new KeyFrames.Builder<>(0f)
             .addFrame(0.34f, 1 / 5.0)
             .addFrame(0.37f, 2 / 5.0)

@@ -9,7 +9,7 @@ import javax.swing.table.TableCellRenderer;
 
 /**
  *
- * @author Jesús Hernández Barrios (jhernandezb96@gmail.com)
+ * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
 public class ComponentCellRender<T> extends DefaultTableCellRenderer implements TableCellRenderer {
 
@@ -20,11 +20,11 @@ public class ComponentCellRender<T> extends DefaultTableCellRenderer implements 
     }
 
     /**
-     * Este constructor se creó para en caso de que no se quiera pintar el
+     * Este constructor se creo para en caso de que no se quiera pintar el
      * background de un componeente con el selected.<\br>
      * Por ejemplo, supongamos que se tienen dos componentes, uno boton y un
-     * panel, el boton quiere que se pinte el background de acuerdo a si está
-     * seleccionado o no. Pero si el panel es para mostrar un color específico
+     * panel, el boton quiere que se pinte el background de acuerdo a si esta
+     * seleccionado o no. Pero si el panel es para mostrar un color especifico
      * en dependencia de alguna propiedad, no tiene que pintar el background de
      * acuerdo al selected.
      *

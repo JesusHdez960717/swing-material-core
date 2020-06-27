@@ -31,7 +31,7 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Container class="com.jhw.swing.material.components.container.panels._MaterialPanel" name="panelGeneral">
+    <Container class="com.jhw.swing.material.components.container.panel._MaterialPanel" name="panelGeneral">
 
       <Layout>
         <DimensionLayout dim="0">
@@ -64,7 +64,7 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Container class="com.jhw.swing.material.components.container.panels._PanelComponent" name="panelInputView">
+        <Container class="com.jhw.swing.material.components.container.panel._PanelComponent" name="panelInputView">
 
           <Layout>
             <DimensionLayout dim="0">
@@ -86,7 +86,7 @@
         </Component>
       </SubComponents>
     </Container>
-    <Container class="com.jhw.swing.material.components.container.panels._PanelTransparent" name="panelExtra">
+    <Container class="com.jhw.swing.material.components.container.panel._PanelTransparent" name="panelExtra">
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridLayout">
         <Property name="columns" type="int" value="1"/>

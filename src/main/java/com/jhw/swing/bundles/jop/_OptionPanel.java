@@ -1,7 +1,7 @@
 package com.jhw.swing.bundles.jop;
 
 import com.jhw.swing.material.components.button._MaterialButton;
-import com.jhw.swing.material.components.container.panels._MaterialPanel;
+import com.jhw.swing.material.components.container.panel._MaterialPanel;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.GridLayout;
@@ -15,7 +15,7 @@ import com.jhw.swing.material.standars.MaterialColors;
 
 /**
  *
- * @author Jessica Aidyl García Albalah (jgarciaalbalah@gmail.com)
+ * @author Jessica Aidyl Garcia Albalah (jgarciaalbalah@gmail.com)
  */
 public class _OptionPanel extends _MaterialPanel implements MaterialComponent {
 
@@ -37,7 +37,7 @@ public class _OptionPanel extends _MaterialPanel implements MaterialComponent {
 
         buttonPositive = new com.jhw.swing.material.components.button._MaterialButton();
         buttonNegative = new com.jhw.swing.material.components.button._MaterialButton();
-        panelOption = new com.jhw.swing.material.components.container.panels._PanelComponent();
+        panelOption = new com.jhw.swing.material.components.container.panel._PanelComponent();
 
         buttonPositive.setBackground(new java.awt.Color(51, 51, 255));
         buttonPositive.setText("Ok");
@@ -88,7 +88,7 @@ public class _OptionPanel extends _MaterialPanel implements MaterialComponent {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.jhw.swing.material.components.button._MaterialButton buttonNegative;
     private com.jhw.swing.material.components.button._MaterialButton buttonPositive;
-    private com.jhw.swing.material.components.container.panels._PanelComponent panelOption;
+    private com.jhw.swing.material.components.container.panel._PanelComponent panelOption;
     // End of variables declaration//GEN-END:variables
 
     private void personalize() {

@@ -14,17 +14,17 @@ import org.jfree.chart.renderer.category.BarPainter;
 import org.jfree.chart.renderer.category.BarRenderer;
 import org.jfree.chart.renderer.category.StandardBarPainter;
 import org.jfree.ui.GradientPaintTransformer;
-import org.jfree.ui.RectangleEdge;
 import com.jhw.swing.util.MaterialDrawingUtils;
 import com.jhw.swing.util.enums.GradientEnum;
 import com.jhw.swing.material.standars.MaterialColors;
+import org.jfree.ui.RectangleEdge;
 
 /**
  * Sacado de internet, el autor exacto se desconoce, pero si fue retocado y por
  * eso se incluyen variso autores.
  *
  * @author Unkwnown
- * @author Jesús Hernández Barrios (jhernandezb96@gmail.com)
+ * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
 public class CustomBarPainter implements BarPainter, Serializable {
 

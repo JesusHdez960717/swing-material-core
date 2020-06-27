@@ -29,3 +29,7 @@ build/
 
 lombok.config
 *.css
+
+src/main/java/com/jhw/swing/Main.java
+
+src/main/java/com/jhw/swing/TEST/

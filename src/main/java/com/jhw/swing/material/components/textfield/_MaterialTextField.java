@@ -1,6 +1,6 @@
 package com.jhw.swing.material.components.textfield;
 
-import com.jhw.utils.exceptions.ModelInputErrorException;
+import com.clean.core.exceptions.ValidationException;
 import java.awt.*;
 import java.awt.event.FocusEvent;
 import java.awt.event.KeyEvent;
@@ -590,7 +590,7 @@ public class _MaterialTextField extends JTextField implements MaterialComponent 
             return getText();
         } catch (Exception e) {
             wrong();
-            throw new ModelInputErrorException(e.getMessage());
+            throw new ValidationException(e.getMessage());
         }
     }
 
@@ -602,7 +602,7 @@ public class _MaterialTextField extends JTextField implements MaterialComponent 
             return ans;
         } catch (Exception e) {
             wrong();
-            throw new ModelInputErrorException(e.getMessage());
+            throw new ValidationException(e.getMessage());
         }
     }
 
@@ -614,7 +614,7 @@ public class _MaterialTextField extends JTextField implements MaterialComponent 
             return ans;
         } catch (Exception e) {
             wrong();
-            throw new ModelInputErrorException(e.getMessage());
+            throw new ValidationException(e.getMessage());
         }
     }
 
@@ -626,7 +626,7 @@ public class _MaterialTextField extends JTextField implements MaterialComponent 
             return ans;
         } catch (Exception e) {
             wrong();
-            throw new ModelInputErrorException(e.getMessage());
+            throw new ValidationException(e.getMessage());
         }
     }
 
@@ -638,7 +638,7 @@ public class _MaterialTextField extends JTextField implements MaterialComponent 
             return ans;
         } catch (Exception e) {
             wrong();
-            throw new ModelInputErrorException(e.getMessage());
+            throw new ValidationException(e.getMessage());
         }
     }
 
@@ -686,7 +686,7 @@ public class _MaterialTextField extends JTextField implements MaterialComponent 
         for (Validation v : postValidations) {
             if (!v.validate(ans)) {
                 setWrongText(v.getWrongText());
-                throw new ModelInputErrorException(v.getDetailedText());
+                throw new ValidationException(v.getDetailedText());
             }
         }
     }
@@ -695,7 +695,7 @@ public class _MaterialTextField extends JTextField implements MaterialComponent 
         for (Validation v : preValidations) {
             if (!v.validate(ans)) {
                 setWrongText(v.getWrongText());
-                throw new ModelInputErrorException(v.getDetailedText());
+                throw new ValidationException(v.getDetailedText());
             }
         }
     }

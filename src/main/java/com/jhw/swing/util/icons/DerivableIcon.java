@@ -7,9 +7,9 @@ import javax.swing.ImageIcon;
 
 /**
  * Interfaz a implementar por los Iconos que permiten el derive a diferentes
- * colores y tamaños.
+ * colores y tama�os.
  *
- * @author Jesús Hernández Barrios (jhernandezb96@gmail.com)
+ * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
 public abstract class DerivableIcon extends ImageIcon {
 

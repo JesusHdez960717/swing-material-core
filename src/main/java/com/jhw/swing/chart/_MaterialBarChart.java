@@ -27,13 +27,13 @@ import com.jhw.swing.material.standars.MaterialFontRoboto;
 
 /**
  *
- * @author Jessica Aidyl García Albalah (jgarciaalbalah@gmail.com)
+ * @author Jessica Aidyl Garcia Albalah (jgarciaalbalah@gmail.com)
  */
 public class _MaterialBarChart extends _MaterialGeneralChart implements MaterialComponent {
 
     private CategoryDataset dataset;
-    private ArrayList<BarChartCategory> category = new ArrayList<BarChartCategory>();
-    private ArrayList<BarChartPiece> pieces = new ArrayList<BarChartPiece>();
+    private ArrayList<BarChartCategory> category = new ArrayList<>();
+    private ArrayList<BarChartPiece> pieces = new ArrayList<>();
 
     public _MaterialBarChart() {
         buildChart(pieces);
@@ -71,7 +71,7 @@ public class _MaterialBarChart extends _MaterialGeneralChart implements Material
         // se oculta el recuadro del histograma
         categoryPlot.setOutlineVisible(false);
 
-        // color de las líneas horizontales a partir del eje Y
+        // color de las lineas horizontales a partir del eje Y
         categoryPlot.setRangeGridlinePaint(MaterialColors.GREY_200);
         categoryPlot.setRangeGridlineStroke(new BasicStroke(1));
 
@@ -84,7 +84,7 @@ public class _MaterialBarChart extends _MaterialGeneralChart implements Material
         renderer.setShadowVisible(false);
 
         // se ajusta el ancho de las barras de última factura para que coincidan
-        // en tamaño con la de última factura ya que al ser el renderer por
+        // en tama�o con la de última factura ya que al ser el renderer por
         // capas según se va incrementando la "category" la anchura de la barra
         // aumenta
         // renderer.setItemMargin(-0.6D);
@@ -95,17 +95,17 @@ public class _MaterialBarChart extends _MaterialGeneralChart implements Material
         xAxis.setCategoryLabelPositionOffset(4);
         xAxis.setCategoryMargin(0.2);
 
-        // se reducen los márgenes laterales entre el eje Y y las barras
+        // se reducen los margenes laterales entre el eje Y y las barras
         xAxis.setLowerMargin(0.01D);
         xAxis.setUpperMargin(0.01D);
 
-        // se eliminan las marcas por categoría en el eje X
+        // se eliminan las marcas por categoria en el eje X
         xAxis.setTickMarksVisible(false);
 
-        // color de la línea del eje X
+        // color de la linea del eje X
         xAxis.setAxisLinePaint(MaterialColors.BLACK);
 
-        // se rotan 45º las etiquetas del eje X para que no haya problema de
+        // se rotan 45grados las etiquetas del eje X para que no haya problema de
         // espacio
         xAxis.setTickLabelFont(MaterialFontRoboto.REGULAR);
         //  cAxis.setTickLabelPaint(new Color(160, 163, 165));
@@ -114,15 +114,15 @@ public class _MaterialBarChart extends _MaterialGeneralChart implements Material
         // format the y axis
         ValueAxis yAxis = categoryPlot.getRangeAxis();
 
-        // se reducen los márgenes laterales entre el eje X y las barras
+        // se reducen los margenes laterales entre el eje X y las barras
         // yAxis.setLowerMargin(0.01D);
         // yAxis.setUpperMargin(0.01D);
-        // se eliminan las marcas por categoría en el eje Y
+        // se eliminan las marcas por categoria en el eje Y
         // yAxis.setTickMarksVisible(false);
-        // color de la línea del eje Y
+        // color de la linea del eje Y
         yAxis.setAxisLinePaint(MaterialColors.BLACK);
 
-        // se rotan 45º las etiquetas del eje Y para que no haya problema de espacio
+        // se rotan 45grados las etiquetas del eje Y para que no haya problema de espacio
         //   yAxis.setTickLabelFont(new Font("Arial", Font.BOLD, 9));
         yAxis.setLabelFont(MaterialFontRoboto.REGULAR);
     }

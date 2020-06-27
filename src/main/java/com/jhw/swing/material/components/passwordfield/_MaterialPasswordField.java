@@ -2,7 +2,7 @@ package com.jhw.swing.material.components.passwordfield;
 
 import static com.jhw.swing.material.components.textfield._MaterialTextField.HINT_OPACITY_MASK;
 import static com.jhw.swing.material.components.textfield._MaterialTextField.LINE_OPACITY_MASK;
-import com.jhw.utils.exceptions.ModelInputErrorException;
+import com.clean.core.exceptions.ValidationException;
 import com.jhw.swing.material.effects.FloatingLabel;
 import java.awt.*;
 import java.awt.event.FocusEvent;
@@ -317,7 +317,7 @@ public class _MaterialPasswordField extends JPasswordField implements MaterialCo
     @Override
     public void setText(String s) {
         super.setText(s);
-        this.setCaretPosition(getText().length());
+        this.setCaretPosition(super.getPassword().length);
         floatingLabel.update();
         line.update();
         clearWrong(new KeyEvent(this, 0, 0, 0, 0, '0'));
@@ -457,7 +457,7 @@ public class _MaterialPasswordField extends JPasswordField implements MaterialCo
         for (Validation v : postValidations) {
             if (!v.validate(ans)) {
                 setWrongText(v.getWrongText());
-                throw new ModelInputErrorException(v.getDetailedText());
+                throw new ValidationException(v.getDetailedText());
             }
         }
     }
@@ -466,7 +466,7 @@ public class _MaterialPasswordField extends JPasswordField implements MaterialCo
         for (Validation v : preValidations) {
             if (!v.validate(ans)) {
                 setWrongText(v.getWrongText());
-                throw new ModelInputErrorException(v.getDetailedText());
+                throw new ValidationException(v.getDetailedText());
             }
         }
     }

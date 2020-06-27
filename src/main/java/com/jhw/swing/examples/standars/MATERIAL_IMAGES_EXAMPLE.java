@@ -1,54 +1,40 @@
-package com.jhw.swing.examples.material;
+package com.jhw.swing.examples.standars;
 
-import com.jhw.swing.material.components.container.panels._MaterialPanel;
-import java.awt.Color;
+import com.jhw.swing.material.components.container.panel._PanelGradient;
 import java.awt.GridLayout;
+import java.awt.image.BufferedImage;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
-import java.util.Random;
+import javax.swing.ImageIcon;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import com.jhw.swing.ui.MaterialLookAndFeel;
-import com.jhw.swing.material.standars.MaterialColors;
+import com.jhw.swing.material.standars.MaterialImages;
 
 /**
  *
- * @author Jesús Hernández Barrios (jhernandezb96@gmail.com)
+ * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-public class MATERIAL_COLORS_EXAMPLE extends javax.swing.JFrame {
+public class MATERIAL_IMAGES_EXAMPLE extends javax.swing.JFrame {
 
-    public static final Field[] fields = MaterialColors.class.getDeclaredFields();
+    Field[] fields = MaterialImages.class.getDeclaredFields();
 
-    public static Color getRandomColor() {
-        Color c = null;
-        for (int i = 0; i < 1000; i++) {
-            try {
-                c = (Color) fields[new Random().nextInt(fields.length)].get(null);
-                return c;
-            } catch (Exception e) {
-            }
-        }
-        return MaterialColors.WHITE;
-    }
-
-    public MATERIAL_COLORS_EXAMPLE() {
+    public MATERIAL_IMAGES_EXAMPLE() {
         initComponents();
 
-        this._PanelGradient1.setLayout(new GridLayout(0, 14));
+        this._PanelGradient1.setLayout(new GridLayout(0, 10));
 
         for (Field field : fields) {
             if (Modifier.isStatic(field.getModifiers())
-                    && Color.class.isAssignableFrom(field.getType())) {
+                    && BufferedImage.class.isAssignableFrom(field.getType())) {
                 try {
-                    Color c = (Color) field.get(null);
+                    ImageIcon im = new ImageIcon((BufferedImage) field.get(null));
                     String name = field.getName();
 
-                    _MaterialPanel mp = new _MaterialPanel();
-                    mp.setElevation(0);
-                    mp.setBackground(c);
+                    _PanelGradient mp = new _PanelGradient();
+                    mp.setIcon(im);
                     mp.setToolTipText(name);
                     this._PanelGradient1.add(mp);
-
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
@@ -67,22 +53,22 @@ public class MATERIAL_COLORS_EXAMPLE extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        _PanelGradient1 = new com.jhw.swing.material.components.container.panels._PanelGradient();
+        _PanelGradient1 = new com.jhw.swing.material.components.container.panel._PanelGradient();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        _PanelGradient1.setPrimaryColor(new java.awt.Color(255, 255, 255));
-        _PanelGradient1.setSecundaryColor(new java.awt.Color(255, 255, 255));
+        _PanelGradient1.setPrimaryColor(new java.awt.Color(204, 204, 204));
+        _PanelGradient1.setSecundaryColor(new java.awt.Color(204, 204, 204));
 
         javax.swing.GroupLayout _PanelGradient1Layout = new javax.swing.GroupLayout(_PanelGradient1);
         _PanelGradient1.setLayout(_PanelGradient1Layout);
         _PanelGradient1Layout.setHorizontalGroup(
             _PanelGradient1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1038, Short.MAX_VALUE)
+            .addGap(0, 653, Short.MAX_VALUE)
         );
         _PanelGradient1Layout.setVerticalGroup(
             _PanelGradient1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 665, Short.MAX_VALUE)
+            .addGap(0, 374, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -107,13 +93,13 @@ public class MATERIAL_COLORS_EXAMPLE extends javax.swing.JFrame {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MATERIAL_COLORS_EXAMPLE().setVisible(true);
+                new MATERIAL_IMAGES_EXAMPLE().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.jhw.swing.material.components.container.panels._PanelGradient _PanelGradient1;
+    private com.jhw.swing.material.components.container.panel._PanelGradient _PanelGradient1;
     // End of variables declaration//GEN-END:variables
 
 }

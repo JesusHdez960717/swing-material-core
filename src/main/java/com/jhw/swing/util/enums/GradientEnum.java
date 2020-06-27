@@ -3,7 +3,7 @@ package com.jhw.swing.util.enums;
 /**
  * Enum para identificar el tipo de gradiente a usar.
  *
- * @author Jesús Hernández Barrios (jhernandezb96@gmail.com)
+ * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
 public enum GradientEnum {
 

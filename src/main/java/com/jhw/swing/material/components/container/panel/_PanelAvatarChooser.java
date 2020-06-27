@@ -1,4 +1,4 @@
-package com.jhw.swing.material.components.container.panels;
+package com.jhw.swing.material.components.container.panel;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -23,7 +23,7 @@ import com.jhw.swing.material.standars.MaterialIcons;
 import com.jhw.swing.material.standars.MaterialImages;
 
 /**
- * Componente extraido su lógica de edisoncorSX.
+ * Componente extraido su logica de edisoncorSX.
  */
 public class _PanelAvatarChooser extends _PanelGradient implements MaterialComponent {
 

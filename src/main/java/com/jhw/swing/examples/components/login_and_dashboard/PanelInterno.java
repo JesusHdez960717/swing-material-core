@@ -1,10 +1,10 @@
 package com.jhw.swing.examples.components.login_and_dashboard;
 
-import com.jhw.swing.material.components.container.panels._PanelGradient;
+import com.jhw.swing.material.components.container.panel._PanelGradient;
 
 /**
  *
- * @author Jesús Hernández Barrios (jhernandezb96@gmail.com)
+ * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
 public class PanelInterno extends _PanelGradient {
 

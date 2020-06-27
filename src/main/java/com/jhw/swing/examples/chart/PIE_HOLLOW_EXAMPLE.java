@@ -1,13 +1,13 @@
 package com.jhw.swing.examples.chart;
 
 import com.jhw.swing.chart._MaterialPieChart;
-import com.jhw.swing.examples.material.MATERIAL_COLORS_EXAMPLE;
+import com.jhw.swing.examples.standars.MATERIAL_COLORS_EXAMPLE;
 import java.util.Random;
 import com.jhw.swing.util.enums.PieChartEnum;
 
 /**
  *
- * @author Jesús Hernández Barrios (jhernandezb96@gmail.com)
+ * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
 public class PIE_HOLLOW_EXAMPLE extends _MaterialPieChart {
 

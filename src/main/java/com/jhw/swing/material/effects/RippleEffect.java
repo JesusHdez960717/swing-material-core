@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 import com.jhw.swing.personalization.Inistanciables;
+import com.jhw.swing.personalization.PersonalizationMaterial;
 
 /**
  * A {@code RippleEffect} is applied into certain components, like buttons and
@@ -49,7 +50,7 @@ public class RippleEffect {
      */
     public void paint(Graphics g) {
         Graphics2D g2 = (Graphics2D) g;
-
+        //si hay las pinto, el if esta en el add
         for (RippleAnimation rippleAnimation : ripples) {
             float rippleOpacity = rippleAnimation.rippleOpacity.getValue().floatValue();
             Point rippleCenter = rippleAnimation.rippleCenter;
@@ -68,9 +69,12 @@ public class RippleEffect {
      * @param maxRadius the maximum radius of the ripple
      */
     public void addRipple(Point point, int maxRadius) {
-        final RippleAnimation ripple = new RippleAnimation(point, maxRadius);
-        ripples.add(ripple);
-        ripple.start();
+        //si no hay animaciones no agrego el ripple
+        if (PersonalizationMaterial.getInstance().isUseAnimations()) {
+            final RippleAnimation ripple = new RippleAnimation(point, maxRadius);
+            ripples.add(ripple);
+            ripple.start();
+        }
     }
 
     /**

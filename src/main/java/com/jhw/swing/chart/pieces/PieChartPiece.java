@@ -4,7 +4,7 @@ import java.awt.Color;
 
 /**
  *
- * @author Aidyl
+ * @author Jessica Aidyl Garcia Albalah (jgarciaalbalah@gmail.com)
  */
 public class PieChartPiece {
 

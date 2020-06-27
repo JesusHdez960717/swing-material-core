@@ -32,7 +32,7 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Container class="com.jhw.swing.material.components.container.panels._PanelTransparent" name="panelBackground">
+    <Container class="com.jhw.swing.material.components.container.panel._PanelTransparent" name="panelBackground">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">

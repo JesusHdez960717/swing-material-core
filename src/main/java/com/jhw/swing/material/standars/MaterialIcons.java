@@ -22,36 +22,36 @@ import javax.swing.ImageIcon;
  * Both the Font and the known chars for each icon are available from here.
  *
  * La clase original incluia solo el trabajo a secas con char y font separado.
- * Por lo que se decidió unirlo todo en DerivableIcon para facilitar el trabajo
- * con cambios de color y tamaño. De aqui salieron los IconTTF para los
+ * Por lo que se decidio unirlo todo en DerivableIcon para facilitar el trabajo
+ * con cambios de color y tama�o. De aqui salieron los IconTTF para los
  * extraidos de ICON_FONT y los IconSVG extraidos directamente de un SVG.
  *
  * @author DragShot
- * @author Jesús Hernández Barrios (jhernandezb96@gmail.com)
+ * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
 public class MaterialIcons {
 
     private static final Map<TextAttribute, Object> fontSettings = new HashMap<>();
-    public static final Font ICON_FONT = loadFont("/resources/fonts/MaterialIcons-Regular.ttf");
+    public static final Font ICON_FONT = loadFont("/fonts/MaterialIcons-Regular.ttf");
 
     //ICONS SVG
-    public static final DerivableIcon ARROW_DROP_LEFT = loadSVG("/resources/imgs/arrow_left.svg").deriveIcon(10);
-    public static final DerivableIcon ARROW_DROP_RIGHT = loadSVG("/resources/imgs/arrow_right.svg").deriveIcon(10);
+    public static final DerivableIcon ARROW_DROP_LEFT = loadSVG("/imgs/arrow_left.svg").deriveIcon(10);
+    public static final DerivableIcon ARROW_DROP_RIGHT = loadSVG("/imgs/arrow_right.svg").deriveIcon(10);
 
     //TECNOLOGIES
-    public static final DerivableIcon TEC_ADOBE = loadSVG("/resources/imgs/tec/adobe.svg").deriveIcon(18);
-    public static final DerivableIcon TEC_FREEPICK = loadSVG("/resources/imgs/tec/freepick.svg").deriveIcon(18);
-    public static final DerivableIcon TEC_GIT = loadSVG("/resources/imgs/tec/git.svg").deriveIcon(18);
-    public static final DerivableIcon TEC_GITKRAKEN = loadSVG("/resources/imgs/tec/gitkraken.svg").deriveIcon(18);
-    public static final DerivableIcon TEC_GITHUB = loadSVG("/resources/imgs/tec/github.svg").deriveIcon(18);
-    public static final DerivableIcon TEC_JAVA = loadSVG("/resources/imgs/tec/java.svg").deriveIcon(18);
-    public static final DerivableIcon TEC_JSON = loadSVG("/resources/imgs/tec/json.svg").deriveIcon(18);
-    public static final DerivableIcon TEC_MYSQL = loadSVG("/resources/imgs/tec/mysql.svg").deriveIcon(18);
-    public static final DerivableIcon TEC_WHATSAPP = loadSVG("/resources/imgs/tec/whatsapp.svg").deriveIcon(18);
-    public static final DerivableIcon TEC_GOOGLE = loadSVG("/resources/imgs/tec/google.svg").deriveIcon(18);
-    public static final DerivableIcon TEC_FLATICON = loadSVG("/resources/imgs/tec/flaticon.svg").deriveIcon(18);
-    public static final DerivableIcon TEC_NB = loadSVG("/resources/imgs/tec/nb.svg").deriveIcon(18);
-    public static final DerivableIcon TEC_XAMPP = loadSVG("/resources/imgs/tec/xampp.svg").deriveIcon(18);
+    public static final DerivableIcon TEC_ADOBE = loadSVG("/imgs/tec/adobe.svg").deriveIcon(18);
+    public static final DerivableIcon TEC_FREEPICK = loadSVG("/imgs/tec/freepick.svg").deriveIcon(18);
+    public static final DerivableIcon TEC_GIT = loadSVG("/imgs/tec/git.svg").deriveIcon(18);
+    public static final DerivableIcon TEC_GITKRAKEN = loadSVG("/imgs/tec/gitkraken.svg").deriveIcon(18);
+    public static final DerivableIcon TEC_GITHUB = loadSVG("/imgs/tec/github.svg").deriveIcon(18);
+    public static final DerivableIcon TEC_JAVA = loadSVG("/imgs/tec/java.svg").deriveIcon(18);
+    public static final DerivableIcon TEC_JSON = loadSVG("/imgs/tec/json.svg").deriveIcon(18);
+    public static final DerivableIcon TEC_MYSQL = loadSVG("/imgs/tec/mysql.svg").deriveIcon(18);
+    public static final DerivableIcon TEC_WHATSAPP = loadSVG("/imgs/tec/whatsapp.svg").deriveIcon(18);
+    public static final DerivableIcon TEC_GOOGLE = loadSVG("/imgs/tec/google.svg").deriveIcon(18);
+    public static final DerivableIcon TEC_FLATICON = loadSVG("/imgs/tec/flaticon.svg").deriveIcon(18);
+    public static final DerivableIcon TEC_NB = loadSVG("/imgs/tec/nb.svg").deriveIcon(18);
+    public static final DerivableIcon TEC_XAMPP = loadSVG("/imgs/tec/xampp.svg").deriveIcon(18);
 
     //DEFAULT ICONS VIA TTF
     public static final DerivableIcon _3D_ROTATION = new IconTTF((char) 59469);
@@ -1021,7 +1021,7 @@ public class MaterialIcons {
      System.out.println("    public static final char "+subs[0]+" = '\\u"+subs[1]+"';");
      }
      }*/
-    /*Metodo que se usó para convertir de los char a lis IconTTF
+    /*Metodo que se uso para convertir de los char a lis IconTTF
      public static void main(String args[]) throws UnsupportedLookAndFeelException {
      Field[] fields = MaterialIcons.class.getDeclaredFields();
      for (Field field : fields) {

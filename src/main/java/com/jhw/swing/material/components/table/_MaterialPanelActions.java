@@ -1,7 +1,7 @@
 package com.jhw.swing.material.components.table;
 
 import com.jhw.swing.material.components.button._MaterialIconButtonTranspRect;
-import com.jhw.swing.material.components.container.panels._PanelGradient;
+import com.jhw.swing.material.components.container.panel._PanelGradient;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,7 +10,7 @@ import com.jhw.swing.material.standars.MaterialIcons;
 
 /**
  *
- * @author Jesús Hernández Barrios (jhernandezb96@gmail.com)
+ * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
 public class _MaterialPanelActions extends _PanelGradient {
 

@@ -23,7 +23,7 @@ import com.jhw.swing.material.standars.MaterialFontRoboto;
 
 /**
  *
- * @author Jessica Aidyl García Albalah (jgarciaalbalah@gmail.com)
+ * @author Jessica Aidyl Garcia Albalah (jgarciaalbalah@gmail.com)
  */
 public class _MaterialLineChart extends _MaterialGeneralChart implements MaterialComponent {
 
@@ -74,7 +74,7 @@ public class _MaterialLineChart extends _MaterialGeneralChart implements Materia
     public void personaliceChart(Paint color) {
         super.personaliceChart(color);
 
-        //personalización del grafico
+        //personalizacion del grafico
         XYPlot plot = (XYPlot) chart.getPlot();
 
         plot.setBackgroundPaint(color);

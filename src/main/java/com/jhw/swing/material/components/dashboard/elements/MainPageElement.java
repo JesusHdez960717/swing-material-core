@@ -7,12 +7,12 @@ import javax.swing.ImageIcon;
  * Modelo requerido para cada elemento de la pagina principal.<\br>
  * Este contiene el boton, el panel y el nombre del componente para los que lo
  * muestran.<\br>
- * Está pensado para que se agrege el nombre, icono y el panel a agregar, por
+ * Esta pensado para que se agrege el nombre, icono y el panel a agregar, por
  * defecto el color del boton va a ser un brigther al color por defecto del
  * background del panel material, pero se puede personalizar creando uno mismo
- * el botón.
+ * el boton.
  *
- * @author Jesús Hernández Barrios (jhernandezb96@gmail.com)
+ * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
 public class MainPageElement {
 

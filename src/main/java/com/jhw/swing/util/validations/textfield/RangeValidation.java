@@ -2,7 +2,7 @@ package com.jhw.swing.util.validations.textfield;
 
 /**
  *
- * @author Jesús Hernández Barrios (jhernandezb96@gmail.com)
+ * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
 public class RangeValidation extends TextFieldValidation<Object> {
 

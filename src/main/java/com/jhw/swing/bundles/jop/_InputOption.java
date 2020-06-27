@@ -1,11 +1,11 @@
 package com.jhw.swing.bundles.jop;
 
-import com.jhw.swing.material.components.container.panels._MaterialPanel;
+import com.jhw.swing.material.components.container.panel._MaterialPanel;
 import com.jhw.swing.util.interfaces.MaterialComponent;
 
 /**
  *
- * @author Jessica Aidyl García Albalah (jgarciaalbalah@gmail.com)
+ * @author Jessica Aidyl Garcia Albalah (jgarciaalbalah@gmail.com)
  */
 public class _InputOption extends _MaterialPanel implements MaterialComponent {
 

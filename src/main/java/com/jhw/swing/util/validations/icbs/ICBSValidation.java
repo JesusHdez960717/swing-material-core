@@ -4,11 +4,11 @@ import com.jhw.swing.util.validations.Validation;
 
 /**
  *
- * @author Jesús Hernández Barrios (jhernandezb96@gmail.com)
+ * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
 public abstract class ICBSValidation<T> extends Validation<T> {
 
-    public static final String WRONG_TEXT = "Error en este campo de selección";
+    public static final String WRONG_TEXT = "Error en este campo de seleccion";
 
     public ICBSValidation() {
         super(WRONG_TEXT, WRONG_TEXT);

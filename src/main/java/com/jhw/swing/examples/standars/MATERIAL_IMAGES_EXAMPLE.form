@@ -33,7 +33,7 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Container class="com.jhw.swing.material.components.container.panels._PanelGradient" name="_PanelGradient1">
+    <Container class="com.jhw.swing.material.components.container.panel._PanelGradient" name="_PanelGradient1">
       <Properties>
         <Property name="primaryColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="cc" green="cc" red="cc" type="rgb"/>

@@ -3,14 +3,14 @@ package com.jhw.swing.models.detail;
 import com.jhw.swing.bundles.dialog.DialogPanel;
 import java.awt.Component;
 import javax.swing.JPanel;
-import com.jhw.swing.util.interfaces.Update;
+import com.jhw.utils.interfaces.Update;
 
 /**
  * Dialogo para mostrar las ventanas de detalles de los modelos.<\br>
- * Básicamente lo qeu hace es recivir un actualizable y actualizarlo cuando se
+ * Basicamente lo qeu hace es recivir un actualizable y actualizarlo cuando se
  * cierre el dialog.
  *
- * @author Jesús Hernández Barrios (jhernandezb96@gmail.com)
+ * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
 public class DialogDetail extends DialogPanel {
 

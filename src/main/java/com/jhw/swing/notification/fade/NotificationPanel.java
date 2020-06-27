@@ -2,7 +2,7 @@ package com.jhw.swing.notification.fade;
 
 import com.jhw.swing.material.components.textarea._ContentArea;
 import com.jhw.swing.material.components.button._MaterialIconButtonTranspRect;
-import com.jhw.swing.material.components.container.panels._MaterialPanel;
+import com.jhw.swing.material.components.container.panel._MaterialPanel;
 import com.jhw.swing.material.components.labels._MaterialLabel;
 import java.awt.Color;
 import java.awt.Font;
@@ -11,7 +11,7 @@ import com.jhw.swing.material.standars.MaterialIcons;
 
 /**
  *
- * @author Jesús Hernández Barrios (jhernandezb96@gmail.com)
+ * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
 public class NotificationPanel extends _MaterialPanel {
 

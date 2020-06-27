@@ -1,4 +1,4 @@
-package com.jhw.swing.material.components.container.panels;
+package com.jhw.swing.material.components.container.panel;
 
 import java.awt.AlphaComposite;
 import java.awt.Graphics;
@@ -9,7 +9,7 @@ import com.jhw.swing.util.MaterialDrawingUtils;
 import com.jhw.swing.util.interfaces.MaterialComponent;
 
 /**
- * Componente extraido su lógica de edisoncorSX.
+ * Componente extraido su logica de edisoncorSX.
  */
 public class _PanelGradientTranslucid extends _PanelGradient implements MaterialComponent {
 

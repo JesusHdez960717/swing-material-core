@@ -8,7 +8,7 @@ import com.jhw.swing.material.standars.MaterialIcons;
 
 /**
  *
- * @author Jesús Hernández Barrios (jhernandezb96@gmail.com)
+ * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
 public class OTHERS_EXAMPLE extends javax.swing.JFrame {
 
@@ -43,8 +43,8 @@ public class OTHERS_EXAMPLE extends javax.swing.JFrame {
         _MaterialPasswordField1 = new com.jhw.swing.material.components.passwordfield._MaterialPasswordField();
         _MaterialProgressSpinner1 = new com.jhw.swing.material.components.progress._MaterialProgressSpinner();
         jPasswordField1 = new javax.swing.JPasswordField();
-        _PanelGradient1 = new com.jhw.swing.material.components.container.panels._PanelGradient();
-        _PanelGradient2 = new com.jhw.swing.material.components.container.panels._PanelGradient();
+        _PanelGradient1 = new com.jhw.swing.material.components.container.panel._PanelGradient();
+        _PanelGradient2 = new com.jhw.swing.material.components.container.panel._PanelGradient();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -189,8 +189,8 @@ public class OTHERS_EXAMPLE extends javax.swing.JFrame {
     private com.jhw.swing.material.components.labels._MaterialLabel _MaterialLabel2;
     private com.jhw.swing.material.components.passwordfield._MaterialPasswordField _MaterialPasswordField1;
     private com.jhw.swing.material.components.progress._MaterialProgressSpinner _MaterialProgressSpinner1;
-    private com.jhw.swing.material.components.container.panels._PanelGradient _PanelGradient1;
-    private com.jhw.swing.material.components.container.panels._PanelGradient _PanelGradient2;
+    private com.jhw.swing.material.components.container.panel._PanelGradient _PanelGradient1;
+    private com.jhw.swing.material.components.container.panel._PanelGradient _PanelGradient2;
     private com.jhw.swing.material.components.labels.prepared._labelNegativo _labelNegativo1;
     private com.jhw.swing.material.components.labels.prepared._labelPositive _labelPositive1;
     private javax.swing.JComboBox jComboBox1;

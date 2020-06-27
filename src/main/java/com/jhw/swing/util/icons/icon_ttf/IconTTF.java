@@ -18,7 +18,7 @@ import com.jhw.swing.material.standars.MaterialIcons;
 /**
  * Icon extracted from a true type font (ttf)
  *
- * @author Jesús Hernández Barrios (jhernandezb96@gmail.com)
+ * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
 public class IconTTF extends DerivableIcon {
 
@@ -92,7 +92,7 @@ public class IconTTF extends DerivableIcon {
      * @param ch char que se representa el icono.
      * @param color color del que se va a mostrar el icono.
      * @param size tamanno del icono.
-     * @return ImageIcon extraido con las propiedades específicas.
+     * @return ImageIcon extraido con las propiedades especificas.
      */
     public static ImageIcon extractIcon(Font font, char ch, Color color, float size) {
         String str = "" + ch;

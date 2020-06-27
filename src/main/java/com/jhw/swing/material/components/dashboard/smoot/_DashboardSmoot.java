@@ -1,7 +1,7 @@
 package com.jhw.swing.material.components.dashboard.smoot;
 
-import com.jhw.swing.material.components.container.panels._PanelGradient;
-import com.jhw.swing.material.components.container.panels._PanelTransparent;
+import com.jhw.swing.material.components.container.panel._PanelGradient;
+import com.jhw.swing.material.components.container.panel._PanelTransparent;
 import com.jhw.swing.material.components.dashboard.elements.MainPageElement;
 import com.jhw.swing.material.components.dashboard.elements._MaterialButtonMainPage;
 import java.awt.CardLayout;
@@ -15,14 +15,14 @@ import javax.swing.ImageIcon;
 import com.jhw.swing.personalization.PersonalizationMaterial;
 import com.jhw.swing.util.Utils;
 import com.jhw.swing.util.enums.GradientEnum;
-import com.jhw.swing.util.interfaces.Update;
+import com.jhw.utils.interfaces.Update;
 import com.jhw.swing.material.standars.MaterialColors;
 import com.jhw.swing.material.standars.MaterialIcons;
 
 /**
  *
  *
- * @author Jesús Hernández Barrios (jhernandezb96@gmail.com)
+ * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
 public class _DashboardSmoot extends javax.swing.JPanel {
 
@@ -47,17 +47,17 @@ public class _DashboardSmoot extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        panelButtons = new com.jhw.swing.material.components.container.panels._PanelGradient();
-        panelButtonsInside = new com.jhw.swing.material.components.container.panels._PanelTransparent();
+        panelButtons = new com.jhw.swing.material.components.container.panel._PanelGradient();
+        panelButtonsInside = new com.jhw.swing.material.components.container.panel._PanelTransparent();
         buttonCollapse = new com.jhw.swing.material.components.button._MaterialIconButtonTranspRect();
-        panelMiddle = new com.jhw.swing.material.components.container.panels._PanelGradient();
-        panelUp = new com.jhw.swing.material.components.container.panels._PanelGradient();
-        panelUpperCornerRight = new com.jhw.swing.material.components.container.panels._PanelTransparent();
-        panelUpperCornerLeft = new com.jhw.swing.material.components.container.panels._PanelTransparent();
-        panelDown = new com.jhw.swing.material.components.container.panels._PanelGradient();
-        panelDownCornerRight = new com.jhw.swing.material.components.container.panels._PanelTransparent();
-        panelDownCornerLeft = new com.jhw.swing.material.components.container.panels._PanelTransparent();
-        panelComponentToDual = new com.jhw.swing.material.components.container.panels._PanelComponent();
+        panelMiddle = new com.jhw.swing.material.components.container.panel._PanelGradient();
+        panelUp = new com.jhw.swing.material.components.container.panel._PanelGradient();
+        panelUpperCornerRight = new com.jhw.swing.material.components.container.panel._PanelTransparent();
+        panelUpperCornerLeft = new com.jhw.swing.material.components.container.panel._PanelTransparent();
+        panelDown = new com.jhw.swing.material.components.container.panel._PanelGradient();
+        panelDownCornerRight = new com.jhw.swing.material.components.container.panel._PanelTransparent();
+        panelDownCornerLeft = new com.jhw.swing.material.components.container.panel._PanelTransparent();
+        panelComponentToDual = new com.jhw.swing.material.components.container.panel._PanelComponent();
 
         panelButtons.setPreferredSize(new java.awt.Dimension(230, 400));
         panelButtons.setPrimaryColor(new java.awt.Color(255, 255, 255));
@@ -175,16 +175,16 @@ public class _DashboardSmoot extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.jhw.swing.material.components.button._MaterialIconButtonTranspRect buttonCollapse;
-    private com.jhw.swing.material.components.container.panels._PanelGradient panelButtons;
-    private com.jhw.swing.material.components.container.panels._PanelTransparent panelButtonsInside;
-    private com.jhw.swing.material.components.container.panels._PanelComponent panelComponentToDual;
-    private com.jhw.swing.material.components.container.panels._PanelGradient panelDown;
-    private com.jhw.swing.material.components.container.panels._PanelTransparent panelDownCornerLeft;
-    private com.jhw.swing.material.components.container.panels._PanelTransparent panelDownCornerRight;
-    private com.jhw.swing.material.components.container.panels._PanelGradient panelMiddle;
-    private com.jhw.swing.material.components.container.panels._PanelGradient panelUp;
-    private com.jhw.swing.material.components.container.panels._PanelTransparent panelUpperCornerLeft;
-    private com.jhw.swing.material.components.container.panels._PanelTransparent panelUpperCornerRight;
+    private com.jhw.swing.material.components.container.panel._PanelGradient panelButtons;
+    private com.jhw.swing.material.components.container.panel._PanelTransparent panelButtonsInside;
+    private com.jhw.swing.material.components.container.panel._PanelComponent panelComponentToDual;
+    private com.jhw.swing.material.components.container.panel._PanelGradient panelDown;
+    private com.jhw.swing.material.components.container.panel._PanelTransparent panelDownCornerLeft;
+    private com.jhw.swing.material.components.container.panel._PanelTransparent panelDownCornerRight;
+    private com.jhw.swing.material.components.container.panel._PanelGradient panelMiddle;
+    private com.jhw.swing.material.components.container.panel._PanelGradient panelUp;
+    private com.jhw.swing.material.components.container.panel._PanelTransparent panelUpperCornerLeft;
+    private com.jhw.swing.material.components.container.panel._PanelTransparent panelUpperCornerRight;
     // End of variables declaration//GEN-END:variables
 
 //-----------------------------MAIN---------------------------------------------------------

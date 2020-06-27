@@ -2,18 +2,18 @@ package com.jhw.swing.models.input.panels;
 
 import com.jhw.swing.material.components.button._MaterialButton;
 import com.jhw.swing.material.components.button._MaterialIconButtonTranspRect;
-import com.jhw.swing.material.components.container.panels._PanelComponent;
-import com.jhw.swing.material.components.container.panels._PanelGradient;
+import com.jhw.swing.material.components.container.panel._PanelComponent;
+import com.jhw.swing.material.components.container.panel._PanelGradient;
 import java.awt.Color;
 import com.jhw.swing.personalization.PersonalizationMaterial;
-import com.jhw.swing.util.interfaces.Update;
+import com.jhw.utils.interfaces.Update;
 import com.jhw.swing.util.interfaces.ModelablePanel;
 import com.jhw.swing.material.standars.MaterialColors;
 import com.jhw.swing.material.standars.MaterialIcons;
 
 /**
  *
- * @author Jesús Hernández Barrios (jhernandezb96@gmail.com)
+ * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  * @param <T> Tipo de modelos que se va a trabajar.
  */
 public class BaseModelInputMixPanel<T> extends _PanelGradient implements Update, ModelablePanel<T> {
@@ -37,11 +37,11 @@ public class BaseModelInputMixPanel<T> extends _PanelGradient implements Update,
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        panelBackground = new com.jhw.swing.material.components.container.panels._PanelGradient();
-        panelButtons = new com.jhw.swing.material.components.container.panels._PanelGradient();
+        panelBackground = new com.jhw.swing.material.components.container.panel._PanelGradient();
+        panelButtons = new com.jhw.swing.material.components.container.panel._PanelGradient();
         buttonCancel = new com.jhw.swing.material.components.button._MaterialButton();
         buttonDelete = new com.jhw.swing.material.components.button._MaterialIconButtonTranspRect();
-        panelModelCore = new com.jhw.swing.material.components.container.panels._PanelComponent();
+        panelModelCore = new com.jhw.swing.material.components.container.panel._PanelComponent();
 
         setPrimaryColor(new java.awt.Color(255, 255, 255));
         setSecundaryColor(new java.awt.Color(255, 255, 255));
@@ -117,9 +117,9 @@ public class BaseModelInputMixPanel<T> extends _PanelGradient implements Update,
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.jhw.swing.material.components.button._MaterialButton buttonCancel;
     private com.jhw.swing.material.components.button._MaterialIconButtonTranspRect buttonDelete;
-    private com.jhw.swing.material.components.container.panels._PanelGradient panelBackground;
-    private com.jhw.swing.material.components.container.panels._PanelGradient panelButtons;
-    private com.jhw.swing.material.components.container.panels._PanelComponent panelModelCore;
+    private com.jhw.swing.material.components.container.panel._PanelGradient panelBackground;
+    private com.jhw.swing.material.components.container.panel._PanelGradient panelButtons;
+    private com.jhw.swing.material.components.container.panel._PanelComponent panelModelCore;
     // End of variables declaration//GEN-END:variables
 
     private void personalize() {

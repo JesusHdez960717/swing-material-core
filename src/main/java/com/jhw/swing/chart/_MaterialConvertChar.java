@@ -1,8 +1,8 @@
 package com.jhw.swing.chart;
 
 import com.jhw.swing.material.components.button._MaterialIconButtonTranspRect;
-import com.jhw.swing.material.components.container.panels._PanelComponent;
-import com.jhw.swing.material.components.container.panels._PanelTransparent;
+import com.jhw.swing.material.components.container.panel._PanelComponent;
+import com.jhw.swing.material.components.container.panel._PanelTransparent;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -36,7 +36,7 @@ public class _MaterialConvertChar extends _PanelTransparent implements MaterialC
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        panelChart = new com.jhw.swing.material.components.container.panels._PanelComponent();
+        panelChart = new com.jhw.swing.material.components.container.panel._PanelComponent();
         buttonBarChart = new com.jhw.swing.material.components.button._MaterialIconButtonTranspRect();
         buttonLineChart = new com.jhw.swing.material.components.button._MaterialIconButtonTranspRect();
 
@@ -80,7 +80,7 @@ public class _MaterialConvertChar extends _PanelTransparent implements MaterialC
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.jhw.swing.material.components.button._MaterialIconButtonTranspRect buttonBarChart;
     private com.jhw.swing.material.components.button._MaterialIconButtonTranspRect buttonLineChart;
-    private com.jhw.swing.material.components.container.panels._PanelComponent panelChart;
+    private com.jhw.swing.material.components.container.panel._PanelComponent panelChart;
     // End of variables declaration//GEN-END:variables
 
     private void addListeners() {
@@ -96,8 +96,8 @@ public class _MaterialConvertChar extends _PanelTransparent implements MaterialC
                 changeToLine();
             }
         });
-        buttonBarChart.setToolTipText("Convertir a gráfico de barras.");
-        buttonLineChart.setToolTipText("Convertir a gráfico de lineas.");
+        buttonBarChart.setToolTipText("Convertir a grafico de barras.");
+        buttonLineChart.setToolTipText("Convertir a grafico de lineas.");
     }
 
     private void personalize() {

@@ -9,7 +9,7 @@ import java.awt.image.Kernel;
  * Use {@link ConvolveWithEdgeOp} to the better performance blur on the edges.
  *
  * @author Book Filthy Rich Clients QA76.73.C153H33 2007 at page. 431
- * @author Jesús Hernández Barrios (jhernandezb96@gmail.com)
+ * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
 public class FastGaussianBlur {
 

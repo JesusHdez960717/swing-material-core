@@ -34,7 +34,7 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Container class="com.jhw.swing.material.components.container.panels._PanelGradient" name="panelBackground">
+    <Container class="com.jhw.swing.material.components.container.panel._PanelGradient" name="panelBackground">
       <Properties>
         <Property name="primaryColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -62,7 +62,7 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Container class="com.jhw.swing.material.components.container.panels._MaterialPanel" name="panelModel">
+        <Container class="com.jhw.swing.material.components.container.panel._MaterialPanel" name="panelModel">
 
           <Layout>
             <DimensionLayout dim="0">
@@ -85,7 +85,7 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Container class="com.jhw.swing.material.components.container.panels._PanelComponent" name="panelModelCore">
+            <Container class="com.jhw.swing.material.components.container.panel._PanelComponent" name="panelModelCore">
 
               <Layout>
                 <DimensionLayout dim="0">
@@ -102,7 +102,7 @@
             </Container>
           </SubComponents>
         </Container>
-        <Container class="com.jhw.swing.material.components.container.panels._PanelGradient" name="panelButtons">
+        <Container class="com.jhw.swing.material.components.container.panel._PanelGradient" name="panelButtons">
           <Properties>
             <Property name="primaryColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>

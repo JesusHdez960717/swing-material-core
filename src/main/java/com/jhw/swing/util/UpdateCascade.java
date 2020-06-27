@@ -1,14 +1,14 @@
 package com.jhw.swing.util;
 
+import com.jhw.utils.interfaces.Update;
 import java.awt.Component;
 import javax.swing.JPanel;
-import com.jhw.swing.util.interfaces.Update;
 
 /**
  * Actualiza recursivamente una serie de elementos que implementes la interfaz
  * actualizable.
  *
- * @author Jesús Hernández Barrios (jhernandezb96@gmail.com)
+ * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
 public class UpdateCascade {
 

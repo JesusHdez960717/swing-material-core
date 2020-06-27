@@ -18,7 +18,7 @@ import javax.swing.JTabbedPane;
 import com.jhw.swing.util.interfaces.MaterialComponent;
 
 /**
- * Componente extraido su lógica de edisoncorSX.
+ * Componente extraido su logica de edisoncorSX.
  */
 public class _TabbedPaneClose extends JTabbedPane implements MaterialComponent {
 
@@ -48,14 +48,14 @@ public class _TabbedPaneClose extends JTabbedPane implements MaterialComponent {
             boton.setMargin(new Insets(0, 0, 0, 0));
             switch (_TabbedPaneClose.this.modelo) {
                 case RECT:
-                    boton.setIcon(new ImageIcon(loadImage("/resources/imgs/title_close.png")));
-                    boton.setPressedIcon(new ImageIcon(getClass().getResource("/resources/imgs/title_close_pressed.png")));
-                    boton.setRolloverIcon(new ImageIcon(getClass().getResource("/resources/imgs/title_close_over.png")));
+                    boton.setIcon(new ImageIcon(loadImage("/imgs/title_close.png")));
+                    boton.setPressedIcon(new ImageIcon(getClass().getResource("/imgs/title_close_pressed.png")));
+                    boton.setRolloverIcon(new ImageIcon(getClass().getResource("/imgs/title_close_over.png")));
                     break;
                 case ROUND:
-                    boton.setIcon(new ImageIcon(getClass().getResource("/resources/imgs/button_close_16.png")));
-                    boton.setPressedIcon(new ImageIcon(getClass().getResource("/resources/imgs/button_close_pressed_16.png")));
-                    boton.setRolloverIcon(new ImageIcon(getClass().getResource("/resources/imgs/button_close_over_16.png")));
+                    boton.setIcon(new ImageIcon(getClass().getResource("/imgs/button_close_16.png")));
+                    boton.setPressedIcon(new ImageIcon(getClass().getResource("/imgs/button_close_pressed_16.png")));
+                    boton.setRolloverIcon(new ImageIcon(getClass().getResource("/imgs/button_close_over_16.png")));
                     break;
             }
             boton.addActionListener(this);

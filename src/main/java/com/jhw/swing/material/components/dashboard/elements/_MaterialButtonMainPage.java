@@ -21,7 +21,7 @@ import com.jhw.swing.util.icons.DerivableIcon;
  * elevacion pero conservan su ripple, icono que lo identifica y se le agrego un
  * icono de seleccioado.
  *
- * @author Jesús Hernández Barrios (jhernandezb96@gmail.com)
+ * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
 public class _MaterialButtonMainPage extends _MaterialButton implements MaterialComponent {
 

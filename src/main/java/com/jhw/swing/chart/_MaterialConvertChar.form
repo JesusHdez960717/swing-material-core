@@ -39,7 +39,7 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Container class="com.jhw.swing.material.components.container.panels._PanelComponent" name="panelChart">
+    <Container class="com.jhw.swing.material.components.container.panel._PanelComponent" name="panelChart">
 
       <Layout>
         <DimensionLayout dim="0">

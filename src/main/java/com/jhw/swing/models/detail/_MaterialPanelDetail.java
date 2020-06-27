@@ -2,7 +2,7 @@ package com.jhw.swing.models.detail;
 
 import com.jhw.swing.notification.toast.TOAST;
 import com.jhw.swing.material.components.button._MaterialIconButtonTranspRect;
-import com.jhw.swing.material.components.container.panels._MaterialPanel;
+import com.jhw.swing.material.components.container.panel._MaterialPanel;
 import com.jhw.swing.material.components.table.Column;
 import com.jhw.swing.material.components.table._MaterialPanelActions;
 import com.jhw.swing.material.components.table.editors_renders.component.ComponentCellEditor;
@@ -27,12 +27,12 @@ import lombok.Setter;
 import com.jhw.utils.others.KMP;
 import com.jhw.utils.security.SHA;
 import com.jhw.swing.util.JOP;
-import com.jhw.swing.util.interfaces.Update;
+import com.jhw.utils.interfaces.Update;
 import com.jhw.swing.material.standars.MaterialColors;
 
 /**
  *
- * @author Jesús Hernández Barrios (jhernandezb96@gmail.com)
+ * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  * @param <T> Tipo de modelo de la clase
  */
 @Getter
@@ -67,9 +67,9 @@ public abstract class _MaterialPanelDetail<T> extends _MaterialPanel implements 
 
         labelHeader = new com.jhw.swing.material.components.labels._MaterialLabel();
         searchField = new com.jhw.swing.material.components.searchfield._MaterialSearchField();
-        panelOptions = new com.jhw.swing.material.components.container.panels._PanelTransparent();
+        panelOptions = new com.jhw.swing.material.components.container.panel._PanelTransparent();
         buttonAdd = new com.jhw.swing.material.components.button.prepared._buttonAddEdit();
-        panelOptionsExtra = new com.jhw.swing.material.components.container.panels._PanelTransparent();
+        panelOptionsExtra = new com.jhw.swing.material.components.container.panel._PanelTransparent();
         table = new com.jhw.swing.material.components.table._MaterialTableByPage();
 
         labelHeader.setForeground(new java.awt.Color(0, 0, 0));
@@ -137,8 +137,8 @@ public abstract class _MaterialPanelDetail<T> extends _MaterialPanel implements 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.jhw.swing.material.components.button.prepared._buttonAddEdit buttonAdd;
     private com.jhw.swing.material.components.labels._MaterialLabel labelHeader;
-    private com.jhw.swing.material.components.container.panels._PanelTransparent panelOptions;
-    private com.jhw.swing.material.components.container.panels._PanelTransparent panelOptionsExtra;
+    private com.jhw.swing.material.components.container.panel._PanelTransparent panelOptions;
+    private com.jhw.swing.material.components.container.panel._PanelTransparent panelOptionsExtra;
     private com.jhw.swing.material.components.searchfield._MaterialSearchField searchField;
     private com.jhw.swing.material.components.table._MaterialTableByPage table;
     // End of variables declaration//GEN-END:variables

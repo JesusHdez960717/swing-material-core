@@ -4,7 +4,7 @@ import com.jhw.utils.security.SHA;
 
 /**
  *
- * @author Jesús Hernández Barrios (jhernandezb96@gmail.com)
+ * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
 public class LoginView extends com.jhw.swing.material.components.login._LoginPanel {
 

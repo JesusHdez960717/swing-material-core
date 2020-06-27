@@ -13,9 +13,9 @@ apply plugin: 'java'
 apply plugin: 'jacoco'
 apply plugin: 'application'
 
-group = 'com.jhw.swing.material'
+group = 'com.jhw.swing'
 
-mainClassName = 'com.jhw.swing.Main'
+mainClassName = 'com.jhw.swing.TEST.NewJFrame'
 
 repositories {
     jcenter()
@@ -24,7 +24,9 @@ repositories {
 
 dependencies {
     testCompile 'junit:junit:4.12'
+    
     implementation project(':utils')
+    implementation project(':clean-core')
     
     //batick para svg
     compile group: 'org.apache.xmlgraphics', name: 'batik-transcoder', version: '1.13'
@@ -32,7 +34,7 @@ dependencies {
     
     //chart
     compile group: 'org.jfree', name: 'jcommon', version: '1.0.24'
-    compile group: 'org.jfree', name: 'jfreechart', version: '1.5.0'
+    //compile group: 'org.jfree', name: 'jfreechart', version: '1.5.0'
     
     //Jackson
     compile group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.10.2'
@@ -55,4 +57,8 @@ dependencies {
     //EL, Expresion languaje(tengo entendido que para el validation)
     compile group: 'javax.el', name: 'javax.el-api', version: '3.0.0'
     implementation 'org.glassfish.web:javax.el:2.2.6'
+    
+    // https://mvnrepository.com/artifact/org.jfree/jfreechart
+    compile group: 'org.jfree', name: 'jfreechart', version: '1.0.17'
+
 }

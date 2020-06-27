@@ -1,4 +1,4 @@
-package com.jhw.swing.material.components.container.panels;
+package com.jhw.swing.material.components.container.panel;
 
 import java.awt.Color;
 import java.awt.GradientPaint;
@@ -19,7 +19,7 @@ import com.jhw.swing.util.interfaces.MaterialComponent;
 import com.jhw.swing.material.standars.MaterialColors;
 
 /**
- * Componente extraido su lógica de edisoncorSX.
+ * Componente extraido su logica de edisoncorSX.
  */
 public class _PanelGradient extends JPanel implements MaterialComponent {
 

@@ -13,7 +13,7 @@ import com.jhw.swing.material.standars.MaterialIcons;
 
 /**
  *
- * @author Jesús Hernández Barrios (jhernandezb96@gmail.com)
+ * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
 public class DashboardView extends _DashboardSmoot {
 
@@ -35,7 +35,7 @@ public class DashboardView extends _DashboardSmoot {
 
         //licencia
         _MaterialLabel lic = new _MaterialLabel();
-        lic.setText("X días para activar");
+        lic.setText("X dias para activar");
         this.setDownElementLeftCorner(lic);
 
         addDownRigthPanel();
@@ -50,7 +50,7 @@ public class DashboardView extends _DashboardSmoot {
         Dimension dim = new Dimension((int) this.getPanelDownCornerRight().getPreferredSize().getHeight() + 6, (int) this.getPanelDownCornerRight().getPreferredSize().getHeight());
 
         _MaterialIconButtonTranspRect tecnJava = new _MaterialIconButtonTranspRect();
-        tecnJava.setToolTipText("JAVA 1.8.60(Lenguaje de programación)");
+        tecnJava.setToolTipText("JAVA 1.8.60(Lenguaje de programacion)");
         tecnJava.setIcon(MaterialIcons.TEC_JAVA);
         tecnJava.setMinimumSize(dim);
         tecnJava.addActionListener(new java.awt.event.ActionListener() {
@@ -130,7 +130,7 @@ public class DashboardView extends _DashboardSmoot {
         this.addDownElementRightCorner(tecnFlaticon);
 
         _MaterialIconButtonTranspRect tecnFreepick = new _MaterialIconButtonTranspRect();
-        tecnFreepick.setToolTipText("Freepick (Diseños)");
+        tecnFreepick.setToolTipText("Freepick (Dise�os)");
         tecnFreepick.setIcon(MaterialIcons.TEC_FREEPICK);
         tecnFreepick.setMinimumSize(dim);
         tecnFreepick.addActionListener(new java.awt.event.ActionListener() {
@@ -140,7 +140,7 @@ public class DashboardView extends _DashboardSmoot {
         this.addDownElementRightCorner(tecnFreepick);
 
         _MaterialIconButtonTranspRect tecnAdobe = new _MaterialIconButtonTranspRect();
-        tecnAdobe.setToolTipText("Adobe (Ai y Ps para el diseño de imágenes)");
+        tecnAdobe.setToolTipText("Adobe (Ai y Ps para el dise�o de imagenes)");
         tecnAdobe.setIcon(MaterialIcons.TEC_ADOBE);
         tecnAdobe.setMinimumSize(dim);
         tecnAdobe.addActionListener(new java.awt.event.ActionListener() {

@@ -14,7 +14,7 @@ import javax.swing.JTextArea;
 import javax.swing.text.JTextComponent;
 import com.jhw.swing.util.UpdateCascade;
 import com.jhw.swing.util.JOP;
-import com.jhw.swing.util.interfaces.Update;
+import com.jhw.utils.interfaces.Update;
 import com.jhw.swing.util.interfaces.ModelablePanel;
 
 /**

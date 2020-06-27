@@ -65,7 +65,7 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Container class="com.jhw.swing.material.components.container.panels._MaterialPanel" name="_MaterialPanel1">
+    <Container class="com.jhw.swing.material.components.container.panel._MaterialPanel" name="_MaterialPanel1">
 
       <Layout>
         <DimensionLayout dim="0">
@@ -80,7 +80,7 @@
         </DimensionLayout>
       </Layout>
     </Container>
-    <Container class="com.jhw.swing.material.components.container.panels._PanelAvatarChooser" name="_PanelAvatarChooser1">
+    <Container class="com.jhw.swing.material.components.container.panel._PanelAvatarChooser" name="_PanelAvatarChooser1">
 
       <Layout>
         <DimensionLayout dim="0">
@@ -95,7 +95,7 @@
         </DimensionLayout>
       </Layout>
     </Container>
-    <Container class="com.jhw.swing.material.components.container.panels._PanelGradient" name="_PanelGradient1">
+    <Container class="com.jhw.swing.material.components.container.panel._PanelGradient" name="_PanelGradient1">
 
       <Layout>
         <DimensionLayout dim="0">
@@ -110,7 +110,7 @@
         </DimensionLayout>
       </Layout>
     </Container>
-    <Container class="com.jhw.swing.material.components.container.panels._PanelGradient" name="_PanelGradient2">
+    <Container class="com.jhw.swing.material.components.container.panel._PanelGradient" name="_PanelGradient2">
 
       <Layout>
         <DimensionLayout dim="0">
@@ -133,13 +133,13 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Container class="com.jhw.swing.material.components.container.panels._PanelCurves" name="_PanelCurves1">
+        <Container class="com.jhw.swing.material.components.container.panel._PanelCurves" name="_PanelCurves1">
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout"/>
         </Container>
       </SubComponents>
     </Container>
-    <Container class="com.jhw.swing.material.components.container.panels._PanelGradientTranslucid" name="_PanelGradientTranslucid1">
+    <Container class="com.jhw.swing.material.components.container.panel._PanelGradientTranslucid" name="_PanelGradientTranslucid1">
 
       <Layout>
         <DimensionLayout dim="0">
@@ -154,7 +154,7 @@
         </DimensionLayout>
       </Layout>
     </Container>
-    <Container class="com.jhw.swing.material.components.container.panels._PanelTransparent" name="_PanelTransparent1">
+    <Container class="com.jhw.swing.material.components.container.panel._PanelTransparent" name="_PanelTransparent1">
 
       <Layout>
         <DimensionLayout dim="0">

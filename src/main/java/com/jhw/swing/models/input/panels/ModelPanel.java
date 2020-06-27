@@ -1,12 +1,14 @@
 package com.jhw.swing.models.input.panels;
 
 import com.jhw.swing.util.interfaces.ModelablePanel;
-import com.jhw.swing.material.components.container.panels._PanelTransparent;
-import com.jhw.swing.util.interfaces.Update;
+import com.jhw.swing.material.components.container.panel._PanelTransparent;
+import com.jhw.utils.interfaces.Update;
+import java.awt.Component;
+import java.awt.GridLayout;
 
 /**
  *
- * @author Jesús Hernández Barrios (jhernandezb96@gmail.com)
+ * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  * @param <T> Tipo de modelos que se va a trabajar.
  */
 public abstract class ModelPanel<T> extends _PanelTransparent implements Update, ModelablePanel<T> {
@@ -43,6 +45,14 @@ public abstract class ModelPanel<T> extends _PanelTransparent implements Update,
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
+    protected void setComponent(Component component) {
+        this.setLayout(new GridLayout(1, 1));
+        this.removeAll();
+        this.setPreferredSize(component.getPreferredSize());
+        this.setMinimumSize(getPreferredSize());
+        this.add(component);
+    }
+
     @Override
     public T getOldModel() {
         return model;

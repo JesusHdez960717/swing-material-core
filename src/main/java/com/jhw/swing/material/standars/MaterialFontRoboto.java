@@ -17,18 +17,18 @@ import java.util.Map;
 public class MaterialFontRoboto {
 
     private static final Map<TextAttribute, Object> fontSettings = new HashMap<TextAttribute, Object>();
-    public static final Font BLACK = loadFont("/resources/fonts/Roboto-Black.ttf").deriveFont(Font.BOLD);
-    public static final Font BLACK_ITALIC = loadFont("/resources/fonts/Roboto-BlackItalic.ttf").deriveFont(Font.BOLD | Font.ITALIC);
-    public static final Font BOLD = loadFont("/resources/fonts/Roboto-Bold.ttf").deriveFont(Font.BOLD);
-    public static final Font BOLD_ITALIC = loadFont("/resources/fonts/Roboto-BoldItalic.ttf").deriveFont(Font.BOLD | Font.ITALIC);
-    public static final Font ITALIC = loadFont("/resources/fonts/Roboto-Italic.ttf").deriveFont(Font.ITALIC);
-    public static final Font LIGHT = loadFont("/resources/fonts/Roboto-Light.ttf").deriveFont(Font.PLAIN);
-    public static final Font LIGHT_ITALIC = loadFont("/resources/fonts/Roboto-LightItalic.ttf").deriveFont(Font.ITALIC);
-    public static final Font MEDIUM = loadFont("/resources/fonts/Roboto-Medium.ttf").deriveFont(Font.PLAIN);
-    public static final Font MEDIUM_ITALIC = loadFont("/resources/fonts/Roboto-MediumItalic.ttf").deriveFont(Font.ITALIC);
-    public static final Font REGULAR = loadFont("/resources/fonts/Roboto-Regular.ttf").deriveFont(Font.PLAIN);
-    public static final Font THIN = loadFont("/resources/fonts/Roboto-Thin.ttf").deriveFont(Font.PLAIN);
-    public static final Font THIN_ITALIC = loadFont("/resources/fonts/Roboto-ThinItalic.ttf").deriveFont(Font.ITALIC);
+    public static final Font BLACK = loadFont("/fonts/Roboto-Black.ttf").deriveFont(Font.BOLD);
+    public static final Font BLACK_ITALIC = loadFont("/fonts/Roboto-BlackItalic.ttf").deriveFont(Font.BOLD | Font.ITALIC);
+    public static final Font BOLD = loadFont("/fonts/Roboto-Bold.ttf").deriveFont(Font.BOLD);
+    public static final Font BOLD_ITALIC = loadFont("/fonts/Roboto-BoldItalic.ttf").deriveFont(Font.BOLD | Font.ITALIC);
+    public static final Font ITALIC = loadFont("/fonts/Roboto-Italic.ttf").deriveFont(Font.ITALIC);
+    public static final Font LIGHT = loadFont("/fonts/Roboto-Light.ttf").deriveFont(Font.PLAIN);
+    public static final Font LIGHT_ITALIC = loadFont("/fonts/Roboto-LightItalic.ttf").deriveFont(Font.ITALIC);
+    public static final Font MEDIUM = loadFont("/fonts/Roboto-Medium.ttf").deriveFont(Font.PLAIN);
+    public static final Font MEDIUM_ITALIC = loadFont("/fonts/Roboto-MediumItalic.ttf").deriveFont(Font.ITALIC);
+    public static final Font REGULAR = loadFont("/fonts/Roboto-Regular.ttf").deriveFont(Font.PLAIN);
+    public static final Font THIN = loadFont("/fonts/Roboto-Thin.ttf").deriveFont(Font.PLAIN);
+    public static final Font THIN_ITALIC = loadFont("/fonts/Roboto-ThinItalic.ttf").deriveFont(Font.ITALIC);
 
     private static Font loadFont(String fontPath) {
         if (fontSettings.isEmpty()) {

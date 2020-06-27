@@ -1,6 +1,6 @@
 package com.jhw.swing.material.components.table.editors_renders.money;
 
-import com.jhw.swing.material.components.container.panels._PanelGradient;
+import com.jhw.swing.material.components.container.panel._PanelGradient;
 import com.jhw.swing.material.components.labels._MaterialLabel;
 import java.awt.GridLayout;
 import java.util.Objects;
@@ -11,7 +11,7 @@ import javax.swing.UIManager;
 
 /**
  *
- * @author Jesús Hernández Barrios (jhernandezb96@gmail.com)
+ * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
 public class MoneyTableComponent {
 

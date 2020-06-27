@@ -1,17 +1,17 @@
 package com.jhw.swing.material.components.filechooser;
 
 import com.jhw.swing.material.components.button._MaterialButton;
-import com.jhw.swing.material.components.container.panels._PanelTransparent;
+import com.jhw.swing.material.components.container.panel._PanelTransparent;
 import com.jhw.swing.material.components.labels._MaterialLabel;
 import java.awt.event.ActionListener;
 import java.io.File;
-import com.jhw.swing.util.interfaces.Update;
+import com.jhw.utils.interfaces.Update;
 import com.jhw.swing.material.standars.MaterialColors;
 import com.jhw.swing.material.standars.MaterialIcons;
 
 /**
  *
- * @author Jesús Hernández Barrios (jhernandezb96@gmail.com)
+ * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
 public class _MaterialFileChooserPanel extends _PanelTransparent implements Update {
 
