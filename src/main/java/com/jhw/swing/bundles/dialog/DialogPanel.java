@@ -37,7 +37,7 @@ public class DialogPanel extends JDialog {
     private void setUpDialog() {
         this.setLayout(new GridLayout(1, 1));
         this.add(basePanel);
-        int w = basePanel.getPreferredSize().width;
+        int w = basePanel.getPreferredSize().width + 15;
         int h = basePanel.getPreferredSize().height + (isUndecorated() ? 0 : 40);
         this.setSize(new Dimension(w, h));
         this.setLocationRelativeTo(null);

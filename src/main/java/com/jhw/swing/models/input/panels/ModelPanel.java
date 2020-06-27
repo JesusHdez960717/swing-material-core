@@ -48,7 +48,8 @@ public abstract class ModelPanel<T> extends _PanelTransparent implements Update,
     protected void setComponent(Component component) {
         this.setLayout(new GridLayout(1, 1));
         this.removeAll();
-        //this.setPreferredSize(component.getPreferredSize());
+        this.setPreferredSize(component.getPreferredSize());
+        this.setMinimumSize(getPreferredSize());
         this.add(component);
     }
 
