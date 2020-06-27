@@ -1,9 +1,7 @@
 package com.jhw.swing.material.components.container.layout;
 
 import com.jhw.swing.material.components.container.panel._PanelGradient;
-import com.jhw.swing.material.components.container.panel._PanelTransparent;
 import com.jhw.swing.material.standars.MaterialColors;
-import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -58,5 +56,9 @@ public class VerticalLayoutContainer extends _PanelGradient {
     @Override
     public FlowLayout getLayout() {
         return layout;
+    }
+
+    public int getWidthMax() {
+        return widthMax;
     }
 }
