@@ -37,13 +37,15 @@ public class CargoInputView extends ModelPanel<CargoModel> {
         textFieldNombre.setHint("Nombre del cargo");
         textFieldNombre.setLabel("Cargo");
 
-        VerticalLayoutContainer v = new VerticalLayoutContainer();
+        VerticalLayoutContainer.builder v = VerticalLayoutContainer.builder();
+        
         v.add(labelCargo);
         v.add(textFieldNombre);
         v.add(cargoICBS1);
         v.add(fileChooserPanel);
         v.add(textAreaDescripcion);
-        this.setComponent(v);
+        
+        this.setComponent(v.build());
     }
 
     // Variables declaration - do not modify

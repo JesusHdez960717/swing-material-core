@@ -1,63 +1,75 @@
 package com.jhw.swing.material.components.container.layout;
 
-import com.jhw.swing.material.components.container.panel._PanelGradient;
 import com.jhw.swing.material.components.container.panel._PanelTransparent;
-import com.jhw.swing.material.standars.MaterialColors;
-import java.awt.Color;
 import java.awt.Component;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
+import java.util.ArrayList;
+import javax.swing.GroupLayout;
 
 /**
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-public class HorizontalLayoutContainer extends _PanelGradient {
+public class HorizontalLayoutContainer extends _PanelTransparent {
 
-    private final int heightMax;
-
-    private final FlowLayout layout;
-
-    public HorizontalLayoutContainer() {
-        this(70);
-        layout.setHgap(5);
+    private HorizontalLayoutContainer(int prefHeight, ArrayList<HorizontalLayoutComponent> components) {
+        initComponents(prefHeight, components);
     }
 
-    @Override
-    public FlowLayout getLayout() {
-        return layout;
-    }
-
-    public HorizontalLayoutContainer(int widthMax) {
-        this.heightMax = widthMax;
-        layout = new FlowLayout(FlowLayout.CENTER, 0, 0);
+    private void initComponents(int prefHeight, ArrayList<HorizontalLayoutComponent> components) {
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
-        this.setOpaque(false);
-        this.setBackground(MaterialColors.TRANSPARENT);
-    }
-
-    public Component add(Component component, boolean adjust) {
-        if (adjust || component.getPreferredSize().getHeight() > heightMax) {
-            component.setPreferredSize(new Dimension((int) component.getPreferredSize().getWidth(), heightMax));
+        GroupLayout.ParallelGroup horizParallelGroup = layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER);
+        GroupLayout.SequentialGroup seqGroup = layout.createSequentialGroup();
+        for (HorizontalLayoutComponent c : components) {
+            seqGroup.addGap(c.getGapLeft())
+                    .addComponent(c.getComponent(), javax.swing.GroupLayout.DEFAULT_SIZE, c.getWidth(), Short.MAX_VALUE)
+                    .addGap(c.getGapRight());
         }
 
-        super.add(component);
-        adjustSize();
-        return component;
-    }
+        layout.setHorizontalGroup(
+                horizParallelGroup
+                        .addGroup(seqGroup)
+        );
 
-    public Component add(Component component) {
-        return add(component, true);
-    }
-
-    private void adjustSize() {
-        int width = 0;
-        for (Component component : getComponents()) {
-            width += component.getPreferredSize().getWidth();
+        GroupLayout.ParallelGroup vertParallelGroup = layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER);
+        for (HorizontalLayoutComponent c : components) {
+            vertParallelGroup
+                    .addComponent(c.getComponent(), javax.swing.GroupLayout.DEFAULT_SIZE, prefHeight, Short.MAX_VALUE);
         }
-        Dimension dim = new Dimension(width, heightMax);
-        this.setMaximumSize(dim);
-        this.setMinimumSize(dim);
-        this.setPreferredSize(dim);
+        layout.setVerticalGroup(
+                vertParallelGroup
+        );
     }
+
+    public static builder builder(int prefHeight) {
+        return new builder(prefHeight);
+    }
+
+    public static class builder {
+
+        private ArrayList<HorizontalLayoutComponent> components = new ArrayList<>();
+        private int prefHeight = 65;
+
+        public builder() {
+        }
+
+        public builder(int prefHeight) {
+            this.prefHeight = prefHeight;
+        }
+
+        public builder add(Component comp) {
+            components.add(HorizontalLayoutComponent.builder(comp).build());
+            return this;
+        }
+
+        public builder add(HorizontalLayoutComponent component) {
+            components.add(component);
+            return this;
+        }
+
+        public HorizontalLayoutContainer build() {
+            return new HorizontalLayoutContainer(prefHeight, components);
+        }
+    }
+
 }

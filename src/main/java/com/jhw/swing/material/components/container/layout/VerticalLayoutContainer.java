@@ -1,64 +1,75 @@
 package com.jhw.swing.material.components.container.layout;
 
-import com.jhw.swing.material.components.container.panel._PanelGradient;
-import com.jhw.swing.material.standars.MaterialColors;
+import com.jhw.swing.material.components.container.panel._PanelTransparent;
 import java.awt.Component;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
+import java.util.ArrayList;
+import javax.swing.GroupLayout;
 
 /**
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-public class VerticalLayoutContainer extends _PanelGradient {
+public class VerticalLayoutContainer extends _PanelTransparent {
 
-    private final int widthMax;
-
-    private final FlowLayout layout;
-
-    public VerticalLayoutContainer() {
-        this(350);
+    private VerticalLayoutContainer(int prefWidth, ArrayList<VerticalLayoutComponent> components) {
+        initComponents(prefWidth, components);
     }
 
-    public VerticalLayoutContainer(int widthMax) {
-        this.widthMax = widthMax;
-        layout = new FlowLayout(FlowLayout.CENTER, 0, 0);
+    private void initComponents(int prefWidth, ArrayList<VerticalLayoutComponent> components) {
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
-        this.setOpaque(false);
-        this.setBackground(MaterialColors.TRANSPARENT);
+        GroupLayout.ParallelGroup horizParallelGroup = layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER);
+        for (VerticalLayoutComponent c : components) {
+            horizParallelGroup.addComponent(c.getComponent(), javax.swing.GroupLayout.DEFAULT_SIZE, prefWidth, Short.MAX_VALUE);
+        }
+        layout.setHorizontalGroup(horizParallelGroup);
+
+        GroupLayout.ParallelGroup vertParallelGroup = layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER);
+        GroupLayout.SequentialGroup seqGroup = layout.createSequentialGroup();
+        for (VerticalLayoutComponent c : components) {
+            seqGroup.addGap(c.getGapTop())
+                    .addComponent(c.getComponent(), javax.swing.GroupLayout.DEFAULT_SIZE, c.getHeight(), Short.MAX_VALUE)
+                    .addGap(c.getGapDown());
+        }
+        layout.setVerticalGroup(
+                vertParallelGroup
+                        .addGroup(seqGroup)
+        );
     }
 
-    public Component add(Component component, boolean adjust) {
-        if (adjust || component.getPreferredSize().getWidth() > widthMax) {
-            component.setPreferredSize(new Dimension(widthMax, (int) component.getPreferredSize().getHeight()));
+    public static builder builder() {
+        return new builder();
+    }
+
+    public static builder builder(int prefWidth) {
+        return new builder(prefWidth);
+    }
+
+    public static class builder {
+
+        private ArrayList<VerticalLayoutComponent> components = new ArrayList<>();
+        private int prefWidth = 350;
+
+        public builder() {
         }
 
-        super.add(component);
-        adjustSize();
-        return component;
-    }
-
-    public Component add(Component component) {
-        return add(component, true);
-    }
-
-    private void adjustSize() {
-        int height = 0;
-        for (Component component : getComponents()) {
-            height += component.getPreferredSize().getHeight();
+        public builder(int prefWidth) {
+            this.prefWidth = prefWidth;
         }
-        Dimension dim = new Dimension(widthMax, height);
-        this.setMaximumSize(dim);
-        this.setMinimumSize(dim);
-        this.setPreferredSize(dim);
+
+        public builder add(Component comp) {
+            components.add(VerticalLayoutComponent.builder(comp).build());
+            return this;
+        }
+
+        public builder add(VerticalLayoutComponent comp) {
+            components.add(comp);
+            return this;
+        }
+
+        public VerticalLayoutContainer build() {
+            return new VerticalLayoutContainer(prefWidth, components);
+        }
     }
 
-    @Override
-    public FlowLayout getLayout() {
-        return layout;
-    }
-
-    public int getWidthMax() {
-        return widthMax;
-    }
 }
