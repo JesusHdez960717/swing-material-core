@@ -54,22 +54,22 @@ public class PairLayoutContainer extends _PanelTransparent {
             this.prefHeight = prefHeight;
         }
 
-        public builder setA(Component comp) {
+        public builder A(Component comp) {
             components.setA(HorizontalLayoutComponent.builder(comp).build());
             return this;
         }
 
-        public builder setA(HorizontalLayoutComponent component) {
+        public builder A(HorizontalLayoutComponent component) {
             components.setA(component);
             return this;
         }
 
-        public builder setB(Component comp) {
+        public builder B(Component comp) {
             components.setB(HorizontalLayoutComponent.builder(comp).build());
             return this;
         }
 
-        public builder setB(HorizontalLayoutComponent component) {
+        public builder B(HorizontalLayoutComponent component) {
             components.setB(component);
             return this;
         }
