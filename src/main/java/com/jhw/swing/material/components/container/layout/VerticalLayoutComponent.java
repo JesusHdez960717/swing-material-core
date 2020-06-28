@@ -1,7 +1,11 @@
 package com.jhw.swing.material.components.container.layout;
 
+import com.clean.core.exceptions.ValidationException;
+import com.clean.core.utils.validation.Validable;
+import com.clean.core.utils.validation.ValidationResult;
 import java.awt.Component;
-import lombok.AllArgsConstructor;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.PositiveOrZero;
 import lombok.Getter;
 
 /**
@@ -9,13 +13,34 @@ import lombok.Getter;
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
 @Getter
-@AllArgsConstructor
-public class VerticalLayoutComponent {
+public class VerticalLayoutComponent implements Validable {
 
+    @NotNull
     private Component component;
+
+    @PositiveOrZero
     private int height;
+
+    @PositiveOrZero
     private int gapTop;
+
+    @PositiveOrZero
     private int gapDown;
+
+    public VerticalLayoutComponent(Component component, int height, int gapTop, int gapDown) {
+        this.component = component;
+        this.height = height;
+        this.gapTop = gapTop;
+        this.gapDown = gapDown;
+        validate();
+    }
+
+    @Override
+    public ValidationResult validate() throws ValidationException {
+        ValidationResult v = new ValidationResult();
+        v.checkFromAnnotations(this);
+        return v.throwException();
+    }
 
     public static builder builder(Component component) {
         return new builder(component);

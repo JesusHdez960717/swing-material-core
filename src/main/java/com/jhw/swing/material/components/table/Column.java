@@ -1,20 +1,29 @@
 package com.jhw.swing.material.components.table;
 
+import com.clean.core.exceptions.ValidationException;
+import com.clean.core.utils.validation.Validable;
+import com.clean.core.utils.validation.ValidationResult;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.PositiveOrZero;
 import lombok.Getter;
 
 /**
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-public class Column {
+@Getter
+public class Column implements Validable {
 
-    @Getter
+    @NotEmpty
     private final String columnName;
-    @Getter
+
+    @NotNull
     private final Class columnsClass;
-    @Getter
+
     private final boolean editable;
-    @Getter
+
+    @PositiveOrZero
     private final int preferedWidth;
 
     public Column(Class cl, String name, boolean editable, int width) {
@@ -22,10 +31,18 @@ public class Column {
         this.columnName = name;
         this.editable = editable;
         this.preferedWidth = width;
+        validate();
     }
 
     public static builder builder() {
         return new builder();
+    }
+
+    @Override
+    public ValidationResult validate() throws ValidationException {
+        ValidationResult v = new ValidationResult();
+        v.checkFromAnnotations(this);
+        return v.throwException();
     }
 
     public static class builder {
