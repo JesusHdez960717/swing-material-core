@@ -14,6 +14,9 @@ import com.jhw.swing.personalization.PersonalizationMaterial;
 import com.jhw.swing.util.SafePropertySetter;
 import com.jhw.swing.util.Utils;
 import com.jhw.swing.util.enums.TextTypeEnum;
+import java.awt.Component;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 
 /**
  * A floating label of a text field.
@@ -22,7 +25,7 @@ public class FloatingLabel {
 
     public static final int DURATION = 200;
 
-    private final JTextField target;
+    private final FloatingLabelStandar target;
     private Animator animator;
     private final SafePropertySetter.Property<Integer> y;
     private final SafePropertySetter.Property<Integer> x;
@@ -30,15 +33,22 @@ public class FloatingLabel {
     private final SafePropertySetter.Property<Color> color;
     private Color accentColor;
 
-    public FloatingLabel(JTextField target) {
+    public FloatingLabel(FloatingLabelStandar target) {
         this.target = target;
 
-        y = SafePropertySetter.animatableProperty(target, 0);//target.getSize().height / 2 + target.getFontMetrics(target.getFont()).getAscent() / 2);
-        x = SafePropertySetter.animatableProperty(target, 0);//target.getSize().height / 2 + target.getFontMetrics(target.getFont()).getAscent() / 2);
-        fontSize = SafePropertySetter.animatableProperty(target, target.getFont().getSize2D());
-        color = SafePropertySetter.animatableProperty(target, Utils.applyAlphaMask(target.getForeground(), HINT_OPACITY_MASK));
+        y = SafePropertySetter.animatableProperty(target.getComponent(), 0);//target.getSize().height / 2 + target.getFontMetrics(target.getFont()).getAscent() / 2);
+        x = SafePropertySetter.animatableProperty(target.getComponent(), 0);//target.getSize().height / 2 + target.getFontMetrics(target.getFont()).getAscent() / 2);
+        fontSize = SafePropertySetter.animatableProperty(target.getComponent(), target.getFont().getSize2D());
+        color = SafePropertySetter.animatableProperty(target.getComponent(), Utils.applyAlphaMask(target.getForeground(), HINT_OPACITY_MASK));
 
         this.updateForeground();
+        
+        target.getComponent().addComponentListener(new ComponentAdapter() {
+            @Override
+            public void componentResized(ComponentEvent e) {
+                update();
+            }
+        });
     }
 
     public void updateForeground() {
@@ -58,6 +68,7 @@ public class FloatingLabel {
 
     public void setAccentColor(Color accentColor) {
         this.accentColor = accentColor;
+        update();
     }
 
     public Color getColor() {
