@@ -11,6 +11,7 @@ import com.jhw.utils.others.Misc;
 import com.jhw.swing.personalization.PersonalizationMaterial;
 import com.jhw.swing.util.MaterialDrawingUtils;
 import com.jhw.swing.material.effects.FloatingLabel;
+import com.jhw.swing.material.effects.FloatingLabelStandar;
 import com.jhw.swing.material.effects.Line;
 import com.jhw.swing.util.Utils;
 import com.jhw.swing.util.enums.TextTypeEnum;
@@ -20,6 +21,8 @@ import com.jhw.swing.material.standars.MaterialFontRoboto;
 import com.jhw.swing.util.validations.Validation;
 import com.jhw.swing.util.validations.textfield.GreaterThatCeroValidation;
 import com.jhw.swing.util.validations.textfield.TextFieldValidation;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 
 /**
  * A Material Design single-line text field is the basic way of getting user
@@ -31,7 +34,7 @@ import com.jhw.swing.util.validations.textfield.TextFieldValidation;
  * href="https://www.google.com/design/spec/components/text-fields.html">Text
  * fields (Google design guidelines)</a>
  */
-public class _MaterialTextField extends JTextField implements MaterialComponent {
+public class _MaterialTextField extends JTextField implements MaterialComponent, FloatingLabelStandar {
 
     public static final int HINT_OPACITY_MASK = 0x99000000;
     public static final int LINE_OPACITY_MASK = 0x66000000;
@@ -105,6 +108,12 @@ public class _MaterialTextField extends JTextField implements MaterialComponent 
         line = new Line(this);
         setAccent(accentColor);
         setText("");
+
+    }
+
+    @Override
+    public Component getComponent() {
+        return this;
     }
 
     /**
@@ -528,9 +537,9 @@ public class _MaterialTextField extends JTextField implements MaterialComponent 
         g2.setColor(floatingLabel.getColor());
         g2.fillRect((int) ((getWidth() - line.getWidth()) / 2), yLine, (int) line.getWidth(), 2);
 
-        //paint the wrong text ig the flag is actived
+        //paint the wrong text if the flag is actived
         if (wrongFlag) {
-            g2.setColor(getForeground());
+            g2.setColor(getWrongColor());
             g2.setFont(floatingLabel.getFont().deriveFont(1));//1 for bold
             g2.drawString(wrongText, 0, yLine + 15);//paint the wrong text
         }
@@ -551,13 +560,12 @@ public class _MaterialTextField extends JTextField implements MaterialComponent 
     }
 
     public void wrong() {
-        setForeground(wrongColor);
         floatingLabel.setAccentColor(wrongColor);
         this.wrongFlag = true;
     }
 
     public void wrong(String wrongText) {
-        this.wrongText = wrongText;
+        setWrongText(wrongText);
         wrong();
     }
 

@@ -4,6 +4,7 @@ import static com.jhw.swing.material.components.textfield._MaterialTextField.HIN
 import static com.jhw.swing.material.components.textfield._MaterialTextField.LINE_OPACITY_MASK;
 import com.clean.core.exceptions.ValidationException;
 import com.jhw.swing.material.effects.FloatingLabel;
+import com.jhw.swing.material.effects.FloatingLabelStandar;
 import java.awt.*;
 import java.awt.event.FocusEvent;
 import java.awt.event.KeyEvent;
@@ -31,7 +32,7 @@ import com.jhw.swing.util.validations.textfield.TextFieldValidation;
  * href="https://www.google.com/design/spec/components/text-fields.html">Text
  * fields (Google design guidelines)</a>
  */
-public class _MaterialPasswordField extends JPasswordField implements MaterialComponent {
+public class _MaterialPasswordField extends JPasswordField implements MaterialComponent, FloatingLabelStandar {
 
     private FloatingLabel floatingLabel;
     private Line line;
@@ -486,5 +487,10 @@ public class _MaterialPasswordField extends JPasswordField implements MaterialCo
 
     public boolean containValidation(TextFieldValidation v) {
         return preValidations.contains(v) || postValidations.contains(v);
+    }
+
+    @Override
+    public Component getComponent() {
+        return this;
     }
 }
