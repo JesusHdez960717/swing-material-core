@@ -1,8 +1,10 @@
 package com.jhw.swing.material.components.combobox;
 
+import com.jhw.swing.material.components.button._MaterialIconButtonTranspRect;
 import com.jhw.swing.material.effects.Line;
 import static com.jhw.swing.material.components.textfield._MaterialTextField.HINT_OPACITY_MASK;
 import static com.jhw.swing.material.components.textfield._MaterialTextField.LINE_OPACITY_MASK;
+import com.jhw.swing.material.effects.FloatingLabel;
 import java.awt.*;
 import java.awt.event.FocusEvent;
 import javax.swing.*;
@@ -14,7 +16,11 @@ import javax.swing.plaf.basic.ComboPopup;
 import com.jhw.swing.util.interfaces.MaterialComponent;
 import com.jhw.swing.material.standars.MaterialColors;
 import com.jhw.swing.material.standars.MaterialFontRoboto;
+import com.jhw.swing.material.standars.MaterialIcons;
+import com.jhw.swing.util.MaterialDrawingUtils;
 import com.jhw.swing.util.Utils;
+import com.jhw.swing.util.icons.DerivableIcon;
+import java.awt.geom.RoundRectangle2D;
 
 /**
  * A Material Design combo box.
@@ -25,12 +31,15 @@ import com.jhw.swing.util.Utils;
  */
 public class _MaterialComboBox<T> extends JComboBox<T> implements MaterialComponent {
 
+    private FloatingLabel floatingLabel;
     private Line line = new Line(this);
     private Color accentColor = MaterialColors.BLUEA_400;
     private Cursor cursor = Cursor.getPredefinedCursor(Cursor.HAND_CURSOR);
     private String hint = "";
+    private ImageIcon icon = MaterialIcons.ARROW_DROP_DOWN;
 
     public _MaterialComboBox() {
+        this.setPreferredSize(new Dimension(145, 65));
         this.setRenderer(new FieldRenderer<>(this));
         this.setUI(new BasicComboBoxUI() {
             @Override
@@ -42,26 +51,16 @@ public class _MaterialComboBox<T> extends JComboBox<T> implements MaterialCompon
 
             @Override
             protected JButton createArrowButton() {
-                JButton button = new javax.swing.plaf.basic.BasicArrowButton(
-                        javax.swing.plaf.basic.BasicArrowButton.SOUTH,
-                        MaterialColors.TRANSPARENT,
-                        MaterialColors.TRANSPARENT,
-                        MaterialColors.TRANSPARENT,
-                        MaterialColors.TRANSPARENT);
-                button.setName("ComboBox.arrowButton");
-                button.setOpaque(false);
-                return button;
+                return null;
             }
         });
 
         this.setOpaque(false);
         this.setCursor(cursor);
         this.setFont(MaterialFontRoboto.REGULAR.deriveFont(16f));
-        this.setBackground(MaterialColors.WHITE);
         this.setHint("Select...");
         this.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"Item 1", "Item 2", "Item 3"}));
         this.setSelectedIndex(-1);
-        this.setPreferredSize(new Dimension(100, this.getPreferredSize().height));
     }
 
     /**
@@ -114,26 +113,46 @@ public class _MaterialComboBox<T> extends JComboBox<T> implements MaterialCompon
 
     @Override
     public void paintComponent(Graphics g) {
-        Graphics2D g2 = (Graphics2D) g;
-        g2.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
-        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        Graphics2D g2 = MaterialDrawingUtils.getAliasedGraphics(g);
+        
+        Color bg = MaterialColors.GREY_200;
+        g2.setColor(new Color(bg.getRed() / 255f, bg.getGreen() / 255f, bg.getBlue() / 255f, 0.6f));
+        g2.fill(new RoundRectangle2D.Float(0, 0, getWidth(), getHeight(), 0, 0));
+
+        int yMid = getSize().height / 2;
 
         g2.setFont(getFont());
         g2.setColor(getSelectedItem() == null ? Utils.applyAlphaMask(getForeground(), HINT_OPACITY_MASK) : getForeground());
+
         FontMetrics metrics = g2.getFontMetrics(g2.getFont());
+
         String text = getSelectedItem() != null ? getSelectedItem().toString() : (hint != null ? hint : "");
         g2.drawString(text, 0, metrics.getAscent() + (getHeight() - metrics.getHeight()) / 2);
 
+        int yLine = yMid + metrics.getAscent() / 2 + 5;
+
+        //paint the back line
         g2.setColor(Utils.applyAlphaMask(getForeground(), LINE_OPACITY_MASK));
-        g2.fillRect(0, getHeight() - 9, getWidth(), 1);
+        g2.fillRect(0, yLine, getWidth(), 1);
 
-        if (isFocusOwner()) {
-            g2.setColor(accentColor);
-        }
-        g2.fillPolygon(new int[]{getWidth() - 5, getWidth() - 10, getWidth() - 15}, new int[]{getHeight() / 2 - 3, getHeight() / 2 + 3, getHeight() / 2 - 3}, 3);
-
+        //paint the front line, this is the one that change colors and size
         g2.setColor(accentColor);
-        g2.fillRect((int) ((getWidth() - line.getWidth()) / 2), getHeight() - 10, (int) line.getWidth(), 2);
+        g2.fillRect((int) ((getWidth() - line.getWidth()) / 2), yLine, (int) line.getWidth(), 2);
+
+        //paint the arrow
+        if (icon != null) {
+            Color iconColor;
+            if (isFocusOwner()) {
+                iconColor = accentColor;
+            } else {
+                iconColor = Utils.applyAlphaMask(getForeground(), LINE_OPACITY_MASK);
+            }
+            if (icon instanceof DerivableIcon) {
+                icon = ((DerivableIcon) icon).deriveIcon(iconColor);
+            }
+            icon.paintIcon(this, g2, (int) (this.getSize().getWidth() - icon.getIconHeight()), yMid - icon.getIconHeight() / 2);
+        }
+
     }
 
     @Override
@@ -206,7 +225,7 @@ public class _MaterialComboBox<T> extends JComboBox<T> implements MaterialCompon
 
         @Override
         protected Rectangle computePopupBounds(int px, int py, int pw, int ph) {
-            return super.computePopupBounds(px, py - comboBox.getHeight() + 10,
+            return super.computePopupBounds(px, py - comboBox.getHeight() + super.comboBox.getSize().height,
                     (int) Math.max(comboBox.getPreferredSize().getWidth(), pw), ph);
         }
 

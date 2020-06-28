@@ -30,6 +30,13 @@ public class _PanelGradient extends JPanel implements MaterialComponent {
     private Image image = null;
     private int borderRadius = 0;
 
+    public _PanelGradient() {
+    }
+
+    public _PanelGradient(Color back) {
+        this.setBackground(back);
+    }
+
     /**
      * Gets the current border radius of this button.
      *
