@@ -363,8 +363,7 @@ public class _MaterialComboBox<T> extends JComboBox<T> implements MaterialCompon
         @Override
         public void paint(Graphics g) {
             super.paint(g);
-            Graphics2D g2 = (Graphics2D) g;
-            g2.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+            Graphics2D g2 = MaterialDrawingUtils.getAliasedGraphics(g);
 
             if (mouseOver) {
                 g.setColor(Utils.isDark(comboBox.getBackground()) ? Utils.brighten(comboBox.getBackground()) : Utils.darken(comboBox.getBackground()));
@@ -390,26 +389,29 @@ public class _MaterialComboBox<T> extends JComboBox<T> implements MaterialCompon
             super(combo);
             setBackground(combo.getBackground());
             setOpaque(true);
-            setBorderPainted(false);
+            setBorderPainted(true);
         }
 
         @Override
         protected JScrollPane createScroller() {
             JScrollPane scroller = super.createScroller();
             scroller.setVerticalScrollBar(new ScrollBar(comboBox, Adjustable.VERTICAL));
-            scroller.setBorder(new MatteBorder(16, 0, 16, 0, Color.WHITE));
+            scroller.setBorder(new MatteBorder(16, 0, 16, 0, MaterialColors.WHITE));
             return scroller;
         }
 
         @Override
         protected Rectangle computePopupBounds(int px, int py, int pw, int ph) {
-            return super.computePopupBounds(px, py - comboBox.getHeight() + super.comboBox.getSize().height,
+            FontMetrics metrics = Utils.fontMetrics(super.comboBox.getFont());
+            int yMid = super.comboBox.getSize().height / 2;
+            int yLine = yMid + metrics.getAscent() / 2 + 5;
+            return super.computePopupBounds(px, py - comboBox.getHeight() + yLine + 3,
                     (int) Math.max(comboBox.getPreferredSize().getWidth(), pw), ph);
         }
 
         @Override
         public void paint(Graphics g) {
-            super.paint(g);
+            super.paint(MaterialDrawingUtils.getAliasedGraphics(g));
         }
     }
 
@@ -486,7 +488,7 @@ public class _MaterialComboBox<T> extends JComboBox<T> implements MaterialCompon
 
         @Override
         public void paint(Graphics g) {
-            g.setColor(Color.WHITE);
+            g.setColor(MaterialColors.WHITE);
             g.fillRect(0, 0, getWidth(), getHeight());
             super.paint(g);
         }
