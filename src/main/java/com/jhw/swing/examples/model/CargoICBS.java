@@ -16,12 +16,8 @@ public class CargoICBS extends ICBSNotEmptySeleccionable<CargoModel> {
 
     @Override
     public void actualizarComboBox() {
-        getComboBox().removeAllItems();
-        getComboBox().addItem("Seleccione...");
-
-        for (CargoModel c : CargoModel.getCargos()) {
-            getComboBox().addItem(c);
-        }
+        setModel(CargoModel.getCargos());
+        getComboBox().decorate(CargoICBS::format, CargoICBS::filter);
     }
 
     @Override
@@ -38,4 +34,18 @@ public class CargoICBS extends ICBSNotEmptySeleccionable<CargoModel> {
         new DialogInputCBS(this, new CargoInputView(null));
     }
 
+    public static String format(CargoModel cargo) {
+        if (cargo == null) {
+            return "";
+        }
+        return String.format("%s", cargo.getNombreCargo());
+    }
+
+    public static boolean filter(CargoModel emp, String textToFilter) {
+        if (textToFilter.isEmpty()) {
+            return true;
+        }
+        return CargoICBS.format(emp).toLowerCase()
+                .contains(textToFilter.toLowerCase());
+    }
 }

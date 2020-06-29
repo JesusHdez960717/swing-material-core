@@ -58,7 +58,6 @@ public class MODEL_EXAMPLE extends javax.swing.JFrame {
      */
     public static void main(String args[]) throws UnsupportedLookAndFeelException {
         UIManager.setLookAndFeel(new MaterialLookAndFeel());
-        CargoModel.crearList();
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new MODEL_EXAMPLE().setVisible(true);

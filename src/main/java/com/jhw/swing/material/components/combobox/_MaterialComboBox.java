@@ -236,7 +236,7 @@ public class _MaterialComboBox<T> extends JComboBox<T> implements MaterialCompon
         wrong();
     }
 
-    private void clearWrong() {
+    public void clearWrong() {
         if (wrongFlag) {
             this.wrongFlag = false;
             this.setForeground(foreground);

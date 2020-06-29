@@ -18,6 +18,10 @@ public class CargoModel implements Serializable {
 
     private static final List<CargoModel> list = new ArrayList<>();
 
+    static {
+        crearList();
+    }
+
     public static final void crearList() {
         list.clear();
         for (int i = 0; i < 10; i++) {

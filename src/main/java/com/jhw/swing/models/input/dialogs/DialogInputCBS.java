@@ -37,8 +37,8 @@ public class DialogInputCBS<T> extends JDialog implements ModelablePanel<T> {
         this.setLayout(new GridLayout(1, 1));
         this.add(basePanel);
 
-        int width = modelPanel.getPreferredSize().width;
-        int height = basePanel.getPreferredSize().height + basePanel.getPanelGradientButtons().getPreferredSize().height;
+        int width = basePanel.getPreferredSize().width + 15;
+        int height = basePanel.getPreferredSize().height + (isUndecorated() ? 0 : 40);
 
         this.setSize(width, height);
         this.setLocationRelativeTo(null);
