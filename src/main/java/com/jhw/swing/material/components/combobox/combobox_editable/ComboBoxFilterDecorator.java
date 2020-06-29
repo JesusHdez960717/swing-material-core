@@ -109,7 +109,6 @@ public class ComboBoxFilterDecorator<T> {
             public void accept(Boolean aBoolean) {
                 if (aBoolean) {//commit
                     selectedItem = comboBox.getSelectedItem();
-
                 } else {//rollback to the last one
                     comboBox.setSelectedItem(selectedItem);
                     filterEditor.setItem(selectedItem);
@@ -120,7 +119,6 @@ public class ComboBoxFilterDecorator<T> {
         filterLabel.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
-                //filterLabel.setBorder(BorderFactory.createLoweredBevelBorder());
                 if (comboBox instanceof _MaterialComboBoxFiltrable) {
                     ((_MaterialComboBoxFiltrable) comboBox).processExternalFocusEvent(true, e);
                 }
@@ -128,7 +126,6 @@ public class ComboBoxFilterDecorator<T> {
 
             @Override
             public void focusLost(FocusEvent e) {
-                //filterLabel.setBorder(UIManager.getBorder("TextField.border"));
                 if (comboBox instanceof _MaterialComboBoxFiltrable) {
                     ((_MaterialComboBoxFiltrable) comboBox).processExternalFocusEvent(false, e);
                 }

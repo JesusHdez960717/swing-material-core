@@ -15,7 +15,7 @@ apply plugin: 'application'
 
 group = 'com.jhw.swing'
 
-mainClassName = 'com.jhw.swing.TEST.combo.NewJFrame'
+mainClassName = 'com.jhw.swing.TEST.dash.MainView'
 
 repositories {
     jcenter()
@@ -64,4 +64,5 @@ dependencies {
     // https://mvnrepository.com/artifact/com.miglayout/miglayout-swing
     compile group: 'com.miglayout', name: 'miglayout-swing', version: '5.2'
 
+    compile group: 'org.fluttercode.datafactory', name: 'datafactory', version: '0.8'
 }

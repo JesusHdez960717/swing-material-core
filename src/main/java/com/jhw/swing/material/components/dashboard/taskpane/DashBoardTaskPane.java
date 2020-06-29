@@ -5,10 +5,12 @@
  */
 package com.jhw.swing.material.components.dashboard.taskpane;
 
+import com.jhw.swing.TEST.dash.CollapseMenuFormateer;
 import com.jhw.swing.material.components.taskpane.CollapseMenu;
 import com.jhw.swing.material.components.taskpane.TaskPaneContainer;
 import com.jhw.swing.material.components.button._MaterialIconButtonTranspRect;
 import com.jhw.swing.material.standars.MaterialIcons;
+import com.jhw.swing.personalization.PersonalizationMaterial;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Component;
@@ -29,12 +31,15 @@ public class DashBoardTaskPane extends JPanel {
 
     private TaskPaneContainer task = new TaskPaneContainer();
 
+    private CollapseMenuFormateer formateer;
+
     /**
      * Creates new form RootView
      */
     public DashBoardTaskPane() {
         initComponents();
-        jPanelContent.setLayout(cards);
+        personalize();
+        panelContent.setLayout(cards);
         jPanelMenu.add(task, BorderLayout.CENTER);
     }
 
@@ -47,8 +52,8 @@ public class DashBoardTaskPane extends JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanelContent = new javax.swing.JPanel();
-        jPanelMainMenu = new javax.swing.JPanel();
+        panelContent = new javax.swing.JPanel();
+        panelSideMenu = new javax.swing.JPanel();
         jPanelBackButton = new javax.swing.JPanel();
         jButtonBack = new javax.swing.JButton();
         jPanelShinkButton = new javax.swing.JPanel();
@@ -59,23 +64,24 @@ public class DashBoardTaskPane extends JPanel {
         setOpaque(false);
         setLayout(new java.awt.BorderLayout());
 
-        jPanelContent.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        panelContent.setBackground(new java.awt.Color(255, 255, 255));
+        panelContent.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
-        javax.swing.GroupLayout jPanelContentLayout = new javax.swing.GroupLayout(jPanelContent);
-        jPanelContent.setLayout(jPanelContentLayout);
-        jPanelContentLayout.setHorizontalGroup(
-            jPanelContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout panelContentLayout = new javax.swing.GroupLayout(panelContent);
+        panelContent.setLayout(panelContentLayout);
+        panelContentLayout.setHorizontalGroup(
+            panelContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 669, Short.MAX_VALUE)
         );
-        jPanelContentLayout.setVerticalGroup(
-            jPanelContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        panelContentLayout.setVerticalGroup(
+            panelContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 466, Short.MAX_VALUE)
         );
 
-        add(jPanelContent, java.awt.BorderLayout.CENTER);
+        add(panelContent, java.awt.BorderLayout.CENTER);
 
-        jPanelMainMenu.setBackground(new java.awt.Color(102, 102, 102));
-        jPanelMainMenu.setLayout(new java.awt.BorderLayout());
+        panelSideMenu.setBackground(new java.awt.Color(102, 102, 102));
+        panelSideMenu.setLayout(new java.awt.BorderLayout());
 
         jPanelBackButton.setOpaque(false);
 
@@ -85,7 +91,7 @@ public class DashBoardTaskPane extends JPanel {
         jButtonBack.setPreferredSize(new java.awt.Dimension(40, 40));
         jPanelBackButton.add(jButtonBack);
 
-        jPanelMainMenu.add(jPanelBackButton, java.awt.BorderLayout.PAGE_START);
+        panelSideMenu.add(jPanelBackButton, java.awt.BorderLayout.PAGE_START);
 
         jPanelShinkButton.setOpaque(false);
         jPanelShinkButton.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT));
@@ -100,13 +106,13 @@ public class DashBoardTaskPane extends JPanel {
         });
         jPanelShinkButton.add(jButtonShrink);
 
-        jPanelMainMenu.add(jPanelShinkButton, java.awt.BorderLayout.PAGE_END);
+        panelSideMenu.add(jPanelShinkButton, java.awt.BorderLayout.PAGE_END);
 
-        jPanelMenu.setBackground(new java.awt.Color(255, 0, 0));
+        jPanelMenu.setBackground(new java.awt.Color(0, 0, 0));
         jPanelMenu.setLayout(new java.awt.BorderLayout());
-        jPanelMainMenu.add(jPanelMenu, java.awt.BorderLayout.CENTER);
+        panelSideMenu.add(jPanelMenu, java.awt.BorderLayout.CENTER);
 
-        add(jPanelMainMenu, java.awt.BorderLayout.WEST);
+        add(panelSideMenu, java.awt.BorderLayout.WEST);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonShrinkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonShrinkActionPerformed
@@ -117,11 +123,23 @@ public class DashBoardTaskPane extends JPanel {
     private javax.swing.JButton jButtonBack;
     private javax.swing.JButton jButtonShrink;
     private javax.swing.JPanel jPanelBackButton;
-    private javax.swing.JPanel jPanelContent;
-    private javax.swing.JPanel jPanelMainMenu;
     private javax.swing.JPanel jPanelMenu;
     private javax.swing.JPanel jPanelShinkButton;
+    private javax.swing.JPanel panelContent;
+    private javax.swing.JPanel panelSideMenu;
     // End of variables declaration//GEN-END:variables
+
+    private void personalize() {
+        panelSideMenu.setBackground(PersonalizationMaterial.getInstance().getColorPrincipal());
+    }
+
+    public CollapseMenuFormateer getFormateer() {
+        return formateer;
+    }
+
+    public void setFormateer(CollapseMenuFormateer formateer) {
+        this.formateer = formateer;
+    }
 
     public void setShrinked(boolean shrink) {
         this.shrinked = shrink;
@@ -129,6 +147,9 @@ public class DashBoardTaskPane extends JPanel {
     }
 
     public void addCollapseMenu(CollapseMenu menu) {
+        if (formateer != null) {
+            formateer.format(menu);
+        }
         this.task.addMenuItem(menu);
     }
 
@@ -137,10 +158,11 @@ public class DashBoardTaskPane extends JPanel {
     }
 
     public void addView(String name, Component compoment) {
-        jPanelContent.add(name, compoment);
+        panelContent.add(name, compoment);
     }
 
     public void showView(String name) {
-        cards.show(jPanelContent, name);
+        cards.show(panelContent, name);
     }
+
 }

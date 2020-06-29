@@ -4,7 +4,6 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import org.jdesktop.swingx.JXCollapsiblePane;
-import org.jdesktop.swingx.JXTaskPane;
 import org.jdesktop.swingx.JXTaskPaneContainer;
 
 /**
@@ -20,7 +19,6 @@ public class TaskPaneContainer extends JXCollapsiblePane {
         setMinimumSize(new Dimension(90, 0));
         this.setLayout(new BorderLayout());
         this.add(taskPane, BorderLayout.CENTER);
-        this.getContentPane().setBackground(Color.yellow);
     }
 
     public void addMenuItem(CollapseMenu menu) {

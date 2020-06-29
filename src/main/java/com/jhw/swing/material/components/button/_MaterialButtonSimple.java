@@ -1,5 +1,6 @@
 package com.jhw.swing.material.components.button;
 
+import com.jhw.swing.material.standars.MaterialColors;
 import java.awt.Color;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
@@ -22,6 +23,13 @@ import com.jhw.swing.material.standars.MaterialIcons;
 public class _MaterialButtonSimple extends JButton implements MaterialComponent {
 
     private final int DISTANCE_ICON_TEXT = 3;
+
+    public _MaterialButtonSimple(String text) {
+        this();
+        this.setIcon(null);
+        this.setText(text);
+        this.setForeground(MaterialColors.BLACK);
+    }
 
     public _MaterialButtonSimple() {
         this.setForeground(PersonalizationMaterial.getInstance().getColorButtonAdd());

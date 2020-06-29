@@ -5,10 +5,13 @@
  */
 package com.jhw.swing.material.components.taskpane;
 
+import com.jhw.swing.material.components.button._MaterialButtonSimple;
+import com.jhw.swing.material.components.button._MaterialIconButtonTranspRect;
 import com.jhw.swing.personalization.PersonalizationMaterial;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
@@ -18,7 +21,10 @@ import javax.swing.Icon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
+import javax.swing.SwingConstants;
 import org.jdesktop.swingx.JXCollapsiblePane;
+import org.jdesktop.swingx.JXTaskPaneContainer;
 
 /**
  *
@@ -40,13 +46,6 @@ public class CollapseMenu extends JPanel {
         configurateUI();
     }
 
-    public Component addMenuItem(Action action) {
-        Component c = jPanelSubActions.add(buildFromAction(action));
-        jLabel1.setText("" + jPanelSubActions.getComponentCount());
-        jPopupMenu1.add(action);
-        return c;
-    }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -60,8 +59,8 @@ public class CollapseMenu extends JPanel {
         jPopupMenu1 = new javax.swing.JPopupMenu();
         jPanelFixed = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jButtonIcono = new javax.swing.JButton();
-        jButtonNombre = new javax.swing.JButton();
+        jButtonIcono = new _MaterialIconButtonTranspRect();
+        jButtonNombre = new _MaterialButtonSimple("");
         jPanelCollapsible = new org.jdesktop.swingx.JXCollapsiblePane();
 
         jPanelSubActions.setBackground(new java.awt.Color(204, 0, 204));
@@ -99,7 +98,6 @@ public class CollapseMenu extends JPanel {
         add(jPanelFixed, java.awt.BorderLayout.PAGE_START);
 
         jPanelCollapsible.setBackground(new java.awt.Color(255, 255, 0));
-        jPanelCollapsible.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 60, 10, 1));
         jPanelCollapsible.setDirection(org.jdesktop.swingx.JXCollapsiblePane.Direction.DOWN);
         add(jPanelCollapsible, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
@@ -122,18 +120,40 @@ public class CollapseMenu extends JPanel {
         return new TaskButton(a);
     }
 
+    public void addMenuItem(Action action) {
+        jPanelSubActions.add(buildFromAction(action));
+        jLabel1.setText("" + jPanelSubActions.getComponentCount());
+        jPopupMenu1.add(action);
+    }
+
+    public void setMainButtonBackground(Color color) {
+        jPanelFixed.setBackground(color);
+    }
+
+    public void setCollapsablePanelBackground(Color color) {
+        jPanelCollapsible.getContentPane().setBackground(color);
+    }
+
+    public void setButtonNameFont(Font font) {
+        jButtonNombre.setFont(font);
+        jLabel1.setFont(font.deriveFont(Font.PLAIN).deriveFont(font.getSize2D() * 0.8f));
+    }
+
+    public void setButtonNameHorizontalAlignment(int align) {
+        jButtonNombre.setHorizontalAlignment(align);
+    }
+
+    public void setPanelCollapsibleGaps(int top, int left, int bottom, int right) {
+        jPanelCollapsible.setBorder(javax.swing.BorderFactory.createEmptyBorder(top, left, bottom, right));
+    }
+
     protected void configurateUI() {
         jPanelCollapsible.setLayout(new BorderLayout());
         jPanelCollapsible.add(jPanelSubActions, BorderLayout.CENTER);
-        jPanelCollapsible.getContentPane().setBackground(Color.red);
-        jButtonIcono.setText("");
+
         jButtonIcono.setIcon(iconoCategoria);
-        jButtonIcono.setBorderPainted(false);
-        jButtonIcono.setContentAreaFilled(false);
+
         jButtonNombre.setText(nombreCategoria);
-        jButtonNombre.setContentAreaFilled(false);
-        jButtonNombre.setBorderPainted(false);
-        //setBackground(PersonalizationMaterial.getInstance().getColorSecundary());
 
         jPanelCollapsible.addPropertyChangeListener((PropertyChangeEvent evt) -> {
             if (evt.getPropertyName().equals("collapse")) {
