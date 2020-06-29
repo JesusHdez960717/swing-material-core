@@ -5,7 +5,7 @@
  */
 package com.jhw.swing.material.components.dashboard.taskpane;
 
-import com.jhw.swing.TEST.dash.CollapseMenuFormateer;
+import com.jhw.swing.material.components.dashboard.taskpane.expanded.CollapseMenuFormateer;
 import com.jhw.swing.material.components.taskpane.CollapseMenu;
 import com.jhw.swing.material.components.taskpane.TaskPaneContainer;
 import com.jhw.swing.material.components.button._MaterialIconButtonTranspRect;
