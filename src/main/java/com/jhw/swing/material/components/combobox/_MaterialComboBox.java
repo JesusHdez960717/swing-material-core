@@ -56,6 +56,12 @@ public class _MaterialComboBox<T> extends JComboBox<T> implements MaterialCompon
     private String wrongText = "Error en este campo";
     private boolean wrongFlag = false;
 
+    public _MaterialComboBox(T[] items) {
+        this();
+        setModel(new DefaultComboBoxModel<T>(items));
+        this.setSelectedIndex(-1);
+    }
+
     public _MaterialComboBox() {
         this.setPreferredSize(new Dimension(145, 65));
         this.setRenderer(new FieldRenderer<>(this));
@@ -321,6 +327,30 @@ public class _MaterialComboBox<T> extends JComboBox<T> implements MaterialCompon
             icon.paintIcon(this, g2, (int) (this.getSize().getWidth() - icon.getIconHeight()), yMid - icon.getIconHeight() / 2);
         }
 
+    }
+
+    public boolean isWrongFlag() {
+        return wrongFlag;
+    }
+
+    public FloatingLabel getFloatingLabel() {
+        return floatingLabel;
+    }
+
+    public Line getLine() {
+        return line;
+    }
+
+    public Color getAccentColor() {
+        return accentColor;
+    }
+
+    public Color getForeground() {
+        return foreground;
+    }
+
+    public Cursor getCursor() {
+        return cursor;
     }
 
     @Override

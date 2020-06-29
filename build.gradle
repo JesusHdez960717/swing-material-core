@@ -15,7 +15,7 @@ apply plugin: 'application'
 
 group = 'com.jhw.swing'
 
-mainClassName = 'com.jhw.swing.TEST.task.NewJFrame'
+mainClassName = 'com.jhw.swing.TEST.combo.NewJFrame'
 
 repositories {
     jcenter()
