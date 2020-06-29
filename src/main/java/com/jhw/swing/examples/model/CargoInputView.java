@@ -1,5 +1,7 @@
 package com.jhw.swing.examples.model;
 
+import com.jhw.swing.material.components.container.layout.HorizontalLayoutComponent;
+import com.jhw.swing.material.components.container.layout.HorizontalLayoutContainer;
 import com.jhw.swing.material.components.container.layout.VerticalLayoutContainer;
 import com.jhw.swing.material.standars.MaterialFontRoboto;
 import com.jhw.swing.models.input.panels.ModelPanel;
@@ -38,13 +40,19 @@ public class CargoInputView extends ModelPanel<CargoModel> {
         textFieldNombre.setLabel("Cargo");
 
         VerticalLayoutContainer.builder v = VerticalLayoutContainer.builder();
-        
+
         v.add(labelCargo);
+
+        //HorizontalLayoutContainer.builder hlc = HorizontalLayoutContainer.builder((int) cargoICBS1.getPreferredSize().getHeight());
+        //hlc.add(HorizontalLayoutComponent.builder(textFieldNombre).build());
+        //hlc.add(HorizontalLayoutComponent.builder(cargoICBS1).gapLeft(10).build());
+        //v.add(hlc.build());
         v.add(textFieldNombre);
         v.add(cargoICBS1);
+
         v.add(fileChooserPanel);
         v.add(textAreaDescripcion);
-        
+
         this.setComponent(v.build());
     }
 

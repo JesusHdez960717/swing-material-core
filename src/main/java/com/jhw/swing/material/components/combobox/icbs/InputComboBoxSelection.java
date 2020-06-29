@@ -7,6 +7,7 @@ import com.jhw.swing.material.components.combobox.combobox_editable._MaterialCom
 import com.jhw.swing.material.components.container.layout.HorizontalLayoutComponent;
 import com.jhw.swing.material.components.container.layout.HorizontalLayoutContainer;
 import com.jhw.swing.material.components.container.panel._PanelComponent;
+import com.jhw.swing.material.components.container.panel._PanelTransparent;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -15,9 +16,11 @@ import com.jhw.swing.personalization.PersonalizationMaterial;
 import com.jhw.utils.interfaces.Update;
 import com.jhw.swing.util.validations.Validation;
 import com.jhw.swing.util.validations.icbs.ICBSValidation;
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.util.List;
+import javax.swing.BoxLayout;
 
 /**
  *
@@ -55,10 +58,9 @@ public abstract class InputComboBoxSelection<T> extends _PanelComponent implemen
                         .deriveIcon(PersonalizationMaterial.getInstance().getColorButtonAdd())
                         .deriveIcon(h / 2));
 
-        HorizontalLayoutContainer.builder hlc = HorizontalLayoutContainer.builder(h);
-        hlc.add(HorizontalLayoutComponent.builder(comboBox).width(Short.MAX_VALUE / 2).build());
-        hlc.add(HorizontalLayoutComponent.builder(buttonNuevo).build());
-        this.setComponent(hlc.build());
+        this.setLayout(new BorderLayout());
+        this.add(comboBox, BorderLayout.CENTER);
+        this.add(buttonNuevo, BorderLayout.EAST);
     }
 
     // Variables declaration - do not modify

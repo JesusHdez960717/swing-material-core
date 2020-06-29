@@ -41,6 +41,10 @@ public class HorizontalLayoutContainer extends _PanelTransparent {
         );
     }
 
+    public static builder builder() {
+        return new builder();
+    }
+
     public static builder builder(int prefHeight) {
         return new builder(prefHeight);
     }
