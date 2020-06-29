@@ -1,6 +1,5 @@
 package com.jhw.swing.material.components.combobox;
 
-import com.jhw.swing.material.components.button._MaterialIconButtonTranspRect;
 import com.jhw.swing.material.effects.Line;
 import static com.jhw.swing.material.components.textfield._MaterialTextField.HINT_OPACITY_MASK;
 import static com.jhw.swing.material.components.textfield._MaterialTextField.LINE_OPACITY_MASK;
@@ -26,8 +25,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
-import java.awt.event.KeyEvent;
-import java.awt.geom.RoundRectangle2D;
 
 /**
  * A Material Design combo box.

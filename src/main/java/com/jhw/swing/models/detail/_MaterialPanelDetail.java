@@ -24,7 +24,6 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import lombok.Getter;
 import lombok.Setter;
-import com.jhw.utils.others.KMP;
 import com.jhw.utils.security.SHA;
 import com.jhw.swing.util.JOP;
 import com.jhw.utils.interfaces.Update;
@@ -345,7 +344,7 @@ public abstract class _MaterialPanelDetail<T> extends _MaterialPanel implements 
         StringTokenizer st = new StringTokenizer(key, "+");
         while (st.hasMoreTokens()) {
             String tok = st.nextToken();
-            if (!KMP.contain(text, tok)) {
+            if (text.compareToIgnoreCase(tok) != 0) {
                 return false;
             }
         }

@@ -79,9 +79,16 @@ public class _MaterialComboBoxFiltrable<T> extends _MaterialComboBox<T> {
                         comboDisplayTextMapper));
     }
 
+    public void decorate() {
+        this.decorator = ComboBoxFilterDecorator.decorate(this);
+        this.setRenderer(
+                CustomComboRenderer.build(decorator.getFilterTextSupplier(),
+                        decorator.getFormat()));
+    }
+
     private void decorateInner() {
         if (decorator != null) {
-            decorate(decorator.getComboDisplayTextMapper(), decorator.getUserFilter());
+            decorate(decorator.getFormat(), decorator.getFilter());
         }
     }
 

@@ -61,4 +61,7 @@ dependencies {
     // https://mvnrepository.com/artifact/org.jfree/jfreechart
     compile group: 'org.jfree', name: 'jfreechart', version: '1.0.17'
 
+    // https://mvnrepository.com/artifact/com.miglayout/miglayout-swing
+    compile group: 'com.miglayout', name: 'miglayout-swing', version: '5.2'
+
 }

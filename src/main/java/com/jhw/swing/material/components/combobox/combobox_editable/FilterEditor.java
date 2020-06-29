@@ -18,13 +18,13 @@ public class FilterEditor<T> extends BasicComboBoxEditor {
     private JLabel filterLabel = new _MaterialLabel();
     private String text = "";
     private boolean editing;
-    private Function<T, String> displayTextFunction;
+    private Function<T, String> formater;
     private Consumer<Boolean> editingChangeListener;
     private Object selected;
 
-    FilterEditor(Function<T, String> displayTextFunction,
+    FilterEditor(Function<T, String> formater,
             Consumer<Boolean> editingChangeListener) {
-        this.displayTextFunction = displayTextFunction;
+        this.formater = formater;
         this.editingChangeListener = editingChangeListener;
     }
 
@@ -75,7 +75,7 @@ public class FilterEditor<T> extends BasicComboBoxEditor {
             filterLabel.setText(text);
         } else {
             T t = (T) anObject;
-            filterLabel.setText(displayTextFunction.apply(t));
+            filterLabel.setText(formater.apply(t));
         }
         this.selected = anObject;
     }

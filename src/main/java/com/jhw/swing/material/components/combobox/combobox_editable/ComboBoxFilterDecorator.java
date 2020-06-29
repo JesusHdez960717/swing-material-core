@@ -1,5 +1,7 @@
 package com.jhw.swing.material.components.combobox.combobox_editable;
 
+import com.jhw.utils.interfaces.Formateable;
+import com.jhw.utils.interfaces.Filtrable;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -30,8 +32,8 @@ import javax.swing.event.PopupMenuListener;
 public class ComboBoxFilterDecorator<T> {
 
     private JComboBox<T> comboBox;
-    private BiPredicate<T, String> userFilter;
-    private Function<T, String> comboDisplayTextMapper;
+    private BiPredicate<T, String> filter;
+    private Function<T, String> format;
     private List<T> originalItems;
     private Object selectedItem;
     private FilterEditor filterEditor;
@@ -40,8 +42,35 @@ public class ComboBoxFilterDecorator<T> {
             BiPredicate<T, String> userFilter,
             Function<T, String> comboDisplayTextMapper) {
         this.comboBox = comboBox;
-        this.userFilter = userFilter;
-        this.comboDisplayTextMapper = comboDisplayTextMapper;
+        this.filter = userFilter;
+        this.format = comboDisplayTextMapper;
+    }
+
+    public static <T> ComboBoxFilterDecorator<T> decorate(JComboBox<T> comboBox) {
+        BiPredicate<T, String> filter = (object, text) -> {
+            if (object == null) {
+                return false;
+            } else if (object instanceof Filtrable) {
+                return ((Filtrable) object).test(text);
+            } else {
+                return object.toString().toLowerCase().contains(text.toLowerCase());
+            }
+        };
+        Function<T, String> formater = (object) -> {
+            if (object == null) {
+                return "";
+            } else if (object instanceof Formateable) {
+                return ((Formateable) object).format();
+            } else {
+                return object.toString();
+            }
+        };
+
+        ComboBoxFilterDecorator decorator
+                = new ComboBoxFilterDecorator(comboBox, filter,
+                        formater);
+        decorator.init();
+        return decorator;
     }
 
     public static <T> ComboBoxFilterDecorator<T> decorate(JComboBox<T> comboBox,
@@ -60,12 +89,12 @@ public class ComboBoxFilterDecorator<T> {
         initComboKeyListener();
     }
 
-    public BiPredicate<T, String> getUserFilter() {
-        return userFilter;
+    public BiPredicate<T, String> getFilter() {
+        return filter;
     }
 
-    public Function<T, String> getComboDisplayTextMapper() {
-        return comboDisplayTextMapper;
+    public Function<T, String> getFormat() {
+        return format;
     }
 
     private void prepareComboFiltering() {
@@ -74,12 +103,13 @@ public class ComboBoxFilterDecorator<T> {
         for (int i = 0; i < model.getSize(); i++) {
             this.originalItems.add(model.getElementAt(i));
         }
-        filterEditor = new FilterEditor(comboDisplayTextMapper, new Consumer<Boolean>() {
+        filterEditor = new FilterEditor(format, new Consumer<Boolean>() {
             //editing mode (commit/cancel) change listener
             @Override
             public void accept(Boolean aBoolean) {
                 if (aBoolean) {//commit
                     selectedItem = comboBox.getSelectedItem();
+
                 } else {//rollback to the last one
                     comboBox.setSelectedItem(selectedItem);
                     filterEditor.setItem(selectedItem);
@@ -196,7 +226,7 @@ public class ComboBoxFilterDecorator<T> {
         java.util.List<T> filteredItems = new ArrayList<>();
         //add matched items at top
         for (T item : originalItems) {
-            if (userFilter.test(item,
+            if (filter.test(item,
                     filterEditor.getFilterLabel().getText())) {
                 model.addElement(item);
             } else {
