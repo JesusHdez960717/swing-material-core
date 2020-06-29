@@ -1,4 +1,4 @@
-package com.jhw.swing.material.components.combobox.combobox_editable;
+package com.jhw.swing.util;
 
 import java.util.regex.Pattern;
 

@@ -1,5 +1,6 @@
 package com.jhw.swing.material.components.combobox.combobox_editable;
 
+import com.jhw.swing.util.HtmlHighlighter;
 import javax.swing.*;
 import java.awt.*;
 import java.util.function.Function;
