@@ -1,17 +1,21 @@
 package com.jhw.swing.material.components.combobox.combobox_editable;
 
-import com.jhw.swing.material.components.combobox._MaterialComboBox;
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.function.BiPredicate;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
-import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -28,7 +32,7 @@ public class ComboBoxFilterDecorator<T> {
     private JComboBox<T> comboBox;
     private BiPredicate<T, String> userFilter;
     private Function<T, String> comboDisplayTextMapper;
-    java.util.List<T> originalItems;
+    private List<T> originalItems;
     private Object selectedItem;
     private FilterEditor filterEditor;
 
@@ -56,14 +60,22 @@ public class ComboBoxFilterDecorator<T> {
         initComboKeyListener();
     }
 
+    public BiPredicate<T, String> getUserFilter() {
+        return userFilter;
+    }
+
+    public Function<T, String> getComboDisplayTextMapper() {
+        return comboDisplayTextMapper;
+    }
+
     private void prepareComboFiltering() {
         DefaultComboBoxModel<T> model = (DefaultComboBoxModel<T>) comboBox.getModel();
-        this.originalItems = new ArrayList<>();
+        this.originalItems = new ArrayList<>(model.getSize());
         for (int i = 0; i < model.getSize(); i++) {
             this.originalItems.add(model.getElementAt(i));
         }
         filterEditor = new FilterEditor(comboDisplayTextMapper, new Consumer<Boolean>() {
-//editing mode (commit/cancel) change listener
+            //editing mode (commit/cancel) change listener
             @Override
             public void accept(Boolean aBoolean) {
                 if (aBoolean) {//commit
@@ -169,7 +181,7 @@ public class ComboBoxFilterDecorator<T> {
         if (!filterEditor.isEditing()) {
             return;
         }
-//restore original order
+        //restore original order
         DefaultComboBoxModel<T> model = (DefaultComboBoxModel<T>) comboBox.getModel();
         model.removeAllElements();
         for (T item : originalItems) {
@@ -182,7 +194,7 @@ public class ComboBoxFilterDecorator<T> {
         DefaultComboBoxModel<T> model = (DefaultComboBoxModel<T>) comboBox.getModel();
         model.removeAllElements();
         java.util.List<T> filteredItems = new ArrayList<>();
-//add matched items at top
+        //add matched items at top
         for (T item : originalItems) {
             if (userFilter.test(item,
                     filterEditor.getFilterLabel().getText())) {
@@ -191,12 +203,12 @@ public class ComboBoxFilterDecorator<T> {
                 filteredItems.add(item);
             }
         }
-//red color when no match
+        //red color when no match
         filterEditor.getFilterLabel()
                 .setForeground(model.getSize() == 0
                         ? Color.red
                         : UIManager.getColor("Label.foreground"));
-//add unmatched items
+        //add unmatched items
         filteredItems.forEach(model::addElement);
     }
 }

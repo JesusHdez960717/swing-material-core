@@ -2,8 +2,6 @@ package com.jhw.swing.material.components.combobox.combobox_editable;
 
 import com.jhw.swing.material.components.labels._MaterialLabel;
 import java.awt.Component;
-import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.event.ActionListener;
 import javax.swing.plaf.basic.BasicComboBoxEditor;
 import javax.swing.JLabel;
@@ -19,7 +17,7 @@ public class FilterEditor<T> extends BasicComboBoxEditor {
 
     private JLabel filterLabel = new _MaterialLabel();
     private String text = "";
-    boolean editing;
+    private boolean editing;
     private Function<T, String> displayTextFunction;
     private Consumer<Boolean> editingChangeListener;
     private Object selected;
@@ -55,7 +53,7 @@ public class FilterEditor<T> extends BasicComboBoxEditor {
     public void reset() {
         if (editing) {
             //filterLabel.setFont(UIManager.getFont("ComboBox.font"));
-            //filterLabel.setForeground(UIManager.getColor("Label.foreground"));
+            filterLabel.setForeground(UIManager.getColor("Label.foreground"));
             text = "";
             editing = false;
             editingChangeListener.accept(false);

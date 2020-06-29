@@ -8,11 +8,21 @@ import com.jhw.swing.util.Utils;
 import com.jhw.swing.util.icons.DerivableIcon;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.FocusEvent;
+import java.util.List;
+import java.util.function.BiPredicate;
+import java.util.function.Function;
+import javax.swing.ComboBoxModel;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.plaf.basic.BasicComboBoxUI;
+import javax.swing.plaf.basic.BasicComboPopup;
+import javax.swing.plaf.basic.ComboPopup;
 
 /**
  *
@@ -20,15 +30,81 @@ import javax.swing.ImageIcon;
  */
 public class _MaterialComboBoxFiltrable<T> extends _MaterialComboBox<T> {
 
+    private boolean focus;
+    private ComboBoxFilterDecorator<T> decorator;
+
     public _MaterialComboBoxFiltrable(T[] items) {
         super(items);
-        this.setSelectedIndex(-1);
+        initComponent();
     }
 
     public _MaterialComboBoxFiltrable() {
+        initComponent();
     }
 
-    private boolean focus;
+    public void setModel(List<T> aModel) {
+        super.setModel(new DefaultComboBoxModel(aModel.toArray(new Object[aModel.size()])));
+        decorateInner();
+        this.setSelectedIndex(-1);
+    }
+
+    @Override
+    public void setSelectedItem(Object obj) {
+        super.setSelectedItem(obj);
+        getFloatingLabel().update();
+    }
+
+    @Override
+    public T getSelectedItem() {
+        return (T) super.getSelectedItem();
+    }
+
+    @Override
+    public void addItem(T item) {
+        super.addItem(item);
+    }
+
+    public void addItemAndDecorate(T item) {
+        super.addItem(item);
+        decorateInner();
+    }
+
+    public void decorate(Function<T, String> comboDisplayTextMapper,
+            BiPredicate<T, String> userFilter) {
+        this.decorator = ComboBoxFilterDecorator.decorate(this,
+                comboDisplayTextMapper,
+                userFilter);
+        this.setRenderer(
+                CustomComboRenderer.build(decorator.getFilterTextSupplier(),
+                        comboDisplayTextMapper));
+    }
+
+    private void decorateInner() {
+        if (decorator != null) {
+            decorate(decorator.getComboDisplayTextMapper(), decorator.getUserFilter());
+        }
+    }
+
+    private void initComponent() {
+        this.setUI(new BasicComboBoxUI() {
+            @Override
+            protected ComboPopup createPopup() {
+                BasicComboPopup popupAct = new Popup(comboBox);
+                popupAct.getAccessibleContext().setAccessibleParent(comboBox);
+                return popupAct;
+            }
+
+            @Override
+            protected JButton createArrowButton() {
+                return new JButton() {
+                    @Override
+                    public int getWidth() {
+                        return 0;
+                    }
+                };
+            }
+        });
+    }
 
     public void processExternalFocusEvent(boolean focus, FocusEvent e) {
         this.focus = focus;
@@ -92,5 +168,4 @@ public class _MaterialComboBoxFiltrable<T> extends _MaterialComboBox<T> {
         }
 
     }
-
 }
