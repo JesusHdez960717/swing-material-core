@@ -26,6 +26,11 @@ public class _MaterialIconButtonTranspRect extends JButton implements MaterialCo
     private Color rippleColor = MaterialColors.WHITE;
     private boolean paintRipple = true;
 
+    public _MaterialIconButtonTranspRect(ImageIcon icon) {
+        this();
+        setIcon(icon);
+    }
+
     /**
      * Creates a new button.
      */
