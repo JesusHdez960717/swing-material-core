@@ -14,6 +14,7 @@ public class CollapseMenuFormateerImpl implements CollapseMenuFormateer {
         menu.setButtonNameFont(MaterialFontRoboto.MEDIUM.deriveFont(20f));
         menu.setButtonNameHorizontalAlignment(SwingConstants.LEFT);
         menu.setPanelCollapsibleGaps(10, 60, 10, 1);
+        menu.setHeight(70);
     }
 
 }

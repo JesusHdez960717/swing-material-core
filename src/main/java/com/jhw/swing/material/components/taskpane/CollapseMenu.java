@@ -76,7 +76,7 @@ public class CollapseMenu extends JPanel {
         jPanelFixed.setBackground(new java.awt.Color(0, 153, 153));
         jPanelFixed.setMaximumSize(new java.awt.Dimension(2147483647, 60));
         jPanelFixed.setMinimumSize(new java.awt.Dimension(327, 60));
-        jPanelFixed.setPreferredSize(new java.awt.Dimension(294, 60));
+        jPanelFixed.setPreferredSize(new java.awt.Dimension(294, 40));
         jPanelFixed.setLayout(new java.awt.BorderLayout());
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
@@ -97,7 +97,7 @@ public class CollapseMenu extends JPanel {
 
         add(jPanelFixed, java.awt.BorderLayout.PAGE_START);
 
-        jPanelCollapsible.setBackground(new java.awt.Color(255, 255, 0));
+        jPanelCollapsible.setBackground(new java.awt.Color(255, 255, 255));
         jPanelCollapsible.setDirection(org.jdesktop.swingx.JXCollapsiblePane.Direction.DOWN);
         add(jPanelCollapsible, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
@@ -145,6 +145,11 @@ public class CollapseMenu extends JPanel {
 
     public void setPanelCollapsibleGaps(int top, int left, int bottom, int right) {
         jPanelCollapsible.setBorder(javax.swing.BorderFactory.createEmptyBorder(top, left, bottom, right));
+    }
+
+    public void setHeight(int h) {
+        jPanelFixed.setPreferredSize(new java.awt.Dimension(300, h));
+        jButtonIcono.setPreferredSize(new java.awt.Dimension(h, h));
     }
 
     protected void configurateUI() {
