@@ -16,7 +16,6 @@ public class TaskPaneContainer extends JXCollapsiblePane {
 
     public TaskPaneContainer() {
         setDirection(JXCollapsiblePane.Direction.LEFT);
-        setMinimumSize(new Dimension(90, 0));
         this.setLayout(new BorderLayout());
         this.add(taskPane, BorderLayout.CENTER);
     }

@@ -10,11 +10,11 @@ public class CollapseMenuFormateerImpl implements CollapseMenuFormateer {
     @Override
     public void format(CollapseMenu menu) {
         menu.setMainButtonBackground(Color.RED);
-        menu.setCollapsablePanelBackground(Color.RED);
+        menu.setCollapsablePanelBackground(Color.green);
         menu.setButtonNameFont(MaterialFontRoboto.MEDIUM.deriveFont(20f));
         menu.setButtonNameHorizontalAlignment(SwingConstants.LEFT);
-        menu.setPanelCollapsibleGaps(10, 60, 10, 1);
-        menu.setHeight(70);
+        menu.setPanelCollapsibleGaps(5, 20, 5, 0);
+        menu.setHeight(40);
     }
 
 }

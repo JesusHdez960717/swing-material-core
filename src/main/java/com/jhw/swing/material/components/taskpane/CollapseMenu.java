@@ -7,10 +7,14 @@ package com.jhw.swing.material.components.taskpane;
 
 import com.jhw.swing.material.components.button._MaterialButtonSimple;
 import com.jhw.swing.material.components.button._MaterialIconButtonTranspRect;
+import com.jhw.swing.material.components.container.panel._MaterialPanel;
 import com.jhw.swing.personalization.PersonalizationMaterial;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Container;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ComponentAdapter;
@@ -23,7 +27,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
 import org.jdesktop.swingx.JXCollapsiblePane;
+import org.jdesktop.swingx.JXPanel;
 import org.jdesktop.swingx.JXTaskPaneContainer;
 
 /**
@@ -70,7 +76,7 @@ public class CollapseMenu extends JPanel {
         jPanelSubActions.setLayout(verticalLayout1);
 
         setBackground(new java.awt.Color(255, 255, 0));
-        setMinimumSize(new java.awt.Dimension(90, 90));
+        setMinimumSize(new java.awt.Dimension(0, 0));
         setLayout(new java.awt.BorderLayout());
 
         jPanelFixed.setBackground(new java.awt.Color(0, 153, 153));
@@ -150,6 +156,11 @@ public class CollapseMenu extends JPanel {
     public void setHeight(int h) {
         jPanelFixed.setPreferredSize(new java.awt.Dimension(300, h));
         jButtonIcono.setPreferredSize(new java.awt.Dimension(h, h));
+        //this.setMinimumSize(new java.awt.Dimension(h, h));
+    }
+
+    public int getComponentsHight() {
+        return (int) jButtonIcono.getPreferredSize().getHeight();
     }
 
     protected void configurateUI() {

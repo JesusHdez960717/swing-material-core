@@ -14,6 +14,7 @@ import com.jhw.swing.personalization.PersonalizationMaterial;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import javax.swing.ImageIcon;
@@ -71,7 +72,7 @@ public class DashBoardTaskPane extends JPanel {
         panelContent.setLayout(panelContentLayout);
         panelContentLayout.setHorizontalGroup(
             panelContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 669, Short.MAX_VALUE)
+            .addGap(0, 960, Short.MAX_VALUE)
         );
         panelContentLayout.setVerticalGroup(
             panelContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -81,34 +82,41 @@ public class DashBoardTaskPane extends JPanel {
         add(panelContent, java.awt.BorderLayout.CENTER);
 
         panelSideMenu.setBackground(new java.awt.Color(102, 102, 102));
+        panelSideMenu.setMinimumSize(null);
+        panelSideMenu.setPreferredSize(null);
         panelSideMenu.setLayout(new java.awt.BorderLayout());
 
         jPanelBackButton.setOpaque(false);
+        jPanelBackButton.setLayout(new java.awt.BorderLayout());
 
         jButtonBack.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButtonBack.setMaximumSize(new java.awt.Dimension(40, 40));
-        jButtonBack.setMinimumSize(new java.awt.Dimension(40, 40));
-        jButtonBack.setPreferredSize(new java.awt.Dimension(40, 40));
-        jPanelBackButton.add(jButtonBack);
+        jButtonBack.setMaximumSize(null);
+        jButtonBack.setMinimumSize(new java.awt.Dimension(0, 40));
+        jButtonBack.setPreferredSize(new java.awt.Dimension(0, 40));
+        jPanelBackButton.add(jButtonBack, java.awt.BorderLayout.CENTER);
 
         panelSideMenu.add(jPanelBackButton, java.awt.BorderLayout.PAGE_START);
 
         jPanelShinkButton.setOpaque(false);
-        jPanelShinkButton.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT));
+        jPanelShinkButton.setLayout(new java.awt.BorderLayout());
 
-        jButtonShrink.setMaximumSize(new java.awt.Dimension(60, 40));
-        jButtonShrink.setMinimumSize(new java.awt.Dimension(60, 40));
-        jButtonShrink.setPreferredSize(new java.awt.Dimension(60, 40));
+        jButtonShrink.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        jButtonShrink.setMaximumSize(null);
+        jButtonShrink.setMinimumSize(new java.awt.Dimension(40, 40));
+        jButtonShrink.setPreferredSize(new java.awt.Dimension(40, 40));
         jButtonShrink.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonShrinkActionPerformed(evt);
             }
         });
-        jPanelShinkButton.add(jButtonShrink);
+        jPanelShinkButton.add(jButtonShrink, java.awt.BorderLayout.CENTER);
 
         panelSideMenu.add(jPanelShinkButton, java.awt.BorderLayout.PAGE_END);
 
         jPanelMenu.setBackground(new java.awt.Color(0, 0, 0));
+        jPanelMenu.setMinimumSize(null);
+        jPanelMenu.setOpaque(false);
+        jPanelMenu.setPreferredSize(null);
         jPanelMenu.setLayout(new java.awt.BorderLayout());
         panelSideMenu.add(jPanelMenu, java.awt.BorderLayout.CENTER);
 
@@ -151,6 +159,7 @@ public class DashBoardTaskPane extends JPanel {
             formateer.format(menu);
         }
         this.task.addMenuItem(menu);
+        setMinimunShrink(menu.getComponentsHight());
     }
 
     public void addComponent(CollapseMenu menu) {
@@ -165,4 +174,11 @@ public class DashBoardTaskPane extends JPanel {
         cards.show(panelContent, name);
     }
 
+    public void setMinimunShrink(int min) {
+        jButtonShrink.setMinimumSize(new Dimension(min, min));
+        jButtonShrink.setPreferredSize(new Dimension(min, min));
+        
+        jButtonBack.setMinimumSize(new Dimension(min, min));
+        jButtonBack.setPreferredSize(new Dimension(min, min));
+    }
 }
