@@ -1,7 +1,9 @@
 package com.jhw.swing.material.components.taskpane;
 
 import com.jhw.swing.material.standars.MaterialIcons;
+import com.jhw.swing.personalization.PersonalizationMaterial;
 import com.jhw.swing.util.MaterialDrawingUtils;
+import com.jhw.swing.util.Utils;
 import com.jhw.swing.util.interfaces.MaterialComponent;
 import java.awt.Color;
 import java.awt.Cursor;
@@ -15,13 +17,15 @@ import javax.swing.JButton;
 import javax.swing.SwingConstants;
 
 /**
- * 
+ *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
 public class TaskButton extends JButton implements MaterialComponent {
 
     private boolean selected = false;
     private final CollapseMenu parent;
+
+    private final Color secundary = PersonalizationMaterial.getInstance().getColorPrincipal();
 
     public TaskButton(Action a, CollapseMenu parent) {
         this.parent = parent;
@@ -30,7 +34,7 @@ public class TaskButton extends JButton implements MaterialComponent {
         //setText(a.getValue(Action.NAME).toString());
         setFont(getFont().deriveFont(24f));
 
-        this.setBackground(Color.red);
+        this.setBackground(secundary);
 
         setHorizontalAlignment(SwingConstants.LEADING);
         setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -61,11 +65,13 @@ public class TaskButton extends JButton implements MaterialComponent {
 
     public void select() {
         selected = true;
+        setBackground(Utils.darken(secundary));
         repaint();
     }
 
     public void deselect() {
         selected = false;
+        setBackground(secundary);
         repaint();
     }
 }

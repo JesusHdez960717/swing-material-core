@@ -36,6 +36,7 @@ import javax.swing.border.EmptyBorder;
 import org.jdesktop.swingx.JXCollapsiblePane;
 import org.jdesktop.swingx.JXPanel;
 import org.jdesktop.swingx.JXTaskPaneContainer;
+import org.jdesktop.swingx.VerticalLayout;
 
 /**
  *
@@ -72,7 +73,12 @@ public class CollapseMenu extends JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanelSubActions = new org.jdesktop.swingx.JXTaskPaneContainer();
+        jPanelSubActions = new JXTaskPaneContainer() {
+            @Override
+            public void updateUI() {
+                //vacio para que no coja el ui del padre
+            }
+        };
         jPopupMenu1 = new javax.swing.JPopupMenu();
         jPanelFixed = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -194,6 +200,7 @@ public class CollapseMenu extends JPanel {
 
     private void setMainButtonBackground(Color color) {
         jPanelFixed.setBackground(color);
+        setCollapsablePanelBackground(color);
     }
 
     public void setCollapsablePanelBackground(Color color) {
@@ -225,16 +232,21 @@ public class CollapseMenu extends JPanel {
     public void setHeight(int h) {
         jPanelFixed.setPreferredSize(new java.awt.Dimension(300, h));
         jButtonIcono.setPreferredSize(new java.awt.Dimension(h, h));
-        //this.setMinimumSize(new java.awt.Dimension(h, h));
     }
 
     public int getComponentsHight() {
         return (int) jButtonIcono.getPreferredSize().getHeight();
     }
 
+    public void setComponentsGap(int gap) {
+        ((VerticalLayout) jPanelSubActions.getLayout()).setGap(gap);
+    }
+
     protected void configurateUI() {
         jPanelCollapsible.setLayout(new BorderLayout());
         jPanelCollapsible.add(jPanelSubActions, BorderLayout.CENTER);
+
+        setComponentsGap(0);
 
         jButtonIcono.setIcon(iconoCategoria);
 

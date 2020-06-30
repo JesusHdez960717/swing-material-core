@@ -164,7 +164,7 @@ public class DashBoardTaskPane extends JPanel {
         menu.setDashBoardTaskPane(this);
         menu.select(false);
         menus.add(menu);
-        this.task.addMenuItem(menu);
+        this.task.addItem(menu);
         setMinimunShrink(menu.getComponentsHight());
     }
 
@@ -183,7 +183,7 @@ public class DashBoardTaskPane extends JPanel {
     @Deprecated
     public void addComponent(CollapseMenu menu) {
         menus.add(menu);
-        this.task.addMenuItem(menu);
+        this.task.addItem(menu);
     }
 
     public void addView(String name, Component compoment) {

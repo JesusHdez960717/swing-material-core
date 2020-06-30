@@ -9,6 +9,9 @@
         </Property>
         <Property name="opaque" type="boolean" value="false"/>
       </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new JXTaskPaneContainer() {&#xa;        @Override&#xa;        public void updateUI() {&#xa;            //vacio para que no coja el ui del padre&#xa;        }&#xa;    }"/>
+      </AuxValues>
       <LayoutCode>
         <CodeStatement>
           <CodeExpression id="1_verticalLayout1">
