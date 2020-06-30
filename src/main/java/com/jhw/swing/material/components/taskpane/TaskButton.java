@@ -7,6 +7,7 @@ import com.jhw.swing.util.Utils;
 import com.jhw.swing.util.interfaces.MaterialComponent;
 import java.awt.Color;
 import java.awt.Cursor;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
@@ -23,13 +24,13 @@ import javax.swing.SwingConstants;
 public class TaskButton extends JButton implements MaterialComponent {
 
     private boolean selected = false;
-    private final CollapseMenu parent;
 
     private final Color secundary = PersonalizationMaterial.getInstance().getColorPrincipal();
 
     public TaskButton(Action a, CollapseMenu parent) {
-        this.parent = parent;
         setAction(a);
+        
+        setPreferredSize(parent.getjPanelFixed().getPreferredSize());
         //setIcon((Icon) a.getValue(Action.SMALL_ICON));
         //setText(a.getValue(Action.NAME).toString());
         setFont(getFont().deriveFont(24f));

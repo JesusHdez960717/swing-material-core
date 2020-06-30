@@ -97,14 +97,17 @@ public class CollapseMenu extends JPanel {
         setLayout(new java.awt.BorderLayout());
 
         jPanelFixed.setBackground(new java.awt.Color(0, 153, 153));
-        jPanelFixed.setMaximumSize(new java.awt.Dimension(2147483647, 60));
-        jPanelFixed.setMinimumSize(new java.awt.Dimension(327, 60));
-        jPanelFixed.setPreferredSize(new java.awt.Dimension(294, 40));
+        jPanelFixed.setMaximumSize(null);
+        jPanelFixed.setMinimumSize(null);
+        jPanelFixed.setPreferredSize(null);
         jPanelFixed.setLayout(new java.awt.BorderLayout());
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         jLabel1.setText("#");
         jLabel1.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        jLabel1.setMaximumSize(new java.awt.Dimension(15, 18));
+        jLabel1.setMinimumSize(new java.awt.Dimension(15, 18));
+        jLabel1.setPreferredSize(new java.awt.Dimension(15, 18));
         jPanelFixed.add(jLabel1, java.awt.BorderLayout.LINE_END);
 
         jButtonIcono.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -229,7 +232,11 @@ public class CollapseMenu extends JPanel {
         jPanelCollapsible.setBorder(javax.swing.BorderFactory.createEmptyBorder(top, left, bottom, right));
     }
 
-    public void setHeight(int h) {
+    public JPanel getjPanelFixed() {
+        return jPanelFixed;
+    }
+
+    public void setHeight(int h) {//el # ese es el max
         jPanelFixed.setPreferredSize(new java.awt.Dimension(300, h));
         jButtonIcono.setPreferredSize(new java.awt.Dimension(h, h));
     }
@@ -277,7 +284,7 @@ public class CollapseMenu extends JPanel {
     }
 
     private boolean isShinked() {
-        return getSize().width < 85;//TODO: personalizar tamanno del menu
+        return getSize().width < jButtonIcono.getSize().width + 20;//TODO: personalizar tamanno del menu
     }
 
     private void createPopupPanel() {

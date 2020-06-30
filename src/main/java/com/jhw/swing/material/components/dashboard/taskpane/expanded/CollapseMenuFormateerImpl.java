@@ -21,7 +21,7 @@ public class CollapseMenuFormateerImpl implements CollapseMenuFormateer {
 
         menu.setComponentsGap(0);
         //menu.setPanelCollapsibleGaps(5, 20, 5, 0);
-        menu.setHeight(40);
+        menu.setHeight(50);
     }
 
 }

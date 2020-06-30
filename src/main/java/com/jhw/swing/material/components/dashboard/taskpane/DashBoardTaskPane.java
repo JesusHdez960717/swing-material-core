@@ -7,7 +7,7 @@ package com.jhw.swing.material.components.dashboard.taskpane;
 
 import com.jhw.swing.material.components.dashboard.taskpane.expanded.CollapseMenuFormateer;
 import com.jhw.swing.material.components.taskpane.CollapseMenu;
-import com.jhw.swing.material.components.taskpane.TaskPaneContainer;
+import com.jhw.swing.material.components.taskpane.TaskPaneMainContainer;
 import com.jhw.swing.material.components.button._MaterialIconButtonTranspRect;
 import com.jhw.swing.material.standars.MaterialIcons;
 import com.jhw.swing.personalization.PersonalizationMaterial;
@@ -31,7 +31,7 @@ public class DashBoardTaskPane extends JPanel {
 
     private boolean shrinked;
 
-    private TaskPaneContainer task = new TaskPaneContainer();
+    private TaskPaneMainContainer task = new TaskPaneMainContainer();
 
     private CollapseMenuFormateer formateer;
 

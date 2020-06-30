@@ -12,17 +12,21 @@ import org.jdesktop.swingx.VerticalLayout;
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-public class TaskPaneContainer extends JXCollapsiblePane {
+public class TaskPaneMainContainer extends JXCollapsiblePane {
 
     private JXTaskPaneContainer taskPane = new JXTaskPaneContainer();
 
-    public TaskPaneContainer() {
+    public TaskPaneMainContainer() {
         setDirection(JXCollapsiblePane.Direction.LEFT);
         this.setLayout(new BorderLayout());
         this.add(taskPane, BorderLayout.CENTER);
 
         setComponentsGap(0);
         setInternalBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
+        
+        this.setBackground(Color.red);
+        this.getContentPane().setBackground(Color.red);
+        taskPane.setBackground(Color.red);
     }
 
     public void setComponentsGap(int gap) {
