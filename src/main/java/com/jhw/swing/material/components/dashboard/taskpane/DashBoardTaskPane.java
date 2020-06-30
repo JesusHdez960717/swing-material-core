@@ -161,13 +161,22 @@ public class DashBoardTaskPane extends JPanel {
         if (formateer != null) {
             formateer.format(menu);
         }
+        menu.setDashBoardTaskPane(this);
+        menu.select(false);
         menus.add(menu);
         this.task.addMenuItem(menu);
         setMinimunShrink(menu.getComponentsHight());
     }
 
+    public void deselectAll() {
+        for (CollapseMenu menu : menus) {
+            menu.deselectAll();
+        }
+    }
+
     /**
      * Usar directamente el {@code addCollapseMenu}
+     *
      * @param menu
      * @deprecated
      */

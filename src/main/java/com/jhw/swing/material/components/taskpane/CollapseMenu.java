@@ -8,6 +8,8 @@ package com.jhw.swing.material.components.taskpane;
 import com.jhw.swing.material.components.button._MaterialButtonSimple;
 import com.jhw.swing.material.components.button._MaterialIconButtonTranspRect;
 import com.jhw.swing.material.components.container.panel._MaterialPanel;
+import com.jhw.swing.material.components.dashboard.taskpane.DashBoardTaskPane;
+import com.jhw.swing.material.standars.MaterialColors;
 import com.jhw.swing.personalization.PersonalizationMaterial;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -47,6 +49,10 @@ public class CollapseMenu extends JPanel {
     private String nombreCategoria;
 
     private ArrayList<TaskButton> buttons = new ArrayList<>();
+    private DashBoardTaskPane parent;
+
+    private Color selected = MaterialColors.WHITE;
+    private Color deselected = MaterialColors.RED_900;
 
     public CollapseMenu(Icon iconoCategoria, String nombreCategoria) {
         initComponents();
@@ -111,10 +117,6 @@ public class CollapseMenu extends JPanel {
         add(jPanelCollapsible, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
-    public void shrink() {
-        onMouseCLicked(null);
-    }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonIcono;
     private javax.swing.JButton jButtonNombre;
@@ -125,15 +127,59 @@ public class CollapseMenu extends JPanel {
     private javax.swing.JPopupMenu jPopupMenu1;
     // End of variables declaration//GEN-END:variables
 
+    public void shrink() {
+        onMouseCLicked(null);
+    }
+
+    public Color getSelected() {
+        return selected;
+    }
+
+    public void setSelected(Color selected) {
+        this.selected = selected;
+    }
+
+    public Color getDeselected() {
+        return deselected;
+    }
+
+    public void setDeselected(Color deselected) {
+        this.deselected = deselected;
+    }
+
+    public void select(boolean select) {
+        if (select) {
+            setMainButtonBackground(selected);
+        } else {
+            setMainButtonBackground(deselected);
+        }
+    }
+
     public void addMenuItem(Action action) {
-        TaskButton button = new TaskButton(action);
+        TaskButton button = new TaskButton(action, this);
         buttons.add(button);
         jPanelSubActions.add(button);
         jLabel1.setText("" + jPanelSubActions.getComponentCount());
         jPopupMenu1.add(action);
     }
 
-    public void setMainButtonBackground(Color color) {
+    public void setDashBoardTaskPane(DashBoardTaskPane dash) {
+        this.parent = dash;
+    }
+
+    public void childSelected() {
+        parent.deselectAll();
+        setMainButtonBackground(selected);
+    }
+
+    public void deselectAll() {
+        setMainButtonBackground(deselected);
+        for (TaskButton button : buttons) {
+            button.deselect();
+        }
+    }
+
+    private void setMainButtonBackground(Color color) {
         jPanelFixed.setBackground(color);
     }
 
@@ -202,6 +248,7 @@ public class CollapseMenu extends JPanel {
 
         });
         addListeners();
+        setMainButtonBackground(deselected);
     }
 
     private boolean isShinked() {
