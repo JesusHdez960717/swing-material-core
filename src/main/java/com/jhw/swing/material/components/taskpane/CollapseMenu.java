@@ -20,6 +20,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.beans.PropertyChangeEvent;
+import java.util.ArrayList;
 import javax.swing.Action;
 import javax.swing.Icon;
 import javax.swing.JButton;
@@ -44,6 +45,8 @@ public class CollapseMenu extends JPanel {
 
     private Icon iconoCategoria;
     private String nombreCategoria;
+
+    private ArrayList<TaskButton> buttons = new ArrayList<>();
 
     public CollapseMenu(Icon iconoCategoria, String nombreCategoria) {
         initComponents();
@@ -122,12 +125,10 @@ public class CollapseMenu extends JPanel {
     private javax.swing.JPopupMenu jPopupMenu1;
     // End of variables declaration//GEN-END:variables
 
-    private Component buildFromAction(Action a) {
-        return new TaskButton(a);
-    }
-
     public void addMenuItem(Action action) {
-        jPanelSubActions.add(buildFromAction(action));
+        TaskButton button = new TaskButton(action);
+        buttons.add(button);
+        jPanelSubActions.add(button);
         jLabel1.setText("" + jPanelSubActions.getComponentCount());
         jPopupMenu1.add(action);
     }
@@ -142,7 +143,16 @@ public class CollapseMenu extends JPanel {
 
     public void setButtonNameFont(Font font) {
         jButtonNombre.setFont(font);
-        jLabel1.setFont(font.deriveFont(Font.PLAIN).deriveFont(font.getSize2D() * 0.8f));
+        Font internal = font.deriveFont(Font.PLAIN).deriveFont(font.getSize2D() * 0.8f);
+        setButtonsInternalFont(internal);
+        jLabel1.setFont(internal);
+
+    }
+
+    public void setButtonsInternalFont(Font font) {
+        for (TaskButton button : buttons) {
+            button.setFont(font);
+        }
     }
 
     public void setButtonNameHorizontalAlignment(int align) {

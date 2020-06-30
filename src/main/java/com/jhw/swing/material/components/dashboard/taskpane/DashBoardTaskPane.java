@@ -17,6 +17,7 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
@@ -33,6 +34,8 @@ public class DashBoardTaskPane extends JPanel {
     private TaskPaneContainer task = new TaskPaneContainer();
 
     private CollapseMenuFormateer formateer;
+
+    private ArrayList<CollapseMenu> menus = new ArrayList<>();
 
     /**
      * Creates new form RootView
@@ -158,11 +161,19 @@ public class DashBoardTaskPane extends JPanel {
         if (formateer != null) {
             formateer.format(menu);
         }
+        menus.add(menu);
         this.task.addMenuItem(menu);
         setMinimunShrink(menu.getComponentsHight());
     }
 
+    /**
+     * Usar directamente el {@code addCollapseMenu}
+     * @param menu
+     * @deprecated
+     */
+    @Deprecated
     public void addComponent(CollapseMenu menu) {
+        menus.add(menu);
         this.task.addMenuItem(menu);
     }
 
@@ -177,7 +188,7 @@ public class DashBoardTaskPane extends JPanel {
     public void setMinimunShrink(int min) {
         jButtonShrink.setMinimumSize(new Dimension(min, min));
         jButtonShrink.setPreferredSize(new Dimension(min, min));
-        
+
         jButtonBack.setMinimumSize(new Dimension(min, min));
         jButtonBack.setPreferredSize(new Dimension(min, min));
     }
