@@ -19,6 +19,7 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.beans.PropertyChangeEvent;
@@ -27,6 +28,7 @@ import javax.swing.Action;
 import javax.swing.Icon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.SwingConstants;
@@ -156,11 +158,22 @@ public class CollapseMenu extends JPanel {
     }
 
     public void addMenuItem(Action action) {
+        //Add button
         TaskButton button = new TaskButton(action, this);
         buttons.add(button);
         jPanelSubActions.add(button);
+
+        //update label cantidad
         jLabel1.setText("" + jPanelSubActions.getComponentCount());
-        jPopupMenu1.add(action);
+
+        //add the popup
+        JMenuItem item = jPopupMenu1.add(action);//add to the menu
+        item.addActionListener(new ActionListener() {//activate the selected in case of click
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                childSelected();
+            }
+        });
     }
 
     public void setDashBoardTaskPane(DashBoardTaskPane dash) {

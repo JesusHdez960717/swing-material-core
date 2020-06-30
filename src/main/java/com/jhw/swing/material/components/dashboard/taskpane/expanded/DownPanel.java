@@ -10,8 +10,11 @@ import com.jhw.swing.material.components.labels._MaterialLabel;
 import com.jhw.swing.material.standars.MaterialColors;
 import com.jhw.swing.material.standars.MaterialIcons;
 import com.jhw.swing.util.Utils;
+import com.jhw.swing.util.interfaces.MaterialComponent;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Component;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
@@ -65,7 +68,7 @@ public class DownPanel extends _PanelGradient {
         if (this.licence != null) {
             this.remove(this.licence);
         }
-        JButton licenceButton = getLicenceButton();
+        JButton licenceButton = new LicenceButton();
         this.licence = licenceButton;
         this.licence.setAction(action);
         this.licence.setPreferredSize(new Dimension((int) licence.getPreferredSize().getWidth(), HEIGHT));
@@ -101,11 +104,18 @@ public class DownPanel extends _PanelGradient {
         tec.add(btn_Tec);
     }
 
-    private JButton getLicenceButton() {
-        JButton btn = new JButton();
-        btn.setFocusPainted(false);
-        btn.setBackground(MaterialColors.ORANGEA_200);
-        btn.setBorder(new LineBorder(Utils.darken(Utils.darken(btn.getBackground())), 2));
-        return btn;
+    private class LicenceButton extends JButton implements MaterialComponent {
+
+        public LicenceButton() {
+            this(MaterialColors.ORANGEA_200);
+        }
+
+        public LicenceButton(Color back) {
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+            this.setFocusPainted(false);
+            this.setBackground(back);
+            this.setBorder(new LineBorder(Utils.darken(Utils.darken(back)), 2));
+        }
+
     }
 }
