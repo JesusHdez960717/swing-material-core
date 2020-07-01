@@ -145,6 +145,10 @@ public class DashBoardTaskPane extends JPanel {
         panelSideMenu.setBackground(PersonalizationMaterial.getInstance().getColorPrincipal());
     }
 
+    public void removeBackButton() {
+        jPanelBackButton.setVisible(false);
+    }
+
     public void setPanelSideMenuColor(Color background) {
         panelSideMenu.setBackground(background);
         task.setTaskPaneBackground(background);

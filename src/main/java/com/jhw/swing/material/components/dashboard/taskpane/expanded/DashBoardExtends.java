@@ -14,6 +14,7 @@ public class DashBoardExtends extends JPanel {
     public DashBoardExtends() {
         initComponents();
         dashboardCore.setFormateer(new CollapseMenuFormateerImpl());
+        dashboardCore.removeBackButton();
     }
 
     private void initComponents() {

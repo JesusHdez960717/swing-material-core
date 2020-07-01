@@ -85,16 +85,16 @@ public class DownPanel extends _PanelGradient {
         tec.add(btn_Tec);
     }
 
-    private class LicenceButton extends _MaterialButton implements MaterialComponent {
+    private class LicenceButton extends _MaterialButtonFlat implements MaterialComponent {
 
         public LicenceButton() {
-            this(MaterialColors.ORANGEA_200);
+            this(MaterialColors.AMBERA_400);
         }
 
         public LicenceButton(Color back) {
             this.setBackground(back);
             this.setBorderColor(Utils.darken(Utils.darken(back)));
-            this.setBorderThickness(2);
+            this.setBorderThickness(5);
         }
 
     }

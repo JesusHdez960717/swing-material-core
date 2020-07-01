@@ -39,8 +39,6 @@ public class UpPanel extends _PanelGradient {
 
     private void initComponents() {
         this.setLayout(new BorderLayout());
-        this.setBackground(MaterialColors.GREY_200);
-        this.setBorder(new LineBorder(MaterialColors.GREY_500, 1));
 
         this.components = new _PanelTransparent();
         this.components.setLayout(new FlowLayout(FlowLayout.CENTER));
