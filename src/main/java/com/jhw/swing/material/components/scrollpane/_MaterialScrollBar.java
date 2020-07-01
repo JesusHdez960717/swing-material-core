@@ -67,8 +67,8 @@ public class _MaterialScrollBar extends JScrollBar {
         super(orientation);
         this.setBackgroundThumb(background);
         this.setForegroundThumb(foreground);
-        
-        setPreferredSize(new Dimension(width, 10));
+
+        setPreferredSize(new Dimension(width, width));
 
         setUI(new BasicScrollBarUI() {
             @Override
@@ -112,7 +112,7 @@ public class _MaterialScrollBar extends JScrollBar {
                             == Adjustable.VERTICAL;
                     g2.setColor(getForegroundThumb());
                     g2.fillRoundRect(thumbBounds.x, thumbBounds.y,
-                            width, thumbBounds.height,
+                            isVertical ? width : thumbBounds.width, isVertical ? thumbBounds.height : width,
                             isVertical ? thumbBounds.width : thumbBounds.height,
                             isVertical ? thumbBounds.width : thumbBounds.height);
                 }

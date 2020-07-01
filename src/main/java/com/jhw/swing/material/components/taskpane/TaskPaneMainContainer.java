@@ -2,6 +2,7 @@ package com.jhw.swing.material.components.taskpane;
 
 import com.jhw.swing.material.components.scrollpane.SmoothScrollMouseWheelListener;
 import com.jhw.swing.material.components.scrollpane._MaterialScrollBar;
+import com.jhw.swing.material.components.scrollpane._MaterialScrollPaneCore;
 import com.jhw.swing.material.standars.MaterialColors;
 import com.jhw.swing.ui.componentsui.panel.MaterialPanelUI;
 import java.awt.Adjustable;
@@ -22,31 +23,37 @@ import org.jdesktop.swingx.VerticalLayout;
 public class TaskPaneMainContainer extends JXCollapsiblePane {
 
     private final JXTaskPaneContainer taskPane = new JXTaskPaneContainer();
-
-    private final _MaterialScrollBar scrollBar = new _MaterialScrollBar(Adjustable.VERTICAL);
+    private final _MaterialScrollPaneCore scrollPane= new _MaterialScrollPaneCore();
 
     public TaskPaneMainContainer() {
-        taskPane.setUI(new MaterialPanelUI());//sobreescribir el ui para que coja los colores
+        initComponents();
+    }
+
+    private void initComponents() {
+        //sobreescribir el ui para que coja los colores
+        taskPane.setUI(new MaterialPanelUI());
+        
+        //direction del collapse
         setDirection(JXCollapsiblePane.Direction.LEFT);
+        
+        //layout
         this.setLayout(new BorderLayout());
+        
+        //add el scroll
+        this.add(scrollPane, BorderLayout.CENTER);
 
-        JScrollPane pane = new JScrollPane();
-        pane.setVerticalScrollBar(scrollBar);//primero el scroll y despues el listener
-        pane.addMouseWheelListener(new SmoothScrollMouseWheelListener(pane));
-        pane.setBorder(null);
+        //add el task pane al scroll
+        scrollPane.setLayout(new ScrollPaneLayout());
+        scrollPane.setViewportView(taskPane);
 
-        this.add(pane, BorderLayout.CENTER);
-
-        pane.setLayout(new ScrollPaneLayout());
-        pane.setViewportView(taskPane);
-
+        //retoques a la visual, quitados gap y border
         setComponentsGap(0);
         setInternalBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
     }
 
     public void setTaskPaneBackground(Color color) {
         this.taskPane.setBackground(color);
-        this.scrollBar.setBackgroundThumb(color);
+        this.scrollPane.getMaterialVerticalScrollBar().setBackgroundThumb(color);
     }
 
     public void setComponentsGap(int gap) {

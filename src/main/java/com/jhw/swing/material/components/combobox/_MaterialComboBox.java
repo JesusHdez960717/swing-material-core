@@ -1,6 +1,7 @@
 package com.jhw.swing.material.components.combobox;
 
 import com.jhw.swing.material.components.scrollpane._MaterialScrollBar;
+import com.jhw.swing.material.components.scrollpane._MaterialScrollPaneCore;
 import com.jhw.swing.material.effects.Line;
 import static com.jhw.swing.material.components.textfield._MaterialTextField.HINT_OPACITY_MASK;
 import static com.jhw.swing.material.components.textfield._MaterialTextField.LINE_OPACITY_MASK;
@@ -422,9 +423,8 @@ public class _MaterialComboBox<T> extends JComboBox<T> implements MaterialCompon
 
         @Override
         protected JScrollPane createScroller() {
-            JScrollPane scroller = super.createScroller();
-            scroller.setVerticalScrollBar(new _MaterialScrollBar(comboBox.getBackground(), Adjustable.VERTICAL));
-            scroller.setBorder(new MatteBorder(16, 0, 16, 0, MaterialColors.WHITE));
+            JScrollPane scroller = new _MaterialScrollPaneCore();
+            scroller.setViewportView(super.getList());
             return scroller;
         }
 
