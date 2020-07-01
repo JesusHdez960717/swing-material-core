@@ -1,5 +1,6 @@
 package com.jhw.swing.material.components.taskpane;
 
+import com.jhw.swing.material.components.dashboard.taskpane.DashBoardTaskPane;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.Action;
@@ -12,10 +13,10 @@ import org.jdesktop.swingx.JXCollapsiblePane;
  */
 public class SingleCollapseMenu extends CollapseMenu {
 
-    private Action action;
+    private final Action action;
 
-    public SingleCollapseMenu(Action action) {
-        super((ImageIcon) action.getValue(Action.SMALL_ICON), action.getValue(Action.NAME).toString());
+    public SingleCollapseMenu(Action action, DashBoardTaskPane parent) {
+        super((ImageIcon) action.getValue(Action.SMALL_ICON), action.getValue(Action.NAME).toString(), parent);
         this.action = action;
     }
 

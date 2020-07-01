@@ -8,7 +8,7 @@ package com.jhw.swing.material.components.dashboard.taskpane;
 import com.jhw.swing.material.components.dashboard.taskpane.expanded.CollapseMenuFormateer;
 import com.jhw.swing.material.components.taskpane.CollapseMenu;
 import com.jhw.swing.material.components.taskpane.TaskPaneMainContainer;
-import com.jhw.swing.material.components.button._MaterialIconButtonTranspRect;
+import com.jhw.swing.material.components.button._MaterialButtonIconTranspRect;
 import com.jhw.swing.material.standars.MaterialIcons;
 import com.jhw.swing.personalization.PersonalizationMaterial;
 import java.awt.BorderLayout;
@@ -61,7 +61,7 @@ public class DashBoardTaskPane extends JPanel {
         jPanelBackButton = new javax.swing.JPanel();
         jButtonBack = new javax.swing.JButton();
         jPanelShinkButton = new javax.swing.JPanel();
-        jButtonShrink = new _MaterialIconButtonTranspRect(MaterialIcons.MENU.deriveIcon(36f));
+        jButtonShrink = new _MaterialButtonIconTranspRect(MaterialIcons.MENU.deriveIcon(36f));
         jPanelMenu = new javax.swing.JPanel();
 
         setBackground(new java.awt.Color(255, 255, 255));
@@ -159,10 +159,9 @@ public class DashBoardTaskPane extends JPanel {
 
     public void addCollapseMenu(CollapseMenu menu) {
         if (formateer != null) {
-            formateer.format(menu);
+            formateer.formatMenu(menu);
         }
-        menu.setDashBoardTaskPane(this);
-        menu.select(false);
+        menu.selected(false);
         menus.add(menu);
         this.task.addItem(menu);
         setMinimunShrink(menu.getComponentsHight());

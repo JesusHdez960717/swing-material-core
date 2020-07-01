@@ -174,6 +174,7 @@ public class CollapseMenu extends JPanel {
         if (parent.getFormateer() != null) {
             parent.getFormateer().formatButton(button);
         }
+        button.deselect();
 
         buttons.add(button);
         jPanelSubActions.add(button);

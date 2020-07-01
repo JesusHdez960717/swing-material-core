@@ -1,7 +1,7 @@
 package com.jhw.swing.material.components.dashboard.taskpane.expanded;
 
 import com.jhw.swing.material.components.taskpane.CollapseMenu;
-import java.awt.Color;
+import com.jhw.swing.material.components.taskpane.TaskButton;
 
 /**
  *
@@ -9,5 +9,7 @@ import java.awt.Color;
  */
 public interface CollapseMenuFormateer {
 
-    public void format(CollapseMenu menu);
+    public void formatMenu(CollapseMenu menu);
+
+    public void formatButton(TaskButton button);
 }

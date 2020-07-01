@@ -1,7 +1,8 @@
 package com.jhw.swing.material.components.dashboard.taskpane.expanded;
 
 import com.jhw.swing.material.components.button._MaterialButton;
-import com.jhw.swing.material.components.button._MaterialIconButtonTranspRect;
+import com.jhw.swing.material.components.button._MaterialButtonFlat;
+import com.jhw.swing.material.components.button._MaterialButtonIconTranspRect;
 import com.jhw.swing.material.components.container.layout.HorizontalLayoutContainer;
 import com.jhw.swing.material.components.container.panel._PanelGradient;
 import com.jhw.swing.material.components.container.panel._PanelTransparent;
@@ -94,7 +95,7 @@ public class DownPanel extends _PanelGradient {
     }
 
     public void addTecnology(Action action) {
-        _MaterialIconButtonTranspRect btn_Tec = new _MaterialIconButtonTranspRect();
+        _MaterialButtonIconTranspRect btn_Tec = new _MaterialButtonIconTranspRect();
         btn_Tec.setAction(action);
         String name = ((String) action.getValue(Action.NAME)).trim();
         if (!name.isEmpty()) {
@@ -104,15 +105,13 @@ public class DownPanel extends _PanelGradient {
         tec.add(btn_Tec);
     }
 
-    private class LicenceButton extends JButton implements MaterialComponent {
+    private class LicenceButton extends _MaterialButtonFlat implements MaterialComponent {
 
         public LicenceButton() {
             this(MaterialColors.ORANGEA_200);
         }
 
         public LicenceButton(Color back) {
-            this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-            this.setFocusPainted(false);
             this.setBackground(back);
             this.setBorder(new LineBorder(Utils.darken(Utils.darken(back)), 2));
         }

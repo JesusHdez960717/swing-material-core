@@ -16,6 +16,8 @@ import javax.swing.Action;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
+import com.jhw.swing.material.components.button._MaterialButton;
+import com.jhw.swing.material.standars.MaterialColors;
 
 /**
  *
@@ -24,25 +26,15 @@ import javax.swing.SwingConstants;
 public class TaskButton extends JButton implements MaterialComponent {
 
     private boolean selected = false;
-
-    private final Color secundary = PersonalizationMaterial.getInstance().getColorPrincipal();
+    private Color selectedColor  = MaterialColors.BLUE_200;
+    private Color deselectedColor  = MaterialColors.BLUE_800;
 
     public TaskButton(Action a, CollapseMenu parent) {
         setAction(a);
-        
-        setPreferredSize(parent.getjPanelFixed().getPreferredSize());
-        //setIcon((Icon) a.getValue(Action.SMALL_ICON));
-        //setText(a.getValue(Action.NAME).toString());
-        setFont(getFont().deriveFont(24f));
 
-        this.setBackground(secundary);
+        setPreferredSize(parent.getjPanelFixed().getPreferredSize());
 
         setHorizontalAlignment(SwingConstants.LEADING);
-        setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-
-        //setBorderPainted(false);
-        //setContentAreaFilled(false);
-        setFocusPainted(false);
 
         this.addActionListener(new ActionListener() {
             @Override
@@ -51,6 +43,23 @@ public class TaskButton extends JButton implements MaterialComponent {
                 select();
             }
         });
+        
+    }
+
+    public Color getSelectedColor() {
+        return selectedColor;
+    }
+
+    public void setSelectedColor(Color selectedColor) {
+        this.selectedColor = selectedColor;
+    }
+
+    public Color getDeselectedColor() {
+        return deselectedColor;
+    }
+
+    public void setDeselectedColor(Color deselectedColor) {
+        this.deselectedColor = deselectedColor;
     }
 
     @Override
@@ -66,13 +75,13 @@ public class TaskButton extends JButton implements MaterialComponent {
 
     public void select() {
         selected = true;
-        setBackground(Utils.darken(secundary));
+        setBackground(selectedColor);
         repaint();
     }
 
     public void deselect() {
         selected = false;
-        setBackground(secundary);
+        setBackground(deselectedColor);
         repaint();
     }
 }

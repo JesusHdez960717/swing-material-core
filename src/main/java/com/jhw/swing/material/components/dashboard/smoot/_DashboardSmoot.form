@@ -40,7 +40,7 @@
             <Property name="rows" type="int" value="0"/>
           </Layout>
         </Container>
-        <Component class="com.jhw.swing.material.components.button._MaterialIconButtonTranspRect" name="buttonCollapse">
+        <Component class="com.jhw.swing.material.components.button._MaterialButtonIconTranspRect" name="buttonCollapse">
           <Properties>
             <Property name="text" type="java.lang.String" value="_MaterialIconButtonTranspRect1"/>
             <Property name="horizontalAlignment" type="int" value="4"/>
