@@ -1,7 +1,7 @@
 package com.jhw.swing.models.detail;
 
 import com.jhw.swing.notification.toast.TOAST;
-import com.jhw.swing.material.components.button._MaterialIconButtonTranspRect;
+import com.jhw.swing.material.components.button._MaterialButtonIconTranspRect;
 import com.jhw.swing.material.components.container.panel._MaterialPanel;
 import com.jhw.swing.material.components.table.Column;
 import com.jhw.swing.material.components.table._MaterialPanelActions;
@@ -480,7 +480,7 @@ public abstract class _MaterialPanelDetail<T> extends _MaterialPanel implements 
         this.labelHeader.setEnabled(enabled);
     }
 
-    public void addActionExtra(_MaterialIconButtonTranspRect c) {
+    public void addActionExtra(_MaterialButtonIconTranspRect c) {
         builder.extra(c);
         setActionColumnVisivility(true);
     }

@@ -1,6 +1,6 @@
 package com.jhw.swing.material.components.searchfield;
 
-import com.jhw.swing.material.components.button._MaterialIconButtonTranspRect;
+import com.jhw.swing.material.components.button._MaterialButtonIconTranspRect;
 import com.jhw.swing.material.components.container.panel._MaterialPanel;
 import com.jhw.swing.material.components.container.panel._PanelTransparent;
 import java.awt.event.ActionListener;
@@ -40,7 +40,7 @@ public class _MaterialSearchField extends _PanelTransparent {
     private void initComponents() {
 
         panelBackground = new com.jhw.swing.material.components.container.panel._MaterialPanel();
-        buttonSearch = new com.jhw.swing.material.components.button._MaterialIconButtonTranspRect();
+        buttonSearch = new com.jhw.swing.material.components.button._MaterialButtonIconTranspRect();
         searchField = new org.jdesktop.swingx.JXTextField();
 
         panelBackground.setBackground(new java.awt.Color(255, 255, 255));
@@ -84,7 +84,7 @@ public class _MaterialSearchField extends _PanelTransparent {
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.jhw.swing.material.components.button._MaterialIconButtonTranspRect buttonSearch;
+    private com.jhw.swing.material.components.button._MaterialButtonIconTranspRect buttonSearch;
     private com.jhw.swing.material.components.container.panel._MaterialPanel panelBackground;
     private org.jdesktop.swingx.JXTextField searchField;
     // End of variables declaration//GEN-END:variables
@@ -169,7 +169,7 @@ public class _MaterialSearchField extends _PanelTransparent {
         return searchAction;
     }
 
-    public _MaterialIconButtonTranspRect getButtonSearch() {
+    public _MaterialButtonIconTranspRect getButtonSearch() {
         return buttonSearch;
     }
 

@@ -5,8 +5,8 @@
  */
 package com.jhw.swing.material.components.taskpane;
 
-import com.jhw.swing.material.components.button._MaterialButtonSimple;
-import com.jhw.swing.material.components.button._MaterialIconButtonTranspRect;
+import com.jhw.swing.material.components.button._MaterialButtonTransparent;
+import com.jhw.swing.material.components.button._MaterialButtonIconTranspRect;
 import com.jhw.swing.material.components.container.panel._MaterialPanel;
 import com.jhw.swing.material.components.dashboard.taskpane.DashBoardTaskPane;
 import com.jhw.swing.material.standars.MaterialColors;
@@ -57,11 +57,13 @@ public class CollapseMenu extends JPanel {
     private Color selected = MaterialColors.WHITE;
     private Color deselected = MaterialColors.RED_900;
 
-    public CollapseMenu(Icon iconoCategoria, String nombreCategoria) {
+    public CollapseMenu(Icon iconoCategoria, String nombreCategoria, DashBoardTaskPane parent) {
         initComponents();
         this.iconoCategoria = iconoCategoria;
         this.nombreCategoria = nombreCategoria;
         configurateUI();
+        this.parent = parent;
+        this.parent.addCollapseMenu(this);
     }
 
     /**
@@ -82,8 +84,8 @@ public class CollapseMenu extends JPanel {
         jPopupMenu1 = new javax.swing.JPopupMenu();
         jPanelFixed = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jButtonIcono = new _MaterialIconButtonTranspRect();
-        jButtonNombre = new _MaterialButtonSimple("");
+        jButtonIcono = new _MaterialButtonIconTranspRect();
+        jButtonNombre = new _MaterialButtonTransparent("");
         jPanelCollapsible = new org.jdesktop.swingx.JXCollapsiblePane();
 
         jPanelSubActions.setBackground(new java.awt.Color(204, 0, 204));
@@ -158,7 +160,7 @@ public class CollapseMenu extends JPanel {
         this.deselected = deselected;
     }
 
-    public void select(boolean select) {
+    public void selected(boolean select) {
         if (select) {
             setMainButtonBackground(selected);
         } else {
@@ -169,6 +171,10 @@ public class CollapseMenu extends JPanel {
     public void addMenuItem(Action action) {
         //Add button
         TaskButton button = new TaskButton(action, this);
+        if (parent.getFormateer() != null) {
+            parent.getFormateer().formatButton(button);
+        }
+
         buttons.add(button);
         jPanelSubActions.add(button);
 
@@ -183,10 +189,6 @@ public class CollapseMenu extends JPanel {
                 childSelected();
             }
         });
-    }
-
-    public void setDashBoardTaskPane(DashBoardTaskPane dash) {
-        this.parent = dash;
     }
 
     public void childSelected() {

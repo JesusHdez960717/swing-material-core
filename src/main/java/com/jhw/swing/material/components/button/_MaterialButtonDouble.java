@@ -26,8 +26,8 @@ public class _MaterialButtonDouble extends _PanelTransparent {
     private void initComponents() {
 
         panelBackground = new com.jhw.swing.material.components.container.panel._MaterialPanel();
-        buttonLeft = new com.jhw.swing.material.components.button._MaterialButtonSimpleIcon();
-        buttonRight = new com.jhw.swing.material.components.button._MaterialButtonSimpleIcon();
+        buttonLeft = new com.jhw.swing.material.components.button._MaterialButton();
+        buttonRight = new com.jhw.swing.material.components.button._MaterialButton();
 
         panelBackground.setBackground(new java.awt.Color(204, 204, 204));
         panelBackground.setBorderRadius(2);
@@ -75,26 +75,30 @@ public class _MaterialButtonDouble extends _PanelTransparent {
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.jhw.swing.material.components.button._MaterialButtonSimpleIcon buttonLeft;
-    private com.jhw.swing.material.components.button._MaterialButtonSimpleIcon buttonRight;
+    private com.jhw.swing.material.components.button._MaterialButton buttonLeft;
+    private com.jhw.swing.material.components.button._MaterialButton buttonRight;
     private com.jhw.swing.material.components.container.panel._MaterialPanel panelBackground;
     // End of variables declaration//GEN-END:variables
 
     private void personalize() {
+        buttonLeft.setType(_MaterialButton.Type.FLAT);
+        buttonLeft.setText("");
         buttonLeft.setIcon(MaterialIcons.KEYBOARD_ARROW_LEFT);
         buttonLeft.getFadeinto().setAccent(MaterialColors.GREY_200);
         buttonLeft.setRippleColor(MaterialColors.GREY_300);
 
+        buttonRight.setType(_MaterialButton.Type.FLAT);
+        buttonRight.setText("");
         buttonRight.setIcon(MaterialIcons.KEYBOARD_ARROW_RIGHT);
         buttonRight.getFadeinto().setAccent(MaterialColors.GREY_200);
         buttonRight.setRippleColor(MaterialColors.GREY_300);
     }
 
-    public _MaterialButtonSimpleIcon getButtonLeft() {
+    public _MaterialButton getButtonLeft() {
         return buttonLeft;
     }
 
-    public _MaterialButtonSimpleIcon getButtonRight() {
+    public _MaterialButton getButtonRight() {
         return buttonRight;
     }
 

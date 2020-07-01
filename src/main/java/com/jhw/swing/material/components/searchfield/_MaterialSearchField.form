@@ -57,7 +57,7 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="com.jhw.swing.material.components.button._MaterialIconButtonTranspRect" name="buttonSearch">
+        <Component class="com.jhw.swing.material.components.button._MaterialButtonIconTranspRect" name="buttonSearch">
           <Properties>
             <Property name="text" type="java.lang.String" value="_MaterialIconButtonTranspRect1"/>
           </Properties>

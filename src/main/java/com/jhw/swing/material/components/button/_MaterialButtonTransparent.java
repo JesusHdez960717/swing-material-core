@@ -20,18 +20,18 @@ import com.jhw.swing.material.standars.MaterialIcons;
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-public class _MaterialButtonSimple extends JButton implements MaterialComponent {
+public class _MaterialButtonTransparent extends JButton implements MaterialComponent {
 
     private final int DISTANCE_ICON_TEXT = 3;
 
-    public _MaterialButtonSimple(String text) {
+    public _MaterialButtonTransparent(String text) {
         this();
         this.setIcon(null);
         this.setText(text);
         this.setForeground(MaterialColors.BLACK);
     }
 
-    public _MaterialButtonSimple() {
+    public _MaterialButtonTransparent() {
         this.setForeground(PersonalizationMaterial.getInstance().getColorButtonAdd());
         this.setFont(MaterialFontRoboto.MEDIUM.deriveFont(16f));
         this.setIcon(MaterialIcons.ADD_CIRCLE_OUTLINE);

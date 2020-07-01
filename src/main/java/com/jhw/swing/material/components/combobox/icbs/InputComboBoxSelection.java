@@ -1,26 +1,18 @@
 package com.jhw.swing.material.components.combobox.icbs;
 
 import com.clean.core.exceptions.ValidationException;
-import com.jhw.swing.material.components.button._MaterialButtonSimpleIcon;
-import com.jhw.swing.material.components.button._MaterialIconButtonTranspRect;
+import com.jhw.swing.material.components.button._MaterialButtonIconTranspRect;
 import com.jhw.swing.material.components.combobox.combobox_editable._MaterialComboBoxFiltrable;
-import com.jhw.swing.material.components.container.layout.HorizontalLayoutComponent;
-import com.jhw.swing.material.components.container.layout.HorizontalLayoutContainer;
 import com.jhw.swing.material.components.container.panel._PanelComponent;
-import com.jhw.swing.material.components.container.panel._PanelTransparent;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import javax.swing.JComboBox;
 import com.jhw.swing.personalization.PersonalizationMaterial;
 import com.jhw.utils.interfaces.Update;
 import com.jhw.swing.util.validations.Validation;
 import com.jhw.swing.util.validations.icbs.ICBSValidation;
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
 import java.util.List;
-import javax.swing.BoxLayout;
 
 /**
  *
@@ -52,7 +44,7 @@ public abstract class InputComboBoxSelection<T> extends _PanelComponent implemen
 
         int h = (int) this.comboBox.getPreferredSize().getHeight();
 
-        buttonNuevo = new _MaterialIconButtonTranspRect();
+        buttonNuevo = new _MaterialButtonIconTranspRect();
         buttonNuevo.setIcon(
                 PersonalizationMaterial.getInstance().getIconButtonAdd()
                         .deriveIcon(PersonalizationMaterial.getInstance().getColorButtonAdd())
@@ -64,7 +56,7 @@ public abstract class InputComboBoxSelection<T> extends _PanelComponent implemen
     }
 
     // Variables declaration - do not modify
-    private _MaterialIconButtonTranspRect buttonNuevo;
+    private _MaterialButtonIconTranspRect buttonNuevo;
     private _MaterialComboBoxFiltrable<T> comboBox;
     // End of variables declaration
 
@@ -136,7 +128,7 @@ public abstract class InputComboBoxSelection<T> extends _PanelComponent implemen
         buttonNuevo.setVisible(visible);
     }
 
-    public _MaterialIconButtonTranspRect getButtonNuevo() {
+    public _MaterialButtonIconTranspRect getButtonNuevo() {
         return buttonNuevo;
     }
 

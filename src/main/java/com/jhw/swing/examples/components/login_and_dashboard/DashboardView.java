@@ -1,7 +1,7 @@
 package com.jhw.swing.examples.components.login_and_dashboard;
 
 import com.jhw.swing.notification.fade.NOTIF;
-import com.jhw.swing.material.components.button._MaterialIconButtonTranspRect;
+import com.jhw.swing.material.components.button._MaterialButtonIconTranspRect;
 import com.jhw.swing.material.components.dashboard.smoot._DashboardSmoot;
 import com.jhw.swing.material.components.labels._MaterialLabel;
 import java.awt.Color;
@@ -49,7 +49,7 @@ public class DashboardView extends _DashboardSmoot {
 
         Dimension dim = new Dimension((int) this.getPanelDownCornerRight().getPreferredSize().getHeight() + 6, (int) this.getPanelDownCornerRight().getPreferredSize().getHeight());
 
-        _MaterialIconButtonTranspRect tecnJava = new _MaterialIconButtonTranspRect();
+        _MaterialButtonIconTranspRect tecnJava = new _MaterialButtonIconTranspRect();
         tecnJava.setToolTipText("JAVA 1.8.60(Lenguaje de programacion)");
         tecnJava.setIcon(MaterialIcons.TEC_JAVA);
         tecnJava.setMinimumSize(dim);
@@ -59,7 +59,7 @@ public class DashboardView extends _DashboardSmoot {
         });
         this.addDownElementRightCorner(tecnJava);
 
-        _MaterialIconButtonTranspRect tecnNB = new _MaterialIconButtonTranspRect();
+        _MaterialButtonIconTranspRect tecnNB = new _MaterialButtonIconTranspRect();
         tecnNB.setToolTipText("NetBeans 8.0(IDE)");
         tecnNB.setIcon(MaterialIcons.TEC_NB);
         tecnNB.setMinimumSize(dim);
@@ -69,7 +69,7 @@ public class DashboardView extends _DashboardSmoot {
         });
         this.addDownElementRightCorner(tecnNB);
 
-        _MaterialIconButtonTranspRect tecnMySql = new _MaterialIconButtonTranspRect();
+        _MaterialButtonIconTranspRect tecnMySql = new _MaterialButtonIconTranspRect();
         tecnMySql.setToolTipText("MySql 10.4.8 (BD)");
         tecnMySql.setIcon(MaterialIcons.TEC_MYSQL);
         tecnMySql.setMinimumSize(dim);
@@ -79,7 +79,7 @@ public class DashboardView extends _DashboardSmoot {
         });
         this.addDownElementRightCorner(tecnMySql);
 
-        _MaterialIconButtonTranspRect tecnXampp = new _MaterialIconButtonTranspRect();
+        _MaterialButtonIconTranspRect tecnXampp = new _MaterialButtonIconTranspRect();
         tecnXampp.setToolTipText("XAMPP 3.2.4 (Cliente Servicios)");
         tecnXampp.setIcon(MaterialIcons.TEC_XAMPP);
         tecnXampp.setMinimumSize(dim);
@@ -89,7 +89,7 @@ public class DashboardView extends _DashboardSmoot {
         });
         this.addDownElementRightCorner(tecnXampp);
 
-        _MaterialIconButtonTranspRect tecnGit = new _MaterialIconButtonTranspRect();
+        _MaterialButtonIconTranspRect tecnGit = new _MaterialButtonIconTranspRect();
         tecnGit.setToolTipText("Git 2.20.1 (Control de versiones)");
         tecnGit.setIcon(MaterialIcons.TEC_GIT);
         tecnGit.setMinimumSize(dim);
@@ -99,7 +99,7 @@ public class DashboardView extends _DashboardSmoot {
         });
         this.addDownElementRightCorner(tecnGit);
 
-        _MaterialIconButtonTranspRect tecnGitKraken = new _MaterialIconButtonTranspRect();
+        _MaterialButtonIconTranspRect tecnGitKraken = new _MaterialButtonIconTranspRect();
         tecnGitKraken.setToolTipText("GitKraken 6.4.0 (Cliente Git)");
         tecnGitKraken.setIcon(MaterialIcons.TEC_GITKRAKEN);
         tecnGitKraken.setMinimumSize(dim);
@@ -109,7 +109,7 @@ public class DashboardView extends _DashboardSmoot {
         });
         this.addDownElementRightCorner(tecnGitKraken);
 
-        _MaterialIconButtonTranspRect tecnGitHub = new _MaterialIconButtonTranspRect();
+        _MaterialButtonIconTranspRect tecnGitHub = new _MaterialButtonIconTranspRect();
         tecnGitHub.setToolTipText("GitHub (Servidor Git)");
         tecnGitHub.setIcon(MaterialIcons.TEC_GITHUB);
         tecnGitHub.setMinimumSize(dim);
@@ -119,7 +119,7 @@ public class DashboardView extends _DashboardSmoot {
         });
         this.addDownElementRightCorner(tecnGitHub);
 
-        _MaterialIconButtonTranspRect tecnFlaticon = new _MaterialIconButtonTranspRect();
+        _MaterialButtonIconTranspRect tecnFlaticon = new _MaterialButtonIconTranspRect();
         tecnFlaticon.setToolTipText("Flaticon (Iconos)");
         tecnFlaticon.setIcon(MaterialIcons.TEC_FLATICON);
         tecnFlaticon.setMinimumSize(dim);
@@ -129,7 +129,7 @@ public class DashboardView extends _DashboardSmoot {
         });
         this.addDownElementRightCorner(tecnFlaticon);
 
-        _MaterialIconButtonTranspRect tecnFreepick = new _MaterialIconButtonTranspRect();
+        _MaterialButtonIconTranspRect tecnFreepick = new _MaterialButtonIconTranspRect();
         tecnFreepick.setToolTipText("Freepick (Diseños)");
         tecnFreepick.setIcon(MaterialIcons.TEC_FREEPICK);
         tecnFreepick.setMinimumSize(dim);
@@ -139,7 +139,7 @@ public class DashboardView extends _DashboardSmoot {
         });
         this.addDownElementRightCorner(tecnFreepick);
 
-        _MaterialIconButtonTranspRect tecnAdobe = new _MaterialIconButtonTranspRect();
+        _MaterialButtonIconTranspRect tecnAdobe = new _MaterialButtonIconTranspRect();
         tecnAdobe.setToolTipText("Adobe (Ai y Ps para el diseño de imagenes)");
         tecnAdobe.setIcon(MaterialIcons.TEC_ADOBE);
         tecnAdobe.setMinimumSize(dim);
@@ -149,7 +149,7 @@ public class DashboardView extends _DashboardSmoot {
         });
         this.addDownElementRightCorner(tecnAdobe);
 
-        _MaterialIconButtonTranspRect tecnGoogle = new _MaterialIconButtonTranspRect();
+        _MaterialButtonIconTranspRect tecnGoogle = new _MaterialButtonIconTranspRect();
         tecnGoogle.setToolTipText("Google (Material Design)");
         tecnGoogle.setIcon(MaterialIcons.TEC_GOOGLE);
         tecnGoogle.setMinimumSize(dim);
@@ -159,7 +159,7 @@ public class DashboardView extends _DashboardSmoot {
         });
         this.addDownElementRightCorner(tecnGoogle);
 
-        _MaterialIconButtonTranspRect tecnJSON = new _MaterialIconButtonTranspRect();
+        _MaterialButtonIconTranspRect tecnJSON = new _MaterialButtonIconTranspRect();
         tecnJSON.setToolTipText("JSON (Ficheros)");
         tecnJSON.setIcon(MaterialIcons.TEC_JSON);
         tecnJSON.setMinimumSize(dim);
@@ -169,7 +169,7 @@ public class DashboardView extends _DashboardSmoot {
         });
         this.addDownElementRightCorner(tecnJSON);
 
-        _MaterialIconButtonTranspRect tecnWhatsapp = new _MaterialIconButtonTranspRect();
+        _MaterialButtonIconTranspRect tecnWhatsapp = new _MaterialButtonIconTranspRect();
         tecnWhatsapp.setToolTipText("WhatsApp (Contacto: +53 5 4268660)");
         tecnWhatsapp.setIcon(MaterialIcons.TEC_WHATSAPP);
         tecnWhatsapp.setMinimumSize(dim);
@@ -197,7 +197,7 @@ public class DashboardView extends _DashboardSmoot {
 
     private void addUpRigthCorner() {
         Color fore = Utils.isDark(this.getPanelUp().getSecundaryColor()) ? MaterialColors.WHITE : MaterialColors.BLACK;
-        _MaterialIconButtonTranspRect calc = new _MaterialIconButtonTranspRect();
+        _MaterialButtonIconTranspRect calc = new _MaterialButtonIconTranspRect();
         calc.setIcon(MaterialIcons.ONDEMAND_VIDEO.deriveIcon(fore));
         calc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -210,7 +210,7 @@ public class DashboardView extends _DashboardSmoot {
         });
         this.addUpElementRightCorner(calc);
 
-        _MaterialIconButtonTranspRect bug = new _MaterialIconButtonTranspRect();
+        _MaterialButtonIconTranspRect bug = new _MaterialButtonIconTranspRect();
         bug.setIcon(MaterialIcons.CLOUD_CIRCLE.deriveIcon(fore));
         bug.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

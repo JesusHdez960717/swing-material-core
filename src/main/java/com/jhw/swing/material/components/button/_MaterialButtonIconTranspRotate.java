@@ -15,7 +15,7 @@ import com.jhw.swing.util.SafePropertySetter;
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-public class _MaterialButtonIconTranspRotate extends _MaterialIconButtonTranspRect {
+public class _MaterialButtonIconTranspRotate extends _MaterialButtonIconTranspRect {
 
     private final int DURATION = 250;
     private Icon newIcon;

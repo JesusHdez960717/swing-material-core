@@ -1,7 +1,7 @@
 package com.jhw.swing.notification.fade;
 
 import com.jhw.swing.material.components.textarea._ContentArea;
-import com.jhw.swing.material.components.button._MaterialIconButtonTranspRect;
+import com.jhw.swing.material.components.button._MaterialButtonIconTranspRect;
 import com.jhw.swing.material.components.container.panel._MaterialPanel;
 import com.jhw.swing.material.components.labels._MaterialLabel;
 import java.awt.Color;
@@ -53,7 +53,7 @@ public class NotificationPanel extends _MaterialPanel {
     private void initComponents() {
 
         labelIcon = new com.jhw.swing.material.components.labels._MaterialLabel();
-        buttonClose = new com.jhw.swing.material.components.button._MaterialIconButtonTranspRect();
+        buttonClose = new com.jhw.swing.material.components.button._MaterialButtonIconTranspRect();
         contentArea = new com.jhw.swing.material.components.textarea._ContentArea();
 
         setBorderRadius(3);
@@ -95,7 +95,7 @@ public class NotificationPanel extends _MaterialPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.jhw.swing.material.components.button._MaterialIconButtonTranspRect buttonClose;
+    private com.jhw.swing.material.components.button._MaterialButtonIconTranspRect buttonClose;
     private com.jhw.swing.material.components.textarea._ContentArea contentArea;
     private com.jhw.swing.material.components.labels._MaterialLabel labelIcon;
     // End of variables declaration//GEN-END:variables
@@ -108,19 +108,19 @@ public class NotificationPanel extends _MaterialPanel {
         this.labelIcon = _MaterialLabel1;
     }
 
-    public _MaterialIconButtonTranspRect getMaterialIconButtonTranspRect1() {
+    public _MaterialButtonIconTranspRect getMaterialIconButtonTranspRect1() {
         return buttonClose;
     }
 
-    public void setMaterialIconButtonTranspRect1(_MaterialIconButtonTranspRect _MaterialIconButtonTranspRect1) {
+    public void setMaterialIconButtonTranspRect1(_MaterialButtonIconTranspRect _MaterialIconButtonTranspRect1) {
         this.buttonClose = _MaterialIconButtonTranspRect1;
     }
 
-    public _MaterialIconButtonTranspRect getButtonClose() {
+    public _MaterialButtonIconTranspRect getButtonClose() {
         return buttonClose;
     }
 
-    public void setButtonClose(_MaterialIconButtonTranspRect buttonClose) {
+    public void setButtonClose(_MaterialButtonIconTranspRect buttonClose) {
         this.buttonClose = buttonClose;
     }
 

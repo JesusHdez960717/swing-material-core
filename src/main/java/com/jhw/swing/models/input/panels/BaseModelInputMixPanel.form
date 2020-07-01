@@ -104,7 +104,7 @@
                 </Property>
               </Properties>
             </Component>
-            <Component class="com.jhw.swing.material.components.button._MaterialIconButtonTranspRect" name="buttonDelete">
+            <Component class="com.jhw.swing.material.components.button._MaterialButtonIconTranspRect" name="buttonDelete">
               <Properties>
                 <Property name="text" type="java.lang.String" value="_MaterialIconButtonTranspRect1"/>
               </Properties>

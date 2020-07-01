@@ -3,7 +3,7 @@ package com.jhw.swing.examples.model;
 import com.jhw.swing.models.detail._MaterialPanelDetailMini;
 import com.jhw.swing.models.input.dialogs.DialogModelInput;
 import com.jhw.swing.notification.toast.TOAST;
-import com.jhw.swing.material.components.button._MaterialIconButtonTranspRect;
+import com.jhw.swing.material.components.button._MaterialButtonIconTranspRect;
 import com.jhw.swing.material.components.table.Column;
 import com.jhw.swing.material.components.table.editors_renders.money.MoneyCellRender;
 import com.jhw.swing.material.components.table.editors_renders.money.MoneyTableComponent;
@@ -77,7 +77,7 @@ public class CargoPanel extends _MaterialPanelDetailMini<CargoModel> {
     }
 
     private void addOptionsElements() {
-        _MaterialIconButtonTranspRect btn1 = new _MaterialIconButtonTranspRect();
+        _MaterialButtonIconTranspRect btn1 = new _MaterialButtonIconTranspRect();
         btn1.setIcon(MaterialIcons.ADD_CIRCLE);
         btn1.addActionListener(new ActionListener() {
             @Override
@@ -87,7 +87,7 @@ public class CargoPanel extends _MaterialPanelDetailMini<CargoModel> {
         });
         this.addOptionElement(btn1);
 
-        _MaterialIconButtonTranspRect btn2 = new _MaterialIconButtonTranspRect();
+        _MaterialButtonIconTranspRect btn2 = new _MaterialButtonIconTranspRect();
         btn2.setIcon(MaterialIcons.ADD_CIRCLE);
         btn2.addActionListener(new ActionListener() {
             @Override
@@ -97,7 +97,7 @@ public class CargoPanel extends _MaterialPanelDetailMini<CargoModel> {
         });
         this.addOptionElement(btn2);
 
-        _MaterialIconButtonTranspRect btn3 = new _MaterialIconButtonTranspRect();
+        _MaterialButtonIconTranspRect btn3 = new _MaterialButtonIconTranspRect();
         btn3.setIcon(MaterialIcons.ADD_CIRCLE);
         btn3.addActionListener(new ActionListener() {
             @Override

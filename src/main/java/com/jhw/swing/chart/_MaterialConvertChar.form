@@ -54,12 +54,12 @@
         </DimensionLayout>
       </Layout>
     </Container>
-    <Component class="com.jhw.swing.material.components.button._MaterialIconButtonTranspRect" name="buttonBarChart">
+    <Component class="com.jhw.swing.material.components.button._MaterialButtonIconTranspRect" name="buttonBarChart">
       <Properties>
         <Property name="text" type="java.lang.String" value="_MaterialIconButtonTranspRect1"/>
       </Properties>
     </Component>
-    <Component class="com.jhw.swing.material.components.button._MaterialIconButtonTranspRect" name="buttonLineChart">
+    <Component class="com.jhw.swing.material.components.button._MaterialButtonIconTranspRect" name="buttonLineChart">
       <Properties>
         <Property name="text" type="java.lang.String" value="_MaterialIconButtonTranspRect2"/>
       </Properties>

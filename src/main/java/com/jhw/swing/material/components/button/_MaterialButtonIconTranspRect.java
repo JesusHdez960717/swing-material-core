@@ -20,13 +20,13 @@ import com.jhw.swing.material.standars.MaterialIcons;
  * (Google design guidelines)</a>
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-public class _MaterialIconButtonTranspRect extends JButton implements MaterialComponent {
+public class _MaterialButtonIconTranspRect extends JButton implements MaterialComponent {
 
     private final RippleEffect ripple = RippleEffect.applyTo(this);
     private Color rippleColor = MaterialColors.WHITE;
     private boolean paintRipple = true;
 
-    public _MaterialIconButtonTranspRect(ImageIcon icon) {
+    public _MaterialButtonIconTranspRect(ImageIcon icon) {
         this();
         setIcon(icon);
     }
@@ -34,7 +34,7 @@ public class _MaterialIconButtonTranspRect extends JButton implements MaterialCo
     /**
      * Creates a new button.
      */
-    public _MaterialIconButtonTranspRect() {
+    public _MaterialButtonIconTranspRect() {
         this.setIcon(MaterialIcons.COMPUTER);
         this.setPreferredSize(new Dimension(2 * this.getIcon().getIconWidth(), 2 * this.getIcon().getIconHeight()));
         this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -130,8 +130,8 @@ public class _MaterialIconButtonTranspRect extends JButton implements MaterialCo
     }
 
     @Override
-    public _MaterialIconButtonTranspRect clone() {
-        _MaterialIconButtonTranspRect other = new _MaterialIconButtonTranspRect();
+    public _MaterialButtonIconTranspRect clone() {
+        _MaterialButtonIconTranspRect other = new _MaterialButtonIconTranspRect();
         for (ActionListener al : this.getActionListeners()) {
             other.addActionListener(al);
         }

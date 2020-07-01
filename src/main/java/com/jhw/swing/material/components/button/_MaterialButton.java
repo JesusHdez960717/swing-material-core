@@ -17,6 +17,7 @@ import com.jhw.swing.util.MaterialDrawingUtils;
 import com.jhw.swing.material.effects.ColorFadeInto;
 import com.jhw.swing.material.effects.ColorFadeInto.ColorChangeTo;
 import com.jhw.swing.util.icons.DerivableIcon;
+import javax.swing.border.EmptyBorder;
 
 /**
  * A Material Design button.
@@ -80,11 +81,14 @@ public class _MaterialButton extends JButton implements MaterialComponent {
         this.setUI(new BasicButtonUI() {
             @Override
             public boolean contains(JComponent c, int x, int y) {
+                if (type == Type.FLAT) {
+                    return super.contains(c, x, y);
+                }
                 return x > MaterialShadow.OFFSET_LEFT && y > MaterialShadow.OFFSET_TOP
                         && x < getWidth() - MaterialShadow.OFFSET_RIGHT && y < getHeight() - MaterialShadow.OFFSET_BOTTOM;
             }
         });
-
+        this.setBorder(new EmptyBorder(0, 0, 0, 0));
     }
 
     public void setElevation(ElevationEffect elevation) {
@@ -266,23 +270,28 @@ public class _MaterialButton extends JButton implements MaterialComponent {
     protected void paintComponent(Graphics g) {
         Graphics2D g2 = MaterialDrawingUtils.getAliasedGraphics(g);
 
+        int offset_lr = MaterialShadow.OFFSET_LEFT + MaterialShadow.OFFSET_RIGHT;
+        int offset_td = MaterialShadow.OFFSET_TOP + MaterialShadow.OFFSET_BOTTOM;
+        int offset_left = MaterialShadow.OFFSET_LEFT;
+        int offset_top = MaterialShadow.OFFSET_TOP;
+
         if (type != Type.FLAT && isEnabled()) {
             elevation.paint(g2);
         }
-        g2.translate(MaterialShadow.OFFSET_LEFT, MaterialShadow.OFFSET_TOP);
 
-        final int offset_lr = MaterialShadow.OFFSET_LEFT + MaterialShadow.OFFSET_RIGHT;
-        final int offset_td = MaterialShadow.OFFSET_TOP + MaterialShadow.OFFSET_BOTTOM;
+        if (type == Type.FLAT) {//si es flat quito correcciones de ofset
+            offset_lr = 0;
+            offset_td = 0;
+            offset_left = 0;
+            offset_top = 0;
+        }
+        g2.translate(offset_left, offset_top);
 
         if (isEnabled()) {
-            //fadeinto.update();
             g2.setColor(fadeinto.getColor());
             g2.fill(new RoundRectangle2D.Float(0, 0, getWidth() - offset_lr, getHeight() - offset_td, borderRadius * 2, borderRadius * 2));
 
             g2.setColor(new Color(rippleColor.getRed() / 255f, rippleColor.getBlue() / 255f, rippleColor.getBlue() / 255f, 0.12f));
-            if ((type == Type.FLAT && isMouseOver) || isFocusOwner()) {
-                g2.fill(new RoundRectangle2D.Float(0, 0, getWidth() - offset_lr, getHeight() - offset_td, borderRadius * 2, borderRadius * 2));
-            }
         } else {
             Color bg = getBackground();
             g2.setColor(new Color(bg.getRed() / 255f, bg.getGreen() / 255f, bg.getBlue() / 255f, 0.6f));
@@ -331,13 +340,7 @@ public class _MaterialButton extends JButton implements MaterialComponent {
         if (this.getIcon() != null) {
             this.getIcon().paintIcon(this, g2, xIcon, (getHeight() - offset_td - getIcon().getIconHeight()) / 2);
         }
-
-        g2.translate(-MaterialShadow.OFFSET_LEFT, -MaterialShadow.OFFSET_TOP);
-    }
-
-    @Override
-    protected void paintBorder(Graphics g) {
-        //intentionally left blank
+        g2.translate(-offset_left, -offset_top);
     }
 
     /**
