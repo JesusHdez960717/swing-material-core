@@ -34,6 +34,9 @@ public class _MaterialScrollBar extends JScrollBar {
     private boolean pressed = false;
     private boolean entered = false;
 
+    private Color background = MaterialColors.WHITE;
+    private Color foreground = MaterialColors.GREY_600;
+
     public _MaterialScrollBar(Color background, int orientation) {
         this(background, MaterialColors.GREY_600, orientation);
     }
@@ -42,8 +45,29 @@ public class _MaterialScrollBar extends JScrollBar {
         this(MaterialColors.WHITE, MaterialColors.GREY_600, orientation);
     }
 
+    public Color getBackgroundThumb() {
+        return background;
+    }
+
+    public void setBackgroundThumb(Color background) {
+        this.background = background;
+        repaint();
+    }
+
+    public Color getForegroundThumb() {
+        return foreground;
+    }
+
+    public void setForegroundThumb(Color foreground) {
+        this.foreground = foreground;
+        repaint();
+    }
+
     public _MaterialScrollBar(Color background, Color foreground, int orientation) {
         super(orientation);
+        this.setBackgroundThumb(background);
+        this.setForegroundThumb(foreground);
+        
         setPreferredSize(new Dimension(width, 10));
 
         setUI(new BasicScrollBarUI() {
@@ -56,7 +80,7 @@ public class _MaterialScrollBar extends JScrollBar {
 
             @Override
             protected void paintTrack(Graphics g, JComponent c, Rectangle trackBounds) {
-                g.setColor(background);
+                g.setColor(getBackgroundThumb());
                 g.fillRect(trackBounds.x, trackBounds.y, trackBounds.width, trackBounds.height);
             }
 
@@ -86,7 +110,7 @@ public class _MaterialScrollBar extends JScrollBar {
 
                     boolean isVertical = _MaterialScrollBar.this.getOrientation()
                             == Adjustable.VERTICAL;
-                    g2.setColor(foreground);
+                    g2.setColor(getForegroundThumb());
                     g2.fillRoundRect(thumbBounds.x, thumbBounds.y,
                             width, thumbBounds.height,
                             isVertical ? thumbBounds.width : thumbBounds.height,
@@ -175,7 +199,7 @@ public class _MaterialScrollBar extends JScrollBar {
 
     @Override
     public void paint(Graphics g) {
-        g.setColor(MaterialColors.WHITE);
+        g.setColor(MaterialColors.RED_800);
         g.fillRect(0, 0, getWidth(), getHeight());
         super.paint(g);
     }

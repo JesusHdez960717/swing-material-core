@@ -23,15 +23,18 @@ public class TaskPaneMainContainer extends JXCollapsiblePane {
 
     private JXTaskPaneContainer taskPane = new JXTaskPaneContainer();
 
+    private _MaterialScrollBar scrollBar = new _MaterialScrollBar(Adjustable.VERTICAL);
+
     public TaskPaneMainContainer() {
         taskPane.setUI(new MaterialPanelUI());//sobreescribir el ui para que coja los colores
         setDirection(JXCollapsiblePane.Direction.LEFT);
         this.setLayout(new BorderLayout());
 
         JScrollPane pane = new JScrollPane();
-        pane.setVerticalScrollBar(new _MaterialScrollBar(Adjustable.VERTICAL));//primero el scroll y despues el listener
+        pane.setVerticalScrollBar(scrollBar);//primero el scroll y despues el listener
         pane.addMouseWheelListener(new SmoothScrollMouseWheelListener(pane));
-        pane.setBorder(new MatteBorder(16, 0, 16, 0, MaterialColors.WHITE));
+        pane.setBorder(null);
+
         this.add(pane, BorderLayout.CENTER);
 
         pane.setLayout(new ScrollPaneLayout());
@@ -43,6 +46,7 @@ public class TaskPaneMainContainer extends JXCollapsiblePane {
 
     public void setTaskPaneBackground(Color color) {
         this.taskPane.setBackground(color);
+        this.scrollBar.setBackgroundThumb(color);
     }
 
     public void setComponentsGap(int gap) {
