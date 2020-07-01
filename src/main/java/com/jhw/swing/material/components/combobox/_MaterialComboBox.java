@@ -1,5 +1,6 @@
 package com.jhw.swing.material.components.combobox;
 
+import com.jhw.swing.material.components.scrollpane._MaterialScrollBar;
 import com.jhw.swing.material.effects.Line;
 import static com.jhw.swing.material.components.textfield._MaterialTextField.HINT_OPACITY_MASK;
 import static com.jhw.swing.material.components.textfield._MaterialTextField.LINE_OPACITY_MASK;
@@ -422,7 +423,7 @@ public class _MaterialComboBox<T> extends JComboBox<T> implements MaterialCompon
         @Override
         protected JScrollPane createScroller() {
             JScrollPane scroller = super.createScroller();
-            scroller.setVerticalScrollBar(new ScrollBar(comboBox, Adjustable.VERTICAL));
+            scroller.setVerticalScrollBar(new _MaterialScrollBar(comboBox.getBackground(), Adjustable.VERTICAL));
             scroller.setBorder(new MatteBorder(16, 0, 16, 0, MaterialColors.WHITE));
             return scroller;
         }
@@ -439,85 +440,6 @@ public class _MaterialComboBox<T> extends JComboBox<T> implements MaterialCompon
         @Override
         public void paint(Graphics g) {
             super.paint(MaterialDrawingUtils.getAliasedGraphics(g));
-        }
-    }
-
-    public static class ScrollBar extends JScrollBar {
-
-        public ScrollBar(final JComboBox comboBox, int orientation) {
-            super(orientation);
-            setPreferredSize(new Dimension(5, 100));
-
-            setUI(new BasicScrollBarUI() {
-                @Override
-                protected ScrollListener createScrollListener() {
-                    setUnitIncrement(56);
-                    setBlockIncrement(560);
-                    return super.createScrollListener();
-                }
-
-                @Override
-                protected void paintTrack(Graphics g, JComponent c, Rectangle trackBounds) {
-                    g.setColor(comboBox.getBackground());
-                    g.fillRect(trackBounds.x, trackBounds.y, trackBounds.width, trackBounds.height);
-                }
-
-                @Override
-                protected JButton createDecreaseButton(int orientation) {
-                    JButton dummyButton = new JButton();
-                    dummyButton.setPreferredSize(new Dimension(0, 0));
-                    return dummyButton;
-                }
-
-                @Override
-                protected JButton createIncreaseButton(int orientation) {
-                    JButton dummyButton = new JButton();
-                    dummyButton.setPreferredSize(new Dimension(0, 0));
-                    return dummyButton;
-                }
-
-                @Override
-                protected Dimension getMinimumThumbSize() {
-                    return new Dimension(5, 50);
-                }
-
-                @Override
-                protected void paintThumb(Graphics g, JComponent c, Rectangle thumbBounds) {
-                    if (!thumbBounds.isEmpty() && this.scrollbar.isEnabled()) {
-                        ((Graphics2D) g).setRenderingHint(RenderingHints.KEY_ANTIALIASING,
-                                RenderingHints.VALUE_ANTIALIAS_ON);
-                        boolean isVertical = ScrollBar.this.getOrientation()
-                                == Adjustable.VERTICAL;
-                        g.setColor(MaterialColors.GREY_500);
-                        g.fillRoundRect(thumbBounds.x, thumbBounds.y,
-                                thumbBounds.width, thumbBounds.height,
-                                isVertical ? thumbBounds.width : thumbBounds.height,
-                                isVertical ? thumbBounds.width : thumbBounds.height);
-                    }
-                }
-
-                @Override
-                public void layoutContainer(Container scrollbarContainer) {
-                    super.layoutContainer(scrollbarContainer);
-                    incrButton.setBounds(0, 0, 0, 0);
-                    decrButton.setBounds(0, 0, 0, 0);
-                }
-            });
-        }
-
-        @Override
-        public Component add(Component comp) {
-            if (comp != null) {
-                return super.add(comp);
-            }
-            return null;
-        }
-
-        @Override
-        public void paint(Graphics g) {
-            g.setColor(MaterialColors.WHITE);
-            g.fillRect(0, 0, getWidth(), getHeight());
-            super.paint(g);
         }
     }
 
