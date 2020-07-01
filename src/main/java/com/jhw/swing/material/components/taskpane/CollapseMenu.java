@@ -5,19 +5,14 @@
  */
 package com.jhw.swing.material.components.taskpane;
 
-import com.jhw.swing.material.components.button._MaterialButtonTransparent;
+import com.jhw.swing.material.components.button._MaterialButton;
 import com.jhw.swing.material.components.button._MaterialButtonIconTranspRect;
-import com.jhw.swing.material.components.container.panel._MaterialPanel;
 import com.jhw.swing.material.components.dashboard.taskpane.DashBoardTaskPane;
+import com.jhw.swing.material.components.labels._MaterialLabel;
 import com.jhw.swing.material.standars.MaterialColors;
-import com.jhw.swing.personalization.PersonalizationMaterial;
 import com.jhw.swing.ui.componentsui.panel.MaterialPanelUI;
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Component;
-import java.awt.Container;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -31,11 +26,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
-import javax.swing.JPopupMenu;
-import javax.swing.SwingConstants;
-import javax.swing.border.EmptyBorder;
 import org.jdesktop.swingx.JXCollapsiblePane;
-import org.jdesktop.swingx.JXPanel;
 import org.jdesktop.swingx.JXTaskPaneContainer;
 import org.jdesktop.swingx.VerticalLayout;
 
@@ -66,7 +57,7 @@ public class CollapseMenu extends JPanel {
         this.parent = parent;
         this.parent.addCollapseMenu(this);
         jPanelSubActions.setUI(new MaterialPanelUI());//sobreescribir el ui para que coja los colores
-}
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -80,9 +71,9 @@ public class CollapseMenu extends JPanel {
         jPanelSubActions = new JXTaskPaneContainer();
         jPopupMenu1 = new javax.swing.JPopupMenu();
         jPanelFixed = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        jLabel1 = new _MaterialLabel();
         jButtonIcono = new com.jhw.swing.material.components.button._MaterialButtonIconTranspRect();
-        jButtonNombre = new com.jhw.swing.material.components.button._MaterialButtonTransparent("");
+        jButtonNombre = new com.jhw.swing.material.components.button._MaterialButtonFlat();
         jPanelCollapsible = new org.jdesktop.swingx.JXCollapsiblePane();
 
         jPanelSubActions.setBackground(new java.awt.Color(204, 0, 204));
@@ -142,7 +133,7 @@ public class CollapseMenu extends JPanel {
         return selected;
     }
 
-    public void setSelected(Color selected) {
+    public void setSelectedColor(Color selected) {
         this.selected = selected;
     }
 
@@ -150,15 +141,15 @@ public class CollapseMenu extends JPanel {
         return deselected;
     }
 
-    public void setDeselected(Color deselected) {
+    public void setDeselectedColor(Color deselected) {
         this.deselected = deselected;
     }
 
     public void selected(boolean select) {
         if (select) {
-            setMainButtonBackground(selected);
+            setMainBackground(selected);
         } else {
-            setMainButtonBackground(deselected);
+            setMainBackground(deselected);
         }
     }
 
@@ -188,26 +179,41 @@ public class CollapseMenu extends JPanel {
 
     public void childSelected() {
         parent.deselectAll();
-        setMainButtonBackground(selected);
+        setMainBackground(selected);
     }
 
     public void deselectAll() {
-        setMainButtonBackground(deselected);
+        setMainBackground(deselected);
         for (TaskButton button : buttons) {
             button.deselect();
         }
     }
 
-    private void setMainButtonBackground(Color color) {
+    /**
+     * Pone el background del componente principal
+     * @param color 
+     */
+    private void setMainBackground(Color color) {
         jPanelFixed.setBackground(color);
         setCollapsablePanelBackground(color);
     }
 
+    /**
+     * Pone el bakcground del panel que se despliega, solo se ve si se le tiene
+     * puesto un gap a los componentes, sino estos lo cubren
+     *
+     * @param color
+     */
     public void setCollapsablePanelBackground(Color color) {
         jPanelCollapsible.getContentPane().setBackground(color);
     }
 
-    public void setButtonNameFont(Font font) {
+    /**
+     * Pone el font del nombre y label de cantidad segun una escala del 0.8
+     *
+     * @param font
+     */
+    public void setMainPanelFont(Font font) {
         jButtonNombre.setFont(font);
         Font internal = font.deriveFont(Font.PLAIN).deriveFont(font.getSize2D() * 0.8f);
         setButtonsInternalFont(internal);
@@ -221,10 +227,23 @@ public class CollapseMenu extends JPanel {
         }
     }
 
+    /**
+     * Pone el alignment del nombre
+     *
+     * @param align
+     */
     public void setButtonNameHorizontalAlignment(int align) {
         jButtonNombre.setHorizontalAlignment(align);
     }
 
+    /**
+     * Pone los gaps de los componentes internos del panel
+     *
+     * @param top
+     * @param left
+     * @param bottom
+     * @param right
+     */
     public void setPanelCollapsibleGaps(int top, int left, int bottom, int right) {
         jPanelCollapsible.setBorder(javax.swing.BorderFactory.createEmptyBorder(top, left, bottom, right));
     }
@@ -233,6 +252,10 @@ public class CollapseMenu extends JPanel {
         return jPanelFixed;
     }
 
+    /**
+     * Pone el Height del panel principal, este metodo tambien regula el minimo
+     * que se abre el panel.
+     */
     public void setHeight(int h) {//el # ese es el max
         jPanelFixed.setPreferredSize(new java.awt.Dimension(300, h));
         jButtonIcono.setPreferredSize(new java.awt.Dimension(h, h));
@@ -242,11 +265,32 @@ public class CollapseMenu extends JPanel {
         return (int) jButtonIcono.getPreferredSize().getHeight();
     }
 
+    /**
+     * Pone el gap entre los componentes que se van a agregar
+     *
+     * @param color
+     */
     public void setComponentsGap(int gap) {
         ((VerticalLayout) jPanelSubActions.getLayout()).setGap(gap);
     }
 
+    /**
+     * Pone el background del panel principal, o sea el nombre y el label de
+     * cantidad
+     *
+     * @param color
+     */
+    public void setMainPanelForeground(Color color) {
+        this.jButtonIcono.setForeground(color);
+        this.jButtonNombre.setForeground(color);
+        this.jLabel1.setForeground(color);
+    }
+
     protected void configurateUI() {
+        jButtonNombre.setBackground(MaterialColors.TRANSPARENT);
+        ((_MaterialButton) jButtonNombre).setRippleColor(MaterialColors.TRANSPARENT);
+        ((_MaterialButtonIconTranspRect) jButtonIcono).setRippleColor(MaterialColors.TRANSPARENT);
+
         jPanelCollapsible.setLayout(new BorderLayout());
         jPanelCollapsible.add(jPanelSubActions, BorderLayout.CENTER);
 
@@ -277,7 +321,7 @@ public class CollapseMenu extends JPanel {
 
         });
         addListeners();
-        setMainButtonBackground(deselected);
+        setMainBackground(deselected);
     }
 
     private boolean isShinked() {

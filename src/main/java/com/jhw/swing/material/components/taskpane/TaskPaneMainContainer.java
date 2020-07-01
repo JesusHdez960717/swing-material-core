@@ -21,9 +21,9 @@ import org.jdesktop.swingx.VerticalLayout;
  */
 public class TaskPaneMainContainer extends JXCollapsiblePane {
 
-    private JXTaskPaneContainer taskPane = new JXTaskPaneContainer();
+    private final JXTaskPaneContainer taskPane = new JXTaskPaneContainer();
 
-    private _MaterialScrollBar scrollBar = new _MaterialScrollBar(Adjustable.VERTICAL);
+    private final _MaterialScrollBar scrollBar = new _MaterialScrollBar(Adjustable.VERTICAL);
 
     public TaskPaneMainContainer() {
         taskPane.setUI(new MaterialPanelUI());//sobreescribir el ui para que coja los colores
