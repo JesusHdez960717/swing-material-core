@@ -1,5 +1,6 @@
 package com.jhw.swing.material.components.dashboard.taskpane.expanded;
 
+import com.jhw.swing.material.components.button._MaterialButton;
 import com.jhw.swing.material.components.button._MaterialButtonFlat;
 import com.jhw.swing.material.components.button._MaterialButtonIconTranspRect;
 import com.jhw.swing.material.components.container.panel._PanelGradient;
@@ -84,7 +85,7 @@ public class DownPanel extends _PanelGradient {
         tec.add(btn_Tec);
     }
 
-    private class LicenceButton extends _MaterialButtonFlat implements MaterialComponent {
+    private class LicenceButton extends _MaterialButton implements MaterialComponent {
 
         public LicenceButton() {
             this(MaterialColors.ORANGEA_200);
@@ -92,7 +93,8 @@ public class DownPanel extends _PanelGradient {
 
         public LicenceButton(Color back) {
             this.setBackground(back);
-            this.setBorder(new LineBorder(Utils.darken(Utils.darken(back)), 2));
+            this.setBorderColor(Utils.darken(Utils.darken(back)));
+            this.setBorderThickness(2);
         }
 
     }

@@ -40,6 +40,9 @@ public class _MaterialButton extends JButton implements MaterialComponent {
     private Cursor cursor = Cursor.getPredefinedCursor(Cursor.HAND_CURSOR);
     private int borderRadius = 5;
 
+    private Color borderColor = MaterialColors.BLACK;
+    private int borderThickness = 0;
+
     /**
      * Creates a new button.
      */
@@ -89,6 +92,22 @@ public class _MaterialButton extends JButton implements MaterialComponent {
             }
         });
         this.setBorder(new EmptyBorder(0, 0, 0, 0));
+    }
+
+    public Color getBorderColor() {
+        return borderColor;
+    }
+
+    public void setBorderColor(Color borderColor) {
+        this.borderColor = borderColor;
+    }
+
+    public int getBorderThickness() {
+        return borderThickness;
+    }
+
+    public void setBorderThickness(int borderThickness) {
+        this.borderThickness = borderThickness;
     }
 
     public void setElevation(ElevationEffect elevation) {
@@ -296,6 +315,12 @@ public class _MaterialButton extends JButton implements MaterialComponent {
         }
         g2.fill(new RoundRectangle2D.Float(0, 0, getWidth() - offset_lr, getHeight() - offset_td, borderRadius * 2, borderRadius * 2));
 
+        if (getBorderThickness() > 0) {//si hay border lo pinto
+            g2.setStroke(new BasicStroke(getBorderThickness()));
+            g2.setColor(getBorderColor());
+            g2.draw(new RoundRectangle2D.Float(0, 0, getWidth() - offset_lr, getHeight() - offset_td, borderRadius * 2, borderRadius * 2));
+        }
+
         if (this.isEnabled()) {//el ripple por debajo de las letras e iconos
             g2.setClip(new RoundRectangle2D.Float(0, 0, getWidth() - offset_lr, getHeight() - offset_td, Math.max(borderRadius * 2 - 4, 0), Math.max(borderRadius * 2 - 4, 0)));
             g2.setColor(rippleColor);
@@ -339,6 +364,11 @@ public class _MaterialButton extends JButton implements MaterialComponent {
             this.getIcon().paintIcon(this, g2, xIcon, (getHeight() - offset_td - getIcon().getIconHeight()) / 2);
         }
         g2.translate(-offset_left, -offset_top);
+    }
+
+    @Override
+    protected void paintBorder(Graphics g) {
+        //intentionally left blank
     }
 
     /**
