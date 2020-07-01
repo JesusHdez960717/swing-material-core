@@ -11,6 +11,7 @@ import com.jhw.swing.material.components.container.panel._MaterialPanel;
 import com.jhw.swing.material.components.dashboard.taskpane.DashBoardTaskPane;
 import com.jhw.swing.material.standars.MaterialColors;
 import com.jhw.swing.personalization.PersonalizationMaterial;
+import com.jhw.swing.ui.componentsui.panel.MaterialPanelUI;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -64,7 +65,8 @@ public class CollapseMenu extends JPanel {
         configurateUI();
         this.parent = parent;
         this.parent.addCollapseMenu(this);
-    }
+        jPanelSubActions.setUI(new MaterialPanelUI());//sobreescribir el ui para que coja los colores
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -75,17 +77,12 @@ public class CollapseMenu extends JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanelSubActions = new JXTaskPaneContainer() {
-            @Override
-            public void updateUI() {
-                //vacio para que no coja el ui del padre
-            }
-        };
+        jPanelSubActions = new JXTaskPaneContainer();
         jPopupMenu1 = new javax.swing.JPopupMenu();
         jPanelFixed = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jButtonIcono = new _MaterialButtonIconTranspRect();
-        jButtonNombre = new _MaterialButtonTransparent("");
+        jButtonIcono = new com.jhw.swing.material.components.button._MaterialButtonIconTranspRect();
+        jButtonNombre = new com.jhw.swing.material.components.button._MaterialButtonTransparent("");
         jPanelCollapsible = new org.jdesktop.swingx.JXCollapsiblePane();
 
         jPanelSubActions.setBackground(new java.awt.Color(204, 0, 204));
@@ -99,9 +96,6 @@ public class CollapseMenu extends JPanel {
         setLayout(new java.awt.BorderLayout());
 
         jPanelFixed.setBackground(new java.awt.Color(0, 153, 153));
-        jPanelFixed.setMaximumSize(null);
-        jPanelFixed.setMinimumSize(null);
-        jPanelFixed.setPreferredSize(null);
         jPanelFixed.setLayout(new java.awt.BorderLayout());
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N

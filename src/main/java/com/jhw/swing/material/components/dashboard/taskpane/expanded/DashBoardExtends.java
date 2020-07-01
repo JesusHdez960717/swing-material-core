@@ -2,6 +2,7 @@ package com.jhw.swing.material.components.dashboard.taskpane.expanded;
 
 import com.jhw.swing.material.components.dashboard.taskpane.DashBoardTaskPane;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import javax.swing.JPanel;
 
 /**
@@ -31,4 +32,7 @@ public class DashBoardExtends extends JPanel {
         return dashboardCore;
     }
 
+    public void setPanelSideMenuColor(Color background) {
+        dashboardCore.setPanelSideMenuColor(background);
+    }
 }

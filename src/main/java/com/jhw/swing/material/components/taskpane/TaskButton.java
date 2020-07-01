@@ -16,7 +16,7 @@ import javax.swing.Action;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
-import com.jhw.swing.material.components.button._MaterialButton;
+import com.jhw.swing.material.components.button.*;
 import com.jhw.swing.material.standars.MaterialColors;
 
 /**

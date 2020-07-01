@@ -1,8 +1,10 @@
 package com.jhw.swing.material.components.taskpane;
 
+import com.jhw.swing.ui.componentsui.panel.MaterialPanelUI;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import javax.swing.JButton;
 import javax.swing.border.Border;
 import org.jdesktop.swingx.JXCollapsiblePane;
 import org.jdesktop.swingx.JXTaskPaneContainer;
@@ -18,16 +20,17 @@ public class TaskPaneMainContainer extends JXCollapsiblePane {
     private JXTaskPaneContainer taskPane = new JXTaskPaneContainer();
 
     public TaskPaneMainContainer() {
+        taskPane.setUI(new MaterialPanelUI());//sobreescribir el ui para que coja los colores
         setDirection(JXCollapsiblePane.Direction.LEFT);
         this.setLayout(new BorderLayout());
         this.add(taskPane, BorderLayout.CENTER);
 
         setComponentsGap(0);
         setInternalBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
+    }
 
-        this.setBackground(Color.red);
-        this.getContentPane().setBackground(Color.red);
-        taskPane.setBackground(Color.red);
+    public void setTaskPaneBackground(Color color) {
+        this.taskPane.setBackground(color);
     }
 
     public void setComponentsGap(int gap) {

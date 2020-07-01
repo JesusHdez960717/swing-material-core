@@ -13,6 +13,7 @@ import com.jhw.swing.material.standars.MaterialIcons;
 import com.jhw.swing.personalization.PersonalizationMaterial;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.beans.PropertyChangeEvent;
@@ -142,6 +143,11 @@ public class DashBoardTaskPane extends JPanel {
 
     private void personalize() {
         panelSideMenu.setBackground(PersonalizationMaterial.getInstance().getColorPrincipal());
+    }
+
+    public void setPanelSideMenuColor(Color background) {
+        panelSideMenu.setBackground(background);
+        task.setTaskPaneBackground(background);
     }
 
     public CollapseMenuFormateer getFormateer() {
