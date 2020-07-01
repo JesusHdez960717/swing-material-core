@@ -15,6 +15,7 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.RenderingHints;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseWheelEvent;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JScrollBar;
@@ -30,6 +31,8 @@ public class _MaterialScrollBar extends JScrollBar {
     public static int THUMB_WIDTH_UNFOCUSED = 5;
 
     private int width = 5;
+    private boolean pressed = false;
+    private boolean entered = false;
 
     public _MaterialScrollBar(Color background, int orientation) {
         this(background, MaterialColors.GREY_600, orientation);
@@ -111,6 +114,19 @@ public class _MaterialScrollBar extends JScrollBar {
                 registerMouseExited();
                 super.mouseExited(evt);
             }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                registerMouseReleased();
+                super.mouseReleased(e);
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+                registerMousePressed();
+                super.mousePressed(e);
+            }
+
         });
         this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
     }
@@ -119,16 +135,32 @@ public class _MaterialScrollBar extends JScrollBar {
         return width;
     }
 
-    public void registerMouseEntered() {
-        doAdjust(THUMB_WIDTH_FOCUSED);
+    private void registerMouseEntered() {
+        entered = true;
+        doAdjust();
     }
 
-    public void registerMouseExited() {
-        doAdjust(THUMB_WIDTH_UNFOCUSED);
+    private void registerMouseExited() {
+        entered = false;
+        doAdjust();
     }
 
-    private void doAdjust(int width) {
-        this.width = width;
+    private void registerMousePressed() {
+        pressed = true;
+        doAdjust();
+    }
+
+    private void registerMouseReleased() {
+        pressed = false;
+        doAdjust();
+    }
+
+    private void doAdjust() {
+        if (entered || pressed) {
+            this.width = THUMB_WIDTH_FOCUSED;
+        } else {
+            this.width = THUMB_WIDTH_UNFOCUSED;
+        }
         setPreferredSize(new Dimension(width, width));
         revalidate();
     }
