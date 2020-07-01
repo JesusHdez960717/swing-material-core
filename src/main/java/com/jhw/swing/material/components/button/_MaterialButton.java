@@ -279,7 +279,7 @@ public class _MaterialButton extends JButton implements MaterialComponent {
             elevation.paint(g2);
         }
 
-        if (type == Type.FLAT) {//si es flat quito correcciones de ofset
+        if (type == Type.FLAT) {//si es flat quito correcciones de offset
             offset_lr = 0;
             offset_td = 0;
             offset_left = 0;
@@ -287,16 +287,14 @@ public class _MaterialButton extends JButton implements MaterialComponent {
         }
         g2.translate(offset_left, offset_top);
 
+        //color de fondo
         if (isEnabled()) {
             g2.setColor(fadeinto.getColor());
-            g2.fill(new RoundRectangle2D.Float(0, 0, getWidth() - offset_lr, getHeight() - offset_td, borderRadius * 2, borderRadius * 2));
-
-            g2.setColor(new Color(rippleColor.getRed() / 255f, rippleColor.getBlue() / 255f, rippleColor.getBlue() / 255f, 0.12f));
         } else {
             Color bg = getBackground();
             g2.setColor(new Color(bg.getRed() / 255f, bg.getGreen() / 255f, bg.getBlue() / 255f, 0.6f));
-            g2.fill(new RoundRectangle2D.Float(0, 0, getWidth() - offset_lr, getHeight() - offset_td, borderRadius * 2, borderRadius * 2));
         }
+        g2.fill(new RoundRectangle2D.Float(0, 0, getWidth() - offset_lr, getHeight() - offset_td, borderRadius * 2, borderRadius * 2));
 
         if (this.isEnabled()) {//el ripple por debajo de las letras e iconos
             g2.setClip(new RoundRectangle2D.Float(0, 0, getWidth() - offset_lr, getHeight() - offset_td, Math.max(borderRadius * 2 - 4, 0), Math.max(borderRadius * 2 - 4, 0)));

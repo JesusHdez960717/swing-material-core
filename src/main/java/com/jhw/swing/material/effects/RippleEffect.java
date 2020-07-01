@@ -50,16 +50,19 @@ public class RippleEffect {
      */
     public void paint(Graphics g) {
         Graphics2D g2 = (Graphics2D) g;
-        //si hay las pinto, el if esta en el add
-        for (RippleAnimation rippleAnimation : ripples) {
-            float rippleOpacity = rippleAnimation.rippleOpacity.getValue().floatValue();
-            Point rippleCenter = rippleAnimation.rippleCenter;
-            int rippleRadius = rippleAnimation.rippleRadius.getValue();
+        //si no es transparente
+        if (g.getColor() != null && g.getColor().getAlpha() != 0) {//si hay las pinto, el if esta en el add
+            for (RippleAnimation rippleAnimation : ripples) {
+                float rippleOpacity = rippleAnimation.rippleOpacity.getValue().floatValue();
+                Point rippleCenter = rippleAnimation.rippleCenter;
+                int rippleRadius = rippleAnimation.rippleRadius.getValue();
 
-            Color fg = g2.getColor();
-            g2.setColor(new Color(fg.getRed() / 255f, fg.getGreen() / 255f, fg.getBlue() / 255f, rippleOpacity));
-            g2.fillOval(rippleCenter.x - rippleRadius, rippleCenter.y - rippleRadius, 2 * rippleRadius, 2 * rippleRadius);
+                Color fg = g2.getColor();
+                g2.setColor(new Color(fg.getRed() / 255f, fg.getGreen() / 255f, fg.getBlue() / 255f, rippleOpacity));
+                g2.fillOval(rippleCenter.x - rippleRadius, rippleCenter.y - rippleRadius, 2 * rippleRadius, 2 * rippleRadius);
+            }
         }
+
     }
 
     /**
