@@ -1,6 +1,7 @@
 rootProject.name = 'MaterialSwing'
 
-include ':utils', ':clean-core'
+include ':utils', ':clean-core', ':clean-swing'
 
 project(':utils').projectDir = "E:\\Trabajos\\Projects\\GIT Projects Gradle\\Utils" as File
 project(':clean-core').projectDir = "E:\\Trabajos\\Projects\\GIT Projects Gradle\\CleanCoreFull" as File
+project(':clean-swing').projectDir = "E:\\Trabajos\\Projects\\GIT Projects Gradle\\CleanSwing" as File

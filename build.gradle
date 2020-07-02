@@ -15,7 +15,7 @@ apply plugin: 'application'
 
 group = 'com.jhw.swing'
 
-mainClassName = 'com.jhw.swing.TEST.dash.MainView'
+mainClassName = 'com.jhw.swing.TEST.application.Main'
 
 repositories {
     jcenter()
@@ -27,7 +27,8 @@ dependencies {
     
     implementation project(':utils')
     implementation project(':clean-core')
-    
+    implementation project(':clean-swing')
+
     //batick para svg
     compile group: 'org.apache.xmlgraphics', name: 'batik-transcoder', version: '1.13'
     compile group: 'org.apache.xmlgraphics', name: 'batik-svg-dom', version: '1.9'
