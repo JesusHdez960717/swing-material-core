@@ -55,7 +55,7 @@ public class CollapseMenu extends JPanel {
         this.nombreCategoria = nombreCategoria;
         configurateUI();
         this.parent = parent;
-        this.parent.addCollapseMenu(this);
+        this.parent.addMainElement(this);
         jPanelSubActions.setUI(new MaterialPanelUI());//sobreescribir el ui para que coja los colores
     }
 

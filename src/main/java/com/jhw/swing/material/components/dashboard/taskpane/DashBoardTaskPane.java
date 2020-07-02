@@ -5,10 +5,11 @@
  */
 package com.jhw.swing.material.components.dashboard.taskpane;
 
-import com.jhw.swing.material.components.dashboard.taskpane.expanded.CollapseMenuFormateer;
+import com.clean.swing.app.dashboard.DashboardSimple;
 import com.jhw.swing.material.components.taskpane.CollapseMenu;
 import com.jhw.swing.material.components.taskpane.TaskPaneMainContainer;
 import com.jhw.swing.material.components.button._MaterialButtonIconTranspRect;
+import com.jhw.swing.material.components.dashboard.taskpane.expanded.CollapseMenuFormateer;
 import com.jhw.swing.material.standars.MaterialIcons;
 import com.jhw.swing.personalization.PersonalizationMaterial;
 import java.awt.BorderLayout;
@@ -16,17 +17,14 @@ import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
-import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 /**
  *
  * @author Jorge
  */
-public class DashBoardTaskPane extends JPanel {
+public class DashBoardTaskPane extends DashboardSimple<CollapseMenu>{
 
     private final CardLayout cards = new CardLayout();
 
@@ -62,11 +60,10 @@ public class DashBoardTaskPane extends JPanel {
         jPanelBackButton = new javax.swing.JPanel();
         jButtonBack = new javax.swing.JButton();
         jPanelShinkButton = new javax.swing.JPanel();
-        jButtonShrink = new _MaterialButtonIconTranspRect(MaterialIcons.MENU.deriveIcon(36f));
+        jButtonShrink = new com.jhw.swing.material.components.button._MaterialButtonIconTranspRect(MaterialIcons.MENU.deriveIcon(36f));
         jPanelMenu = new javax.swing.JPanel();
 
         setBackground(new java.awt.Color(255, 255, 255));
-        setOpaque(false);
         setLayout(new java.awt.BorderLayout());
 
         panelContent.setBackground(new java.awt.Color(255, 255, 255));
@@ -86,8 +83,6 @@ public class DashBoardTaskPane extends JPanel {
         add(panelContent, java.awt.BorderLayout.CENTER);
 
         panelSideMenu.setBackground(new java.awt.Color(102, 102, 102));
-        panelSideMenu.setMinimumSize(null);
-        panelSideMenu.setPreferredSize(null);
         panelSideMenu.setLayout(new java.awt.BorderLayout());
 
         jPanelBackButton.setOpaque(false);
@@ -118,9 +113,7 @@ public class DashBoardTaskPane extends JPanel {
         panelSideMenu.add(jPanelShinkButton, java.awt.BorderLayout.PAGE_END);
 
         jPanelMenu.setBackground(new java.awt.Color(0, 0, 0));
-        jPanelMenu.setMinimumSize(null);
         jPanelMenu.setOpaque(false);
-        jPanelMenu.setPreferredSize(null);
         jPanelMenu.setLayout(new java.awt.BorderLayout());
         panelSideMenu.add(jPanelMenu, java.awt.BorderLayout.CENTER);
 
@@ -167,7 +160,8 @@ public class DashBoardTaskPane extends JPanel {
         this.task.setCollapsed(this.shrinked);
     }
 
-    public void addCollapseMenu(CollapseMenu menu) {
+    @Override
+    public void addMainElement(CollapseMenu menu) {
         if (formateer != null) {
             formateer.formatMenu(menu);
         }
@@ -184,7 +178,7 @@ public class DashBoardTaskPane extends JPanel {
     }
 
     /**
-     * Usar directamente el {@code addCollapseMenu}
+     * Usar directamente el {@code addMainElement}
      *
      * @param menu
      * @deprecated
@@ -195,10 +189,12 @@ public class DashBoardTaskPane extends JPanel {
         this.task.addItem(menu);
     }
 
+    @Override
     public void addView(String name, Component compoment) {
         panelContent.add(name, compoment);
     }
 
+    @Override
     public void showView(String name) {
         cards.show(panelContent, name);
     }
@@ -210,4 +206,5 @@ public class DashBoardTaskPane extends JPanel {
         jButtonBack.setMinimumSize(new Dimension(min, min));
         jButtonBack.setPreferredSize(new Dimension(min, min));
     }
+
 }

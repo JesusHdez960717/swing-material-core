@@ -1,34 +1,26 @@
 package com.jhw.swing.material.components.dashboard.taskpane.expanded;
 
-import com.jhw.swing.material.components.button._MaterialButtonFlat;
-import com.jhw.swing.material.components.button._MaterialButtonIconTranspRect;
+import com.clean.swing.app.dashboard.DashboardExtendedUp;
 import com.jhw.swing.material.components.button._MaterialButtonTransparent;
 import com.jhw.swing.material.components.container.panel._PanelGradient;
 import com.jhw.swing.material.components.container.panel._PanelTransparent;
-import com.jhw.swing.material.standars.MaterialColors;
 import com.jhw.swing.material.standars.MaterialFontRoboto;
-import com.jhw.swing.material.standars.MaterialIcons;
 import com.jhw.swing.personalization.PersonalizationMaterial;
 import com.jhw.swing.util.Utils;
 import com.jhw.swing.util.enums.GradientEnum;
-import com.jhw.swing.util.interfaces.MaterialComponent;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.event.ActionEvent;
-import javax.swing.AbstractAction;
 import javax.swing.Action;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.border.LineBorder;
 
 /**
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-public class UpPanel extends _PanelGradient {
+public class UpPanel extends _PanelGradient implements DashboardExtendedUp<Component> {
 
     private final int HEIGHT_FINAL = 36;
 
@@ -49,6 +41,12 @@ public class UpPanel extends _PanelGradient {
     private JButton company;
     private _PanelTransparent components;
 
+    @Override
+    public void addUpElement(Component component) {
+        addComponentGeneral(component);
+    }
+
+    @Override
     public void setCompany(Action action) {
         if (this.company != null) {
             this.remove(this.company);
@@ -60,7 +58,7 @@ public class UpPanel extends _PanelGradient {
     }
 
     public void addComponentGeneral(Component component) {
-        component.setPreferredSize(new Dimension((int)component.getPreferredSize().getWidth(), HEIGHT_FINAL));
+        component.setPreferredSize(new Dimension((int) component.getPreferredSize().getWidth(), HEIGHT_FINAL));
         components.add(component);
     }
 

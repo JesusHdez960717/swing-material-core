@@ -1,6 +1,6 @@
 package com.jhw.swing.material.components.dashboard.taskpane.expanded;
 
-import com.jhw.swing.material.components.button._MaterialButton;
+import com.clean.swing.app.dashboard.DashboardExtendedDown;
 import com.jhw.swing.material.components.button._MaterialButtonFlat;
 import com.jhw.swing.material.components.button._MaterialButtonIconTranspRect;
 import com.jhw.swing.material.components.container.panel._PanelGradient;
@@ -10,12 +10,10 @@ import com.jhw.swing.util.Utils;
 import com.jhw.swing.util.interfaces.MaterialComponent;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.event.ActionEvent;
-import javax.swing.AbstractAction;
 import javax.swing.Action;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.border.LineBorder;
 
@@ -23,7 +21,7 @@ import javax.swing.border.LineBorder;
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-public class DownPanel extends _PanelGradient {
+public class DownPanel extends _PanelGradient implements DashboardExtendedDown<Action> {
 
     private final int HEIGHT_FINAL = 16;
 
@@ -45,7 +43,17 @@ public class DownPanel extends _PanelGradient {
     private JButton licence;
     private _PanelTransparent tec;
 
-    public void setLicence(Action action) {
+    @Override
+    public void addDownElement(Action tecnology) {
+        addTecnology(tecnology);
+    }
+
+    @Override
+    public void setLicence(Action licence) {
+        doSetLicence(licence);
+    }
+
+    private void doSetLicence(Action action) {
         if (this.licence != null) {
             this.remove(this.licence);
         }
@@ -54,24 +62,6 @@ public class DownPanel extends _PanelGradient {
         this.licence.setAction(action);
         this.licence.setPreferredSize(new Dimension((int) licence.getPreferredSize().getWidth(), HEIGHT_FINAL));
         this.add(this.licence, BorderLayout.WEST);
-    }
-
-    public void addTecnology(ImageIcon icon) {
-        addTecnology(new AbstractAction("", icon) {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                return;
-            }
-        });
-    }
-
-    public void addTecnology(ImageIcon icon, String name) {
-        addTecnology(new AbstractAction(name, icon) {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                return;
-            }
-        });
     }
 
     public void addTecnology(Action action) {
