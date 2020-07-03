@@ -29,6 +29,7 @@ public class _MaterialTableByPage extends _PanelTransparent implements Update {
         initComponents();
         addListeners();
         setPageVisibility(false);
+        this.setBorder(null);
     }
 
     /**

@@ -5,10 +5,10 @@
  */
 package com.jhw.swing.material.components.dashboard.taskpane;
 
-import com.clean.swing.app.dashboard.DashboardSimple;
+import com.clean.swing.app.dashboard.DashBoardSimple;
+import com.clean.swing.app.dashboard.DashboardConstants;
 import com.jhw.swing.material.components.taskpane.CollapseMenu;
 import com.jhw.swing.material.components.taskpane.TaskPaneMainContainer;
-import com.jhw.swing.material.components.button._MaterialButtonIconTranspRect;
 import com.jhw.swing.material.components.dashboard.taskpane.expanded.CollapseMenuFormateer;
 import com.jhw.swing.material.standars.MaterialIcons;
 import com.jhw.swing.personalization.PersonalizationMaterial;
@@ -18,13 +18,15 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.util.ArrayList;
-import javax.swing.JPanel;
+import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author Jorge
  */
-public class DashBoardTaskPane extends DashboardSimple<CollapseMenu>{
+public class DashBoardTaskPane extends DashBoardSimple {
 
     private final CardLayout cards = new CardLayout();
 
@@ -134,6 +136,40 @@ public class DashBoardTaskPane extends DashboardSimple<CollapseMenu>{
     private javax.swing.JPanel panelSideMenu;
     // End of variables declaration//GEN-END:variables
 
+    @Override
+    public void update(HashMap<String, Object> hm) {
+        menus.clear();
+        this.task.removeAll();
+        for (String key : hm.keySet()) {
+            Object component = hm.get(key);
+            switch (key) {
+                case DashboardConstants.MAIN_ELEMENT:
+                    add(component);
+                    break;
+            }
+        }
+        this.revalidate();
+    }
+
+    private void add(Object component) {
+        if (component instanceof CollapseMenu) {
+            addMainElement((CollapseMenu) component);
+        } else {
+            String logMSG = "Component " + component + " not supperted by actual DashBoard";
+            Logger.getLogger(DashBoardTaskPane.class.getName()).log(Level.WARNING, logMSG);
+        }
+    }
+
+    @Override
+    public void addView(String name, Component compoment) {
+        panelContent.add(name, compoment);
+    }
+
+    @Override
+    public void showView(String name) {
+        cards.show(panelContent, name);
+    }
+
     private void personalize() {
         panelSideMenu.setBackground(PersonalizationMaterial.getInstance().getColorPrincipal());
     }
@@ -160,7 +196,6 @@ public class DashBoardTaskPane extends DashboardSimple<CollapseMenu>{
         this.task.setCollapsed(this.shrinked);
     }
 
-    @Override
     public void addMainElement(CollapseMenu menu) {
         if (formateer != null) {
             formateer.formatMenu(menu);
@@ -187,16 +222,6 @@ public class DashBoardTaskPane extends DashboardSimple<CollapseMenu>{
     public void addComponent(CollapseMenu menu) {
         menus.add(menu);
         this.task.addItem(menu);
-    }
-
-    @Override
-    public void addView(String name, Component compoment) {
-        panelContent.add(name, compoment);
-    }
-
-    @Override
-    public void showView(String name) {
-        cards.show(panelContent, name);
     }
 
     public void setMinimunShrink(int min) {

@@ -47,7 +47,7 @@ public class _PanelGradient extends JPanel implements MaterialComponent {
     }
 
     /**
-     * Sets the border radius of this button. You can define a custom radius in
+     * Sets the border radius of this panel. You can define a custom radius in
      * order to get some rounded corners in your button, making it look like a
      * pill or even a circular action button.
      *

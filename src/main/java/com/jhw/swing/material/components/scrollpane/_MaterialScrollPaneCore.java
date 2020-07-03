@@ -37,7 +37,7 @@ public class _MaterialScrollPaneCore extends JScrollPane {
         this.getViewport().setBackground(MaterialColors.TRANSPARENT);
         
         //le sobra el borde
-        this.setBorder(null);
+        //this.setBorder(null);
     }
 
     public _MaterialScrollBar getMaterialVerticalScrollBar() {

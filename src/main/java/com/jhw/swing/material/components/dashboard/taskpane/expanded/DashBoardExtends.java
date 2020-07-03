@@ -1,20 +1,18 @@
 package com.jhw.swing.material.components.dashboard.taskpane.expanded;
 
-import com.clean.swing.app.dashboard.DashboardExtendedDown;
-import com.clean.swing.app.dashboard.DashboardExtendedUp;
-import com.clean.swing.app.dashboard.DashboardSimple;
+import com.clean.swing.app.dashboard.DashBoardSimple;
 import com.jhw.swing.material.components.dashboard.taskpane.DashBoardTaskPane;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import com.jhw.swing.material.components.taskpane.CollapseMenu;
 import java.awt.Component;
-import javax.swing.Action;
+import java.util.HashMap;
 
 /**
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-public class DashBoardExtends extends DashboardSimple<CollapseMenu> implements DashboardExtendedDown<Action>, DashboardExtendedUp<Component> {
+public class DashBoardExtends extends DashBoardSimple {
 
     public DashBoardExtends() {
         initComponents();
@@ -35,6 +33,14 @@ public class DashBoardExtends extends DashboardSimple<CollapseMenu> implements D
     private DownPanel downPanel;
     private UpPanel upPanel;
 
+    @Override
+    public void update(HashMap<String, Object> hm) {
+        this.downPanel.update(hm);
+        this.upPanel.update(hm);
+        this.dashboardCore.update(hm);
+        this.revalidate();
+    }
+
     public DashBoardTaskPane getDashboardCore() {
         return dashboardCore;
     }
@@ -51,7 +57,6 @@ public class DashBoardExtends extends DashboardSimple<CollapseMenu> implements D
         dashboardCore.setPanelSideMenuColor(background);
     }
 
-    @Override
     public void addMainElement(CollapseMenu mt) {
         dashboardCore.addMainElement(mt);
     }
@@ -64,26 +69,6 @@ public class DashBoardExtends extends DashboardSimple<CollapseMenu> implements D
     @Override
     public void showView(String string) {
         dashboardCore.showView(string);
-    }
-
-    @Override
-    public void addDownElement(Action element) {
-        downPanel.addDownElement(element);
-    }
-
-    @Override
-    public void setLicence(Action action) {
-        downPanel.setLicence(action);
-    }
-
-    @Override
-    public void addUpElement(Component element) {
-        upPanel.addUpElement(element);
-    }
-
-    @Override
-    public void setCompany(Action action) {
-        upPanel.setCompany(action);
     }
 
 }

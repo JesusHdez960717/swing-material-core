@@ -1,18 +1,22 @@
 package com.jhw.swing.material.components.dashboard.taskpane.expanded;
 
-import com.clean.swing.app.dashboard.DashboardExtendedDown;
+import com.clean.swing.app.dashboard.DashboardConstants;
+import com.clean.swing.app.dashboard.MapeableContainer;
 import com.jhw.swing.material.components.button._MaterialButtonFlat;
 import com.jhw.swing.material.components.button._MaterialButtonIconTranspRect;
 import com.jhw.swing.material.components.container.panel._PanelGradient;
 import com.jhw.swing.material.components.container.panel._PanelTransparent;
+import com.jhw.swing.material.components.dashboard.taskpane.DashBoardTaskPane;
 import com.jhw.swing.material.standars.MaterialColors;
 import com.jhw.swing.util.Utils;
 import com.jhw.swing.util.interfaces.MaterialComponent;
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.Action;
 import javax.swing.JButton;
 import javax.swing.border.LineBorder;
@@ -21,7 +25,7 @@ import javax.swing.border.LineBorder;
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-public class DownPanel extends _PanelGradient implements DashboardExtendedDown<Action> {
+public class DownPanel extends MapeableContainer {
 
     private final int HEIGHT_FINAL = 16;
 
@@ -31,24 +35,63 @@ public class DownPanel extends _PanelGradient implements DashboardExtendedDown<A
 
     private void initComponents() {
         this.setLayout(new BorderLayout());
-        this.setBackground(MaterialColors.GREY_200);
-        this.setBorder(new LineBorder(MaterialColors.GREY_500, 1));
 
-        this.tec = new _PanelTransparent();
-        this.tec.setLayout(new FlowLayout(FlowLayout.CENTER, 15, 3));
+        this.background = new _PanelGradient();
+        this.add(background, BorderLayout.CENTER);
+        this.background.setLayout(new BorderLayout());
 
-        this.add(this.tec, BorderLayout.EAST);
+        this.background.setBackground(MaterialColors.GREY_200);
+        this.background.setBorder(new LineBorder(MaterialColors.GREY_500, 1));
+
+        this.components = new _PanelTransparent();
+        this.components.setLayout(new FlowLayout(FlowLayout.CENTER, 15, 3));
+
+        this.background.add(this.components, BorderLayout.EAST);
     }
 
+    private _PanelGradient background;
     private JButton licence;
-    private _PanelTransparent tec;
+    private _PanelTransparent components;
 
     @Override
+    public void update(HashMap<String, Object> hm) {
+        components.removeAll();
+        for (String key : hm.keySet()) {
+            Object component = hm.get(key);
+            switch (key) {
+                case DashboardConstants.DOWN_LICENCE:
+                    setLicence(component);
+                    break;
+                case DashboardConstants.UP_ELEMENT:
+                    addElement(component);
+                    break;
+            }
+        }
+        this.revalidate();
+    }
+
+    private void addElement(Object component) {
+        if (component instanceof Action) {
+            addDownElement((Action) component);
+        } else {
+            String logMSG = "Component " + component + " not supperted for down panel.";
+            Logger.getLogger(DashBoardTaskPane.class.getName()).log(Level.WARNING, logMSG);
+        }
+    }
+
+    private void setLicence(Object component) {
+        if (component instanceof Action) {
+            setLicence((Action) component);
+        } else {
+            String logMSG = "Component " + component + " not supperted for licence.";
+            Logger.getLogger(DashBoardTaskPane.class.getName()).log(Level.WARNING, logMSG);
+        }
+    }
+
     public void addDownElement(Action tecnology) {
         addTecnology(tecnology);
     }
 
-    @Override
     public void setLicence(Action licence) {
         doSetLicence(licence);
     }
@@ -72,7 +115,7 @@ public class DownPanel extends _PanelGradient implements DashboardExtendedDown<A
             btn_Tec.setToolTipText(name);
         }
         btn_Tec.setPreferredSize(new Dimension(HEIGHT_FINAL, HEIGHT_FINAL));
-        tec.add(btn_Tec);
+        components.add(btn_Tec);
     }
 
     private class LicenceButton extends _MaterialButtonFlat implements MaterialComponent {
