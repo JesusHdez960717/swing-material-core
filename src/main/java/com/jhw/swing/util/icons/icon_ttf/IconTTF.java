@@ -10,7 +10,7 @@ import java.awt.font.FontRenderContext;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import javax.swing.ImageIcon;
-import lombok.Getter;
+
 import com.jhw.swing.util.icons.DerivableIcon;
 import com.jhw.swing.material.standars.MaterialColors;
 import com.jhw.swing.material.standars.MaterialIcons;
@@ -22,13 +22,10 @@ import com.jhw.swing.material.standars.MaterialIcons;
  */
 public class IconTTF extends DerivableIcon {
 
-    @Getter
     private char ch;
 
-    @Getter
     private Color color = MaterialColors.BLACK;
 
-    @Getter
     private float size = 24f;
 
     public IconTTF(ImageIcon icon) {
@@ -62,6 +59,18 @@ public class IconTTF extends DerivableIcon {
         this.size = size;
 
         loadInitialImage();
+    }
+
+    public char getCh() {
+        return ch;
+    }
+
+    public Color getColor() {
+        return color;
+    }
+
+    public float getSize() {
+        return size;
     }
 
     private void loadInitialImage() {

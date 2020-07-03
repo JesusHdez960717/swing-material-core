@@ -6,13 +6,12 @@ import com.clean.core.utils.validation.ValidationResult;
 import java.awt.Component;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PositiveOrZero;
-import lombok.Getter;
+
 
 /**
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-@Getter
 public class VerticalLayoutComponent implements Validable {
 
     @NotNull
@@ -40,6 +39,22 @@ public class VerticalLayoutComponent implements Validable {
         ValidationResult v = new ValidationResult();
         v.checkFromAnnotations(this);
         return v.throwException();
+    }
+
+    public Component getComponent() {
+        return component;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public int getGapTop() {
+        return gapTop;
+    }
+
+    public int getGapDown() {
+        return gapDown;
     }
 
     public static builder builder(Component component) {

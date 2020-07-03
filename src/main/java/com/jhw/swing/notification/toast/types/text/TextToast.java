@@ -3,8 +3,8 @@ package com.jhw.swing.notification.toast.types.text;
 import com.jhw.swing.notification.toast.ToastComponent;
 import java.awt.*;
 import java.awt.geom.RoundRectangle2D;
-import lombok.Getter;
-import lombok.Setter;
+
+
 import com.jhw.swing.util.MaterialDrawingUtils;
 import com.jhw.swing.util.Utils;
 import com.jhw.swing.material.effects.ElevationEffect;
@@ -24,14 +24,10 @@ public class TextToast extends ToastComponent {
     private final static float TRANS = 0.8f;
     private final ElevationEffect elevation;
 
-    @Getter
     private String textDisplay;
 
-    @Getter
     private int borderRadius = 15;
 
-    @Getter
-    @Setter
     private Cursor cursor = Cursor.getPredefinedCursor(Cursor.HAND_CURSOR);
 
     /**
@@ -46,6 +42,22 @@ public class TextToast extends ToastComponent {
         this.setBackground(MaterialColors.GREY_900);
         this.setFont(MaterialFontRoboto.REGULAR.deriveFont(18f));
         setTextDisplay(text);
+    }
+
+    public String getTextDisplay() {
+        return textDisplay;
+    }
+
+    public int getBorderRadius() {
+        return borderRadius;
+    }
+
+    public Cursor getCursor() {
+        return cursor;
+    }
+
+    public void setCursor(Cursor cursor) {
+        this.cursor = cursor;
     }
 
     @Override

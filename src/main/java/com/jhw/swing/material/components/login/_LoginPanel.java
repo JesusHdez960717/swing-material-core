@@ -1,18 +1,23 @@
 package com.jhw.swing.material.components.login;
 
+import com.jhw.swing.material.components.button._MaterialButton;
+import com.jhw.swing.material.components.container.panel._MaterialPanel;
+import com.jhw.swing.material.components.container.panel._PanelGradient;
+import com.jhw.swing.material.components.labels._MaterialLabel;
+import com.jhw.swing.material.components.passwordfield._MaterialPasswordField;
+import com.jhw.swing.material.components.textfield._MaterialTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
-import lombok.Getter;
-import lombok.Setter;
+
+
 import com.jhw.swing.material.standars.MaterialColors;
 import com.jhw.swing.material.standars.MaterialIcons;
+import javax.swing.JLabel;
 
 /**
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-@Getter
-@Setter
 public class _LoginPanel extends javax.swing.JPanel {
 
     public _LoginPanel() {
@@ -216,5 +221,33 @@ public class _LoginPanel extends javax.swing.JPanel {
         this.panelBackground.setSecundaryColor(MaterialColors.BLACK);
         this.panelBackgroundLogin.setBackground(MaterialColors.BLUEA_400);
         this.labelSecure.setIcon(MaterialIcons.VERIFIED_USER.deriveIcon(130f));
+    }
+
+    public _MaterialButton getButtonLogin() {
+        return buttonLogin;
+    }
+
+    public JLabel getLabelAnswer() {
+        return labelAnswer;
+    }
+
+    public _MaterialLabel getLabelSecure() {
+        return labelSecure;
+    }
+
+    public _PanelGradient getPanelBackground() {
+        return panelBackground;
+    }
+
+    public _MaterialPanel getPanelBackgroundLogin() {
+        return panelBackgroundLogin;
+    }
+
+    public _MaterialPasswordField getPasswordUsuario() {
+        return passwordUsuario;
+    }
+
+    public _MaterialTextField getTextFieldUsuario() {
+        return textFieldUsuario;
     }
 }

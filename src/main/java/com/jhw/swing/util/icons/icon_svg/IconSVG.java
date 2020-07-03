@@ -9,7 +9,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import javax.swing.ImageIcon;
-import lombok.Getter;
+
 import org.apache.batik.transcoder.TranscoderException;
 import org.apache.batik.transcoder.TranscoderInput;
 import org.apache.batik.transcoder.TranscoderOutput;
@@ -37,13 +37,10 @@ public class IconSVG extends DerivableIcon {
      */
     private byte[] data;
 
-    @Getter
     private Color color = null;
 
-    @Getter
     private float w = 24f;
 
-    @Getter
     private float h = 24f;
 
     public IconSVG(ImageIcon icon) {
@@ -92,6 +89,18 @@ public class IconSVG extends DerivableIcon {
             copyIS(null);
         }
         loadInitialImage();
+    }
+
+    public Color getColor() {
+        return color;
+    }
+
+    public float getW() {
+        return w;
+    }
+
+    public float getH() {
+        return h;
     }
 
     private void loadInitialImage() {

@@ -3,8 +3,12 @@ package com.jhw.swing.models.detail;
 import com.jhw.swing.notification.toast.TOAST;
 import com.jhw.swing.material.components.button._MaterialButtonIconTranspRect;
 import com.jhw.swing.material.components.container.panel._MaterialPanel;
+import com.jhw.swing.material.components.container.panel._PanelTransparent;
+import com.jhw.swing.material.components.labels._MaterialLabel;
+import com.jhw.swing.material.components.searchfield._MaterialSearchField;
 import com.jhw.swing.material.components.table.Column;
 import com.jhw.swing.material.components.table._MaterialPanelActions;
+import com.jhw.swing.material.components.table._MaterialTableByPage;
 import com.jhw.swing.material.components.table.editors_renders.component.ComponentCellEditor;
 import com.jhw.swing.material.components.table.editors_renders.component.ComponentCellRender;
 import com.jhw.swing.material.components.table.editors_renders.header.HeaderCellRender;
@@ -22,8 +26,8 @@ import java.util.Objects;
 import java.util.StringTokenizer;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import lombok.Getter;
-import lombok.Setter;
+
+
 import com.jhw.utils.security.SHA;
 import com.jhw.swing.util.JOP;
 import com.jhw.utils.interfaces.Update;
@@ -34,8 +38,6 @@ import com.jhw.swing.material.standars.MaterialColors;
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  * @param <T> Tipo de modelo de la clase
  */
-@Getter
-@Setter
 public abstract class _MaterialPanelDetail<T> extends _MaterialPanel implements Update {
 
     private final String modelColumnName = "_" + SHA.hash256(String.valueOf(new SecureRandom().nextLong())) + "_";
@@ -487,5 +489,29 @@ public abstract class _MaterialPanelDetail<T> extends _MaterialPanel implements 
 
     public JTable getJTable() {
         return table.getJTable();
+    }
+
+    public String getModelColumnName() {
+        return modelColumnName;
+    }
+
+    public _MaterialLabel getLabelHeader() {
+        return labelHeader;
+    }
+
+    public _PanelTransparent getPanelOptions() {
+        return panelOptions;
+    }
+
+    public _PanelTransparent getPanelOptionsExtra() {
+        return panelOptionsExtra;
+    }
+
+    public _MaterialSearchField getSearchField() {
+        return searchField;
+    }
+
+    public _MaterialTableByPage getTable() {
+        return table;
     }
 }
