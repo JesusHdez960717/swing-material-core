@@ -37,8 +37,8 @@ public class DashBoardExtends extends DashBoardSimple {
     public void update(HashMap<String, Object> hm) {
         this.downPanel.update(hm);
         this.upPanel.update(hm);
-        this.dashboardCore.update(hm);
-        this.revalidate();
+        //this.dashboardCore.update(hm);
+        //this.revalidate();
     }
 
     public DashBoardTaskPane getDashboardCore() {

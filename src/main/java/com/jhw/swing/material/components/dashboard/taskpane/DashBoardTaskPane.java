@@ -148,7 +148,7 @@ public class DashBoardTaskPane extends DashBoardSimple {
                     break;
             }
         }
-        this.revalidate();
+        //this.revalidate();
     }
 
     private void add(Object component) {

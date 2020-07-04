@@ -62,7 +62,7 @@ public class DownPanel extends MapeableContainer {
                 case DashboardConstants.DOWN_LICENCE:
                     setLicence(component);
                     break;
-                case DashboardConstants.UP_ELEMENT:
+                case DashboardConstants.DOWN_ELEMENT:
                     addElement(component);
                     break;
             }
@@ -98,13 +98,13 @@ public class DownPanel extends MapeableContainer {
 
     private void doSetLicence(Action action) {
         if (this.licence != null) {
-            this.remove(this.licence);
+            this.background.remove(this.licence);
         }
         JButton licenceButton = new LicenceButton();
         this.licence = licenceButton;
         this.licence.setAction(action);
         this.licence.setPreferredSize(new Dimension((int) licence.getPreferredSize().getWidth(), HEIGHT_FINAL));
-        this.add(this.licence, BorderLayout.WEST);
+        this.background.add(this.licence, BorderLayout.WEST);
     }
 
     public void addTecnology(Action action) {

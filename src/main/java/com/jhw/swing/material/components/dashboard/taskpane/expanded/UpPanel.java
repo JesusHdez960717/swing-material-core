@@ -70,8 +70,8 @@ public class UpPanel extends MapeableContainer {
     }
 
     private void addElement(Object component) {
-        if (component instanceof Action) {
-            addElement((Action) component);
+        if (component instanceof Component) {
+            addComponentGeneral((Component) component);
         } else {
             String logMSG = "Component " + component + " not supperted for up element.";
             Logger.getLogger(DashBoardTaskPane.class.getName()).log(Level.WARNING, logMSG);
@@ -87,13 +87,9 @@ public class UpPanel extends MapeableContainer {
         }
     }
 
-    public void addUpElement(Component component) {
-        addComponentGeneral(component);
-    }
-
     public void setCompany(Action action) {
         if (this.company != null) {
-            this.remove(this.company);
+            this.background.remove(this.company);
         }
         this.company = new CompanyButton();
         this.company.setAction(action);
