@@ -13,8 +13,8 @@ import com.clean.core.domain.services.Resource;
 import com.clean.core.domain.services.ResourceBundleUtils;
 import com.clean.core.domain.services.ResourceService;
 import com.clean.core.domain.services.ResourceServiceImpl;
-import com.clean.swing.app.AbstractSwingApplication;
 import com.clean.swing.app.AbstractSwingModule;
+import com.clean.swing.app.DefaultSwingApplication;
 import com.jhw.swing.ui.MaterialLookAndFeel;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +26,7 @@ import com.clean.swing.app.RootView;
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-public class SwingApplication implements AbstractSwingApplication {
+public class SwingApplication extends DefaultSwingApplication {
 
     private static ExceptionHandlerService EXCEPTION_HANDLER;
 
@@ -63,24 +63,6 @@ public class SwingApplication implements AbstractSwingApplication {
     @Override
     public void startApplication() throws Exception {
         UIManager.setLookAndFeel(new MaterialLookAndFeel());
-    }
-
-    @Override
-    public void navigateTo(String string, Object... o) {
-        rootView().navigateTo(string, o);
-        for (AbstractSwingModule abstractSwingModule : INSTALLED_MODULES) {
-            abstractSwingModule.navigateTo(string, o);
-        }
-    }
-
-    @Override
-    public void registerModule(AbstractSwingModule... modulesToInstall) {
-        for (AbstractSwingModule modulo : modulesToInstall) {
-            modulo.register(this);
-            this.installedModules().add(modulo);
-        }
-        rootView().dashboard().update(rootView().dashboard().getMap());//este es que al final actualiza todo
-        rootView().dashboard().format();
     }
 
     @Override
