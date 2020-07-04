@@ -1,5 +1,6 @@
 package com.jhw.swing.material.components.taskpane;
 
+import com.clean.swing.app.dashboard.DashBoardSimple;
 import com.jhw.swing.material.components.dashboard.taskpane.DashBoardTaskPane;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,7 +16,7 @@ public class SingleCollapseMenu extends CollapseMenu {
 
     private final Action action;
 
-    public SingleCollapseMenu(Action action, DashBoardTaskPane parent) {
+    public SingleCollapseMenu(Action action, DashBoardSimple parent) {
         super((ImageIcon) action.getValue(Action.SMALL_ICON), action.getValue(Action.NAME).toString(), parent);
         this.action = action;
     }

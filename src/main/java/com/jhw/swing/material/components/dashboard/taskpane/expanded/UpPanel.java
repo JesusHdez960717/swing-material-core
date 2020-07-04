@@ -16,6 +16,8 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.util.HashMap;
+import java.util.List;
+import java.util.function.Consumer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.Action;
@@ -31,7 +33,6 @@ public class UpPanel extends MapeableContainer {
 
     public UpPanel() {
         initComponents();
-        personalize();
     }
 
     private void initComponents() {
@@ -69,9 +70,19 @@ public class UpPanel extends MapeableContainer {
         this.revalidate();
     }
 
+    public void format(Consumer<UpPanel> formatter) {
+        formatter.accept(this);
+    }
+
     private void addElement(Object component) {
         if (component instanceof Component) {
             addComponentGeneral((Component) component);
+        } else if (component instanceof List) {
+            for (Object single : (List) component) {
+                if (single instanceof Component) {
+                    addComponentGeneral((Component) single);
+                }
+            }
         } else {
             String logMSG = "Component " + component + " not supperted for up element.";
             Logger.getLogger(DashBoardTaskPane.class.getName()).log(Level.WARNING, logMSG);
@@ -102,12 +113,8 @@ public class UpPanel extends MapeableContainer {
         components.add(component);
     }
 
-    private void personalize() {
-        Color sec = Utils.darken(PersonalizationMaterial.getInstance().getColorSecundary());
-
-        this.background.setPrimaryColor(PersonalizationMaterial.getInstance().getColorPrincipal());
-        this.background.setSecundaryColor(sec);
-        this.background.setGradient(GradientEnum.VERTICAL_3_4);
+    public _PanelGradient getBackgroundPanel() {
+        return background;
     }
 
     private class CompanyButton extends _MaterialButtonTransparent {

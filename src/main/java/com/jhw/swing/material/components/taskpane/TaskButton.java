@@ -26,8 +26,8 @@ import com.jhw.swing.material.standars.MaterialColors;
 public class TaskButton extends JButton implements MaterialComponent {
 
     private boolean selected = false;
-    private Color selectedColor  = MaterialColors.BLUE_200;
-    private Color deselectedColor  = MaterialColors.BLUE_800;
+    private Color selectedColor = MaterialColors.BLUE_200;
+    private Color deselectedColor = MaterialColors.BLUE_800;
 
     public TaskButton(Action a, CollapseMenu parent) {
         setAction(a);
@@ -43,7 +43,7 @@ public class TaskButton extends JButton implements MaterialComponent {
                 select();
             }
         });
-        
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
     }
 
     public Color getSelectedColor() {

@@ -15,6 +15,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.util.HashMap;
+import java.util.List;
+import java.util.function.Consumer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.Action;
@@ -39,9 +41,6 @@ public class DownPanel extends MapeableContainer {
         this.background = new _PanelGradient();
         this.add(background, BorderLayout.CENTER);
         this.background.setLayout(new BorderLayout());
-
-        this.background.setBackground(MaterialColors.GREY_200);
-        this.background.setBorder(new LineBorder(MaterialColors.GREY_500, 1));
 
         this.components = new _PanelTransparent();
         this.components.setLayout(new FlowLayout(FlowLayout.CENTER, 15, 3));
@@ -73,6 +72,12 @@ public class DownPanel extends MapeableContainer {
     private void addElement(Object component) {
         if (component instanceof Action) {
             addDownElement((Action) component);
+        } else if (component instanceof List) {
+            for (Object single : (List) component) {
+                if (single instanceof Action) {
+                    addDownElement((Action) single);
+                }
+            }
         } else {
             String logMSG = "Component " + component + " not supperted for down panel.";
             Logger.getLogger(DashBoardTaskPane.class.getName()).log(Level.WARNING, logMSG);
@@ -94,6 +99,14 @@ public class DownPanel extends MapeableContainer {
 
     public void setLicence(Action licence) {
         doSetLicence(licence);
+    }
+
+    public _PanelGradient getBackgroundPanel() {
+        return background;
+    }
+
+    public void format(Consumer<DownPanel> formatter) {
+        formatter.accept(this);
     }
 
     private void doSetLicence(Action action) {

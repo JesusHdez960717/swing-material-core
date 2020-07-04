@@ -23,7 +23,7 @@ import org.jdesktop.swingx.VerticalLayout;
 public class TaskPaneMainContainer extends JXCollapsiblePane {
 
     private final JXTaskPaneContainer taskPane = new JXTaskPaneContainer();
-    private final _MaterialScrollPaneCore scrollPane= new _MaterialScrollPaneCore();
+    private final _MaterialScrollPaneCore scrollPane = new _MaterialScrollPaneCore();
 
     public TaskPaneMainContainer() {
         initComponents();
@@ -32,13 +32,13 @@ public class TaskPaneMainContainer extends JXCollapsiblePane {
     private void initComponents() {
         //sobreescribir el ui para que coja los colores
         taskPane.setUI(new MaterialPanelUI());
-        
+
         //direction del collapse
         setDirection(JXCollapsiblePane.Direction.LEFT);
-        
+
         //layout
         this.setLayout(new BorderLayout());
-        
+
         //add el scroll
         this.add(scrollPane, BorderLayout.CENTER);
 
@@ -49,6 +49,10 @@ public class TaskPaneMainContainer extends JXCollapsiblePane {
         //retoques a la visual, quitados gap y border
         setComponentsGap(0);
         setInternalBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
+    }
+
+    public void clear() {
+        taskPane.removeAll();
     }
 
     public void setTaskPaneBackground(Color color) {

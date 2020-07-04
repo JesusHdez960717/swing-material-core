@@ -7,11 +7,13 @@ package com.jhw.swing.material.components.dashboard.taskpane;
 
 import com.clean.swing.app.dashboard.DashBoardSimple;
 import com.clean.swing.app.dashboard.DashboardConstants;
+import com.jhw.swing.material.components.container.panel._PanelGradient;
 import com.jhw.swing.material.components.taskpane.CollapseMenu;
+import com.jhw.swing.material.components.taskpane.TaskButton;
 import com.jhw.swing.material.components.taskpane.TaskPaneMainContainer;
-import com.jhw.swing.material.components.dashboard.taskpane.expanded.CollapseMenuFormateer;
 import com.jhw.swing.material.standars.MaterialIcons;
 import com.jhw.swing.personalization.PersonalizationMaterial;
+import com.jhw.swing.util.enums.GradientEnum;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -19,6 +21,8 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.function.Consumer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -28,15 +32,22 @@ import java.util.logging.Logger;
  */
 public class DashBoardTaskPane extends DashBoardSimple {
 
+    private Consumer<TaskButton> buttonFormatter = (TaskButton btn) -> {
+    };
+
+    private Consumer<CollapseMenu> collapseMenuFormatter = (CollapseMenu menu) -> {
+    };
+
     private final CardLayout cards = new CardLayout();
 
     private boolean shrinked;
 
-    private TaskPaneMainContainer task = new TaskPaneMainContainer();
+    private final TaskPaneMainContainer task = new TaskPaneMainContainer();
 
-    private CollapseMenuFormateer formateer;
+    private final ArrayList<CollapseMenu> menus = new ArrayList<>();
 
-    private ArrayList<CollapseMenu> menus = new ArrayList<>();
+    private Consumer<CollapseMenu> menuFormatter = (CollapseMenu menu) -> {
+    };
 
     /**
      * Creates new form RootView
@@ -58,7 +69,7 @@ public class DashBoardTaskPane extends DashBoardSimple {
     private void initComponents() {
 
         panelContent = new javax.swing.JPanel();
-        panelSideMenu = new javax.swing.JPanel();
+        panelSideMenu = new _PanelGradient();
         jPanelBackButton = new javax.swing.JPanel();
         jButtonBack = new javax.swing.JButton();
         jPanelShinkButton = new javax.swing.JPanel();
@@ -139,7 +150,7 @@ public class DashBoardTaskPane extends DashBoardSimple {
     @Override
     public void update(HashMap<String, Object> hm) {
         menus.clear();
-        this.task.removeAll();
+        this.task.clear();
         for (String key : hm.keySet()) {
             Object component = hm.get(key);
             switch (key) {
@@ -151,9 +162,33 @@ public class DashBoardTaskPane extends DashBoardSimple {
         //this.revalidate();
     }
 
+    @Override
+    public void deselectAll() {
+        for (CollapseMenu menu : menus) {
+            menu.deselectAll();
+        }
+    }
+
+    public Consumer<CollapseMenu> getMenuFormatter() {
+        return menuFormatter;
+    }
+
+    public void setMenuFormatter(Consumer<CollapseMenu> menuFormatter) {
+        this.menuFormatter = menuFormatter;
+        for (CollapseMenu menu : menus) {
+            menuFormatter.accept(menu);
+        }
+    }
+
     private void add(Object component) {
         if (component instanceof CollapseMenu) {
             addMainElement((CollapseMenu) component);
+        } else if (component instanceof List) {
+            for (Object single : (List) component) {
+                if (single instanceof CollapseMenu) {
+                    addMainElement((CollapseMenu) single);
+                }
+            }
         } else {
             String logMSG = "Component " + component + " not supperted by actual DashBoard";
             Logger.getLogger(DashBoardTaskPane.class.getName()).log(Level.WARNING, logMSG);
@@ -183,33 +218,17 @@ public class DashBoardTaskPane extends DashBoardSimple {
         task.setTaskPaneBackground(background);
     }
 
-    public CollapseMenuFormateer getFormateer() {
-        return formateer;
-    }
-
-    public void setFormateer(CollapseMenuFormateer formateer) {
-        this.formateer = formateer;
-    }
-
     public void setShrinked(boolean shrink) {
         this.shrinked = shrink;
         this.task.setCollapsed(this.shrinked);
     }
 
     public void addMainElement(CollapseMenu menu) {
-        if (formateer != null) {
-            formateer.formatMenu(menu);
-        }
+        menuFormatter.accept(menu);
         menu.selected(false);
         menus.add(menu);
         this.task.addItem(menu);
         setMinimunShrink(menu.getComponentsHight());
-    }
-
-    public void deselectAll() {
-        for (CollapseMenu menu : menus) {
-            menu.deselectAll();
-        }
     }
 
     /**
@@ -230,6 +249,24 @@ public class DashBoardTaskPane extends DashBoardSimple {
 
         jButtonBack.setMinimumSize(new Dimension(min, min));
         jButtonBack.setPreferredSize(new Dimension(min, min));
+    }
+
+    public void setButtonFormatter(Consumer<TaskButton> buttonFormatter) {
+        this.buttonFormatter = buttonFormatter;
+    }
+
+    public void setCollapseMenuFormatter(Consumer<CollapseMenu> collapseMenuFormatter) {
+        this.collapseMenuFormatter = collapseMenuFormatter;
+    }
+
+    @Override
+    public void format() {
+        for (CollapseMenu menu : menus) {
+            collapseMenuFormatter.accept(menu);
+            for (TaskButton button : menu.getButtons()) {
+                buttonFormatter.accept(button);
+            }
+        }
     }
 
 }

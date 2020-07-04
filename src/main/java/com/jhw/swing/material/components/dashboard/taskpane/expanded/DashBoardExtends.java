@@ -5,8 +5,11 @@ import com.jhw.swing.material.components.dashboard.taskpane.DashBoardTaskPane;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import com.jhw.swing.material.components.taskpane.CollapseMenu;
+import com.jhw.swing.material.components.taskpane.TaskButton;
+import com.jhw.swing.util.enums.GradientEnum;
 import java.awt.Component;
 import java.util.HashMap;
+import java.util.function.Consumer;
 
 /**
  *
@@ -14,8 +17,49 @@ import java.util.HashMap;
  */
 public class DashBoardExtends extends DashBoardSimple {
 
+    private Consumer<DashBoardExtends> dashBoardFormatter = (DashBoardExtends dash) -> {
+    };
+
+    private Consumer<UpPanel> upPanelFormatter = (UpPanel up) -> {
+    };
+
+    private Consumer<DownPanel> downPanelFormatter = (DownPanel down) -> {
+    };
+
     public DashBoardExtends() {
         initComponents();
+    }
+
+    @Override
+    public void format() {
+        downPanel.format(downPanelFormatter);
+        upPanel.format(upPanelFormatter);
+        dashBoardFormatter.accept(this);
+        dashboardCore.format();
+    }
+
+    public void setButtonFormatter(Consumer<TaskButton> buttonFormatter) {
+        this.dashboardCore.setButtonFormatter(buttonFormatter);
+    }
+
+    public void setCollapseMenuFormatter(Consumer<CollapseMenu> collapseMenuFormatter) {
+        this.dashboardCore.setCollapseMenuFormatter(collapseMenuFormatter);
+    }
+
+    public void setDashBoardFormatter(Consumer<DashBoardExtends> dashBoardFormatter) {
+        this.dashBoardFormatter = dashBoardFormatter;
+    }
+
+    public void setUpPanelFormatter(Consumer<UpPanel> upPanelFormatter) {
+        this.upPanelFormatter = upPanelFormatter;
+    }
+
+    public void setDownPanelFormatter(Consumer<DownPanel> downPanelFormatter) {
+        this.downPanelFormatter = downPanelFormatter;
+    }
+
+    public void setMenuFormateer(Consumer<CollapseMenu> menuFormateer) {
+        dashboardCore.setMenuFormatter(menuFormateer);
     }
 
     private void initComponents() {
@@ -37,8 +81,13 @@ public class DashBoardExtends extends DashBoardSimple {
     public void update(HashMap<String, Object> hm) {
         this.downPanel.update(hm);
         this.upPanel.update(hm);
-        //this.dashboardCore.update(hm);
+        this.dashboardCore.update(hm);
         //this.revalidate();
+    }
+
+    @Override
+    public void deselectAll() {
+        this.dashboardCore.deselectAll();
     }
 
     public DashBoardTaskPane getDashboardCore() {

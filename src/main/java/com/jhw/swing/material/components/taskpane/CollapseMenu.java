@@ -5,6 +5,8 @@
  */
 package com.jhw.swing.material.components.taskpane;
 
+import com.clean.swing.app.dashboard.DashBoardSimple;
+import com.clean.swing.app.dashboard.DashboardConstants;
 import com.jhw.swing.material.components.button._MaterialButton;
 import com.jhw.swing.material.components.button._MaterialButtonIconTranspRect;
 import com.jhw.swing.material.components.dashboard.taskpane.DashBoardTaskPane;
@@ -20,6 +22,7 @@ import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.beans.PropertyChangeEvent;
 import java.util.ArrayList;
+import java.util.function.Consumer;
 import javax.swing.Action;
 import javax.swing.Icon;
 import javax.swing.JButton;
@@ -38,25 +41,22 @@ import org.jdesktop.swingx.VerticalLayout;
 //TODO: 
 public class CollapseMenu extends JPanel {
 
-    public static final String PROP_COLLAPSE = "Collapse";
+    private final Icon iconoCategoria;
+    private final String nombreCategoria;
 
-    private Icon iconoCategoria;
-    private String nombreCategoria;
-
-    private ArrayList<TaskButton> buttons = new ArrayList<>();
-    private DashBoardTaskPane parent;
+    private final ArrayList<TaskButton> buttons = new ArrayList<>();
+    private final DashBoardSimple parent;
 
     private Color selected = MaterialColors.WHITE;
     private Color deselected = MaterialColors.RED_900;
 
-    public CollapseMenu(Icon iconoCategoria, String nombreCategoria, DashBoardTaskPane parent) {
+    public CollapseMenu(Icon iconoCategoria, String nombreCategoria, DashBoardSimple parent) {
         initComponents();
         this.iconoCategoria = iconoCategoria;
         this.nombreCategoria = nombreCategoria;
         configurateUI();
         this.parent = parent;
-        this.parent.addMainElement(this);
-        jPanelSubActions.setUI(new MaterialPanelUI());//sobreescribir el ui para que coja los colores
+        this.parent.addKeyValue(DashboardConstants.MAIN_ELEMENT, this);
     }
 
     /**
@@ -153,12 +153,13 @@ public class CollapseMenu extends JPanel {
         }
     }
 
+    public ArrayList<TaskButton> getButtons() {
+        return buttons;
+    }
+
     public void addMenuItem(Action action) {
         //Add button
         TaskButton button = new TaskButton(action, this);
-        if (parent.getFormateer() != null) {
-            parent.getFormateer().formatButton(button);
-        }
         button.deselect();
 
         buttons.add(button);
@@ -191,7 +192,8 @@ public class CollapseMenu extends JPanel {
 
     /**
      * Pone el background del componente principal
-     * @param color 
+     *
+     * @param color
      */
     private void setMainBackground(Color color) {
         jPanelFixed.setBackground(color);
@@ -287,6 +289,8 @@ public class CollapseMenu extends JPanel {
     }
 
     protected void configurateUI() {
+        jPanelSubActions.setUI(new MaterialPanelUI());//sobreescribir el ui para que coja los colores
+
         jButtonNombre.setBackground(MaterialColors.TRANSPARENT);
         ((_MaterialButton) jButtonNombre).setRippleColor(MaterialColors.TRANSPARENT);
         ((_MaterialButtonIconTranspRect) jButtonIcono).setRippleColor(MaterialColors.TRANSPARENT);
