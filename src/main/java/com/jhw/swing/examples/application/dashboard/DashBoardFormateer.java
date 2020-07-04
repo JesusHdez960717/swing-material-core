@@ -23,8 +23,11 @@ public class DashBoardFormateer {
     public static Consumer<TaskButton> buttonFormatter = (TaskButton btn) -> {
         btn.setFont(MaterialFontRoboto.MEDIUM.deriveFont(16f));
         btn.setForeground(MaterialColors.WHITE);
-        btn.setSelectedColor(Utils.darken(SECUNDARY));
+        
         btn.setDeselectedColor(SECUNDARY);
+        btn.setMauseOverColor(Utils.darken(SECUNDARY));
+        btn.setSelectedColor(Utils.darken(Utils.darken(SECUNDARY)));
+        
         btn.deselect();//marcar el deselect para que pinte
     };
 

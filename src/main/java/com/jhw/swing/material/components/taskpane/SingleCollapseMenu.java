@@ -16,8 +16,8 @@ public class SingleCollapseMenu extends CollapseMenu {
 
     private final Action action;
 
-    public SingleCollapseMenu(Action action, DashBoardSimple parent) {
-        super((ImageIcon) action.getValue(Action.SMALL_ICON), action.getValue(Action.NAME).toString(), parent);
+    public SingleCollapseMenu(Action action) {
+        super((ImageIcon) action.getValue(Action.SMALL_ICON), action.getValue(Action.NAME).toString());
         this.action = action;
     }
 

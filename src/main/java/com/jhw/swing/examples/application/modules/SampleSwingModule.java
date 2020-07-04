@@ -31,8 +31,8 @@ public class SampleSwingModule implements AbstractSwingModule {
 
     private void registerMainElements(AbstractSwingApplication app) {
         DashBoardSimple dash = app.rootView().dashboard();
-        CollapseMenu menu1 = new CollapseMenu(MaterialIcons.ADD, "menu 1", dash);
-
+        CollapseMenu menu1 = new CollapseMenu(MaterialIcons.ADD, "menu 1");
+        dash.addKeyValue(DashboardConstants.MAIN_ELEMENT, menu1);
         for (int i = 0; i < 9; i++) {
             String view_1_i = "view 1," + i;
             dash.addView(view_1_i, new CargoDetailView());
@@ -44,12 +44,13 @@ public class SampleSwingModule implements AbstractSwingModule {
             });
         }
 
-        new SingleCollapseMenu(new AbstractAction("456", MaterialIcons.GIF) {
+        SingleCollapseMenu singleMenu = new SingleCollapseMenu(new AbstractAction("456", MaterialIcons.GIF) {
             @Override
             public void actionPerformed(ActionEvent e) {
                 app.navigateTo("ABC");
             }
-        }, dash);
+        });
+        dash.addKeyValue(DashboardConstants.MAIN_ELEMENT, singleMenu);
 
     }
 
@@ -60,7 +61,8 @@ public class SampleSwingModule implements AbstractSwingModule {
             public void actionPerformed(ActionEvent e) {
                 app.navigateTo(SampleModuleNavigator.NAV_TEST);
             }
-        });dash.addKeyValue(DashboardConstants.UP_ELEMENT, new AbstractAction("Hello World", MaterialIcons.NAVIGATION) {
+        });
+        dash.addKeyValue(DashboardConstants.UP_ELEMENT, new AbstractAction("Hello World", MaterialIcons.NAVIGATION) {
             @Override
             public void actionPerformed(ActionEvent e) {
                 app.navigateTo("view 1,6");

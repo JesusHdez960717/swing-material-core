@@ -45,18 +45,15 @@ public class CollapseMenu extends JPanel {
     private final String nombreCategoria;
 
     private final ArrayList<TaskButton> buttons = new ArrayList<>();
-    private final DashBoardSimple parent;
 
     private Color selected = MaterialColors.WHITE;
     private Color deselected = MaterialColors.RED_900;
 
-    public CollapseMenu(Icon iconoCategoria, String nombreCategoria, DashBoardSimple parent) {
+    public CollapseMenu(Icon iconoCategoria, String nombreCategoria) {
         initComponents();
         this.iconoCategoria = iconoCategoria;
         this.nombreCategoria = nombreCategoria;
         configurateUI();
-        this.parent = parent;
-        this.parent.addKeyValue(DashboardConstants.MAIN_ELEMENT, this);
     }
 
     /**
@@ -179,7 +176,7 @@ public class CollapseMenu extends JPanel {
     }
 
     public void childSelected() {
-        parent.deselectAll();
+        firePropertyChange(DashboardConstants.FIRE_CHILD_SELECTED, false, false);
         setMainBackground(selected);
     }
 

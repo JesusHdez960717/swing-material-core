@@ -89,7 +89,11 @@ public class ElevationEffect {
      */
     public void paint(Graphics g) {
         if (PersonalizationMaterial.getInstance().isUseShadow()) {
-            Graphics2D g2 = MaterialDrawingUtils.getAliasedGraphics(g);
+            //priorizado la velocidad, la calidad no hace diferencia
+            Graphics2D g2 = (Graphics2D) g;
+            g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_NEAREST_NEIGHBOR);
+            g2.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_SPEED);
+
             g2.setBackground(target.getParent().getBackground());
             g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1.0f));
             g2.drawImage(shadowFast.render(target.getWidth(), target.getHeight(), borderRadius, level.getValue(), MaterialShadow.Type.SQUARE), 0, 0, null);

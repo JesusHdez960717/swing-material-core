@@ -52,6 +52,7 @@ public class TaskPaneMainContainer extends JXCollapsiblePane {
         
         //quita el border al scroll pane
         scrollPane.setBorder(null);
+        this.setAnimated(true);
     }
 
     public void clear() {

@@ -18,6 +18,8 @@ import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import com.jhw.swing.material.components.button.*;//_MaterialButtonFlat
 import com.jhw.swing.material.standars.MaterialColors;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 /**
  *
@@ -28,6 +30,7 @@ public class TaskButton extends JButton implements MaterialComponent {
     private boolean selected = false;
     private Color selectedColor = MaterialColors.BLUE_200;
     private Color deselectedColor = MaterialColors.BLUE_800;
+    private Color mauseOverColor = MaterialColors.BLUE_800;
 
     public TaskButton(Action a, CollapseMenu parent) {
         setAction(a);
@@ -44,6 +47,29 @@ public class TaskButton extends JButton implements MaterialComponent {
             }
         });
         this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        this.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                if (!selected) {
+                    setBackground(mauseOverColor);
+                }
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                if (!selected) {
+                    setBackground(deselectedColor);
+                }
+            }
+        });
+    }
+
+    public Color getMauseOverColor() {
+        return mauseOverColor;
+    }
+
+    public void setMauseOverColor(Color mauseOverColor) {
+        this.mauseOverColor = mauseOverColor;
     }
 
     public Color getSelectedColor() {
