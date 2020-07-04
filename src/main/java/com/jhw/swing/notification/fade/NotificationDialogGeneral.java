@@ -15,7 +15,9 @@ import com.jhw.swing.personalization.Inistanciables;
 import com.jhw.swing.util.SafePropertySetter;
 import com.jhw.swing.material.standars.MaterialColors;
 import com.jhw.swing.material.standars.MaterialFontRoboto;
+import com.jhw.swing.notification.NotificationLocation;
 import com.jhw.swing.personalization.PersonalizationMaterial;
+import com.jhw.swing.util.Utils;
 
 /**
  *
@@ -39,7 +41,7 @@ public class NotificationDialogGeneral extends JDialog {
 
     private Animator anim;
 
-    private static final ArrayList<NotificationDialogGeneral> notif = new ArrayList<>();
+    private static final ArrayList<NotificationDialogGeneral> NOTIF = new ArrayList<>();
 
     private int nextY = 0;
 
@@ -48,10 +50,10 @@ public class NotificationDialogGeneral extends JDialog {
     }
 
     public NotificationDialogGeneral(int delaySeconds, String header, String text, ImageIcon icon, Color color) {
-        this(delaySeconds, header, DEFAULT_HEADER_FONT, text, DEFAULT_TEXT_FONT, icon, color);
+        this(delaySeconds, header, DEFAULT_HEADER_FONT, text, DEFAULT_TEXT_FONT, icon, color, NotificationLocation.DOWN_RIGHT);
     }
 
-    public NotificationDialogGeneral(int delaySeconds, String header, Font headerFont, String text, Font textFont, ImageIcon icon, Color color) {
+    public NotificationDialogGeneral(int delaySeconds, String header, Font headerFont, String text, Font textFont, ImageIcon icon, Color color, NotificationLocation location) {
         super();
         this.delay = delaySeconds * 1000;
         this.icon = icon;
@@ -74,7 +76,7 @@ public class NotificationDialogGeneral extends JDialog {
         this.setResizable(false);
 
         nextY = getYPosition() - (int) super.getSize().getHeight();
-        this.setLocation(0, nextY);
+        this.setLocation(Utils.getXPosition(this, location), nextY);
 
         NotificationDialogGeneral act = this;
 
@@ -121,13 +123,13 @@ public class NotificationDialogGeneral extends JDialog {
                 })
                 .build().start();
 
-        notif.add(this);
+        NOTIF.add(this);
 
         this.setVisible(true);
     }
 
     private void closeNotif() {
-        notif.remove(this);
+        NOTIF.remove(this);
         moveAll(this);
         if (anim != null) {
             anim.cancel();
@@ -137,14 +139,14 @@ public class NotificationDialogGeneral extends JDialog {
 
     private int getYPosition() {
         int pos = Toolkit.getDefaultToolkit().getScreenSize().height - DISTANCE;
-        for (NotificationDialogGeneral act : notif) {
+        for (NotificationDialogGeneral act : NOTIF) {
             pos -= act.getHeight();
         }
         return pos;
     }
 
     private static void moveAll(NotificationDialogGeneral actual) {
-        for (NotificationDialogGeneral act : notif) {
+        for (NotificationDialogGeneral act : NOTIF) {
             if (act.getLocation().getY() < actual.getLocation().getY()) {
                 act.moveAmount((int) actual.getSize().getHeight());
             }

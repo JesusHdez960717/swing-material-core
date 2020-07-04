@@ -343,10 +343,11 @@ public abstract class _MaterialPanelDetail<T> extends _MaterialPanel implements 
         if (key.isEmpty()) {
             return true;
         }
+        text = text.toLowerCase();
         StringTokenizer st = new StringTokenizer(key, "+");
         while (st.hasMoreTokens()) {
-            String tok = st.nextToken();
-            if (text.compareToIgnoreCase(tok) != 0) {
+            String tok = st.nextToken().toLowerCase();
+            if (!text.contains(tok)) {
                 return false;
             }
         }

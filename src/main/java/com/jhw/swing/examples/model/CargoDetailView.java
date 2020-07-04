@@ -61,13 +61,7 @@ public class CargoDetailView extends _MaterialPanelDetail<CargoModel> {
 
     @Override
     public void update() {
-        ArrayList<CargoModel> c = new ArrayList<>();
-        c.addAll(CargoModel.getCargos());
-        c.addAll(CargoModel.getCargos());
-        c.addAll(CargoModel.getCargos());
-        c.addAll(CargoModel.getCargos());
-
-        setCollection(c);
+        setCollection(CargoModel.getCargos());
     }
 
     @Override
