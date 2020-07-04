@@ -1,4 +1,4 @@
-package com.jhw.swing.examples.application;
+package com.jhw.swing.examples.application.services;
 
 import com.clean.core.app.services.NotificationService;
 
@@ -6,7 +6,7 @@ import com.clean.core.app.services.NotificationService;
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-public class NotifService implements NotificationService {
+public class NotificationServiceImplementation implements NotificationService {
 
     @Override
     public void showNotification(String string, String string1) {

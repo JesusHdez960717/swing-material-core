@@ -1,26 +1,21 @@
-package com.jhw.swing.examples.application;
+package com.jhw.swing.examples.application.modules;
 
 import com.clean.core.app.services.Navigation;
 import com.clean.swing.app.AbstractSwingApplication;
 import com.clean.swing.app.AbstractSwingModule;
 import com.clean.swing.app.dashboard.DashBoardSimple;
 import com.clean.swing.app.dashboard.DashboardConstants;
-import com.jhw.swing.examples.application.dashboard.DashBoardFormateer;
 import com.jhw.swing.examples.model.CargoDetailView;
-import com.jhw.swing.examples.model.CargoPanel;
 import com.jhw.swing.examples.standars.MATERIAL_ICONS_EXAMPLE;
 import com.jhw.swing.material.components.button._MaterialButton;
 import com.jhw.swing.material.components.button._MaterialButtonFlat;
 import com.jhw.swing.material.components.button._MaterialButtonTransparent;
 import com.jhw.swing.material.components.button._MaterialIconButtonRound;
-import com.jhw.swing.material.components.dashboard.taskpane.DashBoardTaskPane;
-import com.jhw.swing.material.components.dashboard.taskpane.expanded.DashBoardExtends;
 import com.jhw.swing.material.components.taskpane.CollapseMenu;
 import com.jhw.swing.material.components.taskpane.SingleCollapseMenu;
 import com.jhw.swing.material.standars.MaterialIcons;
 import com.jhw.swing.util.AbstractActionUtils;
 import com.jhw.swing.util.JOP;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import javax.swing.AbstractAction;
@@ -29,9 +24,9 @@ public class SampleSwingModule implements AbstractSwingModule {
 
     @Override
     public void register(AbstractSwingApplication app) {
-        registerMainElements(app.dashboard());
-        registerUpElements(app.dashboard());
-        registerDownElements(app.dashboard());
+        registerMainElements(app.rootView().dashboard());
+        registerUpElements(app.rootView().dashboard());
+        registerDownElements(app.rootView().dashboard());
     }
 
     private void registerMainElements(DashBoardSimple dash) {

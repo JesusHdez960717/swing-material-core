@@ -1,4 +1,4 @@
-package com.jhw.swing.examples.application;
+package com.jhw.swing.examples.application.services;
 
 import com.clean.core.domain.services.ResourceService;
 
@@ -6,7 +6,7 @@ import com.clean.core.domain.services.ResourceService;
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-public class ResService implements ResourceService{
+public class ResourceServiceImplementation implements ResourceService{
 
     @Override
     public String getString(String string) {
