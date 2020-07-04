@@ -112,8 +112,9 @@ public class RootViewFrame extends JFrame implements com.clean.swing.app.RootVie
     }
 
     @Override
-    public void navigateTo(String string, Object o) {
-        return;
+    public void navigateTo(String name, Object... o) {
+        showView(name);
+        DASHBOARD.showView(name);
     }
 
 }

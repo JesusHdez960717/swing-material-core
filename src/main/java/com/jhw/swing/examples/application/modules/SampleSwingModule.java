@@ -24,56 +24,63 @@ public class SampleSwingModule implements AbstractSwingModule {
 
     @Override
     public void register(AbstractSwingApplication app) {
-        registerMainElements(app.rootView().dashboard());
-        registerUpElements(app.rootView().dashboard());
-        registerDownElements(app.rootView().dashboard());
+        registerMainElements(app);
+        registerUpElements(app);
+        registerDownElements(app);
     }
 
-    private void registerMainElements(DashBoardSimple dash) {
-        try {
-            CollapseMenu menu1 = new CollapseMenu(MaterialIcons.ADD, "menu 1", dash);
+    private void registerMainElements(AbstractSwingApplication app) {
+        DashBoardSimple dash = app.rootView().dashboard();
+        CollapseMenu menu1 = new CollapseMenu(MaterialIcons.ADD, "menu 1", dash);
 
-            for (int i = 0; i < 9; i++) {
-                String view_1_i = "view 1," + i;
-                dash.addView(view_1_i, new CargoDetailView());
-                menu1.addMenuItem(new AbstractAction("button 1," + i, MATERIAL_ICONS_EXAMPLE.getRandomIcon()) {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        dash.showView(view_1_i);
-                    }
-                });
-            }
-
-            new SingleCollapseMenu(new AbstractAction("456", MaterialIcons.GIF) {
+        for (int i = 0; i < 9; i++) {
+            String view_1_i = "view 1," + i;
+            dash.addView(view_1_i, new CargoDetailView());
+            menu1.addMenuItem(new AbstractAction("button 1," + i, MATERIAL_ICONS_EXAMPLE.getRandomIcon()) {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    Navigation.navigateTo("ABC", null);
+                    app.navigateTo(view_1_i);
                 }
-            }, dash);
-
-        } catch (Exception e) {
+            });
         }
+
+        new SingleCollapseMenu(new AbstractAction("456", MaterialIcons.GIF) {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                app.navigateTo("ABC");
+            }
+        }, dash);
+
     }
 
-    private void registerUpElements(DashBoardSimple dash) {
-        _MaterialButton btn = new _MaterialButton();
-        btn.setPreferredSize(new Dimension(100, 100));
-        dash.addKeyValue(DashboardConstants.UP_ELEMENT, btn);
-        dash.addKeyValue(DashboardConstants.UP_ELEMENT, new _MaterialButtonFlat());
-        dash.addKeyValue(DashboardConstants.UP_ELEMENT, new _MaterialIconButtonRound());
-        dash.addKeyValue(DashboardConstants.UP_ELEMENT, new _MaterialButtonTransparent());
+    private void registerUpElements(AbstractSwingApplication app) {
+        DashBoardSimple dash = app.rootView().dashboard();
+        dash.addKeyValue(DashboardConstants.UP_ELEMENT, new AbstractAction("Hello World", MaterialIcons.ANDROID) {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                app.navigateTo(SampleModuleNavigator.NAV_TEST);
+            }
+        });dash.addKeyValue(DashboardConstants.UP_ELEMENT, new AbstractAction("Hello World", MaterialIcons.NAVIGATION) {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                app.navigateTo("view 1,6");
+            }
+        });
     }
 
-    private void registerDownElements(DashBoardSimple dash) {
+    private void registerDownElements(AbstractSwingApplication app) {
+        DashBoardSimple dash = app.rootView().dashboard();
         dash.addKeyValue(DashboardConstants.DOWN_ELEMENT, AbstractActionUtils.from(MaterialIcons.TEC_GITKRAKEN));
         dash.addKeyValue(DashboardConstants.DOWN_ELEMENT, AbstractActionUtils.from(MaterialIcons.TEC_GIT));
         dash.addKeyValue(DashboardConstants.DOWN_ELEMENT, AbstractActionUtils.from(MaterialIcons.TEC_JAVA));
         dash.addKeyValue(DashboardConstants.DOWN_ELEMENT, AbstractActionUtils.from(MaterialIcons.TEC_NB));
     }
 
+    SampleModuleNavigator navigator = new SampleModuleNavigator();
+
     @Override
-    public void navigateTo(String string, Object o) {
-        JOP.error("MOSTRAR LA VISTA " + string);
+    public void navigateTo(String string, Object... o) {
+        navigator.navigateTo(string, o);
     }
 
 }

@@ -66,7 +66,8 @@ public class SwingApplication implements AbstractSwingApplication {
     }
 
     @Override
-    public void navigateTo(String string, Object o) {
+    public void navigateTo(String string, Object... o) {
+        rootView().navigateTo(string, o);
         for (AbstractSwingModule abstractSwingModule : INSTALLED_MODULES) {
             abstractSwingModule.navigateTo(string, o);
         }
@@ -78,8 +79,8 @@ public class SwingApplication implements AbstractSwingApplication {
             modulo.register(this);
             this.installedModules().add(modulo);
         }
-        ROOT_VIEW.dashboard().update(ROOT_VIEW.dashboard().getMap());//este es que al final actualiza todo
-        ROOT_VIEW.dashboard().format();
+        rootView().dashboard().update(rootView().dashboard().getMap());//este es que al final actualiza todo
+        rootView().dashboard().format();
     }
 
     @Override

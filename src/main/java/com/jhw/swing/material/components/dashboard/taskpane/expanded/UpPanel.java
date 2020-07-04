@@ -2,6 +2,7 @@ package com.jhw.swing.material.components.dashboard.taskpane.expanded;
 
 import com.clean.swing.app.dashboard.DashboardConstants;
 import com.clean.swing.app.dashboard.MapeableContainer;
+import com.jhw.swing.material.components.button._MaterialButtonIconTranspRect;
 import com.jhw.swing.material.components.button._MaterialButtonTransparent;
 import com.jhw.swing.material.components.container.panel._PanelGradient;
 import com.jhw.swing.material.components.container.panel._PanelTransparent;
@@ -77,10 +78,14 @@ public class UpPanel extends MapeableContainer {
     private void addElement(Object component) {
         if (component instanceof Component) {
             addComponentGeneral((Component) component);
+        } else if (component instanceof Action) {
+            addComponentGeneral((Action) component);
         } else if (component instanceof List) {
             for (Object single : (List) component) {
                 if (single instanceof Component) {
                     addComponentGeneral((Component) single);
+                } else if (single instanceof Action) {
+                    addComponentGeneral((Action) single);
                 }
             }
         } else {
@@ -106,6 +111,13 @@ public class UpPanel extends MapeableContainer {
         this.company.setAction(action);
         this.company.setPreferredSize(new Dimension((int) company.getPreferredSize().getWidth(), HEIGHT_FINAL));
         this.background.add(this.company, BorderLayout.WEST);
+    }
+
+    public void addComponentGeneral(Action action) {
+        _MaterialButtonIconTranspRect component = new _MaterialButtonIconTranspRect();
+        component.setAction(action);
+        component.setPreferredSize(new Dimension(HEIGHT_FINAL, HEIGHT_FINAL));
+        components.add(component);
     }
 
     public void addComponentGeneral(Component component) {

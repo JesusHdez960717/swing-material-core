@@ -10,7 +10,7 @@ import com.jhw.swing.examples.application.Main;
 public class NavigationServiceImplementation implements NavigationService {
 
     @Override
-    public void navigateTo(String string, Object o) {
+    public void navigateTo(String string, Object... o) {
         Main.app.navigateTo(string, o);
     }
 
