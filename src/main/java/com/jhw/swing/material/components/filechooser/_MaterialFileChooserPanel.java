@@ -36,7 +36,7 @@ public class _MaterialFileChooserPanel extends _PanelTransparent implements Upda
 
         labelSeleccionados = new com.jhw.swing.material.components.labels._MaterialLabel();
         buttonAbrir = new com.jhw.swing.material.components.button._MaterialButton();
-        buttonOpenFolder = new com.jhw.swing.material.components.button._MaterialButtonIconTranspRect();
+        buttonOpenFolder = new com.jhw.swing.material.components.button._MaterialButtonIconTransparent();
 
         labelSeleccionados.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelSeleccionados.setText("Nada seleccionado");
@@ -72,7 +72,7 @@ public class _MaterialFileChooserPanel extends _PanelTransparent implements Upda
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.jhw.swing.material.components.button._MaterialButton buttonAbrir;
-    private com.jhw.swing.material.components.button._MaterialButtonIconTranspRect buttonOpenFolder;
+    private com.jhw.swing.material.components.button._MaterialButtonIconTransparent buttonOpenFolder;
     private com.jhw.swing.material.components.labels._MaterialLabel labelSeleccionados;
     // End of variables declaration//GEN-END:variables
 

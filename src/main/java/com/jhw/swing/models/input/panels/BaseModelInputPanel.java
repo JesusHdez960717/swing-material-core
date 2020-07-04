@@ -1,7 +1,7 @@
 package com.jhw.swing.models.input.panels;
 
 import com.jhw.swing.material.components.button._MaterialButton;
-import com.jhw.swing.material.components.button._MaterialButtonIconTranspRect;
+import com.jhw.swing.material.components.button._MaterialButtonIconTransparent;
 import com.jhw.swing.material.components.button.prepared._buttonAddEdit;
 import com.jhw.swing.material.components.container.panel._MaterialPanel;
 import com.jhw.swing.material.components.container.panel._PanelComponent;
@@ -45,7 +45,7 @@ public class BaseModelInputPanel<T> extends _PanelGradient implements Update, Mo
         panelButtons = new com.jhw.swing.material.components.container.panel._PanelGradient();
         buttonAddEdit = new com.jhw.swing.material.components.button.prepared._buttonAddEdit();
         buttonCancel = new com.jhw.swing.material.components.button._MaterialButton();
-        buttonDelete = new com.jhw.swing.material.components.button._MaterialButtonIconTranspRect();
+        buttonDelete = new com.jhw.swing.material.components.button._MaterialButtonIconTransparent();
 
         setPrimaryColor(new java.awt.Color(255, 255, 255));
         setSecundaryColor(new java.awt.Color(255, 255, 255));
@@ -143,7 +143,7 @@ public class BaseModelInputPanel<T> extends _PanelGradient implements Update, Mo
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.jhw.swing.material.components.button.prepared._buttonAddEdit buttonAddEdit;
     private com.jhw.swing.material.components.button._MaterialButton buttonCancel;
-    private com.jhw.swing.material.components.button._MaterialButtonIconTranspRect buttonDelete;
+    private com.jhw.swing.material.components.button._MaterialButtonIconTransparent buttonDelete;
     private com.jhw.swing.material.components.container.panel._PanelGradient panelBackground;
     private com.jhw.swing.material.components.container.panel._PanelGradient panelButtons;
     private com.jhw.swing.material.components.container.panel._MaterialPanel panelModel;
@@ -255,7 +255,7 @@ public class BaseModelInputPanel<T> extends _PanelGradient implements Update, Mo
         return buttonCancel;
     }
 
-    public _MaterialButtonIconTranspRect getButtonDelete() {
+    public _MaterialButtonIconTransparent getButtonDelete() {
         return buttonDelete;
     }
 
@@ -275,7 +275,7 @@ public class BaseModelInputPanel<T> extends _PanelGradient implements Update, Mo
         return panelModelCore;
     }
 
-    public _MaterialButtonIconTranspRect getMaterialButtonDelete() {
+    public _MaterialButtonIconTransparent getMaterialButtonDelete() {
         return buttonDelete;
     }
 

@@ -1,6 +1,6 @@
 package com.jhw.swing.chart;
 
-import com.jhw.swing.material.components.button._MaterialButtonIconTranspRect;
+import com.jhw.swing.material.components.button._MaterialButtonIconTransparent;
 import com.jhw.swing.material.components.container.panel._PanelComponent;
 import com.jhw.swing.material.components.container.panel._PanelTransparent;
 import java.awt.Color;
@@ -37,8 +37,8 @@ public class _MaterialConvertChar extends _PanelTransparent implements MaterialC
     private void initComponents() {
 
         panelChart = new com.jhw.swing.material.components.container.panel._PanelComponent();
-        buttonBarChart = new com.jhw.swing.material.components.button._MaterialButtonIconTranspRect();
-        buttonLineChart = new com.jhw.swing.material.components.button._MaterialButtonIconTranspRect();
+        buttonBarChart = new com.jhw.swing.material.components.button._MaterialButtonIconTransparent();
+        buttonLineChart = new com.jhw.swing.material.components.button._MaterialButtonIconTransparent();
 
         javax.swing.GroupLayout panelChartLayout = new javax.swing.GroupLayout(panelChart);
         panelChart.setLayout(panelChartLayout);
@@ -78,8 +78,8 @@ public class _MaterialConvertChar extends _PanelTransparent implements MaterialC
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.jhw.swing.material.components.button._MaterialButtonIconTranspRect buttonBarChart;
-    private com.jhw.swing.material.components.button._MaterialButtonIconTranspRect buttonLineChart;
+    private com.jhw.swing.material.components.button._MaterialButtonIconTransparent buttonBarChart;
+    private com.jhw.swing.material.components.button._MaterialButtonIconTransparent buttonLineChart;
     private com.jhw.swing.material.components.container.panel._PanelComponent panelChart;
     // End of variables declaration//GEN-END:variables
 
@@ -131,11 +131,11 @@ public class _MaterialConvertChar extends _PanelTransparent implements MaterialC
         this.lineChart = lineChart;
     }
 
-    public _MaterialButtonIconTranspRect getButtonBarChart() {
+    public _MaterialButtonIconTransparent getButtonBarChart() {
         return buttonBarChart;
     }
 
-    public _MaterialButtonIconTranspRect getButtonLineChart() {
+    public _MaterialButtonIconTransparent getButtonLineChart() {
         return buttonLineChart;
     }
 

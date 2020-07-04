@@ -51,8 +51,7 @@ public class TaskPaneMainContainer extends JXCollapsiblePane {
         setInternalBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         
         //quita el border al scroll pane
-        scrollPane.setBorder(null);
-        this.setAnimated(true);
+        scrollPane.setBorder(null);        
     }
 
     public void clear() {

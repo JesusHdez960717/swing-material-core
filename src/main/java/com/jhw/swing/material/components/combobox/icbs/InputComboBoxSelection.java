@@ -1,7 +1,7 @@
 package com.jhw.swing.material.components.combobox.icbs;
 
 import com.clean.core.exceptions.ValidationException;
-import com.jhw.swing.material.components.button._MaterialButtonIconTranspRect;
+import com.jhw.swing.material.components.button._MaterialButtonIconTransparent;
 import com.jhw.swing.material.components.combobox.combobox_editable._MaterialComboBoxFiltrable;
 import com.jhw.swing.material.components.container.panel._PanelComponent;
 import java.awt.event.ActionEvent;
@@ -44,7 +44,7 @@ public abstract class InputComboBoxSelection<T> extends _PanelComponent implemen
 
         int h = (int) this.comboBox.getPreferredSize().getHeight();
 
-        buttonNuevo = new _MaterialButtonIconTranspRect();
+        buttonNuevo = new _MaterialButtonIconTransparent();
         buttonNuevo.setIcon(
                 PersonalizationMaterial.getInstance().getIconButtonAdd()
                         .deriveIcon(PersonalizationMaterial.getInstance().getColorButtonAdd())
@@ -56,7 +56,7 @@ public abstract class InputComboBoxSelection<T> extends _PanelComponent implemen
     }
 
     // Variables declaration - do not modify
-    private _MaterialButtonIconTranspRect buttonNuevo;
+    private _MaterialButtonIconTransparent buttonNuevo;
     private _MaterialComboBoxFiltrable<T> comboBox;
     // End of variables declaration
 
@@ -128,7 +128,7 @@ public abstract class InputComboBoxSelection<T> extends _PanelComponent implemen
         buttonNuevo.setVisible(visible);
     }
 
-    public _MaterialButtonIconTranspRect getButtonNuevo() {
+    public _MaterialButtonIconTransparent getButtonNuevo() {
         return buttonNuevo;
     }
 

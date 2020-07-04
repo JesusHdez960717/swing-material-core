@@ -34,7 +34,7 @@ public class BUTTONS_EXAMPLE extends javax.swing.JFrame {
 
         _MaterialButton1 = new com.jhw.swing.material.components.button._MaterialButton();
         _MaterialIconButtonRound1 = new com.jhw.swing.material.components.button._MaterialIconButtonRound();
-        _MaterialIconButtonTranspRect1 = new com.jhw.swing.material.components.button._MaterialButtonIconTranspRect();
+        _MaterialIconButtonTranspRect1 = new com.jhw.swing.material.components.button._MaterialButtonIconTransparent();
         _MaterialRadioButton1 = new com.jhw.swing.material.components.toggle._MaterialRadioButton();
         _MaterialToggleButton1 = new com.jhw.swing.material.components.toggle._MaterialToggleButton();
         _buttonAdd1 = new com.jhw.swing.material.components.button.prepared._buttonAddEdit();
@@ -181,7 +181,7 @@ public class BUTTONS_EXAMPLE extends javax.swing.JFrame {
     private com.jhw.swing.material.components.button._MaterialButton _MaterialButton3;
     private com.jhw.swing.material.components.toggle._MaterialCheckBox _MaterialCheckBox1;
     private com.jhw.swing.material.components.button._MaterialIconButtonRound _MaterialIconButtonRound1;
-    private com.jhw.swing.material.components.button._MaterialButtonIconTranspRect _MaterialIconButtonTranspRect1;
+    private com.jhw.swing.material.components.button._MaterialButtonIconTransparent _MaterialIconButtonTranspRect1;
     private com.jhw.swing.material.components.toggle._MaterialRadioButton _MaterialRadioButton1;
     private com.jhw.swing.material.components.toggle._MaterialToggleButton _MaterialToggleButton1;
     private com.jhw.swing.material.components.button.prepared._buttonAddEdit _buttonAdd1;

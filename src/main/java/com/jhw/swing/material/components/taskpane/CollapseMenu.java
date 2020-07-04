@@ -8,7 +8,7 @@ package com.jhw.swing.material.components.taskpane;
 import com.clean.swing.app.dashboard.DashBoardSimple;
 import com.clean.swing.app.dashboard.DashboardConstants;
 import com.jhw.swing.material.components.button._MaterialButton;
-import com.jhw.swing.material.components.button._MaterialButtonIconTranspRect;
+import com.jhw.swing.material.components.button._MaterialButtonIconTransparent;
 import com.jhw.swing.material.components.dashboard.taskpane.DashBoardTaskPane;
 import com.jhw.swing.material.components.labels._MaterialLabel;
 import com.jhw.swing.material.standars.MaterialColors;
@@ -69,7 +69,7 @@ public class CollapseMenu extends JPanel {
         jPopupMenu1 = new javax.swing.JPopupMenu();
         jPanelFixed = new javax.swing.JPanel();
         jLabel1 = new _MaterialLabel();
-        jButtonIcono = new com.jhw.swing.material.components.button._MaterialButtonIconTranspRect();
+        jButtonIcono = new com.jhw.swing.material.components.button._MaterialButtonIconTransparent();
         jButtonNombre = new com.jhw.swing.material.components.button._MaterialButtonFlat();
         jPanelCollapsible = new org.jdesktop.swingx.JXCollapsiblePane();
 
@@ -290,7 +290,7 @@ public class CollapseMenu extends JPanel {
 
         jButtonNombre.setBackground(MaterialColors.TRANSPARENT);
         ((_MaterialButton) jButtonNombre).setRippleColor(MaterialColors.TRANSPARENT);
-        ((_MaterialButtonIconTranspRect) jButtonIcono).setRippleColor(MaterialColors.TRANSPARENT);
+        ((_MaterialButtonIconTransparent) jButtonIcono).setRippleColor(MaterialColors.TRANSPARENT);
 
         jPanelCollapsible.setLayout(new BorderLayout());
         jPanelCollapsible.add(jPanelSubActions, BorderLayout.CENTER);

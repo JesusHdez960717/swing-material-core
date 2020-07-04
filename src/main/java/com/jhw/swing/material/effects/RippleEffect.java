@@ -137,7 +137,8 @@ public class RippleEffect {
         target.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                rippleEffect.addRipple(new Point(target.getWidth(), target.getHeight()), target.getWidth() / 2);
+                int min = Math.min(target.getWidth(), target.getHeight());
+                rippleEffect.addRipple(new Point(target.getWidth() / 2, target.getHeight() / 2), min/2);
             }
         });
         return rippleEffect;

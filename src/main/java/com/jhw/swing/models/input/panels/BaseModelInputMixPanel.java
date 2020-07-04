@@ -1,7 +1,7 @@
 package com.jhw.swing.models.input.panels;
 
 import com.jhw.swing.material.components.button._MaterialButton;
-import com.jhw.swing.material.components.button._MaterialButtonIconTranspRect;
+import com.jhw.swing.material.components.button._MaterialButtonIconTransparent;
 import com.jhw.swing.material.components.container.panel._PanelComponent;
 import com.jhw.swing.material.components.container.panel._PanelGradient;
 import java.awt.Color;
@@ -40,7 +40,7 @@ public class BaseModelInputMixPanel<T> extends _PanelGradient implements Update,
         panelBackground = new com.jhw.swing.material.components.container.panel._PanelGradient();
         panelButtons = new com.jhw.swing.material.components.container.panel._PanelGradient();
         buttonCancel = new com.jhw.swing.material.components.button._MaterialButton();
-        buttonDelete = new com.jhw.swing.material.components.button._MaterialButtonIconTranspRect();
+        buttonDelete = new com.jhw.swing.material.components.button._MaterialButtonIconTransparent();
         panelModelCore = new com.jhw.swing.material.components.container.panel._PanelComponent();
 
         setPrimaryColor(new java.awt.Color(255, 255, 255));
@@ -116,7 +116,7 @@ public class BaseModelInputMixPanel<T> extends _PanelGradient implements Update,
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.jhw.swing.material.components.button._MaterialButton buttonCancel;
-    private com.jhw.swing.material.components.button._MaterialButtonIconTranspRect buttonDelete;
+    private com.jhw.swing.material.components.button._MaterialButtonIconTransparent buttonDelete;
     private com.jhw.swing.material.components.container.panel._PanelGradient panelBackground;
     private com.jhw.swing.material.components.container.panel._PanelGradient panelButtons;
     private com.jhw.swing.material.components.container.panel._PanelComponent panelModelCore;
@@ -213,7 +213,7 @@ public class BaseModelInputMixPanel<T> extends _PanelGradient implements Update,
         return buttonCancel;
     }
 
-    public _MaterialButtonIconTranspRect getButtonDelete() {
+    public _MaterialButtonIconTransparent getButtonDelete() {
         return buttonDelete;
     }
 
@@ -229,7 +229,7 @@ public class BaseModelInputMixPanel<T> extends _PanelGradient implements Update,
         return panelModelCore;
     }
 
-    public _MaterialButtonIconTranspRect getMaterialButtonDelete() {
+    public _MaterialButtonIconTransparent getMaterialButtonDelete() {
         return buttonDelete;
     }
 

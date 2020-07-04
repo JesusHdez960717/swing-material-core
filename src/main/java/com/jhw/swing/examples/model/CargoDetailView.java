@@ -3,7 +3,7 @@ package com.jhw.swing.examples.model;
 import com.jhw.swing.models.detail._MaterialPanelDetail;
 import com.jhw.swing.models.input.dialogs.DialogModelInput;
 import com.jhw.swing.notification.toast.TOAST;
-import com.jhw.swing.material.components.button._MaterialButtonIconTranspRect;
+import com.jhw.swing.material.components.button._MaterialButtonIconTransparent;
 import com.jhw.swing.material.components.container.panel._PanelGradient;
 import com.jhw.swing.material.components.table.Column;
 import com.jhw.swing.material.components.table.editors_renders.component.ComponentCellRender;
@@ -81,7 +81,7 @@ public class CargoDetailView extends _MaterialPanelDetail<CargoModel> {
     }
 
     private void addOptionsElements() {
-        _MaterialButtonIconTranspRect btn1 = new _MaterialButtonIconTranspRect();
+        _MaterialButtonIconTransparent btn1 = new _MaterialButtonIconTransparent();
         btn1.setIcon(MaterialIcons.ADD_CIRCLE);
         btn1.addActionListener(new ActionListener() {
             @Override
@@ -91,7 +91,7 @@ public class CargoDetailView extends _MaterialPanelDetail<CargoModel> {
         });
         this.addOptionElement(btn1);
 
-        _MaterialButtonIconTranspRect btn2 = new _MaterialButtonIconTranspRect();
+        _MaterialButtonIconTransparent btn2 = new _MaterialButtonIconTransparent();
         btn2.setIcon(MaterialIcons.ADD_CIRCLE);
         btn2.addActionListener(new ActionListener() {
             @Override
@@ -101,7 +101,7 @@ public class CargoDetailView extends _MaterialPanelDetail<CargoModel> {
         });
         this.addOptionElement(btn2);
 
-        _MaterialButtonIconTranspRect btn3 = new _MaterialButtonIconTranspRect();
+        _MaterialButtonIconTransparent btn3 = new _MaterialButtonIconTransparent();
         btn3.setIcon(MaterialIcons.ADD_CIRCLE);
         btn3.addActionListener(new ActionListener() {
             @Override
@@ -114,7 +114,7 @@ public class CargoDetailView extends _MaterialPanelDetail<CargoModel> {
     }
 
     private void addActionsExtra() {
-        _MaterialButtonIconTranspRect btn1 = new _MaterialButtonIconTranspRect();
+        _MaterialButtonIconTransparent btn1 = new _MaterialButtonIconTransparent();
         btn1.setIcon(MaterialIcons.ADD);
         btn1.addActionListener(new ActionListener() {
             @Override

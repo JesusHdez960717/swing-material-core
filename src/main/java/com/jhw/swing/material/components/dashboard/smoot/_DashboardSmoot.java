@@ -49,7 +49,7 @@ public class _DashboardSmoot extends javax.swing.JPanel {
 
         panelButtons = new com.jhw.swing.material.components.container.panel._PanelGradient();
         panelButtonsInside = new com.jhw.swing.material.components.container.panel._PanelTransparent();
-        buttonCollapse = new com.jhw.swing.material.components.button._MaterialButtonIconTranspRect();
+        buttonCollapse = new com.jhw.swing.material.components.button._MaterialButtonIconTransparent();
         panelMiddle = new com.jhw.swing.material.components.container.panel._PanelGradient();
         panelUp = new com.jhw.swing.material.components.container.panel._PanelGradient();
         panelUpperCornerRight = new com.jhw.swing.material.components.container.panel._PanelTransparent();
@@ -174,7 +174,7 @@ public class _DashboardSmoot extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.jhw.swing.material.components.button._MaterialButtonIconTranspRect buttonCollapse;
+    private com.jhw.swing.material.components.button._MaterialButtonIconTransparent buttonCollapse;
     private com.jhw.swing.material.components.container.panel._PanelGradient panelButtons;
     private com.jhw.swing.material.components.container.panel._PanelTransparent panelButtonsInside;
     private com.jhw.swing.material.components.container.panel._PanelComponent panelComponentToDual;

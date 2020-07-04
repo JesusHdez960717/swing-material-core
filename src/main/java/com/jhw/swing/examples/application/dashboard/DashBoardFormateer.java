@@ -11,6 +11,7 @@ import com.jhw.swing.personalization.PersonalizationMaterial;
 import com.jhw.swing.util.Utils;
 import com.jhw.swing.util.enums.GradientEnum;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.util.function.Consumer;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
@@ -23,11 +24,11 @@ public class DashBoardFormateer {
     public static Consumer<TaskButton> buttonFormatter = (TaskButton btn) -> {
         btn.setFont(MaterialFontRoboto.MEDIUM.deriveFont(16f));
         btn.setForeground(MaterialColors.WHITE);
-        
+
         btn.setDeselectedColor(SECUNDARY);
         btn.setMauseOverColor(Utils.darken(SECUNDARY));
         btn.setSelectedColor(Utils.darken(Utils.darken(SECUNDARY)));
-        
+        btn.setPreferredSize(new Dimension(btn.getPreferredSize().width, 40));
         btn.deselect();//marcar el deselect para que pinte
     };
 
@@ -45,7 +46,8 @@ public class DashBoardFormateer {
 
     public static Consumer<DashBoardExtends> dashBoardFormatter = (DashBoardExtends dash) -> {
         dash.setPanelSideMenuColor(SECUNDARY);
-        dash.getDashboardCore().removeBackButton();
+        dash.getDashboardCore().removeDownButton();
+        //dash.getDashboardCore().removeUpButton();
     };
 
     public static Consumer<UpPanel> upPanelFormatter = (UpPanel up) -> {

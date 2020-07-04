@@ -68,7 +68,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout"/>
       <SubComponents>
-        <Container class="javax.swing.JPanel" name="jPanelBackButton">
+        <Container class="javax.swing.JPanel" name="jPanelUp">
           <Properties>
             <Property name="opaque" type="boolean" value="false"/>
           </Properties>
@@ -80,8 +80,12 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JButton" name="jButtonBack">
+            <Component class="javax.swing.JButton" name="jButtonUp">
               <Properties>
+                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                  <Color id="Cursor de Mano"/>
+                </Property>
+                <Property name="horizontalAlignment" type="int" value="4"/>
                 <Property name="horizontalTextPosition" type="int" value="0"/>
                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="null"/>
@@ -93,6 +97,12 @@
                   <Dimension value="[0, 40]"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonUpActionPerformed"/>
+              </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new com.jhw.swing.material.components.button._MaterialButtonIconTransparent(MaterialIcons.ARROW_BACK.deriveIcon(30))"/>
+              </AuxValues>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout" value="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout$BorderConstraintsDescription">
                   <BorderConstraints direction="Center"/>
@@ -101,7 +111,7 @@
             </Component>
           </SubComponents>
         </Container>
-        <Container class="javax.swing.JPanel" name="jPanelShinkButton">
+        <Container class="javax.swing.JPanel" name="jPanelDown">
           <Properties>
             <Property name="opaque" type="boolean" value="false"/>
           </Properties>
@@ -113,7 +123,7 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JButton" name="jButtonShrink">
+            <Component class="javax.swing.JButton" name="jButtonDown">
               <Properties>
                 <Property name="horizontalAlignment" type="int" value="11"/>
                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -127,10 +137,10 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonShrinkActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonDownActionPerformed"/>
               </Events>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new com.jhw.swing.material.components.button._MaterialButtonIconTranspRect(MaterialIcons.MENU.deriveIcon(36f))"/>
+                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new com.jhw.swing.material.components.button._MaterialButtonIconTransparent(MaterialIcons.ARROW_BACK.deriveIcon(30))"/>
               </AuxValues>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout" value="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout$BorderConstraintsDescription">

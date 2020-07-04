@@ -25,6 +25,7 @@ import java.util.List;
 import java.util.function.Consumer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -49,6 +50,9 @@ public class DashBoardTaskPane extends DashBoardSimple {
     private Consumer<CollapseMenu> menuFormatter = (CollapseMenu menu) -> {
     };
 
+    private ImageIcon iconShrink = MaterialIcons.ARROW_FORWARD.deriveIcon(30);
+    private ImageIcon iconUnShrink = MaterialIcons.ARROW_BACK.deriveIcon(30);
+
     /**
      * Creates new form RootView
      */
@@ -70,10 +74,10 @@ public class DashBoardTaskPane extends DashBoardSimple {
 
         panelContent = new javax.swing.JPanel();
         panelSideMenu = new _PanelGradient();
-        jPanelBackButton = new javax.swing.JPanel();
-        jButtonBack = new javax.swing.JButton();
-        jPanelShinkButton = new javax.swing.JPanel();
-        jButtonShrink = new com.jhw.swing.material.components.button._MaterialButtonIconTranspRect(MaterialIcons.MENU.deriveIcon(36f));
+        jPanelUp = new javax.swing.JPanel();
+        jButtonUp = new com.jhw.swing.material.components.button._MaterialButtonIconTransparent(MaterialIcons.ARROW_BACK.deriveIcon(30));
+        jPanelDown = new javax.swing.JPanel();
+        jButtonDown = new com.jhw.swing.material.components.button._MaterialButtonIconTransparent(MaterialIcons.ARROW_BACK.deriveIcon(30));
         jPanelMenu = new javax.swing.JPanel();
 
         setBackground(new java.awt.Color(255, 255, 255));
@@ -98,32 +102,39 @@ public class DashBoardTaskPane extends DashBoardSimple {
         panelSideMenu.setBackground(new java.awt.Color(102, 102, 102));
         panelSideMenu.setLayout(new java.awt.BorderLayout());
 
-        jPanelBackButton.setOpaque(false);
-        jPanelBackButton.setLayout(new java.awt.BorderLayout());
+        jPanelUp.setOpaque(false);
+        jPanelUp.setLayout(new java.awt.BorderLayout());
 
-        jButtonBack.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButtonBack.setMaximumSize(null);
-        jButtonBack.setMinimumSize(new java.awt.Dimension(0, 40));
-        jButtonBack.setPreferredSize(new java.awt.Dimension(0, 40));
-        jPanelBackButton.add(jButtonBack, java.awt.BorderLayout.CENTER);
-
-        panelSideMenu.add(jPanelBackButton, java.awt.BorderLayout.PAGE_START);
-
-        jPanelShinkButton.setOpaque(false);
-        jPanelShinkButton.setLayout(new java.awt.BorderLayout());
-
-        jButtonShrink.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        jButtonShrink.setMaximumSize(null);
-        jButtonShrink.setMinimumSize(new java.awt.Dimension(40, 40));
-        jButtonShrink.setPreferredSize(new java.awt.Dimension(40, 40));
-        jButtonShrink.addActionListener(new java.awt.event.ActionListener() {
+        jButtonUp.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonUp.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jButtonUp.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonUp.setMaximumSize(null);
+        jButtonUp.setMinimumSize(new java.awt.Dimension(0, 40));
+        jButtonUp.setPreferredSize(new java.awt.Dimension(0, 40));
+        jButtonUp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonShrinkActionPerformed(evt);
+                jButtonUpActionPerformed(evt);
             }
         });
-        jPanelShinkButton.add(jButtonShrink, java.awt.BorderLayout.CENTER);
+        jPanelUp.add(jButtonUp, java.awt.BorderLayout.CENTER);
 
-        panelSideMenu.add(jPanelShinkButton, java.awt.BorderLayout.PAGE_END);
+        panelSideMenu.add(jPanelUp, java.awt.BorderLayout.PAGE_START);
+
+        jPanelDown.setOpaque(false);
+        jPanelDown.setLayout(new java.awt.BorderLayout());
+
+        jButtonDown.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        jButtonDown.setMaximumSize(null);
+        jButtonDown.setMinimumSize(new java.awt.Dimension(40, 40));
+        jButtonDown.setPreferredSize(new java.awt.Dimension(40, 40));
+        jButtonDown.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonDownActionPerformed(evt);
+            }
+        });
+        jPanelDown.add(jButtonDown, java.awt.BorderLayout.CENTER);
+
+        panelSideMenu.add(jPanelDown, java.awt.BorderLayout.PAGE_END);
 
         jPanelMenu.setBackground(new java.awt.Color(0, 0, 0));
         jPanelMenu.setOpaque(false);
@@ -133,16 +144,22 @@ public class DashBoardTaskPane extends DashBoardSimple {
         add(panelSideMenu, java.awt.BorderLayout.WEST);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonShrinkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonShrinkActionPerformed
+    private void jButtonDownActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDownActionPerformed
         setShrinked(!shrinked);
-    }//GEN-LAST:event_jButtonShrinkActionPerformed
+        jButtonDown.setIcon(shrinked ? iconShrink : iconUnShrink);
+    }//GEN-LAST:event_jButtonDownActionPerformed
+
+    private void jButtonUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpActionPerformed
+        setShrinked(!shrinked);
+        jButtonUp.setIcon(shrinked ? iconShrink : iconUnShrink);
+    }//GEN-LAST:event_jButtonUpActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonBack;
-    private javax.swing.JButton jButtonShrink;
-    private javax.swing.JPanel jPanelBackButton;
+    private javax.swing.JButton jButtonDown;
+    private javax.swing.JButton jButtonUp;
+    private javax.swing.JPanel jPanelDown;
     private javax.swing.JPanel jPanelMenu;
-    private javax.swing.JPanel jPanelShinkButton;
+    private javax.swing.JPanel jPanelUp;
     private javax.swing.JPanel panelContent;
     private javax.swing.JPanel panelSideMenu;
     // End of variables declaration//GEN-END:variables
@@ -167,6 +184,22 @@ public class DashBoardTaskPane extends DashBoardSimple {
         for (CollapseMenu menu : menus) {
             menu.deselectAll();
         }
+    }
+
+    public ImageIcon getIconShrink() {
+        return iconShrink;
+    }
+
+    public void setIconShrink(ImageIcon iconShrink) {
+        this.iconShrink = iconShrink;
+    }
+
+    public ImageIcon getIconUnShrink() {
+        return iconUnShrink;
+    }
+
+    public void setIconUnShrink(ImageIcon iconUnShrink) {
+        this.iconUnShrink = iconUnShrink;
     }
 
     public Consumer<CollapseMenu> getMenuFormatter() {
@@ -209,8 +242,12 @@ public class DashBoardTaskPane extends DashBoardSimple {
         panelSideMenu.setBackground(PersonalizationMaterial.getInstance().getColorPrincipal());
     }
 
-    public void removeBackButton() {
-        jPanelBackButton.setVisible(false);
+    public void removeUpButton() {
+        jPanelUp.setVisible(false);
+    }
+
+    public void removeDownButton() {
+        jPanelDown.setVisible(false);
     }
 
     public void setPanelSideMenuColor(Color background) {
@@ -244,11 +281,11 @@ public class DashBoardTaskPane extends DashBoardSimple {
     }
 
     public void setMinimunShrink(int min) {
-        jButtonShrink.setMinimumSize(new Dimension(min, min));
-        jButtonShrink.setPreferredSize(new Dimension(min, min));
+        jButtonDown.setMinimumSize(new Dimension(min, min));
+        jButtonDown.setPreferredSize(new Dimension(min, min));
 
-        jButtonBack.setMinimumSize(new Dimension(min, min));
-        jButtonBack.setPreferredSize(new Dimension(min, min));
+        jButtonUp.setMinimumSize(new Dimension(min, min));
+        jButtonUp.setPreferredSize(new Dimension(min, min));
     }
 
     public void setButtonFormatter(Consumer<TaskButton> buttonFormatter) {

@@ -2,7 +2,7 @@ package com.jhw.swing.material.components.dashboard.taskpane.expanded;
 
 import com.clean.swing.app.dashboard.DashboardConstants;
 import com.clean.swing.app.dashboard.MapeableContainer;
-import com.jhw.swing.material.components.button._MaterialButtonIconTranspRect;
+import com.jhw.swing.material.components.button._MaterialButtonIconTransparent;
 import com.jhw.swing.material.components.button._MaterialButtonTransparent;
 import com.jhw.swing.material.components.container.panel._PanelGradient;
 import com.jhw.swing.material.components.container.panel._PanelTransparent;
@@ -114,7 +114,7 @@ public class UpPanel extends MapeableContainer {
     }
 
     public void addComponentGeneral(Action action) {
-        _MaterialButtonIconTranspRect component = new _MaterialButtonIconTranspRect();
+        _MaterialButtonIconTransparent component = new _MaterialButtonIconTransparent();
         component.setAction(action);
         component.setPreferredSize(new Dimension(HEIGHT_FINAL, HEIGHT_FINAL));
         components.add(component);

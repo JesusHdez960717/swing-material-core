@@ -56,7 +56,7 @@
         </Property>
       </Properties>
     </Component>
-    <Component class="com.jhw.swing.material.components.button._MaterialButtonIconTranspRect" name="buttonOpenFolder">
+    <Component class="com.jhw.swing.material.components.button._MaterialButtonIconTransparent" name="buttonOpenFolder">
       <Properties>
         <Property name="text" type="java.lang.String" value="_MaterialIconButtonTranspRect1"/>
         <Property name="rippleColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">

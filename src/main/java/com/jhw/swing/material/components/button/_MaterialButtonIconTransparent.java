@@ -10,6 +10,8 @@ import com.jhw.swing.util.interfaces.MaterialComponent;
 import com.jhw.swing.material.effects.RippleEffect;
 import com.jhw.swing.material.standars.MaterialColors;
 import com.jhw.swing.material.standars.MaterialIcons;
+import com.jhw.swing.material.standars.MaterialShadow;
+import javax.swing.plaf.basic.BasicButtonUI;
 
 /**
  * A Material Design icon button. A transparent square button qith a icon in the
@@ -20,13 +22,13 @@ import com.jhw.swing.material.standars.MaterialIcons;
  * (Google design guidelines)</a>
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-public class _MaterialButtonIconTranspRect extends JButton implements MaterialComponent {
+public class _MaterialButtonIconTransparent extends JButton implements MaterialComponent {
 
-    private final RippleEffect ripple = RippleEffect.applyTo(this);
+    private final RippleEffect ripple = RippleEffect.applyFixedTo(this);
     private Color rippleColor = MaterialColors.WHITE;
     private boolean paintRipple = true;
 
-    public _MaterialButtonIconTranspRect(ImageIcon icon) {
+    public _MaterialButtonIconTransparent(ImageIcon icon) {
         this();
         setIcon(icon);
     }
@@ -34,12 +36,27 @@ public class _MaterialButtonIconTranspRect extends JButton implements MaterialCo
     /**
      * Creates a new button.
      */
-    public _MaterialButtonIconTranspRect() {
+    public _MaterialButtonIconTransparent() {
         this.setIcon(MaterialIcons.COMPUTER);
         this.setPreferredSize(new Dimension(2 * this.getIcon().getIconWidth(), 2 * this.getIcon().getIconHeight()));
         this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         this.setOpaque(false);
         this.setHorizontalAlignment(SwingConstants.CENTER);
+
+        this.setUI(new BasicButtonUI() {
+            @Override
+            public boolean contains(JComponent c, int x, int y) {
+                int x1 = c.getWidth() / 2;
+                int y1 = c.getHeight() / 2;
+                int radius = Math.min(c.getWidth(), c.getHeight()) / 2;
+                if (x1 - y1 <= 1) {
+                    double dist = Math.sqrt(Math.pow(x1 - x, 2) + Math.pow(y1 - y, 2));
+                    return dist <= radius;
+                } else {
+                    return super.contains(c, x, y);
+                }
+            }
+        });
     }
 
     public boolean isPaintRipple() {
@@ -130,8 +147,8 @@ public class _MaterialButtonIconTranspRect extends JButton implements MaterialCo
     }
 
     @Override
-    public _MaterialButtonIconTranspRect clone() {
-        _MaterialButtonIconTranspRect other = new _MaterialButtonIconTranspRect();
+    public _MaterialButtonIconTransparent clone() {
+        _MaterialButtonIconTransparent other = new _MaterialButtonIconTransparent();
         for (ActionListener al : this.getActionListeners()) {
             other.addActionListener(al);
         }
