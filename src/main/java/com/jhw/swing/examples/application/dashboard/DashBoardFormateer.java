@@ -42,6 +42,7 @@ public class DashBoardFormateer {
         menu.setComponentsGap(0);
         //menu.setPanelCollapsibleGaps(0, 20, 0, 0);
         menu.setHeight(50);
+        menu.setWidth(250);
     };
 
     public static Consumer<DashBoardExtends> dashBoardFormatter = (DashBoardExtends dash) -> {

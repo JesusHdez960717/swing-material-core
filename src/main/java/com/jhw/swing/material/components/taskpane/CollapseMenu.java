@@ -255,9 +255,15 @@ public class CollapseMenu extends JPanel {
      * Pone el Height del panel principal, este metodo tambien regula el minimo
      * que se abre el panel.
      */
-    public void setHeight(int h) {//el # ese es el max
-        jPanelFixed.setPreferredSize(new java.awt.Dimension(300, h));
+    public void setHeight(int h) {
+        int w = (int) jPanelFixed.getPreferredSize().getWidth();
+        jPanelFixed.setPreferredSize(new java.awt.Dimension(w, h));
         jButtonIcono.setPreferredSize(new java.awt.Dimension(h, h));
+    }
+
+    public void setWidth(int w) {
+        int h = (int) jPanelFixed.getPreferredSize().getHeight();
+        jPanelFixed.setPreferredSize(new java.awt.Dimension(w, h));
     }
 
     public int getComponentsHight() {

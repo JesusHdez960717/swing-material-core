@@ -12,6 +12,7 @@ import com.jhw.utils.interfaces.Update;
 import com.jhw.swing.util.validations.Validation;
 import com.jhw.swing.util.validations.icbs.ICBSValidation;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.util.List;
 
 /**
@@ -45,10 +46,11 @@ public abstract class InputComboBoxSelection<T> extends _PanelComponent implemen
         int h = (int) this.comboBox.getPreferredSize().getHeight();
 
         buttonNuevo = new _MaterialButtonIconTransparent();
+        buttonNuevo.setRippleColor(Color.black);
         buttonNuevo.setIcon(
                 PersonalizationMaterial.getInstance().getIconButtonAdd()
                         .deriveIcon(PersonalizationMaterial.getInstance().getColorButtonAdd())
-                        .deriveIcon(h / 2));
+                        .deriveIcon(h * .6f));
 
         this.setLayout(new BorderLayout());
         this.add(comboBox, BorderLayout.CENTER);
