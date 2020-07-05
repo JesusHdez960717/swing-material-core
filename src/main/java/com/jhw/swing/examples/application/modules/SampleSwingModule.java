@@ -25,8 +25,8 @@ public class SampleSwingModule implements AbstractSwingModule {
     @Override
     public void register(AbstractSwingApplication app) {
         registerMainElements(app);
-        registerUpElements(app);
-        registerDownElements(app);
+        //registerUpElements(app);
+        //registerDownElements(app);
     }
 
     private void registerMainElements(AbstractSwingApplication app) {

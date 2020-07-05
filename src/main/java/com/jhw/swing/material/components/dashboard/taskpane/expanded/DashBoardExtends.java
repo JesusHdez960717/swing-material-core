@@ -120,4 +120,8 @@ public class DashBoardExtends extends DashBoardSimple {
         dashboardCore.showView(string);
     }
 
+    @Override
+    public Component getView(String string) {
+        return dashboardCore.getView(string);
+    }
 }

@@ -238,6 +238,11 @@ public class DashBoardTaskPane extends DashBoardSimple {
         cards.show(panelContent, name);
     }
 
+    @Override
+    public Component getView(String string) {
+        return null;
+    }
+
     private void personalize() {
         panelSideMenu.setBackground(PersonalizationMaterial.getInstance().getColorPrincipal());
     }
