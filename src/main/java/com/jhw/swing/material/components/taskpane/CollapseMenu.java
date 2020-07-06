@@ -13,6 +13,7 @@ import com.jhw.swing.material.components.dashboard.taskpane.DashBoardTaskPane;
 import com.jhw.swing.material.components.labels._MaterialLabel;
 import com.jhw.swing.material.standars.MaterialColors;
 import com.jhw.swing.ui.componentsui.panel.MaterialPanelUI;
+import com.jhw.swing.util.Utils;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
@@ -68,7 +69,7 @@ public class CollapseMenu extends JPanel {
         jPanelSubActions = new JXTaskPaneContainer();
         jPopupMenu1 = new javax.swing.JPopupMenu();
         jPanelFixed = new javax.swing.JPanel();
-        jLabel1 = new _MaterialLabel();
+        jLabelCant = new _MaterialLabel();
         jButtonIcono = new com.jhw.swing.material.components.button._MaterialButtonIconTransparent();
         jButtonNombre = new com.jhw.swing.material.components.button._MaterialButtonFlat();
         jPanelCollapsible = new org.jdesktop.swingx.JXCollapsiblePane();
@@ -86,13 +87,13 @@ public class CollapseMenu extends JPanel {
         jPanelFixed.setBackground(new java.awt.Color(0, 153, 153));
         jPanelFixed.setLayout(new java.awt.BorderLayout());
 
-        jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
-        jLabel1.setText("#");
-        jLabel1.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        jLabel1.setMaximumSize(new java.awt.Dimension(15, 18));
-        jLabel1.setMinimumSize(new java.awt.Dimension(15, 18));
-        jLabel1.setPreferredSize(new java.awt.Dimension(15, 18));
-        jPanelFixed.add(jLabel1, java.awt.BorderLayout.LINE_END);
+        jLabelCant.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
+        jLabelCant.setText("#");
+        jLabelCant.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        jLabelCant.setMaximumSize(new java.awt.Dimension(15, 18));
+        jLabelCant.setMinimumSize(new java.awt.Dimension(15, 18));
+        jLabelCant.setPreferredSize(new java.awt.Dimension(15, 18));
+        jPanelFixed.add(jLabelCant, java.awt.BorderLayout.LINE_END);
 
         jButtonIcono.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButtonIcono.setMaximumSize(new java.awt.Dimension(80, 80));
@@ -115,7 +116,7 @@ public class CollapseMenu extends JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonIcono;
     private javax.swing.JButton jButtonNombre;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabelCant;
     private org.jdesktop.swingx.JXCollapsiblePane jPanelCollapsible;
     private javax.swing.JPanel jPanelFixed;
     private org.jdesktop.swingx.JXTaskPaneContainer jPanelSubActions;
@@ -163,7 +164,7 @@ public class CollapseMenu extends JPanel {
         jPanelSubActions.add(button);
 
         //update label cantidad
-        jLabel1.setText("" + jPanelSubActions.getComponentCount());
+        jLabelCant.setText("" + jPanelSubActions.getComponentCount());
 
         //add the popup
         JMenuItem item = jPopupMenu1.add(action);//add to the menu
@@ -198,7 +199,7 @@ public class CollapseMenu extends JPanel {
     }
 
     /**
-     * Pone el bakcground del panel que se despliega, solo se ve si se le tiene
+     * Pone el background del panel que se despliega, solo se ve si se le tiene
      * puesto un gap a los componentes, sino estos lo cubren
      *
      * @param color
@@ -216,7 +217,7 @@ public class CollapseMenu extends JPanel {
         jButtonNombre.setFont(font);
         Font internal = font.deriveFont(Font.PLAIN).deriveFont(font.getSize2D() * 0.8f);
         setButtonsInternalFont(internal);
-        jLabel1.setFont(internal);
+        jLabelCant.setFont(internal);
 
     }
 
@@ -288,7 +289,7 @@ public class CollapseMenu extends JPanel {
     public void setMainPanelForeground(Color color) {
         this.jButtonIcono.setForeground(color);
         this.jButtonNombre.setForeground(color);
-        this.jLabel1.setForeground(color);
+        this.jLabelCant.setForeground(color);
     }
 
     protected void configurateUI() {
@@ -358,7 +359,7 @@ public class CollapseMenu extends JPanel {
     }
 
     public JLabel getjLabel1() {
-        return jLabel1;
+        return jLabelCant;
     }
 
     public JXCollapsiblePane getjPanelCollapsible() {

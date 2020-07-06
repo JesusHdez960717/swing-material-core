@@ -65,10 +65,12 @@ public class IconTTF extends DerivableIcon {
         return ch;
     }
 
+    @Override
     public Color getColor() {
         return color;
     }
 
+    @Override
     public float getSize() {
         return size;
     }

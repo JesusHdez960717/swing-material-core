@@ -11,8 +11,8 @@ import com.jhw.swing.material.standars.MaterialFontRoboto;
 import com.jhw.swing.personalization.PersonalizationMaterial;
 import com.jhw.swing.util.Utils;
 import com.jhw.swing.util.enums.GradientEnum;
+import com.jhw.swing.util.icons.DerivableIcon;
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -22,6 +22,7 @@ import java.util.function.Consumer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.Action;
+import javax.swing.Icon;
 import javax.swing.JButton;
 
 /**
@@ -116,6 +117,11 @@ public class UpPanel extends MapeableContainer {
     public void addComponentGeneral(Action action) {
         _MaterialButtonIconTransparent component = new _MaterialButtonIconTransparent();
         component.setAction(action);
+
+        if (action.getValue(Action.SMALL_ICON) instanceof DerivableIcon) {
+            component.setForeground(((DerivableIcon) action.getValue(Action.SMALL_ICON)).getColor());
+        }
+
         component.setPreferredSize(new Dimension(HEIGHT_FINAL, HEIGHT_FINAL));
         components.add(component);
     }

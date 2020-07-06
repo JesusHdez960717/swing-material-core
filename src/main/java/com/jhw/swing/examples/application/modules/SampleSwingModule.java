@@ -16,6 +16,7 @@ import com.jhw.swing.material.components.taskpane.SingleCollapseMenu;
 import com.jhw.swing.material.standars.MaterialIcons;
 import com.jhw.swing.util.AbstractActionUtils;
 import com.jhw.swing.util.JOP;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import javax.swing.AbstractAction;
@@ -25,7 +26,7 @@ public class SampleSwingModule implements AbstractSwingModule {
     @Override
     public void register(AbstractSwingApplication app) {
         registerMainElements(app);
-        //registerUpElements(app);
+        registerUpElements(app);
         //registerDownElements(app);
     }
 
@@ -56,7 +57,8 @@ public class SampleSwingModule implements AbstractSwingModule {
 
     private void registerUpElements(AbstractSwingApplication app) {
         DashBoardSimple dash = app.rootView().dashboard();
-        dash.addKeyValue(DashboardConstants.UP_ELEMENT, new AbstractAction("Hello World", MaterialIcons.ANDROID) {
+        dash.addKeyValue(DashboardConstants.UP_ELEMENT, 
+                new AbstractAction("Hello World", MaterialIcons.ANDROID.deriveIcon(Color.yellow)) {
             @Override
             public void actionPerformed(ActionEvent e) {
                 app.navigateTo(SampleModuleNavigator.NAV_TEST);

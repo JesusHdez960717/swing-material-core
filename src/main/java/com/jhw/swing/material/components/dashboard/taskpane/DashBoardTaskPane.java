@@ -240,7 +240,12 @@ public class DashBoardTaskPane extends DashBoardSimple {
 
     @Override
     public Component getView(String string) {
-        return null;
+        for (Component c : panelContent.getComponents()) {
+            if (c.isVisible()) {
+                return c;
+            }
+        }
+        return panelContent;
     }
 
     private void personalize() {

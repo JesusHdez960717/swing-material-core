@@ -91,8 +91,14 @@ public class IconSVG extends DerivableIcon {
         loadInitialImage();
     }
 
+    @Override
     public Color getColor() {
         return color;
+    }
+
+    @Override
+    public float getSize() {
+        return h;
     }
 
     public float getW() {

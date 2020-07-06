@@ -52,9 +52,4 @@ public class RootViewFrame extends DefaultRootView {
         });
     }
 
-    @Override
-    public void registerModule(AbstractSwingModule... modulesToInstall) {
-
-    }
-
 }

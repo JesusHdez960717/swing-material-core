@@ -46,4 +46,8 @@ public abstract class DerivableIcon extends ImageIcon {
      * @return The icon.
      */
     public abstract DerivableIcon deriveIcon(Color color);
+    
+    public abstract Color getColor();
+    
+    public abstract float getSize();
 }

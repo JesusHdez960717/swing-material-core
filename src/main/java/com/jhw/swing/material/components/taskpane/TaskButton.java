@@ -18,8 +18,10 @@ import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import com.jhw.swing.material.components.button.*;//_MaterialButtonFlat
 import com.jhw.swing.material.standars.MaterialColors;
+import com.jhw.swing.util.icons.DerivableIcon;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.Icon;
 
 /**
  *
@@ -36,9 +38,11 @@ public class TaskButton extends JButton implements MaterialComponent {
         setAction(a);
 
         setPreferredSize(parent.getjPanelFixed().getPreferredSize());
-
         setHorizontalAlignment(SwingConstants.LEADING);
-
+        
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        setIconTextGap(20);
+        //selecciona y avisa
         this.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -46,7 +50,8 @@ public class TaskButton extends JButton implements MaterialComponent {
                 select();
             }
         });
-        this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+
+        //color cuando el mouse pasa por arriba
         this.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
@@ -62,6 +67,20 @@ public class TaskButton extends JButton implements MaterialComponent {
                 }
             }
         });
+    }
+
+    @Override
+    public void setForeground(Color fg) {
+        super.setForeground(fg);
+        setIcon(getIcon());
+    }
+
+    @Override
+    public void setIcon(Icon icon) {
+        if (icon instanceof DerivableIcon) {
+            icon = ((DerivableIcon) icon).deriveIcon(getForeground());
+        }
+        super.setIcon(icon);
     }
 
     public Color getMauseOverColor() {
@@ -94,7 +113,7 @@ public class TaskButton extends JButton implements MaterialComponent {
         super.paintComponent(g2);
         if (selected) {
             int yMid = getSize().height / 2;
-            ImageIcon icon = MaterialIcons.ARROW_DROP_RIGHT;
+            ImageIcon icon = MaterialIcons.ARROW_DROP_RIGHT.deriveIcon(getForeground());
             icon.paintIcon(this, g2, (int) (this.getSize().getWidth() - getIcon().getIconHeight()), yMid - icon.getIconHeight() / 2);
         }
     }
