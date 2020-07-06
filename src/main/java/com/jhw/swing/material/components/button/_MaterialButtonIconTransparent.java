@@ -11,6 +11,7 @@ import com.jhw.swing.material.effects.RippleEffect;
 import com.jhw.swing.material.standars.MaterialColors;
 import com.jhw.swing.material.standars.MaterialIcons;
 import com.jhw.swing.material.standars.MaterialShadow;
+import com.jhw.swing.util.icons.DerivableIcon;
 import javax.swing.plaf.basic.BasicButtonUI;
 
 /**
@@ -86,9 +87,17 @@ public class _MaterialButtonIconTransparent extends JButton implements MaterialC
     }
 
     @Override
+    public void setForeground(Color fg) {
+        super.setForeground(fg);
+        setIcon(getIcon());
+    }
+
+    @Override
     public void setIcon(Icon icon) {
+        if (icon instanceof DerivableIcon) {
+            icon = ((DerivableIcon) icon).deriveIcon(getForeground());
+        }
         super.setIcon(icon);
-        repaint();
     }
 
     @Override
@@ -128,7 +137,7 @@ public class _MaterialButtonIconTransparent extends JButton implements MaterialC
             }
         }
 
-        if (paintRipple) {
+        if (paintRipple && isEnabled()) {
             g2.setColor(rippleColor);
             ripple.paint(g2);
         }

@@ -35,10 +35,12 @@ public class DashBoardFormateer {
     public static Consumer<CollapseMenu> collapseMenuFormatter = (CollapseMenu menu) -> {
         menu.setDeselectedColor(PRIMARY);
         menu.setSelectedColor(Utils.darken(PRIMARY));
+        menu.setMainPanelForeground(Utils.getForegroundAccording(Utils.darken(PRIMARY)));
+        
         //menu.setCollapsablePanelBackground(Color.green);
         menu.setMainPanelFont(MaterialFontRoboto.MEDIUM.deriveFont(20f));
         menu.setButtonNameHorizontalAlignment(SwingConstants.LEFT);
-        menu.setMainPanelForeground(MaterialColors.WHITE);
+        
         menu.setComponentsGap(0);
         //menu.setPanelCollapsibleGaps(0, 20, 0, 0);
         menu.setHeight(50);

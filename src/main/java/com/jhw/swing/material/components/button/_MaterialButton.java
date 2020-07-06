@@ -115,7 +115,8 @@ public class _MaterialButton extends JButton implements MaterialComponent {
         repaint();
     }
 
-    public void setIcon(ImageIcon icon) {
+    @Override
+    public void setIcon(Icon icon) {
         if (icon instanceof DerivableIcon) {
             icon = ((DerivableIcon) icon).deriveIcon(getForeground());
         }
@@ -184,6 +185,12 @@ public class _MaterialButton extends JButton implements MaterialComponent {
         setForeground(Utils.getForegroundAccording(bg));
         setRippleColor(Utils.getForegroundAccording(bg));
         fadeinto = new ColorFadeInto(this, ColorFadeInto.ColorChangeTo.DARKEN);
+    }
+
+    @Override
+    public void setForeground(Color fg) {
+        super.setForeground(fg);
+        setIcon(getIcon());
     }
 
     /**

@@ -13,6 +13,7 @@ import com.jhw.swing.util.Utils;
 import com.jhw.swing.util.icons.DerivableIcon;
 import com.jhw.swing.util.interfaces.MaterialComponent;
 import com.jhw.swing.material.standars.MaterialFontRoboto;
+import javax.swing.Icon;
 
 /**
  *
@@ -32,7 +33,14 @@ public class _MaterialLabel extends JLabel implements MaterialComponent {
         setForeground(Utils.getForegroundAccording(bg));
     }
 
-    public void setIcon(ImageIcon icon) {
+    @Override
+    public void setForeground(Color fg) {
+        super.setForeground(fg);
+        setIcon(getIcon());
+    }
+
+    @Override
+    public void setIcon(Icon icon) {
         if (icon instanceof DerivableIcon) {
             icon = ((DerivableIcon) icon).deriveIcon(getForeground());
         }
