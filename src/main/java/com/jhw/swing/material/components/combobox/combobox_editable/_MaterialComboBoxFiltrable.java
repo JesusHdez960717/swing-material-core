@@ -89,6 +89,8 @@ public class _MaterialComboBoxFiltrable<T> extends _MaterialComboBox<T> {
     private void decorateInner() {
         if (decorator != null) {
             decorate(decorator.getFormat(), decorator.getFilter());
+        } else {
+            decorate();
         }
     }
 

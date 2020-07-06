@@ -24,7 +24,7 @@ public class SeleccionableValidation extends ICBSValidation<InputComboBoxSelecti
 
     @Override
     public boolean validate(InputComboBoxSelection obj) {
-        return obj.getComboBox().getSelectedIndex() > 0;
+        return obj.getComboBox().getSelectedItem() != null;
     }
 
 }

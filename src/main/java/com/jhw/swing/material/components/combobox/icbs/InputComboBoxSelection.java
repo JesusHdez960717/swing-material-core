@@ -124,6 +124,7 @@ public abstract class InputComboBoxSelection<T> extends _PanelComponent implemen
 
     public void setModel(List<T> model) {
         comboBox.setModel(model);
+        //comboBox.decorate();
     }
 
     public void setButtonNuevoVisibility(boolean visible) {
