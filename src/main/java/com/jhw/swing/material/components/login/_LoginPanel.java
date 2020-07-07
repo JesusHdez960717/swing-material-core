@@ -1,5 +1,6 @@
 package com.jhw.swing.material.components.login;
 
+import com.clean.swing.app.login.LoginSimple;
 import com.jhw.swing.material.components.button._MaterialButton;
 import com.jhw.swing.material.components.container.panel._MaterialPanel;
 import com.jhw.swing.material.components.container.panel._PanelGradient;
@@ -9,7 +10,6 @@ import com.jhw.swing.material.components.textfield._MaterialTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 
-
 import com.jhw.swing.material.standars.MaterialColors;
 import com.jhw.swing.material.standars.MaterialIcons;
 import javax.swing.JLabel;
@@ -18,7 +18,7 @@ import javax.swing.JLabel;
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-public class _LoginPanel extends javax.swing.JPanel {
+public class _LoginPanel extends LoginSimple {
 
     public _LoginPanel() {
         initComponents();
@@ -136,12 +136,27 @@ public class _LoginPanel extends javax.swing.JPanel {
     private com.jhw.swing.material.components.textfield._MaterialTextField textFieldUsuario;
     // End of variables declaration//GEN-END:variables
 
+    @Override
     public String getUser() {
         return textFieldUsuario.getString();
     }
 
+    @Override
     public String getPass() {
         return new String(passwordUsuario.getPassword());
+    }
+
+    @Override
+    public void addLoginAction(ActionListener action) {
+        buttonLogin.addActionListener(action);//si se da click en el boton
+        passwordUsuario.addKeyListener(new java.awt.event.KeyAdapter() {//o se aprieta enter en el password
+            @Override
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                if (evt.getKeyChar() == '\n') {//enter pressed
+                    action.actionPerformed(null);
+                }
+            }
+        });
     }
 
     /**
@@ -171,18 +186,6 @@ public class _LoginPanel extends javax.swing.JPanel {
             }
         });
 
-    }
-
-    public void addLoginAction(ActionListener action) {
-        buttonLogin.addActionListener(action);
-        passwordUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
-            @Override
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                if (evt.getKeyChar() == '\n') {//enter pressed
-                    action.actionPerformed(null);
-                }
-            }
-        });
     }
 
     private void onTextFieldUsuarioKeyTyped(KeyEvent evt) {

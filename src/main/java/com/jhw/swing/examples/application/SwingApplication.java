@@ -5,6 +5,8 @@ import com.jhw.swing.examples.application.services.NotificationServiceImplementa
 import com.jhw.swing.examples.application.services.NavigationServiceImplementation;
 import com.clean.core.app.services.ExceptionHandler;
 import com.clean.core.app.services.ExceptionHandlerService;
+import com.clean.core.app.services.LoginHandler;
+import com.clean.core.app.services.LoginHandlerService;
 import com.clean.core.app.services.Navigation;
 import com.clean.core.app.services.NavigationService;
 import com.clean.core.app.services.Notification;
@@ -21,6 +23,7 @@ import java.util.List;
 import java.io.File;
 import javax.swing.UIManager;
 import com.clean.swing.app.RootView;
+import com.jhw.swing.examples.application.services.LoginServiceImplementation;
 import java.beans.PropertyChangeEvent;
 
 /**
@@ -37,9 +40,9 @@ public class SwingApplication extends DefaultSwingApplication {
 
     private static ResourceService RESOURCE;
 
-    private static RootView ROOT_VIEW;
+    private static LoginHandlerService LOGIN_HANDLER;
 
-    private final static ArrayList<AbstractSwingModule> INSTALLED_MODULES = new ArrayList<>();
+    private static RootView ROOT_VIEW;
 
     @Override
     public void startServices() throws Exception {
@@ -54,6 +57,9 @@ public class SwingApplication extends DefaultSwingApplication {
 
         Resource.registerResourceService(new ResourceServiceImpl(ResourceBundleUtils.fromExternalFile(new File("E:\\Trabajos\\Projects\\GIT Projects Gradle\\messages"), ResourceBundleUtils.SPANISH)));
         RESOURCE = Resource.getResourceService();
+
+        LoginHandler.registerLoginHandlerService(new LoginServiceImplementation());
+        LOGIN_HANDLER = LoginHandler.getLoginHandlerService();
     }
 
     @Override
@@ -97,8 +103,8 @@ public class SwingApplication extends DefaultSwingApplication {
     }
 
     @Override
-    public List<AbstractSwingModule> installedModules() {
-        return INSTALLED_MODULES;
+    public LoginHandlerService login() {
+        return LOGIN_HANDLER;
     }
 
     @Override

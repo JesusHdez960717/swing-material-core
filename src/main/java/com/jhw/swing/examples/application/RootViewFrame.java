@@ -1,13 +1,18 @@
 package com.jhw.swing.examples.application;
 
+import com.jhw.swing.material.components.login.DefaultLoginPanel;
 import com.clean.swing.app.AbstractSwingModule;
 import com.clean.swing.app.DefaultRootView;
 import com.clean.swing.app.dashboard.DashboardConstants;
 import com.jhw.swing.examples.application.dashboard.DashBoardFormateer;
 import com.jhw.swing.material.components.dashboard.taskpane.expanded.DashBoardExtends;
+import com.jhw.swing.material.components.login._LoginPanel;
+import com.jhw.swing.material.standars.MaterialColors;
 import com.jhw.swing.material.standars.MaterialIcons;
+import com.jhw.swing.notification.fade.NotificationDialogGeneral;
 import com.jhw.swing.util.JOP;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.beans.PropertyChangeListener;
 import javax.swing.AbstractAction;
 
@@ -19,9 +24,16 @@ public class RootViewFrame extends DefaultRootView {
 
     public RootViewFrame(PropertyChangeListener listener) {
         super(listener);
+        startLogin();
         startDashboard();
         startLicence();
         startCompany();
+        //navigateTo(DASH_NAME);
+        navigateTo(LOGIN_NAME);
+    }
+
+    private void startLogin() {
+        setLogin(new DefaultLoginPanel());
     }
 
     private void startDashboard() {
@@ -33,7 +45,6 @@ public class RootViewFrame extends DefaultRootView {
         dash.setButtonFormatter(DashBoardFormateer.buttonFormatter);
 
         setDashBoard(dash);
-        this.addView(DASH_NAME, dash);
     }
 
     private void startLicence() {
