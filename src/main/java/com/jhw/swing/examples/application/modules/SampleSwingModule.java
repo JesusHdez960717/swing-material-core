@@ -45,6 +45,18 @@ public class SampleSwingModule implements AbstractSwingModule {
             });
         }
 
+        CollapseMenu menu2 = new CollapseMenu(MaterialIcons.ADD, "menu 1");
+        dash.addKeyValue(DashboardConstants.MAIN_ELEMENT, menu2);
+        for (int i = 0; i < 5; i++) {
+            String view_1_i = "view 1," + i;
+            dash.addView(view_1_i, new CargoDetailView());
+            menu2.addMenuItem(new AbstractAction("button 1," + i, MATERIAL_ICONS_EXAMPLE.getRandomIcon()) {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    app.navigateTo(view_1_i);
+                }
+            });
+        }
         SingleCollapseMenu singleMenu = new SingleCollapseMenu(new AbstractAction("456", MaterialIcons.GIF) {
             @Override
             public void actionPerformed(ActionEvent e) {

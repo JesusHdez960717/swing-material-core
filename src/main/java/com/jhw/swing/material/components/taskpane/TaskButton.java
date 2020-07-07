@@ -1,13 +1,10 @@
 package com.jhw.swing.material.components.taskpane;
 
 import com.jhw.swing.material.standars.MaterialIcons;
-import com.jhw.swing.personalization.PersonalizationMaterial;
 import com.jhw.swing.util.MaterialDrawingUtils;
-import com.jhw.swing.util.Utils;
 import com.jhw.swing.util.interfaces.MaterialComponent;
 import java.awt.Color;
 import java.awt.Cursor;
-import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;

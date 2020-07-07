@@ -23,7 +23,6 @@ import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.beans.PropertyChangeEvent;
 import java.util.ArrayList;
-import java.util.function.Consumer;
 import javax.swing.Action;
 import javax.swing.Icon;
 import javax.swing.JButton;
@@ -49,6 +48,11 @@ public class CollapseMenu extends JPanel {
 
     private Color selected = MaterialColors.WHITE;
     private Color deselected = MaterialColors.RED_900;
+
+    //activate the selected in case of click
+    protected final ActionListener childSelectedListener = (ActionEvent e) -> {
+        childSelected();
+    };
 
     public CollapseMenu(Icon iconoCategoria, String nombreCategoria) {
         initComponents();
@@ -168,16 +172,11 @@ public class CollapseMenu extends JPanel {
 
         //add the popup
         JMenuItem item = jPopupMenu1.add(action);//add to the menu
-        item.addActionListener(new ActionListener() {//activate the selected in case of click
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                childSelected();
-            }
-        });
+        item.addActionListener(childSelectedListener);
     }
 
     public void childSelected() {
-        firePropertyChange(DashboardConstants.FIRE_CHILD_SELECTED, false, false);
+        firePropertyChange(DashboardConstants.FIRE_CHILD_SELECTED, false, true);
         setMainBackground(selected);
     }
 
@@ -374,5 +373,4 @@ public class CollapseMenu extends JPanel {
             onMouseCLicked(e);
         });
     }
-
 }

@@ -19,6 +19,8 @@ import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -31,7 +33,7 @@ import javax.swing.ImageIcon;
  *
  * @author Jorge
  */
-public class DashBoardTaskPane extends DashBoardSimple {
+public class DashBoardTaskPane extends DashBoardSimple implements PropertyChangeListener {
 
     private Consumer<TaskButton> buttonFormatter = (TaskButton btn) -> {
     };
@@ -271,11 +273,21 @@ public class DashBoardTaskPane extends DashBoardSimple {
     }
 
     public void addMainElement(CollapseMenu menu) {
+        //add listener
+        menu.addPropertyChangeListener(this);
+        
+        //formatear
         menuFormatter.accept(menu);
-        menu.selected(false);
+        menu.selected(false);//por defecto deseleccionado
+        
+        //add to the list
         menus.add(menu);
+        //add to the taskPane
         this.task.addItem(menu);
+        
+        //set minimun size of shrink
         setMinimunShrink(menu.getComponentsHight());
+
     }
 
     /**
@@ -313,6 +325,17 @@ public class DashBoardTaskPane extends DashBoardSimple {
             for (TaskButton button : menu.getButtons()) {
                 buttonFormatter.accept(button);
             }
+        }
+    }
+
+    @Override
+    public void propertyChange(PropertyChangeEvent evt) {
+        switch (evt.getPropertyName()) {
+            case DashboardConstants.FIRE_CHILD_SELECTED:
+                deselectAll();
+                break;
+            default:
+                return;
         }
     }
 

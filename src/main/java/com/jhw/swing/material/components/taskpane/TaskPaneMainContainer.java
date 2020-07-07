@@ -1,17 +1,11 @@
 package com.jhw.swing.material.components.taskpane;
 
-import com.jhw.swing.material.components.scrollpane.SmoothScrollMouseWheelListener;
-import com.jhw.swing.material.components.scrollpane._MaterialScrollBar;
 import com.jhw.swing.material.components.scrollpane._MaterialScrollPaneCore;
-import com.jhw.swing.material.standars.MaterialColors;
 import com.jhw.swing.ui.componentsui.panel.MaterialPanelUI;
-import java.awt.Adjustable;
 import java.awt.BorderLayout;
 import java.awt.Color;
-import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneLayout;
 import javax.swing.border.Border;
-import javax.swing.border.MatteBorder;
 import org.jdesktop.swingx.JXCollapsiblePane;
 import org.jdesktop.swingx.JXTaskPaneContainer;
 import org.jdesktop.swingx.VerticalLayout;
