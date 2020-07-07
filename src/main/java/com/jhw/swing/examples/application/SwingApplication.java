@@ -21,6 +21,7 @@ import java.util.List;
 import java.io.File;
 import javax.swing.UIManager;
 import com.clean.swing.app.RootView;
+import java.beans.PropertyChangeEvent;
 
 /**
  *
@@ -57,12 +58,17 @@ public class SwingApplication extends DefaultSwingApplication {
 
     @Override
     public void startRootView() throws Exception {
-        ROOT_VIEW = new RootViewFrame();
+        ROOT_VIEW = new RootViewFrame(this);
     }
 
     @Override
     public void startApplication() throws Exception {
         UIManager.setLookAndFeel(new MaterialLookAndFeel());
+    }
+
+    @Override
+    public void closeApplication() {
+        System.out.println("Cerrando la aplicacion");
     }
 
     @Override
@@ -93,6 +99,11 @@ public class SwingApplication extends DefaultSwingApplication {
     @Override
     public List<AbstractSwingModule> installedModules() {
         return INSTALLED_MODULES;
+    }
+
+    @Override
+    public void propertyChange(PropertyChangeEvent evt) {
+        super.propertyChange(evt);
     }
 
 }

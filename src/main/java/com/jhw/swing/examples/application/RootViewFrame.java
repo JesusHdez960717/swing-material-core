@@ -8,6 +8,7 @@ import com.jhw.swing.material.components.dashboard.taskpane.expanded.DashBoardEx
 import com.jhw.swing.material.standars.MaterialIcons;
 import com.jhw.swing.util.JOP;
 import java.awt.event.ActionEvent;
+import java.beans.PropertyChangeListener;
 import javax.swing.AbstractAction;
 
 /**
@@ -16,7 +17,8 @@ import javax.swing.AbstractAction;
  */
 public class RootViewFrame extends DefaultRootView {
 
-    public RootViewFrame() {
+    public RootViewFrame(PropertyChangeListener listener) {
+        super(listener);
         startDashboard();
         startLicence();
         startCompany();
@@ -41,6 +43,7 @@ public class RootViewFrame extends DefaultRootView {
                 JOP.error("ACTIVAR LICENCIA");
             }
         });
+        firePropertyChange("licencia", null, null);
     }
 
     private void startCompany() {
