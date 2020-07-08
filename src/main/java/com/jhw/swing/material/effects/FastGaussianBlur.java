@@ -1,5 +1,6 @@
 package com.jhw.swing.material.effects;
 
+import com.twelvemonkeys.image.ConvolveWithEdgeOp;
 import java.awt.image.BufferedImage;
 import java.awt.image.Kernel;
 

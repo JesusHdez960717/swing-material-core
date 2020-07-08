@@ -1,3 +1,18 @@
+/*
+buildscript {
+repositories {
+maven {
+url "https://plugins.gradle.org/m2/"
+}
+}
+dependencies {
+classpath "edu.sc.seis.launch4j:launch4j:2.4.6"
+}
+}
+
+apply plugin: "edu.sc.seis.launch4j"
+ */
+
 apply plugin: 'java'
 apply plugin: 'jacoco'
 apply plugin: 'application'
@@ -17,7 +32,9 @@ dependencies {
     implementation project(':utils')
     implementation project(':clean-core')
     implementation project(':clean-swing')
-
+    
+    compile group: 'com.twelvemonkeys.imageio', name: 'imageio-core', version: '3.5'
+    
     //batick para svg
     compile group: 'org.apache.xmlgraphics', name: 'batik-transcoder', version: '1.13'
     compile group: 'org.apache.xmlgraphics', name: 'batik-svg-dom', version: '1.9'
@@ -56,3 +73,8 @@ dependencies {
 
     compile group: 'org.fluttercode.datafactory', name: 'datafactory', version: '0.8'
 }
+/*
+launch4j {
+outfile = 'material.exe'
+mainClassName = 'com.jhw.swing.examples.application.Main'
+}*/
