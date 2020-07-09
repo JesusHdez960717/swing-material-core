@@ -46,7 +46,6 @@ public class _MaterialIconButtonRound extends _MaterialButton implements Materia
         if (getType() != Type.FLAT && isEnabled()) {
             getElevationEffect().paint(g2);
         }
-
         g2.translate(MaterialShadow.OFFSET_LEFT, MaterialShadow.OFFSET_TOP);
 
         final int offset_lr = MaterialShadow.OFFSET_LEFT + MaterialShadow.OFFSET_RIGHT;
@@ -68,7 +67,7 @@ public class _MaterialIconButtonRound extends _MaterialButton implements Materia
         }
 
         if (isEnabled()) {//paint ripple efect
-            g2.setClip(new RoundRectangle2D.Float(0, 0, getWidth() - offset_lr, getHeight() - offset_td, Math.max(getBorderRadius() * 2 - 4, 0), Math.max(getBorderRadius() * 2 - 4, 0)));
+            g2.setClip(shape);
             g2.setColor(getRippleColor());
             getRippleEffect().paint(g2);
         }

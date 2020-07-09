@@ -46,12 +46,11 @@ public class RippleEffect {
      * }
      * </code>
      *
-     * @param g canvas
+     * @param g2 canvas
      */
-    public void paint(Graphics g) {
-        Graphics2D g2 = (Graphics2D) g;
+    public void paint(Graphics2D g2) {
         //si no es transparente
-        if (g.getColor() != null && g.getColor().getAlpha() != 0) {//si hay las pinto, el if esta en el add
+        if (g2.getColor() != null && g2.getColor().getAlpha() != 0) {//si hay las pinto, el if esta en el add
             for (RippleAnimation rippleAnimation : ripples) {
                 float rippleOpacity = rippleAnimation.rippleOpacity.getValue().floatValue();
                 Point rippleCenter = rippleAnimation.rippleCenter;

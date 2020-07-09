@@ -28,8 +28,8 @@ public class RootViewFrame extends DefaultRootView {
         startDashboard();
         startLicence();
         startCompany();
-        //navigateTo(DASH_NAME);
-        navigateTo(LOGIN_NAME);
+        navigateTo(DASH_NAME);
+        //navigateTo(LOGIN_NAME);
     }
 
     private void startLogin() {
