@@ -84,7 +84,7 @@ public class _MaterialBarChart extends _MaterialGeneralChart implements Material
         renderer.setShadowVisible(false);
 
         // se ajusta el ancho de las barras de última factura para que coincidan
-        // en tama�o con la de última factura ya que al ser el renderer por
+        // en tamaño con la de última factura ya que al ser el renderer por
         // capas según se va incrementando la "category" la anchura de la barra
         // aumenta
         // renderer.setItemMargin(-0.6D);

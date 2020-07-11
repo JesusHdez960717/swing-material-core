@@ -23,7 +23,7 @@ import javax.swing.ImageIcon;
  *
  * La clase original incluia solo el trabajo a secas con char y font separado.
  * Por lo que se decidio unirlo todo en DerivableIcon para facilitar el trabajo
- * con cambios de color y tamaño. De aqui salieron los IconTTF para los
+ * con cambios de color y tamaÃ±o. De aqui salieron los IconTTF para los
  * extraidos de ICON_FONT y los IconSVG extraidos directamente de un SVG.
  *
  * @author DragShot

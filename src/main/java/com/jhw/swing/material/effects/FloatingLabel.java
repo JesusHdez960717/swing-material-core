@@ -141,7 +141,7 @@ public class FloatingLabel {
                 .setEndBehavior(Animator.EndBehavior.HOLD)
                 .setInterpolator(new SplineInterpolator(0.4, 0, 0.2, 1));
 
-        //Font size, si no hay letra es tamaño real, si esta arriba es el 80% del tamaño(1 poquito mas chiquito)
+        //Font size, si no hay letra es tamaÃ±o real, si esta arriba es el 80% del tamaÃ±o(1 poquito mas chiquito)
         float targetFontSize = getTargetFontSize();
         if (fontSize.getValue() != targetFontSize) {
             builder.addTarget(SafePropertySetter.getTarget(fontSize, fontSize.getValue(), targetFontSize));
@@ -170,7 +170,7 @@ public class FloatingLabel {
     }
 
     private void setValuesStatics() {
-        //Font size, si no hay letra es tamaño real, si esta arriba es el 80% del tamaño(1 poquito mas chiquito)
+        //Font size, si no hay letra es tamaÃ±o real, si esta arriba es el 80% del tamaÃ±o(1 poquito mas chiquito)
         fontSize.setValue(getTargetFontSize());
 
         //Y position

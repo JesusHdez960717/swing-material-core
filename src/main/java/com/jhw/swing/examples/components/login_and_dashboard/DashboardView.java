@@ -130,7 +130,7 @@ public class DashboardView extends _DashboardSmoot {
         this.addDownElementRightCorner(tecnFlaticon);
 
         _MaterialButtonIconTransparent tecnFreepick = new _MaterialButtonIconTransparent();
-        tecnFreepick.setToolTipText("Freepick (Diseños)");
+        tecnFreepick.setToolTipText("Freepick (DiseÃ±os)");
         tecnFreepick.setIcon(MaterialIcons.TEC_FREEPICK);
         tecnFreepick.setMinimumSize(dim);
         tecnFreepick.addActionListener(new java.awt.event.ActionListener() {
@@ -140,7 +140,7 @@ public class DashboardView extends _DashboardSmoot {
         this.addDownElementRightCorner(tecnFreepick);
 
         _MaterialButtonIconTransparent tecnAdobe = new _MaterialButtonIconTransparent();
-        tecnAdobe.setToolTipText("Adobe (Ai y Ps para el diseño de imagenes)");
+        tecnAdobe.setToolTipText("Adobe (Ai y Ps para el diseÃ±o de imagenes)");
         tecnAdobe.setIcon(MaterialIcons.TEC_ADOBE);
         tecnAdobe.setMinimumSize(dim);
         tecnAdobe.addActionListener(new java.awt.event.ActionListener() {
