@@ -25,7 +25,9 @@ repositories {
     jcenter()
     mavenCentral()
 }
-
+compileJava{
+    options.encoding='UTF-8'
+}
 dependencies {
     testCompile 'junit:junit:4.12'
     

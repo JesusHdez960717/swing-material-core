@@ -7,7 +7,7 @@ import com.jhw.swing.util.JOP;
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-public class ExceptionServiceImplementation implements ExceptionHandlerService {
+public class EXCEPTION_SERVICE implements ExceptionHandlerService {
 
     @Override
     public void handleException(Exception excptn) {

@@ -4,7 +4,7 @@ import com.jhw.swing.material.components.login.DefaultLoginPanel;
 import com.clean.swing.app.AbstractSwingModule;
 import com.clean.swing.app.DefaultRootView;
 import com.clean.swing.app.dashboard.DashboardConstants;
-import com.jhw.swing.examples.application.dashboard.DashBoardFormateer;
+import com.jhw.swing.examples.application.dashboard.DASHBOARD_FORMATEER;
 import com.jhw.swing.material.components.dashboard.taskpane.expanded.DashBoardExtends;
 import com.jhw.swing.material.components.login._LoginPanel;
 import com.jhw.swing.material.standars.MaterialColors;
@@ -20,9 +20,9 @@ import javax.swing.AbstractAction;
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-public class RootViewFrame extends DefaultRootView {
+public class ROOT_VIEW_FRAME extends DefaultRootView {
 
-    public RootViewFrame(PropertyChangeListener listener) {
+    public ROOT_VIEW_FRAME(PropertyChangeListener listener) {
         super(listener);
         startLogin();
         startDashboard();
@@ -38,11 +38,11 @@ public class RootViewFrame extends DefaultRootView {
 
     private void startDashboard() {
         DashBoardExtends dash = new DashBoardExtends();
-        dash.setDashBoardFormatter(DashBoardFormateer.dashBoardFormatter);
-        dash.setUpPanelFormatter(DashBoardFormateer.upPanelFormatter);
-        dash.setDownPanelFormatter(DashBoardFormateer.downPanelFormatter);
-        dash.setMenuFormateer(DashBoardFormateer.collapseMenuFormatter);
-        dash.setButtonFormatter(DashBoardFormateer.buttonFormatter);
+        dash.setDashBoardFormatter(DASHBOARD_FORMATEER.dashBoardFormatter);
+        dash.setUpPanelFormatter(DASHBOARD_FORMATEER.upPanelFormatter);
+        dash.setDownPanelFormatter(DASHBOARD_FORMATEER.downPanelFormatter);
+        dash.setMenuFormateer(DASHBOARD_FORMATEER.collapseMenuFormatter);
+        dash.setButtonFormatter(DASHBOARD_FORMATEER.buttonFormatter);
 
         setDashBoard(dash);
     }

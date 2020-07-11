@@ -6,7 +6,7 @@ import com.clean.core.domain.services.ResourceService;
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-public class ResourceServiceImplementation implements ResourceService{
+public class RES_SERV implements ResourceService{
 
     @Override
     public String getString(String string) {

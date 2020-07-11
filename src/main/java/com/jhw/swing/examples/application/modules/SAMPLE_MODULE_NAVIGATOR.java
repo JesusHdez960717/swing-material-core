@@ -7,7 +7,7 @@ import com.jhw.swing.util.JOP;
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-public class SampleModuleNavigator implements NavigationService {
+public class SAMPLE_MODULE_NAVIGATOR implements NavigationService {
 
     public static final String NAV_TEST = "sample.test.android";
 

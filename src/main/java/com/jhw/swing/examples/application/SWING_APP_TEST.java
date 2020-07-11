@@ -1,8 +1,8 @@
 package com.jhw.swing.examples.application;
 
-import com.jhw.swing.examples.application.services.ExceptionServiceImplementation;
-import com.jhw.swing.examples.application.services.NotificationServiceImplementation;
-import com.jhw.swing.examples.application.services.NavigationServiceImplementation;
+import com.jhw.swing.examples.application.services.EXCEPTION_SERVICE;
+import com.jhw.swing.examples.application.services.NOTIF_SERV;
+import com.jhw.swing.examples.application.services.NAV_SERVICE;
 import com.clean.core.app.services.ExceptionHandler;
 import com.clean.core.app.services.ExceptionHandlerService;
 import com.clean.core.app.services.LoginHandler;
@@ -23,14 +23,14 @@ import java.util.List;
 import java.io.File;
 import javax.swing.UIManager;
 import com.clean.swing.app.RootView;
-import com.jhw.swing.examples.application.services.LoginServiceImplementation;
+import com.jhw.swing.examples.application.services.LOGIN_SERVICE;
 import java.beans.PropertyChangeEvent;
 
 /**
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-public class SwingApplication extends DefaultSwingApplication {
+public class SWING_APP_TEST extends DefaultSwingApplication {
 
     private static ExceptionHandlerService EXCEPTION_HANDLER;
 
@@ -46,25 +46,25 @@ public class SwingApplication extends DefaultSwingApplication {
 
     @Override
     public void startServices() throws Exception {
-        ExceptionHandler.registerExceptionHandlerService(new ExceptionServiceImplementation());
+        ExceptionHandler.registerExceptionHandlerService(new EXCEPTION_SERVICE());
         EXCEPTION_HANDLER = ExceptionHandler.getExceptionHandlerService();
 
-        Notification.registerNotificationService(new NotificationServiceImplementation());
+        Notification.registerNotificationService(new NOTIF_SERV());
         NOTIFICATION = Notification.getNotificationService();
 
-        Navigation.registerNavigationService(new NavigationServiceImplementation());
+        Navigation.registerNavigationService(new NAV_SERVICE());
         NAVIGATION = Navigation.getNavigationService();
 
         Resource.registerResourceService(new ResourceServiceImpl(ResourceBundleUtils.fromExternalFile(new File("E:\\Trabajos\\Projects\\GIT Projects Gradle\\messages"), ResourceBundleUtils.SPANISH)));
         RESOURCE = Resource.getResourceService();
 
-        LoginHandler.registerLoginHandlerService(new LoginServiceImplementation());
+        LoginHandler.registerLoginHandlerService(new LOGIN_SERVICE());
         LOGIN_HANDLER = LoginHandler.getLoginHandlerService();
     }
 
     @Override
     public void startRootView() throws Exception {
-        ROOT_VIEW = new RootViewFrame(this);
+        ROOT_VIEW = new ROOT_VIEW_FRAME(this);
     }
 
     @Override

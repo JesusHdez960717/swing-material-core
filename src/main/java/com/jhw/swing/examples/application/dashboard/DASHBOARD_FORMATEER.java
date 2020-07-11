@@ -16,7 +16,7 @@ import java.util.function.Consumer;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
-public class DashBoardFormateer {
+public class DASHBOARD_FORMATEER {
     
     private static final Color PRIMARY = PersonalizationMaterial.getInstance().getColorSecundary();
     private static final Color SECUNDARY = PersonalizationMaterial.getInstance().getColorPrincipal();

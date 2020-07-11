@@ -6,7 +6,7 @@ import com.clean.core.app.services.NotificationService;
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-public class NotificationServiceImplementation implements NotificationService {
+public class NOTIF_SERV implements NotificationService {
 
     @Override
     public void showNotification(String string, String string1) {

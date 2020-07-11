@@ -21,7 +21,7 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import javax.swing.AbstractAction;
 
-public class SampleSwingModule implements AbstractSwingModule {
+public class SAMPLE_SWING_MODULE implements AbstractSwingModule {
 
     @Override
     public void register(AbstractSwingApplication app) {
@@ -73,7 +73,7 @@ public class SampleSwingModule implements AbstractSwingModule {
                 new AbstractAction("Hello World", MaterialIcons.ANDROID.deriveIcon(Color.yellow)) {
             @Override
             public void actionPerformed(ActionEvent e) {
-                app.navigateTo(SampleModuleNavigator.NAV_TEST);
+                app.navigateTo(SAMPLE_MODULE_NAVIGATOR.NAV_TEST);
             }
         });
         dash.addKeyValue(DashboardConstants.UP_ELEMENT, new AbstractAction("Hello World", MaterialIcons.NAVIGATION) {
@@ -92,7 +92,7 @@ public class SampleSwingModule implements AbstractSwingModule {
         dash.addKeyValue(DashboardConstants.DOWN_ELEMENT, AbstractActionUtils.from(MaterialIcons.TEC_NB));
     }
 
-    SampleModuleNavigator navigator = new SampleModuleNavigator();
+    SAMPLE_MODULE_NAVIGATOR navigator = new SAMPLE_MODULE_NAVIGATOR();
 
     @Override
     public void navigateTo(String string, Object... o) {
