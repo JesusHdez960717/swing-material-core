@@ -46,6 +46,7 @@ public abstract class InputComboBoxSelection<T> extends _PanelComponent implemen
         int h = (int) this.comboBox.getPreferredSize().getHeight();
 
         buttonNuevo = new _MaterialButtonIconTransparent();
+        buttonNuevo.setForeground(PersonalizationMaterial.getInstance().getColorButtonAdd());
         buttonNuevo.setRippleColor(Color.black);
         buttonNuevo.setIcon(
                 PersonalizationMaterial.getInstance().getIconButtonAdd()

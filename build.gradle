@@ -19,7 +19,7 @@ apply plugin: 'application'
 
 group = 'com.jhw.swing'
 
-mainClassName = 'com.jhw.swing.examples.application.Main'
+mainClassName = 'com.jhw.swing.examples.application.MAIN_APP_TEST'
 
 repositories {
     jcenter()
