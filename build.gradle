@@ -15,11 +15,11 @@ apply plugin: "edu.sc.seis.launch4j"
 
 apply plugin: 'java'
 apply plugin: 'jacoco'
-apply plugin: 'application'
+//apply plugin: 'application'
 
 group = 'com.jhw.swing'
 
-mainClassName = 'com.jhw.swing.examples.application.MAIN_APP_TEST'
+//mainClassName = 'com.jhw.swing.examples.application.MAIN_APP_TEST'
 
 repositories {
     jcenter()
