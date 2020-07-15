@@ -33,8 +33,11 @@ public class FastGaussianBlur {
         final int h = image.getHeight();
         ConvolveWithEdgeOp filterTrue = getGaussianBlurFilter((float) radius, true);
         ConvolveWithEdgeOp filterFalse = getGaussianBlurFilter((float) radius, false);
-
-        BufferedImage top = image.getSubimage(0, 0, w, 2 * MaterialShadow.OFFSET_TOP);
+        
+        image = filterTrue.filter(image, null);
+        return filterFalse.filter(image, null);
+        
+        /*BufferedImage top = image.getSubimage(0, 0, w, 2 * MaterialShadow.OFFSET_TOP);
         top = filterTrue.filter(top, null);
         top = filterFalse.filter(top, null);
 
@@ -57,7 +60,7 @@ public class FastGaussianBlur {
         g2.drawImage(left, null, 0, 2 * MaterialShadow.OFFSET_TOP);
         g2.drawImage(right, null, w - 2 * MaterialShadow.OFFSET_RIGHT, 2 * MaterialShadow.OFFSET_TOP);
 
-        return result;
+        return result;*/
     }
 
     public static ConvolveWithEdgeOp getGaussianBlurFilter(float radius,

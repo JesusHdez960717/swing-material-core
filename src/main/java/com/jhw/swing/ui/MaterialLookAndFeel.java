@@ -212,7 +212,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("ComboBox.mouseHoverColor", MaterialColors.GREY_400);
         table.put("ComboBox.mouseHoverEnabled", true);
 
-        table.put("Label.font", MaterialFontRoboto.REGULAR);
+        table.put("Label.font", MaterialFontRoboto.REGULAR.deriveFont(16f));
         table.put("Label.background", Color.WHITE);
         table.put("Label.foreground", Color.BLACK);
         table.put("Label.border", BorderFactory.createEmptyBorder());

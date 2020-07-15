@@ -295,7 +295,7 @@ public class _MaterialComboBox<T> extends JComboBox<T> implements MaterialCompon
             g2.drawString(getSelectedItem().toString(), floatingLabel.getX(), metrics.getAscent() + yMid - metrics.getAscent() / 2);
         }
 
-        int yLine = yMid + metrics.getAscent() / 2 + 5;
+        int yLine = yMid + metrics.getAscent() / 2 + 8;
 
         //paint the back line
         g2.setColor(Utils.applyAlphaMask(getForeground(), LINE_OPACITY_MASK));
@@ -401,7 +401,7 @@ public class _MaterialComboBox<T> extends JComboBox<T> implements MaterialCompon
             }
             g.fillRect(0, 0, getWidth(), getHeight());
 
-            g.setFont(MaterialFontRoboto.REGULAR.deriveFont(15f));
+            g.setFont(comboBox.getFont());
             if (selected) {
                 g2.setColor(comboBox.accentColor);
             } else {
