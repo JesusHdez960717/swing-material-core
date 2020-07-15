@@ -1,6 +1,11 @@
 package com.jhw.swing.bundles.loading;
 
+import com.jhw.swing.bundles.dialog.DialogPanel;
 import java.util.concurrent.ExecutionException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JDialog;
+import javax.swing.JPanel;
 import javax.swing.SwingWorker;
 
 /**
@@ -40,7 +45,7 @@ import javax.swing.SwingWorker;
  */
 public class LoadingWorker<T> extends SwingWorker<T, Void> {
 
-    private LoadingDialog dialogLoading;
+    private JDialog dialogLoading;
     private final LoadingProcess<T> process;
     private Exception exception;
 
@@ -48,8 +53,12 @@ public class LoadingWorker<T> extends SwingWorker<T, Void> {
         this(new LoadingDialog(), p);
     }
 
-    public LoadingWorker(LoadingDialog dialogLoading, LoadingProcess<T> process) {
-        dialogLoading = new LoadingDialog();
+    public LoadingWorker(JPanel dialogLoading, LoadingProcess<T> process) {
+        this(new DialogPanel(dialogLoading), process);
+    }
+
+    public LoadingWorker(JDialog dialogLoading, LoadingProcess<T> process) {
+        this.dialogLoading = dialogLoading;
         this.process = process;
         this.execute();
     }
