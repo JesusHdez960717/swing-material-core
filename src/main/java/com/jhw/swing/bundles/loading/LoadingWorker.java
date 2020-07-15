@@ -45,8 +45,12 @@ public class LoadingWorker<T> extends SwingWorker<T, Void> {
     private Exception exception;
 
     public LoadingWorker(LoadingProcess p) {
+        this(new LoadingDialog(), p);
+    }
+
+    public LoadingWorker(LoadingDialog dialogLoading, LoadingProcess<T> process) {
         dialogLoading = new LoadingDialog();
-        this.process = p;
+        this.process = process;
         this.execute();
     }
 
