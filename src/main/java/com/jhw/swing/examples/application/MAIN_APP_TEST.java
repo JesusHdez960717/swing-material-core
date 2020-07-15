@@ -9,10 +9,12 @@ import com.jhw.swing.examples.application.modules.SAMPLE_SWING_MODULE;
 public class MAIN_APP_TEST {
 
     public static final SWING_APP_TEST app = new SWING_APP_TEST();
+    public static USER_ENTITY usuario;
 
     public static void main(String args[]) throws Exception {
         app.run();
         app.registerModule(new SAMPLE_SWING_MODULE());
+        app.show();
     }
 
 }

@@ -32,34 +32,19 @@ import java.beans.PropertyChangeEvent;
  */
 public class SWING_APP_TEST extends DefaultSwingApplication {
 
-    private static ExceptionHandlerService EXCEPTION_HANDLER;
-
-    private static NotificationService NOTIFICATION;
-
-    private static NavigationService NAVIGATION;
-
-    private static ResourceService RESOURCE;
-
-    private static LoginHandlerService LOGIN_HANDLER;
-
     private static RootView ROOT_VIEW;
 
     @Override
     public void startServices() throws Exception {
         ExceptionHandler.registerExceptionHandlerService(new EXCEPTION_SERVICE());
-        EXCEPTION_HANDLER = ExceptionHandler.getExceptionHandlerService();
 
         Notification.registerNotificationService(new NOTIF_SERV());
-        NOTIFICATION = Notification.getNotificationService();
 
         Navigation.registerNavigationService(new NAV_SERVICE());
-        NAVIGATION = Navigation.getNavigationService();
 
         Resource.registerResourceService(new ResourceServiceImpl(ResourceBundleUtils.fromExternalFile(new File("E:\\Trabajos\\Projects\\GIT Projects Gradle\\messages"), ResourceBundleUtils.SPANISH)));
-        RESOURCE = Resource.getResourceService();
 
         LoginHandler.registerLoginHandlerService(new LOGIN_SERVICE());
-        LOGIN_HANDLER = LoginHandler.getLoginHandlerService();
     }
 
     @Override
@@ -83,33 +68,8 @@ public class SWING_APP_TEST extends DefaultSwingApplication {
     }
 
     @Override
-    public ExceptionHandlerService exceptionHandler() {
-        return EXCEPTION_HANDLER;
-    }
-
-    @Override
-    public ResourceService resource() {
-        return RESOURCE;
-    }
-
-    @Override
-    public NotificationService notification() {
-        return NOTIFICATION;
-    }
-
-    @Override
-    public NavigationService navigation() {
-        return NAVIGATION;
-    }
-
-    @Override
-    public LoginHandlerService login() {
-        return LOGIN_HANDLER;
-    }
-
-    @Override
     public void propertyChange(PropertyChangeEvent evt) {
-        super.propertyChange(evt);
+        super.propertyChange(evt);//llamar al super para que coja el close windows
     }
 
 }
