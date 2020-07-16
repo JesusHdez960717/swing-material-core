@@ -9,7 +9,6 @@ import com.jhw.swing.material.components.passwordfield._MaterialPasswordField;
 import com.jhw.swing.material.components.textfield._MaterialTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
-
 import com.jhw.swing.material.standars.MaterialColors;
 import com.jhw.swing.material.standars.MaterialIcons;
 import javax.swing.JLabel;
@@ -124,7 +123,7 @@ public class _LoginPanel extends LoginSimple {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(panelBackground, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-    }// </editor-fold>//GEN-END:initComponents
+    }// </editor-fold>                        
 
     // Variables declaration - do not modify//:variables
     private com.jhw.swing.material.components.button._MaterialButton buttonLogin;
@@ -134,7 +133,7 @@ public class _LoginPanel extends LoginSimple {
     private com.jhw.swing.material.components.container.panel._MaterialPanel panelBackgroundLogin;
     private com.jhw.swing.material.components.passwordfield._MaterialPasswordField passwordUsuario;
     private com.jhw.swing.material.components.textfield._MaterialTextField textFieldUsuario;
-    // End of variables declaration//GEN-END:variables
+    // End of variables declaration                   
 
     @Override
     public String getUser() {

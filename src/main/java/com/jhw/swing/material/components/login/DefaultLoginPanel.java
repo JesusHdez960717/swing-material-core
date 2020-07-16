@@ -25,13 +25,16 @@ public class DefaultLoginPanel extends _LoginPanel {
 
                 if (resp) {
                     Navigation.getNavigationService().navigateTo(DASH_NAME);
-                    new DialogNotificationToastGeneral(3,
-                            "welcome back user",
-                            MaterialIcons.VISIBILITY,
-                            MaterialColors.BLUE_400);
+                    TOAST_welcome(getUser());
                 }
             }
         });
     }
 
+    public static void TOAST_welcome(String user) {
+        new DialogNotificationToastGeneral(5,
+                "Bienvenido de nuevo\n" + user,
+                MaterialIcons.PERSON,
+                MaterialColors.BLUE_400);
+    }
 }
