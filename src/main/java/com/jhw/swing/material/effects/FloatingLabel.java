@@ -5,7 +5,6 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontMetrics;
 import java.util.concurrent.TimeUnit;
-import javax.swing.JTextField;
 import com.jhw.swing.material.components.textfield._MaterialTextField;
 import org.jdesktop.core.animation.timing.Animator;
 import org.jdesktop.core.animation.timing.interpolators.SplineInterpolator;
@@ -14,12 +13,11 @@ import com.jhw.swing.personalization.PersonalizationMaterial;
 import com.jhw.swing.util.SafePropertySetter;
 import com.jhw.swing.util.Utils;
 import com.jhw.swing.util.enums.TextTypeEnum;
-import java.awt.Component;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 
 /**
- * A floating label of a text field.
+ * A floating label of a component that complies to the FloatingLabelStandar
  */
 public class FloatingLabel {
 

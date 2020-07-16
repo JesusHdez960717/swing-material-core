@@ -1,10 +1,8 @@
 package com.jhw.swing.material.effects;
 
 import com.jhw.swing.material.standars.MaterialShadow;
-import com.jhw.swing.util.MaterialDrawingUtils;
 import com.twelvemonkeys.image.ConvolveWithEdgeOp;
 import java.awt.Graphics2D;
-import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 import java.awt.image.Kernel;
 
@@ -22,7 +20,10 @@ public class FastGaussianBlur {
      * En realidad no hay que hacerle el blur a toda la imagen, ya que en su
      * mayor parte va a estar cubierta por un componente. Por lo tanto, se
      * separan las partes que se van a ver y a esas es a las que se les hace el
-     * blur.
+     * blur.<\br>
+     * La manera de hacer el blur se elige dinamicamente en dependencia del
+     * tamanno, por unas prubas de estres realizadas al algoritmo se probo que
+     * el tamanno optimo se aproxima a los 150x150 px
      *
      * @param image
      * @param radius
@@ -33,38 +34,39 @@ public class FastGaussianBlur {
         final int h = image.getHeight();
         ConvolveWithEdgeOp filterTrue = getGaussianBlurFilter((float) radius, true);
         ConvolveWithEdgeOp filterFalse = getGaussianBlurFilter((float) radius, false);
-        
-        image = filterTrue.filter(image, null);
-        return filterFalse.filter(image, null);
-        
-        /*BufferedImage top = image.getSubimage(0, 0, w, 2 * MaterialShadow.OFFSET_TOP);
-        top = filterTrue.filter(top, null);
-        top = filterFalse.filter(top, null);
 
-        BufferedImage down = image.getSubimage(0, h - 2 * MaterialShadow.OFFSET_BOTTOM, w, 2 * MaterialShadow.OFFSET_BOTTOM);
-        down = filterTrue.filter(down, null);
-        down = filterFalse.filter(down, null);
+        if (w < 150 && h < 150) {//para sombras pequennas usar el clasico con la imagen completa
+            image = filterTrue.filter(image, null);
+            return filterFalse.filter(image, null);
+        } else {//para imagenes grandes picarla por pedazos y despues unirla
+            BufferedImage top = image.getSubimage(0, 0, w, 2 * MaterialShadow.OFFSET_TOP);
+            top = filterTrue.filter(top, null);
+            top = filterFalse.filter(top, null);
 
-        BufferedImage left = image.getSubimage(0, 2 * MaterialShadow.OFFSET_TOP, 2 * MaterialShadow.OFFSET_LEFT, h - 2 * MaterialShadow.OFFSET_TOP - 2 * MaterialShadow.OFFSET_BOTTOM);
-        left = filterTrue.filter(left, null);
-        left = filterFalse.filter(left, null);
+            BufferedImage down = image.getSubimage(0, h - 2 * MaterialShadow.OFFSET_BOTTOM, w, 2 * MaterialShadow.OFFSET_BOTTOM);
+            down = filterTrue.filter(down, null);
+            down = filterFalse.filter(down, null);
 
-        BufferedImage right = image.getSubimage(w - 2 * MaterialShadow.OFFSET_RIGHT, 2 * MaterialShadow.OFFSET_TOP, 2 * MaterialShadow.OFFSET_RIGHT, h - 2 * MaterialShadow.OFFSET_TOP - 2 * MaterialShadow.OFFSET_BOTTOM);
-        right = filterTrue.filter(right, null);
-        right = filterFalse.filter(right, null);
+            BufferedImage left = image.getSubimage(0, 2 * MaterialShadow.OFFSET_TOP, 2 * MaterialShadow.OFFSET_LEFT, h - 2 * MaterialShadow.OFFSET_TOP - 2 * MaterialShadow.OFFSET_BOTTOM);
+            left = filterTrue.filter(left, null);
+            left = filterFalse.filter(left, null);
 
-        BufferedImage result = new BufferedImage(w, h, image.getType());
-        Graphics2D g2 = result.createGraphics();
-        g2.drawImage(top, null, 0, 0);
-        g2.drawImage(down, null, 0, h - 2 * MaterialShadow.OFFSET_BOTTOM);
-        g2.drawImage(left, null, 0, 2 * MaterialShadow.OFFSET_TOP);
-        g2.drawImage(right, null, w - 2 * MaterialShadow.OFFSET_RIGHT, 2 * MaterialShadow.OFFSET_TOP);
+            BufferedImage right = image.getSubimage(w - 2 * MaterialShadow.OFFSET_RIGHT, 2 * MaterialShadow.OFFSET_TOP, 2 * MaterialShadow.OFFSET_RIGHT, h - 2 * MaterialShadow.OFFSET_TOP - 2 * MaterialShadow.OFFSET_BOTTOM);
+            right = filterTrue.filter(right, null);
+            right = filterFalse.filter(right, null);
 
-        return result;*/
+            BufferedImage result = new BufferedImage(w, h, image.getType());
+            Graphics2D g2 = result.createGraphics();
+            g2.drawImage(top, null, 0, 0);
+            g2.drawImage(down, null, 0, h - 2 * MaterialShadow.OFFSET_BOTTOM);
+            g2.drawImage(left, null, 0, 2 * MaterialShadow.OFFSET_TOP);
+            g2.drawImage(right, null, w - 2 * MaterialShadow.OFFSET_RIGHT, 2 * MaterialShadow.OFFSET_TOP);
+
+            return result;
+        }
     }
 
-    public static ConvolveWithEdgeOp getGaussianBlurFilter(float radius,
-            boolean horizontal) {
+    public static ConvolveWithEdgeOp getGaussianBlurFilter(float radius, boolean horizontal) {
         radius++;
         int radiusInt = (int) Math.ceil(radius);
         int size = radiusInt * 2 + 1;
