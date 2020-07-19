@@ -24,6 +24,7 @@ import java.io.File;
 import javax.swing.UIManager;
 import com.clean.swing.app.RootView;
 import com.jhw.swing.examples.application.services.LOGIN_SERVICE;
+import com.jhw.swing.examples.application.services.RES_SERV;
 import java.beans.PropertyChangeEvent;
 
 /**
@@ -32,39 +33,21 @@ import java.beans.PropertyChangeEvent;
  */
 public class SWING_APP_TEST extends DefaultSwingApplication {
 
-    private static RootView ROOT_VIEW;
-
     @Override
-    public void startServices() throws Exception {
-        ExceptionHandler.registerExceptionHandlerService(new EXCEPTION_SERVICE());
-
-        Notification.registerNotificationService(new NOTIF_SERV());
-
-        Navigation.registerNavigationService(new NAV_SERVICE());
-
-        Resource.registerResourceService(new ResourceServiceImpl(ResourceBundleUtils.fromExternalFile(new File("E:\\Trabajos\\Projects\\GIT Projects Gradle\\messages"), ResourceBundleUtils.SPANISH)));
-
-        LoginHandler.registerLoginHandlerService(new LOGIN_SERVICE());
-    }
-
-    @Override
-    public void startRootView() throws Exception {
-        ROOT_VIEW = new ROOT_VIEW_FRAME(this);
-    }
-
-    @Override
-    public void startApplication() throws Exception {
+    public void init() throws Exception {
         UIManager.setLookAndFeel(new MaterialLookAndFeel());
+        initRootView(new ROOT_VIEW_FRAME(this));
+
+        EXCEPTION_SERVICE.init();
+        NOTIF_SERV.init();
+        NAV_SERVICE.init();
+        RES_SERV.init();
+        LOGIN_SERVICE.init();
     }
 
     @Override
     public void closeApplication() {
         System.out.println("Cerrando la aplicacion");
-    }
-
-    @Override
-    public RootView rootView() {
-        return ROOT_VIEW;
     }
 
     @Override
