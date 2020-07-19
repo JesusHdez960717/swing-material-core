@@ -2,6 +2,7 @@ package com.jhw.swing.examples.application.modules;
 
 import com.clean.core.app.services.Navigation;
 import com.clean.swing.app.AbstractSwingApplication;
+import com.clean.swing.app.AbstractSwingMainModule;
 import com.clean.swing.app.AbstractSwingModule;
 import com.clean.swing.app.dashboard.DashBoardSimple;
 import com.clean.swing.app.dashboard.DashboardConstants;
@@ -21,7 +22,7 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import javax.swing.AbstractAction;
 
-public class SAMPLE_SWING_MODULE implements AbstractSwingModule {
+public class SAMPLE_SWING_MODULE implements AbstractSwingMainModule {
 
     @Override
     public void register(AbstractSwingApplication app) {
