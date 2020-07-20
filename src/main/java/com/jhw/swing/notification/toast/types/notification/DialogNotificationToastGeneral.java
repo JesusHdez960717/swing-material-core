@@ -36,6 +36,10 @@ public class DialogNotificationToastGeneral extends DialogToast {
         this(duration, text, icon, back, NotificationLocation.DOWN_RIGHT);
     }
 
+    public static DialogNotificationToastGeneral from(int duration, String text, ImageIcon icon, Color back) {
+        return new DialogNotificationToastGeneral(duration, text, icon, back);
+    }
+
     public DialogNotificationToastGeneral(int duration, String text, ImageIcon icon, Color back, NotificationLocation location) {
         super(duration, new NotificationToast(text, icon, back));
 

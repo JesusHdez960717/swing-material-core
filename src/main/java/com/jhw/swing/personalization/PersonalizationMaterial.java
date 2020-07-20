@@ -7,7 +7,6 @@ import java.io.File;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
 import com.jhw.swing.util.Utils;
 import com.jhw.swing.util.icons.icon_ttf.IconTTF;
 import com.jhw.swing.util.icons.icon_ttf.IconTTFJsonDeserializer;
@@ -105,6 +104,7 @@ public class PersonalizationMaterial {
     private Color colorDone = MaterialColors.GREEN_700;
     private Color colorError = MaterialColors.REDA_700;
     private Color colorInfo = MaterialColors.BLUE_700;
+    private Color colorWarning = MaterialColors.YELLOWA_700;
 
     public boolean isDoBeep() {
         return doBeep;
@@ -312,6 +312,14 @@ public class PersonalizationMaterial {
 
     public void setColorInfo(Color colorInfo) {
         this.colorInfo = colorInfo;
+    }
+
+    public Color getColorWarning() {
+        return colorWarning;
+    }
+
+    public void setColorWarning(Color colorWarning) {
+        this.colorWarning = colorWarning;
     }
 
 }

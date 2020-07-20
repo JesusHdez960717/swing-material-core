@@ -32,7 +32,7 @@ public class TOAST {
     }
 
     public static void makeNotificationFAIL(String text) {
-        new DialogNotificationToastGeneral(PersonalizationMaterial.getInstance().getSecondsActive(),
+        DialogNotificationToastGeneral.from(PersonalizationMaterial.getInstance().getSecondsActive(),
                 text,
                 MaterialIcons.BLOCK,
                 PersonalizationMaterial.getInstance().getColorError());
