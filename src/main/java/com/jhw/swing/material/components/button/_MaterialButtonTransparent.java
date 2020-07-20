@@ -15,6 +15,7 @@ import com.jhw.swing.util.icons.DerivableIcon;
 import com.jhw.swing.util.interfaces.MaterialComponent;
 import com.jhw.swing.material.standars.MaterialFontRoboto;
 import com.jhw.swing.material.standars.MaterialIcons;
+import javax.swing.Icon;
 
 /**
  *
@@ -39,7 +40,8 @@ public class _MaterialButtonTransparent extends JButton implements MaterialCompo
         this.setOpaque(false);
     }
 
-    public void setIcon(ImageIcon icon) {
+    @Override
+    public void setIcon(Icon icon) {
         if (icon instanceof DerivableIcon) {
             icon = ((DerivableIcon) icon).deriveIcon(getForeground());
         }
@@ -50,6 +52,12 @@ public class _MaterialButtonTransparent extends JButton implements MaterialCompo
     public void setBackground(Color bg) {
         super.setBackground(bg);
         setForeground(Utils.getForegroundAccording(bg));
+    }
+
+    @Override
+    public void setForeground(Color fg) {
+        super.setForeground(fg);
+        setIcon(getIcon());
     }
 
     @Override

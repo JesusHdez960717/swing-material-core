@@ -1,5 +1,6 @@
 package com.jhw.swing.notification.toast.types.text;
 
+import com.jhw.swing.notification.NotificationLocation;
 import com.jhw.swing.notification.toast.DialogToast;
 import static com.jhw.swing.notification.toast.ToastDisplayer.DURATION;
 import java.awt.Toolkit;
@@ -12,6 +13,7 @@ import org.jdesktop.core.animation.timing.interpolators.SplineInterpolator;
 import com.jhw.swing.personalization.Inistanciables;
 import com.jhw.swing.personalization.PersonalizationMaterial;
 import com.jhw.swing.util.SafePropertySetter;
+import com.jhw.swing.util.Utils;
 
 /**
  *
@@ -23,16 +25,19 @@ public class DialogTextToastGeneral extends DialogToast {
 
     private Animator anim;
 
-    private static final ArrayList<DialogTextToastGeneral> notif = new ArrayList<>();
+    private static final ArrayList<DialogTextToastGeneral> NOTIF = new ArrayList<>();
 
     private int nextY = 0;
 
     public DialogTextToastGeneral(int duration, String text) {
+        this(duration, text, NotificationLocation.DOWN_CENTER);
+    }
+
+    public DialogTextToastGeneral(int duration, String text, NotificationLocation location) {
         super(duration, new TextToast(text));
 
-        int xPos = (Toolkit.getDefaultToolkit().getScreenSize().width - (int) super.getSize().width) / 2;
         nextY = getYPosition() - (int) super.getSize().getHeight();
-        this.setLocation(xPos, nextY);
+        this.setLocation(Utils.getXPosition(this, location), nextY);
 
         this.setActionListenerClose(new ActionListener() {
             @Override
@@ -41,13 +46,13 @@ public class DialogTextToastGeneral extends DialogToast {
             }
         });
 
-        notif.add(this);
+        NOTIF.add(this);
 
         this.setVisible(true);
     }
 
     private void closeNotif() {
-        notif.remove(this);
+        NOTIF.remove(this);
         moveAll(this);
         if (anim != null) {
             anim.cancel();
@@ -56,14 +61,14 @@ public class DialogTextToastGeneral extends DialogToast {
 
     private int getYPosition() {
         int pos = Toolkit.getDefaultToolkit().getScreenSize().height - DISTANCE;
-        for (DialogTextToastGeneral act : notif) {
+        for (DialogTextToastGeneral act : NOTIF) {
             pos -= act.getHeight();
         }
         return pos;
     }
 
     private static void moveAll(DialogTextToastGeneral actual) {
-        for (DialogTextToastGeneral act : notif) {
+        for (DialogTextToastGeneral act : NOTIF) {
             if (act.getLocation().getY() < actual.getLocation().getY()) {
                 act.moveAmount((int) actual.getSize().getHeight());
             }

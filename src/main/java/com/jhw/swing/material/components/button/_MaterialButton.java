@@ -40,6 +40,9 @@ public class _MaterialButton extends JButton implements MaterialComponent {
     private Cursor cursor = Cursor.getPredefinedCursor(Cursor.HAND_CURSOR);
     private int borderRadius = 5;
 
+    private Color borderColor = MaterialColors.BLACK;
+    private int borderThickness = 0;
+
     /**
      * Creates a new button.
      */
@@ -91,12 +94,29 @@ public class _MaterialButton extends JButton implements MaterialComponent {
         this.setBorder(new EmptyBorder(0, 0, 0, 0));
     }
 
+    public Color getBorderColor() {
+        return borderColor;
+    }
+
+    public void setBorderColor(Color borderColor) {
+        this.borderColor = borderColor;
+    }
+
+    public int getBorderThickness() {
+        return borderThickness;
+    }
+
+    public void setBorderThickness(int borderThickness) {
+        this.borderThickness = borderThickness;
+    }
+
     public void setElevation(ElevationEffect elevation) {
         this.elevation = elevation;
         repaint();
     }
 
-    public void setIcon(ImageIcon icon) {
+    @Override
+    public void setIcon(Icon icon) {
         if (icon instanceof DerivableIcon) {
             icon = ((DerivableIcon) icon).deriveIcon(getForeground());
         }
@@ -165,6 +185,12 @@ public class _MaterialButton extends JButton implements MaterialComponent {
         setForeground(Utils.getForegroundAccording(bg));
         setRippleColor(Utils.getForegroundAccording(bg));
         fadeinto = new ColorFadeInto(this, ColorFadeInto.ColorChangeTo.DARKEN);
+    }
+
+    @Override
+    public void setForeground(Color fg) {
+        super.setForeground(fg);
+        setIcon(getIcon());
     }
 
     /**
@@ -279,7 +305,7 @@ public class _MaterialButton extends JButton implements MaterialComponent {
             elevation.paint(g2);
         }
 
-        if (type == Type.FLAT) {//si es flat quito correcciones de ofset
+        if (type == Type.FLAT) {//si es flat quito correcciones de offset
             offset_lr = 0;
             offset_td = 0;
             offset_left = 0;
@@ -287,15 +313,19 @@ public class _MaterialButton extends JButton implements MaterialComponent {
         }
         g2.translate(offset_left, offset_top);
 
+        //color de fondo
         if (isEnabled()) {
             g2.setColor(fadeinto.getColor());
-            g2.fill(new RoundRectangle2D.Float(0, 0, getWidth() - offset_lr, getHeight() - offset_td, borderRadius * 2, borderRadius * 2));
-
-            g2.setColor(new Color(rippleColor.getRed() / 255f, rippleColor.getBlue() / 255f, rippleColor.getBlue() / 255f, 0.12f));
         } else {
             Color bg = getBackground();
             g2.setColor(new Color(bg.getRed() / 255f, bg.getGreen() / 255f, bg.getBlue() / 255f, 0.6f));
-            g2.fill(new RoundRectangle2D.Float(0, 0, getWidth() - offset_lr, getHeight() - offset_td, borderRadius * 2, borderRadius * 2));
+        }
+        g2.fill(new RoundRectangle2D.Float(0, 0, getWidth() - offset_lr, getHeight() - offset_td, borderRadius * 2, borderRadius * 2));
+
+        if (getBorderThickness() > 0) {//si hay border lo pinto
+            g2.setStroke(new BasicStroke(getBorderThickness()));
+            g2.setColor(getBorderColor());
+            g2.draw(new RoundRectangle2D.Float(0, 0, getWidth() - offset_lr, getHeight() - offset_td, borderRadius * 2, borderRadius * 2));
         }
 
         if (this.isEnabled()) {//el ripple por debajo de las letras e iconos
@@ -341,6 +371,11 @@ public class _MaterialButton extends JButton implements MaterialComponent {
             this.getIcon().paintIcon(this, g2, xIcon, (getHeight() - offset_td - getIcon().getIconHeight()) / 2);
         }
         g2.translate(-offset_left, -offset_top);
+    }
+
+    @Override
+    protected void paintBorder(Graphics g) {
+        //intentionally left blank
     }
 
     /**

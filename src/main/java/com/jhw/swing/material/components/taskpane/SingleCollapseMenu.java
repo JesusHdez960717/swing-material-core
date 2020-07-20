@@ -1,6 +1,5 @@
 package com.jhw.swing.material.components.taskpane;
 
-import com.jhw.swing.material.components.dashboard.taskpane.DashBoardTaskPane;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.Action;
@@ -15,9 +14,18 @@ public class SingleCollapseMenu extends CollapseMenu {
 
     private final Action action;
 
-    public SingleCollapseMenu(Action action, DashBoardTaskPane parent) {
-        super((ImageIcon) action.getValue(Action.SMALL_ICON), action.getValue(Action.NAME).toString(), parent);
+    public SingleCollapseMenu(Action action) {
+        this(action, true);
+    }
+
+    public SingleCollapseMenu(Action action, boolean seleccionable) {
+        super((ImageIcon) action.getValue(Action.SMALL_ICON), action.getValue(Action.NAME).toString());
         this.action = action;
+
+        if (seleccionable) {
+            getjButtonIcono().addActionListener(childSelectedListener);
+            getjButtonNombre().addActionListener(childSelectedListener);
+        }
     }
 
     @Override

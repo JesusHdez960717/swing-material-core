@@ -5,7 +5,6 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontMetrics;
 import java.util.concurrent.TimeUnit;
-import javax.swing.JTextField;
 import com.jhw.swing.material.components.textfield._MaterialTextField;
 import org.jdesktop.core.animation.timing.Animator;
 import org.jdesktop.core.animation.timing.interpolators.SplineInterpolator;
@@ -14,12 +13,11 @@ import com.jhw.swing.personalization.PersonalizationMaterial;
 import com.jhw.swing.util.SafePropertySetter;
 import com.jhw.swing.util.Utils;
 import com.jhw.swing.util.enums.TextTypeEnum;
-import java.awt.Component;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 
 /**
- * A floating label of a text field.
+ * A floating label of a component that complies to the FloatingLabelStandar
  */
 public class FloatingLabel {
 
@@ -141,7 +139,7 @@ public class FloatingLabel {
                 .setEndBehavior(Animator.EndBehavior.HOLD)
                 .setInterpolator(new SplineInterpolator(0.4, 0, 0.2, 1));
 
-        //Font size, si no hay letra es tamaño real, si esta arriba es el 80% del tamaño(1 poquito mas chiquito)
+        //Font size, si no hay letra es tamaÃ±o real, si esta arriba es el 80% del tamaÃ±o(1 poquito mas chiquito)
         float targetFontSize = getTargetFontSize();
         if (fontSize.getValue() != targetFontSize) {
             builder.addTarget(SafePropertySetter.getTarget(fontSize, fontSize.getValue(), targetFontSize));
@@ -170,7 +168,7 @@ public class FloatingLabel {
     }
 
     private void setValuesStatics() {
-        //Font size, si no hay letra es tamaño real, si esta arriba es el 80% del tamaño(1 poquito mas chiquito)
+        //Font size, si no hay letra es tamaÃ±o real, si esta arriba es el 80% del tamaÃ±o(1 poquito mas chiquito)
         fontSize.setValue(getTargetFontSize());
 
         //Y position

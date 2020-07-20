@@ -6,13 +6,12 @@ import com.clean.core.utils.validation.ValidationResult;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PositiveOrZero;
-import lombok.Getter;
+
 
 /**
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-@Getter
 public class Column implements Validable {
 
     @NotEmpty
@@ -32,6 +31,22 @@ public class Column implements Validable {
         this.editable = editable;
         this.preferedWidth = width;
         validate();
+    }
+
+    public String getColumnName() {
+        return columnName;
+    }
+
+    public Class getColumnsClass() {
+        return columnsClass;
+    }
+
+    public boolean isEditable() {
+        return editable;
+    }
+
+    public int getPreferedWidth() {
+        return preferedWidth;
     }
 
     public static builder builder() {

@@ -24,7 +24,7 @@ public class ItemsListNotEmptyValidation extends ICBSValidation<InputComboBoxSel
 
     @Override
     public boolean validate(InputComboBoxSelection obj) {
-        return obj.getComboBox().getItemCount() > 1;
+        return obj.getComboBox().getItemCount() > 0;
     }
 
 }

@@ -85,14 +85,19 @@ public class ElevationEffect {
     /**
      * Paints this effect.
      *
-     * @param g canvas
+     * @param g2 canvas
      */
-    public void paint(Graphics g) {
+    public void paint(Graphics2D g2) {
         if (PersonalizationMaterial.getInstance().isUseShadow()) {
-            Graphics2D g2 = MaterialDrawingUtils.getAliasedGraphics(g);
+            //priorizado la velocidad, la calidad no hace diferencia
+            g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_NEAREST_NEIGHBOR);
+            g2.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_SPEED);
+
             g2.setBackground(target.getParent().getBackground());
             g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1.0f));
             g2.drawImage(shadowFast.render(target.getWidth(), target.getHeight(), borderRadius, level.getValue(), MaterialShadow.Type.SQUARE), 0, 0, null);
+
+            MaterialDrawingUtils.getAliasedGraphics(g2);
         }
     }
 
@@ -156,12 +161,17 @@ public class ElevationEffect {
         }
 
         @Override
-        public void paint(Graphics g) {
+        public void paint(Graphics2D g2) {
             if (PersonalizationMaterial.getInstance().isUseShadow()) {
-                Graphics2D g2 = MaterialDrawingUtils.getAliasedGraphics(g);
+                //priorizado la velocidad, la calidad no hace diferencia
+                g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_NEAREST_NEIGHBOR);
+                g2.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_SPEED);
+
                 g2.setBackground(target.getParent().getBackground());
                 g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1.0f));
                 g2.drawImage(shadowFast.render(target.getWidth(), target.getHeight(), borderRadius, level.getValue(), MaterialShadow.Type.CIRCULAR), 0, 0, null);
+
+                MaterialDrawingUtils.getAliasedGraphics(g2);
             }
         }
     }

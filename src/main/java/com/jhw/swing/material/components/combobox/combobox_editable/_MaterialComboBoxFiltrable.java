@@ -50,8 +50,10 @@ public class _MaterialComboBoxFiltrable<T> extends _MaterialComboBox<T> {
 
     @Override
     public void setSelectedItem(Object obj) {
-        super.setSelectedItem(obj);
-        getFloatingLabel().update();
+        if (obj != null) {
+            super.setSelectedItem(obj);
+            getFloatingLabel().update();
+        }
     }
 
     @Override
@@ -89,6 +91,8 @@ public class _MaterialComboBoxFiltrable<T> extends _MaterialComboBox<T> {
     private void decorateInner() {
         if (decorator != null) {
             decorate(decorator.getFormat(), decorator.getFilter());
+        } else {
+            decorate();
         }
     }
 

@@ -1,119 +1,146 @@
 package com.jhw.swing.material.components.dashboard.taskpane.expanded;
 
-import com.jhw.swing.material.components.button._MaterialButton;
+import com.clean.swing.app.dashboard.DashboardConstants;
+import com.clean.swing.app.dashboard.MapeableContainer;
 import com.jhw.swing.material.components.button._MaterialButtonFlat;
-import com.jhw.swing.material.components.button._MaterialButtonIconTranspRect;
-import com.jhw.swing.material.components.container.layout.HorizontalLayoutContainer;
+import com.jhw.swing.material.components.button._MaterialButtonIconTransparent;
 import com.jhw.swing.material.components.container.panel._PanelGradient;
 import com.jhw.swing.material.components.container.panel._PanelTransparent;
 import com.jhw.swing.material.components.dashboard.taskpane.DashBoardTaskPane;
-import com.jhw.swing.material.components.labels._MaterialLabel;
 import com.jhw.swing.material.standars.MaterialColors;
-import com.jhw.swing.material.standars.MaterialIcons;
 import com.jhw.swing.util.Utils;
 import com.jhw.swing.util.interfaces.MaterialComponent;
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Component;
-import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.event.ActionEvent;
-import javax.swing.AbstractAction;
+import java.util.HashMap;
+import java.util.List;
+import java.util.function.Consumer;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.Action;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 
 /**
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-public class DownPanel extends _PanelGradient {
+public class DownPanel extends MapeableContainer {
 
-    private final int HEIGHT = 16;
+    private final int HEIGHT_FINAL = 16;
 
     public DownPanel() {
         initComponents();
-
-        addTecnology(MaterialIcons.TEC_JAVA.deriveIcon(16));
-        addTecnology(MaterialIcons.TEC_NB.deriveIcon(16));
-        addTecnology(MaterialIcons.TEC_GITKRAKEN.deriveIcon(16));
-        addTecnology(MaterialIcons.TEC_GITHUB.deriveIcon(16));
-
-        AbstractAction action = new AbstractAction("Vence en X Dias", MaterialIcons.SECURITY.deriveIcon(16)) {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                return;
-            }
-        };
-        setLicence(action);
     }
 
     private void initComponents() {
         this.setLayout(new BorderLayout());
-        this.setBackground(MaterialColors.GREY_200);
-        this.setBorder(new LineBorder(MaterialColors.GREY_500, 1));
 
-        this.tec = new _PanelTransparent();
-        this.tec.setLayout(new FlowLayout(FlowLayout.CENTER, 15, 3));
+        this.background = new _PanelGradient();
+        this.add(background, BorderLayout.CENTER);
+        this.background.setLayout(new BorderLayout());
 
-        this.add(this.tec, BorderLayout.EAST);
+        this.components = new _PanelTransparent();
+        this.components.setLayout(new FlowLayout(FlowLayout.CENTER, 15, 3));
+
+        this.background.add(this.components, BorderLayout.EAST);
     }
 
+    private _PanelGradient background;
     private JButton licence;
-    private _PanelTransparent tec;
+    private _PanelTransparent components;
 
-    public void setLicence(Action action) {
+    @Override
+    public void update(HashMap<String, Object> hm) {
+        components.removeAll();
+        for (String key : hm.keySet()) {
+            Object component = hm.get(key);
+            switch (key) {
+                case DashboardConstants.DOWN_LICENCE:
+                    setLicence(component);
+                    break;
+                case DashboardConstants.DOWN_ELEMENT:
+                    addElement(component);
+                    break;
+            }
+        }
+        this.revalidate();
+    }
+
+    private void addElement(Object component) {
+        if (component instanceof Action) {
+            addDownElement((Action) component);
+        } else if (component instanceof List) {
+            for (Object single : (List) component) {
+                if (single instanceof Action) {
+                    addDownElement((Action) single);
+                }
+            }
+        } else {
+            String logMSG = "Component " + component + " not supperted for down panel.";
+            Logger.getLogger(DashBoardTaskPane.class.getName()).log(Level.WARNING, logMSG);
+        }
+    }
+
+    private void setLicence(Object component) {
+        if (component instanceof Action) {
+            setLicence((Action) component);
+        } else {
+            String logMSG = "Component " + component + " not supperted for licence.";
+            Logger.getLogger(DashBoardTaskPane.class.getName()).log(Level.WARNING, logMSG);
+        }
+    }
+
+    public void addDownElement(Action tecnology) {
+        addTecnology(tecnology);
+    }
+
+    public void setLicence(Action licence) {
+        doSetLicence(licence);
+    }
+
+    public _PanelGradient getBackgroundPanel() {
+        return background;
+    }
+
+    public void format(Consumer<DownPanel> formatter) {
+        formatter.accept(this);
+    }
+
+    private void doSetLicence(Action action) {
         if (this.licence != null) {
-            this.remove(this.licence);
+            this.background.remove(this.licence);
         }
         JButton licenceButton = new LicenceButton();
         this.licence = licenceButton;
         this.licence.setAction(action);
-        this.licence.setPreferredSize(new Dimension((int) licence.getPreferredSize().getWidth(), HEIGHT));
-        this.add(this.licence, BorderLayout.WEST);
-    }
-
-    public void addTecnology(ImageIcon icon) {
-        addTecnology(new AbstractAction("", icon) {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                return;
-            }
-        });
-    }
-
-    public void addTecnology(ImageIcon icon, String name) {
-        addTecnology(new AbstractAction(name, icon) {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                return;
-            }
-        });
+        this.licence.setPreferredSize(new Dimension((int) licence.getPreferredSize().getWidth(), HEIGHT_FINAL));
+        this.background.add(this.licence, BorderLayout.WEST);
     }
 
     public void addTecnology(Action action) {
-        _MaterialButtonIconTranspRect btn_Tec = new _MaterialButtonIconTranspRect();
+        _MaterialButtonIconTransparent btn_Tec = new _MaterialButtonIconTransparent();
         btn_Tec.setAction(action);
         String name = ((String) action.getValue(Action.NAME)).trim();
         if (!name.isEmpty()) {
             btn_Tec.setToolTipText(name);
         }
-        btn_Tec.setPreferredSize(new Dimension(HEIGHT, HEIGHT));
-        tec.add(btn_Tec);
+        btn_Tec.setPreferredSize(new Dimension(HEIGHT_FINAL, HEIGHT_FINAL));
+        components.add(btn_Tec);
     }
 
     private class LicenceButton extends _MaterialButtonFlat implements MaterialComponent {
 
         public LicenceButton() {
-            this(MaterialColors.ORANGEA_200);
+            this(MaterialColors.AMBERA_400);
         }
 
         public LicenceButton(Color back) {
             this.setBackground(back);
-            this.setBorder(new LineBorder(Utils.darken(Utils.darken(back)), 2));
+            this.setBorderColor(Utils.darken(Utils.darken(back)));
+            this.setBorderThickness(5);
         }
 
     }

@@ -57,7 +57,7 @@
   <SubComponents>
     <Component class="com.jhw.swing.material.components.labels._MaterialLabel" name="labelIcon">
     </Component>
-    <Component class="com.jhw.swing.material.components.button._MaterialButtonIconTranspRect" name="buttonClose">
+    <Component class="com.jhw.swing.material.components.button._MaterialButtonIconTransparent" name="buttonClose">
       <Properties>
         <Property name="text" type="java.lang.String" value="_MaterialIconButtonTranspRect1"/>
       </Properties>

@@ -6,7 +6,7 @@ package com.jhw.swing.util.validations.textfield;
  */
 public class LengthExactValidation extends TextFieldValidation<String> {
 
-    public static final String WRONG_TEXT = "Tamaño incorrecto";
+    public static final String WRONG_TEXT = "TamaÃ±o incorrecto";
 
     private final int tam;
 

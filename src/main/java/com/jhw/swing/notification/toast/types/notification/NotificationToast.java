@@ -11,8 +11,8 @@ import java.awt.Graphics2D;
 import java.awt.geom.RoundRectangle2D;
 import java.util.StringTokenizer;
 import javax.swing.ImageIcon;
-import lombok.Getter;
-import lombok.Setter;
+
+
 import com.jhw.swing.util.MaterialDrawingUtils;
 import com.jhw.swing.util.Utils;
 import com.jhw.swing.material.effects.ElevationEffect;
@@ -25,8 +25,6 @@ import com.jhw.swing.material.standars.MaterialShadow;
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-@Getter
-@Setter
 public class NotificationToast extends ToastComponent {
 
     private final ElevationEffect elevation;
@@ -182,6 +180,38 @@ public class NotificationToast extends ToastComponent {
             String tok = stText.nextToken();
             g2.drawString(tok, xText, yText);
         }
+    }
+
+    public Font getHeaderFont() {
+        return headerFont;
+    }
+
+    public void setHeaderFont(Font headerFont) {
+        this.headerFont = headerFont;
+    }
+
+    public Font getTextFont() {
+        return textFont;
+    }
+
+    public void setTextFont(Font textFont) {
+        this.textFont = textFont;
+    }
+
+    public Dimension getTextDim() {
+        return textDim;
+    }
+
+    public void setTextDim(Dimension textDim) {
+        this.textDim = textDim;
+    }
+
+    public Cursor getCursor() {
+        return cursor;
+    }
+
+    public void setCursor(Cursor cursor) {
+        this.cursor = cursor;
     }
 
 }

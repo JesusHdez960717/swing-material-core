@@ -2,6 +2,7 @@ package com.jhw.swing.material.effects;
 
 import com.jhw.swing.util.SafePropertySetter;
 import com.jhw.swing.material.components.button._MaterialButton;
+import com.jhw.swing.material.standars.MaterialColors;
 import com.jhw.swing.personalization.Inistanciables;
 import com.jhw.swing.personalization.PersonalizationMaterial;
 import com.jhw.swing.util.Utils;
@@ -55,13 +56,14 @@ public class ColorFadeInto {
     }
 
     private Color getTargetColor() {
-        Color targetColor;
-        if (target.isFocusOwner() || target.isMouseOver()) {
-            targetColor = accentColor;
-        } else {
-            targetColor = target.getBackground();
+        if (accentColor.getAlpha() == 0 || target.getBackground().getAlpha() == 0) {
+            return MaterialColors.TRANSPARENT;
         }
-        return targetColor;
+        if (target.isFocusOwner() || target.isMouseOver()) {
+            return accentColor;
+        } else {
+            return target.getBackground();
+        }
     }
 
     public Color getColor() {

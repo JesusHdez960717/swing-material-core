@@ -6,13 +6,11 @@ import com.clean.core.utils.validation.ValidationResult;
 import java.awt.Component;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PositiveOrZero;
-import lombok.Getter;
 
 /**
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-@Getter
 public class HorizontalLayoutComponent implements Validable {
 
     @NotNull
@@ -33,6 +31,22 @@ public class HorizontalLayoutComponent implements Validable {
         this.gapLeft = gapLeft;
         this.gapRight = gapRight;
         validate();
+    }
+
+    public Component getComponent() {
+        return component;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public int getGapLeft() {
+        return gapLeft;
+    }
+
+    public int getGapRight() {
+        return gapRight;
     }
 
     public static builder builder(Component component) {

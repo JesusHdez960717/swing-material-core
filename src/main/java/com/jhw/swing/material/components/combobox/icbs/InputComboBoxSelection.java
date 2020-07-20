@@ -1,7 +1,7 @@
 package com.jhw.swing.material.components.combobox.icbs;
 
 import com.clean.core.exceptions.ValidationException;
-import com.jhw.swing.material.components.button._MaterialButtonIconTranspRect;
+import com.jhw.swing.material.components.button._MaterialButtonIconTransparent;
 import com.jhw.swing.material.components.combobox.combobox_editable._MaterialComboBoxFiltrable;
 import com.jhw.swing.material.components.container.panel._PanelComponent;
 import java.awt.event.ActionEvent;
@@ -12,6 +12,7 @@ import com.jhw.utils.interfaces.Update;
 import com.jhw.swing.util.validations.Validation;
 import com.jhw.swing.util.validations.icbs.ICBSValidation;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.util.List;
 
 /**
@@ -44,11 +45,13 @@ public abstract class InputComboBoxSelection<T> extends _PanelComponent implemen
 
         int h = (int) this.comboBox.getPreferredSize().getHeight();
 
-        buttonNuevo = new _MaterialButtonIconTranspRect();
+        buttonNuevo = new _MaterialButtonIconTransparent();
+        buttonNuevo.setForeground(PersonalizationMaterial.getInstance().getColorButtonAdd());
+        buttonNuevo.setRippleColor(Color.black);
         buttonNuevo.setIcon(
                 PersonalizationMaterial.getInstance().getIconButtonAdd()
                         .deriveIcon(PersonalizationMaterial.getInstance().getColorButtonAdd())
-                        .deriveIcon(h / 2));
+                        .deriveIcon(h * .6f));
 
         this.setLayout(new BorderLayout());
         this.add(comboBox, BorderLayout.CENTER);
@@ -56,7 +59,7 @@ public abstract class InputComboBoxSelection<T> extends _PanelComponent implemen
     }
 
     // Variables declaration - do not modify
-    private _MaterialButtonIconTranspRect buttonNuevo;
+    private _MaterialButtonIconTransparent buttonNuevo;
     private _MaterialComboBoxFiltrable<T> comboBox;
     // End of variables declaration
 
@@ -122,13 +125,14 @@ public abstract class InputComboBoxSelection<T> extends _PanelComponent implemen
 
     public void setModel(List<T> model) {
         comboBox.setModel(model);
+        //comboBox.decorate();
     }
 
     public void setButtonNuevoVisibility(boolean visible) {
         buttonNuevo.setVisible(visible);
     }
 
-    public _MaterialButtonIconTranspRect getButtonNuevo() {
+    public _MaterialButtonIconTransparent getButtonNuevo() {
         return buttonNuevo;
     }
 

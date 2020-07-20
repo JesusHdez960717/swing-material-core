@@ -1,7 +1,7 @@
 package com.jhw.swing.examples.components.login_and_dashboard;
 
 import com.jhw.swing.notification.fade.NOTIF;
-import com.jhw.swing.material.components.button._MaterialButtonIconTranspRect;
+import com.jhw.swing.material.components.button._MaterialButtonIconTransparent;
 import com.jhw.swing.material.components.dashboard.smoot._DashboardSmoot;
 import com.jhw.swing.material.components.labels._MaterialLabel;
 import java.awt.Color;
@@ -49,7 +49,7 @@ public class DashboardView extends _DashboardSmoot {
 
         Dimension dim = new Dimension((int) this.getPanelDownCornerRight().getPreferredSize().getHeight() + 6, (int) this.getPanelDownCornerRight().getPreferredSize().getHeight());
 
-        _MaterialButtonIconTranspRect tecnJava = new _MaterialButtonIconTranspRect();
+        _MaterialButtonIconTransparent tecnJava = new _MaterialButtonIconTransparent();
         tecnJava.setToolTipText("JAVA 1.8.60(Lenguaje de programacion)");
         tecnJava.setIcon(MaterialIcons.TEC_JAVA);
         tecnJava.setMinimumSize(dim);
@@ -59,7 +59,7 @@ public class DashboardView extends _DashboardSmoot {
         });
         this.addDownElementRightCorner(tecnJava);
 
-        _MaterialButtonIconTranspRect tecnNB = new _MaterialButtonIconTranspRect();
+        _MaterialButtonIconTransparent tecnNB = new _MaterialButtonIconTransparent();
         tecnNB.setToolTipText("NetBeans 8.0(IDE)");
         tecnNB.setIcon(MaterialIcons.TEC_NB);
         tecnNB.setMinimumSize(dim);
@@ -69,7 +69,7 @@ public class DashboardView extends _DashboardSmoot {
         });
         this.addDownElementRightCorner(tecnNB);
 
-        _MaterialButtonIconTranspRect tecnMySql = new _MaterialButtonIconTranspRect();
+        _MaterialButtonIconTransparent tecnMySql = new _MaterialButtonIconTransparent();
         tecnMySql.setToolTipText("MySql 10.4.8 (BD)");
         tecnMySql.setIcon(MaterialIcons.TEC_MYSQL);
         tecnMySql.setMinimumSize(dim);
@@ -79,7 +79,7 @@ public class DashboardView extends _DashboardSmoot {
         });
         this.addDownElementRightCorner(tecnMySql);
 
-        _MaterialButtonIconTranspRect tecnXampp = new _MaterialButtonIconTranspRect();
+        _MaterialButtonIconTransparent tecnXampp = new _MaterialButtonIconTransparent();
         tecnXampp.setToolTipText("XAMPP 3.2.4 (Cliente Servicios)");
         tecnXampp.setIcon(MaterialIcons.TEC_XAMPP);
         tecnXampp.setMinimumSize(dim);
@@ -89,7 +89,7 @@ public class DashboardView extends _DashboardSmoot {
         });
         this.addDownElementRightCorner(tecnXampp);
 
-        _MaterialButtonIconTranspRect tecnGit = new _MaterialButtonIconTranspRect();
+        _MaterialButtonIconTransparent tecnGit = new _MaterialButtonIconTransparent();
         tecnGit.setToolTipText("Git 2.20.1 (Control de versiones)");
         tecnGit.setIcon(MaterialIcons.TEC_GIT);
         tecnGit.setMinimumSize(dim);
@@ -99,7 +99,7 @@ public class DashboardView extends _DashboardSmoot {
         });
         this.addDownElementRightCorner(tecnGit);
 
-        _MaterialButtonIconTranspRect tecnGitKraken = new _MaterialButtonIconTranspRect();
+        _MaterialButtonIconTransparent tecnGitKraken = new _MaterialButtonIconTransparent();
         tecnGitKraken.setToolTipText("GitKraken 6.4.0 (Cliente Git)");
         tecnGitKraken.setIcon(MaterialIcons.TEC_GITKRAKEN);
         tecnGitKraken.setMinimumSize(dim);
@@ -109,7 +109,7 @@ public class DashboardView extends _DashboardSmoot {
         });
         this.addDownElementRightCorner(tecnGitKraken);
 
-        _MaterialButtonIconTranspRect tecnGitHub = new _MaterialButtonIconTranspRect();
+        _MaterialButtonIconTransparent tecnGitHub = new _MaterialButtonIconTransparent();
         tecnGitHub.setToolTipText("GitHub (Servidor Git)");
         tecnGitHub.setIcon(MaterialIcons.TEC_GITHUB);
         tecnGitHub.setMinimumSize(dim);
@@ -119,7 +119,7 @@ public class DashboardView extends _DashboardSmoot {
         });
         this.addDownElementRightCorner(tecnGitHub);
 
-        _MaterialButtonIconTranspRect tecnFlaticon = new _MaterialButtonIconTranspRect();
+        _MaterialButtonIconTransparent tecnFlaticon = new _MaterialButtonIconTransparent();
         tecnFlaticon.setToolTipText("Flaticon (Iconos)");
         tecnFlaticon.setIcon(MaterialIcons.TEC_FLATICON);
         tecnFlaticon.setMinimumSize(dim);
@@ -129,8 +129,8 @@ public class DashboardView extends _DashboardSmoot {
         });
         this.addDownElementRightCorner(tecnFlaticon);
 
-        _MaterialButtonIconTranspRect tecnFreepick = new _MaterialButtonIconTranspRect();
-        tecnFreepick.setToolTipText("Freepick (Diseños)");
+        _MaterialButtonIconTransparent tecnFreepick = new _MaterialButtonIconTransparent();
+        tecnFreepick.setToolTipText("Freepick (DiseÃ±os)");
         tecnFreepick.setIcon(MaterialIcons.TEC_FREEPICK);
         tecnFreepick.setMinimumSize(dim);
         tecnFreepick.addActionListener(new java.awt.event.ActionListener() {
@@ -139,8 +139,8 @@ public class DashboardView extends _DashboardSmoot {
         });
         this.addDownElementRightCorner(tecnFreepick);
 
-        _MaterialButtonIconTranspRect tecnAdobe = new _MaterialButtonIconTranspRect();
-        tecnAdobe.setToolTipText("Adobe (Ai y Ps para el diseño de imagenes)");
+        _MaterialButtonIconTransparent tecnAdobe = new _MaterialButtonIconTransparent();
+        tecnAdobe.setToolTipText("Adobe (Ai y Ps para el diseÃ±o de imagenes)");
         tecnAdobe.setIcon(MaterialIcons.TEC_ADOBE);
         tecnAdobe.setMinimumSize(dim);
         tecnAdobe.addActionListener(new java.awt.event.ActionListener() {
@@ -149,7 +149,7 @@ public class DashboardView extends _DashboardSmoot {
         });
         this.addDownElementRightCorner(tecnAdobe);
 
-        _MaterialButtonIconTranspRect tecnGoogle = new _MaterialButtonIconTranspRect();
+        _MaterialButtonIconTransparent tecnGoogle = new _MaterialButtonIconTransparent();
         tecnGoogle.setToolTipText("Google (Material Design)");
         tecnGoogle.setIcon(MaterialIcons.TEC_GOOGLE);
         tecnGoogle.setMinimumSize(dim);
@@ -159,7 +159,7 @@ public class DashboardView extends _DashboardSmoot {
         });
         this.addDownElementRightCorner(tecnGoogle);
 
-        _MaterialButtonIconTranspRect tecnJSON = new _MaterialButtonIconTranspRect();
+        _MaterialButtonIconTransparent tecnJSON = new _MaterialButtonIconTransparent();
         tecnJSON.setToolTipText("JSON (Ficheros)");
         tecnJSON.setIcon(MaterialIcons.TEC_JSON);
         tecnJSON.setMinimumSize(dim);
@@ -169,7 +169,7 @@ public class DashboardView extends _DashboardSmoot {
         });
         this.addDownElementRightCorner(tecnJSON);
 
-        _MaterialButtonIconTranspRect tecnWhatsapp = new _MaterialButtonIconTranspRect();
+        _MaterialButtonIconTransparent tecnWhatsapp = new _MaterialButtonIconTransparent();
         tecnWhatsapp.setToolTipText("WhatsApp (Contacto: +53 5 4268660)");
         tecnWhatsapp.setIcon(MaterialIcons.TEC_WHATSAPP);
         tecnWhatsapp.setMinimumSize(dim);
@@ -197,7 +197,7 @@ public class DashboardView extends _DashboardSmoot {
 
     private void addUpRigthCorner() {
         Color fore = Utils.isDark(this.getPanelUp().getSecundaryColor()) ? MaterialColors.WHITE : MaterialColors.BLACK;
-        _MaterialButtonIconTranspRect calc = new _MaterialButtonIconTranspRect();
+        _MaterialButtonIconTransparent calc = new _MaterialButtonIconTransparent();
         calc.setIcon(MaterialIcons.ONDEMAND_VIDEO.deriveIcon(fore));
         calc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -210,7 +210,7 @@ public class DashboardView extends _DashboardSmoot {
         });
         this.addUpElementRightCorner(calc);
 
-        _MaterialButtonIconTranspRect bug = new _MaterialButtonIconTranspRect();
+        _MaterialButtonIconTransparent bug = new _MaterialButtonIconTransparent();
         bug.setIcon(MaterialIcons.CLOUD_CIRCLE.deriveIcon(fore));
         bug.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
