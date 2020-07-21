@@ -3,7 +3,6 @@ package com.jhw.swing.examples.components;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import com.jhw.swing.ui.MaterialLookAndFeel;
-import com.jhw.swing.util.JOP;
 import com.jhw.utils.others.SDF;
 
 /**

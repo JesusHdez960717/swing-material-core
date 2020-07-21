@@ -1,8 +1,9 @@
 package com.jhw.swing.models.input.dialogs;
 
+import com.clean.core.app.services.NotificationsGeneralType;
+import com.clean.core.app.services.Notification;
 import com.jhw.swing.models.input.panels.BaseModelInputPanel;
 import com.jhw.swing.models.input.panels.ModelPanel;
-import com.jhw.swing.notification.toast.TOAST;
 import java.awt.event.KeyEvent;
 import java.awt.Component;
 import java.awt.GridLayout;
@@ -12,7 +13,6 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.text.JTextComponent;
 import com.jhw.swing.util.UpdateCascade;
-import com.jhw.swing.util.JOP;
 import com.jhw.utils.interfaces.Update;
 import com.jhw.swing.util.interfaces.ModelablePanel;
 
@@ -171,7 +171,7 @@ public class DialogModelInput<T> extends JDialog implements ModelablePanel<T> {
     public T onDeleteAction() {
         T obj = null;
         try {
-            if (JOP.confirmDelete()) {
+            if (Notification.showConfirmDialog(NotificationsGeneralType.CONFIRM_DELETE)) {
                 obj = basePanel.onDeleteAction();
             }
         } catch (Exception e) {
@@ -184,13 +184,20 @@ public class DialogModelInput<T> extends JDialog implements ModelablePanel<T> {
         T obj = null;
         try {
             boolean create = basePanel.getOldModel() == null;
-            if (JOP.confirmCreate(create)) {
-                obj = basePanel.onCreateAction();
-                if (obj != null) {
-                    if (create) {
-                        TOAST.makeNotificationCreate(obj);
-                    } else {
-                        TOAST.makeNotificationEdit(obj);
+            if (create) {
+                if (Notification.showConfirmDialog(NotificationsGeneralType.CONFIRM_CREATE)) {
+                    obj = basePanel.onCreateAction();
+                    if (obj != null) {
+                        if (create) {
+                            Notification.showNotification(NotificationsGeneralType.NOTIFICATION_CREATE, obj);
+                        }
+                    }
+                }
+            } else {
+                if (Notification.showConfirmDialog(NotificationsGeneralType.CONFIRM_EDIT)) {
+                    obj = basePanel.onCreateAction();
+                    if (obj != null) {
+                        Notification.showNotification(NotificationsGeneralType.NOTIFICATION_EDIT, obj);
                     }
                 }
             }
@@ -202,7 +209,7 @@ public class DialogModelInput<T> extends JDialog implements ModelablePanel<T> {
     @Override
     public boolean onCancelAction() {
         try {
-            if (JOP.confirmCancel()) {
+            if (Notification.showConfirmDialog(NotificationsGeneralType.CONFIRM_CANCEL)) {
                 if (basePanel.onCancelAction()) {
                     actualizarActualizables();
                     dispose();
@@ -239,7 +246,7 @@ public class DialogModelInput<T> extends JDialog implements ModelablePanel<T> {
             } catch (Exception e) {
             }
             actualizarActualizables();
-            TOAST.makeNotificationDelete(obj);
+            Notification.showNotification(NotificationsGeneralType.NOTIFICATION_DELETE, obj);
             dispose();
         }
         return obj;

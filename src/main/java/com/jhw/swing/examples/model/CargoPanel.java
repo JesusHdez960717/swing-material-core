@@ -1,8 +1,9 @@
 package com.jhw.swing.examples.model;
 
+import com.clean.core.app.services.Notification;
+import com.clean.core.app.services.NotificationsGeneralType;
 import com.jhw.swing.models.detail._MaterialPanelDetailMini;
 import com.jhw.swing.models.input.dialogs.DialogModelInput;
-import com.jhw.swing.notification.toast.TOAST;
 import com.jhw.swing.material.components.button._MaterialButtonIconTransparent;
 import com.jhw.swing.material.components.table.Column;
 import com.jhw.swing.material.components.table.editors_renders.money.MoneyCellRender;
@@ -10,7 +11,6 @@ import com.jhw.swing.material.components.table.editors_renders.money.MoneyTableC
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Random;
-import com.jhw.swing.util.JOP;
 import com.jhw.swing.material.standars.MaterialIcons;
 
 /**
@@ -73,7 +73,7 @@ public class CargoPanel extends _MaterialPanelDetailMini<CargoModel> {
 
     @Override
     protected void viewAction(CargoModel obj) {
-        JOP.error("VIEW no implementado");
+        Notification.showConfirmDialog(NotificationsGeneralType.CONFIRM_ERROR, "no se puede todavia");
     }
 
     private void addOptionsElements() {
@@ -82,7 +82,7 @@ public class CargoPanel extends _MaterialPanelDetailMini<CargoModel> {
         btn1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                TOAST.makeNotificationInfo("hihihihihihihihihihihi.");
+                Notification.showNotification(NotificationsGeneralType.NOTIFICATION_INFO, "hihihihihihi");
             }
         });
         this.addOptionElement(btn1);
@@ -92,7 +92,7 @@ public class CargoPanel extends _MaterialPanelDetailMini<CargoModel> {
         btn2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                TOAST.makeNotificationInfo("hihihihihihihihihihihi.");
+                Notification.showNotification(NotificationsGeneralType.NOTIFICATION_INFO, "hihihihihihi");
             }
         });
         this.addOptionElement(btn2);
@@ -102,11 +102,10 @@ public class CargoPanel extends _MaterialPanelDetailMini<CargoModel> {
         btn3.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                TOAST.makeNotificationInfo("hihihihihihihihihihihi.");
+                Notification.showNotification(NotificationsGeneralType.NOTIFICATION_INFO, "hihihihihihi");
             }
         });
         this.addOptionElement(btn3);
-
     }
 
 }

@@ -1,8 +1,9 @@
 package com.jhw.swing.examples.model;
 
+import com.clean.core.app.services.NotificationsGeneralType;
+import com.clean.core.app.services.Notification;
 import com.jhw.swing.models.detail._MaterialPanelDetail;
 import com.jhw.swing.models.input.dialogs.DialogModelInput;
-import com.jhw.swing.notification.toast.TOAST;
 import com.jhw.swing.material.components.button._MaterialButtonIconTransparent;
 import com.jhw.swing.material.components.container.panel._PanelGradient;
 import com.jhw.swing.material.components.table.Column;
@@ -10,9 +11,7 @@ import com.jhw.swing.material.components.table.editors_renders.component.Compone
 import com.jhw.swing.examples.standars.MATERIAL_COLORS_EXAMPLE;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import javax.swing.JPanel;
-import com.jhw.swing.util.JOP;
 import com.jhw.swing.material.standars.MaterialIcons;
 
 /**
@@ -77,7 +76,7 @@ public class CargoDetailView extends _MaterialPanelDetail<CargoModel> {
 
     @Override
     protected void viewAction(CargoModel obj) {
-        JOP.error("VIEW no implementado");
+        Notification.showConfirmDialog(NotificationsGeneralType.CONFIRM_ERROR, "no se puede todavia");
     }
 
     private void addOptionsElements() {
@@ -86,7 +85,7 @@ public class CargoDetailView extends _MaterialPanelDetail<CargoModel> {
         btn1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                TOAST.makeNotificationInfo("hihihihihihihihihihihi.");
+                Notification.showNotification(NotificationsGeneralType.NOTIFICATION_INFO, "hihihi");
             }
         });
         this.addOptionElement(btn1);
@@ -96,7 +95,7 @@ public class CargoDetailView extends _MaterialPanelDetail<CargoModel> {
         btn2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                TOAST.makeNotificationInfo("hihihihihihihihihihihi.");
+                Notification.showNotification(NotificationsGeneralType.NOTIFICATION_INFO, "hihihi");
             }
         });
         this.addOptionElement(btn2);
@@ -106,7 +105,7 @@ public class CargoDetailView extends _MaterialPanelDetail<CargoModel> {
         btn3.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                TOAST.makeNotificationInfo("hihihihihihihihihihihi.");
+                Notification.showNotification(NotificationsGeneralType.NOTIFICATION_INFO, "hihihi");
             }
         });
         this.addOptionElement(btn3);
@@ -119,7 +118,7 @@ public class CargoDetailView extends _MaterialPanelDetail<CargoModel> {
         btn1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                TOAST.makeNotificationInfo("action hihihihihi.");
+                Notification.showNotification(NotificationsGeneralType.NOTIFICATION_INFO, "hihihi");
             }
         });
         this.addActionExtra(btn1);

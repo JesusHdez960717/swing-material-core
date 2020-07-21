@@ -1,8 +1,9 @@
 package com.jhw.swing.models.input.dialogs;
 
+import com.clean.core.app.services.NotificationsGeneralType;
+import com.clean.core.app.services.Notification;
 import com.jhw.swing.models.input.panels.BaseModelInputPanel;
 import com.jhw.swing.models.input.panels.ModelPanel;
-import com.jhw.swing.notification.toast.TOAST;
 import com.jhw.swing.material.components.combobox.icbs.InputComboBoxSelection;
 import java.awt.Component;
 import java.awt.GridLayout;
@@ -11,7 +12,6 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.text.JTextComponent;
-import com.jhw.swing.util.JOP;
 import com.jhw.swing.util.interfaces.ModelablePanel;
 import java.awt.event.KeyEvent;
 
@@ -154,7 +154,7 @@ public class DialogInputCBS<T> extends JDialog implements ModelablePanel<T> {
     public T onCreateAction() {
         T obj = null;
         try {
-            if (JOP.confirmCreate()) {
+            if (Notification.showConfirmDialog(NotificationsGeneralType.CONFIRM_CREATE)) {
                 obj = basePanel.onCreateAction();
             }
         } catch (Exception e) {
@@ -165,7 +165,7 @@ public class DialogInputCBS<T> extends JDialog implements ModelablePanel<T> {
     @Override
     public boolean onCancelAction() {
         try {
-            if (JOP.confirmCancel()) {
+            if (Notification.showConfirmDialog(NotificationsGeneralType.CONFIRM_CANCEL)) {
                 if (basePanel.onCancelAction()) {
                     dispose();
                     return true;
@@ -185,7 +185,7 @@ public class DialogInputCBS<T> extends JDialog implements ModelablePanel<T> {
         if (obj != null) {
             icbs.actualizarComboBox();
             icbs.setSelectedItem(obj);
-            TOAST.makeNotificationCreate(obj);
+            Notification.showConfirmDialog(NotificationsGeneralType.NOTIFICATION_CREATE, obj);
             dispose();
         }
         return obj;

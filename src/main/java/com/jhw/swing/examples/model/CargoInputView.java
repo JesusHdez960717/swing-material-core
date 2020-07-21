@@ -1,11 +1,12 @@
 package com.jhw.swing.examples.model;
 
+import com.clean.core.app.services.Notification;
+import com.clean.core.app.services.NotificationsGeneralType;
 import com.jhw.swing.material.components.container.layout.HorizontalLayoutComponent;
 import com.jhw.swing.material.components.container.layout.HorizontalLayoutContainer;
 import com.jhw.swing.material.components.container.layout.VerticalLayoutContainer;
 import com.jhw.swing.material.standars.MaterialFontRoboto;
 import com.jhw.swing.models.input.panels.ModelPanel;
-import com.jhw.swing.notification.toast.TOAST;
 import java.awt.Desktop;
 import java.io.File;
 import java.util.Random;
@@ -134,13 +135,13 @@ public class CargoInputView extends ModelPanel<CargoModel> {
 
     @Override
     public CargoModel onPostCreateAction(CargoModel obj) {
-        TOAST.makeText("POST CREATE OK");
+        Notification.showNotification(NotificationsGeneralType.NOTIFICATION_INFO, "Post Create ok");
         return super.onPostCreateAction(obj);
     }
 
     @Override
     public CargoModel onPostDeleteAction(CargoModel obj) {
-        TOAST.makeText("POST DELETE OK");
+        Notification.showNotification(NotificationsGeneralType.NOTIFICATION_INFO, "Post delete ok");
         return super.onPostDeleteAction(obj);
     }
 
