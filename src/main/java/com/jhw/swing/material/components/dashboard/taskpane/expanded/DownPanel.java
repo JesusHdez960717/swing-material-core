@@ -131,7 +131,7 @@ public class DownPanel extends MapeableContainer {
         components.add(btn_Tec);
     }
 
-    private class LicenceButton extends _MaterialButtonFlat implements MaterialComponent {
+    private class LicenceButton extends JButton implements MaterialComponent {
 
         public LicenceButton() {
             this(MaterialColors.AMBERA_400);
@@ -139,8 +139,7 @@ public class DownPanel extends MapeableContainer {
 
         public LicenceButton(Color back) {
             this.setBackground(back);
-            this.setBorderColor(Utils.darken(Utils.darken(back)));
-            this.setBorderThickness(5);
+            this.setBorder(new LineBorder(Utils.darken(Utils.darken(back)), 2));
         }
 
     }
