@@ -23,8 +23,6 @@ import javax.swing.Icon;
  */
 public class _MaterialButtonTransparent extends JButton implements MaterialComponent {
 
-    private final int DISTANCE_ICON_TEXT = 3;
-
     public _MaterialButtonTransparent(String text) {
         this();
         this.setIcon(null);
@@ -79,14 +77,14 @@ public class _MaterialButtonTransparent extends JButton implements MaterialCompo
         int align = getHorizontalAlignment();
 
         if (align == SwingConstants.TRAILING || align == SwingConstants.RIGHT) {
-            xText = widthReal - strWidth - 2 * DISTANCE_ICON_TEXT;
-            xIcon = xText - iconWidth - 2 * DISTANCE_ICON_TEXT;
+            xText = widthReal - strWidth - 2 * getIconTextGap();
+            xIcon = xText - iconWidth - 2 * getIconTextGap();
         } else if (align == SwingConstants.LEADING || align == SwingConstants.LEFT) {
-            xIcon = DISTANCE_ICON_TEXT;
-            xText = iconWidth + DISTANCE_ICON_TEXT;
+            xIcon = getIconTextGap();
+            xText = iconWidth + getIconTextGap();
         } else {
-            xText = (widthReal - strWidth) / 2 + DISTANCE_ICON_TEXT / 2 + iconWidth / 2;
-            xIcon = xText - iconWidth - DISTANCE_ICON_TEXT;
+            xText = (widthReal - strWidth) / 2 + getIconTextGap() / 2 + iconWidth / 2;
+            xIcon = xText - iconWidth - getIconTextGap();
         }
 
         Color fg = this.getForeground();

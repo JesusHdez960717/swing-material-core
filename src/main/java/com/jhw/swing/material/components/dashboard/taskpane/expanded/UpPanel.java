@@ -141,6 +141,7 @@ public class UpPanel extends MapeableContainer {
             super("");
             float h = HEIGHT_FINAL;
             this.setFont(MaterialFontRoboto.MEDIUM.deriveFont(h * 0.65f));
+            this.setIconTextGap(8);
         }
     }
 }

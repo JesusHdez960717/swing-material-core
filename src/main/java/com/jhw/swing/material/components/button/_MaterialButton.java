@@ -28,8 +28,6 @@ import javax.swing.border.EmptyBorder;
  */
 public class _MaterialButton extends JButton implements MaterialComponent {
 
-    private final int DISTANCE_ICON_TEXT = 2;
-
     private ColorFadeInto fadeinto;
     private RippleEffect ripple = RippleEffect.applyTo(this);
     private ElevationEffect elevation = ElevationEffect.applyTo(this, MaterialShadow.ELEVATION_NONE);
@@ -47,6 +45,7 @@ public class _MaterialButton extends JButton implements MaterialComponent {
      * Creates a new button.
      */
     public _MaterialButton() {
+        this.setIconTextGap(2);
         this.setFont(MaterialFontRoboto.MEDIUM.deriveFont(16f));
         this.setCursor(cursor);
         this.setPreferredSize(new Dimension(145, 65));
@@ -349,14 +348,14 @@ public class _MaterialButton extends JButton implements MaterialComponent {
         int align = getHorizontalAlignment();
 
         if (align == SwingConstants.TRAILING || align == SwingConstants.RIGHT) {
-            xText = widthReal - strWidth - 2 * DISTANCE_ICON_TEXT;
-            xIcon = xText - iconWidth - 2 * DISTANCE_ICON_TEXT;
+            xText = widthReal - strWidth - 2 * getIconTextGap();
+            xIcon = xText - iconWidth - 2 * getIconTextGap();
         } else if (align == SwingConstants.LEADING || align == SwingConstants.LEFT) {
-            xIcon = DISTANCE_ICON_TEXT;
-            xText = iconWidth + DISTANCE_ICON_TEXT;
+            xIcon = getIconTextGap();
+            xText = iconWidth + getIconTextGap();
         } else {
-            xText = (widthReal - strWidth) / 2 + DISTANCE_ICON_TEXT / 2 + iconWidth / 2;
-            xIcon = xText - iconWidth - DISTANCE_ICON_TEXT;
+            xText = (widthReal - strWidth) / 2 + getIconTextGap() / 2 + iconWidth / 2;
+            xIcon = xText - iconWidth - getIconTextGap();
         }
 
         Color fg = this.getForeground();
