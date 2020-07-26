@@ -12,6 +12,7 @@ import com.jhw.swing.util.Utils;
 import com.jhw.swing.util.interfaces.MaterialComponent;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.util.HashMap;
@@ -140,6 +141,7 @@ public class DownPanel extends MapeableContainer {
         public LicenceButton(Color back) {
             this.setBackground(back);
             this.setBorder(new LineBorder(Utils.darken(Utils.darken(back)), 2));
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         }
 
     }
