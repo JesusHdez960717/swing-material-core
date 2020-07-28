@@ -3,8 +3,8 @@ package com.jhw.swing.material.components.button;
 import com.jhw.swing.material.components.container.layout.HorizontalLayoutComponent;
 import com.jhw.swing.material.components.container.layout.HorizontalLayoutContainer;
 import com.jhw.swing.material.components.container.panel.prepared._MaterialPanelComponent;
-import com.jhw.swing.material.standars.MaterialColors;
-import com.jhw.swing.material.standars.MaterialIcons;
+import com.jhw.swing.material.standards.MaterialColors;
+import com.jhw.swing.material.standards.MaterialIcons;
 
 /**
  *

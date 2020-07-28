@@ -1,6 +1,5 @@
 package com.jhw.swing.material.components.combobox;
 
-import com.jhw.swing.material.components.scrollpane._MaterialScrollBar;
 import com.jhw.swing.material.components.scrollpane._MaterialScrollPaneCore;
 import com.jhw.swing.material.effects.Line;
 import static com.jhw.swing.material.components.textfield._MaterialTextField.HINT_OPACITY_MASK;
@@ -10,19 +9,18 @@ import com.jhw.swing.material.effects.FloatingLabelStandar;
 import java.awt.*;
 import java.awt.event.FocusEvent;
 import javax.swing.*;
-import javax.swing.border.MatteBorder;
 import javax.swing.plaf.basic.BasicComboBoxUI;
 import javax.swing.plaf.basic.BasicComboPopup;
-import javax.swing.plaf.basic.BasicScrollBarUI;
 import javax.swing.plaf.basic.ComboPopup;
 import com.jhw.swing.util.interfaces.MaterialComponent;
-import com.jhw.swing.material.standars.MaterialColors;
-import com.jhw.swing.material.standars.MaterialFontRoboto;
-import com.jhw.swing.material.standars.MaterialIcons;
-import com.jhw.swing.personalization.PersonalizationMaterial;
+import com.jhw.swing.material.standards.MaterialColors;
+import com.jhw.swing.material.standards.MaterialFontRoboto;
+import com.jhw.swing.material.standards.MaterialIcons;
+import com.jhw.personalization.core.domain.Personalization;
+import com.jhw.personalization.services.PersonalizationHandler;
 import com.jhw.swing.util.MaterialDrawingUtils;
 import com.jhw.swing.util.Utils;
-import com.jhw.swing.util.icons.DerivableIcon;
+import com.jhw.swing.utils.icons.DerivableIcon;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
@@ -51,7 +49,7 @@ public class _MaterialComboBox<T> extends JComboBox<T> implements MaterialCompon
     private ImageIcon icon = MaterialIcons.ARROW_DROP_DOWN;
 
     //flags for wrong
-    private Color wrongColor = PersonalizationMaterial.getInstance().getColorWrong();
+    private Color wrongColor = PersonalizationHandler.getColor(Personalization.KEY_COLOR_WRONG);
     private String wrongText = "Error en este campo";
     private boolean wrongFlag = false;
 

@@ -3,8 +3,8 @@ package com.jhw.swing.examples.components;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import com.jhw.swing.ui.MaterialLookAndFeel;
-import com.jhw.swing.material.standars.MaterialColors;
-import com.jhw.swing.material.standars.MaterialIcons;
+import com.jhw.swing.material.standards.MaterialColors;
+import com.jhw.swing.material.standards.MaterialIcons;
 
 /**
  *
@@ -167,7 +167,7 @@ public class OTHERS_EXAMPLE extends javax.swing.JFrame {
         );
 
         pack();
-    }// </editor-fold>//GEN-END:initComponents
+    }// </editor-fold>                        
 
     /**
      * @param args the command line arguments
@@ -196,6 +196,6 @@ public class OTHERS_EXAMPLE extends javax.swing.JFrame {
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPasswordField jPasswordField1;
-    // End of variables declaration//GEN-END:variables
+    // End of variables declaration                   
 
 }

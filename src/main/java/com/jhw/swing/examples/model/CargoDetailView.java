@@ -12,7 +12,7 @@ import com.jhw.swing.examples.standars.MATERIAL_COLORS_EXAMPLE;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JPanel;
-import com.jhw.swing.material.standars.MaterialIcons;
+import com.jhw.swing.material.standards.MaterialIcons;
 
 /**
  *

@@ -6,10 +6,10 @@ import java.awt.geom.RectangularShape;
 import java.awt.geom.RoundRectangle2D;
 import com.jhw.swing.util.MaterialDrawingUtils;
 import com.jhw.swing.util.interfaces.MaterialComponent;
-import com.jhw.swing.material.standars.MaterialShadow;
+import com.jhw.swing.material.standards.MaterialShadow;
 import com.jhw.swing.util.Utils;
 import com.jhw.swing.material.effects.ElevationEffect;
-import com.jhw.swing.material.standars.MaterialIcons;
+import com.jhw.swing.material.standards.MaterialIcons;
 
 /**
  * A Material Design button. A round button with a icon in the middle

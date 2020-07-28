@@ -7,7 +7,7 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import com.jhw.swing.util.interfaces.MaterialComponent;
-import com.jhw.swing.material.standars.MaterialIcons;
+import com.jhw.swing.material.standards.MaterialIcons;
 
 /**
  *
@@ -75,13 +75,13 @@ public class _MaterialConvertChar extends _PanelTransparent implements MaterialC
                 .addGap(0, 0, 0)
                 .addComponent(panelChart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-    }// </editor-fold>//GEN-END:initComponents
+    }// </editor-fold>                        
 
     // Variables declaration - do not modify//:variables
     private com.jhw.swing.material.components.button._MaterialButtonIconTransparent buttonBarChart;
     private com.jhw.swing.material.components.button._MaterialButtonIconTransparent buttonLineChart;
     private com.jhw.swing.material.components.container.panel._PanelComponent panelChart;
-    // End of variables declaration//GEN-END:variables
+    // End of variables declaration                   
 
     private void addListeners() {
         buttonBarChart.addActionListener(new ActionListener() {

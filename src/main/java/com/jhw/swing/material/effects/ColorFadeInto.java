@@ -2,11 +2,12 @@ package com.jhw.swing.material.effects;
 
 import com.jhw.swing.util.SafePropertySetter;
 import com.jhw.swing.material.components.button._MaterialButton;
-import com.jhw.swing.material.standars.MaterialColors;
+import com.jhw.swing.material.standards.MaterialColors;
 import com.jhw.swing.personalization.Inistanciables;
-import com.jhw.swing.personalization.PersonalizationMaterial;
 import com.jhw.swing.util.Utils;
 import java.awt.Color;
+import com.jhw.personalization.core.domain.Personalization;
+import com.jhw.personalization.services.PersonalizationHandler;
 import java.util.concurrent.TimeUnit;
 import org.jdesktop.core.animation.timing.Animator;
 import org.jdesktop.core.animation.timing.interpolators.SplineInterpolator;
@@ -48,7 +49,7 @@ public class ColorFadeInto {
         if (animator != null) {
             animator.stop();
         }
-        if (PersonalizationMaterial.getInstance().isUseAnimations()) {
+        if (PersonalizationHandler.getBoolean(Personalization.KEY_USE_ANIMATIONS)) {
             setColorAnimated();
         } else {
             color.setValue(getTargetColor());

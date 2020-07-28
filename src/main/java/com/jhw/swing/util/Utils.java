@@ -18,9 +18,10 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.Arrays;
-import com.jhw.swing.personalization.PersonalizationMaterial;
 //import sun.font.FontDesignMetrics;
-import com.jhw.swing.material.standars.MaterialColors;
+import com.jhw.personalization.core.domain.Personalization;
+import com.jhw.personalization.services.PersonalizationHandler;
+import com.jhw.swing.material.standards.MaterialColors;
 import com.jhw.swing.notification.NotificationLocation;
 import java.awt.Canvas;
 import java.awt.Component;
@@ -164,7 +165,7 @@ public class Utils {
      * el doBeep.
      */
     public static void beep() {
-        if (PersonalizationMaterial.getInstance().isDoBeep()) {
+        if (PersonalizationHandler.getBoolean(Personalization.KEY_DO_BEEP)) {
             Toolkit.getDefaultToolkit().beep();
         }
     }
@@ -253,7 +254,9 @@ public class Utils {
     }
 
     public static Color getForegroundAccording(Color color) {
-        return isDark(color) ? PersonalizationMaterial.getInstance().getColorForegroundForDark() : PersonalizationMaterial.getInstance().getColorForegroundForWhite();
+        return isDark(color) ? 
+                PersonalizationHandler.getColor(Personalization.KEY_COLOR_WARNING) : 
+                PersonalizationHandler.getColor(Personalization.KEY_COLOR_WARNING);
     }
 
     /**

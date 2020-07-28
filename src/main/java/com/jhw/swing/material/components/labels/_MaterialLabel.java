@@ -10,9 +10,9 @@ import javax.swing.SwingConstants;
 import com.jhw.swing.util.MaterialDrawingUtils;
 import com.jhw.utils.others.StringFormating;
 import com.jhw.swing.util.Utils;
-import com.jhw.swing.util.icons.DerivableIcon;
+import com.jhw.swing.utils.icons.DerivableIcon;
 import com.jhw.swing.util.interfaces.MaterialComponent;
-import com.jhw.swing.material.standars.MaterialFontRoboto;
+import com.jhw.swing.material.standards.MaterialFontRoboto;
 import javax.swing.Icon;
 
 /**

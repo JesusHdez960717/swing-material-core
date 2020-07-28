@@ -6,8 +6,8 @@ import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 import com.jhw.swing.util.Utils;
-import com.jhw.swing.material.standars.MaterialColors;
-import com.jhw.swing.material.standars.MaterialFontRoboto;
+import com.jhw.swing.material.standards.MaterialColors;
+import com.jhw.swing.material.standards.MaterialFontRoboto;
 import java.awt.Adjustable;
 import javax.swing.JScrollBar;
 

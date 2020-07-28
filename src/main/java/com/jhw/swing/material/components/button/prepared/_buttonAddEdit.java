@@ -2,7 +2,8 @@ package com.jhw.swing.material.components.button.prepared;
 
 import com.jhw.swing.material.components.button._MaterialButton;
 import java.awt.Dimension;
-import com.jhw.swing.personalization.PersonalizationMaterial;
+import com.jhw.personalization.core.domain.Personalization;
+import com.jhw.personalization.services.PersonalizationHandler;
 
 /**
  * MaterialButton con background getColorButtonAdd, e icon iconButtonAdd de la
@@ -14,14 +15,14 @@ public class _buttonAddEdit extends _MaterialButton {
 
     public _buttonAddEdit() {
         super();
-        this.setBackground(PersonalizationMaterial.getInstance().getColorButtonAdd());
-        this.setIcon(PersonalizationMaterial.getInstance().getIconButtonAdd());
+        this.setBackground(PersonalizationHandler.getColor(Personalization.KEY_COLOR_BUTTON_ADD));
+        this.setIcon(PersonalizationHandler.getDerivableIcon(Personalization.KEY_ICON_BUTTON_ADD));
         this.setPreferredSize(new Dimension(125, 50));
     }
 
     public void isCreated(boolean created) {
-        this.setIcon(created ? PersonalizationMaterial.getInstance().getIconButtonAdd() : PersonalizationMaterial.getInstance().getIconButtonEdit());
+        this.setIcon(created ? PersonalizationHandler.getDerivableIcon(Personalization.KEY_ICON_BUTTON_ADD) : PersonalizationHandler.getDerivableIcon(Personalization.KEY_ICON_BUTTON_EDIT));
         this.setText(created ? "Crear" : "Editar");
-        this.setBackground(created ? PersonalizationMaterial.getInstance().getColorButtonAdd() : PersonalizationMaterial.getInstance().getColorButtonEdit());
+        this.setBackground(created ? PersonalizationHandler.getColor(Personalization.KEY_COLOR_BUTTON_ADD) : PersonalizationHandler.getColor(Personalization.KEY_COLOR_BUTTON_EDIT));
     }
 }

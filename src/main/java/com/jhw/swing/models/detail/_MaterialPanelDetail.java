@@ -29,7 +29,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import com.jhw.utils.security.SHA;
 import com.jhw.utils.interfaces.Update;
-import com.jhw.swing.material.standars.MaterialColors;
+import com.jhw.swing.material.standards.MaterialColors;
 
 /**
  *

@@ -7,8 +7,8 @@ import javax.swing.JFileChooser;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.metal.MetalFileChooserUI;
 import com.jhw.swing.util.MaterialDrawingUtils;
-import com.jhw.swing.material.standars.MaterialIcons;
-import com.jhw.swing.material.standars.MaterialImages;
+import com.jhw.swing.material.standards.MaterialIcons;
+import com.jhw.swing.material.standards.MaterialImages;
 
 public class MaterialFileChooserUI extends MetalFileChooserUI {
 

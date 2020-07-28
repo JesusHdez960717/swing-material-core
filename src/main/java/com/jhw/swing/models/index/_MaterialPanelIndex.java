@@ -12,11 +12,11 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 
-import com.jhw.swing.util.icons.DerivableIcon;
+import com.jhw.swing.utils.icons.DerivableIcon;
 import com.jhw.utils.interfaces.Update;
-import com.jhw.swing.material.standars.MaterialColors;
-import com.jhw.swing.material.standars.MaterialFontRoboto;
-import com.jhw.swing.material.standars.MaterialIcons;
+import com.jhw.swing.material.standards.MaterialColors;
+import com.jhw.swing.material.standards.MaterialFontRoboto;
+import com.jhw.swing.material.standards.MaterialIcons;
 
 /**
  * Panel base para crear index de modelos. <\br>
@@ -150,7 +150,7 @@ public class _MaterialPanelIndex extends JPanel implements Update {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(panelBackground, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
         );
-    }// </editor-fold>//GEN-END:initComponents
+    }// </editor-fold>                        
 
     // Variables declaration - do not modify//:variables
     private com.jhw.swing.material.components.button.prepared._buttonAddEdit buttonAdd;
@@ -159,7 +159,7 @@ public class _MaterialPanelIndex extends JPanel implements Update {
     private com.jhw.swing.material.components.labels._MaterialLabel labelMain;
     private com.jhw.swing.material.components.container.panel._MaterialPanel panelBackground;
     private com.jhw.swing.material.components.container.panel._PanelGradient panelIcon;
-    // End of variables declaration//GEN-END:variables
+    // End of variables declaration                   
 
     @Override
     public void update() {

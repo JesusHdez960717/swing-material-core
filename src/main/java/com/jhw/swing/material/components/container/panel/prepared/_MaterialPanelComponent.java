@@ -6,7 +6,7 @@
 package com.jhw.swing.material.components.container.panel.prepared;
 
 import com.jhw.swing.material.components.container.panel._MaterialPanel;
-import com.jhw.swing.material.standars.MaterialShadow;
+import com.jhw.swing.material.standards.MaterialShadow;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import javax.swing.border.EmptyBorder;

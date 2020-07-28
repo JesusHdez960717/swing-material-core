@@ -11,7 +11,8 @@ import java.util.concurrent.TimeUnit;
 import org.jdesktop.core.animation.timing.Animator;
 import org.jdesktop.core.animation.timing.interpolators.SplineInterpolator;
 import com.jhw.swing.personalization.Inistanciables;
-import com.jhw.swing.personalization.PersonalizationMaterial;
+import com.jhw.personalization.core.domain.Personalization;
+import com.jhw.personalization.services.PersonalizationHandler;
 import com.jhw.swing.util.SafePropertySetter;
 import com.jhw.swing.util.Utils;
 
@@ -80,7 +81,7 @@ public class DialogTextToastGeneral extends DialogToast {
         if (anim != null) {
             anim.cancel();
         }
-        if (PersonalizationMaterial.getInstance().isUseAnimationsNotifications()) {
+        if (PersonalizationHandler.getBoolean(Personalization.KEY_USE_ANIMATIONS_NOTIFICATIONS)) {
             doMoveAnimated(nextY);
         } else {
             setLocation(getLocation().x, nextY);//mantiene x y mueve y

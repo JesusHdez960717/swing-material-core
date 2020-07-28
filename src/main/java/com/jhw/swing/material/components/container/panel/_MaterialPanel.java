@@ -3,13 +3,13 @@ package com.jhw.swing.material.components.container.panel;
 import java.awt.*;
 import java.awt.geom.RoundRectangle2D;
 import javax.swing.*;
-import com.jhw.swing.personalization.PersonalizationMaterial;
 import com.jhw.swing.util.MaterialDrawingUtils;
 import com.jhw.swing.material.effects.ElevationEffect;
 import com.jhw.swing.util.Utils;
 import com.jhw.swing.util.interfaces.MaterialComponent;
-import com.jhw.swing.material.standars.MaterialColors;
-import com.jhw.swing.material.standars.MaterialShadow;
+import com.jhw.swing.material.standards.MaterialShadow;
+import com.jhw.personalization.core.domain.Personalization;
+import com.jhw.personalization.services.PersonalizationHandler;
 
 /**
  * A JPanel customized for Material components. What makes these panels special
@@ -42,7 +42,7 @@ public class _MaterialPanel extends JPanel implements MaterialComponent {
      */
     public _MaterialPanel() {
         this.setOpaque(false);
-        this.setBackground(PersonalizationMaterial.getInstance().getColorBackgroundPanel());
+        this.setBackground(PersonalizationHandler.getColor(Personalization.KEY_COLOR_BACKGROUND_PANEL));
         elevation = ElevationEffect.applyTo(this, MaterialShadow.ELEVATION_DEFAULT);
         elevation.setBorderRadius(borderRadius);
     }

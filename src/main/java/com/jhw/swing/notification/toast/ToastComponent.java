@@ -1,6 +1,6 @@
 package com.jhw.swing.notification.toast;
 
-import com.jhw.swing.material.standars.MaterialFontRoboto;
+import com.jhw.swing.material.standards.MaterialFontRoboto;
 
 import javax.swing.*;
 import java.awt.*;

@@ -7,7 +7,7 @@ import javax.swing.UIManager;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicSliderUI;
 import com.jhw.swing.util.MaterialDrawingUtils;
-import com.jhw.swing.material.standars.MaterialColors;
+import com.jhw.swing.material.standards.MaterialColors;
 
 /**
  * @contributor https://github.com/vincenzopalazzo

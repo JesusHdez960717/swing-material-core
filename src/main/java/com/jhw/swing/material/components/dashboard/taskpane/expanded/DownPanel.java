@@ -7,7 +7,7 @@ import com.jhw.swing.material.components.button._MaterialButtonIconTransparent;
 import com.jhw.swing.material.components.container.panel._PanelGradient;
 import com.jhw.swing.material.components.container.panel._PanelTransparent;
 import com.jhw.swing.material.components.dashboard.taskpane.DashBoardTaskPane;
-import com.jhw.swing.material.standars.MaterialColors;
+import com.jhw.swing.material.standards.MaterialColors;
 import com.jhw.swing.util.Utils;
 import com.jhw.swing.util.interfaces.MaterialComponent;
 import java.awt.BorderLayout;

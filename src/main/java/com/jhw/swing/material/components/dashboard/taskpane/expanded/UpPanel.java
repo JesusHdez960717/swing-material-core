@@ -7,11 +7,8 @@ import com.jhw.swing.material.components.button._MaterialButtonTransparent;
 import com.jhw.swing.material.components.container.panel._PanelGradient;
 import com.jhw.swing.material.components.container.panel._PanelTransparent;
 import com.jhw.swing.material.components.dashboard.taskpane.DashBoardTaskPane;
-import com.jhw.swing.material.standars.MaterialFontRoboto;
-import com.jhw.swing.personalization.PersonalizationMaterial;
-import com.jhw.swing.util.Utils;
-import com.jhw.swing.util.enums.GradientEnum;
-import com.jhw.swing.util.icons.DerivableIcon;
+import com.jhw.swing.material.standards.MaterialFontRoboto;
+import com.jhw.swing.utils.icons.DerivableIcon;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -22,7 +19,6 @@ import java.util.function.Consumer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.Action;
-import javax.swing.Icon;
 import javax.swing.JButton;
 
 /**

@@ -6,7 +6,8 @@ import javax.swing.JComponent;
 import org.jdesktop.core.animation.timing.Animator;
 import org.jdesktop.core.animation.timing.interpolators.SplineInterpolator;
 import com.jhw.swing.personalization.Inistanciables;
-import com.jhw.swing.personalization.PersonalizationMaterial;
+import com.jhw.personalization.core.domain.Personalization;
+import com.jhw.personalization.services.PersonalizationHandler;
 import com.jhw.swing.util.SafePropertySetter;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
@@ -36,7 +37,7 @@ public class Line {
         if (animator != null) {
             animator.stop();
         }
-        if (PersonalizationMaterial.getInstance().isUseAnimations()) {
+        if (PersonalizationHandler.getBoolean(Personalization.KEY_USE_ANIMATIONS)) {
             setWidthAnimated();
         } else {
             width.setValue(getTargetWidth());

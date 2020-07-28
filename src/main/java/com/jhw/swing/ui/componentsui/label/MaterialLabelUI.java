@@ -8,7 +8,7 @@ import javax.swing.UIManager;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicLabelUI;
 import java.awt.Graphics;
-import com.jhw.swing.material.standars.MaterialFontRoboto;
+import com.jhw.swing.material.standards.MaterialFontRoboto;
 
 public class MaterialLabelUI extends BasicLabelUI {
 

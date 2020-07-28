@@ -7,7 +7,7 @@ import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicProgressBarUI;
 import com.jhw.swing.ui.utils.MaterialBorders;
 import com.jhw.swing.util.MaterialDrawingUtils;
-import com.jhw.swing.material.standars.MaterialColors;
+import com.jhw.swing.material.standards.MaterialColors;
 
 /**
  * @author https://github.com/vincenzopalazzo

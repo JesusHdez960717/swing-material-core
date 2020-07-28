@@ -7,9 +7,10 @@ import com.jhw.swing.material.components.labels._MaterialLabel;
 import java.awt.event.ActionListener;
 import java.io.File;
 import com.jhw.utils.interfaces.Update;
-import com.jhw.swing.material.standars.MaterialColors;
-import com.jhw.swing.material.standars.MaterialIcons;
-import com.jhw.swing.personalization.PersonalizationMaterial;
+import com.jhw.swing.material.standards.MaterialColors;
+import com.jhw.swing.material.standards.MaterialIcons;
+import com.jhw.personalization.core.domain.Personalization;
+import com.jhw.personalization.services.PersonalizationHandler;
 
 /**
  *
@@ -36,7 +37,7 @@ public class _MaterialFileChooserPanel extends _PanelComponent implements Update
         labelSeleccionados.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelSeleccionados.setText("Nada seleccionado");
 
-        buttonAbrir.setBackground(PersonalizationMaterial.getInstance().getColorButtonView());
+        buttonAbrir.setBackground(PersonalizationHandler.getColor(Personalization.KEY_COLOR_BUTTON_VIEW));
         buttonAbrir.setText("Buscar");
         buttonAbrir.setPreferredSize(new java.awt.Dimension(120, 45));
 

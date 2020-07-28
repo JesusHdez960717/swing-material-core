@@ -7,12 +7,12 @@ import com.jhw.swing.material.components.container.panel._MaterialPanel;
 import com.jhw.swing.material.components.container.panel._PanelComponent;
 import com.jhw.swing.material.components.container.panel._PanelGradient;
 import java.awt.Color;
-import com.jhw.swing.personalization.PersonalizationMaterial;
 import com.jhw.utils.interfaces.Update;
 import com.jhw.swing.util.interfaces.ModelablePanel;
-
-import com.jhw.swing.material.standars.MaterialColors;
-import com.jhw.swing.material.standars.MaterialIcons;
+import com.jhw.personalization.core.domain.Personalization;
+import com.jhw.personalization.services.PersonalizationHandler;
+import com.jhw.swing.material.standards.MaterialColors;
+import com.jhw.swing.material.standards.MaterialIcons;
 
 /**
  *
@@ -138,7 +138,7 @@ public class BaseModelInputPanel<T> extends _PanelGradient implements Update, Mo
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(panelBackground, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-    }// </editor-fold>//GEN-END:initComponents
+    }// </editor-fold>                        
 
     // Variables declaration - do not modify//:variables
     private com.jhw.swing.material.components.button.prepared._buttonAddEdit buttonAddEdit;
@@ -148,7 +148,7 @@ public class BaseModelInputPanel<T> extends _PanelGradient implements Update, Mo
     private com.jhw.swing.material.components.container.panel._PanelGradient panelButtons;
     private com.jhw.swing.material.components.container.panel._MaterialPanel panelModel;
     private com.jhw.swing.material.components.container.panel._PanelComponent panelModelCore;
-    // End of variables declaration//GEN-END:variables
+    // End of variables declaration                   
 
     private void personalize() {
         buttonAddEdit.isCreated(modelPanel.getOldModel() == null);
@@ -159,9 +159,9 @@ public class BaseModelInputPanel<T> extends _PanelGradient implements Update, Mo
 
         this.setPrimaryColor(MaterialColors.WHITE);
         this.setSecundaryColor(MaterialColors.WHITE);
-        buttonCancel.setBackground(PersonalizationMaterial.getInstance().getColorButtonCancel());
+        buttonCancel.setBackground(PersonalizationHandler.getColor(Personalization.KEY_COLOR_BUTTON_CANCEL));
 
-        this.panelBackground.setBackground(PersonalizationMaterial.getInstance().getColorBackgroundPanel());
+        this.panelBackground.setBackground(PersonalizationHandler.getColor(Personalization.KEY_COLOR_BACKGROUND_PANEL));
     }
 
     @Override

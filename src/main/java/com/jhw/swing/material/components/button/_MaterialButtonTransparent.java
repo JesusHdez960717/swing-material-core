@@ -1,20 +1,20 @@
 package com.jhw.swing.material.components.button;
 
-import com.jhw.swing.material.standars.MaterialColors;
+import com.jhw.swing.material.standards.MaterialColors;
 import java.awt.Color;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
-import com.jhw.swing.personalization.PersonalizationMaterial;
+import com.jhw.personalization.core.domain.Personalization;
+import com.jhw.personalization.services.PersonalizationHandler;
 import com.jhw.swing.util.MaterialDrawingUtils;
 import com.jhw.swing.util.Utils;
-import com.jhw.swing.util.icons.DerivableIcon;
+import com.jhw.swing.utils.icons.DerivableIcon;
 import com.jhw.swing.util.interfaces.MaterialComponent;
-import com.jhw.swing.material.standars.MaterialFontRoboto;
-import com.jhw.swing.material.standars.MaterialIcons;
+import com.jhw.swing.material.standards.MaterialFontRoboto;
+import com.jhw.swing.material.standards.MaterialIcons;
 import javax.swing.Icon;
 
 /**
@@ -31,7 +31,7 @@ public class _MaterialButtonTransparent extends JButton implements MaterialCompo
     }
 
     public _MaterialButtonTransparent() {
-        this.setForeground(PersonalizationMaterial.getInstance().getColorButtonAdd());
+        this.setForeground(PersonalizationHandler.getColor(Personalization.KEY_COLOR_BUTTON_ADD));
         this.setFont(MaterialFontRoboto.MEDIUM.deriveFont(16f));
         this.setIcon(MaterialIcons.ADD_CIRCLE_OUTLINE);
         this.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));

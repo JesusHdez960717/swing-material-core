@@ -9,8 +9,8 @@ import java.awt.FontMetrics;
 import java.util.StringTokenizer;
 import javax.swing.SwingConstants;
 import com.jhw.swing.util.Utils;
-import com.jhw.swing.material.standars.MaterialColors;
-import com.jhw.swing.material.standars.MaterialFontRoboto;
+import com.jhw.swing.material.standards.MaterialColors;
+import com.jhw.swing.material.standards.MaterialFontRoboto;
 
 /**
  *
@@ -54,10 +54,10 @@ public class _ContentArea extends _PanelTransparent {
     private void initComponents() {
 
         setLayout(new java.awt.GridLayout(0, 1));
-    }// </editor-fold>//GEN-END:initComponents
+    }// </editor-fold>                        
 
     // Variables declaration - do not modify//:variables
-    // End of variables declaration//GEN-END:variables
+    // End of variables declaration                   
     public String getHeader() {
         return header;
     }

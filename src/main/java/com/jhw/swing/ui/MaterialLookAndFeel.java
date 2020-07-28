@@ -64,10 +64,10 @@ import com.jhw.swing.ui.componentsui.toolbar.MaterialToolBarUI;
 import com.jhw.swing.ui.componentsui.tooltip.MaterialToolTipUI;
 import com.jhw.swing.ui.componentsui.tree.MaterialTreeUI;
 import com.jhw.swing.ui.utils.MaterialBorders;
-import com.jhw.swing.material.standars.MaterialColors;
-import com.jhw.swing.material.standars.MaterialFontRoboto;
-import com.jhw.swing.material.standars.MaterialIcons;
-import com.jhw.swing.material.standars.MaterialImages;
+import com.jhw.swing.material.standards.MaterialColors;
+import com.jhw.swing.material.standards.MaterialFontRoboto;
+import com.jhw.swing.material.standards.MaterialIcons;
+import com.jhw.swing.material.standards.MaterialImages;
 
 public class MaterialLookAndFeel extends MetalLookAndFeel {
 

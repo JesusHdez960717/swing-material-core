@@ -1,6 +1,6 @@
 package com.jhw.swing.material.components.taskpane;
 
-import com.jhw.swing.material.standars.MaterialIcons;
+import com.jhw.swing.material.standards.MaterialIcons;
 import com.jhw.swing.util.MaterialDrawingUtils;
 import com.jhw.swing.util.interfaces.MaterialComponent;
 import java.awt.Color;
@@ -14,8 +14,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import com.jhw.swing.material.components.button.*;//_MaterialButtonFlat
-import com.jhw.swing.material.standars.MaterialColors;
-import com.jhw.swing.util.icons.DerivableIcon;
+import com.jhw.swing.material.standards.MaterialColors;
+import com.jhw.swing.utils.icons.DerivableIcon;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.Icon;

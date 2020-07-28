@@ -8,10 +8,10 @@ import java.awt.event.MouseEvent;
 import com.jhw.swing.util.MaterialDrawingUtils;
 import com.jhw.swing.util.interfaces.MaterialComponent;
 import com.jhw.swing.material.effects.RippleEffect;
-import com.jhw.swing.material.standars.MaterialColors;
-import com.jhw.swing.material.standars.MaterialIcons;
-import com.jhw.swing.material.standars.MaterialShadow;
-import com.jhw.swing.util.icons.DerivableIcon;
+import com.jhw.swing.material.standards.MaterialColors;
+import com.jhw.swing.material.standards.MaterialIcons;
+import com.jhw.swing.material.standards.MaterialShadow;
+import com.jhw.swing.utils.icons.DerivableIcon;
 import javax.swing.plaf.basic.BasicButtonUI;
 
 /**

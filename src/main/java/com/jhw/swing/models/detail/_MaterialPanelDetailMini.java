@@ -1,7 +1,7 @@
 package com.jhw.swing.models.detail;
 
 import com.jhw.swing.material.components.table.Column;
-import com.jhw.swing.material.standars.MaterialColors;
+import com.jhw.swing.material.standards.MaterialColors;
 
 /**
  *

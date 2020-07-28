@@ -1,7 +1,7 @@
 package com.jhw.swing.material.components.container.panel;
 
-import com.jhw.swing.material.components.container.panel._PanelGradient;
-import com.jhw.swing.personalization.PersonalizationMaterial;
+import com.jhw.personalization.core.domain.Personalization;
+import com.jhw.personalization.services.PersonalizationHandler;
 
 /**
  *
@@ -10,7 +10,7 @@ import com.jhw.swing.personalization.PersonalizationMaterial;
 public class _PanelSimpleBackground extends _PanelGradient {
 
     public _PanelSimpleBackground() {
-        setBackground(PersonalizationMaterial.getInstance().getColorBackgroundPanel());
+        setBackground(PersonalizationHandler.getColor(Personalization.KEY_COLOR_BACKGROUND_PANEL));
     }
 
 }

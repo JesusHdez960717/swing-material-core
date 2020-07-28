@@ -8,11 +8,11 @@ import java.awt.event.MouseWheelListener;
 import java.util.concurrent.TimeUnit;
 import javax.swing.JScrollPane;
 import org.jdesktop.core.animation.timing.Animator;
-import org.jdesktop.core.animation.timing.interpolators.SplineInterpolator;
 import com.jhw.swing.personalization.Inistanciables;
-import com.jhw.swing.personalization.PersonalizationMaterial;
 import com.jhw.swing.ui.utils.MaterialManagerListener;
 import com.jhw.swing.util.SafePropertySetter;
+import com.jhw.personalization.core.domain.Personalization;
+import com.jhw.personalization.services.PersonalizationHandler;
 
 /**
  * Class to add a smoot movement to a JScrollPane.
@@ -66,7 +66,7 @@ public class SmoothScrollMouseWheelListener implements MouseWheelListener {
         if (anim != null) {//if anim running stop it
             anim.cancel();
         }
-        if (PersonalizationMaterial.getInstance().isUseAnimations()) {
+        if (PersonalizationHandler.getBoolean(Personalization.KEY_USE_ANIMATIONS)) {
             doAnimatedMove();
         } else {
             doMove(nextPosition);//move to the next position

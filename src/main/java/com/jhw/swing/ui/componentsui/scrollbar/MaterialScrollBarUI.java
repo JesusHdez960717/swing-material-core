@@ -30,8 +30,8 @@ import javax.swing.plaf.basic.BasicScrollBarUI;
 import com.jhw.swing.ui.animation.MaterialUIMovement;
 import com.jhw.swing.util.MaterialDrawingUtils;
 import com.jhw.swing.ui.utils.MaterialManagerListener;
-import com.jhw.swing.material.standars.MaterialIcons;
-import com.jhw.swing.material.standars.MaterialImages;
+import com.jhw.swing.material.standards.MaterialIcons;
+import com.jhw.swing.material.standards.MaterialImages;
 
 /*
  * @contributor by https://github.com/downToHell

@@ -5,7 +5,7 @@ import static com.jhw.swing.material.components.textfield._MaterialTextField.HIN
 import static com.jhw.swing.material.components.textfield._MaterialTextField.LINE_OPACITY_MASK;
 import com.jhw.swing.util.MaterialDrawingUtils;
 import com.jhw.swing.util.Utils;
-import com.jhw.swing.util.icons.DerivableIcon;
+import com.jhw.swing.utils.icons.DerivableIcon;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;

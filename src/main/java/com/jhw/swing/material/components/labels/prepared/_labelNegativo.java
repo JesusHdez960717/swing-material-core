@@ -1,7 +1,8 @@
 package com.jhw.swing.material.components.labels.prepared;
 
 import com.jhw.swing.material.components.labels._MaterialLabel;
-import com.jhw.swing.personalization.PersonalizationMaterial;
+import com.jhw.personalization.core.domain.Personalization;
+import com.jhw.personalization.services.PersonalizationHandler;
 
 /**
  * Label con foreground getColorMoneyNegative de la personalizacion.
@@ -12,7 +13,7 @@ public class _labelNegativo extends _MaterialLabel {
 
     public _labelNegativo() {
         super();
-        this.setForeground(PersonalizationMaterial.getInstance().getColorMoneyNegative());
+        this.setForeground(PersonalizationHandler.getColor(Personalization.KEY_COLOR_MONEY_NEGATIVE));
     }
 
 }

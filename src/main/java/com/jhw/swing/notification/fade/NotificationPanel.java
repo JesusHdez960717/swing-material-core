@@ -7,7 +7,7 @@ import com.jhw.swing.material.components.labels._MaterialLabel;
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.ImageIcon;
-import com.jhw.swing.material.standars.MaterialIcons;
+import com.jhw.swing.material.standards.MaterialIcons;
 
 /**
  *
@@ -92,13 +92,13 @@ public class NotificationPanel extends _MaterialPanel {
                 .addComponent(labelIcon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(10, 10, 10))
         );
-    }// </editor-fold>//GEN-END:initComponents
+    }// </editor-fold>                        
 
     // Variables declaration - do not modify//:variables
     private com.jhw.swing.material.components.button._MaterialButtonIconTransparent buttonClose;
     private com.jhw.swing.material.components.textarea._ContentArea contentArea;
     private com.jhw.swing.material.components.labels._MaterialLabel labelIcon;
-    // End of variables declaration//GEN-END:variables
+    // End of variables declaration                   
 
     public _MaterialLabel getMaterialLabel1() {
         return labelIcon;

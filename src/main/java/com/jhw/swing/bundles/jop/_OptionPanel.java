@@ -11,7 +11,7 @@ import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import com.jhw.swing.util.interfaces.MaterialComponent;
-import com.jhw.swing.material.standars.MaterialColors;
+import com.jhw.swing.material.standards.MaterialColors;
 
 /**
  *
@@ -83,13 +83,13 @@ public class _OptionPanel extends _MaterialPanel implements MaterialComponent {
                     .addComponent(buttonNegative, javax.swing.GroupLayout.DEFAULT_SIZE, 54, Short.MAX_VALUE))
                 .addGap(20, 20, 20))
         );
-    }// </editor-fold>//GEN-END:initComponents
+    }// </editor-fold>                        
 
     // Variables declaration - do not modify//:variables
     private com.jhw.swing.material.components.button._MaterialButton buttonNegative;
     private com.jhw.swing.material.components.button._MaterialButton buttonPositive;
     private com.jhw.swing.material.components.container.panel._PanelComponent panelOption;
-    // End of variables declaration//GEN-END:variables
+    // End of variables declaration                   
 
     private void personalize() {
         this.setBackground(MaterialColors.WHITE);

@@ -11,7 +11,7 @@ import com.jhw.swing.material.components.button._MaterialButton;
 import com.jhw.swing.material.components.button._MaterialButtonIconTransparent;
 import com.jhw.swing.material.components.dashboard.taskpane.DashBoardTaskPane;
 import com.jhw.swing.material.components.labels._MaterialLabel;
-import com.jhw.swing.material.standars.MaterialColors;
+import com.jhw.swing.material.standards.MaterialColors;
 import com.jhw.swing.ui.componentsui.panel.MaterialPanelUI;
 import com.jhw.swing.util.Utils;
 import java.awt.BorderLayout;
@@ -115,7 +115,7 @@ public class CollapseMenu extends JPanel {
         jPanelCollapsible.setBackground(new java.awt.Color(255, 255, 255));
         jPanelCollapsible.setDirection(org.jdesktop.swingx.JXCollapsiblePane.Direction.DOWN);
         add(jPanelCollapsible, java.awt.BorderLayout.CENTER);
-    }// </editor-fold>//GEN-END:initComponents
+    }// </editor-fold>                        
 
     // Variables declaration - do not modify//:variables
     private javax.swing.JButton jButtonIcono;
@@ -125,7 +125,7 @@ public class CollapseMenu extends JPanel {
     private javax.swing.JPanel jPanelFixed;
     private org.jdesktop.swingx.JXTaskPaneContainer jPanelSubActions;
     private javax.swing.JPopupMenu jPopupMenu1;
-    // End of variables declaration//GEN-END:variables
+    // End of variables declaration                   
 
     public void shrink() {
         onMouseCLicked(null);

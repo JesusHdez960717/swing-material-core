@@ -7,7 +7,7 @@ import javax.swing.plaf.metal.MetalButtonUI;
 import com.jhw.swing.ui.animation.MaterialUIMovement;
 import com.jhw.swing.util.MaterialDrawingUtils;
 import com.jhw.swing.util.interfaces.MaterialComponent;
-import com.jhw.swing.material.standars.MaterialColors;
+import com.jhw.swing.material.standards.MaterialColors;
 
 /**
  * @contributor https://github.com/vincenzopalazzo

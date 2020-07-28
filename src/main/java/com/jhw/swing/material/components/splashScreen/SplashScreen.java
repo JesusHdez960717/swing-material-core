@@ -7,8 +7,8 @@ package com.jhw.swing.material.components.splashScreen;
 
 import com.jhw.swing.material.components.container.panel._PanelGradient;
 import com.jhw.swing.material.components.labels._MaterialLabel;
-import com.jhw.swing.material.standars.MaterialColors;
-import com.jhw.swing.material.standars.MaterialIcons;
+import com.jhw.swing.material.standards.MaterialColors;
+import com.jhw.swing.material.standards.MaterialIcons;
 import com.jhw.swing.util.Utils;
 import java.awt.BorderLayout;
 import java.awt.Dimension;

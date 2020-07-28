@@ -5,7 +5,6 @@ import com.jhw.swing.util.SafePropertySetter.Property;
 import org.jdesktop.core.animation.timing.Animator;
 import org.jdesktop.core.animation.timing.TimingTargetAdapter;
 import org.jdesktop.core.animation.timing.interpolators.AccelerationInterpolator;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
@@ -14,7 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 import com.jhw.swing.personalization.Inistanciables;
-import com.jhw.swing.personalization.PersonalizationMaterial;
+import com.jhw.personalization.core.domain.Personalization;
+import com.jhw.personalization.services.PersonalizationHandler;
 
 /**
  * A {@code RippleEffect} is applied into certain components, like buttons and
@@ -72,7 +72,7 @@ public class RippleEffect {
      */
     public void addRipple(Point point, int maxRadius) {
         //si no hay animaciones no agrego el ripple
-        if (PersonalizationMaterial.getInstance().isUseAnimations()) {
+        if (PersonalizationHandler.getBoolean(Personalization.KEY_USE_ANIMATIONS)) {
             final RippleAnimation ripple = new RippleAnimation(point, maxRadius);
             ripples.add(ripple);
             ripple.start();

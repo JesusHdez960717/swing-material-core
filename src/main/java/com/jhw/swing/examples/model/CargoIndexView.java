@@ -4,8 +4,8 @@ import com.jhw.swing.models.detail.DialogDetail;
 import com.jhw.swing.models.index._MaterialPanelIndex;
 import com.jhw.swing.models.input.dialogs.DialogModelInput;
 import javax.swing.ImageIcon;
-import com.jhw.swing.material.standars.MaterialIcons;
-import com.jhw.swing.material.standars.MaterialImages;
+import com.jhw.swing.material.standards.MaterialIcons;
+import com.jhw.swing.material.standards.MaterialImages;
 
 /**
  *

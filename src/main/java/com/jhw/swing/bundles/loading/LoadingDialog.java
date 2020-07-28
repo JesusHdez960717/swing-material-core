@@ -3,7 +3,7 @@ package com.jhw.swing.bundles.loading;
 import com.jhw.swing.material.components.container.panel._MaterialPanel;
 import java.awt.GridLayout;
 import javax.swing.JDialog;
-import com.jhw.swing.material.standars.MaterialColors;
+import com.jhw.swing.material.standards.MaterialColors;
 
 /**
  *

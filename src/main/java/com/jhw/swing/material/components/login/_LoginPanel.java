@@ -9,8 +9,8 @@ import com.jhw.swing.material.components.passwordfield._MaterialPasswordField;
 import com.jhw.swing.material.components.textfield._MaterialTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
-import com.jhw.swing.material.standars.MaterialColors;
-import com.jhw.swing.material.standars.MaterialIcons;
+import com.jhw.swing.material.standards.MaterialColors;
+import com.jhw.swing.material.standards.MaterialIcons;
 import javax.swing.JLabel;
 
 /**

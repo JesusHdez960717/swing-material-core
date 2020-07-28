@@ -7,7 +7,8 @@ import com.jhw.swing.material.components.container.panel._PanelComponent;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import com.jhw.swing.personalization.PersonalizationMaterial;
+import com.jhw.personalization.core.domain.Personalization;
+import com.jhw.personalization.services.PersonalizationHandler;
 import com.jhw.utils.interfaces.Update;
 import com.jhw.swing.util.validations.Validation;
 import com.jhw.swing.util.validations.icbs.ICBSValidation;
@@ -46,11 +47,11 @@ public abstract class InputComboBoxSelection<T> extends _PanelComponent implemen
         int h = (int) this.comboBox.getPreferredSize().getHeight();
 
         buttonNuevo = new _MaterialButtonIconTransparent();
-        buttonNuevo.setForeground(PersonalizationMaterial.getInstance().getColorButtonAdd());
+        buttonNuevo.setForeground(PersonalizationHandler.getColor(Personalization.KEY_COLOR_BUTTON_ADD));
         buttonNuevo.setRippleColor(Color.black);
         buttonNuevo.setIcon(
-                PersonalizationMaterial.getInstance().getIconButtonAdd()
-                        .deriveIcon(PersonalizationMaterial.getInstance().getColorButtonAdd())
+                PersonalizationHandler.getDerivableIcon(Personalization.KEY_ICON_BUTTON_ADD)
+                        .deriveIcon(PersonalizationHandler.getColor(Personalization.KEY_COLOR_BUTTON_ADD))
                         .deriveIcon(h * .6f));
 
         this.setLayout(new BorderLayout());

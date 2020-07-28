@@ -4,7 +4,7 @@ import java.awt.*;
 import javax.swing.BorderFactory;
 import javax.swing.border.Border;
 import com.jhw.swing.ui.shadows.DropShadowBorder;
-import com.jhw.swing.material.standars.MaterialColors;
+import com.jhw.swing.material.standards.MaterialColors;
 
 public class MaterialBorders {
 

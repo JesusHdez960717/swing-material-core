@@ -11,9 +11,9 @@ import com.jhw.swing.material.components.container.panel._PanelGradient;
 import com.jhw.swing.material.components.taskpane.CollapseMenu;
 import com.jhw.swing.material.components.taskpane.TaskButton;
 import com.jhw.swing.material.components.taskpane.TaskPaneMainContainer;
-import com.jhw.swing.material.standars.MaterialIcons;
-import com.jhw.swing.personalization.PersonalizationMaterial;
-import com.jhw.swing.util.enums.GradientEnum;
+import com.jhw.swing.material.standards.MaterialIcons;
+import com.jhw.personalization.core.domain.Personalization;
+import com.jhw.personalization.services.PersonalizationHandler;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -231,7 +231,7 @@ public class DashBoardTaskPane extends DashBoardSimple implements PropertyChange
     }
 
     private void personalize() {
-        panelSideMenu.setBackground(PersonalizationMaterial.getInstance().getColorPrincipal());
+        panelSideMenu.setBackground(PersonalizationHandler.getColor(Personalization.KEY_COLOR_MAIN));
     }
 
     public void removeUpButton() {

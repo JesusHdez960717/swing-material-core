@@ -7,9 +7,10 @@ import javax.swing.*;
 import org.jdesktop.core.animation.timing.Animator;
 import org.jdesktop.core.animation.timing.interpolators.SplineInterpolator;
 import com.jhw.swing.personalization.Inistanciables;
-import com.jhw.swing.personalization.PersonalizationMaterial;
 import com.jhw.swing.util.MaterialDrawingUtils;
-import com.jhw.swing.material.standars.MaterialShadow;
+import com.jhw.swing.material.standards.MaterialShadow;
+import com.jhw.personalization.core.domain.Personalization;
+import com.jhw.personalization.services.PersonalizationHandler;
 
 /**
  * An elevation effect.
@@ -53,7 +54,7 @@ public class ElevationEffect {
         this.targetLevel = level;
         this.level.setValue((double) targetLevel);
         if (target.isShowing()) {
-            if (PersonalizationMaterial.getInstance().isUseAnimations() && level != targetLevel) {
+            if (PersonalizationHandler.getBoolean(Personalization.KEY_USE_ANIMATIONS) && level != targetLevel) {
                 setElevationAnimated(level);
             }
         }
@@ -88,7 +89,7 @@ public class ElevationEffect {
      * @param g2 canvas
      */
     public void paint(Graphics2D g2) {
-        if (PersonalizationMaterial.getInstance().isUseShadow()) {
+        if (PersonalizationHandler.getBoolean(Personalization.KEY_USE_SHADOW)) {
             //priorizado la velocidad, la calidad no hace diferencia
             g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_NEAREST_NEIGHBOR);
             g2.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_SPEED);
@@ -162,7 +163,7 @@ public class ElevationEffect {
 
         @Override
         public void paint(Graphics2D g2) {
-            if (PersonalizationMaterial.getInstance().isUseShadow()) {
+            if (PersonalizationHandler.getBoolean(Personalization.KEY_USE_SHADOW)) {
                 //priorizado la velocidad, la calidad no hace diferencia
                 g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_NEAREST_NEIGHBOR);
                 g2.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_SPEED);

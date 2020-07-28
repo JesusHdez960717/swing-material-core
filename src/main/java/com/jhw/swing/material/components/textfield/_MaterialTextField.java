@@ -8,7 +8,8 @@ import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.text.DefaultCaret;
 import com.jhw.utils.others.Misc;
-import com.jhw.swing.personalization.PersonalizationMaterial;
+import com.jhw.personalization.core.domain.Personalization;
+import com.jhw.personalization.services.PersonalizationHandler;
 import com.jhw.swing.util.MaterialDrawingUtils;
 import com.jhw.swing.material.effects.FloatingLabel;
 import com.jhw.swing.material.effects.FloatingLabelStandar;
@@ -16,13 +17,11 @@ import com.jhw.swing.material.effects.Line;
 import com.jhw.swing.util.Utils;
 import com.jhw.swing.util.enums.TextTypeEnum;
 import com.jhw.swing.util.interfaces.MaterialComponent;
-import com.jhw.swing.material.standars.MaterialColors;
-import com.jhw.swing.material.standars.MaterialFontRoboto;
+import com.jhw.swing.material.standards.MaterialColors;
+import com.jhw.swing.material.standards.MaterialFontRoboto;
 import com.jhw.swing.util.validations.Validation;
 import com.jhw.swing.util.validations.textfield.GreaterThatCeroValidation;
 import com.jhw.swing.util.validations.textfield.TextFieldValidation;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
 
 /**
  * A Material Design single-line text field is the basic way of getting user
@@ -44,13 +43,13 @@ public class _MaterialTextField extends JTextField implements MaterialComponent,
     private Line line;
     private String hint = "hint";
     private String label = "label";
-    private Color accentColor = PersonalizationMaterial.getInstance().getColorAccent();
+    private Color accentColor = PersonalizationHandler.getColor(Personalization.KEY_COLOR_ACCENT);
 
     //default
     private Color foreground = MaterialColors.BLACK;
 
     //flags for wrong
-    private Color wrongColor = PersonalizationMaterial.getInstance().getColorWrong();
+    private Color wrongColor = PersonalizationHandler.getColor(Personalization.KEY_COLOR_WRONG);
     private String wrongText = "Error en este campo";
     private boolean wrongFlag = false;
 

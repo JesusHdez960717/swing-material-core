@@ -16,7 +16,7 @@ import org.jfree.chart.renderer.category.StandardBarPainter;
 import org.jfree.ui.GradientPaintTransformer;
 import com.jhw.swing.util.MaterialDrawingUtils;
 import com.jhw.swing.util.enums.GradientEnum;
-import com.jhw.swing.material.standars.MaterialColors;
+import com.jhw.swing.material.standards.MaterialColors;
 import org.jfree.ui.RectangleEdge;
 
 /**

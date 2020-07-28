@@ -12,7 +12,7 @@ import java.util.concurrent.TimeUnit;
 import com.jhw.swing.personalization.Inistanciables;
 import com.jhw.swing.util.MaterialDrawingUtils;
 import com.jhw.swing.util.interfaces.MaterialComponent;
-import com.jhw.swing.material.standars.MaterialColors;
+import com.jhw.swing.material.standards.MaterialColors;
 
 /**
  * A Material Design progress spinner. The color can be set using

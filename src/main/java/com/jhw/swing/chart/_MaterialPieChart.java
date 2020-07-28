@@ -21,8 +21,8 @@ import org.jfree.ui.RectangleEdge;
 import org.jfree.util.Rotation;
 import com.jhw.swing.util.enums.PieChartEnum;
 import com.jhw.swing.util.interfaces.MaterialComponent;
-import com.jhw.swing.material.standars.MaterialColors;
-import com.jhw.swing.material.standars.MaterialFontRoboto;
+import com.jhw.swing.material.standards.MaterialColors;
+import com.jhw.swing.material.standards.MaterialFontRoboto;
 
 /**
  *

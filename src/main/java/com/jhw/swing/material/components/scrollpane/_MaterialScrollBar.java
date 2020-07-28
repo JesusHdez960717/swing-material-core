@@ -1,6 +1,6 @@
 package com.jhw.swing.material.components.scrollpane;
 
-import com.jhw.swing.material.standars.MaterialColors;
+import com.jhw.swing.material.standards.MaterialColors;
 import com.jhw.swing.util.MaterialDrawingUtils;
 import com.jhw.swing.util.Utils;
 import java.awt.Adjustable;

@@ -16,10 +16,10 @@ import javax.swing.ImageIcon;
 import com.jhw.swing.util.MaterialDrawingUtils;
 import com.jhw.swing.util.Utils;
 import com.jhw.swing.material.effects.ElevationEffect;
-import com.jhw.swing.util.icons.DerivableIcon;
-import com.jhw.swing.material.standars.MaterialFontRoboto;
-import com.jhw.swing.material.standars.MaterialIcons;
-import com.jhw.swing.material.standars.MaterialShadow;
+import com.jhw.swing.utils.icons.DerivableIcon;
+import com.jhw.swing.material.standards.MaterialFontRoboto;
+import com.jhw.swing.material.standards.MaterialIcons;
+import com.jhw.swing.material.standards.MaterialShadow;
 
 /**
  *

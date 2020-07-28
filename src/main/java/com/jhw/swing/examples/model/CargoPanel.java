@@ -11,7 +11,7 @@ import com.jhw.swing.material.components.table.editors_renders.money.MoneyTableC
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Random;
-import com.jhw.swing.material.standars.MaterialIcons;
+import com.jhw.swing.material.standards.MaterialIcons;
 
 /**
  *

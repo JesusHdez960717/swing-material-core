@@ -5,7 +5,7 @@ import com.clean.core.app.services.NotificationsGeneralType;
 import com.jhw.swing.material.components.container.layout.HorizontalLayoutComponent;
 import com.jhw.swing.material.components.container.layout.HorizontalLayoutContainer;
 import com.jhw.swing.material.components.container.layout.VerticalLayoutContainer;
-import com.jhw.swing.material.standars.MaterialFontRoboto;
+import com.jhw.swing.material.standards.MaterialFontRoboto;
 import com.jhw.swing.models.input.panels.ModelPanel;
 import java.awt.Desktop;
 import java.io.File;

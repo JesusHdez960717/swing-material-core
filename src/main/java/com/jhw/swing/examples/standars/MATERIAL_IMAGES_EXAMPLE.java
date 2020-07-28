@@ -9,7 +9,7 @@ import javax.swing.ImageIcon;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import com.jhw.swing.ui.MaterialLookAndFeel;
-import com.jhw.swing.material.standars.MaterialImages;
+import com.jhw.swing.material.standards.MaterialImages;
 
 /**
  *
@@ -83,7 +83,7 @@ public class MATERIAL_IMAGES_EXAMPLE extends javax.swing.JFrame {
         );
 
         pack();
-    }// </editor-fold>//GEN-END:initComponents
+    }// </editor-fold>                        
 
     /**
      * @param args the command line arguments
@@ -100,6 +100,6 @@ public class MATERIAL_IMAGES_EXAMPLE extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//:variables
     private com.jhw.swing.material.components.container.panel._PanelGradient _PanelGradient1;
-    // End of variables declaration//GEN-END:variables
+    // End of variables declaration                   
 
 }
