@@ -13,7 +13,7 @@ public abstract class _MaterialPanelDetailMini<T> extends _MaterialPanelDetail<T
         this(new Column[]{});
     }
 
-    public _MaterialPanelDetailMini(Column[] arr) {
+    public _MaterialPanelDetailMini(Column... arr) {
         super(arr);
         this.setOptionPanelVisibility(false);
         this.setActionColumnVisivility(false);

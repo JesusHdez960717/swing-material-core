@@ -255,8 +255,8 @@ public class Utils {
 
     public static Color getForegroundAccording(Color color) {
         return isDark(color) ? 
-                PersonalizationHandler.getColor(Personalization.KEY_COLOR_WARNING) : 
-                PersonalizationHandler.getColor(Personalization.KEY_COLOR_WARNING);
+                PersonalizationHandler.getColor(Personalization.KEY_COLOR_FOREGROUND_FOR_DARK) : 
+                PersonalizationHandler.getColor(Personalization.KEY_COLOR_FOREGROUND_FOR_WHITE);
     }
 
     /**

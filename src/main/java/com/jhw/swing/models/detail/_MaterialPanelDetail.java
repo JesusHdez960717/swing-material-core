@@ -48,7 +48,7 @@ public abstract class _MaterialPanelDetail<T> extends _MaterialPanel implements 
         this(new Column[]{});
     }
 
-    public _MaterialPanelDetail(Column[] arr) {
+    public _MaterialPanelDetail(Column... arr) {
         initComponents();
         setColumns(arr);
         addListeners();
@@ -216,7 +216,7 @@ public abstract class _MaterialPanelDetail<T> extends _MaterialPanel implements 
         }
     }
 
-    public void setColumns(Column[] arr) {
+    public void setColumns(Column... arr) {
         Column columnsReal[] = new Column[arr.length + 2];
         columnsReal[0] = Column.builder().name(modelColumnName).build();
         columnsReal[columnsReal.length - 1] = Column.builder().name(actionsColumnName).editable(true).build();
