@@ -2,7 +2,7 @@ package com.jhw.swing.util;
 
 import com.jhw.utils.interfaces.Update;
 import java.awt.Component;
-import javax.swing.JPanel;
+import java.awt.Container;
 
 /**
  * Actualiza recursivamente una serie de elementos que implementes la interfaz
@@ -12,22 +12,22 @@ import javax.swing.JPanel;
  */
 public class UpdateCascade {
 
-    private final Update[] actualizables;
+    private final Update[] toUpdate;
 
-    public UpdateCascade(Update act) {
-        this(new Update[]{act});
+    public UpdateCascade(Update... toUpdate) {
+        this.toUpdate = toUpdate;
     }
 
-    public UpdateCascade(Update[] actualizables) {
-        this.actualizables = actualizables;
+    public static UpdateCascade from(Update... actualizables) {
+        return new UpdateCascade(actualizables);
     }
 
     public void updateCascade() {
         try {
-            for (Update act : actualizables) {
+            for (Update act : toUpdate) {
                 act.update();//actualiza todos
-                if (act instanceof JPanel) {//si es panel se mete adentro
-                    updateCascadeRecursive((JPanel) act);
+                if (act instanceof Container) {//si es container se mete adentro
+                    updateCascadeRecursive((Container) act);
                 }
             }
         } catch (Exception e) {
@@ -35,13 +35,13 @@ public class UpdateCascade {
         }
     }
 
-    private void updateCascadeRecursive(JPanel panel) {
-        for (Component c : panel.getComponents()) {
+    private void updateCascadeRecursive(Container container) {
+        for (Component c : container.getComponents()) {
             if (c instanceof Update) {//si el actaulizable lo actualiza
                 ((Update) c).update();
             }
-            if (c instanceof JPanel) {//si es panel se mete adentro
-                updateCascadeRecursive((JPanel) c);
+            if (c instanceof Container) {//si es panel se mete adentro
+                updateCascadeRecursive((Container) c);
             }
         }
     }
