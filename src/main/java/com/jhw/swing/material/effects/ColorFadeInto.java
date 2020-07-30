@@ -3,7 +3,7 @@ package com.jhw.swing.material.effects;
 import com.jhw.swing.util.SafePropertySetter;
 import com.jhw.swing.material.components.button._MaterialButton;
 import com.jhw.swing.material.standards.MaterialColors;
-import com.jhw.swing.personalization.Inistanciables;
+import com.jhw.swing.util.Utils;
 import com.jhw.swing.util.Utils;
 import java.awt.Color;
 import com.jhw.personalization.core.domain.Personalization;
@@ -72,7 +72,7 @@ public class ColorFadeInto {
     }
 
     private void setColorAnimated() {
-        Animator.Builder builder = new Animator.Builder(Inistanciables.getSwingTimerTimingSource())
+        Animator.Builder builder = new Animator.Builder(Utils.getSwingTimerTimingSource())
                 .setDuration(ElevationEffect.DURATION, TimeUnit.MILLISECONDS)
                 .setEndBehavior(Animator.EndBehavior.HOLD)
                 .setInterpolator(new SplineInterpolator(0.4, 0, 0.2, 1));

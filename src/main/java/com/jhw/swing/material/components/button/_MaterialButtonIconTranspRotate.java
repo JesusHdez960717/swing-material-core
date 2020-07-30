@@ -7,7 +7,7 @@ import javax.swing.Icon;
 import org.jdesktop.core.animation.timing.Animator;
 import org.jdesktop.core.animation.timing.TimingTargetAdapter;
 import org.jdesktop.core.animation.timing.interpolators.SplineInterpolator;
-import com.jhw.swing.personalization.Inistanciables;
+import com.jhw.swing.util.Utils;
 import com.jhw.swing.util.MaterialDrawingUtils;
 import com.jhw.swing.util.SafePropertySetter;
 
@@ -30,7 +30,7 @@ public class _MaterialButtonIconTranspRotate extends _MaterialButtonIconTranspar
         if (anim != null) {
             anim.cancel();
         }
-        anim = new Animator.Builder(Inistanciables.getSwingTimerTimingSource())
+        anim = new Animator.Builder(Utils.getSwingTimerTimingSource())
                 .setDuration(DURATION, TimeUnit.MILLISECONDS)
                 .setInterpolator(new SplineInterpolator(0.55, 0, 0.9, 0.7))
                 .addTarget(SafePropertySetter.getTarget(new SafePropertySetter.Setter<Integer>() {

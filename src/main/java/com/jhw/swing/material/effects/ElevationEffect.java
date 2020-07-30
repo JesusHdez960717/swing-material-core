@@ -6,7 +6,7 @@ import java.util.concurrent.TimeUnit;
 import javax.swing.*;
 import org.jdesktop.core.animation.timing.Animator;
 import org.jdesktop.core.animation.timing.interpolators.SplineInterpolator;
-import com.jhw.swing.personalization.Inistanciables;
+import com.jhw.swing.util.Utils;
 import com.jhw.swing.util.MaterialDrawingUtils;
 import com.jhw.swing.material.standards.MaterialShadow;
 import com.jhw.personalization.core.domain.Personalization;
@@ -143,7 +143,7 @@ public class ElevationEffect {
     }
 
     private void setElevationAnimated(double level) {
-        animator = new Animator.Builder(Inistanciables.getSwingTimerTimingSource())
+        animator = new Animator.Builder(Utils.getSwingTimerTimingSource())
                 .setDuration(DURATION, TimeUnit.MILLISECONDS)
                 .setEndBehavior(Animator.EndBehavior.HOLD)
                 .setInterpolator(new SplineInterpolator(0.55, 0, 0.1, 1))

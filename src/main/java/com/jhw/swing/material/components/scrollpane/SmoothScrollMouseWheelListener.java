@@ -8,7 +8,7 @@ import java.awt.event.MouseWheelListener;
 import java.util.concurrent.TimeUnit;
 import javax.swing.JScrollPane;
 import org.jdesktop.core.animation.timing.Animator;
-import com.jhw.swing.personalization.Inistanciables;
+import com.jhw.swing.util.Utils;
 import com.jhw.swing.ui.utils.MaterialManagerListener;
 import com.jhw.swing.util.SafePropertySetter;
 import com.jhw.personalization.core.domain.Personalization;
@@ -95,7 +95,7 @@ public class SmoothScrollMouseWheelListener implements MouseWheelListener {
     }
 
     private void doAnimatedMove() {
-        anim = new Animator.Builder(Inistanciables.getSwingTimerTimingSource())
+        anim = new Animator.Builder(Utils.getSwingTimerTimingSource())
                 .setDuration(DURATION, TimeUnit.MILLISECONDS)
                 //.setInterpolator(new SplineInterpolator(0.55, 0, 0.9, 0.7))//comented for linear interpolation
                 .addTarget(SafePropertySetter.getTarget(new SafePropertySetter.Setter<Integer>() {

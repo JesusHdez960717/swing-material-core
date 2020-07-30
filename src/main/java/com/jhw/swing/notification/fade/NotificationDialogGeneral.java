@@ -11,7 +11,7 @@ import javax.swing.JDialog;
 import org.jdesktop.core.animation.timing.Animator;
 import org.jdesktop.core.animation.timing.TimingTargetAdapter;
 import org.jdesktop.core.animation.timing.interpolators.SplineInterpolator;
-import com.jhw.swing.personalization.Inistanciables;
+import com.jhw.swing.util.Utils;
 import com.jhw.swing.util.SafePropertySetter;
 import com.jhw.swing.material.standards.MaterialColors;
 import com.jhw.swing.material.standards.MaterialFontRoboto;
@@ -82,7 +82,7 @@ public class NotificationDialogGeneral extends JDialog {
         NotificationDialogGeneral act = this;
 
         act.setOpacity(0f);
-        new Animator.Builder(Inistanciables.getSwingTimerTimingSource())
+        new Animator.Builder(Utils.getSwingTimerTimingSource())
                 .setDuration(DURATION_FADE, TimeUnit.MILLISECONDS)
                 .setInterpolator(new SplineInterpolator(0.1, 0.3, 0.45, 1))
                 .addTarget(SafePropertySetter.getTarget(new SafePropertySetter.Setter<Float>() {
@@ -102,7 +102,7 @@ public class NotificationDialogGeneral extends JDialog {
                 })
                 .build().start();
 
-        new Animator.Builder(Inistanciables.getSwingTimerTimingSource())
+        new Animator.Builder(Utils.getSwingTimerTimingSource())
                 .setStartDelay(delay + DURATION_FADE, TimeUnit.MILLISECONDS)
                 .setDuration(DURATION_FADE, TimeUnit.MILLISECONDS)
                 .setInterpolator(new SplineInterpolator(0.1, 0.3, 0.45, 1))
@@ -211,7 +211,7 @@ public class NotificationDialogGeneral extends JDialog {
     }
 
     private void doMoveAnimated(int nextY) {
-        anim = new Animator.Builder(Inistanciables.getSwingTimerTimingSource())
+        anim = new Animator.Builder(Utils.getSwingTimerTimingSource())
                 .setDuration(DURATION_MOVE, TimeUnit.MILLISECONDS)
                 .setInterpolator(new SplineInterpolator(0.1, 0.3, 0.45, 1))
                 .addTarget(SafePropertySetter.getTarget(new SafePropertySetter.Setter<Integer>() {

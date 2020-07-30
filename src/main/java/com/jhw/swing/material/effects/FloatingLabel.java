@@ -8,7 +8,7 @@ import java.util.concurrent.TimeUnit;
 import com.jhw.swing.material.components.textfield._MaterialTextField;
 import org.jdesktop.core.animation.timing.Animator;
 import org.jdesktop.core.animation.timing.interpolators.SplineInterpolator;
-import com.jhw.swing.personalization.Inistanciables;
+import com.jhw.swing.util.Utils;
 import com.jhw.personalization.core.domain.Personalization;
 import com.jhw.personalization.services.PersonalizationHandler;
 import com.jhw.swing.util.SafePropertySetter;
@@ -135,7 +135,7 @@ public class FloatingLabel {
     }
 
     private void setValuesAnimated() {
-        Animator.Builder builder = new Animator.Builder(Inistanciables.getSwingTimerTimingSource())
+        Animator.Builder builder = new Animator.Builder(Utils.getSwingTimerTimingSource())
                 .setDuration(DURATION, TimeUnit.MILLISECONDS)
                 .setEndBehavior(Animator.EndBehavior.HOLD)
                 .setInterpolator(new SplineInterpolator(0.4, 0, 0.2, 1));

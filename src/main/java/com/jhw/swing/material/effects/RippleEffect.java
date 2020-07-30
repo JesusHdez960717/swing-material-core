@@ -12,7 +12,7 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
-import com.jhw.swing.personalization.Inistanciables;
+import com.jhw.swing.util.Utils;
 import com.jhw.personalization.core.domain.Personalization;
 import com.jhw.personalization.services.PersonalizationHandler;
 
@@ -160,7 +160,7 @@ public class RippleEffect {
 
         void start() {
             //rippleCenter.setLocation(rippleCenter);
-            Animator rippleAnimator = new Animator.Builder(Inistanciables.getSwingTimerTimingSource())
+            Animator rippleAnimator = new Animator.Builder(Utils.getSwingTimerTimingSource())
                     .setDuration(1000, TimeUnit.MILLISECONDS)
                     .setEndBehavior(Animator.EndBehavior.HOLD)
                     .setInterpolator(new AccelerationInterpolator(0.2, 0.19))

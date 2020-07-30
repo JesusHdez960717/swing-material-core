@@ -12,7 +12,7 @@ import java.util.concurrent.TimeUnit;
 import javax.swing.ImageIcon;
 import org.jdesktop.core.animation.timing.Animator;
 import org.jdesktop.core.animation.timing.interpolators.SplineInterpolator;
-import com.jhw.swing.personalization.Inistanciables;
+import com.jhw.swing.util.Utils;
 import com.jhw.swing.util.SafePropertySetter;
 import com.jhw.swing.util.Utils;
 import com.jhw.personalization.core.domain.Personalization;
@@ -95,7 +95,7 @@ public class DialogNotificationToastGeneral extends DialogToast {
     }
 
     private void doMoveAnimated(int nextY) {
-        anim = new Animator.Builder(Inistanciables.getSwingTimerTimingSource())
+        anim = new Animator.Builder(Utils.getSwingTimerTimingSource())
                 .setDuration(DURATION, TimeUnit.MILLISECONDS)
                 .setInterpolator(new SplineInterpolator(0.1, 0.3, 0.45, 1))
                 .addTarget(SafePropertySetter.getTarget(new SafePropertySetter.Setter<Integer>() {

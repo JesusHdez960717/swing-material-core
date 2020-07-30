@@ -8,7 +8,7 @@ import javax.swing.*;
 import org.jdesktop.core.animation.timing.Animator;
 import org.jdesktop.core.animation.timing.TimingTargetAdapter;
 import org.jdesktop.core.animation.timing.interpolators.SplineInterpolator;
-import com.jhw.swing.personalization.Inistanciables;
+import com.jhw.swing.util.Utils;
 import com.jhw.swing.util.SafePropertySetter;
 
 /**
@@ -114,7 +114,7 @@ public class ToastDisplayer extends JComponent {
 
     private void animToDown(int delay) {
         //timer to down
-        anim = new Animator.Builder(Inistanciables.getSwingTimerTimingSource())
+        anim = new Animator.Builder(Utils.getSwingTimerTimingSource())
                 .setStartDelay(delay, TimeUnit.MILLISECONDS)
                 .setDuration(DURATION, TimeUnit.MILLISECONDS)
                 .setInterpolator(new SplineInterpolator(0.55, 0, 0.9, 0.7))
@@ -143,7 +143,7 @@ public class ToastDisplayer extends JComponent {
 
     private void animToUp() {
         //timer to up
-        new Animator.Builder(Inistanciables.getSwingTimerTimingSource())
+        new Animator.Builder(Utils.getSwingTimerTimingSource())
                 .setDuration(DURATION, TimeUnit.MILLISECONDS)
                 .setInterpolator(new SplineInterpolator(0.1, 0.3, 0.45, 1))
                 .addTarget(SafePropertySetter.getTarget(new SafePropertySetter.Setter<Integer>() {

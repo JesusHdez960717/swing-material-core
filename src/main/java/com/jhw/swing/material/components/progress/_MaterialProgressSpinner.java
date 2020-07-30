@@ -9,7 +9,7 @@ import org.jdesktop.core.animation.timing.interpolators.SplineInterpolator;
 import javax.swing.*;
 import java.awt.*;
 import java.util.concurrent.TimeUnit;
-import com.jhw.swing.personalization.Inistanciables;
+import com.jhw.swing.util.Utils;
 import com.jhw.swing.util.MaterialDrawingUtils;
 import com.jhw.swing.util.interfaces.MaterialComponent;
 import com.jhw.swing.material.standards.MaterialColors;
@@ -38,7 +38,7 @@ public class _MaterialProgressSpinner extends JComponent implements MaterialComp
         final int ARCTIME = 1333;
         final int ARCSTARTROT = 216;
 
-        Animator animator = new Animator.Builder(Inistanciables.getSwingTimerTimingSource())
+        Animator animator = new Animator.Builder(Utils.getSwingTimerTimingSource())
                 .setDuration(4 * ARCTIME, TimeUnit.MILLISECONDS)
                 .setRepeatCount(Animator.INFINITE)
                 .setRepeatBehavior(Animator.RepeatBehavior.LOOP)
@@ -69,7 +69,7 @@ public class _MaterialProgressSpinner extends JComponent implements MaterialComp
                 })
                 .build();
         animator.start();
-        Animator animator2 = new Animator.Builder(Inistanciables.getSwingTimerTimingSource())
+        Animator animator2 = new Animator.Builder(Utils.getSwingTimerTimingSource())
                 .setDuration(ARCTIME, TimeUnit.MILLISECONDS)
                 .setRepeatCount(Long.MAX_VALUE)
                 .setRepeatBehavior(Animator.RepeatBehavior.LOOP)
@@ -88,7 +88,7 @@ public class _MaterialProgressSpinner extends JComponent implements MaterialComp
                 })
                 .build();
         animator2.start();
-        Animator animator3 = new Animator.Builder(Inistanciables.getSwingTimerTimingSource())
+        Animator animator3 = new Animator.Builder(Utils.getSwingTimerTimingSource())
                 .setDuration(360 * ARCTIME / (ARCSTARTROT + (360 - ARCSIZE)), TimeUnit.MILLISECONDS)
                 .setRepeatCount(Long.MAX_VALUE)
                 .setRepeatBehavior(Animator.RepeatBehavior.LOOP)

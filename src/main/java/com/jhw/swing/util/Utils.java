@@ -25,6 +25,7 @@ import com.jhw.swing.material.standards.MaterialColors;
 import com.jhw.swing.notification.NotificationLocation;
 import java.awt.Canvas;
 import java.awt.Component;
+import org.jdesktop.swing.animation.timing.sources.SwingTimerTimingSource;
 
 /**
  * This class provides utilitary methods for Swing Material. These are public
@@ -34,6 +35,15 @@ import java.awt.Component;
  */
 public class Utils {
 
+    private static SwingTimerTimingSource timer;
+
+    public static SwingTimerTimingSource getSwingTimerTimingSource() {
+        if (timer == null) {
+            timer = new SwingTimerTimingSource();
+            timer.init();
+        }
+        return timer;
+    }
     /**
      * A boolean flag for {@code getScreenSize()}, signaling if
      * {@code sun.java2d.SunGraphicsEnvironment.getUsableBounds()} is available
@@ -254,9 +264,9 @@ public class Utils {
     }
 
     public static Color getForegroundAccording(Color color) {
-        return isDark(color) ? 
-                PersonalizationHandler.getColor(Personalization.KEY_COLOR_FOREGROUND_FOR_DARK) : 
-                PersonalizationHandler.getColor(Personalization.KEY_COLOR_FOREGROUND_FOR_WHITE);
+        return isDark(color)
+                ? PersonalizationHandler.getColor(Personalization.KEY_COLOR_FOREGROUND_FOR_DARK)
+                : PersonalizationHandler.getColor(Personalization.KEY_COLOR_FOREGROUND_FOR_WHITE);
     }
 
     /**
