@@ -8,11 +8,12 @@ import com.jhw.swing.material.components.button._MaterialButtonIconTransparent;
 import com.jhw.swing.material.components.container.panel._PanelGradient;
 import com.jhw.swing.material.components.table.Column;
 import com.jhw.swing.material.components.table.editors_renders.component.ComponentCellRender;
-import com.jhw.swing.examples.standars.MATERIAL_COLORS_EXAMPLE;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JPanel;
 import com.jhw.swing.material.standards.MaterialIcons;
+import java.awt.Color;
+import java.util.Random;
 
 /**
  *
@@ -53,7 +54,8 @@ public class CargoDetailView extends _MaterialPanelDetail<CargoModel> {
 
     private JPanel getColorPanel() {
         _PanelGradient panel = new _PanelGradient();
-        java.awt.Color c = MATERIAL_COLORS_EXAMPLE.getRandomColor();
+        Random rdm = new Random();
+        java.awt.Color c = new Color(rdm.nextInt());
         panel.setBackground(c);
         return panel;
     }
