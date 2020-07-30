@@ -7,7 +7,7 @@ import org.jdesktop.swingx.JXDatePicker;
 import com.jhw.utils.others.SDF;
 import com.jhw.swing.util.MaterialDrawingUtils;
 import com.jhw.swing.util.interfaces.DateSelected;
-import com.jhw.swing.material.standars.MaterialFontRoboto;
+import com.jhw.swing.material.standards.MaterialFontRoboto;
 
 /**
  *

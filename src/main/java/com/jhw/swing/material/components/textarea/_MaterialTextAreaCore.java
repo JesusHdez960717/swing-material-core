@@ -3,8 +3,8 @@ package com.jhw.swing.material.components.textarea;
 import java.awt.Color;
 import javax.swing.JTextArea;
 import com.jhw.swing.util.Utils;
-import com.jhw.swing.material.standars.MaterialColors;
-import com.jhw.swing.material.standars.MaterialFontRoboto;
+import com.jhw.swing.material.standards.MaterialColors;
+import com.jhw.swing.material.standards.MaterialFontRoboto;
 
 /**
  *

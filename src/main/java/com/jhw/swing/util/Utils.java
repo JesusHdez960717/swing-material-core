@@ -18,10 +18,12 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.Arrays;
-import com.jhw.swing.personalization.PersonalizationMaterial;
 //import sun.font.FontDesignMetrics;
-import com.jhw.swing.material.standars.MaterialColors;
+import com.jhw.personalization.core.domain.Personalization;
+import com.jhw.personalization.services.PersonalizationHandler;
+import com.jhw.swing.material.standards.MaterialColors;
 import java.awt.Canvas;
+import org.jdesktop.swing.animation.timing.sources.SwingTimerTimingSource;
 
 /**
  * This class provides utilitary methods for Swing Material. These are public
@@ -31,6 +33,16 @@ import java.awt.Canvas;
  */
 public class Utils {
 
+    private static SwingTimerTimingSource timer;
+
+    public static SwingTimerTimingSource getSwingTimerTimingSource() {
+        if (timer == null) {
+            timer = new SwingTimerTimingSource();
+            timer.init();
+        }
+        return timer;
+    }
+    
     /**
      * A boolean flag for {@code getScreenSize()}, signaling if
      * {@code sun.java2d.SunGraphicsEnvironment.getUsableBounds()} is available
@@ -62,7 +74,7 @@ public class Utils {
                                 new Class[]{java.awt.GraphicsDevice.class})
                         && meth.getExceptionTypes().length == 0
                         && meth.getReturnType()
-                        .equals(java.awt.Rectangle.class)) {
+                                .equals(java.awt.Rectangle.class)) {
                     //We found it!
                     getMethod = meth;
                     found = true;
@@ -162,7 +174,7 @@ public class Utils {
      * el doBeep.
      */
     public static void beep() {
-        if (PersonalizationMaterial.getInstance().isDoBeep()) {
+        if (PersonalizationHandler.getBoolean(Personalization.KEY_DO_BEEP)) {
             Toolkit.getDefaultToolkit().beep();
         }
     }
@@ -251,7 +263,9 @@ public class Utils {
     }
 
     public static Color getForegroundAccording(Color color) {
-        return isDark(color) ? PersonalizationMaterial.getInstance().getColorForegroundForDark() : PersonalizationMaterial.getInstance().getColorForegroundForWhite();
+        return isDark(color)
+                ? PersonalizationHandler.getColor(Personalization.KEY_COLOR_FOREGROUND_FOR_DARK)
+                : PersonalizationHandler.getColor(Personalization.KEY_COLOR_FOREGROUND_FOR_WHITE);
     }
 
     /**

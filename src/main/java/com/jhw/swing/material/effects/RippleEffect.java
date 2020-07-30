@@ -5,7 +5,6 @@ import com.jhw.swing.util.SafePropertySetter.Property;
 import org.jdesktop.core.animation.timing.Animator;
 import org.jdesktop.core.animation.timing.TimingTargetAdapter;
 import org.jdesktop.core.animation.timing.interpolators.AccelerationInterpolator;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
@@ -13,8 +12,9 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
-import com.jhw.swing.personalization.Inistanciables;
-import com.jhw.swing.personalization.PersonalizationMaterial;
+import com.jhw.swing.util.Utils;
+import com.jhw.personalization.core.domain.Personalization;
+import com.jhw.personalization.services.PersonalizationHandler;
 
 /**
  * A {@code RippleEffect} is applied into certain components, like buttons and
@@ -46,20 +46,22 @@ public class RippleEffect {
      * }
      * </code>
      *
-     * @param g canvas
+     * @param g2 canvas
      */
-    public void paint(Graphics g) {
-        Graphics2D g2 = (Graphics2D) g;
-        //si hay las pinto, el if esta en el add
-        for (RippleAnimation rippleAnimation : ripples) {
-            float rippleOpacity = rippleAnimation.rippleOpacity.getValue().floatValue();
-            Point rippleCenter = rippleAnimation.rippleCenter;
-            int rippleRadius = rippleAnimation.rippleRadius.getValue();
+    public void paint(Graphics2D g2) {
+        //si no es transparente
+        if (g2.getColor() != null && g2.getColor().getAlpha() != 0) {//si hay las pinto, el if esta en el add
+            for (RippleAnimation rippleAnimation : ripples) {
+                float rippleOpacity = rippleAnimation.rippleOpacity.getValue().floatValue();
+                Point rippleCenter = rippleAnimation.rippleCenter;
+                int rippleRadius = rippleAnimation.rippleRadius.getValue();
 
-            Color fg = g2.getColor();
-            g2.setColor(new Color(fg.getRed() / 255f, fg.getGreen() / 255f, fg.getBlue() / 255f, rippleOpacity));
-            g2.fillOval(rippleCenter.x - rippleRadius, rippleCenter.y - rippleRadius, 2 * rippleRadius, 2 * rippleRadius);
+                Color fg = g2.getColor();
+                g2.setColor(new Color(fg.getRed() / 255f, fg.getGreen() / 255f, fg.getBlue() / 255f, rippleOpacity));
+                g2.fillOval(rippleCenter.x - rippleRadius, rippleCenter.y - rippleRadius, 2 * rippleRadius, 2 * rippleRadius);
+            }
         }
+
     }
 
     /**
@@ -70,7 +72,7 @@ public class RippleEffect {
      */
     public void addRipple(Point point, int maxRadius) {
         //si no hay animaciones no agrego el ripple
-        if (PersonalizationMaterial.getInstance().isUseAnimations()) {
+        if (PersonalizationHandler.getBoolean(Personalization.KEY_USE_ANIMATIONS)) {
             final RippleAnimation ripple = new RippleAnimation(point, maxRadius);
             ripples.add(ripple);
             ripple.start();
@@ -134,7 +136,8 @@ public class RippleEffect {
         target.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                rippleEffect.addRipple(new Point(target.getWidth(), target.getHeight()), target.getWidth() / 2);
+                int min = Math.min(target.getWidth(), target.getHeight());
+                rippleEffect.addRipple(new Point(target.getWidth() / 2, target.getHeight() / 2), min/2);
             }
         });
         return rippleEffect;
@@ -157,7 +160,7 @@ public class RippleEffect {
 
         void start() {
             //rippleCenter.setLocation(rippleCenter);
-            Animator rippleAnimator = new Animator.Builder(Inistanciables.getSwingTimerTimingSource())
+            Animator rippleAnimator = new Animator.Builder(Utils.getSwingTimerTimingSource())
                     .setDuration(1000, TimeUnit.MILLISECONDS)
                     .setEndBehavior(Animator.EndBehavior.HOLD)
                     .setInterpolator(new AccelerationInterpolator(0.2, 0.19))

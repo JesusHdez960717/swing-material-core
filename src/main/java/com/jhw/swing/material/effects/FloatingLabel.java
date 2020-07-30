@@ -5,24 +5,26 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontMetrics;
 import java.util.concurrent.TimeUnit;
-import javax.swing.JTextField;
 import com.jhw.swing.material.components.textfield._MaterialTextField;
 import org.jdesktop.core.animation.timing.Animator;
 import org.jdesktop.core.animation.timing.interpolators.SplineInterpolator;
-import com.jhw.swing.personalization.Inistanciables;
-import com.jhw.swing.personalization.PersonalizationMaterial;
+import com.jhw.swing.util.Utils;
+import com.jhw.personalization.core.domain.Personalization;
+import com.jhw.personalization.services.PersonalizationHandler;
 import com.jhw.swing.util.SafePropertySetter;
 import com.jhw.swing.util.Utils;
 import com.jhw.swing.util.enums.TextTypeEnum;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 
 /**
- * A floating label of a text field.
+ * A floating label of a component that complies to the FloatingLabelStandar
  */
 public class FloatingLabel {
 
     public static final int DURATION = 200;
 
-    private final JTextField target;
+    private final FloatingLabelStandar target;
     private Animator animator;
     private final SafePropertySetter.Property<Integer> y;
     private final SafePropertySetter.Property<Integer> x;
@@ -30,15 +32,22 @@ public class FloatingLabel {
     private final SafePropertySetter.Property<Color> color;
     private Color accentColor;
 
-    public FloatingLabel(JTextField target) {
+    public FloatingLabel(FloatingLabelStandar target) {
         this.target = target;
 
-        y = SafePropertySetter.animatableProperty(target, 0);//target.getSize().height / 2 + target.getFontMetrics(target.getFont()).getAscent() / 2);
-        x = SafePropertySetter.animatableProperty(target, 0);//target.getSize().height / 2 + target.getFontMetrics(target.getFont()).getAscent() / 2);
-        fontSize = SafePropertySetter.animatableProperty(target, target.getFont().getSize2D());
-        color = SafePropertySetter.animatableProperty(target, Utils.applyAlphaMask(target.getForeground(), HINT_OPACITY_MASK));
+        y = SafePropertySetter.animatableProperty(target.getComponent(), 0);//target.getSize().height / 2 + target.getFontMetrics(target.getFont()).getAscent() / 2);
+        x = SafePropertySetter.animatableProperty(target.getComponent(), 0);//target.getSize().height / 2 + target.getFontMetrics(target.getFont()).getAscent() / 2);
+        fontSize = SafePropertySetter.animatableProperty(target.getComponent(), target.getFont().getSize2D());
+        color = SafePropertySetter.animatableProperty(target.getComponent(), Utils.applyAlphaMask(target.getForeground(), HINT_OPACITY_MASK));
 
         this.updateForeground();
+        
+        target.getComponent().addComponentListener(new ComponentAdapter() {
+            @Override
+            public void componentResized(ComponentEvent e) {
+                update();
+            }
+        });
     }
 
     public void updateForeground() {
@@ -49,7 +58,7 @@ public class FloatingLabel {
         if (animator != null) {
             animator.stop();
         }
-        if (PersonalizationMaterial.getInstance().isUseAnimations()) {
+        if (PersonalizationHandler.getBoolean(Personalization.KEY_USE_ANIMATIONS)) {
             setValuesAnimated();
         } else {
             setValuesStatics();
@@ -58,6 +67,7 @@ public class FloatingLabel {
 
     public void setAccentColor(Color accentColor) {
         this.accentColor = accentColor;
+        update();
     }
 
     public Color getColor() {
@@ -125,12 +135,12 @@ public class FloatingLabel {
     }
 
     private void setValuesAnimated() {
-        Animator.Builder builder = new Animator.Builder(Inistanciables.getSwingTimerTimingSource())
+        Animator.Builder builder = new Animator.Builder(Utils.getSwingTimerTimingSource())
                 .setDuration(DURATION, TimeUnit.MILLISECONDS)
                 .setEndBehavior(Animator.EndBehavior.HOLD)
                 .setInterpolator(new SplineInterpolator(0.4, 0, 0.2, 1));
 
-        //Font size, si no hay letra es tamaño real, si esta arriba es el 80% del tamaño(1 poquito mas chiquito)
+        //Font size, si no hay letra es tamaÃ±o real, si esta arriba es el 80% del tamaÃ±o(1 poquito mas chiquito)
         float targetFontSize = getTargetFontSize();
         if (fontSize.getValue() != targetFontSize) {
             builder.addTarget(SafePropertySetter.getTarget(fontSize, fontSize.getValue(), targetFontSize));
@@ -159,7 +169,7 @@ public class FloatingLabel {
     }
 
     private void setValuesStatics() {
-        //Font size, si no hay letra es tamaño real, si esta arriba es el 80% del tamaño(1 poquito mas chiquito)
+        //Font size, si no hay letra es tamaÃ±o real, si esta arriba es el 80% del tamaÃ±o(1 poquito mas chiquito)
         fontSize.setValue(getTargetFontSize());
 
         //Y position

@@ -6,10 +6,11 @@ import java.util.concurrent.TimeUnit;
 import javax.swing.*;
 import org.jdesktop.core.animation.timing.Animator;
 import org.jdesktop.core.animation.timing.interpolators.SplineInterpolator;
-import com.jhw.swing.personalization.Inistanciables;
-import com.jhw.swing.personalization.PersonalizationMaterial;
+import com.jhw.swing.util.Utils;
 import com.jhw.swing.util.MaterialDrawingUtils;
-import com.jhw.swing.material.standars.MaterialShadow;
+import com.jhw.swing.material.standards.MaterialShadow;
+import com.jhw.personalization.core.domain.Personalization;
+import com.jhw.personalization.services.PersonalizationHandler;
 
 /**
  * An elevation effect.
@@ -53,7 +54,7 @@ public class ElevationEffect {
         this.targetLevel = level;
         this.level.setValue((double) targetLevel);
         if (target.isShowing()) {
-            if (PersonalizationMaterial.getInstance().isUseAnimations() && level != targetLevel) {
+            if (PersonalizationHandler.getBoolean(Personalization.KEY_USE_ANIMATIONS) && level != targetLevel) {
                 setElevationAnimated(level);
             }
         }
@@ -85,14 +86,19 @@ public class ElevationEffect {
     /**
      * Paints this effect.
      *
-     * @param g canvas
+     * @param g2 canvas
      */
-    public void paint(Graphics g) {
-        if (PersonalizationMaterial.getInstance().isUseShadow()) {
-            Graphics2D g2 = MaterialDrawingUtils.getAliasedGraphics(g);
+    public void paint(Graphics2D g2) {
+        if (PersonalizationHandler.getBoolean(Personalization.KEY_USE_SHADOW)) {
+            //priorizado la velocidad, la calidad no hace diferencia
+            g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_NEAREST_NEIGHBOR);
+            g2.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_SPEED);
+
             g2.setBackground(target.getParent().getBackground());
             g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1.0f));
             g2.drawImage(shadowFast.render(target.getWidth(), target.getHeight(), borderRadius, level.getValue(), MaterialShadow.Type.SQUARE), 0, 0, null);
+
+            MaterialDrawingUtils.getAliasedGraphics(g2);
         }
     }
 
@@ -137,7 +143,7 @@ public class ElevationEffect {
     }
 
     private void setElevationAnimated(double level) {
-        animator = new Animator.Builder(Inistanciables.getSwingTimerTimingSource())
+        animator = new Animator.Builder(Utils.getSwingTimerTimingSource())
                 .setDuration(DURATION, TimeUnit.MILLISECONDS)
                 .setEndBehavior(Animator.EndBehavior.HOLD)
                 .setInterpolator(new SplineInterpolator(0.55, 0, 0.1, 1))
@@ -156,12 +162,17 @@ public class ElevationEffect {
         }
 
         @Override
-        public void paint(Graphics g) {
-            if (PersonalizationMaterial.getInstance().isUseShadow()) {
-                Graphics2D g2 = MaterialDrawingUtils.getAliasedGraphics(g);
+        public void paint(Graphics2D g2) {
+            if (PersonalizationHandler.getBoolean(Personalization.KEY_USE_SHADOW)) {
+                //priorizado la velocidad, la calidad no hace diferencia
+                g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_NEAREST_NEIGHBOR);
+                g2.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_SPEED);
+
                 g2.setBackground(target.getParent().getBackground());
                 g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1.0f));
                 g2.drawImage(shadowFast.render(target.getWidth(), target.getHeight(), borderRadius, level.getValue(), MaterialShadow.Type.CIRCULAR), 0, 0, null);
+
+                MaterialDrawingUtils.getAliasedGraphics(g2);
             }
         }
     }

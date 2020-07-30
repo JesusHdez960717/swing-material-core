@@ -11,7 +11,11 @@ import com.jhw.swing.util.validations.icbs.SeleccionableValidation;
 public abstract class ICBSNotEmptySeleccionable<T> extends InputComboBoxSelection<T> {
 
     public ICBSNotEmptySeleccionable(String label) {
-        super(label);
+        this(label, "Seleccione...");
+    }
+
+    public ICBSNotEmptySeleccionable(String label, String hint) {
+        super(label, hint);
         addValidations();
     }
 

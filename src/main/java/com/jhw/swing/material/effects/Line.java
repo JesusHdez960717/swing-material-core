@@ -5,9 +5,12 @@ import java.util.concurrent.TimeUnit;
 import javax.swing.JComponent;
 import org.jdesktop.core.animation.timing.Animator;
 import org.jdesktop.core.animation.timing.interpolators.SplineInterpolator;
-import com.jhw.swing.personalization.Inistanciables;
-import com.jhw.swing.personalization.PersonalizationMaterial;
+import com.jhw.swing.util.Utils;
+import com.jhw.personalization.core.domain.Personalization;
+import com.jhw.personalization.services.PersonalizationHandler;
 import com.jhw.swing.util.SafePropertySetter;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 
 /**
  * An animated line that appears below a component when it is focused.
@@ -21,13 +24,20 @@ public class Line {
     public Line(JComponent target) {
         this.target = target;
         width = SafePropertySetter.animatableProperty(target, 0d);
+        
+        target.addComponentListener(new ComponentAdapter() {
+            @Override
+            public void componentResized(ComponentEvent e) {
+                update();
+            }
+        });
     }
 
     public void update() {
         if (animator != null) {
             animator.stop();
         }
-        if (PersonalizationMaterial.getInstance().isUseAnimations()) {
+        if (PersonalizationHandler.getBoolean(Personalization.KEY_USE_ANIMATIONS)) {
             setWidthAnimated();
         } else {
             width.setValue(getTargetWidth());
@@ -39,7 +49,7 @@ public class Line {
     }
 
     private void setWidthAnimated() {
-        animator = new Animator.Builder(Inistanciables.getSwingTimerTimingSource())
+        animator = new Animator.Builder(Utils.getSwingTimerTimingSource())
                 .setDuration(DURATION, TimeUnit.MILLISECONDS)
                 .setEndBehavior(Animator.EndBehavior.HOLD)
                 .setInterpolator(new SplineInterpolator(0.4, 0, 0.2, 1))

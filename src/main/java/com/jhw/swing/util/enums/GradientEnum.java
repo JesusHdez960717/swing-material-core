@@ -10,6 +10,7 @@ public enum GradientEnum {
     HORIZONTAL,
     VERTICAL,
     VERTICAL_3_4,
+    HORIZONTAL_3_4,
     ESQUINA_1,
     ESQUINA_2,
     ESQUINA_3,

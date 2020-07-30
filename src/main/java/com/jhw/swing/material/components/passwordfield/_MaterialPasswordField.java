@@ -4,20 +4,22 @@ import static com.jhw.swing.material.components.textfield._MaterialTextField.HIN
 import static com.jhw.swing.material.components.textfield._MaterialTextField.LINE_OPACITY_MASK;
 import com.clean.core.exceptions.ValidationException;
 import com.jhw.swing.material.effects.FloatingLabel;
+import com.jhw.swing.material.effects.FloatingLabelStandar;
 import java.awt.*;
 import java.awt.event.FocusEvent;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.text.DefaultCaret;
-import com.jhw.swing.personalization.PersonalizationMaterial;
+import com.jhw.personalization.core.domain.Personalization;
+import com.jhw.personalization.services.PersonalizationHandler;
 import com.jhw.utils.security.SHA;
 import com.jhw.swing.util.MaterialDrawingUtils;
 import com.jhw.swing.material.effects.Line;
 import com.jhw.swing.util.interfaces.MaterialComponent;
 import com.jhw.swing.util.Utils;
-import com.jhw.swing.material.standars.MaterialColors;
-import com.jhw.swing.material.standars.MaterialFontRoboto;
+import com.jhw.swing.material.standards.MaterialColors;
+import com.jhw.swing.material.standards.MaterialFontRoboto;
 import com.jhw.swing.util.validations.Validation;
 import com.jhw.swing.util.validations.textfield.TextFieldValidation;
 
@@ -31,19 +33,19 @@ import com.jhw.swing.util.validations.textfield.TextFieldValidation;
  * href="https://www.google.com/design/spec/components/text-fields.html">Text
  * fields (Google design guidelines)</a>
  */
-public class _MaterialPasswordField extends JPasswordField implements MaterialComponent {
+public class _MaterialPasswordField extends JPasswordField implements MaterialComponent, FloatingLabelStandar {
 
     private FloatingLabel floatingLabel;
     private Line line;
     private String hint = "hint";
     private String label = "label";
-    private Color accentColor = PersonalizationMaterial.getInstance().getColorAccent();
+    private Color accentColor = PersonalizationHandler.getColor(Personalization.KEY_COLOR_ACCENT);
 
     //default
     private Color foreground = MaterialColors.BLACK;
 
     //flags for wrong
-    private Color wrongColor = PersonalizationMaterial.getInstance().getColorWrong();
+    private Color wrongColor = PersonalizationHandler.getColor(Personalization.KEY_COLOR_WRONG);
     private String wrongText = "Error en este campo";
     private boolean wrongFlag = false;
 
@@ -486,5 +488,10 @@ public class _MaterialPasswordField extends JPasswordField implements MaterialCo
 
     public boolean containValidation(TextFieldValidation v) {
         return preValidations.contains(v) || postValidations.contains(v);
+    }
+
+    @Override
+    public Component getComponent() {
+        return this;
     }
 }

@@ -1,10 +1,10 @@
 package com.jhw.swing.material.components.button;
 
 import com.jhw.swing.util.Utils;
-import com.jhw.swing.material.standars.MaterialFontRoboto;
-import com.jhw.swing.material.standars.MaterialShadow;
-import com.jhw.swing.material.standars.MaterialColors;
-import com.jhw.swing.util.icons.icon_ttf.IconTTF;
+import com.jhw.swing.material.standards.MaterialFontRoboto;
+import com.jhw.swing.material.standards.MaterialShadow;
+import com.jhw.swing.material.standards.MaterialColors;
+import com.jhw.swing.utils.icons.IconTTF;
 import com.jhw.swing.material.effects.ElevationEffect;
 import com.jhw.swing.material.effects.RippleEffect;
 import com.jhw.swing.util.interfaces.MaterialComponent;
@@ -16,7 +16,8 @@ import javax.swing.plaf.basic.BasicButtonUI;
 import com.jhw.swing.util.MaterialDrawingUtils;
 import com.jhw.swing.material.effects.ColorFadeInto;
 import com.jhw.swing.material.effects.ColorFadeInto.ColorChangeTo;
-import com.jhw.swing.util.icons.DerivableIcon;
+import com.jhw.swing.utils.icons.DerivableIcon;
+import javax.swing.border.EmptyBorder;
 
 /**
  * A Material Design button.
@@ -26,8 +27,6 @@ import com.jhw.swing.util.icons.DerivableIcon;
  * (Google design guidelines)</a>
  */
 public class _MaterialButton extends JButton implements MaterialComponent {
-
-    private final int DISTANCE_ICON_TEXT = 2;
 
     private ColorFadeInto fadeinto;
     private RippleEffect ripple = RippleEffect.applyTo(this);
@@ -39,10 +38,14 @@ public class _MaterialButton extends JButton implements MaterialComponent {
     private Cursor cursor = Cursor.getPredefinedCursor(Cursor.HAND_CURSOR);
     private int borderRadius = 5;
 
+    private Color borderColor = MaterialColors.BLACK;
+    private int borderThickness = 0;
+
     /**
      * Creates a new button.
      */
     public _MaterialButton() {
+        this.setIconTextGap(2);
         this.setFont(MaterialFontRoboto.MEDIUM.deriveFont(16f));
         this.setCursor(cursor);
         this.setPreferredSize(new Dimension(145, 65));
@@ -80,11 +83,30 @@ public class _MaterialButton extends JButton implements MaterialComponent {
         this.setUI(new BasicButtonUI() {
             @Override
             public boolean contains(JComponent c, int x, int y) {
+                if (type == Type.FLAT) {
+                    return super.contains(c, x, y);
+                }
                 return x > MaterialShadow.OFFSET_LEFT && y > MaterialShadow.OFFSET_TOP
                         && x < getWidth() - MaterialShadow.OFFSET_RIGHT && y < getHeight() - MaterialShadow.OFFSET_BOTTOM;
             }
         });
+        this.setBorder(new EmptyBorder(0, 0, 0, 0));
+    }
 
+    public Color getBorderColor() {
+        return borderColor;
+    }
+
+    public void setBorderColor(Color borderColor) {
+        this.borderColor = borderColor;
+    }
+
+    public int getBorderThickness() {
+        return borderThickness;
+    }
+
+    public void setBorderThickness(int borderThickness) {
+        this.borderThickness = borderThickness;
     }
 
     public void setElevation(ElevationEffect elevation) {
@@ -92,7 +114,8 @@ public class _MaterialButton extends JButton implements MaterialComponent {
         repaint();
     }
 
-    public void setIcon(ImageIcon icon) {
+    @Override
+    public void setIcon(Icon icon) {
         if (icon instanceof DerivableIcon) {
             icon = ((DerivableIcon) icon).deriveIcon(getForeground());
         }
@@ -161,6 +184,12 @@ public class _MaterialButton extends JButton implements MaterialComponent {
         setForeground(Utils.getForegroundAccording(bg));
         setRippleColor(Utils.getForegroundAccording(bg));
         fadeinto = new ColorFadeInto(this, ColorFadeInto.ColorChangeTo.DARKEN);
+    }
+
+    @Override
+    public void setForeground(Color fg) {
+        super.setForeground(fg);
+        setIcon(getIcon());
     }
 
     /**
@@ -266,27 +295,36 @@ public class _MaterialButton extends JButton implements MaterialComponent {
     protected void paintComponent(Graphics g) {
         Graphics2D g2 = MaterialDrawingUtils.getAliasedGraphics(g);
 
+        int offset_lr = MaterialShadow.OFFSET_LEFT + MaterialShadow.OFFSET_RIGHT;
+        int offset_td = MaterialShadow.OFFSET_TOP + MaterialShadow.OFFSET_BOTTOM;
+        int offset_left = MaterialShadow.OFFSET_LEFT;
+        int offset_top = MaterialShadow.OFFSET_TOP;
+
         if (type != Type.FLAT && isEnabled()) {
             elevation.paint(g2);
         }
-        g2.translate(MaterialShadow.OFFSET_LEFT, MaterialShadow.OFFSET_TOP);
 
-        final int offset_lr = MaterialShadow.OFFSET_LEFT + MaterialShadow.OFFSET_RIGHT;
-        final int offset_td = MaterialShadow.OFFSET_TOP + MaterialShadow.OFFSET_BOTTOM;
+        if (type == Type.FLAT) {//si es flat quito correcciones de offset
+            offset_lr = 0;
+            offset_td = 0;
+            offset_left = 0;
+            offset_top = 0;
+        }
+        g2.translate(offset_left, offset_top);
 
+        //color de fondo
         if (isEnabled()) {
-            //fadeinto.update();
             g2.setColor(fadeinto.getColor());
-            g2.fill(new RoundRectangle2D.Float(0, 0, getWidth() - offset_lr, getHeight() - offset_td, borderRadius * 2, borderRadius * 2));
-
-            g2.setColor(new Color(rippleColor.getRed() / 255f, rippleColor.getBlue() / 255f, rippleColor.getBlue() / 255f, 0.12f));
-            if ((type == Type.FLAT && isMouseOver) || isFocusOwner()) {
-                g2.fill(new RoundRectangle2D.Float(0, 0, getWidth() - offset_lr, getHeight() - offset_td, borderRadius * 2, borderRadius * 2));
-            }
         } else {
             Color bg = getBackground();
             g2.setColor(new Color(bg.getRed() / 255f, bg.getGreen() / 255f, bg.getBlue() / 255f, 0.6f));
-            g2.fill(new RoundRectangle2D.Float(0, 0, getWidth() - offset_lr, getHeight() - offset_td, borderRadius * 2, borderRadius * 2));
+        }
+        g2.fill(new RoundRectangle2D.Float(0, 0, getWidth() - offset_lr, getHeight() - offset_td, borderRadius * 2, borderRadius * 2));
+
+        if (getBorderThickness() > 0) {//si hay border lo pinto
+            g2.setStroke(new BasicStroke(getBorderThickness()));
+            g2.setColor(getBorderColor());
+            g2.draw(new RoundRectangle2D.Float(0, 0, getWidth() - offset_lr, getHeight() - offset_td, borderRadius * 2, borderRadius * 2));
         }
 
         if (this.isEnabled()) {//el ripple por debajo de las letras e iconos
@@ -310,14 +348,14 @@ public class _MaterialButton extends JButton implements MaterialComponent {
         int align = getHorizontalAlignment();
 
         if (align == SwingConstants.TRAILING || align == SwingConstants.RIGHT) {
-            xText = widthReal - strWidth - 2 * DISTANCE_ICON_TEXT;
-            xIcon = xText - iconWidth - 2 * DISTANCE_ICON_TEXT;
+            xText = widthReal - strWidth - 2 * getIconTextGap();
+            xIcon = xText - iconWidth - 2 * getIconTextGap();
         } else if (align == SwingConstants.LEADING || align == SwingConstants.LEFT) {
-            xIcon = DISTANCE_ICON_TEXT;
-            xText = iconWidth + DISTANCE_ICON_TEXT;
+            xIcon = getIconTextGap();
+            xText = iconWidth + getIconTextGap();
         } else {
-            xText = (widthReal - strWidth) / 2 + DISTANCE_ICON_TEXT / 2 + iconWidth / 2;
-            xIcon = xText - iconWidth - DISTANCE_ICON_TEXT;
+            xText = (widthReal - strWidth) / 2 + getIconTextGap() / 2 + iconWidth / 2;
+            xIcon = xText - iconWidth - getIconTextGap();
         }
 
         Color fg = this.getForeground();
@@ -331,8 +369,7 @@ public class _MaterialButton extends JButton implements MaterialComponent {
         if (this.getIcon() != null) {
             this.getIcon().paintIcon(this, g2, xIcon, (getHeight() - offset_td - getIcon().getIconHeight()) / 2);
         }
-
-        g2.translate(-MaterialShadow.OFFSET_LEFT, -MaterialShadow.OFFSET_TOP);
+        g2.translate(-offset_left, -offset_top);
     }
 
     @Override

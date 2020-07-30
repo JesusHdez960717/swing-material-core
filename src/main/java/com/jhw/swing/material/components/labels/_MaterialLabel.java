@@ -10,9 +10,10 @@ import javax.swing.SwingConstants;
 import com.jhw.swing.util.MaterialDrawingUtils;
 import com.jhw.utils.others.StringFormating;
 import com.jhw.swing.util.Utils;
-import com.jhw.swing.util.icons.DerivableIcon;
+import com.jhw.swing.utils.icons.DerivableIcon;
 import com.jhw.swing.util.interfaces.MaterialComponent;
-import com.jhw.swing.material.standars.MaterialFontRoboto;
+import com.jhw.swing.material.standards.MaterialFontRoboto;
+import javax.swing.Icon;
 
 /**
  *
@@ -32,7 +33,14 @@ public class _MaterialLabel extends JLabel implements MaterialComponent {
         setForeground(Utils.getForegroundAccording(bg));
     }
 
-    public void setIcon(ImageIcon icon) {
+    @Override
+    public void setForeground(Color fg) {
+        super.setForeground(fg);
+        setIcon(getIcon());
+    }
+
+    @Override
+    public void setIcon(Icon icon) {
         if (icon instanceof DerivableIcon) {
             icon = ((DerivableIcon) icon).deriveIcon(getForeground());
         }
@@ -57,36 +65,53 @@ public class _MaterialLabel extends JLabel implements MaterialComponent {
             }
 
             int iconWidth = 0;
+            int iconHeight = 0;
             int distReal = this.DISTANCE_ICON_TEXT;
             if (getIcon() != null) {
                 iconWidth = getIcon().getIconWidth();
+                iconHeight = getIcon().getIconHeight();
             } else {
                 distReal = 0;
             }
 
             FontMetrics metrics = g.getFontMetrics(getFont());
-            int y = (getHeight() - metrics.getHeight()) / 2 + metrics.getAscent();
 
             int xText = 0;
             int xIcon = 0;
 
             int strWidth = metrics.stringWidth(getText());
-            int align = getHorizontalAlignment();
+            int horizAlign = getHorizontalAlignment();
 
-            if (align == SwingConstants.TRAILING || align == SwingConstants.RIGHT) {
+            if (horizAlign == SwingConstants.TRAILING || horizAlign == SwingConstants.RIGHT) {
                 xText = getWidth() - strWidth;
                 xIcon = xText - iconWidth - 2 * distReal;
-            } else if (align == SwingConstants.LEADING || align == SwingConstants.LEFT) {
+            } else if (horizAlign == SwingConstants.LEADING || horizAlign == SwingConstants.LEFT) {
                 xIcon = distReal;
                 xText = iconWidth + distReal;
             } else {
                 xText = (getWidth() - strWidth) / 2 + distReal / 2 + iconWidth / 2;
                 xIcon = xText - iconWidth - distReal;
             }
-            g2.drawString(this.getText(), xText, y);//getText().toUpperCase()
+
+            int strHeight = metrics.getHeight();
+            int yText = 0;
+            int yIcon = 0;
+            int vertAlign = getVerticalAlignment();
+
+            if (vertAlign == SwingConstants.TOP) {
+                yText = strHeight;
+                yIcon = 0;
+            } else if (vertAlign == SwingConstants.BOTTOM) {
+                yText = getHeight() - metrics.getAscent() / 2;
+                yIcon = getHeight() - iconHeight;
+            } else {
+                yText = (getHeight() - metrics.getHeight()) / 2 + metrics.getAscent();
+                yIcon = getHeight() / 2 - iconHeight / 2;
+            }
+            g2.drawString(this.getText(), xText, yText);//getText().toUpperCase()
 
             if (this.getIcon() != null) {
-                this.getIcon().paintIcon(this, g2, xIcon, (this.getSize().height) / 2 - getIcon().getIconHeight() / 2);
+                this.getIcon().paintIcon(this, g2, xIcon, yIcon);
             }
         }
     }

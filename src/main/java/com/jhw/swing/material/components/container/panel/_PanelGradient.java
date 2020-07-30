@@ -16,7 +16,7 @@ import com.jhw.swing.util.MaterialDrawingUtils;
 import com.jhw.swing.util.Utils;
 import com.jhw.swing.util.enums.GradientEnum;
 import com.jhw.swing.util.interfaces.MaterialComponent;
-import com.jhw.swing.material.standars.MaterialColors;
+import com.jhw.swing.material.standards.MaterialColors;
 
 /**
  * Componente extraido su logica de edisoncorSX.
@@ -30,6 +30,13 @@ public class _PanelGradient extends JPanel implements MaterialComponent {
     private Image image = null;
     private int borderRadius = 0;
 
+    public _PanelGradient() {
+    }
+
+    public _PanelGradient(Color back) {
+        this.setBackground(back);
+    }
+
     /**
      * Gets the current border radius of this button.
      *
@@ -40,7 +47,7 @@ public class _PanelGradient extends JPanel implements MaterialComponent {
     }
 
     /**
-     * Sets the border radius of this button. You can define a custom radius in
+     * Sets the border radius of this panel. You can define a custom radius in
      * order to get some rounded corners in your button, making it look like a
      * pill or even a circular action button.
      *
@@ -92,6 +99,8 @@ public class _PanelGradient extends JPanel implements MaterialComponent {
         switch (this.gradient) {
             case HORIZONTAL:
                 return new GradientPaint((float) (getWidth() / 2), (float) 0, this.primaryColor, (float) (getWidth() / 2), (float) getHeight(), this.secundaryColor);
+            case HORIZONTAL_3_4:
+                return new GradientPaint((float) (getWidth() / 2), (float) getHeight() / 4, this.primaryColor, (float) (getWidth() / 2), (float) getHeight(), this.secundaryColor);
             case VERTICAL:
                 return new GradientPaint((float) 0, (float) (getHeight() / 2), this.primaryColor, (float) getWidth(), (float) (getHeight() / 2), this.secundaryColor);
             case VERTICAL_3_4:
@@ -121,6 +130,7 @@ public class _PanelGradient extends JPanel implements MaterialComponent {
 
     public void setPrimaryColor(Color primaryColor) {
         this.primaryColor = primaryColor;
+        repaint();
     }
 
     public Color getSecundaryColor() {
@@ -129,6 +139,7 @@ public class _PanelGradient extends JPanel implements MaterialComponent {
 
     public void setSecundaryColor(Color colorSecundario) {
         this.secundaryColor = colorSecundario;
+        repaint();
     }
 
     public GradientEnum getGradient() {
@@ -137,6 +148,7 @@ public class _PanelGradient extends JPanel implements MaterialComponent {
 
     public void setGradient(GradientEnum gradient) {
         this.gradient = gradient;
+        repaint();
     }
 
     public Icon getIcon() {

@@ -8,10 +8,11 @@ import java.awt.event.MouseWheelListener;
 import java.util.concurrent.TimeUnit;
 import javax.swing.JScrollPane;
 import org.jdesktop.core.animation.timing.Animator;
-import org.jdesktop.core.animation.timing.interpolators.SplineInterpolator;
-import com.jhw.swing.personalization.Inistanciables;
+import com.jhw.swing.util.Utils;
 import com.jhw.swing.ui.utils.MaterialManagerListener;
 import com.jhw.swing.util.SafePropertySetter;
+import com.jhw.personalization.core.domain.Personalization;
+import com.jhw.personalization.services.PersonalizationHandler;
 
 /**
  * Class to add a smoot movement to a JScrollPane.
@@ -55,29 +56,21 @@ public class SmoothScrollMouseWheelListener implements MouseWheelListener {
         nextPosition += (int) (wheelDelta * increment);
 
         //do the scroll animated
-        doAnim();
+        move();
     }
 
     /**
      * Do the scroll animated
      */
-    public void doAnim() {
+    private void move() {
         if (anim != null) {//if anim running stop it
             anim.cancel();
         }
-        anim = new Animator.Builder(Inistanciables.getSwingTimerTimingSource())
-                .setDuration(DURATION, TimeUnit.MILLISECONDS)
-                //.setInterpolator(new SplineInterpolator(0.55, 0, 0.9, 0.7))//comented for linear interpolation
-                .addTarget(SafePropertySetter.getTarget(new SafePropertySetter.Setter<Integer>() {
-                    @Override
-                    public void setValue(Integer value) {
-                        if (value != null) {
-                            move(value);//move to the next position
-                        }
-                    }
-                }, (int) pane.getViewport().getViewPosition().getY(), (int) nextPosition))
-                .build();
-        anim.start();
+        if (PersonalizationHandler.getBoolean(Personalization.KEY_USE_ANIMATIONS)) {
+            doAnimatedMove();
+        } else {
+            doMove(nextPosition);//move to the next position
+        }
     }
 
     /**
@@ -85,7 +78,7 @@ public class SmoothScrollMouseWheelListener implements MouseWheelListener {
      *
      * @param to The next position to move the scroll.
      */
-    private void move(double to) {
+    private void doMove(double to) {
         if (to < 0) {//if goint to move outside, don't.
             to = nextPosition = 0;//reset position
         }
@@ -99,5 +92,21 @@ public class SmoothScrollMouseWheelListener implements MouseWheelListener {
         //set the point to the viewport
         //here is where the movement it's done
         pane.getViewport().setViewPosition(after);
+    }
+
+    private void doAnimatedMove() {
+        anim = new Animator.Builder(Utils.getSwingTimerTimingSource())
+                .setDuration(DURATION, TimeUnit.MILLISECONDS)
+                //.setInterpolator(new SplineInterpolator(0.55, 0, 0.9, 0.7))//comented for linear interpolation
+                .addTarget(SafePropertySetter.getTarget(new SafePropertySetter.Setter<Integer>() {
+                    @Override
+                    public void setValue(Integer value) {
+                        if (value != null) {
+                            doMove(value);//move to the next position
+                        }
+                    }
+                }, (int) pane.getViewport().getViewPosition().getY(), (int) nextPosition))
+                .build();
+        anim.start();
     }
 }

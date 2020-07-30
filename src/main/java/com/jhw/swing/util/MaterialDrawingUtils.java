@@ -1,7 +1,8 @@
 package com.jhw.swing.util;
 
 import java.awt.*;
-import com.jhw.swing.personalization.PersonalizationMaterial;
+import com.jhw.personalization.core.domain.Personalization;
+import com.jhw.personalization.services.PersonalizationHandler;
 
 public class MaterialDrawingUtils {
 
@@ -13,7 +14,7 @@ public class MaterialDrawingUtils {
 
     public static Graphics2D getAliasedGraphics(Graphics g) {
         Graphics2D g2 = (Graphics2D) g;
-        if (PersonalizationMaterial.getInstance().isUseAntialiasing()) {
+        if (PersonalizationHandler.getBoolean(Personalization.KEY_USE_ANTIALIASING)) {
             g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
             g2.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
             g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BICUBIC);

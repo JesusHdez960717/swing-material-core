@@ -19,8 +19,8 @@ import javax.swing.Timer;
 import com.jhw.swing.util.MaterialDrawingUtils;
 import com.jhw.swing.util.AvatarPanelAvatarChooser;
 import com.jhw.swing.util.interfaces.MaterialComponent;
-import com.jhw.swing.material.standars.MaterialIcons;
-import com.jhw.swing.material.standars.MaterialImages;
+import com.jhw.swing.material.standards.MaterialIcons;
+import com.jhw.swing.material.standards.MaterialImages;
 
 /**
  * Componente extraido su logica de edisoncorSX.

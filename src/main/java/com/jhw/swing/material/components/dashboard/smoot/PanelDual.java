@@ -6,8 +6,9 @@ import java.awt.Dimension;
 import java.util.concurrent.TimeUnit;
 import org.jdesktop.core.animation.timing.Animator;
 import org.jdesktop.core.animation.timing.interpolators.SplineInterpolator;
-import com.jhw.swing.personalization.Inistanciables;
-import com.jhw.swing.personalization.PersonalizationMaterial;
+import com.jhw.swing.util.Utils;
+import com.jhw.personalization.core.domain.Personalization;
+import com.jhw.personalization.services.PersonalizationHandler;
 import com.jhw.swing.util.SafePropertySetter;
 import com.jhw.utils.interfaces.Update;
 
@@ -35,7 +36,7 @@ public class PanelDual extends _PanelTransparent implements Update {
         if (anim != null) {
             anim.cancel();
         }
-        if (PersonalizationMaterial.getInstance().isUseAnimations()) {
+        if (PersonalizationHandler.getBoolean(Personalization.KEY_USE_ANIMATIONS)) {
             doAnimateMove(size);
         } else {
             doMove(size);
@@ -68,7 +69,7 @@ public class PanelDual extends _PanelTransparent implements Update {
     }
 
     private void doAnimateMove(int size) {
-        anim = new Animator.Builder(Inistanciables.getSwingTimerTimingSource())
+        anim = new Animator.Builder(Utils.getSwingTimerTimingSource())
                 .setDuration(DURATION, TimeUnit.MILLISECONDS)
                 .setInterpolator(new SplineInterpolator(0.1, 0.3, 0.45, 1))
                 .addTarget(SafePropertySetter.getTarget(new SafePropertySetter.Setter<Integer>() {

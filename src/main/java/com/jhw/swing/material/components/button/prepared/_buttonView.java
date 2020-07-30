@@ -2,7 +2,8 @@ package com.jhw.swing.material.components.button.prepared;
 
 import com.jhw.swing.material.components.button._MaterialButton;
 import java.awt.Dimension;
-import com.jhw.swing.personalization.PersonalizationMaterial;
+import com.jhw.personalization.core.domain.Personalization;
+import com.jhw.personalization.services.PersonalizationHandler;
 
 /**
  * MaterialButton con background getColorButtonView, e icon iconButtonView de la
@@ -14,8 +15,8 @@ public class _buttonView extends _MaterialButton {
 
     public _buttonView() {
         super();
-        this.setBackground(PersonalizationMaterial.getInstance().getColorButtonView());
-        this.setIcon(PersonalizationMaterial.getInstance().getIconButtonView());
+        this.setBackground(PersonalizationHandler.getColor(Personalization.KEY_COLOR_BUTTON_VIEW));
+        this.setIcon(PersonalizationHandler.getDerivableIcon(Personalization.KEY_ICON_BUTTON_VIEW));
         this.setPreferredSize(new Dimension(125, 50));
     }
 

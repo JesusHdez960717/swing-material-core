@@ -1,20 +1,30 @@
 package com.jhw.swing.material.components.combobox;
 
+import com.jhw.swing.material.components.scrollpane._MaterialScrollPaneCore;
 import com.jhw.swing.material.effects.Line;
 import static com.jhw.swing.material.components.textfield._MaterialTextField.HINT_OPACITY_MASK;
 import static com.jhw.swing.material.components.textfield._MaterialTextField.LINE_OPACITY_MASK;
+import com.jhw.swing.material.effects.FloatingLabel;
+import com.jhw.swing.material.effects.FloatingLabelStandar;
 import java.awt.*;
 import java.awt.event.FocusEvent;
 import javax.swing.*;
-import javax.swing.border.MatteBorder;
 import javax.swing.plaf.basic.BasicComboBoxUI;
 import javax.swing.plaf.basic.BasicComboPopup;
-import javax.swing.plaf.basic.BasicScrollBarUI;
 import javax.swing.plaf.basic.ComboPopup;
 import com.jhw.swing.util.interfaces.MaterialComponent;
-import com.jhw.swing.material.standars.MaterialColors;
-import com.jhw.swing.material.standars.MaterialFontRoboto;
+import com.jhw.swing.material.standards.MaterialColors;
+import com.jhw.swing.material.standards.MaterialFontRoboto;
+import com.jhw.swing.material.standards.MaterialIcons;
+import com.jhw.personalization.core.domain.Personalization;
+import com.jhw.personalization.services.PersonalizationHandler;
+import com.jhw.swing.util.MaterialDrawingUtils;
 import com.jhw.swing.util.Utils;
+import com.jhw.swing.utils.icons.DerivableIcon;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 
 /**
  * A Material Design combo box.
@@ -23,14 +33,34 @@ import com.jhw.swing.util.Utils;
  * href="https://www.google.com/design/spec/components/buttons.html#buttons-dropdown-buttons">Dropdown
  * buttons (Google design guidelines)</a>
  */
-public class _MaterialComboBox<T> extends JComboBox<T> implements MaterialComponent {
+public class _MaterialComboBox<T> extends JComboBox<T> implements MaterialComponent, FloatingLabelStandar {
 
+    private FloatingLabel floatingLabel;
     private Line line = new Line(this);
+    private String label = "label";
+    private String hint = "hint";
     private Color accentColor = MaterialColors.BLUEA_400;
+
+    //default
+    private Color foreground = MaterialColors.BLACK;
+
     private Cursor cursor = Cursor.getPredefinedCursor(Cursor.HAND_CURSOR);
-    private String hint = "";
+
+    private ImageIcon icon = MaterialIcons.ARROW_DROP_DOWN;
+
+    //flags for wrong
+    private Color wrongColor = PersonalizationHandler.getColor(Personalization.KEY_COLOR_WRONG);
+    private String wrongText = "Error en este campo";
+    private boolean wrongFlag = false;
+
+    public _MaterialComboBox(T[] items) {
+        this();
+        setModel(new DefaultComboBoxModel<T>(items));
+        this.setSelectedIndex(-1);
+    }
 
     public _MaterialComboBox() {
+        this.setPreferredSize(new Dimension(145, 65));
         this.setRenderer(new FieldRenderer<>(this));
         this.setUI(new BasicComboBoxUI() {
             @Override
@@ -42,26 +72,81 @@ public class _MaterialComboBox<T> extends JComboBox<T> implements MaterialCompon
 
             @Override
             protected JButton createArrowButton() {
-                JButton button = new javax.swing.plaf.basic.BasicArrowButton(
-                        javax.swing.plaf.basic.BasicArrowButton.SOUTH,
-                        MaterialColors.TRANSPARENT,
-                        MaterialColors.TRANSPARENT,
-                        MaterialColors.TRANSPARENT,
-                        MaterialColors.TRANSPARENT);
-                button.setName("ComboBox.arrowButton");
-                button.setOpaque(false);
-                return button;
+                return null;
             }
         });
 
+        this.floatingLabel = new FloatingLabel(this);
+        this.setAccent(accentColor);
         this.setOpaque(false);
         this.setCursor(cursor);
         this.setFont(MaterialFontRoboto.REGULAR.deriveFont(16f));
-        this.setBackground(MaterialColors.WHITE);
         this.setHint("Select...");
         this.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"Item 1", "Item 2", "Item 3"}));
         this.setSelectedIndex(-1);
-        this.setPreferredSize(new Dimension(100, this.getPreferredSize().height));
+
+        this.addComponentListener(new ComponentAdapter() {
+            @Override
+            public void componentResized(ComponentEvent e) {
+                floatingLabel.update();
+
+            }
+        });
+
+        this.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                clearWrong();
+            }
+        });
+    }
+
+    /**
+     * Get the wrong color. The worng color is the color of the component when
+     * is wrong.
+     *
+     * @return the wrong color
+     */
+    public Color getWrongColor() {
+        return wrongColor;
+    }
+
+    /**
+     * Set the wrong color. The worng color is the color of the component when
+     * is wrong.
+     *
+     * @param wrongColor the wrong color
+     */
+    public void setWrongColor(Color wrongColor) {
+        this.wrongColor = wrongColor;
+    }
+
+    /**
+     * Get the wrong text. The worng text is the text to display with the
+     * explanaition of the error.
+     *
+     * @return the wrong color
+     */
+    public String getWrongText() {
+        return wrongText;
+    }
+
+    /**
+     * Set the wrong text. The worng text is the text to display with the
+     * explanaition of the error.
+     *
+     * @param wrongText the wrong text
+     */
+    public void setWrongText(String wrongText) {
+        this.wrongText = wrongText;
+    }
+
+    public ImageIcon getIcon() {
+        return icon;
+    }
+
+    public void setIcon(ImageIcon icon) {
+        this.icon = icon;
     }
 
     /**
@@ -83,6 +168,30 @@ public class _MaterialComboBox<T> extends JComboBox<T> implements MaterialCompon
      */
     public void setAccent(Color accentColor) {
         this.accentColor = accentColor;
+        this.floatingLabel.setAccentColor(accentColor);
+        repaint();
+    }
+
+    /**
+     * Gets the label text. The label will float above any contents input into
+     * this text field.
+     *
+     * @return the text being used in the floating label
+     */
+    public String getLabel() {
+        return this.label;
+    }
+
+    /**
+     * Sets the label text. The label will float above any contents input into
+     * this text field.
+     *
+     * @param label the text to use in the floating label
+     */
+    public void setLabel(String label) {
+        this.label = label;
+        floatingLabel.update();
+        repaint();
     }
 
     /**
@@ -93,6 +202,14 @@ public class _MaterialComboBox<T> extends JComboBox<T> implements MaterialCompon
      */
     public String getHint() {
         return hint;
+    }
+
+    @Override
+    public void setForeground(Color fg) {
+        super.setForeground(fg);
+        if (floatingLabel != null) {
+            floatingLabel.updateForeground();
+        }
     }
 
     /**
@@ -106,39 +223,146 @@ public class _MaterialComboBox<T> extends JComboBox<T> implements MaterialCompon
         repaint();
     }
 
+    public void wrong() {
+        floatingLabel.setAccentColor(wrongColor);
+        this.wrongFlag = true;
+    }
+
+    public void wrong(String wrongText) {
+        this.wrongText = wrongText;
+        wrong();
+    }
+
+    public void clearWrong() {
+        if (wrongFlag) {
+            this.wrongFlag = false;
+            this.setForeground(foreground);
+            floatingLabel.setAccentColor(accentColor);
+        }
+    }
+
+    /**
+     * Set the real color of the foreground. The color of the foreground when
+     * the text field it's not wrong.
+     *
+     * @param fg the {@code "Color"} that should be used for the real color of
+     * the foreground.
+     */
+    public void setRealForeground(Color fg) {
+        this.foreground = fg;
+        setForeground(foreground);
+    }
+
+    /**
+     * get the real color of the foreground. The color of the foreground when
+     * the text field it's not wrong.
+     *
+     * @return the {@code "Color"} that should be used for the real color of the
+     * foreground.
+     */
+    public Color getRealForeground() {
+        return this.foreground;
+    }
+
     @Override
     protected void processFocusEvent(FocusEvent e) {
         super.processFocusEvent(e);
+        floatingLabel.update();
         line.update();
     }
 
     @Override
     public void paintComponent(Graphics g) {
-        Graphics2D g2 = (Graphics2D) g;
-        g2.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
-        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        Graphics2D g2 = MaterialDrawingUtils.getAliasedGraphics(g);
 
-        g2.setFont(getFont());
-        g2.setColor(getSelectedItem() == null ? Utils.applyAlphaMask(getForeground(), HINT_OPACITY_MASK) : getForeground());
-        FontMetrics metrics = g2.getFontMetrics(g2.getFont());
-        String text = getSelectedItem() != null ? getSelectedItem().toString() : (hint != null ? hint : "");
-        g2.drawString(text, 0, metrics.getAscent() + (getHeight() - metrics.getHeight()) / 2);
+        int yMid = getSize().height / 2;
 
-        g2.setColor(Utils.applyAlphaMask(getForeground(), LINE_OPACITY_MASK));
-        g2.fillRect(0, getHeight() - 9, getWidth(), 1);
-
-        if (isFocusOwner()) {
-            g2.setColor(accentColor);
+        g2.setColor(floatingLabel.getColor());
+        g2.setFont(floatingLabel.getFont());
+        if (!getLabel().isEmpty()) {
+            g2.drawString(getLabel(), floatingLabel.getX(), floatingLabel.getY());//paint the hint in the same place as the text
         }
-        g2.fillPolygon(new int[]{getWidth() - 5, getWidth() - 10, getWidth() - 15}, new int[]{getHeight() / 2 - 3, getHeight() / 2 + 3, getHeight() / 2 - 3}, 3);
 
+        FontMetrics metrics = g2.getFontMetrics(g2.getFont());
+        g2.setFont(getFont());
+        if (getSelectedItem() == null && isFocusOwner()) {
+            g2.setColor(Utils.applyAlphaMask(getForeground(), HINT_OPACITY_MASK));
+            g2.drawString(hint, floatingLabel.getX(), metrics.getAscent() + yMid - metrics.getAscent() / 2);
+        } else if (getSelectedItem() != null) {
+            g2.setColor(getForeground());
+            g2.drawString(getSelectedItem().toString(), floatingLabel.getX(), metrics.getAscent() + yMid - metrics.getAscent() / 2);
+        }
+
+        int yLine = yMid + metrics.getAscent() / 2 + 8;
+
+        //paint the back line
+        g2.setColor(Utils.applyAlphaMask(getForeground(), LINE_OPACITY_MASK));
+        g2.fillRect(0, yLine, getWidth(), 1);
+
+        //paint the front line, this is the one that change colors and size
         g2.setColor(accentColor);
-        g2.fillRect((int) ((getWidth() - line.getWidth()) / 2), getHeight() - 10, (int) line.getWidth(), 2);
+        g2.fillRect((int) ((getWidth() - line.getWidth()) / 2), yLine, (int) line.getWidth(), 2);
+
+        //paint the wrong text if the flag is actived
+        if (wrongFlag) {
+            g2.setColor(getWrongColor());
+            g2.setFont(floatingLabel.getFont().deriveFont(1));//1 for bold
+            g2.drawString(getWrongText(), 0, yLine + 15);//paint the wrong text
+        }
+
+        //paint the arrow
+        if (icon != null) {
+            Color iconColor;
+            if (isFocusOwner()) {
+                iconColor = accentColor;
+            } else {
+                iconColor = Utils.applyAlphaMask(getForeground(), LINE_OPACITY_MASK);
+            }
+            if (icon instanceof DerivableIcon) {
+                icon = ((DerivableIcon) icon).deriveIcon(iconColor);
+            }
+            icon.paintIcon(this, g2, (int) (this.getSize().getWidth() - icon.getIconHeight()), yMid - icon.getIconHeight() / 2);
+        }
+
+    }
+
+    public boolean isWrongFlag() {
+        return wrongFlag;
+    }
+
+    public FloatingLabel getFloatingLabel() {
+        return floatingLabel;
+    }
+
+    public Line getLine() {
+        return line;
+    }
+
+    public Color getAccentColor() {
+        return accentColor;
+    }
+
+    public Color getForeground() {
+        return foreground;
+    }
+
+    public Cursor getCursor() {
+        return cursor;
     }
 
     @Override
     protected void paintBorder(Graphics g) {
         //intentionally left blank
+    }
+
+    @Override
+    public String getText() {
+        return getSelectedItem() == null ? "" : getSelectedItem().toString();
+    }
+
+    @Override
+    public Component getComponent() {
+        return this;
     }
 
     public static class FieldRenderer<T> extends JComponent implements ListCellRenderer<T> {
@@ -166,8 +390,7 @@ public class _MaterialComboBox<T> extends JComboBox<T> implements MaterialCompon
         @Override
         public void paint(Graphics g) {
             super.paint(g);
-            Graphics2D g2 = (Graphics2D) g;
-            g2.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+            Graphics2D g2 = MaterialDrawingUtils.getAliasedGraphics(g);
 
             if (mouseOver) {
                 g.setColor(Utils.isDark(comboBox.getBackground()) ? Utils.brighten(comboBox.getBackground()) : Utils.darken(comboBox.getBackground()));
@@ -176,7 +399,7 @@ public class _MaterialComboBox<T> extends JComboBox<T> implements MaterialCompon
             }
             g.fillRect(0, 0, getWidth(), getHeight());
 
-            g.setFont(MaterialFontRoboto.REGULAR.deriveFont(15f));
+            g.setFont(comboBox.getFont());
             if (selected) {
                 g2.setColor(comboBox.accentColor);
             } else {
@@ -193,105 +416,28 @@ public class _MaterialComboBox<T> extends JComboBox<T> implements MaterialCompon
             super(combo);
             setBackground(combo.getBackground());
             setOpaque(true);
-            setBorderPainted(false);
+            setBorderPainted(true);
         }
 
         @Override
         protected JScrollPane createScroller() {
-            JScrollPane scroller = super.createScroller();
-            scroller.setVerticalScrollBar(new ScrollBar(comboBox, Adjustable.VERTICAL));
-            scroller.setBorder(new MatteBorder(16, 0, 16, 0, Color.WHITE));
+            JScrollPane scroller = new _MaterialScrollPaneCore();
+            scroller.setViewportView(super.getList());
             return scroller;
         }
 
         @Override
         protected Rectangle computePopupBounds(int px, int py, int pw, int ph) {
-            return super.computePopupBounds(px, py - comboBox.getHeight() + 10,
+            FontMetrics metrics = Utils.fontMetrics(super.comboBox.getFont());
+            int yMid = super.comboBox.getSize().height / 2;
+            int yLine = yMid + metrics.getAscent() / 2 + 5;
+            return super.computePopupBounds(px, py - comboBox.getHeight() + yLine + 3,
                     (int) Math.max(comboBox.getPreferredSize().getWidth(), pw), ph);
         }
 
         @Override
         public void paint(Graphics g) {
-            super.paint(g);
-        }
-    }
-
-    public static class ScrollBar extends JScrollBar {
-
-        public ScrollBar(final JComboBox comboBox, int orientation) {
-            super(orientation);
-            setPreferredSize(new Dimension(5, 100));
-
-            setUI(new BasicScrollBarUI() {
-                @Override
-                protected ScrollListener createScrollListener() {
-                    setUnitIncrement(56);
-                    setBlockIncrement(560);
-                    return super.createScrollListener();
-                }
-
-                @Override
-                protected void paintTrack(Graphics g, JComponent c, Rectangle trackBounds) {
-                    g.setColor(comboBox.getBackground());
-                    g.fillRect(trackBounds.x, trackBounds.y, trackBounds.width, trackBounds.height);
-                }
-
-                @Override
-                protected JButton createDecreaseButton(int orientation) {
-                    JButton dummyButton = new JButton();
-                    dummyButton.setPreferredSize(new Dimension(0, 0));
-                    return dummyButton;
-                }
-
-                @Override
-                protected JButton createIncreaseButton(int orientation) {
-                    JButton dummyButton = new JButton();
-                    dummyButton.setPreferredSize(new Dimension(0, 0));
-                    return dummyButton;
-                }
-
-                @Override
-                protected Dimension getMinimumThumbSize() {
-                    return new Dimension(5, 50);
-                }
-
-                @Override
-                protected void paintThumb(Graphics g, JComponent c, Rectangle thumbBounds) {
-                    if (!thumbBounds.isEmpty() && this.scrollbar.isEnabled()) {
-                        ((Graphics2D) g).setRenderingHint(RenderingHints.KEY_ANTIALIASING,
-                                RenderingHints.VALUE_ANTIALIAS_ON);
-                        boolean isVertical = ScrollBar.this.getOrientation()
-                                == Adjustable.VERTICAL;
-                        g.setColor(MaterialColors.GREY_500);
-                        g.fillRoundRect(thumbBounds.x, thumbBounds.y,
-                                thumbBounds.width, thumbBounds.height,
-                                isVertical ? thumbBounds.width : thumbBounds.height,
-                                isVertical ? thumbBounds.width : thumbBounds.height);
-                    }
-                }
-
-                @Override
-                public void layoutContainer(Container scrollbarContainer) {
-                    super.layoutContainer(scrollbarContainer);
-                    incrButton.setBounds(0, 0, 0, 0);
-                    decrButton.setBounds(0, 0, 0, 0);
-                }
-            });
-        }
-
-        @Override
-        public Component add(Component comp) {
-            if (comp != null) {
-                return super.add(comp);
-            }
-            return null;
-        }
-
-        @Override
-        public void paint(Graphics g) {
-            g.setColor(Color.WHITE);
-            g.fillRect(0, 0, getWidth(), getHeight());
-            super.paint(g);
+            super.paint(MaterialDrawingUtils.getAliasedGraphics(g));
         }
     }
 

@@ -1,12 +1,12 @@
 package com.jhw.swing.material.components.table;
 
-import com.jhw.swing.material.components.button._MaterialIconButtonTranspRect;
+import com.jhw.swing.material.components.button._MaterialButtonIconTransparent;
 import com.jhw.swing.material.components.container.panel._PanelGradient;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import com.jhw.swing.material.standars.MaterialIcons;
+import com.jhw.swing.material.standards.MaterialIcons;
 
 /**
  *
@@ -14,11 +14,11 @@ import com.jhw.swing.material.standars.MaterialIcons;
  */
 public class _MaterialPanelActions extends _PanelGradient {
 
-    private final _MaterialIconButtonTranspRect buttonDelete = new com.jhw.swing.material.components.button._MaterialIconButtonTranspRect();
-    private final _MaterialIconButtonTranspRect buttonEdit = new com.jhw.swing.material.components.button._MaterialIconButtonTranspRect();
-    private final _MaterialIconButtonTranspRect buttonView = new com.jhw.swing.material.components.button._MaterialIconButtonTranspRect();
+    private final _MaterialButtonIconTransparent buttonDelete = new com.jhw.swing.material.components.button._MaterialButtonIconTransparent();
+    private final _MaterialButtonIconTransparent buttonEdit = new com.jhw.swing.material.components.button._MaterialButtonIconTransparent();
+    private final _MaterialButtonIconTransparent buttonView = new com.jhw.swing.material.components.button._MaterialButtonIconTransparent();
 
-    private final ArrayList<_MaterialIconButtonTranspRect> extras = new ArrayList<>();
+    private final ArrayList<_MaterialButtonIconTransparent> extras = new ArrayList<>();
 
     public _MaterialPanelActions() {
         this.setLayout(new GridLayout(1, 0));
@@ -43,7 +43,7 @@ public class _MaterialPanelActions extends _PanelGradient {
         buttonEdit.setVisible(edit);
     }
 
-    public void addExtras(ArrayList<_MaterialIconButtonTranspRect> ex) {
+    public void addExtras(ArrayList<_MaterialButtonIconTransparent> ex) {
         this.extras.clear();
         this.extras.addAll(ex);
     }
@@ -54,8 +54,8 @@ public class _MaterialPanelActions extends _PanelGradient {
         this.buttonView.setIcon(MaterialIcons.VISIBILITY.deriveIcon(18));
         this.buttonEdit.setIcon(MaterialIcons.EDIT.deriveIcon(18));
 
-        for (_MaterialIconButtonTranspRect c : extras) {
-            _MaterialIconButtonTranspRect act = c.clone();
+        for (_MaterialButtonIconTransparent c : extras) {
+            _MaterialButtonIconTransparent act = c.clone();
             if (act.isVisible()) {
                 this.add(act);
             }
@@ -93,9 +93,9 @@ public class _MaterialPanelActions extends _PanelGradient {
         private boolean editVisibility = true;
         private boolean viewVisibility = true;
 
-        private final ArrayList<_MaterialIconButtonTranspRect> extras = new ArrayList<>();
+        private final ArrayList<_MaterialButtonIconTransparent> extras = new ArrayList<>();
 
-        public builder extra(_MaterialIconButtonTranspRect c) {
+        public builder extra(_MaterialButtonIconTransparent c) {
             this.extras.add(c);
             return this;
         }

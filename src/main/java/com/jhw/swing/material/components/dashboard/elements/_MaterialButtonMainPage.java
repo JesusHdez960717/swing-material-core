@@ -1,8 +1,8 @@
 package com.jhw.swing.material.components.dashboard.elements;
 
 import com.jhw.swing.util.Utils;
-import com.jhw.swing.material.standars.MaterialFontRoboto;
-import com.jhw.swing.material.standars.MaterialIcons;
+import com.jhw.swing.material.standards.MaterialFontRoboto;
+import com.jhw.swing.material.standards.MaterialIcons;
 import com.jhw.swing.material.components.button._MaterialButton;
 import com.jhw.swing.material.effects.RippleEffect;
 import com.jhw.swing.util.interfaces.MaterialComponent;
@@ -11,10 +11,11 @@ import java.awt.event.*;
 import java.awt.geom.RoundRectangle2D;
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicButtonUI;
-import com.jhw.swing.personalization.PersonalizationMaterial;
+import com.jhw.personalization.core.domain.Personalization;
+import com.jhw.personalization.services.PersonalizationHandler;
 import com.jhw.swing.util.MaterialDrawingUtils;
 import com.jhw.swing.material.effects.ColorFadeInto;
-import com.jhw.swing.util.icons.DerivableIcon;
+import com.jhw.swing.utils.icons.DerivableIcon;
 
 /**
  * Material Button para los elementos de la pagina principal. No contienen
@@ -53,7 +54,7 @@ public class _MaterialButtonMainPage extends _MaterialButton implements Material
      */
     public _MaterialButtonMainPage(ImageIcon icon, String text) {
         in = false;
-        this.setBackground(PersonalizationMaterial.getInstance().getColorPrincipal());
+        this.setBackground(PersonalizationHandler.getColor(Personalization.KEY_COLOR_MAIN));
         this.setText(text);
         this.icon = icon;
         this.setFont(MaterialFontRoboto.MEDIUM.deriveFont(16f));
