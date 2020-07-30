@@ -2,10 +2,9 @@ package com.jhw.swing.material.components.login;
 
 import com.clean.core.app.services.LoginHandler;
 import com.clean.core.app.services.Navigation;
+import com.clean.core.app.services.Notification;
+import com.clean.core.app.services.NotificationsGeneralType;
 import static com.clean.swing.app.RootView.DASH_NAME;
-import com.jhw.swing.material.standards.MaterialColors;
-import com.jhw.swing.material.standards.MaterialIcons;
-import com.jhw.swing.notification.toast.types.notification.DialogNotificationToastGeneral;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -25,16 +24,10 @@ public class DefaultLoginPanel extends _LoginPanel {
 
                 if (resp) {
                     Navigation.getNavigationService().navigateTo(DASH_NAME);
-                    TOAST_welcome(getUser());
+                    Notification.showNotification(NotificationsGeneralType.NOTIFICATION_LOGIN, getUser());
                 }
             }
         });
     }
 
-    public static void TOAST_welcome(String user) {
-        new DialogNotificationToastGeneral(5,
-                "Bienvenido de nuevo\n" + user,
-                MaterialIcons.PERSON,
-                MaterialColors.BLUE_400);
-    }
 }

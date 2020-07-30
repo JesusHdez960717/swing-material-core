@@ -22,9 +22,7 @@ import java.util.Arrays;
 import com.jhw.personalization.core.domain.Personalization;
 import com.jhw.personalization.services.PersonalizationHandler;
 import com.jhw.swing.material.standards.MaterialColors;
-import com.jhw.swing.notification.NotificationLocation;
 import java.awt.Canvas;
-import java.awt.Component;
 import org.jdesktop.swing.animation.timing.sources.SwingTimerTimingSource;
 
 /**
@@ -44,6 +42,7 @@ public class Utils {
         }
         return timer;
     }
+    
     /**
      * A boolean flag for {@code getScreenSize()}, signaling if
      * {@code sun.java2d.SunGraphicsEnvironment.getUsableBounds()} is available
@@ -313,21 +312,6 @@ public class Utils {
      */
     public static Color applyAlphaMask(Color color, int bitMask) {
         return new Color(color.getRGB() & 0x00FFFFFF | (bitMask & 0xFF000000), true);
-    }
-
-    public static int getXPosition(Component component, NotificationLocation location) {
-        if (null == location) {
-            return (int) (Utils.getScreenSize().getWidth() - component.getSize().getWidth()) / 2;
-        } else {
-            switch (location) {
-                case DOWN_LEFT:
-                    return 0;
-                case DOWN_RIGHT:
-                    return (int) (Utils.getScreenSize().getWidth() - component.getSize().getWidth());
-                default:
-                    return (int) (Utils.getScreenSize().getWidth() - component.getSize().getWidth()) / 2;
-            }
-        }
     }
 
     //Uncomment this block in order to test #isDark() against all the color constants in Material Color
