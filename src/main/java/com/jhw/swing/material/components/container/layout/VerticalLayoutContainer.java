@@ -26,11 +26,23 @@ public class VerticalLayoutContainer extends _PanelTransparent {
 
         GroupLayout.ParallelGroup vertParallelGroup = layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER);
         GroupLayout.SequentialGroup seqGroup = layout.createSequentialGroup();
-        for (VerticalLayoutComponent c : components) {
+        for (int i = 0; i < components.size() - 1; i++) {
+            VerticalLayoutComponent c = components.get(i);
+            seqGroup.addGap(c.getGapTop())
+                    .addComponent(c.getComponent(), javax.swing.GroupLayout.DEFAULT_SIZE, c.getHeight(), javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(c.getGapDown());
+        }
+        if (components.size() - 1 > 0) {
+            VerticalLayoutComponent last = components.get(components.size()-1);
+            seqGroup.addGap(last.getGapTop())
+                    .addComponent(last.getComponent(), javax.swing.GroupLayout.DEFAULT_SIZE, last.getHeight(), Short.MAX_VALUE)
+                    .addGap(last.getGapDown());
+        }
+        /*for (VerticalLayoutComponent c : components) {
             seqGroup.addGap(c.getGapTop())
                     .addComponent(c.getComponent(), javax.swing.GroupLayout.DEFAULT_SIZE, c.getHeight(), Short.MAX_VALUE)
                     .addGap(c.getGapDown());
-        }
+        }*/
         layout.setVerticalGroup(
                 vertParallelGroup
                         .addGroup(seqGroup)
