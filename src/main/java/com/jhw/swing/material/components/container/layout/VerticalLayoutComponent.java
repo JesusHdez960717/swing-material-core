@@ -7,7 +7,6 @@ import java.awt.Component;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PositiveOrZero;
 
-
 /**
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
@@ -26,11 +25,14 @@ public class VerticalLayoutComponent implements Validable {
     @PositiveOrZero
     private int gapDown;
 
-    public VerticalLayoutComponent(Component component, int height, int gapTop, int gapDown) {
+    private boolean resize;
+
+    public VerticalLayoutComponent(Component component, int height, int gapTop, int gapDown, boolean resize) {
         this.component = component;
         this.height = height;
         this.gapTop = gapTop;
         this.gapDown = gapDown;
+        this.resize = resize;
         validate();
     }
 
@@ -43,6 +45,10 @@ public class VerticalLayoutComponent implements Validable {
 
     public Component getComponent() {
         return component;
+    }
+
+    public boolean isResize() {
+        return resize;
     }
 
     public int getHeight() {
@@ -67,6 +73,7 @@ public class VerticalLayoutComponent implements Validable {
         private int height;
         private int gapTop;
         private int gapDown;
+        private boolean resize;
 
         private builder(Component component) {
             this.component = component;
@@ -75,6 +82,11 @@ public class VerticalLayoutComponent implements Validable {
 
         public builder height(int height) {
             this.height = height;
+            return this;
+        }
+
+        public builder resize(boolean resize) {
+            this.resize = resize;
             return this;
         }
 
@@ -89,7 +101,7 @@ public class VerticalLayoutComponent implements Validable {
         }
 
         public VerticalLayoutComponent build() {
-            return new VerticalLayoutComponent(component, height, gapTop, gapDown);
+            return new VerticalLayoutComponent(component, height, gapTop, gapDown, resize);
         }
     }
 }

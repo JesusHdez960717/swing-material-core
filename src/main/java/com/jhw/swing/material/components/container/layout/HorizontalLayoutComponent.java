@@ -25,16 +25,23 @@ public class HorizontalLayoutComponent implements Validable {
     @PositiveOrZero
     private int gapRight;
 
-    public HorizontalLayoutComponent(Component component, int width, int gapLeft, int gapRight) {
+    private boolean resize;
+
+    public HorizontalLayoutComponent(Component component, int width, int gapLeft, int gapRight, boolean resize) {
         this.component = component;
         this.width = width;
         this.gapLeft = gapLeft;
         this.gapRight = gapRight;
+        this.resize = resize;
         validate();
     }
 
     public Component getComponent() {
         return component;
+    }
+
+    public boolean isResize() {
+        return resize;
     }
 
     public int getWidth() {
@@ -66,6 +73,7 @@ public class HorizontalLayoutComponent implements Validable {
         private int width;
         private int gapLeft;
         private int gapRight;
+        private boolean resize = true;
 
         private builder(Component component) {
             this.component = component;
@@ -74,6 +82,11 @@ public class HorizontalLayoutComponent implements Validable {
 
         public builder width(int width) {
             this.width = width;
+            return this;
+        }
+
+        public builder resize(boolean resize) {
+            this.resize = resize;
             return this;
         }
 
@@ -88,7 +101,7 @@ public class HorizontalLayoutComponent implements Validable {
         }
 
         public HorizontalLayoutComponent build() {
-            return new HorizontalLayoutComponent(component, width, gapLeft, gapRight);
+            return new HorizontalLayoutComponent(component, width, gapLeft, gapRight, resize);
         }
     }
 }

@@ -45,11 +45,11 @@ public class _MaterialFileChooserPanel extends _PanelComponent implements Update
 
         HorizontalLayoutContainer.builder hlc = HorizontalLayoutContainer.builder((int) buttonAbrir.getPreferredSize().getHeight());
         hlc.add(labelSeleccionados);
-        hlc.add(buttonAbrir);
-        hlc.add(buttonOpenFolder);
-        
+        hlc.add(buttonAbrir, false);
+        hlc.add(buttonOpenFolder, false);
+
         setComponent(hlc.build());
-    }                       
+    }
 
     // Variables declaration - do not modify//:variables
     private com.jhw.swing.material.components.button._MaterialButton buttonAbrir;
