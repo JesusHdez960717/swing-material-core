@@ -21,22 +21,23 @@ public class VerticalLayoutContainer extends _PanelTransparent {
     );
 
     private VerticalLayoutContainer(int prefWidth, ArrayList<VerticalLayoutComponent> components) {
-        initComponents(components);
-        this.setSize(prefWidth, (int) layout.preferredLayoutSize(this).getHeight());
+        initComponents(prefWidth, components);
+        this.setPreferredSize(layout.preferredLayoutSize(this));
+        this.setSize(layout.preferredLayoutSize(this));
     }
 
-    private void initComponents(ArrayList<VerticalLayoutComponent> components) {
+    private void initComponents(int prefWidth, ArrayList<VerticalLayoutComponent> components) {
         this.setLayout(layout);
         for (VerticalLayoutComponent component : components) {
-            String constr = getConst(component);
+            String constr = getConst(component, prefWidth);
             this.add(component.getComponent(), constr);
         }
     }
 
-    private String getConst(VerticalLayoutComponent component) {
+    private String getConst(VerticalLayoutComponent component, int w) {
         String constr = "newline";
         constr += " ,gap 0 0 " + component.getGapTop() + " " + component.getGapDown();
-        constr += " ,h " + component.getHeight();
+        constr += " ,h " + component.getHeight() + ", w " + w;
         if (component.isResize()) {
             constr += " , pushy, grow";
         }

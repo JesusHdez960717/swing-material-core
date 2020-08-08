@@ -20,22 +20,23 @@ public class HorizontalLayoutContainer extends _PanelTransparent {
     );
 
     private HorizontalLayoutContainer(int prefHeight, ArrayList<HorizontalLayoutComponent> components) {
-        initComponents(components);
-        this.setSize((int) layout.preferredLayoutSize(this).getWidth(), prefHeight);
+        initComponents(prefHeight, components);
+        this.setPreferredSize(layout.preferredLayoutSize(this));
+        this.setSize(layout.preferredLayoutSize(this));
     }
 
-    private void initComponents(ArrayList<HorizontalLayoutComponent> components) {
+    private void initComponents(int prefHeight, ArrayList<HorizontalLayoutComponent> components) {
         this.setLayout(layout);
         for (HorizontalLayoutComponent component : components) {
-            String constr = getConst(component);
+            String constr = getConst(component, prefHeight);
             this.add(component.getComponent(), constr);
         }
     }
 
-    private String getConst(HorizontalLayoutComponent component) {
+    private String getConst(HorizontalLayoutComponent component, int h) {
         String constr = "";
         constr += " ,gap " + component.getGapLeft() + " " + component.getGapRight() + " 0 0";
-        constr += " ,w " + component.getWidth();
+        constr += " ,w " + component.getWidth() + ", h " + h;
         if (component.isResize()) {
             constr += " , pushx, grow";
         }
