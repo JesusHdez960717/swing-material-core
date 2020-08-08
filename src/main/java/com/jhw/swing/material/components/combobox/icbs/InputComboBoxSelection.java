@@ -1,5 +1,6 @@
 package com.jhw.swing.material.components.combobox.icbs;
 
+import com.clean.core.app.services.ExceptionHandler;
 import com.clean.core.exceptions.ValidationException;
 import com.jhw.swing.material.components.button._MaterialButtonIconTransparent;
 import com.jhw.swing.material.components.combobox.combobox_editable._MaterialComboBoxFiltrable;
@@ -66,7 +67,11 @@ public abstract class InputComboBoxSelection<T> extends _PanelComponent implemen
 
     @Override
     public void update() {
-        actualizarComboBox();
+        try {
+            updateComboBox();
+        } catch (Exception e) {
+            ExceptionHandler.handleException(e);
+        }
     }
 
     private void personalize() {
@@ -112,7 +117,7 @@ public abstract class InputComboBoxSelection<T> extends _PanelComponent implemen
         buttonNuevo.setEnabled(enabled);
     }
 
-    public abstract void actualizarComboBox();
+    protected abstract void updateComboBox() throws Exception;
 
     public abstract ActionListener buttonAddAction();
 
