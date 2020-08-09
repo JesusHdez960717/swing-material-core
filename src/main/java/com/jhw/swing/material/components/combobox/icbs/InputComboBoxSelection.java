@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import com.jhw.personalization.core.domain.Personalization;
 import com.jhw.personalization.services.PersonalizationHandler;
+import com.jhw.swing.util.interfaces.BindableComponent;
 import com.jhw.utils.interfaces.Update;
 import com.jhw.swing.util.validations.Validation;
 import com.jhw.swing.util.validations.icbs.ICBSValidation;
@@ -22,7 +23,7 @@ import com.jhw.swing.util.interfaces.Wrong;
  *
  * @author Jesus Hernandez Barrios (jhernandzb96@gmail.com)
  */
-public abstract class InputComboBoxSelection<T> extends _PanelComponent implements Update, Wrong {
+public abstract class InputComboBoxSelection<T> extends _PanelComponent implements BindableComponent<T>, Update, Wrong {
 
     private final ArrayList<ICBSValidation> preValidations = new ArrayList<>();
     private final ArrayList<ICBSValidation> postValidations = new ArrayList<>();
@@ -198,5 +199,15 @@ public abstract class InputComboBoxSelection<T> extends _PanelComponent implemen
                 throw new ValidationException(v.getDetailedText());
             }
         }
+    }
+
+    @Override
+    public T getObject() {
+        return (T) getSelectedItem();
+    }
+
+    @Override
+    public void setObject(T object) {
+        setSelectedItem(object);
     }
 }

@@ -24,6 +24,7 @@ import com.jhw.utils.interfaces.Update;
 import com.jhw.swing.util.interfaces.DateSelected;
 import com.jhw.swing.material.standards.MaterialColors;
 import com.jhw.swing.material.standards.MaterialFontRoboto;
+import com.jhw.swing.util.interfaces.BindableComponent;
 import com.jhw.swing.util.validations.Validation;
 import com.jhw.swing.util.validations.datepicker.DatePickerValidation;
 import com.jhw.swing.util.interfaces.Wrong;
@@ -32,7 +33,7 @@ import com.jhw.swing.util.interfaces.Wrong;
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-public class _MaterialDatePicker extends _PanelTransparent implements DateSelected, Update, Wrong {
+public class _MaterialDatePicker extends _PanelTransparent implements BindableComponent<Date>, DateSelected, Update, Wrong {
 
     private String label;
 
@@ -270,5 +271,15 @@ public class _MaterialDatePicker extends _PanelTransparent implements DateSelect
     public void setEnabled(boolean enabled) {
         this.datePicker.setEnabled(enabled);
         super.setEnabled(enabled);
+    }
+
+    @Override
+    public Date getObject() {
+        return getDate();
+    }
+
+    @Override
+    public void setObject(Date object) {
+        setDate(object);
     }
 }

@@ -20,6 +20,7 @@ import com.jhw.personalization.core.domain.Personalization;
 import com.jhw.personalization.services.PersonalizationHandler;
 import com.jhw.swing.util.MaterialDrawingUtils;
 import com.jhw.swing.util.Utils;
+import com.jhw.swing.util.interfaces.BindableComponent;
 import com.jhw.swing.utils.icons.DerivableIcon;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -34,7 +35,7 @@ import com.jhw.swing.util.interfaces.Wrong;
  * href="https://www.google.com/design/spec/components/buttons.html#buttons-dropdown-buttons">Dropdown
  * buttons (Google design guidelines)</a>
  */
-public class _MaterialComboBox<T> extends JComboBox<T> implements Wrong, MaterialComponent, FloatingLabelStandar {
+public class _MaterialComboBox<T> extends JComboBox<T> implements BindableComponent<T>, Wrong, MaterialComponent, FloatingLabelStandar {
 
     private FloatingLabel floatingLabel;
     private Line line = new Line(this);
@@ -345,10 +346,12 @@ public class _MaterialComboBox<T> extends JComboBox<T> implements Wrong, Materia
         return accentColor;
     }
 
+    @Override
     public Color getForeground() {
         return foreground;
     }
 
+    @Override
     public Cursor getCursor() {
         return cursor;
     }
@@ -366,6 +369,16 @@ public class _MaterialComboBox<T> extends JComboBox<T> implements Wrong, Materia
     @Override
     public Component getComponent() {
         return this;
+    }
+
+    @Override
+    public T getObject() {
+        return (T) getSelectedItem();
+    }
+
+    @Override
+    public void setObject(T object) {
+        setSelectedItem(object);
     }
 
     public static class FieldRenderer<T> extends JComponent implements ListCellRenderer<T> {
@@ -443,5 +456,4 @@ public class _MaterialComboBox<T> extends JComboBox<T> implements Wrong, Materia
             super.paint(MaterialDrawingUtils.getAliasedGraphics(g));
         }
     }
-
 }

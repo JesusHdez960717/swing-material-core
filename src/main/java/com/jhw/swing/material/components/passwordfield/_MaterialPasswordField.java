@@ -20,6 +20,7 @@ import com.jhw.swing.util.interfaces.MaterialComponent;
 import com.jhw.swing.util.Utils;
 import com.jhw.swing.material.standards.MaterialColors;
 import com.jhw.swing.material.standards.MaterialFontRoboto;
+import com.jhw.swing.util.interfaces.BindableComponent;
 import com.jhw.swing.util.validations.Validation;
 import com.jhw.swing.util.validations.textfield.TextFieldValidation;
 import com.jhw.swing.util.interfaces.Wrong;
@@ -34,7 +35,7 @@ import com.jhw.swing.util.interfaces.Wrong;
  * href="https://www.google.com/design/spec/components/text-fields.html">Text
  * fields (Google design guidelines)</a>
  */
-public class _MaterialPasswordField extends JPasswordField implements Wrong, MaterialComponent, FloatingLabelStandar {
+public class _MaterialPasswordField extends JPasswordField implements BindableComponent<char[]>, Wrong, MaterialComponent, FloatingLabelStandar {
 
     private FloatingLabel floatingLabel;
     private Line line;
@@ -496,5 +497,15 @@ public class _MaterialPasswordField extends JPasswordField implements Wrong, Mat
     @Override
     public Component getComponent() {
         return this;
+    }
+
+    @Override
+    public char[] getObject() {
+        return getPassword();
+    }
+
+    @Override
+    public void setObject(char[] object) {
+        setText(new String(object));
     }
 }
