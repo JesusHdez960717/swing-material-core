@@ -24,6 +24,7 @@ import com.jhw.swing.util.interfaces.Wrong;
 import com.jhw.swing.util.validations.Validation;
 import com.jhw.swing.util.validations.textfield.GreaterThatCeroValidation;
 import com.jhw.swing.util.validations.textfield.TextFieldValidation;
+import com.jhw.utils.interfaces.Formateable;
 
 /**
  * A Material Design single-line text field is the basic way of getting user
@@ -35,7 +36,7 @@ import com.jhw.swing.util.validations.textfield.TextFieldValidation;
  * href="https://www.google.com/design/spec/components/text-fields.html">Text
  * fields (Google design guidelines)</a>
  */
-public class _MaterialTextField extends JTextField implements BindableComponent<String>, Wrong, MaterialComponent, FloatingLabelStandar {
+public class _MaterialTextField extends JTextField implements BindableComponent, Wrong, MaterialComponent, FloatingLabelStandar {
 
     public static final int HINT_OPACITY_MASK = 0x99000000;
     public static final int LINE_OPACITY_MASK = 0x66000000;
@@ -729,12 +730,16 @@ public class _MaterialTextField extends JTextField implements BindableComponent<
     }
 
     @Override
-    public String getObject() {
+    public Object getObject() {
         return getText();
     }
 
     @Override
-    public void setObject(String object) {
-        setText(object);
+    public void setObject(Object object) {
+        if (object instanceof Formateable) {
+            setText(((Formateable) object).format());
+        } else {
+            setText(object.toString());
+        }
     }
 }
