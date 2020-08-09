@@ -16,12 +16,13 @@ import com.jhw.swing.util.validations.icbs.ICBSValidation;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.util.List;
+import com.jhw.swing.util.interfaces.Wrong;
 
 /**
  *
  * @author Jesus Hernandez Barrios (jhernandzb96@gmail.com)
  */
-public abstract class InputComboBoxSelection<T> extends _PanelComponent implements Update {
+public abstract class InputComboBoxSelection<T> extends _PanelComponent implements Update, Wrong {
 
     private final ArrayList<ICBSValidation> preValidations = new ArrayList<>();
     private final ArrayList<ICBSValidation> postValidations = new ArrayList<>();
@@ -103,8 +104,14 @@ public abstract class InputComboBoxSelection<T> extends _PanelComponent implemen
         return ans;
     }
 
+    @Override
     public void wrong() {
         comboBox.wrong();
+    }
+
+    @Override
+    public void wrong(String wrongText) {
+        comboBox.wrong(wrongText);
     }
 
     public void clearWrong() {

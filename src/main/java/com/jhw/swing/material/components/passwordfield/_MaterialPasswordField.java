@@ -22,6 +22,7 @@ import com.jhw.swing.material.standards.MaterialColors;
 import com.jhw.swing.material.standards.MaterialFontRoboto;
 import com.jhw.swing.util.validations.Validation;
 import com.jhw.swing.util.validations.textfield.TextFieldValidation;
+import com.jhw.swing.util.interfaces.Wrong;
 
 /**
  * A Material Design single-line text field is the basic way of getting user
@@ -33,7 +34,7 @@ import com.jhw.swing.util.validations.textfield.TextFieldValidation;
  * href="https://www.google.com/design/spec/components/text-fields.html">Text
  * fields (Google design guidelines)</a>
  */
-public class _MaterialPasswordField extends JPasswordField implements MaterialComponent, FloatingLabelStandar {
+public class _MaterialPasswordField extends JPasswordField implements Wrong, MaterialComponent, FloatingLabelStandar {
 
     private FloatingLabel floatingLabel;
     private Line line;
@@ -419,12 +420,14 @@ public class _MaterialPasswordField extends JPasswordField implements MaterialCo
         return ans;
     }
 
+    @Override
     public void wrong() {
         setForeground(wrongColor);
         floatingLabel.setAccentColor(wrongColor);
         this.wrongFlag = true;
     }
 
+    @Override
     public void wrong(String wrongText) {
         this.wrongText = wrongText;
         wrong();

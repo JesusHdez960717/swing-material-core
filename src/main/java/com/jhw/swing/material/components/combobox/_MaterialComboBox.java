@@ -25,6 +25,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import com.jhw.swing.util.interfaces.Wrong;
 
 /**
  * A Material Design combo box.
@@ -33,7 +34,7 @@ import java.awt.event.ComponentEvent;
  * href="https://www.google.com/design/spec/components/buttons.html#buttons-dropdown-buttons">Dropdown
  * buttons (Google design guidelines)</a>
  */
-public class _MaterialComboBox<T> extends JComboBox<T> implements MaterialComponent, FloatingLabelStandar {
+public class _MaterialComboBox<T> extends JComboBox<T> implements Wrong, MaterialComponent, FloatingLabelStandar {
 
     private FloatingLabel floatingLabel;
     private Line line = new Line(this);
@@ -223,11 +224,13 @@ public class _MaterialComboBox<T> extends JComboBox<T> implements MaterialCompon
         repaint();
     }
 
+    @Override
     public void wrong() {
         floatingLabel.setAccentColor(wrongColor);
         this.wrongFlag = true;
     }
 
+    @Override
     public void wrong(String wrongText) {
         this.wrongText = wrongText;
         wrong();
