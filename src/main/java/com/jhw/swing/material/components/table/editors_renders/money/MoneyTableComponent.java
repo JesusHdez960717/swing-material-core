@@ -17,8 +17,8 @@ public class MoneyTableComponent {
     private final double money;
     private final String coin;
 
-    public static MoneyTableComponent from(double money, String coin) {
-        return new MoneyTableComponent(money, coin);
+    public static MoneyTableComponent from(double money, Object coin) {
+        return new MoneyTableComponent(money, coin.toString());
     }
 
     public static MoneyTableComponent from(double money) {
