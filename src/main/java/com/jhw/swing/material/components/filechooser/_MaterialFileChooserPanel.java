@@ -11,12 +11,13 @@ import com.jhw.swing.material.standards.MaterialColors;
 import com.jhw.swing.material.standards.MaterialIcons;
 import com.jhw.personalization.core.domain.Personalization;
 import com.jhw.personalization.services.PersonalizationHandler;
+import com.jhw.swing.util.interfaces.BindableComponent;
 
 /**
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-public class _MaterialFileChooserPanel extends _PanelComponent implements Update {
+public class _MaterialFileChooserPanel extends _PanelComponent implements BindableComponent<File[]>, Update {
 
     private _MaterialFileChooser fc;
     private static File lastFile = new File("");
@@ -45,11 +46,11 @@ public class _MaterialFileChooserPanel extends _PanelComponent implements Update
 
         HorizontalLayoutContainer.builder hlc = HorizontalLayoutContainer.builder((int) buttonAbrir.getPreferredSize().getHeight());
         hlc.add(labelSeleccionados);
-        hlc.add(buttonAbrir);
-        hlc.add(buttonOpenFolder);
-        
+        hlc.add(buttonAbrir, false);
+        hlc.add(buttonOpenFolder, false);
+
         setComponent(hlc.build());
-    }                       
+    }
 
     // Variables declaration - do not modify//:variables
     private com.jhw.swing.material.components.button._MaterialButton buttonAbrir;
@@ -148,5 +149,15 @@ public class _MaterialFileChooserPanel extends _PanelComponent implements Update
         this.labelSeleccionados.setEnabled(enabled);
         this.buttonOpenFolder.setEnabled(enabled);
         super.setEnabled(enabled);
+    }
+
+    @Override
+    public File[] getObject() {
+        return getSelectedFiles();
+    }
+
+    @Override
+    public void setObject(File[] object) {
+        fc.setSelectedFiles(object);
     }
 }

@@ -38,9 +38,6 @@ public class DashBoardTaskPane extends DashBoardSimple implements PropertyChange
     private Consumer<TaskButton> buttonFormatter = (TaskButton btn) -> {
     };
 
-    private Consumer<CollapseMenu> collapseMenuFormatter = (CollapseMenu menu) -> {
-    };
-
     private final CardLayout cards = new CardLayout();
 
     private boolean shrinked;
@@ -294,14 +291,10 @@ public class DashBoardTaskPane extends DashBoardSimple implements PropertyChange
         this.buttonFormatter = buttonFormatter;
     }
 
-    public void setCollapseMenuFormatter(Consumer<CollapseMenu> collapseMenuFormatter) {
-        this.collapseMenuFormatter = collapseMenuFormatter;
-    }
-
     @Override
     public void format() {
         for (CollapseMenu menu : menus) {
-            collapseMenuFormatter.accept(menu);
+            menuFormatter.accept(menu);
             for (TaskButton button : menu.getButtons()) {
                 buttonFormatter.accept(button);
             }

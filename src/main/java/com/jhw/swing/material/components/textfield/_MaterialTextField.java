@@ -19,9 +19,12 @@ import com.jhw.swing.util.enums.TextTypeEnum;
 import com.jhw.swing.util.interfaces.MaterialComponent;
 import com.jhw.swing.material.standards.MaterialColors;
 import com.jhw.swing.material.standards.MaterialFontRoboto;
+import com.jhw.swing.util.interfaces.BindableComponent;
+import com.jhw.swing.util.interfaces.Wrong;
 import com.jhw.swing.util.validations.Validation;
 import com.jhw.swing.util.validations.textfield.GreaterThatCeroValidation;
 import com.jhw.swing.util.validations.textfield.TextFieldValidation;
+import com.jhw.utils.interfaces.Formateable;
 
 /**
  * A Material Design single-line text field is the basic way of getting user
@@ -33,7 +36,7 @@ import com.jhw.swing.util.validations.textfield.TextFieldValidation;
  * href="https://www.google.com/design/spec/components/text-fields.html">Text
  * fields (Google design guidelines)</a>
  */
-public class _MaterialTextField extends JTextField implements MaterialComponent, FloatingLabelStandar {
+public class _MaterialTextField extends JTextField implements BindableComponent, Wrong, MaterialComponent, FloatingLabelStandar {
 
     public static final int HINT_OPACITY_MASK = 0x99000000;
     public static final int LINE_OPACITY_MASK = 0x66000000;
@@ -558,11 +561,13 @@ public class _MaterialTextField extends JTextField implements MaterialComponent,
         //intentionally left blank
     }
 
+    @Override
     public void wrong() {
         floatingLabel.setAccentColor(wrongColor);
         this.wrongFlag = true;
     }
 
+    @Override
     public void wrong(String wrongText) {
         setWrongText(wrongText);
         wrong();
@@ -576,7 +581,7 @@ public class _MaterialTextField extends JTextField implements MaterialComponent,
         }
     }
 
-    public void setMoney(float money, String coin) {
+    public void setMoney(double money, String coin) {
         setType(TextTypeEnum.MONEY);
         setText(String.valueOf(Misc.round2f(money)));
         this.extra = coin;
@@ -649,7 +654,7 @@ public class _MaterialTextField extends JTextField implements MaterialComponent,
         }
     }
 
-    public float getMoney() {
+    public double getMoney() {
         return Misc.round2f(getFloat());
     }
 
@@ -683,7 +688,7 @@ public class _MaterialTextField extends JTextField implements MaterialComponent,
         validateText(null);
     }
 
-    public void setMoney(float val) {
+    public void setMoney(double val) {
         setType(TextTypeEnum.MONEY);
         this.setText(String.valueOf(Misc.round2f(val)));
         validateText(null);
@@ -722,5 +727,19 @@ public class _MaterialTextField extends JTextField implements MaterialComponent,
 
     public boolean containValidation(TextFieldValidation v) {
         return preValidations.contains(v) || postValidations.contains(v);
+    }
+
+    @Override
+    public Object getObject() {
+        return getText();
+    }
+
+    @Override
+    public void setObject(Object object) {
+        if (object instanceof Formateable) {
+            setText(((Formateable) object).format());
+        } else {
+            setText(object.toString());
+        }
     }
 }

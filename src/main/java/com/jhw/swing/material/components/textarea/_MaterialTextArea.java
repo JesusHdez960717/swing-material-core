@@ -1,6 +1,7 @@
 package com.jhw.swing.material.components.textarea;
 
 import com.jhw.swing.material.components.scrollpane._MaterialScrollPaneCore;
+import com.jhw.swing.util.interfaces.BindableComponent;
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.border.Border;
@@ -10,7 +11,7 @@ import javax.swing.border.TitledBorder;
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-public class _MaterialTextArea extends javax.swing.JPanel {
+public class _MaterialTextArea extends javax.swing.JPanel implements BindableComponent<String> {
 
     public _MaterialTextArea() {
         initComponents();
@@ -35,19 +36,19 @@ public class _MaterialTextArea extends javax.swing.JPanel {
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(materialScrollPaneCore, javax.swing.GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE)
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(materialScrollPaneCore, javax.swing.GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(materialScrollPaneCore, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(materialScrollPaneCore, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)
         );
-    }// </editor-fold>//GEN-END:initComponents
+    }// </editor-fold>                        
 
     // Variables declaration - do not modify//:variables
     private com.jhw.swing.material.components.scrollpane._MaterialScrollPaneCore materialScrollPaneCore;
     private com.jhw.swing.material.components.textarea._MaterialTextAreaCore materialTextAreaCore;
-    // End of variables declaration//GEN-END:variables
+    // End of variables declaration                   
 
     public void setTitledBorder(String text) {
         materialScrollPaneCore.setTitledBorder(text);
@@ -125,4 +126,13 @@ public class _MaterialTextArea extends javax.swing.JPanel {
         super.setForeground(fore);
     }
 
+    @Override
+    public String getObject() {
+        return getText();
+    }
+
+    @Override
+    public void setObject(String object) {
+        setText(object);
+    }
 }

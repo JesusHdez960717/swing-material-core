@@ -4,7 +4,6 @@ import com.jhw.swing.material.components.container.panel._PanelGradient;
 import com.jhw.swing.material.components.labels._MaterialLabel;
 import java.awt.GridLayout;
 import java.util.Objects;
-import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
@@ -15,15 +14,23 @@ import javax.swing.UIManager;
  */
 public class MoneyTableComponent {
 
-    private final float money;
+    private final double money;
     private final String coin;
 
-    public MoneyTableComponent(float money, String coin) {
+    public static MoneyTableComponent from(double money, Object coin) {
+        return new MoneyTableComponent(money, coin.toString());
+    }
+
+    public static MoneyTableComponent from(double money) {
+        return new MoneyTableComponent(money, "");
+    }
+
+    public MoneyTableComponent(double money, String coin) {
         this.money = money;
         this.coin = coin;
     }
 
-    public float getMoney() {
+    public double getMoney() {
         return money;
     }
 
@@ -55,14 +62,6 @@ public class MoneyTableComponent {
     }
 
     @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 79 * hash + Float.floatToIntBits(this.money);
-        hash = 79 * hash + Objects.hashCode(this.coin);
-        return hash;
-    }
-
-    @Override
     public boolean equals(Object obj) {
         if (obj == null) {
             return false;
@@ -71,7 +70,7 @@ public class MoneyTableComponent {
             return false;
         }
         final MoneyTableComponent other = (MoneyTableComponent) obj;
-        if (Float.floatToIntBits(this.money) != Float.floatToIntBits(other.money)) {
+        if (Double.doubleToLongBits(this.money) != Double.doubleToLongBits(other.money)) {
             return false;
         }
         if (!Objects.equals(this.coin, other.coin)) {

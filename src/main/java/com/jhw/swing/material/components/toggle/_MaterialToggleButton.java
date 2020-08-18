@@ -16,12 +16,13 @@ import com.jhw.swing.util.interfaces.MaterialComponent;
 import com.jhw.swing.material.standards.MaterialFontRoboto;
 import com.jhw.swing.material.standards.MaterialIcons;
 import com.jhw.swing.material.standards.MaterialImages;
+import com.jhw.swing.util.interfaces.BindableComponent;
 
 /**
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-public class _MaterialToggleButton extends JToggleButton implements MaterialComponent {
+public class _MaterialToggleButton extends JToggleButton implements BindableComponent<Boolean>, MaterialComponent {
 
     private ImageIcon unselectedIcon;
     private ImageIcon selectedIcon;
@@ -142,23 +143,18 @@ public class _MaterialToggleButton extends JToggleButton implements MaterialComp
         //intentionally left blank
     }
 
+    @Override
+    public Boolean getObject() {
+        return isSelected();
+    }
+
+    @Override
+    public void setObject(Boolean object) {
+        setSelected(object);
+    }
+
     public enum Type {
 
         CHECK_BOX, RADIO_BUTTON, DEFAULT
     }
 }
-
-/*@Override
- protected void paintComponent(Graphics g) {
- Graphics2D g2 = (Graphics2D) g;
- g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
- g2.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
-
- if (this.isSelected()) {
- this.setRolloverIcon(selectedIcon);
- } else {
- this.setRolloverIcon(unselectedIcon);
- }
-        
- super.paintComponent(g);
- }*/

@@ -20,11 +20,13 @@ import com.jhw.personalization.core.domain.Personalization;
 import com.jhw.personalization.services.PersonalizationHandler;
 import com.jhw.swing.util.MaterialDrawingUtils;
 import com.jhw.swing.util.Utils;
+import com.jhw.swing.util.interfaces.BindableComponent;
 import com.jhw.swing.utils.icons.DerivableIcon;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import com.jhw.swing.util.interfaces.Wrong;
 
 /**
  * A Material Design combo box.
@@ -33,7 +35,7 @@ import java.awt.event.ComponentEvent;
  * href="https://www.google.com/design/spec/components/buttons.html#buttons-dropdown-buttons">Dropdown
  * buttons (Google design guidelines)</a>
  */
-public class _MaterialComboBox<T> extends JComboBox<T> implements MaterialComponent, FloatingLabelStandar {
+public class _MaterialComboBox<T> extends JComboBox<T> implements BindableComponent<T>, Wrong, MaterialComponent, FloatingLabelStandar {
 
     private FloatingLabel floatingLabel;
     private Line line = new Line(this);
@@ -82,14 +84,13 @@ public class _MaterialComboBox<T> extends JComboBox<T> implements MaterialCompon
         this.setCursor(cursor);
         this.setFont(MaterialFontRoboto.REGULAR.deriveFont(16f));
         this.setHint("Select...");
-        this.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"Item 1", "Item 2", "Item 3"}));
+        this.setModel(new javax.swing.DefaultComboBoxModel(new String[]{}));
         this.setSelectedIndex(-1);
 
         this.addComponentListener(new ComponentAdapter() {
             @Override
             public void componentResized(ComponentEvent e) {
                 floatingLabel.update();
-
             }
         });
 
@@ -223,11 +224,13 @@ public class _MaterialComboBox<T> extends JComboBox<T> implements MaterialCompon
         repaint();
     }
 
+    @Override
     public void wrong() {
         floatingLabel.setAccentColor(wrongColor);
         this.wrongFlag = true;
     }
 
+    @Override
     public void wrong(String wrongText) {
         this.wrongText = wrongText;
         wrong();
@@ -342,10 +345,12 @@ public class _MaterialComboBox<T> extends JComboBox<T> implements MaterialCompon
         return accentColor;
     }
 
+    @Override
     public Color getForeground() {
         return foreground;
     }
 
+    @Override
     public Cursor getCursor() {
         return cursor;
     }
@@ -363,6 +368,16 @@ public class _MaterialComboBox<T> extends JComboBox<T> implements MaterialCompon
     @Override
     public Component getComponent() {
         return this;
+    }
+
+    @Override
+    public T getObject() {
+        return (T) getSelectedItem();
+    }
+
+    @Override
+    public void setObject(T object) {
+        setSelectedItem(object);
     }
 
     public static class FieldRenderer<T> extends JComponent implements ListCellRenderer<T> {
@@ -440,5 +455,4 @@ public class _MaterialComboBox<T> extends JComboBox<T> implements MaterialCompon
             super.paint(MaterialDrawingUtils.getAliasedGraphics(g));
         }
     }
-
 }

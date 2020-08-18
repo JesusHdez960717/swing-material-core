@@ -24,14 +24,16 @@ import com.jhw.utils.interfaces.Update;
 import com.jhw.swing.util.interfaces.DateSelected;
 import com.jhw.swing.material.standards.MaterialColors;
 import com.jhw.swing.material.standards.MaterialFontRoboto;
+import com.jhw.swing.util.interfaces.BindableComponent;
 import com.jhw.swing.util.validations.Validation;
 import com.jhw.swing.util.validations.datepicker.DatePickerValidation;
+import com.jhw.swing.util.interfaces.Wrong;
 
 /**
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-public class _MaterialDatePicker extends _PanelTransparent implements DateSelected, Update {
+public class _MaterialDatePicker extends _PanelTransparent implements BindableComponent<Date>, DateSelected, Update, Wrong {
 
     private String label;
 
@@ -83,16 +85,16 @@ public class _MaterialDatePicker extends _PanelTransparent implements DateSelect
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(labelWrong, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(datePicker, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(labelWrong, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(datePicker, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(datePicker, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(labelWrong, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addComponent(datePicker, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, 0)
+                                .addComponent(labelWrong, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>                        
 
@@ -145,11 +147,7 @@ public class _MaterialDatePicker extends _PanelTransparent implements DateSelect
         return datePicker.getDate();
     }
 
-    public void wrong(String text) {
-        setWrongText(text);
-        wrong();
-    }
-
+    @Override
     public void wrong() {
         wrongFlag = true;
         setForeground(wrongColor);
@@ -157,6 +155,12 @@ public class _MaterialDatePicker extends _PanelTransparent implements DateSelect
         labelWrong.setText(wrongText);
         labelWrong.setForeground(wrongColor);
         setLabel(label);
+    }
+
+    @Override
+    public void wrong(String text) {
+        setWrongText(text);
+        wrong();
     }
 
     public void clearWrong() {
@@ -267,5 +271,15 @@ public class _MaterialDatePicker extends _PanelTransparent implements DateSelect
     public void setEnabled(boolean enabled) {
         this.datePicker.setEnabled(enabled);
         super.setEnabled(enabled);
+    }
+
+    @Override
+    public Date getObject() {
+        return getDate();
+    }
+
+    @Override
+    public void setObject(Date object) {
+        setDate(object);
     }
 }

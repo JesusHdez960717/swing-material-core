@@ -42,10 +42,6 @@ public class DashBoardExtends extends DashBoardSimple {
         this.dashboardCore.setButtonFormatter(buttonFormatter);
     }
 
-    public void setCollapseMenuFormatter(Consumer<CollapseMenu> collapseMenuFormatter) {
-        this.dashboardCore.setCollapseMenuFormatter(collapseMenuFormatter);
-    }
-
     public void setDashBoardFormatter(Consumer<DashBoardExtends> dashBoardFormatter) {
         this.dashBoardFormatter = dashBoardFormatter;
     }

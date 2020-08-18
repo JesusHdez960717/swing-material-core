@@ -13,13 +13,14 @@ import com.jhw.swing.util.Utils;
 import com.jhw.swing.utils.icons.DerivableIcon;
 import com.jhw.swing.util.interfaces.MaterialComponent;
 import com.jhw.swing.material.standards.MaterialFontRoboto;
+import com.jhw.swing.util.interfaces.BindableComponent;
 import javax.swing.Icon;
 
 /**
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-public class _MaterialLabel extends JLabel implements MaterialComponent {
+public class _MaterialLabel extends JLabel implements MaterialComponent, BindableComponent<String> {
 
     public static final int DISTANCE_ICON_TEXT = 3;
 
@@ -123,5 +124,15 @@ public class _MaterialLabel extends JLabel implements MaterialComponent {
 
     public void setMoney(double value, String coin) {
         setText("$ " + StringFormating.formatToMoney(value) + " " + coin);
+    }
+
+    @Override
+    public String getObject() {
+        return getText();
+    }
+
+    @Override
+    public void setObject(String object) {
+        setText(object);
     }
 }

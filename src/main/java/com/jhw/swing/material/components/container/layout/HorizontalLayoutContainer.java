@@ -3,7 +3,9 @@ package com.jhw.swing.material.components.container.layout;
 import com.jhw.swing.material.components.container.panel._PanelTransparent;
 import java.awt.Component;
 import java.util.ArrayList;
-import javax.swing.GroupLayout;
+import net.miginfocom.layout.AC;
+import net.miginfocom.layout.LC;
+import net.miginfocom.swing.MigLayout;
 
 /**
  *
@@ -11,34 +13,34 @@ import javax.swing.GroupLayout;
  */
 public class HorizontalLayoutContainer extends _PanelTransparent {
 
+    private final MigLayout layout = new MigLayout(
+            new LC().align("center", "center").insetsAll("0").gridGap("0", "0"),
+            new AC(),
+            new AC().fill().grow()
+    );
+
     private HorizontalLayoutContainer(int prefHeight, ArrayList<HorizontalLayoutComponent> components) {
         initComponents(prefHeight, components);
+        this.setPreferredSize(layout.preferredLayoutSize(this));
+        this.setSize(layout.preferredLayoutSize(this));
     }
 
     private void initComponents(int prefHeight, ArrayList<HorizontalLayoutComponent> components) {
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
-        GroupLayout.ParallelGroup horizParallelGroup = layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER);
-        GroupLayout.SequentialGroup seqGroup = layout.createSequentialGroup();
-        for (HorizontalLayoutComponent c : components) {
-            seqGroup.addGap(c.getGapLeft())
-                    .addComponent(c.getComponent(), javax.swing.GroupLayout.DEFAULT_SIZE, c.getWidth(), Short.MAX_VALUE)
-                    .addGap(c.getGapRight());
+        for (HorizontalLayoutComponent component : components) {
+            String constr = getConst(component, prefHeight);
+            this.add(component.getComponent(), constr);
         }
+    }
 
-        layout.setHorizontalGroup(
-                horizParallelGroup
-                        .addGroup(seqGroup)
-        );
-
-        GroupLayout.ParallelGroup vertParallelGroup = layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER);
-        for (HorizontalLayoutComponent c : components) {
-            vertParallelGroup
-                    .addComponent(c.getComponent(), javax.swing.GroupLayout.DEFAULT_SIZE, prefHeight, Short.MAX_VALUE);
+    private String getConst(HorizontalLayoutComponent component, int h) {
+        String constr = "";
+        constr += " ,gap " + component.getGapLeft() + " " + component.getGapRight() + " 0 0";
+        constr += " ,w " + component.getWidth() + ", h " + h;
+        if (component.isResize()) {
+            constr += " , pushx, grow";
         }
-        layout.setVerticalGroup(
-                vertParallelGroup
-        );
+        return constr;
     }
 
     public static builder builder() {
@@ -62,7 +64,11 @@ public class HorizontalLayoutContainer extends _PanelTransparent {
         }
 
         public builder add(Component comp) {
-            components.add(HorizontalLayoutComponent.builder(comp).build());
+            return add(comp, true);
+        }
+
+        public builder add(Component comp, boolean resize) {
+            components.add(HorizontalLayoutComponent.builder(comp).resize(resize).build());
             return this;
         }
 

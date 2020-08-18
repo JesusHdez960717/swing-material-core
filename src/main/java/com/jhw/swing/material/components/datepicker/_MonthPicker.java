@@ -4,6 +4,7 @@ import com.jhw.swing.material.components.combobox.combobox_editable._MaterialCom
 import com.jhw.swing.material.components.container.layout.HorizontalLayoutComponent;
 import com.jhw.swing.material.components.container.layout.HorizontalLayoutContainer;
 import com.jhw.swing.material.components.container.panel._PanelComponent;
+import com.jhw.swing.util.interfaces.BindableComponent;
 import com.jhw.swing.util.interfaces.DateSelected;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -15,7 +16,7 @@ import javax.swing.JComboBox;
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-public class _MonthPicker extends _PanelComponent implements DateSelected {
+public class _MonthPicker extends _PanelComponent implements BindableComponent<Date>, DateSelected {
 
     private final SimpleDateFormat SDF_MONTH = new SimpleDateFormat("MMMM");
     private final List<MES> months = new ArrayList<>(12);
@@ -130,6 +131,16 @@ public class _MonthPicker extends _PanelComponent implements DateSelected {
         this.comboBoxMonths.setEnabled(enabled);
         this.comboBoxYear.setEnabled(enabled);
         super.setEnabled(enabled);
+    }
+
+    @Override
+    public Date getObject() {
+        return getDate();
+    }
+
+    @Override
+    public void setObject(Date object) {
+        setDate(object);
     }
 
     private class MES {

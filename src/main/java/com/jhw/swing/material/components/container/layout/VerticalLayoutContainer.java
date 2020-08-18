@@ -4,6 +4,9 @@ import com.jhw.swing.material.components.container.panel._PanelTransparent;
 import java.awt.Component;
 import java.util.ArrayList;
 import javax.swing.GroupLayout;
+import net.miginfocom.layout.AC;
+import net.miginfocom.layout.LC;
+import net.miginfocom.swing.MigLayout;
 
 /**
  *
@@ -11,30 +14,34 @@ import javax.swing.GroupLayout;
  */
 public class VerticalLayoutContainer extends _PanelTransparent {
 
+    private final MigLayout layout = new MigLayout(
+            new LC().align("center", "center").insetsAll("0").gridGap("0", "0"),
+            new AC().fill().grow(),
+            new AC()
+    );
+
     private VerticalLayoutContainer(int prefWidth, ArrayList<VerticalLayoutComponent> components) {
         initComponents(prefWidth, components);
+        this.setPreferredSize(layout.preferredLayoutSize(this));
+        this.setSize(layout.preferredLayoutSize(this));
     }
 
     private void initComponents(int prefWidth, ArrayList<VerticalLayoutComponent> components) {
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
-        GroupLayout.ParallelGroup horizParallelGroup = layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER);
-        for (VerticalLayoutComponent c : components) {
-            horizParallelGroup.addComponent(c.getComponent(), javax.swing.GroupLayout.DEFAULT_SIZE, prefWidth, Short.MAX_VALUE);
+        for (VerticalLayoutComponent component : components) {
+            String constr = getConst(component, prefWidth);
+            this.add(component.getComponent(), constr);
         }
-        layout.setHorizontalGroup(horizParallelGroup);
+    }
 
-        GroupLayout.ParallelGroup vertParallelGroup = layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER);
-        GroupLayout.SequentialGroup seqGroup = layout.createSequentialGroup();
-        for (VerticalLayoutComponent c : components) {
-            seqGroup.addGap(c.getGapTop())
-                    .addComponent(c.getComponent(), javax.swing.GroupLayout.DEFAULT_SIZE, c.getHeight(), Short.MAX_VALUE)
-                    .addGap(c.getGapDown());
+    private String getConst(VerticalLayoutComponent component, int w) {
+        String constr = "newline";
+        constr += " ,gap 0 0 " + component.getGapTop() + " " + component.getGapDown();
+        constr += " ,h " + component.getHeight() + ", w " + w;
+        if (component.isResize()) {
+            constr += " , pushy, grow";
         }
-        layout.setVerticalGroup(
-                vertParallelGroup
-                        .addGroup(seqGroup)
-        );
+        return constr;
     }
 
     public static builder builder() {
@@ -58,7 +65,11 @@ public class VerticalLayoutContainer extends _PanelTransparent {
         }
 
         public builder add(Component comp) {
-            components.add(VerticalLayoutComponent.builder(comp).build());
+            return add(comp, false);
+        }
+
+        public builder add(Component comp, boolean resize) {
+            components.add(VerticalLayoutComponent.builder(comp).resize(resize).build());
             return this;
         }
 

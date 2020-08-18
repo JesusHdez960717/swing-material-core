@@ -1,5 +1,6 @@
 package com.jhw.swing.material.components.combobox.icbs;
 
+import com.clean.core.app.services.ExceptionHandler;
 import com.clean.core.exceptions.ValidationException;
 import com.jhw.swing.material.components.button._MaterialButtonIconTransparent;
 import com.jhw.swing.material.components.combobox.combobox_editable._MaterialComboBoxFiltrable;
@@ -9,18 +10,20 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import com.jhw.personalization.core.domain.Personalization;
 import com.jhw.personalization.services.PersonalizationHandler;
+import com.jhw.swing.util.interfaces.BindableComponent;
 import com.jhw.utils.interfaces.Update;
 import com.jhw.swing.util.validations.Validation;
 import com.jhw.swing.util.validations.icbs.ICBSValidation;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.util.List;
+import com.jhw.swing.util.interfaces.Wrong;
 
 /**
  *
  * @author Jesus Hernandez Barrios (jhernandzb96@gmail.com)
  */
-public abstract class InputComboBoxSelection<T> extends _PanelComponent implements Update {
+public abstract class InputComboBoxSelection<T> extends _PanelComponent implements BindableComponent<T>, Update, Wrong {
 
     private final ArrayList<ICBSValidation> preValidations = new ArrayList<>();
     private final ArrayList<ICBSValidation> postValidations = new ArrayList<>();
@@ -66,7 +69,11 @@ public abstract class InputComboBoxSelection<T> extends _PanelComponent implemen
 
     @Override
     public void update() {
-        actualizarComboBox();
+        try {
+            updateComboBox();
+        } catch (Exception e) {
+            ExceptionHandler.handleException(e);
+        }
     }
 
     private void personalize() {
@@ -98,8 +105,14 @@ public abstract class InputComboBoxSelection<T> extends _PanelComponent implemen
         return ans;
     }
 
+    @Override
     public void wrong() {
         comboBox.wrong();
+    }
+
+    @Override
+    public void wrong(String wrongText) {
+        comboBox.wrong(wrongText);
     }
 
     public void clearWrong() {
@@ -112,7 +125,7 @@ public abstract class InputComboBoxSelection<T> extends _PanelComponent implemen
         buttonNuevo.setEnabled(enabled);
     }
 
-    public abstract void actualizarComboBox();
+    protected abstract void updateComboBox() throws Exception;
 
     public abstract ActionListener buttonAddAction();
 
@@ -186,5 +199,15 @@ public abstract class InputComboBoxSelection<T> extends _PanelComponent implemen
                 throw new ValidationException(v.getDetailedText());
             }
         }
+    }
+
+    @Override
+    public T getObject() {
+        return (T) getSelectedItem();
+    }
+
+    @Override
+    public void setObject(T object) {
+        setSelectedItem(object);
     }
 }
