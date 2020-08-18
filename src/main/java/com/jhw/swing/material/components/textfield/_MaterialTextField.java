@@ -581,7 +581,7 @@ public class _MaterialTextField extends JTextField implements BindableComponent,
         }
     }
 
-    public void setMoney(float money, String coin) {
+    public void setMoney(double money, String coin) {
         setType(TextTypeEnum.MONEY);
         setText(String.valueOf(Misc.round2f(money)));
         this.extra = coin;
@@ -654,7 +654,7 @@ public class _MaterialTextField extends JTextField implements BindableComponent,
         }
     }
 
-    public float getMoney() {
+    public double getMoney() {
         return Misc.round2f(getFloat());
     }
 
@@ -688,7 +688,7 @@ public class _MaterialTextField extends JTextField implements BindableComponent,
         validateText(null);
     }
 
-    public void setMoney(float val) {
+    public void setMoney(double val) {
         setType(TextTypeEnum.MONEY);
         this.setText(String.valueOf(Misc.round2f(val)));
         validateText(null);

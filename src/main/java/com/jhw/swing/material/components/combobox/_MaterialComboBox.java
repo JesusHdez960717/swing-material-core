@@ -84,14 +84,13 @@ public class _MaterialComboBox<T> extends JComboBox<T> implements BindableCompon
         this.setCursor(cursor);
         this.setFont(MaterialFontRoboto.REGULAR.deriveFont(16f));
         this.setHint("Select...");
-        this.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"Item 1", "Item 2", "Item 3"}));
+        this.setModel(new javax.swing.DefaultComboBoxModel(new String[]{}));
         this.setSelectedIndex(-1);
 
         this.addComponentListener(new ComponentAdapter() {
             @Override
             public void componentResized(ComponentEvent e) {
                 floatingLabel.update();
-
             }
         });
 
