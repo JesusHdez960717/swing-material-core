@@ -2,6 +2,8 @@ package com.jhw.swing.material.components.table;
 
 import com.jhw.swing.material.components.container.panel._PanelTransparent;
 import com.jhw.swing.material.components.scrollpane._MaterialScrollPaneCore;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
@@ -16,6 +18,7 @@ public class _MaterialTable extends _PanelTransparent {
 
     public _MaterialTable() {
         initComponents();
+        addListeners();
     }
 
     /**
@@ -31,34 +34,34 @@ public class _MaterialTable extends _PanelTransparent {
         table = new javax.swing.JTable();
 
         table.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
+                new Object[][]{
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null}
+                },
+                new String[]{
+                    "Title 1", "Title 2", "Title 3", "Title 4"
+                }
         ));
         scrollPane.setViewportView(table);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(scrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(scrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(scrollPane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(scrollPane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
         );
-    }// </editor-fold>//GEN-END:initComponents
+    }// </editor-fold>                        
 
     // Variables declaration - do not modify//:variables
     private com.jhw.swing.material.components.scrollpane._MaterialScrollPaneCore scrollPane;
     private javax.swing.JTable table;
-    // End of variables declaration//GEN-END:variables
+    // End of variables declaration                   
 
     public _MaterialScrollPaneCore getScrollPane() {
         return scrollPane;
@@ -120,4 +123,21 @@ public class _MaterialTable extends _PanelTransparent {
         return table.getRowCount();
     }
 
+    private void addListeners() {
+        table.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                handleRowClick(e);
+            }
+        });
+    }
+
+    private void handleRowClick(MouseEvent e) {
+        int clickedRow = table.rowAtPoint(e.getPoint());
+        if (clickedRow >= 0 && clickedRow < table.getRowCount()) {
+            table.setRowSelectionInterval(clickedRow, clickedRow);
+        } else {
+            table.clearSelection();
+        }
+    }
 }
