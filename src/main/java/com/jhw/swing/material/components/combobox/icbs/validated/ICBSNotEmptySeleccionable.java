@@ -27,7 +27,6 @@ public abstract class ICBSNotEmptySeleccionable<T> extends InputComboBoxSelectio
 
     private void addValidations() {
         String initial = "El campo de " + getLabel().toLowerCase();
-        this.addPreValidation(new ItemsListNotEmptyValidation(ItemsListNotEmptyValidation.WRONG_TEXT, initial + " no contiene elementos.\nCree uno nuevo para seleccionarlo."));
         this.addPostValidation(new SeleccionableValidation(SeleccionableValidation.WRONG_TEXT, initial + " NO tiene\nningún elemento seleccionado, seleccione alguno."));
     }
 }
