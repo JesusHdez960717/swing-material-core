@@ -25,7 +25,7 @@ public class _MaterialTextFieldMoneyPositive extends _MaterialTextField {
 
     private void addValidations() {
         String initial = "El valor de " + getHint().toLowerCase() + "\n";
-        this.addPreValidation(new NotEmptyValidation(NotEmptyValidation.WRONG_TEXT, initial + "no pueder estar en blanco."));
+//        this.addPreValidation(new NotEmptyValidation(NotEmptyValidation.WRONG_TEXT, initial + "no pueder estar en blanco."));//TODO: textField
     }
 
 }

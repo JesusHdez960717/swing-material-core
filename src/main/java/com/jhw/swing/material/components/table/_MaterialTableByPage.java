@@ -118,7 +118,7 @@ public class _MaterialTableByPage extends _PanelTransparent implements Update {
                 .addComponent(table, javax.swing.GroupLayout.DEFAULT_SIZE, 197, Short.MAX_VALUE)
                 .addComponent(panelPages, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
-    }// </editor-fold>//GEN-END:initComponents
+    }// </editor-fold>                        
 
     // Variables declaration - do not modify//:variables
     private com.jhw.swing.material.components.button._MaterialButtonDouble buttonDouble;
@@ -129,7 +129,7 @@ public class _MaterialTableByPage extends _PanelTransparent implements Update {
     private javax.swing.JSpinner spinner;
     private com.jhw.swing.material.components.table._MaterialTable table;
     private com.jhw.swing.material.components.textfield.validated._MaterialTextFieldIntegerPositive textFieldPage;
-    // End of variables declaration//GEN-END:variables
+    // End of variables declaration                   
 
     @Override
     public void update() {
@@ -139,7 +139,7 @@ public class _MaterialTableByPage extends _PanelTransparent implements Update {
 
     private void fillTable() {
         getTable().getModel().setRowCount(0);//clear pero sin borrar el arreglo
-        int page = textFieldPage.getInteger();
+        int page = 0;//textFieldPage.getInteger(); //TODO: textField
         int maxPerPage = (int) spinner.getValue();
 
         int elem = rows.size();
@@ -161,7 +161,7 @@ public class _MaterialTableByPage extends _PanelTransparent implements Update {
     }
 
     public void removeRow(int row) {
-        int page = textFieldPage.getInteger() - 1;
+        int page = 0;//textFieldPage.getInteger() - 1; //TODO: textField
         int maxPerPage = (int) spinner.getValue();
         int real = page * maxPerPage + row;
         rows.remove(real);
@@ -202,7 +202,7 @@ public class _MaterialTableByPage extends _PanelTransparent implements Update {
             int actualPage = Integer.parseInt(textFieldPage.getText());
             actualPage = Math.max(1, actualPage);
             actualPage = Math.min(actualPage, getMaxPages());
-            textFieldPage.setInteger(actualPage);
+            //textFieldPage.setInteger(actualPage); //TODO: textField
             update();
         } catch (Exception e) {
         }
@@ -211,14 +211,14 @@ public class _MaterialTableByPage extends _PanelTransparent implements Update {
     private void onButtonNextActionPerformed() {
         int actualPage = Integer.parseInt(textFieldPage.getText());
         int nextPage = Math.min(getMaxPages(), actualPage + 1);
-        textFieldPage.setInteger(nextPage);
+        //textFieldPage.setInteger(nextPage);//TODO: textField
         update();
     }
 
     private void onButtonPrevActionPerformed() {
         int actualPage = Integer.parseInt(textFieldPage.getText());
         int prevPage = Math.max(1, actualPage - 1);
-        textFieldPage.setInteger(prevPage);
+        //textFieldPage.setInteger(prevPage);//TODO: textField
         update();
     }
 

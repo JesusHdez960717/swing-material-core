@@ -137,7 +137,7 @@ public class _LoginPanel extends LoginSimple {
 
     @Override
     public String getUser() {
-        return textFieldUsuario.getString();
+        return textFieldUsuario.getText();
     }
 
     @Override

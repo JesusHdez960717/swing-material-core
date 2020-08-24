@@ -25,8 +25,8 @@ public class _MaterialTextFieldIntegerPositive extends _MaterialTextField {
 
     private void addValidations() {
         String initial = "El valor de " + getHint().toLowerCase() + "\n";
-        this.addPreValidation(new NotEmptyValidation(NotEmptyValidation.WRONG_TEXT, initial + "no pueder estar en blanco."));
-        this.addPostValidation(new GreaterThatCeroValidation(GreaterThatCeroValidation.WRONG_TEXT, initial + "tiene que ser mayor que cero."));
+//        this.addPreValidation(new NotEmptyValidation(NotEmptyValidation.WRONG_TEXT, initial + "no pueder estar en blanco."));//TODO: textField
+//        this.addPostValidation(new GreaterThatCeroValidation(GreaterThatCeroValidation.WRONG_TEXT, initial + "tiene que ser mayor que cero."));//TODO: textField
     }
 
 }
