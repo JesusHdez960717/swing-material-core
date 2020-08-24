@@ -17,7 +17,7 @@ public class _MaterialTextFieldDouble extends _MaterialTextField<Integer> {
     }
 
     public _MaterialTextFieldDouble(boolean negative) {
-        super(Integer.class);
+        super(Double.class);
         this.negative = negative;
         addListeners();
     }
