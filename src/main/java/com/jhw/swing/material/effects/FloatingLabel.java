@@ -5,15 +5,12 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontMetrics;
 import java.util.concurrent.TimeUnit;
-import com.jhw.swing.material.components.textfield._MaterialTextField;
 import org.jdesktop.core.animation.timing.Animator;
 import org.jdesktop.core.animation.timing.interpolators.SplineInterpolator;
-import com.jhw.swing.util.Utils;
 import com.jhw.personalization.core.domain.Personalization;
 import com.jhw.personalization.services.PersonalizationHandler;
 import com.jhw.swing.util.SafePropertySetter;
 import com.jhw.swing.util.Utils;
-import com.jhw.swing.util.enums.TextTypeEnum;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 

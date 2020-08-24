@@ -4,7 +4,7 @@ import com.jhw.swing.material.components.button._MaterialButtonDouble;
 import com.jhw.swing.material.components.container.panel._PanelTransparent;
 import com.jhw.swing.material.components.labels._MaterialLabel;
 import com.jhw.swing.material.components.scrollpane._MaterialScrollPaneCore;
-import com.jhw.swing.material.components.textfield.validated._MaterialTextFieldIntegerPositive;
+import com.jhw.swing.material.components.textfield.validated._MaterialTextFieldInteger;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
@@ -43,7 +43,7 @@ public class _MaterialTableByPage extends _PanelTransparent implements Update {
 
         table = new com.jhw.swing.material.components.table._MaterialTable();
         panelPages = new com.jhw.swing.material.components.container.panel._PanelTransparent();
-        textFieldPage = new com.jhw.swing.material.components.textfield.validated._MaterialTextFieldIntegerPositive();
+        textFieldPage = new com.jhw.swing.material.components.textfield.validated._MaterialTextFieldInteger();
         labelTotPag = new com.jhw.swing.material.components.labels._MaterialLabel();
         buttonDouble = new com.jhw.swing.material.components.button._MaterialButtonDouble();
         spinner = new javax.swing.JSpinner();
@@ -128,7 +128,7 @@ public class _MaterialTableByPage extends _PanelTransparent implements Update {
     private com.jhw.swing.material.components.container.panel._PanelTransparent panelPages;
     private javax.swing.JSpinner spinner;
     private com.jhw.swing.material.components.table._MaterialTable table;
-    private com.jhw.swing.material.components.textfield.validated._MaterialTextFieldIntegerPositive textFieldPage;
+    private com.jhw.swing.material.components.textfield.validated._MaterialTextFieldInteger textFieldPage;
     // End of variables declaration                   
 
     @Override
@@ -268,7 +268,7 @@ public class _MaterialTableByPage extends _PanelTransparent implements Update {
         return table;
     }
 
-    public _MaterialTextFieldIntegerPositive getTextFieldPage() {
+    public _MaterialTextFieldInteger getTextFieldPage() {
         return textFieldPage;
     }
 
