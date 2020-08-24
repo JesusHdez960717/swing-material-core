@@ -57,9 +57,18 @@ public class _MaterialTextFieldMoney extends _MaterialTextField<BigDecimal> {
         }
 
         try {
-            return new BigDecimal(text);
+            return new BigDecimal(text.replace(",", "."));
         } catch (Exception e) {
             return null;
+        }
+    }
+
+    @Override
+    public BigDecimal getObject() {
+        try {
+            return new BigDecimal(getText().replace(",", "."));
+        } catch (Exception e) {
+            throw new RuntimeException("Tipo de dato incorrecto");
         }
     }
 

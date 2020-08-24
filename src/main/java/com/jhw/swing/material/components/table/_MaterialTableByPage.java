@@ -139,8 +139,7 @@ public class _MaterialTableByPage extends _PanelTransparent implements Update {
 
     private void fillTable() {
         getTable().getModel().setRowCount(0);//clear pero sin borrar el arreglo
-        int page = 0;
-        textFieldPage.getObject();
+        int page = textFieldPage.getObject();
         int maxPerPage = (int) spinner.getValue();
 
         int elem = rows.size();
