@@ -41,7 +41,7 @@ public class FloatingLabel {
         color = SafePropertySetter.animatableProperty(target.getComponent(), Utils.applyAlphaMask(target.getForeground(), HINT_OPACITY_MASK));
 
         this.updateForeground();
-        
+
         target.getComponent().addComponentListener(new ComponentAdapter() {
             @Override
             public void componentResized(ComponentEvent e) {
@@ -122,10 +122,10 @@ public class FloatingLabel {
         return target.isFocusOwner() || !target.getText().isEmpty() ? getYPositionUP() : getYPositionDOWN();
     }
 
-    //Si es un text field de tipo dinero y el floating va para abajo, la x se agranda para no tapar el $, sino va en 0(Estandar)
     public int getTargetXPosition() {
-        if (target instanceof _MaterialTextField && ((_MaterialTextField) target).getType() == TextTypeEnum.MONEY && getTargetYPosition() == getYPositionDOWN()) {
-            return _MaterialTextField.MONEY_TRASLATION;
+        //si hay front y esta bajando la x varia
+        if (!target.getFrontText().isEmpty() && getTargetYPosition() == getYPositionDOWN()) {
+            return target.getFontMetrics(target.getFont()).stringWidth(target.getFrontText()) + target.getDistanceFrontText();
         }
         return 0;
     }
