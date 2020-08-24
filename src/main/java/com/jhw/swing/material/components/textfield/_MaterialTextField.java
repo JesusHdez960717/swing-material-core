@@ -1,13 +1,10 @@
 package com.jhw.swing.material.components.textfield;
 
-import com.clean.core.exceptions.ValidationException;
 import java.awt.*;
 import java.awt.event.FocusEvent;
 import java.awt.event.KeyEvent;
-import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.text.DefaultCaret;
-import com.jhw.utils.others.Misc;
 import com.jhw.personalization.core.domain.Personalization;
 import com.jhw.personalization.services.PersonalizationHandler;
 import com.jhw.swing.util.MaterialDrawingUtils;
@@ -15,16 +12,13 @@ import com.jhw.swing.material.effects.FloatingLabel;
 import com.jhw.swing.material.effects.FloatingLabelStandar;
 import com.jhw.swing.material.effects.Line;
 import com.jhw.swing.util.Utils;
-import com.jhw.swing.util.enums.TextTypeEnum;
 import com.jhw.swing.util.interfaces.MaterialComponent;
 import com.jhw.swing.material.standards.MaterialColors;
 import com.jhw.swing.material.standards.MaterialFontRoboto;
 import com.jhw.swing.util.interfaces.BindableComponent;
 import com.jhw.swing.util.interfaces.Wrong;
-import com.jhw.swing.util.validations.Validation;
-import com.jhw.swing.util.validations.textfield.GreaterThatCeroValidation;
-import com.jhw.swing.util.validations.textfield.TextFieldValidation;
 import com.jhw.utils.interfaces.Formateable;
+import com.jhw.utils.jpa.ConverterService;
 
 /**
  * A Material Design single-line text field is the basic way of getting user
@@ -36,10 +30,12 @@ import com.jhw.utils.interfaces.Formateable;
  * href="https://www.google.com/design/spec/components/text-fields.html">Text
  * fields (Google design guidelines)</a>
  */
-public class _MaterialTextField extends JTextField implements BindableComponent, Wrong, MaterialComponent, FloatingLabelStandar {
+public class _MaterialTextField<T> extends JTextField implements BindableComponent<T>, Wrong, MaterialComponent, FloatingLabelStandar {
 
     public static final int HINT_OPACITY_MASK = 0x99000000;
     public static final int LINE_OPACITY_MASK = 0x66000000;
+
+    private final Class<? extends T> clazz;
 
     private FloatingLabel floatingLabel;
     private Line line;
@@ -55,20 +51,23 @@ public class _MaterialTextField extends JTextField implements BindableComponent,
     private String wrongText = "Error en este campo";
     private boolean wrongFlag = false;
 
-    private TextTypeEnum type = TextTypeEnum.NORMAL;
-    private int maxLength = Integer.MAX_VALUE;
+    private int maxLength = 100;
 
     private String frontText = "";
     private String extra = "";
 
     private int distanceFrontText = 5;
 
+    public _MaterialTextField() {
+        this(String.class);
+    }
+
     /**
      * Default constructor for {@code MaterialTextField}. A default model is
      * created and the initial string is empty.
      */
-    public _MaterialTextField() {
-        super();
+    public _MaterialTextField(Class clazz) {
+        this.clazz = clazz;
         this.setPreferredSize(new Dimension(145, 65));
         this.setBorder(null);
         this.setFont(MaterialFontRoboto.REGULAR.deriveFont(16f));
@@ -89,6 +88,7 @@ public class _MaterialTextField extends JTextField implements BindableComponent,
             @Override
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 clearWrong(evt);
+                validateSize(evt);
                 repaint();
             }
         });
@@ -97,17 +97,19 @@ public class _MaterialTextField extends JTextField implements BindableComponent,
                 repaint();
             }
         });
-        this.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-
-            }
-        });
 
         floatingLabel = new FloatingLabel(this);
         line = new Line(this);
         setAccent(accentColor);
         setText("");
 
+    }
+
+    private void validateSize(KeyEvent evt) {
+        if (getText().length() + 1 > getMaxLength()) {
+            Utils.beep();
+            evt.consume();
+        }
     }
 
     @Override
@@ -126,25 +128,7 @@ public class _MaterialTextField extends JTextField implements BindableComponent,
         setText(text);
     }
 
-    /**
-     * Get the type of the text to display.
-     *
-     * @return the type of the text
-     */
-    public TextTypeEnum getType() {
-        return type;
-    }
-
-    /**
-     * Set the type of the text to display.
-     *
-     * @param type the type of the text
-     */
-    public void setType(TextTypeEnum type) {
-        this.type = type;
-        setText(getText());
-    }
-
+    @Override
     public int getDistanceFrontText() {
         return distanceFrontText;
     }
@@ -375,7 +359,6 @@ public class _MaterialTextField extends JTextField implements BindableComponent,
             g2.drawString(getHint(), traslation, yMid + metrics.getAscent() / 2);//paint the hint in the same place as the text
         }
 
-
         g2.setColor(floatingLabel.getColor());
         g2.setFont(floatingLabel.getFont());
         if (!getLabel().isEmpty()) {
@@ -433,12 +416,23 @@ public class _MaterialTextField extends JTextField implements BindableComponent,
     }
 
     @Override
-    public Object getObject() {
-        return getText();
+    public T getObject() {
+        if (clazz == null) {
+            throw new NullPointerException("Clase para convertir nula.");
+        }
+        try {
+            return ConverterService.convert(getText(), clazz);
+        } catch (Exception e) {
+            throw new NullPointerException("Error convirtiendo.");
+        }
     }
 
     @Override
-    public void setObject(Object object) {
+    public void setObject(T object) {
+        if (object == null) {
+            setText("");
+            return;
+        }
         if (object instanceof Formateable) {
             setText(((Formateable) object).format());
         } else {
