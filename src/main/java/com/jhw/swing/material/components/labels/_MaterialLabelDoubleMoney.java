@@ -5,13 +5,15 @@
  */
 package com.jhw.swing.material.components.labels;
 
+import java.math.BigDecimal;
+
 /**
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
 public interface _MaterialLabelDoubleMoney {
 
-    public void setMoney(double money, Object coin);
+    public void setMoney(BigDecimal money, Object coin);
 
     public void setText(String text);
 }

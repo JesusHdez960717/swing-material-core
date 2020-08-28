@@ -27,11 +27,9 @@ public class TEXT_EXAMPLE extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         _MaterialTextAreaCore1 = new com.jhw.swing.material.components.textarea._MaterialTextAreaCore();
         _MaterialTextField1 = new com.jhw.swing.material.components.textfield._MaterialTextField();
-        _MaterialTextFieldFloatPositive1 = new com.jhw.swing.material.components.textfield.validated._MaterialTextFieldFloatPositive();
-        _MaterialTextFieldIntegerPositive1 = new com.jhw.swing.material.components.textfield.validated._MaterialTextFieldIntegerPositive();
-        _MaterialTextFieldMoneyPositive1 = new com.jhw.swing.material.components.textfield.validated._MaterialTextFieldMoneyPositive();
-        _MaterialTextFieldPorciento1 = new com.jhw.swing.material.components.textfield.validated._MaterialTextFieldPorciento();
-        _MaterialTextFieldStringNotEmpty1 = new com.jhw.swing.material.components.textfield.validated._MaterialTextFieldStringNotEmpty();
+        _MaterialTextFieldFloatPositive1 = new com.jhw.swing.material.components.textfield.validated._MaterialTextFieldDouble();
+        _MaterialTextFieldIntegerPositive1 = new com.jhw.swing.material.components.textfield.validated._MaterialTextFieldInteger();
+        _MaterialTextFieldMoneyPositive1 = new com.jhw.swing.material.components.textfield.validated._MaterialTextFieldMoney();
         _MaterialButton1 = new com.jhw.swing.material.components.button._MaterialButton();
         jTextField1 = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -53,9 +51,6 @@ public class TEXT_EXAMPLE extends javax.swing.JFrame {
         _MaterialTextFieldMoneyPositive1.setExtra("EUR");
         _MaterialTextFieldMoneyPositive1.setLabel("Money positive only");
 
-        _MaterialTextFieldPorciento1.setLabel("percent");
-
-        _MaterialTextFieldStringNotEmpty1.setLabel("String not empty");
 
         _MaterialButton1.setText("_MaterialButton1");
         _MaterialButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -96,12 +91,10 @@ public class TEXT_EXAMPLE extends javax.swing.JFrame {
                                 .addComponent(_MaterialTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(_MaterialTextFieldIntegerPositive1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(_MaterialTextFieldPorciento1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(_MaterialTextFieldFloatPositive1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(_MaterialTextFieldStringNotEmpty1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(18, 18, 18)))
                         .addGap(182, 182, 182))))
         );
         layout.setVerticalGroup(
@@ -117,14 +110,12 @@ public class TEXT_EXAMPLE extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(_MaterialTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(_MaterialTextFieldIntegerPositive1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(_MaterialTextFieldPorciento1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(_MaterialTextFieldIntegerPositive1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(_MaterialTextFieldFloatPositive1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(_MaterialTextFieldStringNotEmpty1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(_MaterialTextFieldFloatPositive1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(_MaterialButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -136,15 +127,13 @@ public class TEXT_EXAMPLE extends javax.swing.JFrame {
         );
 
         pack();
-    }// </editor-fold>//GEN-END:initComponents
+    }// </editor-fold>                        
 
     private void _MaterialButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event__MaterialButton1ActionPerformed
         _MaterialTextField1.wrong("wrong");
         _MaterialTextFieldFloatPositive1.wrong("wrong");
         _MaterialTextFieldIntegerPositive1.wrong("wrong");
         _MaterialTextFieldMoneyPositive1.wrong("wrong");
-        _MaterialTextFieldPorciento1.wrong("wrong");
-        _MaterialTextFieldStringNotEmpty1.wrong("wrong");
     }//GEN-LAST:event__MaterialButton1ActionPerformed
 
     /**
@@ -165,15 +154,13 @@ public class TEXT_EXAMPLE extends javax.swing.JFrame {
     private com.jhw.swing.material.components.textarea._MaterialTextArea _MaterialTextArea1;
     private com.jhw.swing.material.components.textarea._MaterialTextAreaCore _MaterialTextAreaCore1;
     private com.jhw.swing.material.components.textfield._MaterialTextField _MaterialTextField1;
-    private com.jhw.swing.material.components.textfield.validated._MaterialTextFieldFloatPositive _MaterialTextFieldFloatPositive1;
-    private com.jhw.swing.material.components.textfield.validated._MaterialTextFieldIntegerPositive _MaterialTextFieldIntegerPositive1;
-    private com.jhw.swing.material.components.textfield.validated._MaterialTextFieldMoneyPositive _MaterialTextFieldMoneyPositive1;
-    private com.jhw.swing.material.components.textfield.validated._MaterialTextFieldPorciento _MaterialTextFieldPorciento1;
-    private com.jhw.swing.material.components.textfield.validated._MaterialTextFieldStringNotEmpty _MaterialTextFieldStringNotEmpty1;
+    private com.jhw.swing.material.components.textfield.validated._MaterialTextFieldDouble _MaterialTextFieldFloatPositive1;
+    private com.jhw.swing.material.components.textfield.validated._MaterialTextFieldInteger _MaterialTextFieldIntegerPositive1;
+    private com.jhw.swing.material.components.textfield.validated._MaterialTextFieldMoney _MaterialTextFieldMoneyPositive1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
-    // End of variables declaration//GEN-END:variables
+    // End of variables declaration                   
 
 }

@@ -3,6 +3,7 @@ package com.jhw.swing.material.components.table.editors_renders.money;
 import com.jhw.swing.material.components.container.panel._PanelGradient;
 import com.jhw.swing.material.components.labels._MaterialLabel;
 import java.awt.GridLayout;
+import java.math.BigDecimal;
 import java.util.Objects;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -14,23 +15,23 @@ import javax.swing.UIManager;
  */
 public class MoneyTableComponent {
 
-    private final double money;
+    private final BigDecimal money;
     private final String coin;
 
-    public static MoneyTableComponent from(double money, Object coin) {
+    public static MoneyTableComponent from(BigDecimal money, Object coin) {
         return new MoneyTableComponent(money, coin.toString());
     }
 
-    public static MoneyTableComponent from(double money) {
+    public static MoneyTableComponent from(BigDecimal money) {
         return new MoneyTableComponent(money, "");
     }
 
-    public MoneyTableComponent(double money, String coin) {
+    public MoneyTableComponent(BigDecimal money, String coin) {
         this.money = money;
         this.coin = coin;
     }
 
-    public double getMoney() {
+    public BigDecimal getMoney() {
         return money;
     }
 
@@ -70,7 +71,7 @@ public class MoneyTableComponent {
             return false;
         }
         final MoneyTableComponent other = (MoneyTableComponent) obj;
-        if (Double.doubleToLongBits(this.money) != Double.doubleToLongBits(other.money)) {
+        if (this.money.equals(other.money)) {
             return false;
         }
         if (!Objects.equals(this.coin, other.coin)) {

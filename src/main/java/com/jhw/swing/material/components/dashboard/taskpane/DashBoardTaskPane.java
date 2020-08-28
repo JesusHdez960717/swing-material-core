@@ -75,7 +75,8 @@ public class DashBoardTaskPane extends DashBoardSimple implements PropertyChange
         setLayout(new java.awt.BorderLayout());
 
         panelContent.setBackground(new java.awt.Color(255, 255, 255));
-        panelContent.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        //TODO: EmptyBorder 10px
+        //panelContent.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
         add(panelContent, java.awt.BorderLayout.CENTER);
 
         panelSideMenu.setBackground(new java.awt.Color(102, 102, 102));

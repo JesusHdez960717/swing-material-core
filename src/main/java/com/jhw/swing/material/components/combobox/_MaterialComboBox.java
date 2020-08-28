@@ -380,6 +380,16 @@ public class _MaterialComboBox<T> extends JComboBox<T> implements BindableCompon
         setSelectedItem(object);
     }
 
+    @Override
+    public String getFrontText() {
+        return "";
+    }
+
+    @Override
+    public int getDistanceFrontText() {
+        return 0;
+    }
+
     public static class FieldRenderer<T> extends JComponent implements ListCellRenderer<T> {
 
         private final _MaterialComboBox comboBox;

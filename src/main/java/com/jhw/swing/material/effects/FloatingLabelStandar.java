@@ -26,5 +26,9 @@ public interface FloatingLabelStandar {
 
     public String getText();
 
+    public String getFrontText();
+
+    public int getDistanceFrontText();
+
     public Component getComponent();
 }
