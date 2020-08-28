@@ -14,6 +14,7 @@ import com.jhw.swing.utils.icons.DerivableIcon;
 import com.jhw.swing.util.interfaces.MaterialComponent;
 import com.jhw.swing.material.standards.MaterialFontRoboto;
 import com.jhw.swing.util.interfaces.BindableComponent;
+import java.math.BigDecimal;
 import javax.swing.Icon;
 
 /**
@@ -122,7 +123,7 @@ public class _MaterialLabel extends JLabel implements MaterialComponent, Bindabl
         //intentionally left blank
     }
 
-    public void setMoney(double value, String coin) {
+    public void setMoney(BigDecimal value, String coin) {
         setText("$ " + StringFormating.formatToMoney(value) + " " + coin);
     }
 

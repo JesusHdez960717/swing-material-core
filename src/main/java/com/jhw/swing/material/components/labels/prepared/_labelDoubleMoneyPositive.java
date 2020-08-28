@@ -8,6 +8,7 @@ package com.jhw.swing.material.components.labels.prepared;
 import com.jhw.swing.material.components.labels._MaterialLabelDouble;
 import com.jhw.swing.material.components.labels._MaterialLabelDoubleMoney;
 import com.jhw.swing.material.standards.MaterialFontRoboto;
+import java.math.BigDecimal;
 
 /**
  *
@@ -22,7 +23,7 @@ public class _labelDoubleMoneyPositive extends _MaterialLabelDouble implements _
     private final _labelPositive positive = new _labelPositive();
 
     @Override
-    public void setMoney(double money, Object coin) {
+    public void setMoney(BigDecimal money, Object coin) {
         positive.setMoney(money, coin.toString());
     }
 

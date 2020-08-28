@@ -508,4 +508,14 @@ public class _MaterialPasswordField extends JPasswordField implements BindableCo
     public void setObject(char[] object) {
         setText(new String(object));
     }
+
+    @Override
+    public String getFrontText() {
+        return "";
+    }
+
+    @Override
+    public int getDistanceFrontText() {
+        return 0;
+    }
 }
