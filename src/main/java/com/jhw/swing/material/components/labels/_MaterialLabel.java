@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import com.jhw.swing.util.MaterialDrawingUtils;
@@ -22,8 +21,6 @@ import javax.swing.Icon;
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
 public class _MaterialLabel extends JLabel implements MaterialComponent, BindableComponent<String> {
-
-    public static final int DISTANCE_ICON_TEXT = 3;
 
     public _MaterialLabel() {
         this.setFont(MaterialFontRoboto.MEDIUM.deriveFont(16f));
@@ -68,7 +65,7 @@ public class _MaterialLabel extends JLabel implements MaterialComponent, Bindabl
 
             int iconWidth = 0;
             int iconHeight = 0;
-            int distReal = this.DISTANCE_ICON_TEXT;
+            int distReal = getIconTextGap();
             if (getIcon() != null) {
                 iconWidth = getIcon().getIconWidth();
                 iconHeight = getIcon().getIconHeight();
@@ -86,9 +83,9 @@ public class _MaterialLabel extends JLabel implements MaterialComponent, Bindabl
 
             if (horizAlign == SwingConstants.TRAILING || horizAlign == SwingConstants.RIGHT) {
                 xText = getWidth() - strWidth;
-                xIcon = xText - iconWidth - 2 * distReal;
+                xIcon = xText - iconWidth - distReal;
             } else if (horizAlign == SwingConstants.LEADING || horizAlign == SwingConstants.LEFT) {
-                xIcon = distReal;
+                xIcon = 0;
                 xText = iconWidth + distReal;
             } else {
                 xText = (getWidth() - strWidth) / 2 + distReal / 2 + iconWidth / 2;
