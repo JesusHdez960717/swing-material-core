@@ -24,7 +24,6 @@ public class _MaterialTextFieldMoney extends _MaterialTextField<BigDecimal> {
 
     public _MaterialTextFieldMoney(boolean negative) {
         super(BigDecimal.class);
-        this.setFrontText("$");
         this.setMaxLength(20);
         this.negative = negative;
         addListeners();

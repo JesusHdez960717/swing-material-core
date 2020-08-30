@@ -53,10 +53,7 @@ public class _MaterialTextField<T> extends JTextField implements BindableCompone
 
     private int maxLength = 100;
 
-    private String frontText = "";
     private String extra = "";
-
-    private int distanceFrontText = 5;
 
     public _MaterialTextField() {
         this(String.class);
@@ -126,15 +123,6 @@ public class _MaterialTextField<T> extends JTextField implements BindableCompone
     public _MaterialTextField(String text) {
         this();
         setText(text);
-    }
-
-    @Override
-    public int getDistanceFrontText() {
-        return distanceFrontText;
-    }
-
-    public void setDistanceFrontText(int distanceFrontText) {
-        this.distanceFrontText = distanceFrontText;
     }
 
     /**
@@ -284,15 +272,6 @@ public class _MaterialTextField<T> extends JTextField implements BindableCompone
         return this.foreground;
     }
 
-    public String getFrontText() {
-        return frontText;
-    }
-
-    public void setFrontText(String frontText) {
-        this.frontText = frontText;
-        this.repaint();
-    }
-
     public String getExtra() {
         return extra;
     }
@@ -338,25 +317,20 @@ public class _MaterialTextField<T> extends JTextField implements BindableCompone
         Graphics2D g2 = MaterialDrawingUtils.getAliasedGraphics(g);
 
         g2.setFont(getFont());
-        FontMetrics metrics = g2.getFontMetrics(g2.getFont());
-        int traslation = 0;
-        if (!frontText.isEmpty()) {
-            traslation = metrics.stringWidth(frontText) + getDistanceFrontText();
-        }
-
-        g2.translate(traslation, 0);
+        
         super.paintComponent(g2);//paint the text, caret,higligth and foreground
-        g2.translate(-traslation, 0);
 
         g2.setColor(getBackground());//por defecto no pinta el background
         g2.fillRect(0, 0, getWidth(), getHeight());
 
         int yMid = getSize().height / 2;
+        
+        FontMetrics metrics = g2.getFontMetrics(g2.getFont());
 
         //Paint the hint
         if (!getHint().isEmpty() && getText().isEmpty() && (getLabel().isEmpty() || isFocusOwner()) && floatingLabel.isFloatingAbove()) {
             g2.setColor(Utils.applyAlphaMask(getForeground(), HINT_OPACITY_MASK));
-            g2.drawString(getHint(), traslation, yMid + metrics.getAscent() / 2);//paint the hint in the same place as the text
+            g2.drawString(getHint(), 0, yMid + metrics.getAscent() / 2);//paint the hint in the same place as the text
         }
 
         g2.setColor(floatingLabel.getColor());
@@ -384,7 +358,6 @@ public class _MaterialTextField<T> extends JTextField implements BindableCompone
 
         g2.setFont(getFont());
         g2.setColor(getForeground());
-        g2.drawString(getFrontText(), 0, getHeight() / 2 + metrics.getHeight() / 2 - 3);//paint the frontText
 
         g2.drawString(getExtra(), getWidth() - metrics.stringWidth(getExtra()), getHeight() / 2 + metrics.getHeight() / 2 - 3);//paint the extra
     }
