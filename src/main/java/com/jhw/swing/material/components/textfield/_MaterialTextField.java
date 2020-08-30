@@ -19,6 +19,9 @@ import com.jhw.swing.util.interfaces.BindableComponent;
 import com.jhw.swing.util.interfaces.Wrong;
 import com.jhw.utils.interfaces.Formateable;
 import com.jhw.utils.jpa.ConverterService;
+import javax.swing.plaf.basic.BasicTextUI;
+import javax.swing.text.Caret;
+import javax.swing.text.Highlighter;
 
 /**
  * A Material Design single-line text field is the basic way of getting user
@@ -317,14 +320,14 @@ public class _MaterialTextField<T> extends JTextField implements BindableCompone
         Graphics2D g2 = MaterialDrawingUtils.getAliasedGraphics(g);
 
         g2.setFont(getFont());
-        
+
         super.paintComponent(g2);//paint the text, caret,higligth and foreground
 
         g2.setColor(getBackground());//por defecto no pinta el background
         g2.fillRect(0, 0, getWidth(), getHeight());
 
         int yMid = getSize().height / 2;
-        
+
         FontMetrics metrics = g2.getFontMetrics(g2.getFont());
 
         //Paint the hint

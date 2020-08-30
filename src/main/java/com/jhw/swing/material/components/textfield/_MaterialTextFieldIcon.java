@@ -75,6 +75,10 @@ public class _MaterialTextFieldIcon<T> extends _PanelTransparent implements Bind
         this.add(buttonIcon, BorderLayout.WEST);
     }
 
+    protected void setTextFiedl(_MaterialTextField<T> textField) {
+        this.textField = textField;
+    }
+
     //DELEGATE
     public String getText() {
         return textField.getText();
