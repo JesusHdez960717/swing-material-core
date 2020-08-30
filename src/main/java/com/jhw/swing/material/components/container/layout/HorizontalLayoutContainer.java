@@ -53,7 +53,7 @@ public class HorizontalLayoutContainer extends _PanelTransparent {
 
     public static class builder {
 
-        private ArrayList<HorizontalLayoutComponent> components = new ArrayList<>();
+        private final ArrayList<HorizontalLayoutComponent> components = new ArrayList<>();
         private int prefHeight = 65;
 
         public builder() {

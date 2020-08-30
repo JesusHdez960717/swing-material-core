@@ -54,8 +54,8 @@ public class VerticalLayoutContainer extends _PanelTransparent {
 
     public static class builder {
 
-        private ArrayList<VerticalLayoutComponent> components = new ArrayList<>();
-        private int prefWidth = 350;
+        private final ArrayList<VerticalLayoutComponent> components = new ArrayList<>();
+        private int prefWidth = 400;
 
         public builder() {
         }
