@@ -8,7 +8,7 @@ import java.awt.event.KeyEvent;
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-public class _MaterialTextFieldDouble extends _MaterialTextField<Integer> {
+public class _MaterialTextFieldDouble extends _MaterialTextField<Double> {
 
     private boolean negative = false;
 

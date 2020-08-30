@@ -121,9 +121,9 @@ public class FloatingLabel {
 
     public int getTargetXPosition() {
         //si hay front y esta bajando la x varia
-        if (!target.getFrontText().isEmpty() && getTargetYPosition() == getYPositionDOWN()) {
+        /*if (!target.getFrontText().isEmpty() && getTargetYPosition() == getYPositionDOWN()) {
             return target.getFontMetrics(target.getFont()).stringWidth(target.getFrontText()) + target.getDistanceFrontText();
-        }
+        }*/
         return 0;
     }
 
