@@ -34,7 +34,7 @@ public class FileChooser extends JFileChooser implements BindableComponent<File[
     }
 
     private void configure() {
-        //this.setFileSelectionMode(JFileChooser.FILES_ONLY);
+        this.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
         this.setMultiSelectionEnabled(true);
     }
 
