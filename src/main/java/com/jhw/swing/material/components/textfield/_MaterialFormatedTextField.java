@@ -7,7 +7,6 @@ package com.jhw.swing.material.components.textfield;
 
 import com.jhw.personalization.core.domain.Personalization;
 import com.jhw.personalization.services.PersonalizationHandler;
-import com.jhw.swing.material.components.textfield._MaterialTextField;
 import com.jhw.swing.material.effects.FloatingLabel;
 import com.jhw.swing.material.effects.FloatingLabelStandar;
 import com.jhw.swing.material.effects.Line;
@@ -17,8 +16,6 @@ import com.jhw.swing.util.MaterialDrawingUtils;
 import com.jhw.swing.util.Utils;
 import com.jhw.swing.util.interfaces.MaterialComponent;
 import com.jhw.swing.util.interfaces.Wrong;
-import com.jhw.utils.interfaces.Formateable;
-import com.jhw.utils.jpa.ConverterService;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
