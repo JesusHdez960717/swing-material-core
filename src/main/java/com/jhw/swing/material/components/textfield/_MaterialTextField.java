@@ -19,9 +19,6 @@ import com.jhw.swing.util.interfaces.BindableComponent;
 import com.jhw.swing.util.interfaces.Wrong;
 import com.jhw.utils.interfaces.Formateable;
 import com.jhw.utils.jpa.ConverterService;
-import javax.swing.plaf.basic.BasicTextUI;
-import javax.swing.text.Caret;
-import javax.swing.text.Highlighter;
 
 /**
  * A Material Design single-line text field is the basic way of getting user

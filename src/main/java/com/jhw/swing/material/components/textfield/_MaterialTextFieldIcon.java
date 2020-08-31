@@ -94,6 +94,12 @@ public class _MaterialTextFieldIcon<T> extends _PanelTransparent implements Bind
         return textField.getText();
     }
 
+    @Override
+    public void setEnabled(boolean enabled) {
+        textField.setEnabled(enabled);
+        buttonIcon.setEnabled(enabled);
+    }
+
     public Color getWrongColor() {
         return textField.getWrongColor();
     }
