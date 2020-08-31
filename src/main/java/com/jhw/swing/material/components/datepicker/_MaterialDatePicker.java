@@ -16,6 +16,8 @@ import java.awt.Cursor;
 import java.awt.Insets;
 import javax.swing.JButton;
 import javax.swing.UIManager;
+import javax.swing.text.DefaultFormatterFactory;
+import org.jdesktop.swingx.calendar.DatePickerFormatter;
 
 /**
  *
@@ -38,7 +40,11 @@ public class _MaterialDatePicker extends JXDatePicker implements DateSelected, B
         this.setDate(new Date());
         this.setFont(MaterialFontRoboto.MEDIUM.deriveFont(18f));
 
+        //set up the formatter
+        this.text.setFormatterFactory(new DefaultFormatterFactory(new DatePickerFormatter(getFormats(), getLocale())));
+
         this.setEditor(text);
+        
         personalizeButton();
     }
 
