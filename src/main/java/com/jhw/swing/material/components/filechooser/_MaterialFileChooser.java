@@ -77,8 +77,9 @@ public class _MaterialFileChooser extends _MaterialButton implements BindableCom
     }
 
     public void clear() {
+        selectedFiles.clear();
+        setText(upload);
         if (fc != null) {
-            selectedFiles.clear();
             fc.setSelectedFiles(null);
         }
     }
