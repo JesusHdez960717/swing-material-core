@@ -36,7 +36,6 @@ public class OTHERS_EXAMPLE extends javax.swing.JFrame {
         _MaterialLabel2 = new com.jhw.swing.material.components.labels._MaterialLabel();
         _labelNegativo1 = new com.jhw.swing.material.components.labels.prepared._labelNegativo();
         _labelPositive1 = new com.jhw.swing.material.components.labels.prepared._labelPositive();
-        _MaterialFileChooserPanel1 = new com.jhw.swing.material.components.filechooser._MaterialFileChooserPanel();
         _MaterialComboBox1 = new com.jhw.swing.material.components.combobox._MaterialComboBox();
         jLabel1 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox();
@@ -119,7 +118,6 @@ public class OTHERS_EXAMPLE extends javax.swing.JFrame {
                                 .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(_MaterialFileChooserPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(_labelNegativo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(_labelPositive1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -149,7 +147,6 @@ public class OTHERS_EXAMPLE extends javax.swing.JFrame {
                                 .addComponent(_labelPositive1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(_MaterialFileChooserPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(_MaterialProgressSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(_PanelGradient1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -184,7 +181,6 @@ public class OTHERS_EXAMPLE extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//:variables
     private com.jhw.swing.material.components.combobox._MaterialComboBox _MaterialComboBox1;
-    private com.jhw.swing.material.components.filechooser._MaterialFileChooserPanel _MaterialFileChooserPanel1;
     private com.jhw.swing.material.components.labels._MaterialLabel _MaterialLabel1;
     private com.jhw.swing.material.components.labels._MaterialLabel _MaterialLabel2;
     private com.jhw.swing.material.components.passwordfield._MaterialPasswordField _MaterialPasswordField1;

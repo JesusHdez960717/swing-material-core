@@ -1,5 +1,6 @@
 package com.jhw.swing.material.components.textarea;
 
+import com.jhw.swing.material.components.textfield.CopyPastePopup;
 import java.awt.Color;
 import javax.swing.JTextArea;
 import com.jhw.swing.util.Utils;
@@ -17,6 +18,7 @@ public class _MaterialTextAreaCore extends JTextArea implements BindableComponen
         this.setBackground(MaterialColors.WHITE);
         this.setFont(MaterialFontRoboto.REGULAR.deriveFont(16f));
         this.setLineWrap(true);
+        this.setComponentPopupMenu(CopyPastePopup.INSTANCE);
     }
 
     @Override
