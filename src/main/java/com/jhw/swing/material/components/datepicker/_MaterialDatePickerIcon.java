@@ -157,6 +157,14 @@ public class _MaterialDatePickerIcon extends _PanelTransparent implements Bindab
         datePicker.setUpperBound(lower);
     }
 
+    public void setDate(Date date) {
+        datePicker.setDate(date);
+    }
+
+    public Date getDate() {
+        return datePicker.getDate();
+    }
+
     @Override
     public void wrong() {
         datePicker.wrong();
