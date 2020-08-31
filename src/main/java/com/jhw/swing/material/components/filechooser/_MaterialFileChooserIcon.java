@@ -17,6 +17,8 @@ import com.jhw.swing.util.interfaces.MaterialComponent;
 import com.jhw.swing.utils.icons.DerivableIcon;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 import java.util.List;
 import javax.swing.ImageIcon;
@@ -29,21 +31,27 @@ public class _MaterialFileChooserIcon extends _PanelTransparent implements Binda
 
     public _MaterialFileChooserIcon() {
         initComponents();
-        this.setIcon(MaterialIcons.FOLDER);
+        this.setIcon(MaterialIcons.FIND_IN_PAGE);
+        addListeners();
     }
 
     private void initComponents() {
         fileChooser = new _MaterialFileChooser();
-        
+
         buttonIcon = new _MaterialButtonIconTransparent();
         buttonIcon.setRippleColor(MaterialColors.TRANSPARENT);
 
+        buttonClear = new _MaterialButtonIconTransparent();
+        buttonClear.setIcon(MaterialIcons.CLEAR);
+
         this.setLayout(new BorderLayout());
         this.add(fileChooser, BorderLayout.CENTER);
+        this.add(buttonClear, BorderLayout.EAST);
     }
 
     private _MaterialFileChooser fileChooser;
     private _MaterialButtonIconTransparent buttonIcon;
+    private _MaterialButtonIconTransparent buttonClear;
 
     public void setIcon(ImageIcon icon) {
         if (!PersonalizationHandler.getBoolean(PersonalizationMaterial.KEY_SHOW_ICON_INPUT)) {
@@ -74,12 +82,27 @@ public class _MaterialFileChooserIcon extends _PanelTransparent implements Binda
         return fileChooser.getSelectedFiles();
     }
 
+    @Override
     public List<File> getObject() {
         return fileChooser.getObject();
     }
 
+    @Override
     public void setObject(List<File> object) {
         fileChooser.setObject(object);
+    }
+
+    public void clear() {
+        fileChooser.clear();
+    }
+
+    private void addListeners() {
+        buttonClear.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                clear();
+            }
+        });
     }
 
 }
