@@ -45,7 +45,7 @@ public class _MaterialDatePickerIcon extends _PanelTransparent implements Bindab
 
     private void initComponents() {
         datePicker = new _MaterialDatePicker();
-        
+
         buttonIcon = new _MaterialButtonIconTransparent();
         buttonIcon.setRippleColor(MaterialColors.TRANSPARENT);
 
@@ -164,7 +164,10 @@ public class _MaterialDatePickerIcon extends _PanelTransparent implements Bindab
     }
 
     public void setForeground(Color fg) {
-        datePicker.setForeground(fg);
+        super.setForeground(fg);
+        if (datePicker != null) {
+            datePicker.setForeground(fg);
+        }
     }
 
     public void setWrongColor(Color wrongColor) {

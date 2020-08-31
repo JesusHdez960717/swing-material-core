@@ -42,7 +42,7 @@ public class _MaterialDatePicker extends JXDatePicker implements DateSelected, B
     public _MaterialDatePicker(String label) {
         super();
         this.setLabel(label);
-        
+
         this.setFormats(SDF.SDF);
         this.setDate(new Date());
         this.setFont(MaterialFontRoboto.MEDIUM.deriveFont(18f));
@@ -168,7 +168,10 @@ public class _MaterialDatePicker extends JXDatePicker implements DateSelected, B
     }
 
     public void setForeground(Color fg) {
-        text.setForeground(fg);
+        super.setForeground(fg);
+        if (text != null) {
+            text.setForeground(fg);
+        }
     }
 
     public void setWrongColor(Color wrongColor) {
