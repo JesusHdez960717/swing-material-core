@@ -39,12 +39,14 @@ public class _MaterialDatePickerIcon extends _PanelTransparent implements Bindab
 
     private void initComponents() {
         datePicker = new _MaterialDatePicker();
+        
         buttonIcon = new _MaterialButtonIconTransparent();
+        buttonIcon.setRippleColor(MaterialColors.TRANSPARENT);
 
         this.setLayout(new BorderLayout());
         this.add(datePicker, BorderLayout.CENTER);
 
-        datePicker.addFocusListener(new FocusListener() {
+        datePicker.getFormatedTextField().addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
                 buttonIcon.setForeground(getAccent());
