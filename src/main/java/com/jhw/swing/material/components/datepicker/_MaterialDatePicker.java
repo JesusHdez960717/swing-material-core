@@ -11,6 +11,7 @@ import com.jhw.swing.material.standards.MaterialIcons;
 import com.jhw.swing.util.interfaces.BindableComponent;
 import com.jhw.swing.util.interfaces.MaterialComponent;
 import com.jhw.swing.util.interfaces.Wrong;
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.Insets;
@@ -35,7 +36,13 @@ public class _MaterialDatePicker extends JXDatePicker implements DateSelected, B
     private final _MaterialFormatedTextField text = new _MaterialFormatedTextField();
 
     public _MaterialDatePicker() {
+        this("Fecha");
+    }
+
+    public _MaterialDatePicker(String label) {
         super();
+        this.setLabel(label);
+        
         this.setFormats(SDF.SDF);
         this.setDate(new Date());
         this.setFont(MaterialFontRoboto.MEDIUM.deriveFont(18f));
@@ -44,7 +51,7 @@ public class _MaterialDatePicker extends JXDatePicker implements DateSelected, B
         this.text.setFormatterFactory(new DefaultFormatterFactory(new DatePickerFormatter(getFormats(), getLocale())));
 
         this.setEditor(text);
-        
+
         personalizeButton();
     }
 
@@ -106,6 +113,82 @@ public class _MaterialDatePicker extends JXDatePicker implements DateSelected, B
     @Override
     public void wrong(String wrongText) {
         text.wrong(wrongText);
+    }
+
+    public Component getComponent() {
+        return text.getComponent();
+    }
+
+    public Color getWrongColor() {
+        return text.getWrongColor();
+    }
+
+    public String getWrongText() {
+        return text.getWrongText();
+    }
+
+    public int getMaxLength() {
+        return text.getMaxLength();
+    }
+
+    public String getLabel() {
+        return text.getLabel();
+    }
+
+    public void setLabel(String label) {
+        text.setLabel(label);
+    }
+
+    public String getHint() {
+        return text.getHint();
+    }
+
+    public void setHint(String hint) {
+        text.setHint(hint);
+    }
+
+    public Color getAccent() {
+        return text.getAccent();
+    }
+
+    public void setAccent(Color accentColor) {
+        text.setAccent(accentColor);
+    }
+
+    public Color getRealForeground() {
+        return text.getRealForeground();
+    }
+
+    public String getExtra() {
+        return text.getExtra();
+    }
+
+    public void setExtra(String extra) {
+        text.setExtra(extra);
+    }
+
+    public void setForeground(Color fg) {
+        text.setForeground(fg);
+    }
+
+    public void setWrongColor(Color wrongColor) {
+        text.setWrongColor(wrongColor);
+    }
+
+    public void setWrongText(String wrongText) {
+        text.setWrongText(wrongText);
+    }
+
+    public void setMaxLength(int maxLength) {
+        text.setMaxLength(maxLength);
+    }
+
+    public void setRealForeground(Color fg) {
+        text.setRealForeground(fg);
+    }
+
+    public void setText(String s) {
+        text.setText(s);
     }
 
 }
