@@ -37,11 +37,16 @@ public class _MaterialTextFieldIcon<T> extends _PanelTransparent implements Bind
     }
 
     public _MaterialTextFieldIcon(Class clazz) {
-        initComponents(clazz);
+        textField = new _MaterialTextField<>(clazz);
+        initComponents();
     }
 
-    private void initComponents(Class clazz) {
-        textField = new _MaterialTextField<>(clazz);
+    public _MaterialTextFieldIcon(_MaterialTextField textField) {
+        this.textField = textField;
+        initComponents();
+    }
+
+    private void initComponents() {
         buttonIcon = new _MaterialButtonIconTransparent();
 
         this.setLayout(new BorderLayout());
