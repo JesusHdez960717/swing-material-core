@@ -43,9 +43,13 @@ public class _MaterialFileChooserIcon extends _PanelTransparent implements Binda
 
         buttonClear = new _MaterialButtonIconTransparent();
         buttonClear.setIcon(MaterialIcons.CLEAR);
+        
+        int h = (int) this.fileChooser.getPreferredSize().getHeight();
+        int w = (int) (h * _MaterialTextFieldIcon.ICON_WIDTH_REDUCTION * 0.75);
+        buttonClear.setPreferredSize(new Dimension(w, h));
 
         this.setLayout(new BorderLayout());
-        this.add(fileChooser, BorderLayout.CENTER);
+        this.add(fileChooser);
         this.add(buttonClear, BorderLayout.EAST);
     }
 
