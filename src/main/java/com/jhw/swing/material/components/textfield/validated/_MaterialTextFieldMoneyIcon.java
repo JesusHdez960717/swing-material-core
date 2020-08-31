@@ -20,16 +20,8 @@ public class _MaterialTextFieldMoneyIcon extends _MaterialTextFieldIcon<BigDecim
     }
 
     public _MaterialTextFieldMoneyIcon(boolean negative) {
-        setTextFiedl(new _MaterialTextFieldMoney(negative));
+        super(new _MaterialTextFieldMoney(negative));
         setIcon(MaterialIcons.ATTACH_MONEY);
     }
 
-    @Override
-    public BigDecimal getObject() {
-        try {
-            return new BigDecimal(getText().replace(",", "."));
-        } catch (Exception e) {
-            throw new RuntimeException("Tipo de dato incorrecto");
-        }
-    }
 }

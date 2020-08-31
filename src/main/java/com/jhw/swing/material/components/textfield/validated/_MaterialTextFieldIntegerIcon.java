@@ -18,7 +18,7 @@ public class _MaterialTextFieldIntegerIcon extends _MaterialTextFieldIcon<Intege
     }
 
     public _MaterialTextFieldIntegerIcon(boolean negative) {
-        setTextFiedl(new _MaterialTextFieldInteger(negative));
+        super(new _MaterialTextFieldInteger(negative));
     }
 
 }

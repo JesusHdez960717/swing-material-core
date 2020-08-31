@@ -18,7 +18,7 @@ public class _MaterialTextFieldDoubleIcon extends _MaterialTextFieldIcon<Double>
     }
 
     public _MaterialTextFieldDoubleIcon(boolean negative) {
-        setTextFiedl(new _MaterialTextFieldDouble(negative));
+        super(new _MaterialTextFieldDouble(negative));
     }
 
 }
