@@ -14,6 +14,7 @@ import com.jhw.swing.util.interfaces.Wrong;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Cursor;
+import java.awt.Dimension;
 import java.awt.Insets;
 import javax.swing.JButton;
 import javax.swing.UIManager;
@@ -81,7 +82,7 @@ public class _MaterialDatePicker extends JXDatePicker implements DateSelected, B
             button.setForeground(MaterialColors.TRANSPARENT);
 
             //icono
-            button.setIcon(MaterialIcons.ARROW_DROP_DOWN.deriveIcon(getFont().getSize2D() * 2));
+            button.setIcon(MaterialIcons.UNFOLD_MORE);
             //button.setIcon(MaterialIcons.DATE_RANGE);
 
             //borrar todo lo demas
@@ -92,6 +93,8 @@ public class _MaterialDatePicker extends JXDatePicker implements DateSelected, B
 
             //cursor
             button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+
+            button.setPreferredSize(new Dimension(2 * button.getIcon().getIconWidth(), (int) button.getPreferredSize().getHeight()));
         }
     }
 
