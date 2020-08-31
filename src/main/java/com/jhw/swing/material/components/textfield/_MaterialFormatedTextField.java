@@ -92,6 +92,7 @@ public class _MaterialFormatedTextField extends JXFormattedTextField implements 
         setAccent(accentColor);
         setText("");
 
+        this.setComponentPopupMenu(CopyPastePopup.INSTANCE);
     }
 
     private void validateSize(KeyEvent evt) {

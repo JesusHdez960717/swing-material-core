@@ -99,7 +99,8 @@ public class _MaterialTextField<T> extends JTextField implements BindableCompone
         line = new Line(this);
         setAccent(accentColor);
         setText("");
-
+        
+        this.setComponentPopupMenu(CopyPastePopup.INSTANCE);
     }
 
     private void validateSize(KeyEvent evt) {
