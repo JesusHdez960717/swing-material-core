@@ -48,6 +48,7 @@ public class _MaterialTextFieldIcon<T> extends _PanelTransparent implements Bind
 
     private void initComponents() {
         buttonIcon = new _MaterialButtonIconTransparent();
+        buttonIcon.setRippleColor(MaterialColors.TRANSPARENT);
 
         this.setLayout(new BorderLayout());
         this.add(textField, BorderLayout.CENTER);
