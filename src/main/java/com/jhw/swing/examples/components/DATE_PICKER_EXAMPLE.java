@@ -27,7 +27,7 @@ public class DATE_PICKER_EXAMPLE extends javax.swing.JFrame {
         _YearPicker1 = new com.jhw.swing.material.components.datepicker._YearPicker();
         _MonthPicker1 = new com.jhw.swing.material.components.datepicker._MonthPicker();
         _MaterialDatePicker1 = new com.jhw.swing.material.components.datepicker._MaterialDatePicker();
-        _JXDatePicker1 = new com.jhw.swing.material.components.datepicker._JXDatePicker();
+        _JXDatePicker1 = new com.jhw.swing.material.components.datepicker._MaterialDatePicker();
         _MaterialButton1 = new com.jhw.swing.material.components.button._MaterialButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -93,7 +93,7 @@ public class DATE_PICKER_EXAMPLE extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//:variables
-    private com.jhw.swing.material.components.datepicker._JXDatePicker _JXDatePicker1;
+    private com.jhw.swing.material.components.datepicker._MaterialDatePicker _JXDatePicker1;
     private com.jhw.swing.material.components.button._MaterialButton _MaterialButton1;
     private com.jhw.swing.material.components.datepicker._MaterialDatePicker _MaterialDatePicker1;
     private com.jhw.swing.material.components.datepicker._MonthPicker _MonthPicker1;
