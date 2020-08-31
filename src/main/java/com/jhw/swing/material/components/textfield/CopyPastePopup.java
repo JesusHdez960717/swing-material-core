@@ -33,7 +33,7 @@ public class CopyPastePopup extends JPopupMenu {
     }
 
     private void initComponents() {
-        Action cut = new AbstractAction("Cortar", MaterialIcons.EDIT) {
+        Action cut = new AbstractAction("Cortar", MaterialIcons.CONTENT_CUT) {
             @Override
             public void actionPerformed(ActionEvent e) {
                 map.get(DefaultEditorKit.cutAction).actionPerformed(e);
@@ -42,22 +42,22 @@ public class CopyPastePopup extends JPopupMenu {
         cut.putValue(Action.ACCELERATOR_KEY, KeyStroke.getKeyStroke("control X"));
         this.add(cut);
 
-        Action copy = new AbstractAction("Copiar", MaterialIcons.EDIT) {
+        Action copy = new AbstractAction("Copiar", MaterialIcons.CONTENT_COPY) {
             @Override
             public void actionPerformed(ActionEvent e) {
                 map.get(DefaultEditorKit.copyAction).actionPerformed(e);
             }
         };
-        copy.putValue(Action.SMALL_ICON, MaterialIcons.COPYRIGHT);
+        copy.putValue(Action.ACCELERATOR_KEY, KeyStroke.getKeyStroke("control C"));
         this.add(copy);
 
-        Action pegar = new AbstractAction("Pegar", MaterialIcons.EDIT) {
+        Action pegar = new AbstractAction("Pegar", MaterialIcons.CONTENT_PASTE) {
             @Override
             public void actionPerformed(ActionEvent e) {
                 map.get(DefaultEditorKit.pasteAction).actionPerformed(e);
             }
         };
-        pegar.putValue(Action.SMALL_ICON, MaterialIcons.PAYMENT);
+        pegar.putValue(Action.ACCELERATOR_KEY, KeyStroke.getKeyStroke("control V"));
         this.add(pegar);
 
         this.add(SelectAll.INSTANCE);
