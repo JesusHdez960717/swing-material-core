@@ -1,6 +1,7 @@
 package com.jhw.swing.material.components.datepicker;
 
 import com.jhw.swing.material.components.textfield._MaterialFormatedTextField;
+import com.jhw.swing.material.standards.MaterialColors;
 import java.util.Date;
 import org.jdesktop.swingx.JXDatePicker;
 import com.jhw.utils.others.SDF;
@@ -10,10 +11,13 @@ import com.jhw.swing.material.standards.MaterialIcons;
 import com.jhw.swing.util.interfaces.BindableComponent;
 import com.jhw.swing.util.interfaces.MaterialComponent;
 import com.jhw.swing.util.interfaces.Wrong;
+import java.awt.Color;
 import java.awt.Component;
+import java.awt.Container;
 import java.awt.Cursor;
 import java.awt.Insets;
 import javax.swing.JButton;
+import javax.swing.UIManager;
 
 /**
  *
@@ -31,7 +35,7 @@ public class _MaterialDatePicker extends JXDatePicker implements DateSelected, B
 
         this.setEditor(text);
         personalizeButton();
-
+        personalizeMonthView();
     }
 
     public void setLowerBound(Date lower) {
@@ -51,11 +55,21 @@ public class _MaterialDatePicker extends JXDatePicker implements DateSelected, B
             }
         }
         if (button != null) {
+            //para que cuando se de un click no pinte por el material ui
+            button.setBackground(MaterialColors.TRANSPARENT);
+            button.setForeground(MaterialColors.TRANSPARENT);
+
+            //icono
+            //button.setIcon(MaterialIcons.ARROW_DROP_DOWN.deriveIcon(getFont().getSize2D() * 2));
             button.setIcon(MaterialIcons.DATE_RANGE);
+
+            //borrar todo lo demas
             button.setContentAreaFilled(false);
             button.setFocusPainted(false);
             button.setMargin(new Insets(0, 0, 0, 0));
             button.setOpaque(false);
+
+            //cursor
             button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         }
     }
@@ -80,4 +94,32 @@ public class _MaterialDatePicker extends JXDatePicker implements DateSelected, B
         text.wrong(wrongText);
     }
 
+    private void personalizeMonthView() {
+        UIManager.put("JXMonthView.monthDownFileName", MaterialIcons.KEYBOARD_ARROW_LEFT);
+        UIManager.put("JXMonthView.monthUpFileName", MaterialIcons.KEYBOARD_ARROW_RIGHT);
+    }
+
 }
+
+/*
+
+        defaults.add(JXMonthView.uiClassID, "org.jdesktop.swingx.plaf.basic.BasicMonthViewUI");
+        defaults.add("JXMonthView.background", new ColorUIResource(Color.WHITE));
+        defaults.add("JXMonthView.monthStringBackground", new ColorUIResource(138, 173, 209));//color moradito de arriba, no funciona directo
+        defaults.add("JXMonthView.monthStringForeground", new ColorUIResource(68, 68, 68));
+        defaults.add("JXMonthView.daysOfTheWeekForeground", new ColorUIResource(68, 68, 68));
+        defaults.add("JXMonthView.weekOfTheYearForeground", new ColorUIResource(68, 68, 68));
+        defaults.add("JXMonthView.unselectableDayForeground", new ColorUIResource(Color.RED));
+        defaults.add("JXMonthView.selectedBackground", new ColorUIResource(197, 220, 240));
+        defaults.add("JXMonthView.flaggedDayForeground", new ColorUIResource(Color.RED));
+        defaults.add("JXMonthView.leadingDayForeground", new ColorUIResource(Color.LIGHT_GRAY));
+        defaults.add("JXMonthView.trailingDayForeground", new ColorUIResource(Color.LIGHT_GRAY));
+        defaults.add("JXMonthView.font", UIManagerExt.getSafeFont("Button.font", new FontUIResource("Dialog", 0, 12)));
+        defaults.add("JXMonthView.monthDownFileName", LookAndFeel.makeIcon(MonthViewAddon.class, "basic/resources/month-down.png"));
+        defaults.add("JXMonthView.monthUpFileName", LookAndFeel.makeIcon(MonthViewAddon.class, "basic/resources/month-up.png"));
+        defaults.add("JXMonthView.boxPaddingX", Integer.valueOf(3));
+        defaults.add("JXMonthView.boxPaddingY", Integer.valueOf(3));
+
+
+
+ */
