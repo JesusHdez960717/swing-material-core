@@ -11,9 +11,7 @@ import com.jhw.swing.material.standards.MaterialIcons;
 import com.jhw.swing.util.interfaces.BindableComponent;
 import com.jhw.swing.util.interfaces.MaterialComponent;
 import com.jhw.swing.util.interfaces.Wrong;
-import java.awt.Color;
 import java.awt.Component;
-import java.awt.Container;
 import java.awt.Cursor;
 import java.awt.Insets;
 import javax.swing.JButton;
@@ -25,6 +23,13 @@ import javax.swing.UIManager;
  */
 public class _MaterialDatePicker extends JXDatePicker implements DateSelected, BindableComponent<Date>, Wrong, MaterialComponent {
 
+    static {
+        UIManager.put("JXMonthView.monthDownFileName", MaterialIcons.KEYBOARD_ARROW_LEFT);
+        UIManager.put("JXMonthView.monthUpFileName", MaterialIcons.KEYBOARD_ARROW_RIGHT);
+        UIManager.put("JXMonthView.monthStringBackground", MaterialColors.PURPLE_200);
+        UIManager.put("JXMonthView.monthStringForeground", MaterialColors.BLACK);
+    }
+
     private final _MaterialFormatedTextField text = new _MaterialFormatedTextField();
 
     public _MaterialDatePicker() {
@@ -35,7 +40,6 @@ public class _MaterialDatePicker extends JXDatePicker implements DateSelected, B
 
         this.setEditor(text);
         personalizeButton();
-        personalizeMonthView();
     }
 
     public _MaterialFormatedTextField getFormatedTextField() {
@@ -96,11 +100,6 @@ public class _MaterialDatePicker extends JXDatePicker implements DateSelected, B
     @Override
     public void wrong(String wrongText) {
         text.wrong(wrongText);
-    }
-
-    private void personalizeMonthView() {
-        UIManager.put("JXMonthView.monthDownFileName", MaterialIcons.KEYBOARD_ARROW_LEFT);
-        UIManager.put("JXMonthView.monthUpFileName", MaterialIcons.KEYBOARD_ARROW_RIGHT);
     }
 
 }
