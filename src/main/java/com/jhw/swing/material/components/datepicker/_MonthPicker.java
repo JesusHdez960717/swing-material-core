@@ -105,16 +105,6 @@ public class _MonthPicker extends _PanelComponent implements BindableComponent<D
         comboBoxYear.setLabel(label);
     }
 
-    /**
-     * Faltan por hacer las validaciones.
-     *
-     * @return
-     */
-    @Override
-    public Date getDateValidated() {
-        return new Date(getSelectedYear() - 1900, getSelectedMonth(), 1);
-    }
-
     @Override
     public Date getDate() {
         return new Date(getSelectedYear() - 1900, getSelectedMonth(), 1);

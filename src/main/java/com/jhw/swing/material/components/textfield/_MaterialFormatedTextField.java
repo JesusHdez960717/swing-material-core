@@ -1,41 +1,38 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package com.jhw.swing.material.components.textfield;
 
-import java.awt.*;
-import java.awt.event.FocusEvent;
-import java.awt.event.KeyEvent;
-import javax.swing.*;
-import javax.swing.text.DefaultCaret;
 import com.jhw.personalization.core.domain.Personalization;
 import com.jhw.personalization.services.PersonalizationHandler;
-import com.jhw.swing.util.MaterialDrawingUtils;
 import com.jhw.swing.material.effects.FloatingLabel;
 import com.jhw.swing.material.effects.FloatingLabelStandar;
 import com.jhw.swing.material.effects.Line;
-import com.jhw.swing.util.Utils;
-import com.jhw.swing.util.interfaces.MaterialComponent;
 import com.jhw.swing.material.standards.MaterialColors;
 import com.jhw.swing.material.standards.MaterialFontRoboto;
-import com.jhw.swing.util.interfaces.BindableComponent;
+import com.jhw.swing.util.MaterialDrawingUtils;
+import com.jhw.swing.util.Utils;
+import com.jhw.swing.util.interfaces.MaterialComponent;
 import com.jhw.swing.util.interfaces.Wrong;
-import com.jhw.utils.interfaces.Formateable;
-import com.jhw.utils.jpa.ConverterService;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.FontMetrics;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Rectangle;
+import java.awt.event.FocusEvent;
+import java.awt.event.KeyEvent;
+import javax.swing.text.DefaultCaret;
+import org.jdesktop.swingx.JXFormattedTextField;
 
 /**
- * A Material Design single-line text field is the basic way of getting user
- * input. It includes a descriptive label that appears as a placeholder and then
- * floats above the text field as content is written. You can also set a hint
- * for it to appear below the label when the text field is empty.
  *
- * @see <a
- * href="https://www.google.com/design/spec/components/text-fields.html">Text
- * fields (Google design guidelines)</a>
+ * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-public class _MaterialTextField<T> extends JTextField implements BindableComponent<T>, Wrong, MaterialComponent, FloatingLabelStandar {
-
-    public static final int HINT_OPACITY_MASK = 0x99000000;
-    public static final int LINE_OPACITY_MASK = 0x66000000;
-
-    private final Class<? extends T> clazz;
+public class _MaterialFormatedTextField extends JXFormattedTextField implements Wrong, MaterialComponent, FloatingLabelStandar {
 
     private FloatingLabel floatingLabel;
     private Line line;
@@ -55,16 +52,11 @@ public class _MaterialTextField<T> extends JTextField implements BindableCompone
 
     private String extra = "";
 
-    public _MaterialTextField() {
-        this(String.class);
-    }
-
     /**
      * Default constructor for {@code MaterialTextField}. A default model is
      * created and the initial string is empty.
      */
-    public _MaterialTextField(Class clazz) {
-        this.clazz = clazz;
+    public _MaterialFormatedTextField() {
         this.setPreferredSize(new Dimension(145, 65));
         this.setBorder(null);
         this.setFont(MaterialFontRoboto.REGULAR.deriveFont(16f));
@@ -112,17 +104,6 @@ public class _MaterialTextField<T> extends JTextField implements BindableCompone
     @Override
     public Component getComponent() {
         return this;
-    }
-
-    /**
-     * Default constructor for {@code MaterialTextField}. A default model is
-     * created and the initial string is the one provided.
-     *
-     * @param text An starting value for this text field
-     */
-    public _MaterialTextField(String text) {
-        this();
-        setText(text);
     }
 
     /**
@@ -329,7 +310,7 @@ public class _MaterialTextField<T> extends JTextField implements BindableCompone
 
         //Paint the hint
         if (!getHint().isEmpty() && getText().isEmpty() && (getLabel().isEmpty() || isFocusOwner()) && floatingLabel.isFloatingAbove()) {
-            g2.setColor(Utils.applyAlphaMask(getForeground(), HINT_OPACITY_MASK));
+            g2.setColor(Utils.applyAlphaMask(getForeground(), _MaterialTextField.HINT_OPACITY_MASK));
             g2.drawString(getHint(), 0, yMid + metrics.getAscent() / 2);//paint the hint in the same place as the text
         }
 
@@ -342,7 +323,7 @@ public class _MaterialTextField<T> extends JTextField implements BindableCompone
         int yLine = yMid + metrics.getAscent() / 2 + 5;
 
         //paint the under-line 
-        g2.setColor(Utils.applyAlphaMask(getForeground(), LINE_OPACITY_MASK));
+        g2.setColor(Utils.applyAlphaMask(getForeground(), _MaterialTextField.LINE_OPACITY_MASK));
         g2.fillRect(0, yLine, getWidth(), 1);
 
         //paint the real-line, this is the one that change colors and size
@@ -388,28 +369,4 @@ public class _MaterialTextField<T> extends JTextField implements BindableCompone
         }
     }
 
-    @Override
-    public T getObject() {
-        if (clazz == null) {
-            throw new NullPointerException("Clase para convertir nula.");
-        }
-        try {
-            return ConverterService.convert(getText(), clazz);
-        } catch (Exception e) {
-            throw new NullPointerException("Error convirtiendo.");
-        }
-    }
-
-    @Override
-    public void setObject(T object) {
-        if (object == null) {
-            setText("");
-            return;
-        }
-        if (object instanceof Formateable) {
-            setText(((Formateable) object).format());
-        } else {
-            setText(object.toString());
-        }
-    }
 }

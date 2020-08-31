@@ -54,16 +54,6 @@ public class _YearPicker extends _MaterialComboBoxFiltrable<Integer> implements 
         return (int) getSelectedItem();
     }
 
-    /**
-     * Faltan por hacer las validaciones.
-     *
-     * @return
-     */
-    @Override
-    public Date getDateValidated() {
-        return new Date(getSelectedYear() - 1900, 0, 1);
-    }
-
     @Override
     public Date getDate() {
         return new Date(getSelectedYear() - 1900, 0, 1);

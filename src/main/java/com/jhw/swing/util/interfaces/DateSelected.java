@@ -8,8 +8,6 @@ import java.util.Date;
  */
 public interface DateSelected {
 
-    public Date getDateValidated();
-
     public Date getDate();
 
     public void setDate(Date date);

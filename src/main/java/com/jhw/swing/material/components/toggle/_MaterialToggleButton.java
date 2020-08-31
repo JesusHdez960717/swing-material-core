@@ -104,7 +104,7 @@ public class _MaterialToggleButton extends JToggleButton implements BindableComp
             }
 
             int iconWidth = 0;
-            int distReal = _MaterialLabel.DISTANCE_ICON_TEXT;
+            int distReal = getIconTextGap();
             if (getIcon() != null) {
                 iconWidth = getIcon().getIconWidth();
             } else {
@@ -124,7 +124,7 @@ public class _MaterialToggleButton extends JToggleButton implements BindableComp
                 xText = getWidth() - strWidth;
                 xIcon = xText - iconWidth - 2 * distReal;
             } else if (align == SwingConstants.LEADING || align == SwingConstants.LEFT) {
-                xIcon = distReal;
+                xIcon = 0;
                 xText = iconWidth + distReal;
             } else {
                 xText = (getWidth() - strWidth) / 2 + distReal / 2 + iconWidth / 2;

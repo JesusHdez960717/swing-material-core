@@ -16,6 +16,8 @@ import java.math.BigDecimal;
  */
 public class _MaterialTextFieldMoney extends _MaterialTextField<BigDecimal> {
 
+    private static final String INCORRECTO = "Tipo de dato incorrecto";
+
     private boolean negative = false;
 
     public _MaterialTextFieldMoney() {
@@ -24,7 +26,6 @@ public class _MaterialTextFieldMoney extends _MaterialTextField<BigDecimal> {
 
     public _MaterialTextFieldMoney(boolean negative) {
         super(BigDecimal.class);
-        this.setFrontText("$");
         this.setMaxLength(20);
         this.negative = negative;
         addListeners();
@@ -68,7 +69,9 @@ public class _MaterialTextFieldMoney extends _MaterialTextField<BigDecimal> {
         try {
             return new BigDecimal(getText().replace(",", "."));
         } catch (Exception e) {
-            throw new RuntimeException("Tipo de dato incorrecto");
+            wrong(INCORRECTO);
+            return null;
+            //throw new RuntimeException(INCORRECTO);
         }
     }
 
