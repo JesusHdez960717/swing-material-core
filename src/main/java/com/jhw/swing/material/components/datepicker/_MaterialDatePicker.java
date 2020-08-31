@@ -38,6 +38,10 @@ public class _MaterialDatePicker extends JXDatePicker implements DateSelected, B
         personalizeMonthView();
     }
 
+    public _MaterialFormatedTextField getFormatedTextField() {
+        return text;
+    }
+
     public void setLowerBound(Date lower) {
         this.getMonthView().setLowerBound(lower);
     }
@@ -60,8 +64,8 @@ public class _MaterialDatePicker extends JXDatePicker implements DateSelected, B
             button.setForeground(MaterialColors.TRANSPARENT);
 
             //icono
-            //button.setIcon(MaterialIcons.ARROW_DROP_DOWN.deriveIcon(getFont().getSize2D() * 2));
-            button.setIcon(MaterialIcons.DATE_RANGE);
+            button.setIcon(MaterialIcons.ARROW_DROP_DOWN.deriveIcon(getFont().getSize2D() * 2));
+            //button.setIcon(MaterialIcons.DATE_RANGE);
 
             //borrar todo lo demas
             button.setContentAreaFilled(false);
