@@ -11,6 +11,8 @@ import java.awt.event.FocusListener;
 import javax.swing.border.TitledBorder;
 import com.jhw.personalization.core.domain.Personalization;
 import com.jhw.personalization.services.PersonalizationHandler;
+import static com.jhw.swing.material.components.textfield._MaterialTextField.HINT_OPACITY_MASK;
+import com.jhw.swing.util.Utils;
 import javax.swing.border.Border;
 
 /**
@@ -85,6 +87,7 @@ public class _MaterialTextArea extends javax.swing.JPanel implements BindableCom
     private void setTitledBorder(String text) {
         materialScrollPaneCore.setBorder(new TitledBorder(text));
         TitledBorder titled = (TitledBorder) materialScrollPaneCore.getBorder();
+        titled.setTitleColor(Utils.applyAlphaMask(getForeground(), HINT_OPACITY_MASK));
         titled.setBorder(new MaterialLineBorder());
         borderEffect.update();
     }

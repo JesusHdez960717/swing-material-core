@@ -55,7 +55,7 @@ public class BorderDinamic {
     }
 
     public float getTargetFontSize() {
-        return !target.getTextArea().isFocusOwner() ? target.getTextArea().getFont().getSize2D() * 0.8f : target.getTextArea().getFont().getSize2D();
+        return target.getTextArea().isFocusOwner() ? target.getTextArea().getFont().getSize2D() * 0.8f : target.getTextArea().getFont().getSize2D();
     }
 
     private Color getTargetColor() {
