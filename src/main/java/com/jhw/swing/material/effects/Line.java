@@ -24,7 +24,7 @@ public class Line {
     public Line(JComponent target) {
         this.target = target;
         width = SafePropertySetter.animatableProperty(target, 0d);
-        
+
         target.addComponentListener(new ComponentAdapter() {
             @Override
             public void componentResized(ComponentEvent e) {

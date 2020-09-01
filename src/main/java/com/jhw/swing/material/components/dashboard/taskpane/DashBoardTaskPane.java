@@ -253,16 +253,16 @@ public class DashBoardTaskPane extends DashBoardSimple implements PropertyChange
     public void addMainElement(CollapseMenu menu) {
         //add listener
         menu.addPropertyChangeListener(this);
-        
+
         //formatear
         menuFormatter.accept(menu);
         menu.selected(false);//por defecto deseleccionado
-        
+
         //add to the list
         menus.add(menu);
         //add to the taskPane
         this.task.addItem(menu);
-        
+
         //set minimun size of shrink
         setMinimunShrink(menu.getComponentsHight());
 

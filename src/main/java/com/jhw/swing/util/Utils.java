@@ -42,7 +42,7 @@ public class Utils {
         }
         return timer;
     }
-    
+
     /**
      * A boolean flag for {@code getScreenSize()}, signaling if
      * {@code sun.java2d.SunGraphicsEnvironment.getUsableBounds()} is available

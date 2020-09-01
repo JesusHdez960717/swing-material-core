@@ -24,18 +24,18 @@ public class _MaterialScrollPaneCore extends JScrollPane {
         //para el border
         this.setBackground(MaterialColors.WHITE);
         this.setFont(MaterialFontRoboto.REGULAR.deriveFont(16f));
-        
+
         //barras de material
         this.setVerticalScrollBar(verticalScrollBar);
         this.setHorizontalScrollBar(horizontalScrollBar);
-        
+
         //smoot
         this.addMouseWheelListener(new SmoothScrollMouseWheelListener(this));
-        
+
         //transparente
         this.getViewport().setOpaque(false);
         this.getViewport().setBackground(MaterialColors.TRANSPARENT);
-        
+
         //le sobra el borde
         //this.setBorder(null);
     }
