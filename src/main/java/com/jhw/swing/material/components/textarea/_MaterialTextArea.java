@@ -4,6 +4,7 @@ import com.jhw.swing.material.components.scrollpane._MaterialScrollPaneCore;
 import com.jhw.swing.util.interfaces.BindableComponent;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
@@ -29,6 +30,7 @@ public class _MaterialTextArea extends javax.swing.JPanel implements BindableCom
 
         this.setLayout(new BorderLayout());
         this.add(materialScrollPaneCore);
+        this.setPreferredSize(new Dimension(230, 150));
     }// </editor-fold>                        
 
     // Variables declaration - do not modify//:variables
