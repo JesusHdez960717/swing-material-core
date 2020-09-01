@@ -8,18 +8,10 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
-import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 import com.jhw.personalization.core.domain.Personalization;
 import com.jhw.personalization.services.PersonalizationHandler;
-import com.jhw.swing.material.components.textfield._MaterialTextField;
-import com.jhw.swing.util.Utils;
-import javax.swing.BorderFactory;
-import javax.swing.UIManager;
-import javax.swing.border.EmptyBorder;
-import javax.swing.border.LineBorder;
-import static javax.swing.border.TitledBorder.DEFAULT_POSITION;
-import static javax.swing.border.TitledBorder.LEADING;
+import javax.swing.border.Border;
 
 /**
  *
@@ -29,11 +21,15 @@ public class _MaterialTextArea extends javax.swing.JPanel implements BindableCom
 
     private Color accentColor = PersonalizationHandler.getColor(Personalization.KEY_COLOR_ACCENT);
 
+    private final BorderDinamic borderEffect;
+
     private String label;
 
     public _MaterialTextArea() {
         initComponents();
         addListeners();
+        borderEffect = new BorderDinamic(this);
+        setLabel("label");
     }
 
     private void initComponents() {
@@ -67,6 +63,7 @@ public class _MaterialTextArea extends javax.swing.JPanel implements BindableCom
 
     public void setAccentColor(Color accentColor) {
         this.accentColor = accentColor;
+        borderEffect.update();
     }
 
     public String getText() {
@@ -85,13 +82,15 @@ public class _MaterialTextArea extends javax.swing.JPanel implements BindableCom
         return materialScrollPaneCore;
     }
 
-    public void setBorderCustom(Border b) {
-        materialScrollPaneCore.setBorder(b);
+    private void setTitledBorder(String text) {
+        materialScrollPaneCore.setBorder(new TitledBorder(text));
+        TitledBorder titled = (TitledBorder) materialScrollPaneCore.getBorder();
+        titled.setBorder(new MaterialLineBorder());
+        borderEffect.update();
     }
 
-    public void setTitledBorder(String text) {
-        materialScrollPaneCore.setBorder(new TitledBorder(text));
-        updateBorder();
+    @Override
+    public void setBorder(Border border) {
     }
 
     @Override
@@ -112,10 +111,11 @@ public class _MaterialTextArea extends javax.swing.JPanel implements BindableCom
 
     @Override
     public void setFont(Font font) {
+        super.setFont(font);
         if (materialTextAreaCore != null) {
             materialTextAreaCore.setFont(font);
+            borderEffect.update();
         }
-        super.setFont(font);
     }
 
     @Override
@@ -130,10 +130,11 @@ public class _MaterialTextArea extends javax.swing.JPanel implements BindableCom
 
     @Override
     public void setForeground(Color fore) {
+        super.setForeground(fore);
         if (materialTextAreaCore != null) {
             materialTextAreaCore.setForeground(fore);
+            borderEffect.update();
         }
-        super.setForeground(fore);
     }
 
     @Override
@@ -146,29 +147,16 @@ public class _MaterialTextArea extends javax.swing.JPanel implements BindableCom
         setText(object);
     }
 
-    private void updateBorder() {
-        Color accent = materialTextAreaCore.isFocusOwner() ? accentColor : Utils.applyAlphaMask(materialTextAreaCore.getForeground(), _MaterialTextField.HINT_OPACITY_MASK);
-        Color accentText = materialTextAreaCore.isFocusOwner() ? accentColor : materialTextAreaCore.getForeground();
-        int thickness = materialTextAreaCore.isFocusOwner() ? 2 : 1;
-        try {
-            TitledBorder titled = (TitledBorder) materialScrollPaneCore.getBorder();
-            titled.setTitleColor(accentText);
-            titled.setBorder(BorderFactory.createLineBorder(accent, thickness, false));
-            materialScrollPaneCore.repaint();
-        } catch (Exception e) {
-        }
-    }
-
     private void addListeners() {
         materialTextAreaCore.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
-                updateBorder();
+                borderEffect.update();
             }
 
             @Override
             public void focusLost(FocusEvent e) {
-                updateBorder();
+                borderEffect.update();
             }
         });
     }
