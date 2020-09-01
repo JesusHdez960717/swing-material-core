@@ -107,7 +107,12 @@ public class _MaterialFormatedTextField<T> extends JXFormattedTextField implemen
     }
 
     private void validateSize(KeyEvent evt) {
-        if (getText().length() + 1 > getMaxLength()) {
+        try {
+            this.commitEdit();
+            if (getValue().toString().length() + 1 > getMaxLength()) {
+                throw new Exception("Tamanno muy grande");
+            }
+        } catch (Exception e) {
             Utils.beep();
             evt.consume();
         }
