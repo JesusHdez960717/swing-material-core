@@ -17,8 +17,8 @@ import javax.swing.JScrollBar;
  */
 public class _MaterialScrollPaneCore extends JScrollPane {
 
-    private _MaterialScrollBar verticalScrollBar = new _MaterialScrollBar(Adjustable.VERTICAL);
-    private _MaterialScrollBar horizontalScrollBar = new _MaterialScrollBar(Adjustable.HORIZONTAL);
+    private final _MaterialScrollBar verticalScrollBar = new _MaterialScrollBar(Adjustable.VERTICAL);
+    private final _MaterialScrollBar horizontalScrollBar = new _MaterialScrollBar(Adjustable.HORIZONTAL);
 
     public _MaterialScrollPaneCore() {
         //para el border

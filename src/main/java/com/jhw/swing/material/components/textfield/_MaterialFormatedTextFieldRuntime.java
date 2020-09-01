@@ -5,6 +5,8 @@
  */
 package com.jhw.swing.material.components.textfield;
 
+import com.jhw.personalization.services.PersonalizationHandler;
+import com.jhw.swing.util.PersonalizationMaterial;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
@@ -40,9 +42,11 @@ public class _MaterialFormatedTextFieldRuntime<T> extends _MaterialFormatedTextF
 
     private void keyPressedAction(KeyEvent e) {
         try {
-            if (!scapeCharacters.contains(e.getKeyCode())) {
-                this.commitEdit();
-                this.setValue(this.getValue());
+            if (PersonalizationHandler.getBoolean(PersonalizationMaterial.KEY_FORMAT_TEXT_FIELD_RUNTIME)) {
+                if (!scapeCharacters.contains(e.getKeyCode())) {
+                    this.commitEdit();
+                    this.setValue(this.getValue());
+                }
             }
         } catch (Exception ex) {
             System.out.println("Error formateando " + ex.getMessage());
