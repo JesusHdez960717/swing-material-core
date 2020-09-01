@@ -14,8 +14,11 @@ import com.jhw.swing.material.standards.MaterialColors;
 import com.jhw.swing.material.standards.MaterialFontRoboto;
 import com.jhw.swing.util.MaterialDrawingUtils;
 import com.jhw.swing.util.Utils;
+import com.jhw.swing.util.interfaces.BindableComponent;
 import com.jhw.swing.util.interfaces.MaterialComponent;
 import com.jhw.swing.util.interfaces.Wrong;
+import com.jhw.utils.interfaces.Formateable;
+import com.jhw.utils.jpa.ConverterService;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -32,13 +35,15 @@ import org.jdesktop.swingx.JXFormattedTextField;
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-public class _MaterialFormatedTextField extends JXFormattedTextField implements Wrong, MaterialComponent, FloatingLabelStandar {
+public class _MaterialFormatedTextField<T> extends JXFormattedTextField implements BindableComponent<T>, Wrong, MaterialComponent, FloatingLabelStandar {
 
     private FloatingLabel floatingLabel;
     private Line line;
     private String hint = "hint";
     private String label = "label";
     private Color accentColor = PersonalizationHandler.getColor(Personalization.KEY_COLOR_ACCENT);
+
+    private final Class<? extends T> clazz;
 
     //default
     private Color foreground = MaterialColors.BLACK;
@@ -52,11 +57,17 @@ public class _MaterialFormatedTextField extends JXFormattedTextField implements 
 
     private String extra = "";
 
+    public _MaterialFormatedTextField() {
+        this(String.class);
+    }
+
     /**
      * Default constructor for {@code MaterialTextField}. A default model is
      * created and the initial string is empty.
      */
-    public _MaterialFormatedTextField() {
+    public _MaterialFormatedTextField(Class clazz) {
+        this.clazz = clazz;
+
         this.setPreferredSize(new Dimension(145, 65));
         this.setBorder(null);
         this.setFont(MaterialFontRoboto.REGULAR.deriveFont(16f));
@@ -100,6 +111,10 @@ public class _MaterialFormatedTextField extends JXFormattedTextField implements 
             Utils.beep();
             evt.consume();
         }
+    }
+
+    public Class<? extends T> getClazz() {
+        return clazz;
     }
 
     @Override
@@ -367,6 +382,31 @@ public class _MaterialFormatedTextField extends JXFormattedTextField implements 
             setForeground(foreground);
             floatingLabel.setAccentColor(accentColor);
             this.repaint();
+        }
+    }
+
+    @Override
+    public T getObject() {
+        if (clazz == null) {
+            throw new NullPointerException("Clase para convertir nula.");
+        }
+        try {
+            return ConverterService.convert(getValue(), clazz);
+        } catch (Exception e) {
+            throw new NullPointerException("Error convirtiendo.");
+        }
+    }
+
+    @Override
+    public void setObject(T object) {
+        if (object == null) {
+            setValue("");
+            return;
+        }
+        if (object instanceof Formateable) {
+            setValue(((Formateable) object).format());
+        } else {
+            setValue(object.toString());
         }
     }
 
