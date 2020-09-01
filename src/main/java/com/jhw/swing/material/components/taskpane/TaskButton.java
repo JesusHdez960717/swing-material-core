@@ -36,7 +36,7 @@ public class TaskButton extends JButton implements MaterialComponent {
 
         setPreferredSize(parent.getjPanelFixed().getPreferredSize());
         setHorizontalAlignment(SwingConstants.LEADING);
-        
+
         this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         setIconTextGap(20);
         //selecciona y avisa

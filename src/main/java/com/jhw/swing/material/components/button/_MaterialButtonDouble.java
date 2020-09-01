@@ -31,7 +31,7 @@ public class _MaterialButtonDouble extends _MaterialPanelComponent {
 
         buttonRight.setBackground(new java.awt.Color(255, 255, 255));
         buttonRight.setBorderRadius(2);
-        
+
         HorizontalLayoutContainer.builder hlc = HorizontalLayoutContainer.builder((int) buttonLeft.getPreferredSize().getHeight());
         hlc.add(HorizontalLayoutComponent.builder(buttonLeft).gapRight(1).build());
         hlc.add(HorizontalLayoutComponent.builder(buttonRight).gapLeft(1).build());

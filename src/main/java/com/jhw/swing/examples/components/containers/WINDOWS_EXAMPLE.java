@@ -29,16 +29,16 @@ public class WINDOWS_EXAMPLE extends MaterialWindow {
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 400, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 300, Short.MAX_VALUE)
         );
 
         pack();
-    }// </editor-fold>//GEN-END:initComponents
+    }// </editor-fold>                        
 
     /**
      * @param args the command line arguments
@@ -54,5 +54,5 @@ public class WINDOWS_EXAMPLE extends MaterialWindow {
     }
 
     // Variables declaration - do not modify//:variables
-    // End of variables declaration//GEN-END:variables
+    // End of variables declaration                   
 }

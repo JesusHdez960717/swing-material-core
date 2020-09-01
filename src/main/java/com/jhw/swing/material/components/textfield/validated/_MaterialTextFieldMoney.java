@@ -5,16 +5,18 @@
  */
 package com.jhw.swing.material.components.textfield.validated;
 
-import com.jhw.swing.material.components.textfield._MaterialTextField;
+import com.jhw.swing.material.components.textfield._MaterialFormatedTextFieldRuntime;
 import com.jhw.swing.util.Utils;
 import java.awt.event.KeyEvent;
 import java.math.BigDecimal;
+import com.jhw.utils.formateer.*;
+import java.util.StringTokenizer;
 
 /**
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-public class _MaterialTextFieldMoney extends _MaterialTextField<BigDecimal> {
+public class _MaterialTextFieldMoney extends _MaterialFormatedTextFieldRuntime<BigDecimal> {
 
     private static final String INCORRECTO = "Tipo de dato incorrecto";
 
@@ -25,7 +27,7 @@ public class _MaterialTextFieldMoney extends _MaterialTextField<BigDecimal> {
     }
 
     public _MaterialTextFieldMoney(boolean negative) {
-        super(BigDecimal.class);
+        super(new MoneyFormateer(), BigDecimal.class);
         this.setMaxLength(20);
         this.negative = negative;
         addListeners();
@@ -52,7 +54,15 @@ public class _MaterialTextFieldMoney extends _MaterialTextField<BigDecimal> {
             return null;
         }
         String ch = (c + "").trim();
-        text = (getText().substring(0, getCaretPosition()) + ch + getText().substring(getCaretPosition(), getText().length()));
+        try {
+            this.commitEdit();
+        } catch (Exception e) {
+        }
+        String originalText = getValue().toString();
+        int caretPos = getCaretPosition() - new StringTokenizer(getText().trim(), MoneyFormateer.MIDDLE).countTokens() + 1;
+        caretPos = Math.max(0, Math.min(caretPos, originalText.length()));
+
+        text = (originalText.substring(0, caretPos) + ch + originalText.substring(caretPos, originalText.length()));
         if (negative && text.length() == 1 && text.contains("-")) {
             return BigDecimal.ZERO;
         }
@@ -67,7 +77,7 @@ public class _MaterialTextFieldMoney extends _MaterialTextField<BigDecimal> {
     @Override
     public BigDecimal getObject() {
         try {
-            return new BigDecimal(getText().replace(",", "."));
+            return new BigDecimal(getValue().toString().replace(",", "."));
         } catch (Exception e) {
             wrong(INCORRECTO);
             return null;

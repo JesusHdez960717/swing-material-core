@@ -43,9 +43,9 @@ public class TaskPaneMainContainer extends JXCollapsiblePane {
         //retoques a la visual, quitados gap y border
         setComponentsGap(0);
         setInternalBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
-        
+
         //quita el border al scroll pane
-        scrollPane.setBorder(null);        
+        scrollPane.setBorder(null);
     }
 
     public void clear() {
