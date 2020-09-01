@@ -55,7 +55,7 @@ public class BorderDinamic {
     }
 
     public float getTargetFontSize() {
-        return target.getTextArea().isFocusOwner() ? target.getTextArea().getFont().getSize2D() * 0.8f : target.getTextArea().getFont().getSize2D();
+        return target.getTextArea().isFocusOwner() ? target.getTextArea().getFont().getSize2D() * 1.15f : target.getTextArea().getFont().getSize2D();
     }
 
     private Color getTargetColor() {
@@ -75,53 +75,20 @@ public class BorderDinamic {
         //Font size, si no hay letra es tamaño real, si esta arriba es el 80% del tamaño(1 poquito mas chiquito)
         float targetFontSize = getTargetFontSize();
         if (fontSize.getValue() != targetFontSize) {
-            builder.addTarget(SafePropertySetter.getTarget(new SafePropertySetter.Setter<Float>() {
-                @Override
-                public void setValue(Float value) {
-                    if (value != null) {
-                        fontSize.setValue(value);//update the target
-
-                        TitledBorder titled = (TitledBorder) target.getScrollPane().getBorder();
-                        titled.setTitleFont(getFont());
-                    }
-                }
-            }, fontSize.getValue(), targetFontSize));
+            builder.addTarget(SafePropertySetter.getTarget(fontSize, fontSize.getValue(), targetFontSize));
         }
 
         //color, varia entre el color de accent y el de Opacity_Mask
         Color targetColor = getTargetColor();
         if (!targetColor.equals(color.getValue())) {
-            builder.addTarget(SafePropertySetter.getTarget(new SafePropertySetter.Setter<Color>() {
-                @Override
-                public void setValue(Color value) {
-                    if (value != null) {
-                        color.setValue(value);//update the target
-
-                        TitledBorder titled = (TitledBorder) target.getScrollPane().getBorder();
-                        titled.setTitleColor(value);
-                        MaterialLineBorder line = (MaterialLineBorder) titled.getBorder();
-                        line.setColor(value);
-                    }
-                }
-            }, color.getValue(), targetColor));
+            builder.addTarget(SafePropertySetter.getTarget(color, color.getValue(), targetColor));
 
         }
 
         //color, varia entre el color de accent y el de Opacity_Mask
         float targetTh = getTargetThickness();
         if (targetTh != getThickness()) {
-            builder.addTarget(SafePropertySetter.getTarget(new SafePropertySetter.Setter<Float>() {
-                @Override
-                public void setValue(Float value) {
-                    if (value != null) {
-                        thickness.setValue(value);//update the target
-
-                        TitledBorder titled = (TitledBorder) target.getScrollPane().getBorder();
-                        MaterialLineBorder line = (MaterialLineBorder) titled.getBorder();
-                        line.setThickkness(value);
-                    }
-                }
-            }, thickness.getValue(), targetTh));
+            builder.addTarget(SafePropertySetter.getTarget(thickness, thickness.getValue(), targetTh));
         }
 
         //este es el que en realidad pinta
@@ -129,13 +96,25 @@ public class BorderDinamic {
             @Override
             public void setValue(Object value) {
                 if (value != null) {
-                    target.repaint();
+                    repaintComponent();
                 }
             }
         }, 0, 0));
-        
+
         animator = builder.build();
         animator.start();
+    }
+
+    private void repaintComponent() {
+        TitledBorder titled = (TitledBorder) target.getScrollPane().getBorder();
+        MaterialLineBorder line = (MaterialLineBorder) titled.getBorder();
+
+        line.setThickkness(thickness.getValue());
+
+        titled.setTitleColor(color.getValue());
+        line.setColor(color.getValue());
+
+        titled.setTitleFont(getFont());
     }
 
     private void setValuesStatics() {
@@ -145,8 +124,10 @@ public class BorderDinamic {
         //color, varia entre el color de accent y el de Opacity_Mask
         color.setValue(getTargetColor());
 
-        //color, varia entre el color de accent y el de Opacity_Mask
-        thickness.setValue(thickness.getValue());
+        //grosor, varia en dependencia del focus
+        thickness.setValue(getTargetThickness());
+
+        repaintComponent();
     }
 
 }
