@@ -6,8 +6,20 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
+import com.jhw.personalization.core.domain.Personalization;
+import com.jhw.personalization.services.PersonalizationHandler;
+import com.jhw.swing.material.components.textfield._MaterialTextField;
+import com.jhw.swing.util.Utils;
+import javax.swing.BorderFactory;
+import javax.swing.UIManager;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
+import static javax.swing.border.TitledBorder.DEFAULT_POSITION;
+import static javax.swing.border.TitledBorder.LEADING;
 
 /**
  *
@@ -15,12 +27,16 @@ import javax.swing.border.TitledBorder;
  */
 public class _MaterialTextArea extends javax.swing.JPanel implements BindableComponent<String> {
 
+    private Color accentColor = PersonalizationHandler.getColor(Personalization.KEY_COLOR_ACCENT);
+
+    private String label;
+
     public _MaterialTextArea() {
         initComponents();
+        addListeners();
     }
 
     private void initComponents() {
-
         materialScrollPaneCore = new com.jhw.swing.material.components.scrollpane._MaterialScrollPaneCore();
         materialTextAreaCore = new com.jhw.swing.material.components.textarea._MaterialTextAreaCore();
 
@@ -31,15 +47,26 @@ public class _MaterialTextArea extends javax.swing.JPanel implements BindableCom
         this.setLayout(new BorderLayout());
         this.add(materialScrollPaneCore);
         this.setPreferredSize(new Dimension(230, 150));
-    }// </editor-fold>                        
+    }
 
-    // Variables declaration - do not modify//:variables
     private com.jhw.swing.material.components.scrollpane._MaterialScrollPaneCore materialScrollPaneCore;
     private com.jhw.swing.material.components.textarea._MaterialTextAreaCore materialTextAreaCore;
-    // End of variables declaration                   
 
-    public void setTitledBorder(String text) {
-        materialScrollPaneCore.setTitledBorder(text);
+    public String getLabel() {
+        return label;
+    }
+
+    public void setLabel(String label) {
+        this.label = label;
+        this.setTitledBorder(label);
+    }
+
+    public Color getAccentColor() {
+        return accentColor;
+    }
+
+    public void setAccentColor(Color accentColor) {
+        this.accentColor = accentColor;
     }
 
     public String getText() {
@@ -62,8 +89,9 @@ public class _MaterialTextArea extends javax.swing.JPanel implements BindableCom
         materialScrollPaneCore.setBorder(b);
     }
 
-    public void setBorderText(String text) {
+    public void setTitledBorder(String text) {
         materialScrollPaneCore.setBorder(new TitledBorder(text));
+        updateBorder();
     }
 
     @Override
@@ -92,17 +120,11 @@ public class _MaterialTextArea extends javax.swing.JPanel implements BindableCom
 
     @Override
     public Font getFont() {
-        if (materialTextAreaCore != null) {
-            return materialTextAreaCore.getFont();
-        }
         return super.getFont();
     }
 
     @Override
     public Color getForeground() {
-        if (materialTextAreaCore != null) {
-            materialTextAreaCore.getForeground();
-        }
         return super.getForeground();
     }
 
@@ -122,5 +144,32 @@ public class _MaterialTextArea extends javax.swing.JPanel implements BindableCom
     @Override
     public void setObject(String object) {
         setText(object);
+    }
+
+    private void updateBorder() {
+        Color accent = materialTextAreaCore.isFocusOwner() ? accentColor : Utils.applyAlphaMask(materialTextAreaCore.getForeground(), _MaterialTextField.HINT_OPACITY_MASK);
+        Color accentText = materialTextAreaCore.isFocusOwner() ? accentColor : materialTextAreaCore.getForeground();
+        int thickness = materialTextAreaCore.isFocusOwner() ? 2 : 1;
+        try {
+            TitledBorder titled = (TitledBorder) materialScrollPaneCore.getBorder();
+            titled.setTitleColor(accentText);
+            titled.setBorder(BorderFactory.createLineBorder(accent, thickness, false));
+            materialScrollPaneCore.repaint();
+        } catch (Exception e) {
+        }
+    }
+
+    private void addListeners() {
+        materialTextAreaCore.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                updateBorder();
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                updateBorder();
+            }
+        });
     }
 }

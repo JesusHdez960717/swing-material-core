@@ -14,7 +14,7 @@ import com.jhw.swing.material.components.textarea._MaterialTextArea;
 public class _MaterialTextAreaDescripcion extends _MaterialTextArea {
 
     public _MaterialTextAreaDescripcion() {
-        super.setTitledBorder("Descripción");
+        super.setLabel("Descripción");
     }
 
 }
