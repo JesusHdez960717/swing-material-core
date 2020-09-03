@@ -2,6 +2,7 @@ package com.jhw.swing.material.components.table.editors_renders.money;
 
 import com.jhw.swing.material.components.container.panel._PanelGradient;
 import com.jhw.swing.material.components.labels._MaterialLabel;
+import com.jhw.utils.others.StringFormating;
 import java.awt.GridLayout;
 import java.math.BigDecimal;
 import java.util.Objects;
@@ -78,6 +79,11 @@ public class MoneyTableComponent {
             return false;
         }
         return true;
+    }
+
+    @Override
+    public String toString() {
+        return StringFormating.formatToMoney(money, coin);
     }
 
 }
