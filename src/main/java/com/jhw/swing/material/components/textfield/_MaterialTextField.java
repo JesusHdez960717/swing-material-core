@@ -18,7 +18,7 @@ import com.jhw.swing.material.standards.MaterialFontRoboto;
 import com.jhw.swing.util.interfaces.BindableComponent;
 import com.jhw.swing.util.interfaces.Wrong;
 import com.jhw.utils.interfaces.Formateable;
-import com.jhw.utils.jpa.ConverterService;
+import com.jhw.utils.services.ConverterService;
 
 /**
  * A Material Design single-line text field is the basic way of getting user

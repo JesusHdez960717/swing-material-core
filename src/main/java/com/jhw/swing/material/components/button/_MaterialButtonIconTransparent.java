@@ -10,7 +10,6 @@ import com.jhw.swing.util.interfaces.MaterialComponent;
 import com.jhw.swing.material.effects.RippleEffect;
 import com.jhw.swing.material.standards.MaterialColors;
 import com.jhw.swing.material.standards.MaterialIcons;
-import com.jhw.swing.material.standards.MaterialShadow;
 import com.jhw.swing.utils.icons.DerivableIcon;
 import javax.swing.plaf.basic.BasicButtonUI;
 
@@ -24,6 +23,8 @@ import javax.swing.plaf.basic.BasicButtonUI;
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
 public class _MaterialButtonIconTransparent extends JButton implements MaterialComponent {
+
+    public static final String KEY_ACTION_POPUP = "popup";
 
     private final RippleEffect ripple = RippleEffect.applyFixedTo(this);
     private Color rippleColor = MaterialColors.WHITE;
@@ -58,6 +59,14 @@ public class _MaterialButtonIconTransparent extends JButton implements MaterialC
                 }
             }
         });
+    }
+
+    @Override
+    public void setAction(Action a) {
+        super.setAction(a);
+        this.setText("");//le quito el texto no vaya a ser muy grnade
+        this.setToolTipText(a.getValue(Action.NAME).toString());//se lo pongo como tooltip
+        this.setComponentPopupMenu((JPopupMenu) a.getValue(KEY_ACTION_POPUP));
     }
 
     public boolean isPaintRipple() {

@@ -75,8 +75,8 @@ public class DATE_PICKER_EXAMPLE extends javax.swing.JFrame {
 
     private void _MaterialButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event__MaterialButton1ActionPerformed
         _MaterialDatePicker1.wrong("WRONG");
-        System.out.println("mes " + SDF.format(_MonthPicker1.getDate()));
-        System.out.println("anno " + SDF.format(_YearPicker1.getDate()));
+        System.out.println("mes " + SDF.SDF.format(_MonthPicker1.getDate()));
+        System.out.println("anno " + SDF.SDF.format(_YearPicker1.getDate()));
     }//GEN-LAST:event__MaterialButton1ActionPerformed
 
     /**

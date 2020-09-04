@@ -18,7 +18,7 @@ import com.jhw.swing.util.interfaces.BindableComponent;
 import com.jhw.swing.util.interfaces.MaterialComponent;
 import com.jhw.swing.util.interfaces.Wrong;
 import com.jhw.utils.interfaces.Formateable;
-import com.jhw.utils.jpa.ConverterService;
+import com.jhw.utils.services.ConverterService;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
