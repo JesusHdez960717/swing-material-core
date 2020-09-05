@@ -131,6 +131,10 @@ public class _MaterialButton extends JButton implements MaterialComponent {
         fadeinto = new ColorFadeInto(this, to);
     }
 
+    public void setColorFadeInto(Color accent) {
+        fadeinto.setAccent(accent);
+    }
+
     /**
      * Flag to the property when the mouse is over the element.
      *
@@ -281,13 +285,13 @@ public class _MaterialButton extends JButton implements MaterialComponent {
         return fadeinto;
     }
 
-    protected int getElevation() {
+    protected double getElevation() {
         if (isMousePressed) {
-            return 2;
+            return MaterialShadow.ELEVATION_HIGHTEST;
         } else if (type == Type.RAISED || isFocusOwner() || isMouseOver) {
-            return 1;
+            return MaterialShadow.ELEVATION_DEFAULT;
         } else {
-            return 0;
+            return MaterialShadow.ELEVATION_NONE;
         }
     }
 
@@ -322,6 +326,7 @@ public class _MaterialButton extends JButton implements MaterialComponent {
         g2.fill(new RoundRectangle2D.Float(0, 0, getWidth() - offset_lr, getHeight() - offset_td, borderRadius * 2, borderRadius * 2));
 
         if (getBorderThickness() > 0) {//si hay border lo pinto
+            //g2.setStroke(new BasicStroke(getBorderThickness(), BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 0, new float[]{9}, 0));
             g2.setStroke(new BasicStroke(getBorderThickness()));
             g2.setColor(getBorderColor());
             g2.draw(new RoundRectangle2D.Float(0, 0, getWidth() - offset_lr, getHeight() - offset_td, borderRadius * 2, borderRadius * 2));

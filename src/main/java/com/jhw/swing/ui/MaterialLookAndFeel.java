@@ -68,6 +68,7 @@ import com.jhw.swing.material.standards.MaterialColors;
 import com.jhw.swing.material.standards.MaterialFontRoboto;
 import com.jhw.swing.material.standards.MaterialIcons;
 import com.jhw.swing.material.standards.MaterialImages;
+import com.jhw.swing.util.PersonalizationMaterial;
 
 public class MaterialLookAndFeel extends MetalLookAndFeel {
 
@@ -110,6 +111,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         try {
             basicLookAndFeel = new MetalLookAndFeel();
             MetalLookAndFeel.setCurrentTheme(new DefaultMetalTheme());
+            PersonalizationMaterial.setUpInitialGlobal();
         } catch (Exception ignore) {
             //do nothing
         }
