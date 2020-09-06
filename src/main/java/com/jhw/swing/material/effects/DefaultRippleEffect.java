@@ -15,13 +15,15 @@ import java.util.concurrent.TimeUnit;
 import com.jhw.swing.util.Utils;
 import com.jhw.personalization.core.domain.Personalization;
 import com.jhw.personalization.services.PersonalizationHandler;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 
 /**
- * A {@code DefaultRippleEffect} is applied into certain components, like buttons and
- * certain list elements. Basically, is that wave of color that appears when you
- * click stuff.
+ * A {@code DefaultRippleEffect} is applied into certain components, like
+ * buttons and certain list elements. Basically, is that wave of color that
+ * appears when you click stuff.
  */
-public class DefaultRippleEffect {
+public class DefaultRippleEffect implements RippleEffect, PropertyChangeListener {
 
     public static final int DURATION = 750;
 
@@ -32,6 +34,7 @@ public class DefaultRippleEffect {
 
     private DefaultRippleEffect(final JComponent component) {
         this.target = component;
+        target.addPropertyChangeListener(this);
     }
 
     /**
@@ -39,6 +42,7 @@ public class DefaultRippleEffect {
      *
      * @return the ripple color
      */
+    @Override
     public Color getRippleColor() {
         return rippleColor;
     }
@@ -48,6 +52,7 @@ public class DefaultRippleEffect {
      *
      * @param rippleColor the ripple color
      */
+    @Override
     public void setRippleColor(Color rippleColor) {
         this.rippleColor = rippleColor;
     }
@@ -70,7 +75,8 @@ public class DefaultRippleEffect {
      *
      * @param g2 canvas
      */
-    public void paint(Graphics2D g2) {
+    @Override
+    public void paintRipple(Graphics2D g2) {
         //si no es transparente
         if (g2.getColor() != null && g2.getColor().getAlpha() != 0) {//si hay las pinto, el if esta en el add
             for (RippleAnimation rippleAnimation : ripples) {
@@ -91,7 +97,7 @@ public class DefaultRippleEffect {
      * @param point point to add the ripple at
      * @param maxRadius the maximum radius of the ripple
      */
-    public void addRipple(Point point, int maxRadius) {
+    private void addRipple(Point point, int maxRadius) {
         //si no hay animaciones no agrego el ripple
         if (PersonalizationHandler.getBoolean(Personalization.KEY_USE_ANIMATIONS)) {
             final RippleAnimation ripple = new RippleAnimation(point, maxRadius);
@@ -164,6 +170,15 @@ public class DefaultRippleEffect {
         return rippleEffect;
     }
 
+    @Override
+    public void propertyChange(PropertyChangeEvent evt) {
+        switch (evt.getPropertyName()) {
+            case "background":
+                setRippleColor(Utils.getForegroundAccording((Color) evt.getNewValue()));
+                break;
+        }
+    }
+
     /**
      * A ripple animation (one ripple circle after one click).
      */
@@ -179,7 +194,7 @@ public class DefaultRippleEffect {
             this.maxRadius = maxRadius;
         }
 
-        void start() {
+        private void start() {
             //rippleCenter.setLocation(rippleCenter);
             Animator rippleAnimator = new Animator.Builder(Utils.getSwingTimerTimingSource())
                     .setDuration(DURATION, TimeUnit.MILLISECONDS)

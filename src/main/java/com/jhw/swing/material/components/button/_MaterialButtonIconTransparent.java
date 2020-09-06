@@ -148,7 +148,7 @@ public class _MaterialButtonIconTransparent extends JButton implements MaterialC
 
         if (paintRipple && isEnabled()) {
             g2.setColor(rippleColor);
-            ripple.paint(g2);
+            ripple.paintRipple(g2);
         }
         if (!isEnabled()) {
             AlphaComposite ac = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.3f);

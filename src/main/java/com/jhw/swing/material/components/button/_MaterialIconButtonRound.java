@@ -75,7 +75,7 @@ public class _MaterialIconButtonRound extends _MaterialButton implements Materia
         if (isEnabled()) {//paint ripple efect
             g2.setClip(shape);
             g2.setColor(getRippleColor());
-            getRippleEffect().paint(g2);
+            paintRipple(g2);
         }
         if (getIcon() != null) {
             getIcon().paintIcon(this, g2, (this.getSize().width - offset_lr) / 2 - getIcon().getIconWidth() / 2, (this.getSize().height - offset_td) / 2 - getIcon().getIconHeight() / 2);

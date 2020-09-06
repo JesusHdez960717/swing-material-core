@@ -8,6 +8,7 @@ import com.jhw.swing.material.standards.MaterialShadow;
 import com.jhw.swing.material.standards.MaterialColors;
 import com.jhw.swing.material.effects.DefaultElevationEffect;
 import com.jhw.swing.material.effects.DefaultRippleEffect;
+import com.jhw.swing.material.effects.RippleEffect;
 import com.jhw.swing.util.interfaces.MaterialComponent;
 import java.awt.*;
 import java.awt.event.*;
@@ -17,7 +18,6 @@ import javax.swing.plaf.basic.BasicButtonUI;
 import com.jhw.swing.util.MaterialDrawingUtils;
 import com.jhw.swing.util.DefaultMouseAdapterInfo;
 import com.jhw.swing.utils.icons.DerivableIcon;
-import javax.swing.border.EmptyBorder;
 import com.jhw.swing.util.*;
 
 /**
@@ -27,13 +27,14 @@ import com.jhw.swing.util.*;
  * href="https://www.google.com/design/spec/components/buttons.html">Buttons
  * (Google design guidelines)</a>
  */
-public class _MaterialButton extends JButton implements ColorFadeInto, MouseAdapterInfo, MaterialComponent {
+public class _MaterialButton extends JButton implements ColorFadeInto, MouseAdapterInfo, RippleEffect, MaterialComponent {
 
     private MouseAdapterInfo mouseInfo = DefaultMouseAdapterInfo.from(this);
 
     private ColorFadeInto colorFadeInto = new DefaultColorFadeInto(this);
 
-    private DefaultRippleEffect ripple = DefaultRippleEffect.applyTo(this);
+    private RippleEffect ripple = DefaultRippleEffect.applyTo(this);
+
     private DefaultElevationEffect elevation = DefaultElevationEffect.applyTo(this, MaterialShadow.ELEVATION_NONE);
     private Type type = Type.DEFAULT;
     private Cursor cursor = Cursor.getPredefinedCursor(Cursor.HAND_CURSOR);
@@ -94,7 +95,23 @@ public class _MaterialButton extends JButton implements ColorFadeInto, MouseAdap
     public boolean isMouseOver() {
         return mouseInfo.isMouseOver();
     }
-//-----------------MOUSE_ADAPTER_INFO------------------------
+//-----------------RIPPLE_EFFECT------------------------
+
+    @Override
+    public Color getRippleColor() {
+        return ripple.getRippleColor();
+    }
+
+    @Override
+    public void setRippleColor(Color color) {
+        ripple.setRippleColor(color);
+    }
+
+    @Override
+    public void paintRipple(Graphics2D g2) {
+        ripple.paintRipple(g2);
+    }
+//-----------------RIPPLE_EFFECT------------------------
 
     public Color getBorderColor() {
         return borderColor;
@@ -123,26 +140,6 @@ public class _MaterialButton extends JButton implements ColorFadeInto, MouseAdap
             icon = ((DerivableIcon) icon).deriveIcon(getForeground());
         }
         super.setIcon(icon);
-    }
-
-    /**
-     * Gets the ripple color.
-     *
-     * @return the ripple color
-     */
-    public Color getRippleColor() {
-        return ripple.getRippleColor();
-    }
-
-    /**
-     * Sets the ripple color. You should only do this for flat buttons.
-     *
-     * @param rippleColor the ripple color
-     */
-    public void setRippleColor(Color rippleColor) {
-        if (this.ripple != null) {
-            this.ripple.setRippleColor(rippleColor);
-        }
     }
 
     /**
@@ -187,7 +184,6 @@ public class _MaterialButton extends JButton implements ColorFadeInto, MouseAdap
     public void setBackground(Color bg) {
         super.setBackground(bg);
         setForeground(Utils.getForegroundAccording(bg));
-        setRippleColor(Utils.getForegroundAccording(bg));
     }
 
     @Override
@@ -259,10 +255,6 @@ public class _MaterialButton extends JButton implements ColorFadeInto, MouseAdap
         return elevation;
     }
 
-    public DefaultRippleEffect getRippleEffect() {
-        return ripple;
-    }
-
     protected double getElevation() {
         if (isMousePressed()) {
             return MaterialShadow.ELEVATION_HIGHTEST;
@@ -312,7 +304,7 @@ public class _MaterialButton extends JButton implements ColorFadeInto, MouseAdap
 
         if (this.isEnabled()) {//el ripple por debajo de las letras e iconos
             g2.setClip(new RoundRectangle2D.Float(0, 0, getWidth() - offset_lr, getHeight() - offset_td, Math.max(borderRadius * 2 - 4, 0), Math.max(borderRadius * 2 - 4, 0)));
-            ripple.paint(g2);
+            paintRipple(g2);
         }
 
         int iconWidth = 0;

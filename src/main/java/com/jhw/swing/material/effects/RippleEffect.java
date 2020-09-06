@@ -6,6 +6,7 @@
 package com.jhw.swing.material.effects;
 
 import java.awt.Color;
+import java.awt.Graphics2D;
 
 /**
  *
@@ -13,11 +14,9 @@ import java.awt.Color;
  */
 public interface RippleEffect {
 
-    public RippleEffect getRippleEffect();
-
-    public void setRippleEffect(RippleEffect ripple);
-
     public Color getRippleColor();
 
     public void setRippleColor(Color color);
+
+    public void paintRipple(Graphics2D g2);
 }

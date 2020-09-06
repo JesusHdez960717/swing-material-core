@@ -165,7 +165,7 @@ public class _MaterialButtonMainPage extends _MaterialButton implements Material
 
             g2.setClip(new RoundRectangle2D.Float(0, 0, getWidth(), getHeight(), 0, 0));
             g2.setColor(rippleColor);
-            ripple.paint(g2);
+            ripple.paintRipple(g2);
         } else {
             g2.setColor(new Color(bg.getRed() / 255f, bg.getGreen() / 255f, bg.getBlue() / 255f, 0.6f));
             g2.fill(new RoundRectangle2D.Float(0, 0, getWidth(), getHeight(), 0, 0));
