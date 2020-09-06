@@ -51,7 +51,7 @@ public class _MaterialButtonPopup extends _MaterialButton {
     private void showPopup(MouseEvent e) {
         if (getComponentPopupMenu() != null) {
 //            getComponentPopupMenu().show(this, e.getX(), e.getY());
-            getComponentPopupMenu().show(this, 0 + MaterialShadow.OFFSET_LEFT, (int) this.getSize().getHeight()-MaterialShadow.OFFSET_BOTTOM);
+            getComponentPopupMenu().show(this, 0 + MaterialShadow.OFFSET_LEFT, (int) this.getSize().getHeight() - MaterialShadow.OFFSET_BOTTOM);
 
         }
     }

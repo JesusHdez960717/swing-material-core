@@ -34,7 +34,6 @@ public class DefaultColorFadeInto<T extends JComponent & MouseAdapterInfo> imple
     /*public static DefaultColorFadeInto from(T target) {//T no se puede referir desde un contexto estatico
         return null;
     }*/
-
     public DefaultColorFadeInto(T target) {
         this.target = target;
 
