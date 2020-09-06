@@ -48,13 +48,13 @@ public class _MaterialButtonDouble extends _MaterialPanelComponent {
         buttonLeft.setType(_MaterialButton.Type.FLAT);
         buttonLeft.setText("");
         buttonLeft.setIcon(MaterialIcons.KEYBOARD_ARROW_LEFT);
-        buttonLeft.getFadeinto().setAccent(MaterialColors.GREY_200);
+        buttonLeft.setAccentColorFadeInto(MaterialColors.GREY_200);
         buttonLeft.setRippleColor(MaterialColors.GREY_300);
 
         buttonRight.setType(_MaterialButton.Type.FLAT);
         buttonRight.setText("");
         buttonRight.setIcon(MaterialIcons.KEYBOARD_ARROW_RIGHT);
-        buttonRight.getFadeinto().setAccent(MaterialColors.GREY_200);
+        buttonRight.setAccentColorFadeInto(MaterialColors.GREY_200);
         buttonRight.setRippleColor(MaterialColors.GREY_300);
     }
 

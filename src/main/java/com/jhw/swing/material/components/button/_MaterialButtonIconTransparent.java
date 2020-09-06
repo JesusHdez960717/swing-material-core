@@ -7,7 +7,7 @@ import java.awt.event.FocusEvent;
 import java.awt.event.MouseEvent;
 import com.jhw.swing.util.MaterialDrawingUtils;
 import com.jhw.swing.util.interfaces.MaterialComponent;
-import com.jhw.swing.material.effects.RippleEffect;
+import com.jhw.swing.material.effects.DefaultRippleEffect;
 import com.jhw.swing.material.standards.MaterialColors;
 import com.jhw.swing.material.standards.MaterialIcons;
 import com.jhw.swing.utils.icons.DerivableIcon;
@@ -26,7 +26,7 @@ public class _MaterialButtonIconTransparent extends JButton implements MaterialC
 
     public static final String KEY_ACTION_POPUP = "popup";
 
-    private final RippleEffect ripple = RippleEffect.applyFixedTo(this);
+    private final DefaultRippleEffect ripple = DefaultRippleEffect.applyFixedTo(this);
     private Color rippleColor = MaterialColors.WHITE;
     private boolean paintRipple = true;
 

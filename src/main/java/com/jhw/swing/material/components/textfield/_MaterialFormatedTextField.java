@@ -7,7 +7,7 @@ package com.jhw.swing.material.components.textfield;
 
 import com.jhw.personalization.core.domain.Personalization;
 import com.jhw.personalization.services.PersonalizationHandler;
-import com.jhw.swing.material.effects.FloatingLabel;
+import com.jhw.swing.material.effects.DefaultFloatingLabel;
 import com.jhw.swing.material.effects.FloatingLabelStandar;
 import com.jhw.swing.material.effects.Line;
 import com.jhw.swing.material.standards.MaterialColors;
@@ -37,7 +37,7 @@ import org.jdesktop.swingx.JXFormattedTextField;
  */
 public class _MaterialFormatedTextField<T> extends JXFormattedTextField implements BindableComponent<T>, Wrong, MaterialComponent, FloatingLabelStandar {
 
-    private FloatingLabel floatingLabel;
+    private DefaultFloatingLabel floatingLabel;
     private Line line;
     private String hint = "hint";
     private String label = "label";
@@ -98,7 +98,7 @@ public class _MaterialFormatedTextField<T> extends JXFormattedTextField implemen
             }
         });
 
-        floatingLabel = new FloatingLabel(this);
+        floatingLabel = new DefaultFloatingLabel(this);
         line = new Line(this);
         setAccent(accentColor);
         setText("");

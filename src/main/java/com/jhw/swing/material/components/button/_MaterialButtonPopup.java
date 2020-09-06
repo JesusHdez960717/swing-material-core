@@ -33,7 +33,7 @@ public class _MaterialButtonPopup extends _MaterialButton {
 
     private void presonalize() {
         this.setBackground(PersonalizationHandler.getColor(Personalization.KEY_COLOR_BACKGROUND_PANEL));
-        this.setColorFadeInto(MaterialColors.BLUEGREY_50);
+        this.setAccentColorFadeInto(MaterialColors.BLUEGREY_50);
         this.setRippleColor(MaterialColors.TRANSPARENT);
         this.setBorderThickness(2);
         this.setIcon(MaterialIcons.FILE_UPLOAD);

@@ -1,6 +1,6 @@
 package com.jhw.swing.material.effects;
 
-import static com.jhw.swing.material.effects.ElevationEffect.DURATION;
+import static com.jhw.swing.material.effects.DefaultElevationEffect.DURATION;
 import java.util.concurrent.TimeUnit;
 import javax.swing.JComponent;
 import org.jdesktop.core.animation.timing.Animator;

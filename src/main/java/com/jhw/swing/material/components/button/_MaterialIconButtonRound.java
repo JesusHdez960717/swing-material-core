@@ -8,7 +8,7 @@ import com.jhw.swing.util.MaterialDrawingUtils;
 import com.jhw.swing.util.interfaces.MaterialComponent;
 import com.jhw.swing.material.standards.MaterialShadow;
 import com.jhw.swing.util.Utils;
-import com.jhw.swing.material.effects.ElevationEffect;
+import com.jhw.swing.material.effects.DefaultElevationEffect;
 import com.jhw.swing.material.standards.MaterialIcons;
 import javax.swing.Icon;
 
@@ -42,7 +42,7 @@ public class _MaterialIconButtonRound extends _MaterialButton implements Materia
         final int offset_td = MaterialShadow.OFFSET_TOP + MaterialShadow.OFFSET_BOTTOM;
         this.setPreferredSize(new Dimension(3 * this.getIcon().getIconWidth() + offset_lr, 3 * this.getIcon().getIconHeight() + offset_td));
 
-        setElevation(ElevationEffect.applyCirularTo(this, MaterialShadow.ELEVATION_NONE));
+        setElevation(DefaultElevationEffect.applyCirularTo(this, MaterialShadow.ELEVATION_NONE));
     }
 
     @Override
@@ -59,7 +59,7 @@ public class _MaterialIconButtonRound extends _MaterialButton implements Materia
         RectangularShape shape = new java.awt.geom.Ellipse2D.Float(0, 0, getWidth() - offset_lr, getHeight() - offset_td);
 
         if (isEnabled()) {
-            g2.setColor(getFadeinto().getColor());
+            g2.setColor(getColorFadeInto());
             g2.fill(shape);
 
             g2.setColor(new Color(super.getRippleColor().getRed() / 255f, super.getRippleColor().getBlue() / 255f, super.getRippleColor().getBlue() / 255f, 0.12f));

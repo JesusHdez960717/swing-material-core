@@ -4,7 +4,7 @@ import java.awt.*;
 import java.awt.geom.RoundRectangle2D;
 import javax.swing.*;
 import com.jhw.swing.util.MaterialDrawingUtils;
-import com.jhw.swing.material.effects.ElevationEffect;
+import com.jhw.swing.material.effects.DefaultElevationEffect;
 import com.jhw.swing.util.Utils;
 import com.jhw.swing.util.interfaces.MaterialComponent;
 import com.jhw.swing.material.standards.MaterialShadow;
@@ -32,7 +32,7 @@ import com.jhw.personalization.services.PersonalizationHandler;
  */
 public class _MaterialPanel extends JPanel implements MaterialComponent {
 
-    private final ElevationEffect elevation;
+    private final DefaultElevationEffect elevation;
     private int borderRadius = 5;
 
     /**
@@ -43,7 +43,7 @@ public class _MaterialPanel extends JPanel implements MaterialComponent {
     public _MaterialPanel() {
         this.setOpaque(false);
         this.setBackground(PersonalizationHandler.getColor(Personalization.KEY_COLOR_BACKGROUND_PANEL));
-        elevation = ElevationEffect.applyTo(this, MaterialShadow.ELEVATION_DEFAULT);
+        elevation = DefaultElevationEffect.applyTo(this, MaterialShadow.ELEVATION_DEFAULT);
         elevation.setBorderRadius(borderRadius);
     }
 
@@ -54,7 +54,7 @@ public class _MaterialPanel extends JPanel implements MaterialComponent {
      * shadow looks right now.
      *
      * @return elevation level [0~5]
-     * @see ElevationEffect
+     * @see DefaultElevationEffect
      */
     public double getElevation() {
         return elevation.getLevel();
@@ -67,7 +67,7 @@ public class _MaterialPanel extends JPanel implements MaterialComponent {
      * is set.
      *
      * @param elevation elevation level [0~5]
-     * @see ElevationEffect
+     * @see DefaultElevationEffect
      */
     public void setElevation(int elevation) {
         this.elevation.setLevel(elevation);

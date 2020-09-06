@@ -3,7 +3,7 @@ package com.jhw.swing.material.components.passwordfield;
 import static com.jhw.swing.material.components.textfield._MaterialTextField.HINT_OPACITY_MASK;
 import static com.jhw.swing.material.components.textfield._MaterialTextField.LINE_OPACITY_MASK;
 import com.clean.core.exceptions.ValidationException;
-import com.jhw.swing.material.effects.FloatingLabel;
+import com.jhw.swing.material.effects.DefaultFloatingLabel;
 import com.jhw.swing.material.effects.FloatingLabelStandar;
 import java.awt.*;
 import java.awt.event.FocusEvent;
@@ -37,7 +37,7 @@ import com.jhw.swing.util.interfaces.Wrong;
  */
 public class _MaterialPasswordField extends JPasswordField implements BindableComponent<char[]>, Wrong, MaterialComponent, FloatingLabelStandar {
 
-    private FloatingLabel floatingLabel;
+    private DefaultFloatingLabel floatingLabel;
     private Line line;
     private String hint = "hint";
     private String label = "label";
@@ -104,7 +104,7 @@ public class _MaterialPasswordField extends JPasswordField implements BindableCo
             }
         });
 
-        floatingLabel = new FloatingLabel(this);
+        floatingLabel = new DefaultFloatingLabel(this);
         line = new Line(this);
         setAccent(accentColor);
         setText("");

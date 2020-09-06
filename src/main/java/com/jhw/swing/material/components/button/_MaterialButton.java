@@ -1,12 +1,13 @@
 package com.jhw.swing.material.components.button;
 
+import com.jhw.swing.material.effects.ColorFadeInto;
+import com.jhw.swing.material.effects.DefaultColorFadeInto;
 import com.jhw.swing.util.Utils;
 import com.jhw.swing.material.standards.MaterialFontRoboto;
 import com.jhw.swing.material.standards.MaterialShadow;
 import com.jhw.swing.material.standards.MaterialColors;
-import com.jhw.swing.utils.icons.IconTTF;
-import com.jhw.swing.material.effects.ElevationEffect;
-import com.jhw.swing.material.effects.RippleEffect;
+import com.jhw.swing.material.effects.DefaultElevationEffect;
+import com.jhw.swing.material.effects.DefaultRippleEffect;
 import com.jhw.swing.util.interfaces.MaterialComponent;
 import java.awt.*;
 import java.awt.event.*;
@@ -14,10 +15,10 @@ import java.awt.geom.RoundRectangle2D;
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicButtonUI;
 import com.jhw.swing.util.MaterialDrawingUtils;
-import com.jhw.swing.material.effects.ColorFadeInto;
-import com.jhw.swing.material.effects.ColorFadeInto.ColorChangeTo;
+import com.jhw.swing.util.DefaultMouseAdapterInfo;
 import com.jhw.swing.utils.icons.DerivableIcon;
 import javax.swing.border.EmptyBorder;
+import com.jhw.swing.util.*;
 
 /**
  * A Material Design button.
@@ -26,15 +27,15 @@ import javax.swing.border.EmptyBorder;
  * href="https://www.google.com/design/spec/components/buttons.html">Buttons
  * (Google design guidelines)</a>
  */
-public class _MaterialButton extends JButton implements MaterialComponent {
+public class _MaterialButton extends JButton implements ColorFadeInto, MouseAdapterInfo, MaterialComponent {
 
-    private ColorFadeInto fadeinto;
-    private RippleEffect ripple = RippleEffect.applyTo(this);
-    private ElevationEffect elevation = ElevationEffect.applyTo(this, MaterialShadow.ELEVATION_NONE);
+    private MouseAdapterInfo mouseInfo = DefaultMouseAdapterInfo.from(this);
+
+    private ColorFadeInto colorFadeInto = new DefaultColorFadeInto(this);
+
+    private DefaultRippleEffect ripple = DefaultRippleEffect.applyTo(this);
+    private DefaultElevationEffect elevation = DefaultElevationEffect.applyTo(this, MaterialShadow.ELEVATION_NONE);
     private Type type = Type.DEFAULT;
-    private boolean isMousePressed = false;
-    private boolean isMouseOver = false;
-    private Color rippleColor = Color.WHITE;
     private Cursor cursor = Cursor.getPredefinedCursor(Cursor.HAND_CURSOR);
     private int borderRadius = 5;
 
@@ -54,31 +55,6 @@ public class _MaterialButton extends JButton implements MaterialComponent {
         this.setOpaque(false);
 
         this.setBackground(MaterialColors.RED_500);
-        fadeinto = new ColorFadeInto(this, ColorFadeInto.ColorChangeTo.DARKEN);
-        this.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mousePressed(MouseEvent mouseEvent) {
-                isMousePressed = true;
-            }
-
-            @Override
-            public void mouseReleased(MouseEvent mouseEvent) {
-                isMousePressed = false;
-                repaint();
-            }
-
-            @Override
-            public void mouseEntered(MouseEvent e) {
-                isMouseOver = true;
-                repaint();
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-                isMouseOver = false;
-                repaint();
-            }
-        });
 
         this.setUI(new BasicButtonUI() {
             @Override
@@ -90,8 +66,35 @@ public class _MaterialButton extends JButton implements MaterialComponent {
                         && x < getWidth() - MaterialShadow.OFFSET_RIGHT && y < getHeight() - MaterialShadow.OFFSET_BOTTOM;
             }
         });
-        this.setBorder(new EmptyBorder(0, 0, 0, 0));
     }
+//-----------------COLOR_FADE_INTO------------------------
+
+    @Override
+    public Color getColorFadeInto() {
+        return colorFadeInto.getColorFadeInto();
+    }
+
+    @Override
+    public Color getAccentColorFadeInto() {
+        return colorFadeInto.getAccentColorFadeInto();
+    }
+
+    @Override
+    public void setAccentColorFadeInto(Color color) {
+        colorFadeInto.setAccentColorFadeInto(color);
+    }
+
+//-----------------MOUSE_ADAPTER_INFO------------------------
+    @Override
+    public boolean isMousePressed() {
+        return mouseInfo.isMousePressed();
+    }
+
+    @Override
+    public boolean isMouseOver() {
+        return mouseInfo.isMouseOver();
+    }
+//-----------------MOUSE_ADAPTER_INFO------------------------
 
     public Color getBorderColor() {
         return borderColor;
@@ -109,7 +112,7 @@ public class _MaterialButton extends JButton implements MaterialComponent {
         this.borderThickness = borderThickness;
     }
 
-    public void setElevation(ElevationEffect elevation) {
+    public void setElevation(DefaultElevationEffect elevation) {
         this.elevation = elevation;
         repaint();
     }
@@ -123,25 +126,23 @@ public class _MaterialButton extends JButton implements MaterialComponent {
     }
 
     /**
-     * Set the color where the fadeinto color will fade.
+     * Gets the ripple color.
      *
-     * @param to Color to fade into.
+     * @return the ripple color
      */
-    public void setColorChangeTo(ColorChangeTo to) {
-        fadeinto = new ColorFadeInto(this, to);
-    }
-
-    public void setColorFadeInto(Color accent) {
-        fadeinto.setAccent(accent);
+    public Color getRippleColor() {
+        return ripple.getRippleColor();
     }
 
     /**
-     * Flag to the property when the mouse is over the element.
+     * Sets the ripple color. You should only do this for flat buttons.
      *
-     * @return true if mouse is over, false otherwise.
+     * @param rippleColor the ripple color
      */
-    public boolean isMouseOver() {
-        return isMouseOver;
+    public void setRippleColor(Color rippleColor) {
+        if (this.ripple != null) {
+            this.ripple.setRippleColor(rippleColor);
+        }
     }
 
     /**
@@ -187,31 +188,12 @@ public class _MaterialButton extends JButton implements MaterialComponent {
         super.setBackground(bg);
         setForeground(Utils.getForegroundAccording(bg));
         setRippleColor(Utils.getForegroundAccording(bg));
-        fadeinto = new ColorFadeInto(this, ColorFadeInto.ColorChangeTo.DARKEN);
     }
 
     @Override
     public void setForeground(Color fg) {
         super.setForeground(fg);
         setIcon(getIcon());
-    }
-
-    /**
-     * Gets the ripple color.
-     *
-     * @return the ripple color
-     */
-    public Color getRippleColor() {
-        return rippleColor;
-    }
-
-    /**
-     * Sets the ripple color. You should only do this for flat buttons.
-     *
-     * @param rippleColor the ripple color
-     */
-    public void setRippleColor(Color rippleColor) {
-        this.rippleColor = rippleColor;
     }
 
     /**
@@ -262,33 +244,29 @@ public class _MaterialButton extends JButton implements MaterialComponent {
     @Override
     protected void processFocusEvent(FocusEvent focusEvent) {
         super.processFocusEvent(focusEvent);
+        firePropertyChange("processFocusEvent", null, null);
         elevation.setLevel(getElevation());
-        fadeinto.update();
     }
 
     @Override
     protected void processMouseEvent(MouseEvent mouseEvent) {
         super.processMouseEvent(mouseEvent);
+        firePropertyChange("processMouseEvent", null, null);
         elevation.setLevel(getElevation());
-        fadeinto.update();
     }
 
-    protected ElevationEffect getElevationEffect() {
+    protected DefaultElevationEffect getElevationEffect() {
         return elevation;
     }
 
-    public RippleEffect getRippleEffect() {
+    public DefaultRippleEffect getRippleEffect() {
         return ripple;
     }
 
-    public ColorFadeInto getFadeinto() {
-        return fadeinto;
-    }
-
     protected double getElevation() {
-        if (isMousePressed) {
+        if (isMousePressed()) {
             return MaterialShadow.ELEVATION_HIGHTEST;
-        } else if (type == Type.RAISED || isFocusOwner() || isMouseOver) {
+        } else if (type == Type.RAISED || isFocusOwner() || isMouseOver()) {
             return MaterialShadow.ELEVATION_DEFAULT;
         } else {
             return MaterialShadow.ELEVATION_NONE;
@@ -318,7 +296,7 @@ public class _MaterialButton extends JButton implements MaterialComponent {
 
         //color de fondo
         if (isEnabled()) {
-            g2.setColor(fadeinto.getColor());
+            g2.setColor(getColorFadeInto());
         } else {
             Color bg = getBackground();
             g2.setColor(new Color(bg.getRed() / 255f, bg.getGreen() / 255f, bg.getBlue() / 255f, 0.6f));
@@ -334,7 +312,6 @@ public class _MaterialButton extends JButton implements MaterialComponent {
 
         if (this.isEnabled()) {//el ripple por debajo de las letras e iconos
             g2.setClip(new RoundRectangle2D.Float(0, 0, getWidth() - offset_lr, getHeight() - offset_td, Math.max(borderRadius * 2 - 4, 0), Math.max(borderRadius * 2 - 4, 0)));
-            g2.setColor(rippleColor);
             ripple.paint(g2);
         }
 
