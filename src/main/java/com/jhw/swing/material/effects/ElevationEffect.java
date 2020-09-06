@@ -5,15 +5,13 @@
  */
 package com.jhw.swing.material.effects;
 
+import java.awt.Graphics2D;
+
 /**
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
 public interface ElevationEffect {
-
-    public ElevationEffect getElevationEffect();
-
-    public void setElevationEffect(ElevationEffect elevation);
 
     /**
      * Method to override to change the different elevations
@@ -21,4 +19,8 @@ public interface ElevationEffect {
      * @return
      */
     public double getLevel();
+
+    public double getElevation();
+
+    public void paintElevation(Graphics2D g2);
 }

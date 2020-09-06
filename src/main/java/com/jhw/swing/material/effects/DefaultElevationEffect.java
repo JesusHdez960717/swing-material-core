@@ -11,26 +11,33 @@ import com.jhw.swing.util.MaterialDrawingUtils;
 import com.jhw.swing.material.standards.MaterialShadow;
 import com.jhw.personalization.core.domain.Personalization;
 import com.jhw.personalization.services.PersonalizationHandler;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 
 /**
  * An elevation effect.
  */
-public class DefaultElevationEffect {
+public class DefaultElevationEffect<T extends JComponent & ElevationEffect> implements ElevationEffect, PropertyChangeListener {
 
     public static long DURATION = 250;
-    protected final JComponent target;
+
+    protected final T target;
+
     private Animator animator;
     protected final SafePropertySetter.Property<Double> level;
+
     protected double targetLevel = 0;
 
     protected final MaterialShadow shadowFast = new MaterialShadow();
     protected int borderRadius = 2;
 
-    private DefaultElevationEffect(JComponent component, double level) {
+    private DefaultElevationEffect(T component, double level) {
         this.target = component;
 
         this.targetLevel = level;
         this.level = SafePropertySetter.animatableProperty(target, targetLevel);
+
+        target.addPropertyChangeListener(this);
     }
 
     /**
@@ -38,6 +45,7 @@ public class DefaultElevationEffect {
      *
      * @return elevation level [0~5]
      */
+    @Override
     public double getLevel() {
         return targetLevel;
     }
@@ -88,7 +96,8 @@ public class DefaultElevationEffect {
      *
      * @param g2 canvas
      */
-    public void paint(Graphics2D g2) {
+    @Override
+    public void paintElevation(Graphics2D g2) {
         if (PersonalizationHandler.getBoolean(Personalization.KEY_USE_SHADOW)) {
             //priorizado la velocidad, la calidad no hace diferencia
             g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_NEAREST_NEIGHBOR);
@@ -111,8 +120,8 @@ public class DefaultElevationEffect {
      *
      * @param target the target of the resulting {@code DefaultElevationEffect}
      * @param level the initial elevation level [0~5]
-     * @return an {@code DefaultElevationEffect} object providing support for painting
-     * ripples
+     * @return an {@code DefaultElevationEffect} object providing support for
+     * painting ripples
      * @see MaterialShadow#OFFSET_TOP
      * @see MaterialShadow#OFFSET_BOTTOM
      * @see MaterialShadow#OFFSET_LEFT
@@ -131,8 +140,8 @@ public class DefaultElevationEffect {
      *
      * @param target the target of the resulting {@code DefaultElevationEffect}
      * @param level the initial elevation level [0~5]
-     * @return an {@code DefaultElevationEffect} object providing support for painting
-     * ripples
+     * @return an {@code DefaultElevationEffect} object providing support for
+     * painting ripples
      * @see MaterialShadow#OFFSET_TOP
      * @see MaterialShadow#OFFSET_BOTTOM
      * @see MaterialShadow#OFFSET_LEFT
@@ -152,6 +161,29 @@ public class DefaultElevationEffect {
         animator.start();
     }
 
+    @Override
+    public double getElevation() {
+        return target.getElevation();
+    }
+
+    @Override
+    public void propertyChange(PropertyChangeEvent evt) {
+        switch (evt.getPropertyName()) {
+            case "borderRadius":
+                this.setBorderRadius((int) evt.getNewValue());
+                break;
+            case "enabled":
+                setLevel(getElevation());
+                break;
+            case "processFocusEvent":
+                setLevel(getElevation());
+                break;
+            case "processMouseEvent":
+                setLevel(getElevation());
+                break;
+        }
+    }
+
     /**
      * An elevation effect with a circular shadow.
      */
@@ -162,7 +194,7 @@ public class DefaultElevationEffect {
         }
 
         @Override
-        public void paint(Graphics2D g2) {
+        public void paintElevation(Graphics2D g2) {
             if (PersonalizationHandler.getBoolean(Personalization.KEY_USE_SHADOW)) {
                 //priorizado la velocidad, la calidad no hace diferencia
                 g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_NEAREST_NEIGHBOR);
@@ -170,7 +202,7 @@ public class DefaultElevationEffect {
 
                 g2.setBackground(target.getParent().getBackground());
                 g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1.0f));
-                g2.drawImage(shadowFast.render(target.getWidth(), target.getHeight(), borderRadius, level.getValue(), MaterialShadow.Type.CIRCULAR), 0, 0, null);
+                g2.drawImage(shadowFast.render(target.getWidth(), target.getHeight(), borderRadius, (double) level.getValue(), MaterialShadow.Type.CIRCULAR), 0, 0, null);
 
                 MaterialDrawingUtils.getAliasedGraphics(g2);
             }

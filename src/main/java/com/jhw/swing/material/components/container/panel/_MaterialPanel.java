@@ -10,6 +10,8 @@ import com.jhw.swing.util.interfaces.MaterialComponent;
 import com.jhw.swing.material.standards.MaterialShadow;
 import com.jhw.personalization.core.domain.Personalization;
 import com.jhw.personalization.services.PersonalizationHandler;
+import com.jhw.swing.material.components.button._MaterialButton;
+import com.jhw.swing.material.effects.ElevationEffect;
 
 /**
  * A JPanel customized for Material components. What makes these panels special
@@ -30,9 +32,9 @@ import com.jhw.personalization.services.PersonalizationHandler;
  * the prefereable approach to follow is overriding {@link #doLayout()} and
  * taking care of any arrangements by yourself.
  */
-public class _MaterialPanel extends JPanel implements MaterialComponent {
+public class _MaterialPanel extends JPanel implements MaterialComponent, ElevationEffect {
 
-    private final DefaultElevationEffect elevation;
+    private final ElevationEffect elevation = DefaultElevationEffect.applyTo(this, MaterialShadow.ELEVATION_DEFAULT);
     private int borderRadius = 5;
 
     /**
@@ -42,36 +44,28 @@ public class _MaterialPanel extends JPanel implements MaterialComponent {
      */
     public _MaterialPanel() {
         this.setOpaque(false);
+        
         this.setBackground(PersonalizationHandler.getColor(Personalization.KEY_COLOR_BACKGROUND_PANEL));
-        elevation = DefaultElevationEffect.applyTo(this, MaterialShadow.ELEVATION_DEFAULT);
-        elevation.setBorderRadius(borderRadius);
-    }
 
-    /**
-     * Gets the elevation level of this panel. Changes in elevation trigger an
-     * animated transition if the component is currently visible, so it is
-     * incorrect to assume the returned value will reflect how the resulting
-     * shadow looks right now.
-     *
-     * @return elevation level [0~5]
-     * @see DefaultElevationEffect
-     */
-    public double getElevation() {
+        setBorderRadius(borderRadius);
+    }
+//-----------------ELEVATION_EFFECT------------------------
+
+    @Override
+    public double getLevel() {
         return elevation.getLevel();
     }
 
-    /**
-     * Sets the elevation level of this panel. Changes in elevation trigger an
-     * animated transition if the component is currently visible, so it will
-     * take a little while for the resulting shadow to reflect the level once it
-     * is set.
-     *
-     * @param elevation elevation level [0~5]
-     * @see DefaultElevationEffect
-     */
-    public void setElevation(int elevation) {
-        this.elevation.setLevel(elevation);
+    @Override
+    public double getElevation() {
+        return MaterialShadow.ELEVATION_DEFAULT;
     }
+
+    @Override
+    public void paintElevation(Graphics2D g2) {
+        elevation.paintElevation(g2);
+    }
+//-----------------ELEVATION_EFFECT------------------------
 
     /**
      * Gets the current border radius of this button.
@@ -91,7 +85,7 @@ public class _MaterialPanel extends JPanel implements MaterialComponent {
      */
     public void setBorderRadius(int borderRadius) {
         this.borderRadius = borderRadius;
-        elevation.setBorderRadius(borderRadius);
+        firePropertyChange("borderRadius", 0, borderRadius);
     }
 
     /**
@@ -118,7 +112,7 @@ public class _MaterialPanel extends JPanel implements MaterialComponent {
     protected void paintComponent(Graphics g) {
         Graphics2D g2 = MaterialDrawingUtils.getAliasedGraphics(g);
 
-        elevation.paint(g2);
+        paintElevation(g2);
         g2.translate(MaterialShadow.OFFSET_LEFT, MaterialShadow.OFFSET_TOP);
 
         final int offset_lr = MaterialShadow.OFFSET_LEFT + MaterialShadow.OFFSET_RIGHT;

@@ -50,7 +50,7 @@ public class _MaterialIconButtonRound extends _MaterialButton implements Materia
         Graphics2D g2 = MaterialDrawingUtils.getAliasedGraphics(g);
 
         if (getType() != Type.FLAT && isEnabled()) {
-            getElevationEffect().paint(g2);
+            paintElevation(g2);
         }
         g2.translate(MaterialShadow.OFFSET_LEFT, MaterialShadow.OFFSET_TOP);
 

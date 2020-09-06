@@ -8,6 +8,7 @@ import com.jhw.swing.material.standards.MaterialShadow;
 import com.jhw.swing.material.standards.MaterialColors;
 import com.jhw.swing.material.effects.DefaultElevationEffect;
 import com.jhw.swing.material.effects.DefaultRippleEffect;
+import com.jhw.swing.material.effects.ElevationEffect;
 import com.jhw.swing.material.effects.RippleEffect;
 import com.jhw.swing.util.interfaces.MaterialComponent;
 import java.awt.*;
@@ -27,7 +28,7 @@ import com.jhw.swing.util.*;
  * href="https://www.google.com/design/spec/components/buttons.html">Buttons
  * (Google design guidelines)</a>
  */
-public class _MaterialButton extends JButton implements ColorFadeInto, MouseAdapterInfo, RippleEffect, MaterialComponent {
+public class _MaterialButton extends JButton implements ColorFadeInto, MouseAdapterInfo, RippleEffect, ElevationEffect, MaterialComponent {
 
     private MouseAdapterInfo mouseInfo = DefaultMouseAdapterInfo.from(this);
 
@@ -35,7 +36,8 @@ public class _MaterialButton extends JButton implements ColorFadeInto, MouseAdap
 
     private RippleEffect ripple = DefaultRippleEffect.applyTo(this);
 
-    private DefaultElevationEffect elevation = DefaultElevationEffect.applyTo(this, MaterialShadow.ELEVATION_NONE);
+    private ElevationEffect elevation = DefaultElevationEffect.applyTo(this, MaterialShadow.ELEVATION_NONE);
+
     private Type type = Type.DEFAULT;
     private Cursor cursor = Cursor.getPredefinedCursor(Cursor.HAND_CURSOR);
     private int borderRadius = 5;
@@ -111,7 +113,28 @@ public class _MaterialButton extends JButton implements ColorFadeInto, MouseAdap
     public void paintRipple(Graphics2D g2) {
         ripple.paintRipple(g2);
     }
-//-----------------RIPPLE_EFFECT------------------------
+//-----------------ELEVATION_EFFECT------------------------
+    @Override
+    public double getLevel() {
+        return elevation.getLevel();
+    }
+
+    @Override
+    public double getElevation() {
+        if (isMousePressed()) {
+            return MaterialShadow.ELEVATION_HIGHTEST;
+        } else if (type == Type.RAISED || isFocusOwner() || isMouseOver()) {
+            return MaterialShadow.ELEVATION_DEFAULT;
+        } else {
+            return MaterialShadow.ELEVATION_NONE;
+        }
+    }
+
+    @Override
+    public void paintElevation(Graphics2D g2) {
+        elevation.paintElevation(g2);
+    }
+//-----------------ELEVATION_EFFECT------------------------
 
     public Color getBorderColor() {
         return borderColor;
@@ -210,7 +233,7 @@ public class _MaterialButton extends JButton implements ColorFadeInto, MouseAdap
      */
     public void setBorderRadius(int borderRadius) {
         this.borderRadius = borderRadius;
-        elevation.setBorderRadius(borderRadius);
+        firePropertyChange("borderRadius", 0, borderRadius);
     }
 
     /**
@@ -222,7 +245,6 @@ public class _MaterialButton extends JButton implements ColorFadeInto, MouseAdap
     @Override
     public void setEnabled(boolean b) {
         super.setEnabled(b);
-        elevation.setLevel(getElevation());
         super.setCursor(b ? cursor : Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
     }
 
@@ -241,28 +263,12 @@ public class _MaterialButton extends JButton implements ColorFadeInto, MouseAdap
     protected void processFocusEvent(FocusEvent focusEvent) {
         super.processFocusEvent(focusEvent);
         firePropertyChange("processFocusEvent", null, null);
-        elevation.setLevel(getElevation());
     }
 
     @Override
     protected void processMouseEvent(MouseEvent mouseEvent) {
         super.processMouseEvent(mouseEvent);
         firePropertyChange("processMouseEvent", null, null);
-        elevation.setLevel(getElevation());
-    }
-
-    protected DefaultElevationEffect getElevationEffect() {
-        return elevation;
-    }
-
-    protected double getElevation() {
-        if (isMousePressed()) {
-            return MaterialShadow.ELEVATION_HIGHTEST;
-        } else if (type == Type.RAISED || isFocusOwner() || isMouseOver()) {
-            return MaterialShadow.ELEVATION_DEFAULT;
-        } else {
-            return MaterialShadow.ELEVATION_NONE;
-        }
     }
 
     @Override
@@ -275,7 +281,7 @@ public class _MaterialButton extends JButton implements ColorFadeInto, MouseAdap
         int offset_top = MaterialShadow.OFFSET_TOP;
 
         if (type != Type.FLAT && isEnabled()) {
-            elevation.paint(g2);
+            paintElevation(g2);
         }
 
         if (type == Type.FLAT) {//si es flat quito correcciones de offset
