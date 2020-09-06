@@ -23,6 +23,8 @@ import com.jhw.personalization.services.PersonalizationHandler;
  */
 public class RippleEffect {
 
+    public static final int DURATION = 750;
+    
     private final List<RippleAnimation> ripples = new ArrayList<>();
     private final JComponent target;
 
@@ -161,7 +163,7 @@ public class RippleEffect {
         void start() {
             //rippleCenter.setLocation(rippleCenter);
             Animator rippleAnimator = new Animator.Builder(Utils.getSwingTimerTimingSource())
-                    .setDuration(1000, TimeUnit.MILLISECONDS)
+                    .setDuration(DURATION, TimeUnit.MILLISECONDS)
                     .setEndBehavior(Animator.EndBehavior.HOLD)
                     .setInterpolator(new AccelerationInterpolator(0.2, 0.19))
                     .addTarget(SafePropertySetter.getTarget(rippleRadius, 0, maxRadius / 2, maxRadius, maxRadius))
