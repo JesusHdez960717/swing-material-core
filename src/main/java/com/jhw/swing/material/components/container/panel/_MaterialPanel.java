@@ -10,8 +10,11 @@ import com.jhw.swing.util.interfaces.MaterialComponent;
 import com.jhw.swing.material.standards.MaterialShadow;
 import com.jhw.personalization.core.domain.Personalization;
 import com.jhw.personalization.services.PersonalizationHandler;
-import com.jhw.swing.material.components.button._MaterialButton;
+import com.jhw.swing.material.components.textarea.DefaultMaterialLineBorder;
+import com.jhw.swing.material.components.textarea.MaterialLineBorder;
 import com.jhw.swing.material.effects.ElevationEffect;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 
 /**
  * A JPanel customized for Material components. What makes these panels special
@@ -32,10 +35,11 @@ import com.jhw.swing.material.effects.ElevationEffect;
  * the prefereable approach to follow is overriding {@link #doLayout()} and
  * taking care of any arrangements by yourself.
  */
-public class _MaterialPanel extends JPanel implements MaterialComponent, ElevationEffect {
+public class _MaterialPanel extends JPanel implements MaterialComponent, ElevationEffect, PropertyChangeListener {
 
     private final ElevationEffect elevation = DefaultElevationEffect.applyTo(this, MaterialShadow.ELEVATION_DEFAULT);
-    private int borderRadius = 5;
+
+    private final MaterialLineBorder border = DefaultMaterialLineBorder.builder().borderRadius(5).listeners(this).build();
 
     /**
      * Creates a new {@code MaterialPanel}. These panels cast a shadow below
@@ -44,10 +48,8 @@ public class _MaterialPanel extends JPanel implements MaterialComponent, Elevati
      */
     public _MaterialPanel() {
         this.setOpaque(false);
-        
-        this.setBackground(PersonalizationHandler.getColor(Personalization.KEY_COLOR_BACKGROUND_PANEL));
 
-        setBorderRadius(borderRadius);
+        this.setBackground(PersonalizationHandler.getColor(Personalization.KEY_COLOR_BACKGROUND_PANEL));
     }
 //-----------------ELEVATION_EFFECT------------------------
 
@@ -65,7 +67,23 @@ public class _MaterialPanel extends JPanel implements MaterialComponent, Elevati
     public void paintElevation(Graphics2D g2) {
         elevation.paintElevation(g2);
     }
-//-----------------ELEVATION_EFFECT------------------------
+//-----------------LINE_BORDER------------------------
+
+    public float getBorderThickness() {
+        return border.getBorderThickness();
+    }
+
+    public void setBorderThickness(float thickness) {
+        border.setBorderThickness(thickness);
+    }
+
+    public Color getBorderColor() {
+        return border.getBorderColor();
+    }
+
+    public void setBorderColor(Color color) {
+        border.setBorderColor(color);
+    }
 
     /**
      * Gets the current border radius of this button.
@@ -73,7 +91,7 @@ public class _MaterialPanel extends JPanel implements MaterialComponent, Elevati
      * @return the current border radius of this button, in pixels.
      */
     public int getBorderRadius() {
-        return borderRadius;
+        return border.getBorderRadius();
     }
 
     /**
@@ -84,10 +102,11 @@ public class _MaterialPanel extends JPanel implements MaterialComponent, Elevati
      * @param borderRadius the new border radius of this button, in pixels.
      */
     public void setBorderRadius(int borderRadius) {
-        this.borderRadius = borderRadius;
+        this.border.setBorderRadius(borderRadius);
         firePropertyChange("borderRadius", 0, borderRadius);
     }
 
+//-----------------LINE_BORDER------------------------
     /**
      * Sets the background color of this panel. Keep on mind that setting a
      * background color in a Material component like this will also set the
@@ -118,11 +137,23 @@ public class _MaterialPanel extends JPanel implements MaterialComponent, Elevati
         final int offset_lr = MaterialShadow.OFFSET_LEFT + MaterialShadow.OFFSET_RIGHT;
         final int offset_td = MaterialShadow.OFFSET_TOP + MaterialShadow.OFFSET_BOTTOM;
 
+        if (getBorderThickness() > 0) {//si hay border lo pinto
+            //g2.setStroke(new BasicStroke(getBorderThickness(), BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 0, new float[]{9}, 0));
+            g2.setStroke(new BasicStroke(getBorderThickness()));
+            g2.setColor(getBorderColor());
+            g2.draw(new RoundRectangle2D.Float(0, 0, getWidth() - offset_lr, getHeight() - offset_td, getBorderRadius() * 2, getBorderRadius() * 2));
+        }
+        
         g2.setColor(getBackground());
-        g2.fill(new RoundRectangle2D.Float(0, 0, getWidth() - offset_lr, getHeight() - offset_td, borderRadius * 2, borderRadius * 2));
+        g2.fill(new RoundRectangle2D.Float(0, 0, getWidth() - offset_lr, getHeight() - offset_td, getBorderRadius() * 2, getBorderRadius() * 2));
 
         g2.setClip(null);
 
         g2.translate(-MaterialShadow.OFFSET_LEFT, -MaterialShadow.OFFSET_TOP);
+    }
+
+    @Override
+    public void propertyChange(PropertyChangeEvent evt) {
+        firePropertyChange(evt.getPropertyName(), evt.getOldValue(), evt.getNewValue());
     }
 }

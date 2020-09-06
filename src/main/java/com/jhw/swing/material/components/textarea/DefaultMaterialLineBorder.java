@@ -25,8 +25,8 @@ public class DefaultMaterialLineBorder extends LineBorder implements MaterialLin
 
     private transient final PropertyChangeSupport propertyChangeSupport = new PropertyChangeSupport(this);
 
-    private int borderRadius = 1;
-    private float borderThickness = 5;
+    private int borderRadius = 5;
+    private float borderThickness = 0;
     private Color color = MaterialColors.GREEN_700;
 
     public static DefaultMaterialLineBorder from(Color color, float thickness, int borderRadius) {
@@ -34,7 +34,7 @@ public class DefaultMaterialLineBorder extends LineBorder implements MaterialLin
     }
 
     public DefaultMaterialLineBorder(Color color, float thickness, int borderRadius) {
-        super(color, (int) thickness);
+        super(color);
         this.borderRadius = borderRadius;
         this.borderThickness = thickness;
         this.color = color;
@@ -44,9 +44,9 @@ public class DefaultMaterialLineBorder extends LineBorder implements MaterialLin
     public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
         Graphics2D g2 = MaterialDrawingUtils.getAliasedGraphics(g);
 
-        g2.setStroke(new BasicStroke(getThickness()));
+        g2.setStroke(new BasicStroke(getBorderThickness()));
         g2.setColor(color);
-        g2.draw(new RoundRectangle2D.Float(x, y, width - getThickness(), height - getThickness(), borderRadius * 2, borderRadius * 2));
+        g2.draw(new RoundRectangle2D.Float(x, y, width - getBorderThickness(), height - getBorderThickness(), borderRadius * 2, borderRadius * 2));
     }
 
     @Override

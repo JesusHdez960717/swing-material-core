@@ -34,17 +34,17 @@ import java.beans.PropertyChangeListener;
  */
 public class _MaterialButton extends JButton implements ColorFadeInto, MouseAdapterInfo, RippleEffect, ElevationEffect, PropertyChangeListener, MaterialComponent {
 
-    private MouseAdapterInfo mouseInfo = DefaultMouseAdapterInfo.from(this);
+    private final MouseAdapterInfo mouseInfo = DefaultMouseAdapterInfo.from(this);
 
-    private ColorFadeInto colorFadeInto = new DefaultColorFadeInto(this);
+    private final ColorFadeInto colorFadeInto = new DefaultColorFadeInto(this);
 
-    private RippleEffect ripple = DefaultRippleEffect.applyTo(this);
+    private final RippleEffect ripple = DefaultRippleEffect.applyTo(this);
 
     private ElevationEffect elevation = DefaultElevationEffect.applyTo(this, MaterialShadow.ELEVATION_NONE);
 
+    private final MaterialLineBorder border = DefaultMaterialLineBorder.builder().listeners(this).build();
+    
     private Type type = Type.DEFAULT;
-
-    private MaterialLineBorder border = DefaultMaterialLineBorder.builder().listeners(this).build();
 
     public static _MaterialButton from() {
         return new _MaterialButton();
@@ -298,7 +298,7 @@ public class _MaterialButton extends JButton implements ColorFadeInto, MouseAdap
         }
         g2.fill(new RoundRectangle2D.Float(0, 0, getWidth() - offset_lr, getHeight() - offset_td, getBorderRadius() * 2, getBorderRadius() * 2));
 
-        if (getBorderThickness()> 0) {//si hay border lo pinto
+        if (getBorderThickness() > 0) {//si hay border lo pinto
             //g2.setStroke(new BasicStroke(getBorderThickness(), BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 0, new float[]{9}, 0));
             g2.setStroke(new BasicStroke(getBorderThickness()));
             g2.setColor(getBorderColor());
