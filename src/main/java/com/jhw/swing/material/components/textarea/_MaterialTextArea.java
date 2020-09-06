@@ -88,7 +88,7 @@ public class _MaterialTextArea extends javax.swing.JPanel implements BindableCom
         materialScrollPaneCore.setBorder(new TitledBorder(text));
         TitledBorder titled = (TitledBorder) materialScrollPaneCore.getBorder();
         titled.setTitleColor(Utils.applyAlphaMask(getForeground(), HINT_OPACITY_MASK));
-        titled.setBorder(new MaterialLineBorder());
+        titled.setBorder(DefaultMaterialLineBorder.builder().build());
         borderEffect.update();
     }
 

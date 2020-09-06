@@ -1,5 +1,7 @@
 package com.jhw.swing.material.components.button;
 
+import com.jhw.swing.material.components.textarea.DefaultMaterialLineBorder;
+import com.jhw.swing.material.components.textarea.MaterialLineBorder;
 import com.jhw.swing.material.effects.ColorFadeInto;
 import com.jhw.swing.material.effects.DefaultColorFadeInto;
 import com.jhw.swing.util.Utils;
@@ -20,6 +22,8 @@ import com.jhw.swing.util.MaterialDrawingUtils;
 import com.jhw.swing.util.DefaultMouseAdapterInfo;
 import com.jhw.swing.utils.icons.DerivableIcon;
 import com.jhw.swing.util.*;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 
 /**
  * A Material Design button.
@@ -28,7 +32,7 @@ import com.jhw.swing.util.*;
  * href="https://www.google.com/design/spec/components/buttons.html">Buttons
  * (Google design guidelines)</a>
  */
-public class _MaterialButton extends JButton implements ColorFadeInto, MouseAdapterInfo, RippleEffect, ElevationEffect, MaterialComponent {
+public class _MaterialButton extends JButton implements ColorFadeInto, MouseAdapterInfo, RippleEffect, ElevationEffect, PropertyChangeListener, MaterialComponent {
 
     private MouseAdapterInfo mouseInfo = DefaultMouseAdapterInfo.from(this);
 
@@ -39,11 +43,12 @@ public class _MaterialButton extends JButton implements ColorFadeInto, MouseAdap
     private ElevationEffect elevation = DefaultElevationEffect.applyTo(this, MaterialShadow.ELEVATION_NONE);
 
     private Type type = Type.DEFAULT;
-    private Cursor cursor = Cursor.getPredefinedCursor(Cursor.HAND_CURSOR);
-    private int borderRadius = 5;
 
-    private Color borderColor = MaterialColors.BLACK;
-    private int borderThickness = 0;
+    private MaterialLineBorder border = DefaultMaterialLineBorder.builder().listeners(this).build();
+
+    public static _MaterialButton from() {
+        return new _MaterialButton();
+    }
 
     /**
      * Creates a new button.
@@ -51,7 +56,7 @@ public class _MaterialButton extends JButton implements ColorFadeInto, MouseAdap
     public _MaterialButton() {
         this.setIconTextGap(2);
         this.setFont(MaterialFontRoboto.MEDIUM.deriveFont(16f));
-        this.setCursor(cursor);
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         this.setPreferredSize(new Dimension(145, 65));
         this.setFocusable(false);
 
@@ -114,6 +119,7 @@ public class _MaterialButton extends JButton implements ColorFadeInto, MouseAdap
         ripple.paintRipple(g2);
     }
 //-----------------ELEVATION_EFFECT------------------------
+
     @Override
     public double getLevel() {
         return elevation.getLevel();
@@ -134,25 +140,48 @@ public class _MaterialButton extends JButton implements ColorFadeInto, MouseAdap
     public void paintElevation(Graphics2D g2) {
         elevation.paintElevation(g2);
     }
-//-----------------ELEVATION_EFFECT------------------------
+//-----------------LINE_BORDER------------------------
+
+    public float getBorderThickness() {
+        return border.getBorderThickness();
+    }
+
+    public void setBorderThickness(float thickness) {
+        border.setBorderThickness(thickness);
+    }
 
     public Color getBorderColor() {
-        return borderColor;
+        return border.getBorderColor();
     }
 
-    public void setBorderColor(Color borderColor) {
-        this.borderColor = borderColor;
+    public void setBorderColor(Color color) {
+        border.setBorderColor(color);
     }
 
-    public int getBorderThickness() {
-        return borderThickness;
+    /**
+     * Gets the current border radius of this button.
+     *
+     * @return the current border radius of this button, in pixels.
+     */
+    public int getBorderRadius() {
+        return border.getBorderRadius();
     }
 
-    public void setBorderThickness(int borderThickness) {
-        this.borderThickness = borderThickness;
+    /**
+     * Sets the border radius of this button. You can define a custom radius in
+     * order to get some rounded corners in your button, making it look like a
+     * pill or even a circular action button.
+     *
+     * @param borderRadius the new border radius of this button, in pixels.
+     */
+    public void setBorderRadius(int borderRadius) {
+        this.border.setBorderRadius(borderRadius);
+        firePropertyChange("borderRadius", 0, borderRadius);
     }
 
-    public void setElevation(DefaultElevationEffect elevation) {
+//-----------------LINE_BORDER------------------------
+    //para si extiende uno con elevation round
+    protected void setElevation(DefaultElevationEffect elevation) {
         this.elevation = elevation;
         repaint();
     }
@@ -216,27 +245,6 @@ public class _MaterialButton extends JButton implements ColorFadeInto, MouseAdap
     }
 
     /**
-     * Gets the current border radius of this button.
-     *
-     * @return the current border radius of this button, in pixels.
-     */
-    public int getBorderRadius() {
-        return borderRadius;
-    }
-
-    /**
-     * Sets the border radius of this button. You can define a custom radius in
-     * order to get some rounded corners in your button, making it look like a
-     * pill or even a circular action button.
-     *
-     * @param borderRadius the new border radius of this button, in pixels.
-     */
-    public void setBorderRadius(int borderRadius) {
-        this.borderRadius = borderRadius;
-        firePropertyChange("borderRadius", 0, borderRadius);
-    }
-
-    /**
      * Set the button enable. Include changing the elevation and the curson
      * according.
      *
@@ -245,18 +253,7 @@ public class _MaterialButton extends JButton implements ColorFadeInto, MouseAdap
     @Override
     public void setEnabled(boolean b) {
         super.setEnabled(b);
-        super.setCursor(b ? cursor : Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-    }
-
-    /**
-     * Set the cursor of the component.
-     *
-     * @param cursor Cursor of the component.
-     */
-    @Override
-    public void setCursor(Cursor cursor) {
-        super.setCursor(cursor);
-        this.cursor = cursor;
+        super.setCursor(b ? getCursor() : Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
     }
 
     @Override
@@ -299,17 +296,17 @@ public class _MaterialButton extends JButton implements ColorFadeInto, MouseAdap
             Color bg = getBackground();
             g2.setColor(new Color(bg.getRed() / 255f, bg.getGreen() / 255f, bg.getBlue() / 255f, 0.6f));
         }
-        g2.fill(new RoundRectangle2D.Float(0, 0, getWidth() - offset_lr, getHeight() - offset_td, borderRadius * 2, borderRadius * 2));
+        g2.fill(new RoundRectangle2D.Float(0, 0, getWidth() - offset_lr, getHeight() - offset_td, getBorderRadius() * 2, getBorderRadius() * 2));
 
-        if (getBorderThickness() > 0) {//si hay border lo pinto
+        if (getBorderThickness()> 0) {//si hay border lo pinto
             //g2.setStroke(new BasicStroke(getBorderThickness(), BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 0, new float[]{9}, 0));
             g2.setStroke(new BasicStroke(getBorderThickness()));
             g2.setColor(getBorderColor());
-            g2.draw(new RoundRectangle2D.Float(0, 0, getWidth() - offset_lr, getHeight() - offset_td, borderRadius * 2, borderRadius * 2));
+            g2.draw(new RoundRectangle2D.Float(0, 0, getWidth() - offset_lr, getHeight() - offset_td, getBorderRadius() * 2, getBorderRadius() * 2));
         }
 
         if (this.isEnabled()) {//el ripple por debajo de las letras e iconos
-            g2.setClip(new RoundRectangle2D.Float(0, 0, getWidth() - offset_lr, getHeight() - offset_td, Math.max(borderRadius * 2 - 4, 0), Math.max(borderRadius * 2 - 4, 0)));
+            g2.setClip(new RoundRectangle2D.Float(0, 0, getWidth() - offset_lr, getHeight() - offset_td, Math.max(getBorderRadius() * 2 - 4, 0), Math.max(getBorderRadius() * 2 - 4, 0)));
             paintRipple(g2);
         }
 
@@ -355,6 +352,11 @@ public class _MaterialButton extends JButton implements ColorFadeInto, MouseAdap
     @Override
     protected void paintBorder(Graphics g) {
         //intentionally left blank
+    }
+
+    @Override
+    public void propertyChange(PropertyChangeEvent evt) {
+        firePropertyChange(evt.getPropertyName(), evt.getOldValue(), evt.getNewValue());
     }
 
     /**

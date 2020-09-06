@@ -107,12 +107,12 @@ public class BorderDinamic {
 
     private void repaintComponent() {
         TitledBorder titled = (TitledBorder) target.getScrollPane().getBorder();
-        MaterialLineBorder line = (MaterialLineBorder) titled.getBorder();
+        MaterialLineBorder line = (DefaultMaterialLineBorder) titled.getBorder();
 
-        line.setThickkness(thickness.getValue());
+        line.setBorderThickness(thickness.getValue());
 
         titled.setTitleColor(color.getValue());
-        line.setColor(color.getValue());
+        line.setBorderColor(color.getValue());
 
         titled.setTitleFont(getFont());
     }

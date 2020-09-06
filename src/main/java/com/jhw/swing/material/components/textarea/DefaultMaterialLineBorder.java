@@ -13,30 +13,30 @@ import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.geom.RoundRectangle2D;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import javax.swing.border.LineBorder;
 
 /**
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-public class MaterialLineBorder extends LineBorder {
+public class DefaultMaterialLineBorder extends LineBorder implements MaterialLineBorder {
+
+    private transient final PropertyChangeSupport propertyChangeSupport = new PropertyChangeSupport(this);
 
     private int borderRadius = 1;
-    private float thickkness = 5;
-    private Color color;
+    private float borderThickness = 5;
+    private Color color = MaterialColors.GREEN_700;
 
-    public MaterialLineBorder() {
-        this(MaterialColors.GREEN_700, 1, 5);
+    public static DefaultMaterialLineBorder from(Color color, float thickness, int borderRadius) {
+        return new DefaultMaterialLineBorder(color, thickness, borderRadius);
     }
 
-    public MaterialLineBorder(Color color) {
-        this(color, 1, 5);
-    }
-
-    public MaterialLineBorder(Color color, float thickkness, int borderRadius) {
-        super(color, (int) thickkness);
+    public DefaultMaterialLineBorder(Color color, float thickness, int borderRadius) {
+        super(color, (int) thickness);
         this.borderRadius = borderRadius;
-        this.thickkness = thickkness;
+        this.borderThickness = thickness;
         this.color = color;
     }
 
@@ -44,9 +44,9 @@ public class MaterialLineBorder extends LineBorder {
     public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
         Graphics2D g2 = MaterialDrawingUtils.getAliasedGraphics(g);
 
-        g2.setStroke(new BasicStroke(thickkness));
+        g2.setStroke(new BasicStroke(getThickness()));
         g2.setColor(color);
-        g2.draw(new RoundRectangle2D.Float(x, y, width - thickkness, height - thickkness, borderRadius * 2, borderRadius * 2));
+        g2.draw(new RoundRectangle2D.Float(x, y, width - getThickness(), height - getThickness(), borderRadius * 2, borderRadius * 2));
     }
 
     @Override
@@ -54,24 +54,97 @@ public class MaterialLineBorder extends LineBorder {
         return borderRadius != 0;
     }
 
+    @Override
     public int getBorderRadius() {
         return borderRadius;
     }
 
+    @Override
     public void setBorderRadius(int borderRadius) {
         this.borderRadius = borderRadius;
+        firePropertyChange("borderRadius", 0, borderRadius);
     }
 
-    public void setThickkness(float thickkness) {
-        this.thickkness = thickkness;
+    @Override
+    public float getBorderThickness() {
+        return this.borderThickness;
     }
 
-    public Color getColor() {
-        return color;
+    @Override
+    public void setBorderThickness(float thickness) {
+        this.borderThickness = thickness;
     }
 
-    public void setColor(Color color) {
+    @Override
+    public Color getBorderColor() {
+        return this.color;
+    }
+
+    @Override
+    public void setBorderColor(Color color) {
         this.color = color;
+    }
+
+    public static builder builder() {
+        return new builder();
+    }
+
+    private void firePropertyChange(String borderRadius, int old, int neww) {
+        propertyChangeSupport.firePropertyChange(borderRadius, old, neww);
+    }
+
+    public static class builder {
+
+        private int borderRadius = 5;
+        private float internalThickness = 0;
+        private Color color = MaterialColors.GREEN_700;
+        public PropertyChangeListener[] listeners = new PropertyChangeListener[0];
+
+        public builder listeners(PropertyChangeListener... listeners) {
+            this.listeners = listeners;
+            return this;
+        }
+
+        public builder borderRadius(int borderRadius) {
+            this.borderRadius = borderRadius;
+            return this;
+        }
+
+        public builder thickness(float internalThickness) {
+            this.internalThickness = internalThickness;
+            return this;
+        }
+
+        public builder color(Color color) {
+            this.color = color;
+            return this;
+        }
+
+        public DefaultMaterialLineBorder build() {
+            DefaultMaterialLineBorder border = DefaultMaterialLineBorder.from(color, internalThickness, borderRadius);
+            for (PropertyChangeListener listener : listeners) {
+                border.addPropertyChangeListener(listener);
+            }
+            return border;
+        }
+    }
+
+    /**
+     * Add PropertyChangeListener.
+     *
+     * @param listener
+     */
+    public void addPropertyChangeListener(PropertyChangeListener listener) {
+        propertyChangeSupport.addPropertyChangeListener(listener);
+    }
+
+    /**
+     * Remove PropertyChangeListener.
+     *
+     * @param listener
+     */
+    public void removePropertyChangeListener(PropertyChangeListener listener) {
+        propertyChangeSupport.removePropertyChangeListener(listener);
     }
 
 }
