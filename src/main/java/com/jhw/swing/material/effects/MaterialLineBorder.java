@@ -3,9 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.jhw.swing.material.components.textarea;
+package com.jhw.swing.material.effects;
 
 import java.awt.Color;
+import java.awt.Component;
+import java.awt.Graphics;
+import java.awt.Stroke;
 
 /**
  *
@@ -25,4 +28,9 @@ public interface MaterialLineBorder {
 
     public void setBorderColor(Color color);
 
+    public Stroke getBorderStroke();
+
+    public void setBorderStroke(Stroke stroke);
+
+    public void paintBorder(Component c, Graphics g, int x, int y, int width, int height);
 }

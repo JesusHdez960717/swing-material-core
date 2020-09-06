@@ -1,5 +1,7 @@
 package com.jhw.swing.material.components.textarea;
 
+import com.jhw.swing.material.effects.MaterialLineBorder;
+import com.jhw.swing.material.effects.DefaultMaterialLineBorder;
 import static com.jhw.swing.material.components.textfield._MaterialTextField.HINT_OPACITY_MASK;
 import java.awt.Color;
 import java.awt.Font;

@@ -1,5 +1,6 @@
 package com.jhw.swing.material.components.textarea;
 
+import com.jhw.swing.material.effects.DefaultMaterialLineBorder;
 import com.jhw.swing.material.components.scrollpane._MaterialScrollPaneCore;
 import com.jhw.swing.util.interfaces.BindableComponent;
 import java.awt.BorderLayout;

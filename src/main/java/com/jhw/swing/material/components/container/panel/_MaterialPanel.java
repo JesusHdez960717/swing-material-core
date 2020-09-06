@@ -10,8 +10,8 @@ import com.jhw.swing.util.interfaces.MaterialComponent;
 import com.jhw.swing.material.standards.MaterialShadow;
 import com.jhw.personalization.core.domain.Personalization;
 import com.jhw.personalization.services.PersonalizationHandler;
-import com.jhw.swing.material.components.textarea.DefaultMaterialLineBorder;
-import com.jhw.swing.material.components.textarea.MaterialLineBorder;
+import com.jhw.swing.material.effects.DefaultMaterialLineBorder;
+import com.jhw.swing.material.effects.MaterialLineBorder;
 import com.jhw.swing.material.effects.ElevationEffect;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -35,7 +35,7 @@ import java.beans.PropertyChangeListener;
  * the prefereable approach to follow is overriding {@link #doLayout()} and
  * taking care of any arrangements by yourself.
  */
-public class _MaterialPanel extends JPanel implements MaterialComponent, ElevationEffect, PropertyChangeListener {
+public class _MaterialPanel extends JPanel implements MaterialComponent, ElevationEffect, MaterialLineBorder, PropertyChangeListener {
 
     private final ElevationEffect elevation = DefaultElevationEffect.applyTo(this, MaterialShadow.ELEVATION_DEFAULT);
 
@@ -69,44 +69,52 @@ public class _MaterialPanel extends JPanel implements MaterialComponent, Elevati
     }
 //-----------------LINE_BORDER------------------------
 
+    @Override
     public float getBorderThickness() {
         return border.getBorderThickness();
     }
 
+    @Override
     public void setBorderThickness(float thickness) {
         border.setBorderThickness(thickness);
     }
 
+    @Override
     public Color getBorderColor() {
         return border.getBorderColor();
     }
 
+    @Override
     public void setBorderColor(Color color) {
         border.setBorderColor(color);
     }
 
-    /**
-     * Gets the current border radius of this button.
-     *
-     * @return the current border radius of this button, in pixels.
-     */
+    @Override
     public int getBorderRadius() {
         return border.getBorderRadius();
     }
 
-    /**
-     * Sets the border radius of this button. You can define a custom radius in
-     * order to get some rounded corners in your button, making it look like a
-     * pill or even a circular action button.
-     *
-     * @param borderRadius the new border radius of this button, in pixels.
-     */
+    @Override
     public void setBorderRadius(int borderRadius) {
         this.border.setBorderRadius(borderRadius);
-        firePropertyChange("borderRadius", 0, borderRadius);
     }
 
+    @Override
+    public Stroke getBorderStroke() {
+        return border.getBorderStroke();
+    }
+
+    @Override
+    public void setBorderStroke(Stroke stroke) {
+        border.setBorderStroke(stroke);
+    }
+
+    @Override
+    public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
+        border.paintBorder(c, g, x, y, width, height);
+    }
 //-----------------LINE_BORDER------------------------
+
     /**
      * Sets the background color of this panel. Keep on mind that setting a
      * background color in a Material component like this will also set the
@@ -137,13 +145,8 @@ public class _MaterialPanel extends JPanel implements MaterialComponent, Elevati
         final int offset_lr = MaterialShadow.OFFSET_LEFT + MaterialShadow.OFFSET_RIGHT;
         final int offset_td = MaterialShadow.OFFSET_TOP + MaterialShadow.OFFSET_BOTTOM;
 
-        if (getBorderThickness() > 0) {//si hay border lo pinto
-            //g2.setStroke(new BasicStroke(getBorderThickness(), BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 0, new float[]{9}, 0));
-            g2.setStroke(new BasicStroke(getBorderThickness()));
-            g2.setColor(getBorderColor());
-            g2.draw(new RoundRectangle2D.Float(0, 0, getWidth() - offset_lr, getHeight() - offset_td, getBorderRadius() * 2, getBorderRadius() * 2));
-        }
-        
+        paintBorder(this, g2, 0, 0, (int) (getWidth() - offset_lr + getBorderThickness()), (int) (getHeight() - offset_td + getBorderThickness()));
+
         g2.setColor(getBackground());
         g2.fill(new RoundRectangle2D.Float(0, 0, getWidth() - offset_lr, getHeight() - offset_td, getBorderRadius() * 2, getBorderRadius() * 2));
 

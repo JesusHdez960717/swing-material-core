@@ -1,7 +1,7 @@
 package com.jhw.swing.material.components.button;
 
-import com.jhw.swing.material.components.textarea.DefaultMaterialLineBorder;
-import com.jhw.swing.material.components.textarea.MaterialLineBorder;
+import com.jhw.swing.material.effects.DefaultMaterialLineBorder;
+import com.jhw.swing.material.effects.MaterialLineBorder;
 import com.jhw.swing.material.effects.ColorFadeInto;
 import com.jhw.swing.material.effects.DefaultColorFadeInto;
 import com.jhw.swing.util.Utils;
@@ -32,7 +32,7 @@ import java.beans.PropertyChangeListener;
  * href="https://www.google.com/design/spec/components/buttons.html">Buttons
  * (Google design guidelines)</a>
  */
-public class _MaterialButton extends JButton implements ColorFadeInto, MouseAdapterInfo, RippleEffect, ElevationEffect, PropertyChangeListener, MaterialComponent {
+public class _MaterialButton extends JButton implements ColorFadeInto, MouseAdapterInfo, RippleEffect, ElevationEffect, MaterialLineBorder, PropertyChangeListener, MaterialComponent {
 
     private final MouseAdapterInfo mouseInfo = DefaultMouseAdapterInfo.from(this);
 
@@ -43,7 +43,7 @@ public class _MaterialButton extends JButton implements ColorFadeInto, MouseAdap
     private ElevationEffect elevation = DefaultElevationEffect.applyTo(this, MaterialShadow.ELEVATION_NONE);
 
     private final MaterialLineBorder border = DefaultMaterialLineBorder.builder().listeners(this).build();
-    
+
     private Type type = Type.DEFAULT;
 
     public static _MaterialButton from() {
@@ -142,45 +142,53 @@ public class _MaterialButton extends JButton implements ColorFadeInto, MouseAdap
     }
 //-----------------LINE_BORDER------------------------
 
+    @Override
     public float getBorderThickness() {
         return border.getBorderThickness();
     }
 
+    @Override
     public void setBorderThickness(float thickness) {
         border.setBorderThickness(thickness);
     }
 
+    @Override
     public Color getBorderColor() {
         return border.getBorderColor();
     }
 
+    @Override
     public void setBorderColor(Color color) {
         border.setBorderColor(color);
     }
 
-    /**
-     * Gets the current border radius of this button.
-     *
-     * @return the current border radius of this button, in pixels.
-     */
+    @Override
     public int getBorderRadius() {
         return border.getBorderRadius();
     }
 
-    /**
-     * Sets the border radius of this button. You can define a custom radius in
-     * order to get some rounded corners in your button, making it look like a
-     * pill or even a circular action button.
-     *
-     * @param borderRadius the new border radius of this button, in pixels.
-     */
+    @Override
     public void setBorderRadius(int borderRadius) {
         this.border.setBorderRadius(borderRadius);
-        firePropertyChange("borderRadius", 0, borderRadius);
     }
 
+    @Override
+    public Stroke getBorderStroke() {
+        return border.getBorderStroke();
+    }
+
+    @Override
+    public void setBorderStroke(Stroke stroke) {
+        border.setBorderStroke(stroke);
+    }
+
+    @Override
+    public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
+        border.paintBorder(c, g, x, y, width, height);
+    }
 //-----------------LINE_BORDER------------------------
     //para si extiende uno con elevation round
+
     protected void setElevation(DefaultElevationEffect elevation) {
         this.elevation = elevation;
         repaint();
@@ -298,12 +306,7 @@ public class _MaterialButton extends JButton implements ColorFadeInto, MouseAdap
         }
         g2.fill(new RoundRectangle2D.Float(0, 0, getWidth() - offset_lr, getHeight() - offset_td, getBorderRadius() * 2, getBorderRadius() * 2));
 
-        if (getBorderThickness() > 0) {//si hay border lo pinto
-            //g2.setStroke(new BasicStroke(getBorderThickness(), BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 0, new float[]{9}, 0));
-            g2.setStroke(new BasicStroke(getBorderThickness()));
-            g2.setColor(getBorderColor());
-            g2.draw(new RoundRectangle2D.Float(0, 0, getWidth() - offset_lr, getHeight() - offset_td, getBorderRadius() * 2, getBorderRadius() * 2));
-        }
+        paintBorder(this, g2, 0, 0, (int) (getWidth() - offset_lr + getBorderThickness()), (int) (getHeight() - offset_td + getBorderThickness()));
 
         if (this.isEnabled()) {//el ripple por debajo de las letras e iconos
             g2.setClip(new RoundRectangle2D.Float(0, 0, getWidth() - offset_lr, getHeight() - offset_td, Math.max(getBorderRadius() * 2 - 4, 0), Math.max(getBorderRadius() * 2 - 4, 0)));
@@ -336,9 +339,6 @@ public class _MaterialButton extends JButton implements ColorFadeInto, MouseAdap
         }
 
         Color fg = this.getForeground();
-        if (!this.isEnabled()) {
-            g2.setColor(new Color(fg.getRed() / 255f, fg.getGreen() / 255f, fg.getBlue() / 255f, 0.6f));
-        }
         g2.setColor(fg);
         g2.setFont(getFont());
         g2.drawString(this.getText(), xText, y);
