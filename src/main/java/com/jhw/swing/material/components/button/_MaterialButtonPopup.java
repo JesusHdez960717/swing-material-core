@@ -9,6 +9,7 @@ import com.jhw.personalization.core.domain.Personalization;
 import com.jhw.personalization.services.PersonalizationHandler;
 import com.jhw.swing.material.standards.MaterialColors;
 import com.jhw.swing.material.standards.MaterialIcons;
+import com.jhw.swing.material.standards.MaterialShadow;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -49,7 +50,9 @@ public class _MaterialButtonPopup extends _MaterialButton {
 
     private void showPopup(MouseEvent e) {
         if (getComponentPopupMenu() != null) {
-            getComponentPopupMenu().show(this, e.getX(), e.getY());
+//            getComponentPopupMenu().show(this, e.getX(), e.getY());
+            getComponentPopupMenu().show(this, 0 + MaterialShadow.OFFSET_LEFT, (int) this.getSize().getHeight()-MaterialShadow.OFFSET_BOTTOM);
+
         }
     }
 }

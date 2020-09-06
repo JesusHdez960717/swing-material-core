@@ -10,6 +10,7 @@ import com.jhw.swing.material.standards.MaterialShadow;
 import com.jhw.swing.util.Utils;
 import com.jhw.swing.material.effects.ElevationEffect;
 import com.jhw.swing.material.standards.MaterialIcons;
+import javax.swing.Icon;
 
 /**
  * A Material Design button. A round button with a icon in the middle
@@ -20,6 +21,11 @@ import com.jhw.swing.material.standards.MaterialIcons;
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
 public class _MaterialIconButtonRound extends _MaterialButton implements MaterialComponent {
+
+    public _MaterialIconButtonRound(Icon icon) {
+        this();
+        this.setIcon(icon);
+    }
 
     /**
      * Creates a new button.
