@@ -9,6 +9,7 @@ import com.jhw.swing.material.components.button.*;
 import com.jhw.swing.material.components.button.prepared._buttonAddEdit;
 import com.jhw.swing.material.components.button.prepared._buttonView;
 import com.jhw.swing.material.components.container.layout.VerticalLayoutContainer;
+import com.jhw.swing.material.standards.MaterialColors;
 import com.jhw.swing.material.standards.MaterialIcons;
 import com.jhw.swing.ui.MaterialLookAndFeel;
 import java.awt.BorderLayout;
@@ -74,6 +75,7 @@ public class EXAMPLE_BUTTONS extends javax.swing.JFrame {
         _buttonView view = (_buttonView) MaterialButtonsFactory.buildView();
         vlc.add(view);
 
+        jPanel1.setBackground(MaterialColors.BLUE_50);
         jPanel1.setLayout(new BorderLayout());
         jPanel1.add(vlc.build());
     }

@@ -97,12 +97,25 @@ public class DefaultRippleEffect implements RippleEffect, PropertyChangeListener
                 int rippleRadius = rippleAnimation.rippleRadius.getValue();
 
                 g2.setColor(new Color(rippleColor.getRed() / 255f, rippleColor.getGreen() / 255f, rippleColor.getBlue() / 255f, rippleOpacity));
+
+                //funciona bien, pero el clip no es smooth
                 Shape shape = new java.awt.geom.Ellipse2D.Float(rippleCenter.x - rippleRadius, rippleCenter.y - rippleRadius, 2 * rippleRadius, 2 * rippleRadius);
                 g2.fill(shape);
 
+                /*
+                //clip smooth pero el radius no
+                Shape clip = g2.getClip();
+                Shape shape = new java.awt.geom.Ellipse2D.Float(rippleCenter.x - rippleRadius, rippleCenter.y - rippleRadius, 2 * rippleRadius, 2 * rippleRadius);
+
+                Area area = new Area(clip);
+                area.intersect(new Area(shape));
+                
+                g2.setClip(shape);
+                g2.fill(area);
+                g2.setClip(clip);
+                 */
             }
         }
-
     }
 
     /**

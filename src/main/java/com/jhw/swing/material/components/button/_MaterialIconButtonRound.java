@@ -124,6 +124,7 @@ public class _MaterialIconButtonRound extends _MaterialButton implements Materia
         //ripple
         if (this.isEnabled()) {//el ripple por debajo de las letras e iconos
             g2.setClip(shape);
+            
             //enderezo la traslacion para el ripple
             g2.translate(-MaterialShadow.OFFSET_LEFT, -MaterialShadow.OFFSET_TOP);
             paintRipple(g2);
