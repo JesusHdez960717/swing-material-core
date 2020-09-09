@@ -1,17 +1,10 @@
 package com.jhw.swing.material.components.button;
 
-import com.jhw.swing.material.effects.DefaultMaterialLineBorder;
-import com.jhw.swing.material.effects.MaterialLineBorder;
-import com.jhw.swing.material.effects.ColorFadeInto;
-import com.jhw.swing.material.effects.DefaultColorFadeInto;
-import com.jhw.swing.util.Utils;
-import com.jhw.swing.material.standards.MaterialFontRoboto;
-import com.jhw.swing.material.standards.MaterialShadow;
-import com.jhw.swing.material.standards.MaterialColors;
-import com.jhw.swing.material.effects.DefaultElevationEffect;
-import com.jhw.swing.material.effects.DefaultRippleEffect;
-import com.jhw.swing.material.effects.ElevationEffect;
-import com.jhw.swing.material.effects.RippleEffect;
+import com.jhw.swing.material.injection.Foreground_Force_Icon;
+import com.jhw.swing.material.injection.Background_Force_Foreground;
+import com.jhw.swing.material.effects.Iconable;
+import com.jhw.swing.material.standards.*;
+import com.jhw.swing.material.effects.*;
 import com.jhw.swing.util.interfaces.MaterialComponent;
 import java.awt.*;
 import java.awt.event.*;
@@ -20,19 +13,24 @@ import javax.swing.*;
 import javax.swing.plaf.basic.BasicButtonUI;
 import com.jhw.swing.util.MaterialDrawingUtils;
 import com.jhw.swing.util.DefaultMouseAdapterInfo;
-import com.jhw.swing.utils.icons.DerivableIcon;
 import com.jhw.swing.util.*;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
 /**
- * A Material Design button.
+ * A Material Design button. El orden en que setteen las cosas varia el
+ * comportamiento visual del boton. Por ejemplo, al set el background este
+ * ajusta el color del ripple a uno que contraste, asi como el foreground. Y el
+ * foreground por su parte, ajusta el color del icono el caso de que sea
+ * derivable.
  *
  * @see <a
  * href="https://www.google.com/design/spec/components/buttons.html">Buttons
  * (Google design guidelines)</a>
  */
-public class _MaterialButton extends JButton implements ColorFadeInto, MouseAdapterInfo, RippleEffect, ElevationEffect, MaterialLineBorder, PropertyChangeListener, MaterialComponent {
+@Background_Force_Foreground
+@Foreground_Force_Icon
+public class _MaterialButton extends JButton implements Iconable, ColorFadeInto, MouseAdapterInfo, RippleEffect, ElevationEffect, MaterialLineBorder, PropertyChangeListener, MaterialComponent {
 
     private final MouseAdapterInfo mouseInfo = DefaultMouseAdapterInfo.from(this);
 
@@ -197,19 +195,12 @@ public class _MaterialButton extends JButton implements ColorFadeInto, MouseAdap
     public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
         border.paintBorder(c, g, x, y, width, height);
     }
+//------------------------------------------------------------------------------
     //para si extiende uno con elevation round
 
     protected void setElevation(DefaultElevationEffect elevation) {
         this.elevation = elevation;
         repaint();
-    }
-
-    @Override
-    public void setIcon(Icon icon) {
-        if (icon instanceof DerivableIcon) {
-            icon = ((DerivableIcon) icon).deriveIcon(getForeground());
-        }
-        super.setIcon(icon);
     }
 
     /**
@@ -231,47 +222,6 @@ public class _MaterialButton extends JButton implements ColorFadeInto, MouseAdap
     public void setType(Type type) {
         this.type = type;
         setEnabled(true);//para que pinte la sombra
-        repaint();
-    }
-
-    /**
-     * Sets the Background color of this button.
-     * <p>
-     * Keep on mind that setting a background color in a Material component like
-     * this will also set the foreground color to either white or black and the
-     * ripple color to white or darker shade of the color, depending of how
-     * bright or dark is the chosen backgroundReal color. If you want to use a
-     * custom foreground color and ripple color, ensure the background color has
-     * been set first.
-     * <p>
-     * <b>NOTE:</b> It is up to the look and feel to honor this property, some
-     * may choose to ignore it. To avoid any conflicts, using the
-     * <a
-     * href="https://docs.oracle.com/javase/7/docs/api/javax/swing/plaf/metal/package-summary.html">
-     * Metal Look and Feel</a> is recommended.
-     */
-    @Override
-    public void setBackground(Color bg) {
-        super.setBackground(bg);
-        setForeground(Utils.getForegroundAccording(bg));
-    }
-
-    @Override
-    public void setForeground(Color fg) {
-        super.setForeground(fg);
-        setIcon(getIcon());
-    }
-
-    /**
-     * Set the button enable. Include changing the elevation and the curson
-     * according.
-     *
-     * @param b Boolean whit the enability.
-     */
-    @Override
-    public void setEnabled(boolean b) {
-        super.setEnabled(b);
-        super.setCursor(b ? getCursor() : Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
     }
 
     @Override

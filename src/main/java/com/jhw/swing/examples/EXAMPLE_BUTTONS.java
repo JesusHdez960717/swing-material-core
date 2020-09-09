@@ -14,6 +14,8 @@ import com.jhw.swing.material.standards.MaterialIcons;
 import com.jhw.swing.ui.MaterialLookAndFeel;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
@@ -34,9 +36,10 @@ public class EXAMPLE_BUTTONS extends javax.swing.JFrame {
         VerticalLayoutContainer.builder vlc = VerticalLayoutContainer.builder();
 
         _MaterialButton btnSimple = (_MaterialButton) MaterialButtonsFactory.buildButton();
-        btnSimple.setRippleColor(Color.yellow);
         btnSimple.setText("material button simple");
         btnSimple.setIcon(MaterialIcons.ACCESSIBILITY);
+        btnSimple.setBackground(Color.yellow);
+        btnSimple.setRippleColor(Color.pink);
         vlc.add(btnSimple);
 
         _buttonAddEdit addEdit = (_buttonAddEdit) MaterialButtonsFactory.buildAddEdit();
@@ -57,7 +60,19 @@ public class EXAMPLE_BUTTONS extends javax.swing.JFrame {
         link.setText("hyperlink");
         vlc.add(link);
 
-        vlc.add(MaterialButtonsFactory.buildIconTranspRotate());
+        _MaterialButtonIconTranspRotate rot = (_MaterialButtonIconTranspRotate) MaterialButtonsFactory.buildIconTranspRotate();
+        rot.addActionListener(new ActionListener() {
+            boolean a = false;
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                rot.setIconRotate(a ? MaterialIcons.ARROW_DROP_LEFT : MaterialIcons.ARROW_DROP_RIGHT);
+                a = !a;
+            }
+        });
+        rot.doClick();
+
+        vlc.add(rot);
         vlc.add(MaterialButtonsFactory.buildIconTransparent());
 
         _MaterialButtonPopup popup = (_MaterialButtonPopup) MaterialButtonsFactory.buildPopup();

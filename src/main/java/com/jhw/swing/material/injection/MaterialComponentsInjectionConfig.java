@@ -7,6 +7,11 @@ import javax.swing.JComponent;
 
 public class MaterialComponentsInjectionConfig extends AbstractModule {
 
+    public static final MaterialComponentsInjectionConfig INSTANCE = new MaterialComponentsInjectionConfig();
+
+    protected MaterialComponentsInjectionConfig() {
+    }
+
     @Override
     protected void configure() {
         bindInterceptor(

@@ -1,5 +1,7 @@
 package com.jhw.swing.material.components.button;
 
+import com.jhw.swing.material.injection.Background_Force_Foreground;
+import com.jhw.swing.material.injection.Foreground_Force_Icon;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.concurrent.TimeUnit;
@@ -15,6 +17,8 @@ import com.jhw.swing.util.SafePropertySetter;
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
+@Background_Force_Foreground
+@Foreground_Force_Icon
 public class _MaterialButtonIconTranspRotate extends _MaterialButtonIconTransparent {
 
     private final int DURATION = 250;
@@ -54,11 +58,6 @@ public class _MaterialButtonIconTranspRotate extends _MaterialButtonIconTranspar
                     }
                 }).build();
         anim.start();
-    }
-
-    @Override
-    public void setIcon(Icon icon) {
-        super.setIcon(icon);
     }
 
     private void setIconSuper(Icon newIcon) {

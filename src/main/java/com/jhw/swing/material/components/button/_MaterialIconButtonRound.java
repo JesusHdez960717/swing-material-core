@@ -1,18 +1,15 @@
 package com.jhw.swing.material.components.button;
 
-import com.jhw.swing.material.components.button._MaterialButton;
 import java.awt.*;
-import java.awt.geom.RectangularShape;
-import java.awt.geom.RoundRectangle2D;
 import com.jhw.swing.util.MaterialDrawingUtils;
 import com.jhw.swing.util.interfaces.MaterialComponent;
 import com.jhw.swing.material.standards.MaterialShadow;
-import com.jhw.swing.util.Utils;
 import com.jhw.swing.material.effects.DefaultElevationEffect;
 import com.jhw.swing.material.effects.DefaultRippleEffect;
 import com.jhw.swing.material.effects.RippleEffect;
+import com.jhw.swing.material.injection.Background_Force_Foreground;
+import com.jhw.swing.material.injection.Foreground_Force_Icon;
 import com.jhw.swing.material.standards.MaterialIcons;
-import javax.swing.Icon;
 import javax.swing.JComponent;
 import javax.swing.plaf.basic.BasicButtonUI;
 
@@ -24,11 +21,9 @@ import javax.swing.plaf.basic.BasicButtonUI;
  * (Google design guidelines)</a>
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
+@Background_Force_Foreground
+@Foreground_Force_Icon
 public class _MaterialIconButtonRound extends _MaterialButton implements MaterialComponent {
-
-    public static _MaterialIconButtonRound from(Icon icon) {
-        return new _MaterialIconButtonRound(icon);
-    }
 
     public static _MaterialIconButtonRound from() {
         return new _MaterialIconButtonRound();
@@ -36,11 +31,6 @@ public class _MaterialIconButtonRound extends _MaterialButton implements Materia
     private final RippleEffect ripple = DefaultRippleEffect.applyFixedTo(this);
 
     private boolean circle = true;
-
-    protected _MaterialIconButtonRound(Icon icon) {
-        this();
-        this.setIcon(icon);
-    }
 
     /**
      * Creates a new button.
@@ -124,11 +114,11 @@ public class _MaterialIconButtonRound extends _MaterialButton implements Materia
         //ripple
         if (this.isEnabled()) {//el ripple por debajo de las letras e iconos
             g2.setClip(shape);
-            
+
             //enderezo la traslacion para el ripple
             g2.translate(-MaterialShadow.OFFSET_LEFT, -MaterialShadow.OFFSET_TOP);
             paintRipple(g2);
-            
+
             //la vuelvo a correr para el icon
             g2.translate(MaterialShadow.OFFSET_LEFT, MaterialShadow.OFFSET_TOP);
 

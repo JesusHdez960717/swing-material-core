@@ -2,29 +2,26 @@ package com.jhw.swing.material.components.button;
 
 import com.jhw.swing.material.standards.MaterialColors;
 import java.awt.Color;
-import java.awt.FontMetrics;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
 import javax.swing.JButton;
-import javax.swing.SwingConstants;
 import com.jhw.personalization.core.domain.Personalization;
 import com.jhw.personalization.services.PersonalizationHandler;
-import com.jhw.swing.util.MaterialDrawingUtils;
-import com.jhw.swing.util.Utils;
-import com.jhw.swing.utils.icons.DerivableIcon;
+import com.jhw.swing.material.effects.Iconable;
+import com.jhw.swing.material.injection.Background_Force_Foreground;
+import com.jhw.swing.material.injection.Foreground_Force_Icon;
 import com.jhw.swing.util.interfaces.MaterialComponent;
 import com.jhw.swing.material.standards.MaterialFontRoboto;
 import com.jhw.swing.material.standards.MaterialIcons;
 import java.awt.Cursor;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import javax.swing.Icon;
 
 /**
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-public class _MaterialButtonHiperlink extends JButton implements MaterialComponent {
+@Background_Force_Foreground
+@Foreground_Force_Icon
+public class _MaterialButtonHiperlink extends JButton implements Iconable, MaterialComponent {
 
     public static _MaterialButtonHiperlink from() {
         return new _MaterialButtonHiperlink();
@@ -32,11 +29,6 @@ public class _MaterialButtonHiperlink extends JButton implements MaterialCompone
 
     private Color mouseEnteredColor = MaterialColors.BLUEA_700;
     private Color mouseExitedColor = MaterialColors.GREENA_700;
-
-    protected _MaterialButtonHiperlink(String text) {
-        this();
-        this.setText(text);
-    }
 
     public _MaterialButtonHiperlink() {
         mouseExitedColor = (PersonalizationHandler.getColor(Personalization.KEY_COLOR_BUTTON_ADD));
@@ -75,25 +67,6 @@ public class _MaterialButtonHiperlink extends JButton implements MaterialCompone
         this.mouseExitedColor = mouseExitedColor;
     }
 
-    @Override
-    public void setIcon(Icon icon) {
-        if (icon instanceof DerivableIcon) {
-            icon = ((DerivableIcon) icon).deriveIcon(getForeground());
-        }
-        super.setIcon(icon);
-    }
-
-    @Override
-    public void setBackground(Color bg) {
-        super.setBackground(bg);
-        setForeground(Utils.getForegroundAccording(bg));
-    }
-
-    @Override
-    public void setForeground(Color fg) {
-        super.setForeground(fg);
-        setIcon(getIcon());
-    }
     /*
     @Override
     protected void paintComponent(Graphics g) {

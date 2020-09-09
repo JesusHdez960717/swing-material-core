@@ -135,7 +135,7 @@ public class UpPanel extends MapeableContainer {
     private class CompanyButton extends _MaterialButtonHiperlink {
 
         public CompanyButton() {
-            super("");
+            setText("");
             float h = HEIGHT_FINAL;
             this.setFont(MaterialFontRoboto.MEDIUM.deriveFont(h * 0.65f));
             this.setIconTextGap(8);

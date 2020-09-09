@@ -7,30 +7,24 @@ package com.jhw.swing.material.components.button;
 
 import com.jhw.personalization.core.domain.Personalization;
 import com.jhw.personalization.services.PersonalizationHandler;
+import com.jhw.swing.material.injection.Background_Force_Foreground;
+import com.jhw.swing.material.injection.Foreground_Force_Icon;
 import com.jhw.swing.material.standards.MaterialColors;
 import com.jhw.swing.material.standards.MaterialIcons;
 import com.jhw.swing.material.standards.MaterialShadow;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import javax.swing.JPopupMenu;
 
 /**
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
+@Background_Force_Foreground
+@Foreground_Force_Icon
 public class _MaterialButtonPopup extends _MaterialButton {
 
     public static _MaterialButtonPopup from() {
         return new _MaterialButtonPopup();
-    }
-
-    public static _MaterialButtonPopup from(JPopupMenu menu) {
-        return new _MaterialButtonPopup(menu);
-    }
-
-    protected _MaterialButtonPopup(JPopupMenu menu) {
-        this();
-        this.setComponentPopupMenu(menu);
     }
 
     protected _MaterialButtonPopup() {

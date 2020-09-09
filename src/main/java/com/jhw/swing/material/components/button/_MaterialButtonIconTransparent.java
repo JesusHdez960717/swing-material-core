@@ -2,18 +2,21 @@ package com.jhw.swing.material.components.button;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.MouseEvent;
 import com.jhw.swing.util.MaterialDrawingUtils;
 import com.jhw.swing.util.interfaces.MaterialComponent;
 import com.jhw.swing.material.effects.DefaultRippleEffect;
+import com.jhw.swing.material.effects.Iconable;
 import com.jhw.swing.material.effects.RippleEffect;
+import com.jhw.swing.material.injection.Background_Force_Foreground;
+import com.jhw.swing.material.injection.Foreground_Force_Icon;
 import com.jhw.swing.material.standards.MaterialIcons;
-import com.jhw.swing.utils.icons.DerivableIcon;
 import javax.swing.plaf.basic.BasicButtonUI;
 
-public class _MaterialButtonIconTransparent extends JButton implements RippleEffect, MaterialComponent {
+@Background_Force_Foreground
+@Foreground_Force_Icon
+public class _MaterialButtonIconTransparent extends JButton implements Iconable, RippleEffect, MaterialComponent {
 
     public static final String KEY_ACTION_POPUP = "popup";
 
@@ -21,15 +24,6 @@ public class _MaterialButtonIconTransparent extends JButton implements RippleEff
 
     public static _MaterialButtonIconTransparent from() {
         return new _MaterialButtonIconTransparent();
-    }
-
-    public static _MaterialButtonIconTransparent from(ImageIcon icon) {
-        return new _MaterialButtonIconTransparent(icon);
-    }
-
-    protected _MaterialButtonIconTransparent(ImageIcon icon) {
-        this();
-        setIcon(icon);
     }
 
     /**
@@ -102,20 +96,6 @@ public class _MaterialButtonIconTransparent extends JButton implements RippleEff
     }
 
     @Override
-    public void setForeground(Color fg) {
-        super.setForeground(fg);
-        setIcon(getIcon());
-    }
-
-    @Override
-    public void setIcon(Icon icon) {
-        if (icon instanceof DerivableIcon) {
-            icon = ((DerivableIcon) icon).deriveIcon(getForeground());
-        }
-        super.setIcon(icon);
-    }
-
-    @Override
     protected void processFocusEvent(FocusEvent focusEvent) {
         super.processFocusEvent(focusEvent);
         firePropertyChange("processFocusEvent", null, null);
@@ -159,14 +139,4 @@ public class _MaterialButtonIconTransparent extends JButton implements RippleEff
         //intentionally left blank
     }
 
-    @Override
-    public _MaterialButtonIconTransparent clone() {
-        _MaterialButtonIconTransparent other = new _MaterialButtonIconTransparent();
-        for (ActionListener al : this.getActionListeners()) {
-            other.addActionListener(al);
-        }
-        other.setIcon(this.getIcon());
-        other.setRippleColor(this.getRippleColor());
-        return other;
-    }
 }
