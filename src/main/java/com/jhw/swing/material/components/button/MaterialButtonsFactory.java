@@ -55,8 +55,8 @@ public class MaterialButtonsFactory {
     }
     //----------------------------------------
 
-    public static JButton buildHyperlynk() {
-        return _MaterialButtonHiperlynk.from();
+    public static JButton buildHyperlink() {
+        return _MaterialButtonHiperlink.from();
     }
 
     public static JButton buildRound() {

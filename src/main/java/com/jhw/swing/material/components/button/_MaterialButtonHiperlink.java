@@ -24,19 +24,27 @@ import javax.swing.Icon;
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-public class _MaterialButtonHiperlynk extends JButton implements MaterialComponent {
+public class _MaterialButtonHiperlink extends JButton implements MaterialComponent {
 
-    public static _MaterialButtonHiperlynk from() {
-        return new _MaterialButtonHiperlynk();
+    public static _MaterialButtonHiperlink from() {
+        return new _MaterialButtonHiperlink();
     }
-    private Color mouseEnteredColor = MaterialColors.BLUEA_700;
-    private Color mouseExitedColor = MaterialColors.BLUEA_700;
 
-    protected _MaterialButtonHiperlynk(String text) {
+    private Color mouseEnteredColor = MaterialColors.BLUEA_700;
+    private Color mouseExitedColor = MaterialColors.GREENA_700;
+
+    protected _MaterialButtonHiperlink(String text) {
         this();
-        this.setIcon(null);
         this.setText(text);
-        this.setForeground(MaterialColors.BLACK);
+    }
+
+    public _MaterialButtonHiperlink() {
+        mouseExitedColor = (PersonalizationHandler.getColor(Personalization.KEY_COLOR_BUTTON_ADD));
+        this.setFont(MaterialFontRoboto.MEDIUM.deriveFont(16f));
+        this.setIcon(MaterialIcons.ADD_CIRCLE_OUTLINE);
+        this.setCursor(Cursor.getPredefinedCursor(java.awt.Cursor.HAND_CURSOR));
+        this.setOpaque(false);
+
         this.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
@@ -48,14 +56,7 @@ public class _MaterialButtonHiperlynk extends JButton implements MaterialCompone
                 setForeground(mouseExitedColor);
             }
         });
-    }
-
-    public _MaterialButtonHiperlynk() {
-        this.setForeground(PersonalizationHandler.getColor(Personalization.KEY_COLOR_BUTTON_ADD));
-        this.setFont(MaterialFontRoboto.MEDIUM.deriveFont(16f));
-        this.setIcon(MaterialIcons.ADD_CIRCLE_OUTLINE);
-        this.setCursor(Cursor.getPredefinedCursor(java.awt.Cursor.HAND_CURSOR));
-        this.setOpaque(false);
+        this.setForeground(mouseExitedColor);
     }
 
     public Color getMouseEnteredColor() {

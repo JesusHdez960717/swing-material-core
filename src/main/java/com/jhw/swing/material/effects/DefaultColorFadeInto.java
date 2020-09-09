@@ -103,6 +103,7 @@ public class DefaultColorFadeInto<T extends JComponent & MouseAdapterInfo> imple
         switch (evt.getPropertyName()) {
             case "background":
                 this.backgroundColor = (Color) evt.getNewValue();
+                this.accentColor = Utils.darken(backgroundColor);
                 updateColorFadeInto();
                 break;
             case "processMouseEvent":

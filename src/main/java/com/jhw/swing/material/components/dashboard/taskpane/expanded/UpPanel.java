@@ -4,7 +4,7 @@ import com.clean.swing.app.dashboard.DashboardConstants;
 import com.clean.swing.app.dashboard.MapeableContainer;
 import com.jhw.swing.material.components.button.MaterialButtonsFactory;
 import com.jhw.swing.material.components.button._MaterialButtonIconTransparent;
-import com.jhw.swing.material.components.button._MaterialButtonHiperlynk;
+import com.jhw.swing.material.components.button._MaterialButtonHiperlink;
 import com.jhw.swing.material.components.container.panel._PanelGradient;
 import com.jhw.swing.material.components.container.panel._PanelTransparent;
 import com.jhw.swing.material.components.dashboard.taskpane.DashBoardTaskPane;
@@ -132,7 +132,7 @@ public class UpPanel extends MapeableContainer {
         return background;
     }
 
-    private class CompanyButton extends _MaterialButtonHiperlynk {
+    private class CompanyButton extends _MaterialButtonHiperlink {
 
         public CompanyButton() {
             super("");
