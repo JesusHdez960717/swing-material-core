@@ -9,6 +9,8 @@ import com.jhw.swing.util.interfaces.MaterialComponent;
 import com.jhw.swing.material.standards.MaterialShadow;
 import com.jhw.swing.util.Utils;
 import com.jhw.swing.material.effects.DefaultElevationEffect;
+import com.jhw.swing.material.effects.DefaultRippleEffect;
+import com.jhw.swing.material.effects.RippleEffect;
 import com.jhw.swing.material.standards.MaterialIcons;
 import javax.swing.Icon;
 import javax.swing.JComponent;
@@ -31,6 +33,8 @@ public class _MaterialIconButtonRound extends _MaterialButton implements Materia
     public static _MaterialIconButtonRound from() {
         return new _MaterialIconButtonRound();
     }
+    private final RippleEffect ripple = DefaultRippleEffect.applyFixedTo(this);
+
     private boolean circle = true;
 
     protected _MaterialIconButtonRound(Icon icon) {
@@ -71,6 +75,31 @@ public class _MaterialIconButtonRound extends _MaterialButton implements Materia
     }
 
     @Override
+    public Color getRippleColor() {
+        return ripple.getRippleColor();
+    }
+
+    @Override
+    public void setRippleColor(Color color) {
+        ripple.setRippleColor(color);
+    }
+
+    @Override
+    public void paintRipple(Graphics2D g2) {
+        ripple.paintRipple(g2);
+    }
+
+    @Override
+    public boolean getPaintRipple() {
+        return ripple.getPaintRipple();
+    }
+
+    @Override
+    public void setPaintRipple(boolean paintRipple) {
+        ripple.setPaintRipple(paintRipple);
+    }
+
+    @Override
     protected void paintComponent(Graphics g) {
         Graphics2D g2 = MaterialDrawingUtils.getAliasedGraphics(g);
 
@@ -95,7 +124,13 @@ public class _MaterialIconButtonRound extends _MaterialButton implements Materia
         //ripple
         if (this.isEnabled()) {//el ripple por debajo de las letras e iconos
             g2.setClip(shape);
+            //enderezo la traslacion para el ripple
+            g2.translate(-MaterialShadow.OFFSET_LEFT, -MaterialShadow.OFFSET_TOP);
             paintRipple(g2);
+            
+            //la vuelvo a correr para el icon
+            g2.translate(MaterialShadow.OFFSET_LEFT, MaterialShadow.OFFSET_TOP);
+
         }
 
         if (getIcon() != null) {
