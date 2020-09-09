@@ -10,6 +10,7 @@ import com.jhw.personalization.services.PersonalizationHandler;
 import com.jhw.swing.material.components.button.MaterialButtonsFactory;
 import com.jhw.swing.material.components.button._MaterialButtonIconTransparent;
 import com.jhw.swing.material.components.container.panel._PanelTransparent;
+import com.jhw.swing.material.effects.RippleEffect;
 import com.jhw.swing.material.standards.MaterialColors;
 import com.jhw.swing.material.standards.MaterialIcons;
 import com.jhw.swing.util.PersonalizationMaterial;
@@ -49,7 +50,7 @@ public class _MaterialDatePickerIcon extends _PanelTransparent implements Bindab
         datePicker = new _MaterialDatePicker();
 
         buttonIcon = MaterialButtonsFactory.buildIconTransparent();
-        ((_MaterialButtonIconTransparent) buttonIcon).setPaintRipple(false);
+        ((RippleEffect) buttonIcon).setPaintRipple(false);
 
         this.setLayout(new BorderLayout());
         this.add(datePicker, BorderLayout.CENTER);

@@ -180,6 +180,7 @@ public class _MaterialButton extends JButton implements ColorFadeInto, MouseAdap
     @Override
     public void setBorderRadius(int borderRadius) {
         this.border.setBorderRadius(borderRadius);
+        this.elevation.setBorderRadius(borderRadius);
     }
 
     @Override
@@ -196,7 +197,6 @@ public class _MaterialButton extends JButton implements ColorFadeInto, MouseAdap
     public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
         border.paintBorder(c, g, x, y, width, height);
     }
-//-----------------LINE_BORDER------------------------
     //para si extiende uno con elevation round
 
     protected void setElevation(DefaultElevationEffect elevation) {

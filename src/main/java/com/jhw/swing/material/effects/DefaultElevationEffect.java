@@ -26,8 +26,6 @@ public class DefaultElevationEffect<T extends JComponent & ElevationEffect> impl
     private Animator animator;
     protected final SafePropertySetter.Property<Double> level;
 
-    protected double targetLevel = 0;
-
     protected final MaterialShadow shadowFast = new MaterialShadow();
     protected int borderRadius = 2;
     protected float opacity = 1.0f;
@@ -35,8 +33,7 @@ public class DefaultElevationEffect<T extends JComponent & ElevationEffect> impl
     private DefaultElevationEffect(T component, double level) {
         this.target = component;
 
-        this.targetLevel = level;
-        this.level = SafePropertySetter.animatableProperty(target, targetLevel);
+        this.level = SafePropertySetter.animatableProperty(target, level);
 
         target.addPropertyChangeListener(this);
     }
@@ -48,7 +45,7 @@ public class DefaultElevationEffect<T extends JComponent & ElevationEffect> impl
      */
     @Override
     public double getLevel() {
-        return targetLevel;
+        return this.level.getValue();
     }
 
     /**
@@ -60,11 +57,11 @@ public class DefaultElevationEffect<T extends JComponent & ElevationEffect> impl
         if (animator != null) {
             animator.stop();
         }
-        this.targetLevel = level;
-        this.level.setValue((double) targetLevel);
         if (target.isShowing()) {
-            if (PersonalizationHandler.getBoolean(Personalization.KEY_USE_ANIMATIONS) && level != targetLevel) {
+            if (PersonalizationHandler.getBoolean(Personalization.KEY_USE_ANIMATIONS)) {
                 setElevationAnimated(level);
+            } else {
+                this.level.setValue(level);
             }
         }
     }
@@ -76,6 +73,7 @@ public class DefaultElevationEffect<T extends JComponent & ElevationEffect> impl
      *
      * @return the current border radius casted on the shadow, in pixels.
      */
+    @Override
     public int getBorderRadius() {
         return borderRadius;
     }
@@ -88,8 +86,14 @@ public class DefaultElevationEffect<T extends JComponent & ElevationEffect> impl
      * @param borderRadius the new border radius casted on the shadow, in
      * pixels.
      */
+    @Override
     public void setBorderRadius(int borderRadius) {
         this.borderRadius = borderRadius;
+    }
+
+    @Override
+    public double getElevation() {
+        return target.getElevation();
     }
 
     public float getOpacity() {
@@ -165,18 +169,18 @@ public class DefaultElevationEffect<T extends JComponent & ElevationEffect> impl
     }
 
     private void setElevationAnimated(double level) {
-        animator = new Animator.Builder(Utils.getSwingTimerTimingSource())
-                .setDuration(DURATION, TimeUnit.MILLISECONDS)
-                .setEndBehavior(Animator.EndBehavior.HOLD)
-                .setInterpolator(new SplineInterpolator(0.55, 0, 0.1, 1))
-                .addTarget(SafePropertySetter.getTarget(this.level, this.level.getValue(), (double) level))
-                .build();
-        animator.start();
-    }
-
-    @Override
-    public double getElevation() {
-        return target.getElevation();
+        if (getLevel() != level) {
+            if (animator != null) {
+                animator.stop();
+            }
+            animator = new Animator.Builder(Utils.getSwingTimerTimingSource())
+                    .setDuration(DURATION, TimeUnit.MILLISECONDS)
+                    .setEndBehavior(Animator.EndBehavior.HOLD)
+                    .setInterpolator(new SplineInterpolator(0.55, 0, 0.1, 1))
+                    .addTarget(SafePropertySetter.getTarget(this.level, getLevel(), (double) level))
+                    .build();
+            animator.start();
+        }
     }
 
     @Override

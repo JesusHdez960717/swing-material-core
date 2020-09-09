@@ -10,6 +10,7 @@ import com.jhw.personalization.services.PersonalizationHandler;
 import com.jhw.swing.material.components.button.MaterialButtonsFactory;
 import com.jhw.swing.material.components.button._MaterialButtonIconTransparent;
 import com.jhw.swing.material.components.container.panel._PanelTransparent;
+import com.jhw.swing.material.effects.RippleEffect;
 import com.jhw.swing.material.standards.MaterialColors;
 import com.jhw.swing.material.standards.MaterialIcons;
 import com.jhw.swing.material.standards.MaterialShadow;
@@ -42,7 +43,7 @@ public class _MaterialFileChooserIcon extends _PanelTransparent implements Binda
         fileChooser = new _MaterialFileChooser();
 
         buttonIcon = MaterialButtonsFactory.buildIconTransparent();
-        ((_MaterialButtonIconTransparent) buttonIcon).setPaintRipple(false);
+        ((RippleEffect) buttonIcon).setPaintRipple(false);
 
         buttonClear = MaterialButtonsFactory.buildIconTransparent();
         buttonClear.setIcon(MaterialIcons.CLEAR);

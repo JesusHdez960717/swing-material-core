@@ -45,8 +45,10 @@ public class DefaultMaterialLineBorder extends LineBorder implements MaterialLin
 
     @Override
     public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
+        if (getBorderThickness() == 0) {
+            return;
+        }
         Graphics2D g2 = MaterialDrawingUtils.getAliasedGraphics(g);
-
         g2.setStroke(getBorderStroke());
         g2.setColor(color);
         g2.draw(new RoundRectangle2D.Float(x, y, width - getBorderThickness(), height - getBorderThickness(), borderRadius * 2, borderRadius * 2));

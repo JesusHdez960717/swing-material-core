@@ -41,6 +41,8 @@ public class _MaterialPanel extends JPanel implements MaterialComponent, Elevati
 
     private final MaterialLineBorder border = DefaultMaterialLineBorder.builder().borderRadius(5).listeners(this).build();
 
+    private double elevationLevel = MaterialShadow.ELEVATION_DEFAULT;
+
     /**
      * Creates a new {@code MaterialPanel}. These panels cast a shadow below
      * them, although technically it is painted inside its borders. If you don't
@@ -60,12 +62,16 @@ public class _MaterialPanel extends JPanel implements MaterialComponent, Elevati
 
     @Override
     public double getElevation() {
-        return MaterialShadow.ELEVATION_DEFAULT;
+        return elevationLevel;
     }
 
     @Override
     public void paintElevation(Graphics2D g2) {
         elevation.paintElevation(g2);
+    }
+
+    public void setElevationLevel(double elevationLevel) {
+        this.elevationLevel = elevationLevel;
     }
 //-----------------LINE_BORDER------------------------
 
@@ -97,6 +103,7 @@ public class _MaterialPanel extends JPanel implements MaterialComponent, Elevati
     @Override
     public void setBorderRadius(int borderRadius) {
         this.border.setBorderRadius(borderRadius);
+        this.elevation.setBorderRadius(borderRadius);
     }
 
     @Override

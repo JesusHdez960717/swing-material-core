@@ -14,11 +14,7 @@ import java.awt.Stroke;
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-public interface MaterialLineBorder {
-
-    public int getBorderRadius();
-
-    public void setBorderRadius(int borderRadius);
+public interface MaterialLineBorder extends BorderRadius {
 
     public float getBorderThickness();
 

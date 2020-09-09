@@ -12,6 +12,7 @@ import com.jhw.swing.material.components.button._MaterialButton;
 import com.jhw.swing.material.components.button._MaterialButtonIconTransparent;
 import com.jhw.swing.material.components.dashboard.taskpane.DashBoardTaskPane;
 import com.jhw.swing.material.components.labels._MaterialLabel;
+import com.jhw.swing.material.effects.RippleEffect;
 import com.jhw.swing.material.standards.MaterialColors;
 import com.jhw.swing.ui.componentsui.panel.MaterialPanelUI;
 import com.jhw.swing.util.Utils;
@@ -296,8 +297,8 @@ public class CollapseMenu extends JPanel {
         jPanelSubActions.setUI(new MaterialPanelUI());//sobreescribir el ui para que coja los colores
 
         jButtonNombre.setBackground(MaterialColors.TRANSPARENT);
-        ((_MaterialButton) jButtonNombre).setPaintRipple(false);
-        ((_MaterialButtonIconTransparent) jButtonIcono).setPaintRipple(false);
+        ((RippleEffect) jButtonNombre).setPaintRipple(false);
+        ((RippleEffect) jButtonIcono).setPaintRipple(false);
 
         jPanelCollapsible.setLayout(new BorderLayout());
         jPanelCollapsible.add(jPanelSubActions, BorderLayout.CENTER);

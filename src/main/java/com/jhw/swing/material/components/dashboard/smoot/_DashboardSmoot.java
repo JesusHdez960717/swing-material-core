@@ -16,6 +16,7 @@ import com.jhw.personalization.core.domain.Personalization;
 import com.jhw.personalization.services.PersonalizationHandler;
 import com.jhw.swing.material.components.button.MaterialButtonsFactory;
 import com.jhw.swing.material.components.button._MaterialButtonIconTransparent;
+import com.jhw.swing.material.effects.RippleEffect;
 import com.jhw.swing.util.Utils;
 import com.jhw.swing.util.enums.GradientEnum;
 import com.jhw.utils.interfaces.Update;
@@ -71,7 +72,7 @@ public class _DashboardSmoot extends javax.swing.JPanel {
 
         buttonCollapse.setText("_MaterialIconButtonTranspRect1");
         buttonCollapse.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        ((_MaterialButtonIconTransparent) buttonCollapse).setPaintRipple(false);
+        ((RippleEffect) buttonCollapse).setPaintRipple(false);
 
         javax.swing.GroupLayout panelButtonsLayout = new javax.swing.GroupLayout(panelButtons);
         panelButtons.setLayout(panelButtonsLayout);
@@ -424,7 +425,7 @@ public class _DashboardSmoot extends javax.swing.JPanel {
         panelButtons.setSecundaryColor(MaterialColors.BLUEGREY_100);
 
         panelComponentToDual.setComponent(dual);
-        ((_MaterialButtonIconTransparent) buttonCollapse).setPaintRipple(false);
+        ((RippleEffect) buttonCollapse).setPaintRipple(false);
     }
 
     private void collapse(boolean in) {

@@ -9,6 +9,7 @@ import com.jhw.personalization.services.PersonalizationHandler;
 import com.jhw.swing.material.components.button.MaterialButtonsFactory;
 import com.jhw.swing.material.components.button._MaterialButtonIconTransparent;
 import com.jhw.swing.material.components.container.panel._PanelTransparent;
+import com.jhw.swing.material.effects.RippleEffect;
 import com.jhw.swing.material.standards.MaterialColors;
 import com.jhw.swing.util.PersonalizationMaterial;
 import com.jhw.swing.util.interfaces.BindableComponent;
@@ -50,7 +51,7 @@ public class _MaterialTextFieldIcon<T> extends _PanelTransparent implements Bind
 
     private void initComponents() {
         buttonIcon = MaterialButtonsFactory.buildIconTransparent();
-        ((_MaterialButtonIconTransparent) buttonIcon).setPaintRipple(false);
+        ((RippleEffect) buttonIcon).setPaintRipple(false);
 
         this.setLayout(new BorderLayout());
         this.add(textField, BorderLayout.CENTER);

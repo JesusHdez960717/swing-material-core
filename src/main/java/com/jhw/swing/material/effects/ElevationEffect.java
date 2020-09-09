@@ -11,15 +11,20 @@ import java.awt.Graphics2D;
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-public interface ElevationEffect {
+public interface ElevationEffect extends BorderRadius {
+
+    /**
+     * Get the current elevation (in case of animated it variate)
+     *
+     * @return
+     */
+    public double getLevel();
 
     /**
      * Method to override to change the different elevations
      *
      * @return
      */
-    public double getLevel();
-
     public double getElevation();
 
     public void paintElevation(Graphics2D g2);
