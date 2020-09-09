@@ -13,7 +13,7 @@ import com.jhw.swing.material.standards.MaterialIcons;
 import com.jhw.swing.utils.icons.DerivableIcon;
 import javax.swing.plaf.basic.BasicButtonUI;
 
-public class _MaterialButtonIconTransparent extends JButton implements MaterialComponent {
+public class _MaterialButtonIconTransparent extends JButton implements RippleEffect, MaterialComponent {
 
     public static final String KEY_ACTION_POPUP = "popup";
 
@@ -66,10 +66,17 @@ public class _MaterialButtonIconTransparent extends JButton implements MaterialC
         this.setComponentPopupMenu((JPopupMenu) a.getValue(KEY_ACTION_POPUP));
     }
 
+    @Override
+    public void paintRipple(Graphics2D g2) {
+        ripple.paintRipple(g2);
+    }
+
+    @Override
     public boolean getPaintRipple() {
         return ripple.getPaintRipple();
     }
 
+    @Override
     public void setPaintRipple(boolean paintRipple) {
         this.ripple.setPaintRipple(paintRipple);
     }
@@ -79,6 +86,7 @@ public class _MaterialButtonIconTransparent extends JButton implements MaterialC
      *
      * @return the ripple color
      */
+    @Override
     public Color getRippleColor() {
         return ripple.getRippleColor();
     }
@@ -88,6 +96,7 @@ public class _MaterialButtonIconTransparent extends JButton implements MaterialC
      *
      * @param rippleColor the ripple color
      */
+    @Override
     public void setRippleColor(Color rippleColor) {
         this.ripple.setRippleColor(rippleColor);
     }
@@ -139,7 +148,7 @@ public class _MaterialButtonIconTransparent extends JButton implements MaterialC
         if (isEnabled()) {
             ripple.paintRipple(g2);
         }
-        
+
         if (getIcon() != null) {
             getIcon().paintIcon(this, g2, xIcon, this.getSize().height / 2 - getIcon().getIconHeight() / 2);
         }
