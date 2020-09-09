@@ -2,8 +2,9 @@ package com.jhw.swing.material.components.dashboard.taskpane.expanded;
 
 import com.clean.swing.app.dashboard.DashboardConstants;
 import com.clean.swing.app.dashboard.MapeableContainer;
+import com.jhw.swing.material.components.button.MaterialButtonsFactory;
 import com.jhw.swing.material.components.button._MaterialButtonIconTransparent;
-import com.jhw.swing.material.components.button._MaterialButtonTransparent;
+import com.jhw.swing.material.components.button._MaterialButtonHiperlynk;
 import com.jhw.swing.material.components.container.panel._PanelGradient;
 import com.jhw.swing.material.components.container.panel._PanelTransparent;
 import com.jhw.swing.material.components.dashboard.taskpane.DashBoardTaskPane;
@@ -111,7 +112,7 @@ public class UpPanel extends MapeableContainer {
     }
 
     public void addComponentGeneral(Action action) {
-        _MaterialButtonIconTransparent component = new _MaterialButtonIconTransparent();
+        JButton component = MaterialButtonsFactory.buildIconTransparent();
         component.setAction(action);
 
         if (action.getValue(Action.SMALL_ICON) instanceof DerivableIcon) {
@@ -131,7 +132,7 @@ public class UpPanel extends MapeableContainer {
         return background;
     }
 
-    private class CompanyButton extends _MaterialButtonTransparent {
+    private class CompanyButton extends _MaterialButtonHiperlynk {
 
         public CompanyButton() {
             super("");

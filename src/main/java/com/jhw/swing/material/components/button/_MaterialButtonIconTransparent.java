@@ -8,29 +8,26 @@ import java.awt.event.MouseEvent;
 import com.jhw.swing.util.MaterialDrawingUtils;
 import com.jhw.swing.util.interfaces.MaterialComponent;
 import com.jhw.swing.material.effects.DefaultRippleEffect;
-import com.jhw.swing.material.standards.MaterialColors;
+import com.jhw.swing.material.effects.RippleEffect;
 import com.jhw.swing.material.standards.MaterialIcons;
 import com.jhw.swing.utils.icons.DerivableIcon;
 import javax.swing.plaf.basic.BasicButtonUI;
 
-/**
- * A Material Design icon button. A transparent square button qith a icon in the
- * middle. Don't include border or elevation because it's transparent.
- *
- * @see <a
- * href="https://www.google.com/design/spec/components/buttons.html">Buttons
- * (Google design guidelines)</a>
- * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
- */
 public class _MaterialButtonIconTransparent extends JButton implements MaterialComponent {
 
     public static final String KEY_ACTION_POPUP = "popup";
 
-    private final DefaultRippleEffect ripple = DefaultRippleEffect.applyFixedTo(this);
-    private Color rippleColor = MaterialColors.WHITE;
-    private boolean paintRipple = true;
+    private final RippleEffect ripple = DefaultRippleEffect.applyFixedTo(this);
 
-    public _MaterialButtonIconTransparent(ImageIcon icon) {
+    public static _MaterialButtonIconTransparent from() {
+        return new _MaterialButtonIconTransparent();
+    }
+
+    public static _MaterialButtonIconTransparent from(ImageIcon icon) {
+        return new _MaterialButtonIconTransparent(icon);
+    }
+
+    protected _MaterialButtonIconTransparent(ImageIcon icon) {
         this();
         setIcon(icon);
     }
@@ -38,7 +35,7 @@ public class _MaterialButtonIconTransparent extends JButton implements MaterialC
     /**
      * Creates a new button.
      */
-    public _MaterialButtonIconTransparent() {
+    protected _MaterialButtonIconTransparent() {
         this.setIcon(MaterialIcons.COMPUTER);
         this.setPreferredSize(new Dimension(2 * this.getIcon().getIconWidth(), 2 * this.getIcon().getIconHeight()));
         this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -64,17 +61,17 @@ public class _MaterialButtonIconTransparent extends JButton implements MaterialC
     @Override
     public void setAction(Action a) {
         super.setAction(a);
-        this.setText("");//le quito el texto no vaya a ser muy grnade
+        this.setText("");//le quito el texto no vaya a ser muy grande
         this.setToolTipText(a.getValue(Action.NAME).toString());//se lo pongo como tooltip
         this.setComponentPopupMenu((JPopupMenu) a.getValue(KEY_ACTION_POPUP));
     }
 
-    public boolean isPaintRipple() {
-        return paintRipple;
+    public boolean getPaintRipple() {
+        return ripple.getPaintRipple();
     }
 
     public void setPaintRipple(boolean paintRipple) {
-        this.paintRipple = paintRipple;
+        this.ripple.setPaintRipple(paintRipple);
     }
 
     /**
@@ -83,7 +80,7 @@ public class _MaterialButtonIconTransparent extends JButton implements MaterialC
      * @return the ripple color
      */
     public Color getRippleColor() {
-        return rippleColor;
+        return ripple.getRippleColor();
     }
 
     /**
@@ -92,7 +89,7 @@ public class _MaterialButtonIconTransparent extends JButton implements MaterialC
      * @param rippleColor the ripple color
      */
     public void setRippleColor(Color rippleColor) {
-        this.rippleColor = rippleColor;
+        this.ripple.setRippleColor(rippleColor);
     }
 
     @Override
@@ -110,50 +107,39 @@ public class _MaterialButtonIconTransparent extends JButton implements MaterialC
     }
 
     @Override
-    public void setEnabled(boolean b) {
-        super.setEnabled(b);
-        repaint();
-    }
-
-    @Override
     protected void processFocusEvent(FocusEvent focusEvent) {
         super.processFocusEvent(focusEvent);
-        repaint();
+        firePropertyChange("processFocusEvent", null, null);
     }
 
     @Override
     protected void processMouseEvent(MouseEvent mouseEvent) {
         super.processMouseEvent(mouseEvent);
-        repaint();
+        firePropertyChange("processMouseEvent", null, null);
     }
 
     @Override
     protected void paintComponent(Graphics g) {
         Graphics2D g2 = MaterialDrawingUtils.getAliasedGraphics(g);
 
-        int distance = 5;
         int xIcon = 0;
 
         if (getIcon() != null) {
             int align = getHorizontalAlignment();
 
             if (align == SwingConstants.TRAILING || align == SwingConstants.RIGHT) {
-                xIcon = getWidth() - getIcon().getIconWidth() - distance;
+                xIcon = getWidth() - getIcon().getIconWidth() - getIconTextGap();
             } else if (align == SwingConstants.LEADING || align == SwingConstants.LEFT) {
-                xIcon = distance;
+                xIcon = getIconTextGap();
             } else {
                 xIcon = this.getSize().width / 2 - getIcon().getIconWidth() / 2;
             }
         }
 
-        if (paintRipple && isEnabled()) {
-            g2.setColor(rippleColor);
+        if (isEnabled()) {
             ripple.paintRipple(g2);
         }
-        if (!isEnabled()) {
-            AlphaComposite ac = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.3f);
-            g2.setComposite(ac);
-        }
+        
         if (getIcon() != null) {
             getIcon().paintIcon(this, g2, xIcon, this.getSize().height / 2 - getIcon().getIconHeight() / 2);
         }

@@ -12,7 +12,6 @@ import com.jhw.swing.material.standards.MaterialIcons;
 import com.jhw.swing.material.standards.MaterialShadow;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import javax.swing.JPopupMenu;
 
 /**
@@ -21,12 +20,20 @@ import javax.swing.JPopupMenu;
  */
 public class _MaterialButtonPopup extends _MaterialButton {
 
-    public _MaterialButtonPopup(JPopupMenu menu) {
+    public static _MaterialButtonPopup from() {
+        return new _MaterialButtonPopup();
+    }
+
+    public static _MaterialButtonPopup from(JPopupMenu menu) {
+        return new _MaterialButtonPopup(menu);
+    }
+
+    protected _MaterialButtonPopup(JPopupMenu menu) {
         this();
         this.setComponentPopupMenu(menu);
     }
 
-    public _MaterialButtonPopup() {
+    protected _MaterialButtonPopup() {
         presonalize();
         addListeners();
     }
@@ -34,7 +41,7 @@ public class _MaterialButtonPopup extends _MaterialButton {
     private void presonalize() {
         this.setBackground(PersonalizationHandler.getColor(Personalization.KEY_COLOR_BACKGROUND_PANEL));
         this.setAccentColorFadeInto(MaterialColors.BLUEGREY_50);
-        this.setRippleColor(MaterialColors.TRANSPARENT);
+        this.setPaintRipple(false);
         this.setBorderThickness(2);
         this.setIcon(MaterialIcons.FILE_UPLOAD);
     }

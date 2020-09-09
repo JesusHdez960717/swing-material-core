@@ -19,4 +19,8 @@ public interface RippleEffect {
     public void setRippleColor(Color color);
 
     public void paintRipple(Graphics2D g2);
+
+    public boolean getPaintRipple();
+
+    public void setPaintRipple(boolean paintRipple);
 }

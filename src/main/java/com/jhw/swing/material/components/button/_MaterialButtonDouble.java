@@ -12,7 +12,11 @@ import com.jhw.swing.material.standards.MaterialIcons;
  */
 public class _MaterialButtonDouble extends _MaterialPanelComponent {
 
-    public _MaterialButtonDouble() {
+    public static _MaterialButtonDouble from() {
+        return new _MaterialButtonDouble();
+    }
+
+    private _MaterialButtonDouble() {
         super(0);
         initComponents();
         personalize();

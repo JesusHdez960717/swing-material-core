@@ -15,27 +15,63 @@ import com.jhw.swing.utils.icons.DerivableIcon;
 import com.jhw.swing.util.interfaces.MaterialComponent;
 import com.jhw.swing.material.standards.MaterialFontRoboto;
 import com.jhw.swing.material.standards.MaterialIcons;
+import java.awt.Cursor;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import javax.swing.Icon;
 
 /**
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-public class _MaterialButtonTransparent extends JButton implements MaterialComponent {
+public class _MaterialButtonHiperlynk extends JButton implements MaterialComponent {
 
-    public _MaterialButtonTransparent(String text) {
+    public static _MaterialButtonHiperlynk from() {
+        return new _MaterialButtonHiperlynk();
+    }
+    private Color mouseEnteredColor = MaterialColors.BLUEA_700;
+    private Color mouseExitedColor = MaterialColors.BLUEA_700;
+
+    protected _MaterialButtonHiperlynk(String text) {
         this();
         this.setIcon(null);
         this.setText(text);
         this.setForeground(MaterialColors.BLACK);
+        this.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                setForeground(mouseEnteredColor);
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                setForeground(mouseExitedColor);
+            }
+        });
     }
 
-    public _MaterialButtonTransparent() {
+    public _MaterialButtonHiperlynk() {
         this.setForeground(PersonalizationHandler.getColor(Personalization.KEY_COLOR_BUTTON_ADD));
         this.setFont(MaterialFontRoboto.MEDIUM.deriveFont(16f));
         this.setIcon(MaterialIcons.ADD_CIRCLE_OUTLINE);
-        this.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        this.setCursor(Cursor.getPredefinedCursor(java.awt.Cursor.HAND_CURSOR));
         this.setOpaque(false);
+    }
+
+    public Color getMouseEnteredColor() {
+        return mouseEnteredColor;
+    }
+
+    public void setMouseEnteredColor(Color mouseEnteredColor) {
+        this.mouseEnteredColor = mouseEnteredColor;
+    }
+
+    public Color getMouseExitedColor() {
+        return mouseExitedColor;
+    }
+
+    public void setMouseExitedColor(Color mouseExitedColor) {
+        this.mouseExitedColor = mouseExitedColor;
     }
 
     @Override
@@ -57,7 +93,7 @@ public class _MaterialButtonTransparent extends JButton implements MaterialCompo
         super.setForeground(fg);
         setIcon(getIcon());
     }
-
+    /*
     @Override
     protected void paintComponent(Graphics g) {
         Graphics2D g2 = MaterialDrawingUtils.getAliasedGraphics(g);
@@ -105,5 +141,5 @@ public class _MaterialButtonTransparent extends JButton implements MaterialCompo
     protected void paintBorder(Graphics g) {
         //intentionally left blank
     }
-
+     */
 }

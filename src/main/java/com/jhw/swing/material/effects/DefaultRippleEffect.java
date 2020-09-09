@@ -32,6 +32,8 @@ public class DefaultRippleEffect implements RippleEffect, PropertyChangeListener
 
     private Color rippleColor = Color.WHITE;
 
+    private boolean paintRipple = true;
+
     private DefaultRippleEffect(final JComponent component) {
         this.target = component;
         target.addPropertyChangeListener(this);
@@ -57,6 +59,16 @@ public class DefaultRippleEffect implements RippleEffect, PropertyChangeListener
         this.rippleColor = rippleColor;
     }
 
+    @Override
+    public boolean getPaintRipple() {
+        return paintRipple;
+    }
+
+    @Override
+    public void setPaintRipple(boolean paintRipple) {
+        this.paintRipple = paintRipple;
+    }
+
     /**
      * Paints this effect. Each component is responsible of calling {@link
      * #paint(Graphics)} in order to display the effect. Here's an example of
@@ -78,7 +90,7 @@ public class DefaultRippleEffect implements RippleEffect, PropertyChangeListener
     @Override
     public void paintRipple(Graphics2D g2) {
         //si no es transparente
-        if (g2.getColor() != null && g2.getColor().getAlpha() != 0) {//si hay las pinto, el if esta en el add
+        if (g2.getColor() != null && g2.getColor().getAlpha() != 0 && paintRipple) {//si hay las pinto, el if esta en el add
             for (RippleAnimation rippleAnimation : ripples) {
                 float rippleOpacity = rippleAnimation.rippleOpacity.getValue().floatValue();
                 Point rippleCenter = rippleAnimation.rippleCenter;

@@ -22,7 +22,11 @@ public class _MaterialButtonIconTranspRotate extends _MaterialButtonIconTranspar
     private int anglulo = 0;
     private Animator anim;
 
-    public _MaterialButtonIconTranspRotate() {
+    public static _MaterialButtonIconTranspRotate from() {
+        return new _MaterialButtonIconTranspRotate();
+    }
+
+    protected _MaterialButtonIconTranspRotate() {
     }
 
     public void setIconRotate(Icon icon) {

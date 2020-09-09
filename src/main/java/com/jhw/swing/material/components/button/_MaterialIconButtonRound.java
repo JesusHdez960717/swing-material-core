@@ -22,7 +22,15 @@ import javax.swing.Icon;
  */
 public class _MaterialIconButtonRound extends _MaterialButton implements MaterialComponent {
 
-    public _MaterialIconButtonRound(Icon icon) {
+    public static _MaterialIconButtonRound from(Icon icon) {
+        return new _MaterialIconButtonRound(icon);
+    }
+
+    public static _MaterialIconButtonRound from() {
+        return new _MaterialIconButtonRound();
+    }
+
+    protected _MaterialIconButtonRound(Icon icon) {
         this();
         this.setIcon(icon);
     }
@@ -30,7 +38,7 @@ public class _MaterialIconButtonRound extends _MaterialButton implements Materia
     /**
      * Creates a new button.
      */
-    public _MaterialIconButtonRound() {
+    protected _MaterialIconButtonRound() {
         this.setBorderRadius(500);
         this.setText("");
 

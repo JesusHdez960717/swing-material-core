@@ -6,6 +6,7 @@
 package com.jhw.swing.material.components.textfield;
 
 import com.jhw.personalization.services.PersonalizationHandler;
+import com.jhw.swing.material.components.button.MaterialButtonsFactory;
 import com.jhw.swing.material.components.button._MaterialButtonIconTransparent;
 import com.jhw.swing.material.components.container.panel._PanelTransparent;
 import com.jhw.swing.material.standards.MaterialColors;
@@ -20,6 +21,7 @@ import java.awt.Dimension;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 
 /**
  *
@@ -47,8 +49,8 @@ public class _MaterialFormatedTextFieldIcon<T> extends _PanelTransparent impleme
     }
 
     private void initComponents() {
-        buttonIcon = new _MaterialButtonIconTransparent();
-        buttonIcon.setRippleColor(MaterialColors.TRANSPARENT);
+        buttonIcon = MaterialButtonsFactory.buildIconTransparent();
+        ((_MaterialButtonIconTransparent) buttonIcon).setPaintRipple(false);
 
         this.setLayout(new BorderLayout());
         this.add(textField, BorderLayout.CENTER);
@@ -67,7 +69,7 @@ public class _MaterialFormatedTextFieldIcon<T> extends _PanelTransparent impleme
     }
 
     private _MaterialFormatedTextField<T> textField;
-    private _MaterialButtonIconTransparent buttonIcon;
+    private JButton buttonIcon;
 
     public void setIcon(ImageIcon icon) {
         if (!PersonalizationHandler.getBoolean(PersonalizationMaterial.KEY_SHOW_ICON_INPUT)) {

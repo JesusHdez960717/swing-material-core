@@ -13,8 +13,11 @@ import com.jhw.personalization.services.PersonalizationHandler;
  */
 public class _buttonAddEdit extends _MaterialButton {
 
-    public _buttonAddEdit() {
-        super();
+    public static _buttonAddEdit from() {
+        return new _buttonAddEdit();
+    }
+
+    protected _buttonAddEdit() {
         this.setBackground(PersonalizationHandler.getColor(Personalization.KEY_COLOR_BUTTON_ADD));
         this.setIcon(PersonalizationHandler.getDerivableIcon(Personalization.KEY_ICON_BUTTON_ADD));
         this.setPreferredSize(new Dimension(125, 50));

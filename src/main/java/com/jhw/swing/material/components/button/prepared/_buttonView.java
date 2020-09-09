@@ -13,8 +13,11 @@ import com.jhw.personalization.services.PersonalizationHandler;
  */
 public class _buttonView extends _MaterialButton {
 
-    public _buttonView() {
-        super();
+    public static _buttonView from() {
+        return new _buttonView();
+    }
+
+    protected _buttonView() {
         this.setBackground(PersonalizationHandler.getColor(Personalization.KEY_COLOR_BUTTON_VIEW));
         this.setIcon(PersonalizationHandler.getDerivableIcon(Personalization.KEY_ICON_BUTTON_VIEW));
         this.setPreferredSize(new Dimension(125, 50));

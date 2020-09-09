@@ -53,7 +53,7 @@ public class _MaterialButton extends JButton implements ColorFadeInto, MouseAdap
     /**
      * Creates a new button.
      */
-    public _MaterialButton() {
+    protected _MaterialButton() {
         this.setIconTextGap(2);
         this.setFont(MaterialFontRoboto.MEDIUM.deriveFont(16f));
         this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -117,6 +117,16 @@ public class _MaterialButton extends JButton implements ColorFadeInto, MouseAdap
     @Override
     public void paintRipple(Graphics2D g2) {
         ripple.paintRipple(g2);
+    }
+
+    @Override
+    public boolean getPaintRipple() {
+        return ripple.getPaintRipple();
+    }
+
+    @Override
+    public void setPaintRipple(boolean paintRipple) {
+        ripple.setPaintRipple(paintRipple);
     }
 //-----------------ELEVATION_EFFECT------------------------
 
@@ -306,8 +316,10 @@ public class _MaterialButton extends JButton implements ColorFadeInto, MouseAdap
         }
         g2.fill(new RoundRectangle2D.Float(0, 0, getWidth() - offset_lr, getHeight() - offset_td, getBorderRadius() * 2, getBorderRadius() * 2));
 
+        //borde
         paintBorder(this, g2, 0, 0, (int) (getWidth() - offset_lr + getBorderThickness()), (int) (getHeight() - offset_td + getBorderThickness()));
 
+        //ripple
         if (this.isEnabled()) {//el ripple por debajo de las letras e iconos
             g2.setClip(new RoundRectangle2D.Float(0, 0, getWidth() - offset_lr, getHeight() - offset_td, Math.max(getBorderRadius() * 2 - 4, 0), Math.max(getBorderRadius() * 2 - 4, 0)));
             paintRipple(g2);
@@ -343,6 +355,7 @@ public class _MaterialButton extends JButton implements ColorFadeInto, MouseAdap
         g2.setFont(getFont());
         g2.drawString(this.getText(), xText, y);
 
+        //icon
         if (this.getIcon() != null) {
             this.getIcon().paintIcon(this, g2, xIcon, (getHeight() - offset_td - getIcon().getIconHeight()) / 2);
         }
