@@ -67,7 +67,9 @@ public class EXAMPLE_BUTTONS extends javax.swing.JFrame {
         popup.setComponentPopupMenu(menu);
         vlc.add(popup);
 
-        vlc.add(MaterialButtonsFactory.buildRound());
+        _MaterialIconButtonRound round = (_MaterialIconButtonRound) MaterialButtonsFactory.buildRound();
+        round.setRippleColor(Color.yellow);
+        vlc.add(round);
 
         _buttonView view = (_buttonView) MaterialButtonsFactory.buildView();
         vlc.add(view);

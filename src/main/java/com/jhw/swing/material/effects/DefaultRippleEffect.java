@@ -97,7 +97,9 @@ public class DefaultRippleEffect implements RippleEffect, PropertyChangeListener
                 int rippleRadius = rippleAnimation.rippleRadius.getValue();
 
                 g2.setColor(new Color(rippleColor.getRed() / 255f, rippleColor.getGreen() / 255f, rippleColor.getBlue() / 255f, rippleOpacity));
-                g2.fillOval(rippleCenter.x - rippleRadius, rippleCenter.y - rippleRadius, 2 * rippleRadius, 2 * rippleRadius);
+                Shape shape = new java.awt.geom.Ellipse2D.Float(rippleCenter.x - rippleRadius, rippleCenter.y - rippleRadius, 2 * rippleRadius, 2 * rippleRadius);
+                g2.fill(shape);
+
             }
         }
 

@@ -11,6 +11,8 @@ import com.jhw.swing.util.Utils;
 import com.jhw.swing.material.effects.DefaultElevationEffect;
 import com.jhw.swing.material.standards.MaterialIcons;
 import javax.swing.Icon;
+import javax.swing.JComponent;
+import javax.swing.plaf.basic.BasicButtonUI;
 
 /**
  * A Material Design button. A round button with a icon in the middle
@@ -29,6 +31,7 @@ public class _MaterialIconButtonRound extends _MaterialButton implements Materia
     public static _MaterialIconButtonRound from() {
         return new _MaterialIconButtonRound();
     }
+    private boolean circle = true;
 
     protected _MaterialIconButtonRound(Icon icon) {
         this();
@@ -39,7 +42,6 @@ public class _MaterialIconButtonRound extends _MaterialButton implements Materia
      * Creates a new button.
      */
     protected _MaterialIconButtonRound() {
-        this.setBorderRadius(500);
         this.setText("");
 
         //icon
@@ -51,44 +53,72 @@ public class _MaterialIconButtonRound extends _MaterialButton implements Materia
         this.setPreferredSize(new Dimension(3 * this.getIcon().getIconWidth() + offset_lr, 3 * this.getIcon().getIconHeight() + offset_td));
 
         setElevation(DefaultElevationEffect.applyCirularTo(this, MaterialShadow.ELEVATION_NONE));
+
+        this.setUI(new BasicButtonUI() {
+            @Override
+            public boolean contains(JComponent c, int x, int y) {
+                return getShape().contains(x - MaterialShadow.OFFSET_LEFT, y - MaterialShadow.OFFSET_TOP);
+            }
+        });
+    }
+
+    public boolean isCircle() {
+        return circle;
+    }
+
+    public void setCircle(boolean circle) {
+        this.circle = circle;
     }
 
     @Override
     protected void paintComponent(Graphics g) {
         Graphics2D g2 = MaterialDrawingUtils.getAliasedGraphics(g);
 
+        final int offset_lr = MaterialShadow.OFFSET_LEFT + MaterialShadow.OFFSET_RIGHT;
+        final int offset_td = MaterialShadow.OFFSET_TOP + MaterialShadow.OFFSET_BOTTOM;
+
         if (getType() != Type.FLAT && isEnabled()) {
             paintElevation(g2);
         }
         g2.translate(MaterialShadow.OFFSET_LEFT, MaterialShadow.OFFSET_TOP);
 
-        final int offset_lr = MaterialShadow.OFFSET_LEFT + MaterialShadow.OFFSET_RIGHT;
-        final int offset_td = MaterialShadow.OFFSET_TOP + MaterialShadow.OFFSET_BOTTOM;
-        RectangularShape shape = new java.awt.geom.Ellipse2D.Float(0, 0, getWidth() - offset_lr, getHeight() - offset_td);
-
+        Shape shape = getShape();
+        //color de fondo
         if (isEnabled()) {
             g2.setColor(getColorFadeInto());
-            g2.fill(shape);
-
-            g2.setColor(new Color(super.getRippleColor().getRed() / 255f, super.getRippleColor().getBlue() / 255f, super.getRippleColor().getBlue() / 255f, 0.12f));
-            if ((getType() == Type.FLAT && isMouseOver()) || isFocusOwner()) {
-                g2.fill(shape);
-            }
         } else {
             Color bg = getBackground();
-            g2.setColor(Utils.applyAlphaMask(bg, 0x66000000));
-            g2.fill(shape);
+            g2.setColor(new Color(bg.getRed() / 255f, bg.getGreen() / 255f, bg.getBlue() / 255f, 0.6f));
         }
+        g2.fill(shape);
 
-        if (isEnabled()) {//paint ripple efect
+        //ripple
+        if (this.isEnabled()) {//el ripple por debajo de las letras e iconos
             g2.setClip(shape);
-            g2.setColor(getRippleColor());
             paintRipple(g2);
         }
+
         if (getIcon() != null) {
             getIcon().paintIcon(this, g2, (this.getSize().width - offset_lr) / 2 - getIcon().getIconWidth() / 2, (this.getSize().height - offset_td) / 2 - getIcon().getIconHeight() / 2);
         }
         g2.translate(-MaterialShadow.OFFSET_LEFT, -MaterialShadow.OFFSET_TOP);
+    }
+
+    private Shape getShape() {
+        final int offset_lr = MaterialShadow.OFFSET_LEFT + MaterialShadow.OFFSET_RIGHT;
+        final int offset_td = MaterialShadow.OFFSET_TOP + MaterialShadow.OFFSET_BOTTOM;
+
+        int w = getWidth();
+        int h = getHeight();
+        int x = 0;
+        int y = 0;
+
+        if (isCircle()) {
+            w = h = Math.min(w, h);
+            x = (getWidth() - w) / 2;
+            y = (getHeight() - h) / 2;
+        }
+        return new java.awt.geom.Ellipse2D.Float(x, y, w - offset_lr, h - offset_td);
     }
 
 }

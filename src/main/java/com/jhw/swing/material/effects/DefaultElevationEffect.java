@@ -19,7 +19,7 @@ import java.beans.PropertyChangeListener;
  */
 public class DefaultElevationEffect<T extends JComponent & ElevationEffect> implements ElevationEffect, PropertyChangeListener {
 
-    public static long DURATION = 250;
+    public static final long DURATION = 250;
 
     protected final T target;
 
@@ -30,6 +30,7 @@ public class DefaultElevationEffect<T extends JComponent & ElevationEffect> impl
 
     protected final MaterialShadow shadowFast = new MaterialShadow();
     protected int borderRadius = 2;
+    protected float opacity = 1.0f;
 
     private DefaultElevationEffect(T component, double level) {
         this.target = component;
@@ -91,6 +92,14 @@ public class DefaultElevationEffect<T extends JComponent & ElevationEffect> impl
         this.borderRadius = borderRadius;
     }
 
+    public float getOpacity() {
+        return opacity;
+    }
+
+    public void setOpacity(float opacity) {
+        this.opacity = opacity;
+    }
+
     /**
      * Paints this effect.
      *
@@ -104,7 +113,7 @@ public class DefaultElevationEffect<T extends JComponent & ElevationEffect> impl
             g2.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_SPEED);
 
             g2.setBackground(target.getParent().getBackground());
-            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1.0f));
+            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, opacity));
             g2.drawImage(shadowFast.render(target.getWidth(), target.getHeight(), borderRadius, level.getValue(), MaterialShadow.Type.SQUARE), 0, 0, null);
 
             MaterialDrawingUtils.getAliasedGraphics(g2);
@@ -149,6 +158,10 @@ public class DefaultElevationEffect<T extends JComponent & ElevationEffect> impl
      */
     public static DefaultElevationEffect applyCirularTo(JComponent target, double level) {
         return new DefaultElevationEffect.Circular(target, level);
+    }
+
+    public static DefaultElevationEffect applyRoundTo(JComponent target, double level) {
+        return new DefaultElevationEffect.Round(target, level);
     }
 
     private void setElevationAnimated(double level) {
@@ -201,8 +214,33 @@ public class DefaultElevationEffect<T extends JComponent & ElevationEffect> impl
                 g2.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_SPEED);
 
                 g2.setBackground(target.getParent().getBackground());
-                g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1.0f));
+                g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, opacity));
                 g2.drawImage(shadowFast.render(target.getWidth(), target.getHeight(), borderRadius, (double) level.getValue(), MaterialShadow.Type.CIRCULAR), 0, 0, null);
+
+                MaterialDrawingUtils.getAliasedGraphics(g2);
+            }
+        }
+    }
+
+    /**
+     * An elevation effect with a round shadow.
+     */
+    public static class Round extends DefaultElevationEffect {
+
+        private Round(JComponent component, double level) {
+            super(component, level);
+        }
+
+        @Override
+        public void paintElevation(Graphics2D g2) {
+            if (PersonalizationHandler.getBoolean(Personalization.KEY_USE_SHADOW)) {
+                //priorizado la velocidad, la calidad no hace diferencia
+                g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_NEAREST_NEIGHBOR);
+                g2.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_SPEED);
+
+                g2.setBackground(target.getParent().getBackground());
+                g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, opacity));
+                g2.drawImage(shadowFast.render(target.getWidth(), target.getHeight(), borderRadius, (double) level.getValue(), MaterialShadow.Type.ROUND), 0, 0, null);
 
                 MaterialDrawingUtils.getAliasedGraphics(g2);
             }
