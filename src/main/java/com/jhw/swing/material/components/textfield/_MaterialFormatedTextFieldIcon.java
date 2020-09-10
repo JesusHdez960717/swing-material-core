@@ -174,6 +174,11 @@ public class _MaterialFormatedTextFieldIcon<T> extends _PanelTransparent impleme
     }
 
     @Override
+    public void clearWrong() {
+        textField.clearWrong();
+    }
+
+    @Override
     public T getObject() {
         return textField.getObject();
     }

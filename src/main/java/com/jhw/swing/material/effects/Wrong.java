@@ -34,5 +34,7 @@ public interface Wrong {
      */
     public void setWrongColor(Color wrongColor);
 
+    public void clearWrong();
+
     public void paintWrong(Graphics g2, int y);
 }

@@ -132,6 +132,16 @@ public class _MaterialDatePicker extends JXDatePicker implements DateSelected, B
     }
 
     @Override
+    public void setWrongColor(Color wrongColor) {
+        text.setWrongColor(wrongColor);
+    }
+
+    @Override
+    public void clearWrong() {
+        text.clearWrong();
+    }
+
+    @Override
     public void paintHint(Graphics g) {
         text.paintHint(g);
     }
@@ -148,6 +158,21 @@ public class _MaterialDatePicker extends JXDatePicker implements DateSelected, B
     @Override
     public void setLabel(String label) {
         text.setLabel(label);
+    }
+
+    @Override
+    public void paintLabel(Graphics g) {
+        text.paintLabel(g);
+    }
+
+    @Override
+    public void paintLine(Graphics g2) {
+        text.paintLine(g2);
+    }
+
+    @Override
+    public int getYLine(Graphics g2) {
+        return text.getYLine(g2);
     }
 
     @Override
@@ -184,11 +209,6 @@ public class _MaterialDatePicker extends JXDatePicker implements DateSelected, B
         if (text != null) {
             text.setForeground(fg);
         }
-    }
-
-    @Override
-    public void setWrongColor(Color wrongColor) {
-        text.setWrongColor(wrongColor);
     }
 
     public void setMaxLength(int maxLength) {

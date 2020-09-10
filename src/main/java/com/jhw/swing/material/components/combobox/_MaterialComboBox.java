@@ -67,6 +67,10 @@ public class _MaterialComboBox<T> extends JComboBox<T> implements Line, Floating
             }
         });
 
+        this.addActionListener((ActionEvent e) -> {
+            clearWrong();
+        });
+
         this.setOpaque(false);
         this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 
@@ -148,6 +152,11 @@ public class _MaterialComboBox<T> extends JComboBox<T> implements Line, Floating
     @Override
     public void setWrongColor(Color wrongColor) {
         wrong.setWrongColor(wrongColor);
+    }
+
+    @Override
+    public void clearWrong() {
+        wrong.clearWrong();
     }
 
     @Override

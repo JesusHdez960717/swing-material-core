@@ -143,10 +143,6 @@ public class _MaterialDatePickerIcon extends _PanelTransparent implements Bindab
         datePicker.setAccentFloatingLabel(accentColor);
     }
 
-    public Color getRealForeground() {
-        return datePicker.getRealForeground();
-    }
-
     public String getExtra() {
         return datePicker.getExtra();
     }
@@ -155,16 +151,8 @@ public class _MaterialDatePickerIcon extends _PanelTransparent implements Bindab
         datePicker.setExtra(extra);
     }
 
-    public void setWrongText(String wrongText) {
-        datePicker.setWrongText(wrongText);
-    }
-
     public void setMaxLength(int maxLength) {
         datePicker.setMaxLength(maxLength);
-    }
-
-    public void setRealForeground(Color fg) {
-        datePicker.setRealForeground(fg);
     }
 
     public void setText(String s) {
@@ -194,6 +182,11 @@ public class _MaterialDatePickerIcon extends _PanelTransparent implements Bindab
     @Override
     public void paintWrong(Graphics g2, int y) {
         datePicker.paintWrong(g2, y);
+    }
+
+    @Override
+    public void clearWrong() {
+        datePicker.clearWrong();
     }
 
     @Override

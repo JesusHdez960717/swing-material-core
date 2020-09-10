@@ -174,6 +174,11 @@ public class _MaterialTextFieldIcon<T> extends _PanelTransparent implements Bind
     }
 
     @Override
+    public void clearWrong() {
+        textField.clearWrong();
+    }
+
+    @Override
     public T getObject() {
         return textField.getObject();
     }

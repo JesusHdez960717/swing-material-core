@@ -5,8 +5,6 @@
  */
 package com.jhw.swing.material.components.textfield;
 
-import com.jhw.personalization.core.domain.Personalization;
-import com.jhw.personalization.services.PersonalizationHandler;
 import com.jhw.swing.material.effects.DefaultFloatingLabel;
 import com.jhw.swing.material.effects.FloatingLabel;
 import com.jhw.swing.material.effects.DefaultLine;
@@ -26,10 +24,8 @@ import java.awt.Dimension;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Rectangle;
 import java.awt.event.FocusEvent;
 import java.awt.event.KeyEvent;
-import javax.swing.text.DefaultCaret;
 import org.jdesktop.swingx.JXFormattedTextField;
 
 /**
@@ -74,6 +70,7 @@ public class _MaterialFormatedTextField<T> extends JXFormattedTextField implemen
             @Override
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 validateSize(evt);
+                clearWrong();
             }
         });
 
@@ -153,6 +150,11 @@ public class _MaterialFormatedTextField<T> extends JXFormattedTextField implemen
     @Override
     public void setWrongColor(Color wrongColor) {
         wrong.setWrongColor(wrongColor);
+    }
+
+    @Override
+    public void clearWrong() {
+        wrong.clearWrong();
     }
 
     @Override

@@ -19,7 +19,6 @@ import javax.swing.JComponent;
  */
 public class DefaultWrong implements Wrong, PropertyChangeListener {
 
-    //flags for wrong
     private Color wrongColor = PersonalizationHandler.getColor(Personalization.KEY_COLOR_WRONG);
     private String wrongText = "Error en este campo";
     private boolean wrongFlag = false;
@@ -33,13 +32,6 @@ public class DefaultWrong implements Wrong, PropertyChangeListener {
 
         this.foregroundOriginal = target.getForeground();
 
-        this.target.addKeyListener(new java.awt.event.KeyAdapter() {
-            @Override
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                clearWrong();
-                target.repaint();
-            }
-        });
         target.addPropertyChangeListener(this);
     }
 
@@ -77,7 +69,8 @@ public class DefaultWrong implements Wrong, PropertyChangeListener {
         wrong();
     }
 
-    private void clearWrong() {
+    @Override
+    public void clearWrong() {
         if (wrongFlag) {
             this.wrongFlag = false;
             this.target.setForeground(foregroundOriginal);

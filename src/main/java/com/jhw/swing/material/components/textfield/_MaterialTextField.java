@@ -70,6 +70,7 @@ public class _MaterialTextField<T> extends JTextField implements BindableCompone
             @Override
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 validateSize(evt);
+                clearWrong();
             }
         });
 
@@ -149,6 +150,11 @@ public class _MaterialTextField<T> extends JTextField implements BindableCompone
     @Override
     public void setWrongColor(Color wrongColor) {
         wrong.setWrongColor(wrongColor);
+    }
+
+    @Override
+    public void clearWrong() {
+        wrong.clearWrong();
     }
 
     @Override

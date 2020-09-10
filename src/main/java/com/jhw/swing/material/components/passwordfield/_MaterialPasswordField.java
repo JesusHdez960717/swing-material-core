@@ -21,6 +21,7 @@ import com.jhw.swing.material.standards.MaterialFontRoboto;
 import static com.jhw.swing.material.standards.Utils.LINE_OPACITY_MASK;
 import com.jhw.swing.util.interfaces.BindableComponent;
 import com.jhw.swing.material.effects.Wrong;
+import java.awt.event.ActionEvent;
 
 /**
  * A Material Design single-line text field is the basic way of getting user
@@ -67,6 +68,7 @@ public class _MaterialPasswordField extends JPasswordField implements Line, Bind
             @Override
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 validateText(evt);
+                clearWrong();
             }
         });
 
@@ -143,6 +145,11 @@ public class _MaterialPasswordField extends JPasswordField implements Line, Bind
     @Override
     public void setWrongColor(Color wrongColor) {
         wrong.setWrongColor(wrongColor);
+    }
+
+    @Override
+    public void clearWrong() {
+        wrong.clearWrong();
     }
 
     @Override
