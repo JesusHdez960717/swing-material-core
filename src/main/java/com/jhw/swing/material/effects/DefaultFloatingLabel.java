@@ -106,6 +106,7 @@ public class DefaultFloatingLabel<T extends JComponent & BindableComponent> impl
             FontMetrics metrics = g2.getFontMetrics(target.getFont());
 
             g2.setColor(Utils.applyAlphaMask(target.getForeground(), HINT_OPACITY_MASK));
+            g2.setFont(target.getFont());
             g2.drawString(getHint(), 0, metrics.getAscent() + yMid - metrics.getAscent() / 2);
         }
     }

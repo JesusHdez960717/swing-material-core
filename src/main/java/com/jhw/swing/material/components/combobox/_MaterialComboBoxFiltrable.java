@@ -118,15 +118,12 @@ public class _MaterialComboBoxFiltrable<T> extends _MaterialComboBox<T> {
 
         int yMid = getSize().height / 2;
 
+        if (getSelectedItem() == null && isFocusOwner()) {
+            paintHint(g2);
+        }
         paintLabel(g2);
 
         FontMetrics metrics = g2.getFontMetrics(g2.getFont());
-        g2.setFont(getFont());
-        if (getSelectedItem() == null && isFocusOwner()) {
-            g2.setColor(Utils.applyAlphaMask(getForeground(), HINT_OPACITY_MASK));
-            g2.drawString(getHint(), 0, metrics.getAscent() + yMid - metrics.getAscent() / 2);
-        }
-
         int yLine = yMid + metrics.getAscent() / 2 + 5;
 
         //paint the back line
