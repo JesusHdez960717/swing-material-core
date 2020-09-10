@@ -274,7 +274,6 @@ public class _MaterialPasswordField extends JPasswordField implements BindableCo
 
         super.paintComponent(g2);//paint the text, caret,higligth and foreground
 
-        paintLabel(g2);
 
         g2.setColor(getBackground());//por defecto no pinta el background
         g2.fillRect(0, 0, getWidth(), getHeight());
@@ -288,6 +287,7 @@ public class _MaterialPasswordField extends JPasswordField implements BindableCo
         if (!getHint().isEmpty() && getText().isEmpty() && (getLabel().isEmpty() || isFocusOwner())) {
             paintHint(g2);
         }
+        paintLabel(g2);
 
         int yLine = yMid + metrics.getAscent() / 2 + 5;
 

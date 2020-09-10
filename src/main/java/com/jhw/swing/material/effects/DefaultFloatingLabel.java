@@ -35,7 +35,7 @@ public class DefaultFloatingLabel<T extends JComponent & BindableComponent> impl
 
     private Color accentColor = PersonalizationHandler.getColor(Personalization.KEY_COLOR_ACCENT);
     private String label = "label";
-    private String hint = "label";
+    private String hint = "hint";
 
     public DefaultFloatingLabel(T target) {
         this.target = target;
@@ -52,6 +52,7 @@ public class DefaultFloatingLabel<T extends JComponent & BindableComponent> impl
                 update();
             }
         });
+        this.target.addPropertyChangeListener(this);
     }
 
 //-------------------FLOATING_LABEL-------------------------

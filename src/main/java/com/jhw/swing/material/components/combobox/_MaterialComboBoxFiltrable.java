@@ -25,6 +25,7 @@ import javax.swing.plaf.basic.BasicComboPopup;
 import javax.swing.plaf.basic.ComboPopup;
 import static com.jhw.swing.material.standards.Utils.LINE_OPACITY_MASK;
 import static com.jhw.swing.material.standards.Utils.HINT_OPACITY_MASK;
+import java.awt.Font;
 
 /**
  *
@@ -34,11 +35,6 @@ public class _MaterialComboBoxFiltrable<T> extends _MaterialComboBox<T> {
 
     private boolean focus;
     private ComboBoxFilterDecorator<T> decorator;
-
-    public _MaterialComboBoxFiltrable(T[] items) {
-        super(items);
-        initComponent();
-    }
 
     public _MaterialComboBoxFiltrable() {
         initComponent();
@@ -118,22 +114,17 @@ public class _MaterialComboBoxFiltrable<T> extends _MaterialComboBox<T> {
 
     @Override
     public void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        /*Graphics2D g2 = MaterialDrawingUtils.getAliasedGraphics(g);
+        Graphics2D g2 = MaterialDrawingUtils.getAliasedGraphics(g);
 
         int yMid = getSize().height / 2;
 
-        g2.setColor(getFloatingLabel().getColor());
-        g2.setFont(getFloatingLabel().getFont());
-        if (!getLabel().isEmpty()) {
-            g2.drawString(getLabel(), getFloatingLabel().getX(), getFloatingLabel().getY());//paint the hint in the same place as the text
-        }
+        paintLabel(g2);
 
         FontMetrics metrics = g2.getFontMetrics(g2.getFont());
         g2.setFont(getFont());
         if (getSelectedItem() == null && isFocusOwner()) {
             g2.setColor(Utils.applyAlphaMask(getForeground(), HINT_OPACITY_MASK));
-            g2.drawString(getHint(), getFloatingLabel().getX(), metrics.getAscent() + yMid - metrics.getAscent() / 2);
+            g2.drawString(getHint(), 0, metrics.getAscent() + yMid - metrics.getAscent() / 2);
         }
 
         int yLine = yMid + metrics.getAscent() / 2 + 5;
@@ -149,7 +140,7 @@ public class _MaterialComboBoxFiltrable<T> extends _MaterialComboBox<T> {
         //paint the wrong text if the flag is actived
         if (isWrongFlag()) {
             g2.setColor(getWrongColor());
-            g2.setFont(getFloatingLabel().getFont().deriveFont(1));//1 for bold
+            g2.setFont(getFont().deriveFont(getFont().getSize2D() * 0.8f).deriveFont(Font.BOLD));//1 for bold
             g2.drawString(getWrongText(), 0, yLine + 15);//paint the wrong text
         }
 
@@ -167,6 +158,6 @@ public class _MaterialComboBoxFiltrable<T> extends _MaterialComboBox<T> {
             }
             icon.paintIcon(this, g2, (int) (this.getSize().getWidth() - getIcon().getIconHeight()), yMid - icon.getIconHeight() / 2);
         }
-         */
+
     }
 }

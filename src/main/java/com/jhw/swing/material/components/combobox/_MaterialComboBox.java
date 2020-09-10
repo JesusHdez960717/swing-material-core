@@ -40,7 +40,7 @@ public class _MaterialComboBox<T> extends JComboBox<T> implements FloatingLabel,
         return new _MaterialComboBox();
     }
 
-    private FloatingLabel floatingLabel = new DefaultFloatingLabel(this);
+    private FloatingLabel floatingLabel;
     private Line line = new Line(this);
 
     //default
@@ -53,13 +53,9 @@ public class _MaterialComboBox<T> extends JComboBox<T> implements FloatingLabel,
     private String wrongText = "Error en este campo";
     private boolean wrongFlag = false;
 
-    public _MaterialComboBox(T[] items) {
-        this();
-        setModel(new DefaultComboBoxModel<T>(items));
-        this.setSelectedIndex(-1);
-    }
-
     public _MaterialComboBox() {
+        floatingLabel = new DefaultFloatingLabel(this);
+
         this.setPreferredSize(new Dimension(145, 65));
         this.setRenderer(new FieldRenderer<>(this));
         this.setUI(new BasicComboBoxUI() {
@@ -229,6 +225,10 @@ public class _MaterialComboBox<T> extends JComboBox<T> implements FloatingLabel,
         super.processFocusEvent(e);
         firePropertyChange("processFocusEvent", null, null);
         line.update();
+    }
+
+    protected ImageIcon getIcon() {
+        return icon;
     }
 
     @Override

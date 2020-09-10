@@ -275,7 +275,6 @@ public class _MaterialTextField<T> extends JTextField implements BindableCompone
         if (!getHint().isEmpty() && getText().isEmpty() && (getLabel().isEmpty() || isFocusOwner())) {
             paintHint(g2);
         }
-
         paintLabel(g2);
 
         int yLine = yMid + metrics.getAscent() / 2 + 5;
