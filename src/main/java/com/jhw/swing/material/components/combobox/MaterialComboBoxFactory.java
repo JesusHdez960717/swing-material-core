@@ -5,7 +5,6 @@
  */
 package com.jhw.swing.material.components.combobox;
 
-import com.jhw.swing.material.components.combobox.combobox_editable._MaterialComboBoxFiltrable;
 import javax.swing.JComboBox;
 
 /**

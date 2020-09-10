@@ -1,6 +1,5 @@
 package com.jhw.swing.material.components.scrollpane;
 
-import static com.jhw.swing.material.components.textfield._MaterialTextField.LINE_OPACITY_MASK;
 import javax.swing.JScrollPane;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
@@ -10,6 +9,7 @@ import com.jhw.swing.material.standards.MaterialColors;
 import com.jhw.swing.material.standards.MaterialFontRoboto;
 import java.awt.Adjustable;
 import javax.swing.JScrollBar;
+import static com.jhw.swing.material.standards.Utils.LINE_OPACITY_MASK;
 
 /**
  *

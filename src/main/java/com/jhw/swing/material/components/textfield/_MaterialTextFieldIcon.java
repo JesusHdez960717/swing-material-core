@@ -59,7 +59,7 @@ public class _MaterialTextFieldIcon<T> extends _PanelTransparent implements Bind
         textField.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
-                buttonIcon.setForeground(textField.getAccent());
+                buttonIcon.setForeground(getAccentFloatingLabel());
             }
 
             @Override
@@ -144,12 +144,12 @@ public class _MaterialTextFieldIcon<T> extends _PanelTransparent implements Bind
         textField.setHint(hint);
     }
 
-    public Color getAccent() {
-        return textField.getAccent();
+    public Color getAccentFloatingLabel() {
+        return textField.getAccentFloatingLabel();
     }
 
-    public void setAccent(Color accentColor) {
-        textField.setAccent(accentColor);
+    public void setAccentFloatingLabel(Color accentColor) {
+        textField.setAccentFloatingLabel(accentColor);
     }
 
     public void setRealForeground(Color fg) {

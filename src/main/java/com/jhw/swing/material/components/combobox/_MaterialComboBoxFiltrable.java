@@ -1,8 +1,8 @@
-package com.jhw.swing.material.components.combobox.combobox_editable;
+package com.jhw.swing.material.components.combobox;
 
 import com.jhw.swing.material.components.combobox._MaterialComboBox;
-import static com.jhw.swing.material.components.textfield._MaterialTextField.HINT_OPACITY_MASK;
-import static com.jhw.swing.material.components.textfield._MaterialTextField.LINE_OPACITY_MASK;
+import com.jhw.swing.material.components.combobox.filtrable_utils.ComboBoxFilterDecorator;
+import com.jhw.swing.material.components.combobox.filtrable_utils.CustomComboRenderer;
 import com.jhw.swing.util.MaterialDrawingUtils;
 import com.jhw.swing.util.Utils;
 import com.jhw.swing.utils.icons.DerivableIcon;
@@ -23,6 +23,8 @@ import javax.swing.JButton;
 import javax.swing.plaf.basic.BasicComboBoxUI;
 import javax.swing.plaf.basic.BasicComboPopup;
 import javax.swing.plaf.basic.ComboPopup;
+import static com.jhw.swing.material.standards.Utils.LINE_OPACITY_MASK;
+import static com.jhw.swing.material.standards.Utils.HINT_OPACITY_MASK;
 
 /**
  *
@@ -49,21 +51,8 @@ public class _MaterialComboBoxFiltrable<T> extends _MaterialComboBox<T> {
     }
 
     @Override
-    public void setSelectedItem(Object obj) {
-        if (obj != null) {
-            super.setSelectedItem(obj);
-            getFloatingLabel().update();
-        }
-    }
-
-    @Override
     public T getSelectedItem() {
         return (T) super.getSelectedItem();
-    }
-
-    @Override
-    public void addItem(T item) {
-        super.addItem(item);
     }
 
     public void addItemAndDecorate(T item) {
@@ -129,7 +118,8 @@ public class _MaterialComboBoxFiltrable<T> extends _MaterialComboBox<T> {
 
     @Override
     public void paintComponent(Graphics g) {
-        Graphics2D g2 = MaterialDrawingUtils.getAliasedGraphics(g);
+        super.paintComponent(g);
+        /*Graphics2D g2 = MaterialDrawingUtils.getAliasedGraphics(g);
 
         int yMid = getSize().height / 2;
 
@@ -153,7 +143,7 @@ public class _MaterialComboBoxFiltrable<T> extends _MaterialComboBox<T> {
         g2.fillRect(0, yLine, getWidth(), 1);
 
         //paint the front line, this is the one that change colors and size
-        g2.setColor(getAccent());
+        g2.setColor(getAccentFloatingLabel());
         g2.fillRect((int) ((getWidth() - getLine().getWidth()) / 2), yLine, (int) getLine().getWidth(), 2);
 
         //paint the wrong text if the flag is actived
@@ -167,7 +157,7 @@ public class _MaterialComboBoxFiltrable<T> extends _MaterialComboBox<T> {
         if (getIcon() != null) {
             Color iconColor;
             if (isFocusOwner()) {
-                iconColor = getAccent();
+                iconColor = getAccentFloatingLabel();
             } else {
                 iconColor = Utils.applyAlphaMask(getForeground(), LINE_OPACITY_MASK);
             }
@@ -177,6 +167,6 @@ public class _MaterialComboBoxFiltrable<T> extends _MaterialComboBox<T> {
             }
             icon.paintIcon(this, g2, (int) (this.getSize().getWidth() - getIcon().getIconHeight()), yMid - icon.getIconHeight() / 2);
         }
-
+         */
     }
 }

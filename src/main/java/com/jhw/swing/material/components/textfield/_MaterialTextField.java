@@ -9,7 +9,7 @@ import com.jhw.personalization.core.domain.Personalization;
 import com.jhw.personalization.services.PersonalizationHandler;
 import com.jhw.swing.util.MaterialDrawingUtils;
 import com.jhw.swing.material.effects.DefaultFloatingLabel;
-import com.jhw.swing.material.effects.FloatingLabelStandar;
+import com.jhw.swing.material.effects.FloatingLabel;
 import com.jhw.swing.material.effects.Line;
 import com.jhw.swing.util.Utils;
 import com.jhw.swing.util.interfaces.MaterialComponent;
@@ -19,6 +19,7 @@ import com.jhw.swing.util.interfaces.BindableComponent;
 import com.jhw.swing.util.interfaces.Wrong;
 import com.jhw.utils.interfaces.Formateable;
 import com.jhw.utils.services.ConverterService;
+import static com.jhw.swing.material.standards.Utils.LINE_OPACITY_MASK;
 
 /**
  * A Material Design single-line text field is the basic way of getting user
@@ -30,18 +31,12 @@ import com.jhw.utils.services.ConverterService;
  * href="https://www.google.com/design/spec/components/text-fields.html">Text
  * fields (Google design guidelines)</a>
  */
-public class _MaterialTextField<T> extends JTextField implements BindableComponent<T>, Wrong, MaterialComponent, FloatingLabelStandar {
-
-    public static final int HINT_OPACITY_MASK = 0x99000000;
-    public static final int LINE_OPACITY_MASK = 0x66000000;
+public class _MaterialTextField<T> extends JTextField implements BindableComponent<T>, Wrong, MaterialComponent, FloatingLabel {
 
     private final Class<? extends T> clazz;
 
-    private DefaultFloatingLabel floatingLabel;
-    private Line line;
-    private String hint = "hint";
-    private String label = "label";
-    private Color accentColor = PersonalizationHandler.getColor(Personalization.KEY_COLOR_ACCENT);
+    private FloatingLabel floatingLabel = new DefaultFloatingLabel(this);
+    private Line line = new Line(this);
 
     //default
     private Color foreground = MaterialColors.BLACK;
@@ -94,36 +89,58 @@ public class _MaterialTextField<T> extends JTextField implements BindableCompone
                 repaint();
             }
         });
-
-        floatingLabel = new DefaultFloatingLabel(this);
-        line = new Line(this);
-        setAccent(accentColor);
         setText("");
 
         this.setComponentPopupMenu(CopyPastePopup.INSTANCE);
     }
+//-------------------FLOATING_LABEL-------------------------
+
+    @Override
+    public Color getAccentFloatingLabel() {
+        return floatingLabel.getAccentFloatingLabel();
+    }
+
+    @Override
+    public void setAccentFloatingLabel(Color accentColor) {
+        floatingLabel.setAccentFloatingLabel(accentColor);
+    }
+
+    @Override
+    public String getLabel() {
+        return floatingLabel.getLabel();
+    }
+
+    @Override
+    public void setLabel(String label) {
+        floatingLabel.setLabel(label);
+    }
+
+    @Override
+    public String getHint() {
+        return floatingLabel.getHint();
+    }
+
+    @Override
+    public void setHint(String hint) {
+        floatingLabel.setHint(hint);
+    }
+
+    @Override
+    public void paintLabel(Graphics g) {
+        floatingLabel.paintLabel(g);
+    }
+
+    @Override
+    public void paintHint(Graphics g) {
+        floatingLabel.paintHint(g);
+    }
+//-------------------FLOATING_LABEL-------------------------
 
     private void validateSize(KeyEvent evt) {
         if (getText().length() + 1 > getMaxLength()) {
             Utils.beep();
             evt.consume();
         }
-    }
-
-    @Override
-    public Component getComponent() {
-        return this;
-    }
-
-    /**
-     * Default constructor for {@code MaterialTextField}. A default model is
-     * created and the initial string is the one provided.
-     *
-     * @param text An starting value for this text field
-     */
-    public _MaterialTextField(String text) {
-        this();
-        setText(text);
     }
 
     /**
@@ -185,72 +202,6 @@ public class _MaterialTextField<T> extends JTextField implements BindableCompone
     }
 
     /**
-     * Gets the label text. The label will float above any contents input into
-     * this text field.
-     *
-     * @return the text being used in the floating label
-     */
-    public String getLabel() {
-        return this.label;
-    }
-
-    /**
-     * Sets the label text. The label will float above any contents input into
-     * this text field.
-     *
-     * @param label the text to use in the floating label
-     */
-    public void setLabel(String label) {
-        this.label = label;
-        floatingLabel.update();
-        repaint();
-    }
-
-    /**
-     * Gets the hint text. The hint text is displayed when this textfield is
-     * empty.
-     *
-     * @return the text being used as hint
-     */
-    public String getHint() {
-        return hint;
-    }
-
-    /**
-     * Sets the hint text. The hint text is displayed when this textfield is
-     * empty.
-     *
-     * @param hint the text to use as hint
-     */
-    public void setHint(String hint) {
-        this.hint = hint;
-        repaint();
-    }
-
-    /**
-     * Gets the color the label changes to when this {@code materialTextField}
-     * is focused.
-     *
-     * @return the {@code "Color"} currently in use for accent. The default
-     * value is {@link MaterialColor#CYAN_300}.
-     */
-    public Color getAccent() {
-        return accentColor;
-    }
-
-    /**
-     * Sets the color the label changes to when this {@code materialTextField}
-     * is focused. The default value is {@link MaterialColor#CYAN_300}.
-     *
-     * @param accentColor the {@code "Color"} that should be used for accent.
-     */
-    public void setAccent(Color accentColor) {
-        this.accentColor = accentColor;
-        this.floatingLabel.setAccentColor(accentColor);
-        repaint();
-    }
-
-    /**
      * Set the real color of the foreground. The color of the foreground when
      * the text field it's not wrong.
      *
@@ -283,18 +234,10 @@ public class _MaterialTextField<T> extends JTextField implements BindableCompone
     }
 
     @Override
-    public void setForeground(Color fg) {
-        super.setForeground(fg);
-        if (floatingLabel != null) {
-            floatingLabel.updateForeground();
-        }
-    }
-
-    @Override
     public void setText(String s) {
         super.setText(s);
         this.setCaretPosition(getText().length());
-        floatingLabel.update();
+//        floatingLabel.update();
         line.update();
         clearWrong(new KeyEvent(this, 0, 0, 0, 0, '0'));
     }
@@ -302,14 +245,14 @@ public class _MaterialTextField<T> extends JTextField implements BindableCompone
     @Override
     protected void processFocusEvent(FocusEvent e) {
         super.processFocusEvent(e);
-        floatingLabel.update();
+        firePropertyChange("processFocusEvent", null, null);
         line.update();
     }
 
     @Override
     protected void processKeyEvent(KeyEvent e) {
         super.processKeyEvent(e);
-        floatingLabel.update();
+        firePropertyChange("processKeyEvent", null, null);
         line.update();
     }
 
@@ -329,16 +272,11 @@ public class _MaterialTextField<T> extends JTextField implements BindableCompone
         FontMetrics metrics = g2.getFontMetrics(g2.getFont());
 
         //Paint the hint
-        if (!getHint().isEmpty() && getText().isEmpty() && (getLabel().isEmpty() || isFocusOwner()) && floatingLabel.isFloatingAbove()) {
-            g2.setColor(Utils.applyAlphaMask(getForeground(), HINT_OPACITY_MASK));
-            g2.drawString(getHint(), 0, yMid + metrics.getAscent() / 2);//paint the hint in the same place as the text
+        if (!getHint().isEmpty() && getText().isEmpty() && (getLabel().isEmpty() || isFocusOwner())) {
+            paintHint(g2);
         }
 
-        g2.setColor(floatingLabel.getColor());
-        g2.setFont(floatingLabel.getFont());
-        if (!getLabel().isEmpty()) {
-            g2.drawString(getLabel(), floatingLabel.getX(), floatingLabel.getY());//paint the label in the same place as the texti
-        }
+        paintLabel(g2);
 
         int yLine = yMid + metrics.getAscent() / 2 + 5;
 
@@ -347,13 +285,13 @@ public class _MaterialTextField<T> extends JTextField implements BindableCompone
         g2.fillRect(0, yLine, getWidth(), 1);
 
         //paint the real-line, this is the one that change colors and size
-        g2.setColor(floatingLabel.getColor());
+        g2.setColor(getAccentFloatingLabel());
         g2.fillRect((int) ((getWidth() - line.getWidth()) / 2), yLine, (int) line.getWidth(), 2);
 
         //paint the wrong text if the flag is actived
         if (wrongFlag) {
             g2.setColor(getWrongColor());
-            g2.setFont(floatingLabel.getFont().deriveFont(1));//1 for bold
+            g2.setFont(getFont().deriveFont(getFont().getSize2D() * 0.8f).deriveFont(1));//1 for bold
             g2.drawString(wrongText, 0, yLine + 15);//paint the wrong text
         }
 
@@ -370,7 +308,7 @@ public class _MaterialTextField<T> extends JTextField implements BindableCompone
 
     @Override
     public void wrong() {
-        floatingLabel.setAccentColor(wrongColor);
+//        floatingLabel.setAccentColor(wrongColor);
         this.wrongFlag = true;
     }
 
@@ -384,7 +322,7 @@ public class _MaterialTextField<T> extends JTextField implements BindableCompone
         if (wrongFlag && !evt.isConsumed()) {
             this.wrongFlag = false;
             setForeground(foreground);
-            floatingLabel.setAccentColor(accentColor);
+//            floatingLabel.setAccentColor(accentColor);
             this.repaint();
         }
     }

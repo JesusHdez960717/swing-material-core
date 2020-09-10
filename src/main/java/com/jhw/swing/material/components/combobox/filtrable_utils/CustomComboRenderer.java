@@ -1,4 +1,4 @@
-package com.jhw.swing.material.components.combobox.combobox_editable;
+package com.jhw.swing.material.components.combobox.filtrable_utils;
 
 import com.jhw.swing.util.HtmlHighlighter;
 import javax.swing.*;

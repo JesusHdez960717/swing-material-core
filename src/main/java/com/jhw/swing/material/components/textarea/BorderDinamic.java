@@ -2,7 +2,6 @@ package com.jhw.swing.material.components.textarea;
 
 import com.jhw.swing.material.effects.MaterialLineBorder;
 import com.jhw.swing.material.effects.DefaultMaterialLineBorder;
-import static com.jhw.swing.material.components.textfield._MaterialTextField.HINT_OPACITY_MASK;
 import java.awt.Color;
 import java.awt.Font;
 import java.util.concurrent.TimeUnit;
@@ -13,6 +12,7 @@ import com.jhw.personalization.services.PersonalizationHandler;
 import com.jhw.swing.util.SafePropertySetter;
 import com.jhw.swing.util.Utils;
 import javax.swing.border.TitledBorder;
+import static com.jhw.swing.material.standards.Utils.HINT_OPACITY_MASK;
 
 public class BorderDinamic {
 

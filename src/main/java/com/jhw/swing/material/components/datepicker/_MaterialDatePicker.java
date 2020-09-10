@@ -118,10 +118,6 @@ public class _MaterialDatePicker extends JXDatePicker implements DateSelected, B
         text.wrong(wrongText);
     }
 
-    public Component getComponent() {
-        return text.getComponent();
-    }
-
     public Color getWrongColor() {
         return text.getWrongColor();
     }
@@ -150,12 +146,12 @@ public class _MaterialDatePicker extends JXDatePicker implements DateSelected, B
         text.setHint(hint);
     }
 
-    public Color getAccent() {
-        return text.getAccent();
+    public Color getAccentFloatingLabel() {
+        return text.getAccentFloatingLabel();
     }
 
-    public void setAccent(Color accentColor) {
-        text.setAccent(accentColor);
+    public void setAccentFloatingLabel(Color accentColor) {
+        text.setAccentFloatingLabel(accentColor);
     }
 
     public Color getRealForeground() {

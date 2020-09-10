@@ -1,4 +1,4 @@
-package com.jhw.swing.material.components.combobox.combobox_editable;
+package com.jhw.swing.material.components.combobox.filtrable_utils;
 
 import com.jhw.swing.material.components.labels._MaterialLabel;
 import java.awt.Component;

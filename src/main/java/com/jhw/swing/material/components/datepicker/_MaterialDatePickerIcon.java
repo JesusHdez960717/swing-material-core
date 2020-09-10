@@ -58,7 +58,7 @@ public class _MaterialDatePickerIcon extends _PanelTransparent implements Bindab
         datePicker.getFormatedTextField().addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
-                buttonIcon.setForeground(getAccent());
+                buttonIcon.setForeground(getAccentFloatingLabel());
             }
 
             @Override
@@ -114,10 +114,6 @@ public class _MaterialDatePickerIcon extends _PanelTransparent implements Bindab
         return datePicker.getDate();
     }
 
-    public Component getComponent() {
-        return datePicker.getComponent();
-    }
-
     public Color getWrongColor() {
         return datePicker.getWrongColor();
     }
@@ -146,12 +142,12 @@ public class _MaterialDatePickerIcon extends _PanelTransparent implements Bindab
         datePicker.setHint(hint);
     }
 
-    public Color getAccent() {
-        return datePicker.getAccent();
+    public Color getAccentFloatingLabel() {
+        return datePicker.getAccentFloatingLabel();
     }
 
-    public void setAccent(Color accentColor) {
-        datePicker.setAccent(accentColor);
+    public void setAccentFloatingLabel(Color accentColor) {
+        datePicker.setAccentFloatingLabel(accentColor);
     }
 
     public Color getRealForeground() {

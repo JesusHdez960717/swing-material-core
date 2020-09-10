@@ -1,5 +1,6 @@
-package com.jhw.swing.material.components.combobox.combobox_editable;
+package com.jhw.swing.material.components.combobox.filtrable_utils;
 
+import com.jhw.swing.material.components.combobox._MaterialComboBoxFiltrable;
 import com.jhw.utils.interfaces.Formateable;
 import com.jhw.utils.interfaces.Filtrable;
 import java.awt.Color;

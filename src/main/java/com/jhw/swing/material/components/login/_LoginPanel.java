@@ -52,11 +52,11 @@ public class _LoginPanel extends LoginSimple {
 
         labelSecure.setPreferredSize(new java.awt.Dimension(50, 150));
 
-        textFieldUsuario.setAccent(new java.awt.Color(0, 0, 0));
+        textFieldUsuario.setAccentFloatingLabel(new java.awt.Color(0, 0, 0));
         textFieldUsuario.setHint("Introduzca el nombre de usuario");
         textFieldUsuario.setLabel("Usuario");
 
-        passwordUsuario.setAccent(new java.awt.Color(0, 0, 0));
+        passwordUsuario.setAccentFloatingLabel(new java.awt.Color(0, 0, 0));
         passwordUsuario.setHint("Introduzca la contraseña");
         passwordUsuario.setLabel("Contraseña");
 
