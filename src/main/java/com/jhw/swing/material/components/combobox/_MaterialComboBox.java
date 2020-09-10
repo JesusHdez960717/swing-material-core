@@ -37,6 +37,10 @@ import com.jhw.swing.util.interfaces.Wrong;
  */
 public class _MaterialComboBox<T> extends JComboBox<T> implements BindableComponent<T>, Wrong, MaterialComponent, FloatingLabelStandar {
 
+    public static _MaterialComboBox from() {
+        return new _MaterialComboBox();
+    }
+    
     private DefaultFloatingLabel floatingLabel;
     private Line line = new Line(this);
     private String label = "label";
