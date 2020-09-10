@@ -19,6 +19,10 @@ import com.jhw.swing.util.interfaces.MaterialComponent;
 
 public class _ClockFace extends JComponent implements MaterialComponent {
 
+    public static _ClockFace from() {
+        return new _ClockFace();
+    }
+    
     public static int FPS = 60;
     private Stroke border;
     private Stroke hourHand;
@@ -27,7 +31,7 @@ public class _ClockFace extends JComponent implements MaterialComponent {
     private Stroke secondHand;
     private Stroke ticks;
 
-    public _ClockFace() {
+    protected _ClockFace() {
         setPreferredSize(new Dimension(150, 150));
         setSize(new Dimension(150, 150));
         setOpaque(false);
