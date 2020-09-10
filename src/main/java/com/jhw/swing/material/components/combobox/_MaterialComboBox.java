@@ -1,7 +1,7 @@
 package com.jhw.swing.material.components.combobox;
 
 import com.jhw.swing.material.components.scrollpane._MaterialScrollPaneCore;
-import com.jhw.swing.material.effects.Line;
+import com.jhw.swing.material.effects.DefaultLine;
 import com.jhw.swing.material.effects.DefaultFloatingLabel;
 import java.awt.*;
 import java.awt.event.FocusEvent;
@@ -16,6 +16,7 @@ import com.jhw.swing.material.standards.MaterialIcons;
 import com.jhw.personalization.core.domain.Personalization;
 import com.jhw.personalization.services.PersonalizationHandler;
 import com.jhw.swing.material.effects.FloatingLabel;
+import com.jhw.swing.material.effects.Line;
 import com.jhw.swing.util.MaterialDrawingUtils;
 import com.jhw.swing.util.Utils;
 import com.jhw.swing.util.interfaces.BindableComponent;
@@ -34,14 +35,14 @@ import static com.jhw.swing.material.standards.Utils.LINE_OPACITY_MASK;
  * href="https://www.google.com/design/spec/components/buttons.html#buttons-dropdown-buttons">Dropdown
  * buttons (Google design guidelines)</a>
  */
-public class _MaterialComboBox<T> extends JComboBox<T> implements FloatingLabel, BindableComponent<T>, Wrong, MaterialComponent {
+public class _MaterialComboBox<T> extends JComboBox<T> implements Line, FloatingLabel, BindableComponent<T>, Wrong, MaterialComponent {
 
     public static _MaterialComboBox from() {
         return new _MaterialComboBox();
     }
 
     private FloatingLabel floatingLabel;
-    private Line line = new Line(this);
+    private Line line = new DefaultLine(this);
 
     //default
     private Color foreground = MaterialColors.BLACK;
@@ -80,19 +81,23 @@ public class _MaterialComboBox<T> extends JComboBox<T> implements FloatingLabel,
         this.setModel(new javax.swing.DefaultComboBoxModel(new String[]{}));
         this.setSelectedIndex(-1);
 
-        this.addComponentListener(new ComponentAdapter() {
-            @Override
-            public void componentResized(ComponentEvent e) {
-//                floatingLabel.update();
-            }
-        });
-
         this.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 clearWrong();
             }
         });
+    }
+//-------------------LINE-------------------------
+
+    @Override
+    public void paintLine(Graphics g2) {
+        line.paintLine(g2);
+    }
+
+    @Override
+    public int getYLine(Graphics g2) {
+        return line.getYLine(g2);
     }
 //-------------------FLOATING_LABEL-------------------------
 
@@ -224,7 +229,6 @@ public class _MaterialComboBox<T> extends JComboBox<T> implements FloatingLabel,
     protected void processFocusEvent(FocusEvent e) {
         super.processFocusEvent(e);
         firePropertyChange("processFocusEvent", null, null);
-        line.update();
     }
 
     protected ImageIcon getIcon() {
@@ -247,22 +251,13 @@ public class _MaterialComboBox<T> extends JComboBox<T> implements FloatingLabel,
             g2.setColor(getForeground());
             g2.drawString(getSelectedItem().toString(), 0, metrics.getAscent() + yMid - metrics.getAscent() / 2);
         }
-
-        int yLine = yMid + metrics.getAscent() / 2 + 8;
-
-        //paint the back line
-        g2.setColor(Utils.applyAlphaMask(getForeground(), LINE_OPACITY_MASK));
-        g2.fillRect(0, yLine, getWidth(), 1);
-
-        //paint the front line, this is the one that change colors and size
-        g2.setColor(getAccentFloatingLabel());
-        g2.fillRect((int) ((getWidth() - line.getWidth()) / 2), yLine, (int) line.getWidth(), 2);
-
+        paintLine(g2);
+        
         //paint the wrong text if the flag is actived
         if (wrongFlag) {
             g2.setColor(getWrongColor());
             g2.setFont(getFont().deriveFont(getFont().getSize2D() * 0.8f).deriveFont(Font.BOLD));//1 for bold
-            g2.drawString(getWrongText(), 0, yLine + 15);//paint the wrong text
+            g2.drawString(getWrongText(), 0, getYLine(g2) + 15);//paint the wrong text
         }
 
         //paint the arrow
@@ -283,10 +278,6 @@ public class _MaterialComboBox<T> extends JComboBox<T> implements FloatingLabel,
 
     public boolean isWrongFlag() {
         return wrongFlag;
-    }
-
-    public Line getLine() {
-        return line;
     }
 
     @Override

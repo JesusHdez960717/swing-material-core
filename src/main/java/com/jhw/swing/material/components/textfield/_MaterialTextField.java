@@ -10,6 +10,7 @@ import com.jhw.personalization.services.PersonalizationHandler;
 import com.jhw.swing.util.MaterialDrawingUtils;
 import com.jhw.swing.material.effects.DefaultFloatingLabel;
 import com.jhw.swing.material.effects.FloatingLabel;
+import com.jhw.swing.material.effects.DefaultLine;
 import com.jhw.swing.material.effects.Line;
 import com.jhw.swing.util.Utils;
 import com.jhw.swing.util.interfaces.MaterialComponent;
@@ -19,7 +20,6 @@ import com.jhw.swing.util.interfaces.BindableComponent;
 import com.jhw.swing.util.interfaces.Wrong;
 import com.jhw.utils.interfaces.Formateable;
 import com.jhw.utils.services.ConverterService;
-import static com.jhw.swing.material.standards.Utils.LINE_OPACITY_MASK;
 
 /**
  * A Material Design single-line text field is the basic way of getting user
@@ -31,12 +31,12 @@ import static com.jhw.swing.material.standards.Utils.LINE_OPACITY_MASK;
  * href="https://www.google.com/design/spec/components/text-fields.html">Text
  * fields (Google design guidelines)</a>
  */
-public class _MaterialTextField<T> extends JTextField implements BindableComponent<T>, Wrong, MaterialComponent, FloatingLabel {
+public class _MaterialTextField<T> extends JTextField implements BindableComponent<T>, Line, Wrong, MaterialComponent, FloatingLabel {
 
     private final Class<? extends T> clazz;
 
     private FloatingLabel floatingLabel = new DefaultFloatingLabel(this);
-    private Line line = new Line(this);
+    private Line line = new DefaultLine(this);
 
     //default
     private Color foreground = MaterialColors.BLACK;
@@ -92,6 +92,17 @@ public class _MaterialTextField<T> extends JTextField implements BindableCompone
         setText("");
 
         this.setComponentPopupMenu(CopyPastePopup.INSTANCE);
+    }
+
+//-------------------LINE-------------------------
+    @Override
+    public void paintLine(Graphics g2) {
+        line.paintLine(g2);
+    }
+
+    @Override
+    public int getYLine(Graphics g2) {
+        return line.getYLine(g2);
     }
 //-------------------FLOATING_LABEL-------------------------
 
@@ -237,8 +248,7 @@ public class _MaterialTextField<T> extends JTextField implements BindableCompone
     public void setText(String s) {
         super.setText(s);
         this.setCaretPosition(getText().length());
-//        floatingLabel.update();
-        line.update();
+        firePropertyChange("text", null, null);
         clearWrong(new KeyEvent(this, 0, 0, 0, 0, '0'));
     }
 
@@ -246,29 +256,24 @@ public class _MaterialTextField<T> extends JTextField implements BindableCompone
     protected void processFocusEvent(FocusEvent e) {
         super.processFocusEvent(e);
         firePropertyChange("processFocusEvent", null, null);
-        line.update();
     }
 
     @Override
     protected void processKeyEvent(KeyEvent e) {
         super.processKeyEvent(e);
         firePropertyChange("processKeyEvent", null, null);
-        line.update();
     }
 
     @Override
     protected void paintComponent(Graphics g) {
         Graphics2D g2 = MaterialDrawingUtils.getAliasedGraphics(g);
 
-        g2.setFont(getFont());
-
         super.paintComponent(g2);//paint the text, caret,higligth and foreground
 
         g2.setColor(getBackground());//por defecto no pinta el background
         g2.fillRect(0, 0, getWidth(), getHeight());
 
-        int yMid = getSize().height / 2;
-
+        g2.setFont(getFont());
         FontMetrics metrics = g2.getFontMetrics(g2.getFont());
 
         //Paint the hint
@@ -277,21 +282,13 @@ public class _MaterialTextField<T> extends JTextField implements BindableCompone
         }
         paintLabel(g2);
 
-        int yLine = yMid + metrics.getAscent() / 2 + 5;
-
-        //paint the under-line 
-        g2.setColor(Utils.applyAlphaMask(getForeground(), LINE_OPACITY_MASK));
-        g2.fillRect(0, yLine, getWidth(), 1);
-
-        //paint the real-line, this is the one that change colors and size
-        g2.setColor(getAccentFloatingLabel());
-        g2.fillRect((int) ((getWidth() - line.getWidth()) / 2), yLine, (int) line.getWidth(), 2);
+        paintLine(g2);
 
         //paint the wrong text if the flag is actived
         if (wrongFlag) {
             g2.setColor(getWrongColor());
             g2.setFont(getFont().deriveFont(getFont().getSize2D() * 0.8f).deriveFont(1));//1 for bold
-            g2.drawString(wrongText, 0, yLine + 15);//paint the wrong text
+            g2.drawString(wrongText, 0, getYLine(g2) + 15);//paint the wrong text
         }
 
         g2.setFont(getFont());

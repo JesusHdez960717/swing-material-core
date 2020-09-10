@@ -44,8 +44,6 @@ public class DefaultFloatingLabel<T extends JComponent & BindableComponent> impl
         fontSize = SafePropertySetter.animatableProperty(target, target.getFont().getSize2D());
         color = SafePropertySetter.animatableProperty(target, Utils.applyAlphaMask(target.getForeground(), HINT_OPACITY_MASK));
 
-        this.updateForeground();
-
         target.addComponentListener(new ComponentAdapter() {
             @Override
             public void componentResized(ComponentEvent e) {
@@ -112,11 +110,8 @@ public class DefaultFloatingLabel<T extends JComponent & BindableComponent> impl
     }
 //-------------------FLOATING_LABEL-------------------------
 
-    public void updateForeground() {
-        color.setValue(Utils.applyAlphaMask(target.getForeground(), HINT_OPACITY_MASK));
-    }
 
-    public void update() {
+    private void update() {
         if (animator != null) {
             animator.stop();
         }
@@ -127,24 +122,19 @@ public class DefaultFloatingLabel<T extends JComponent & BindableComponent> impl
         }
     }
 
-    public void setAccentColor(Color accentColor) {
-        this.accentColor = accentColor;
-        update();
-    }
-
-    public Color getColor() {
+    private Color getColor() {
         return color.getValue();
     }
 
-    public Font getFont() {
+    private Font getFont() {
         return target.getFont().deriveFont(fontSize.getValue());
     }
 
-    public int getY() {
+    private int getY() {
         return y.getValue();
     }
 
-    public boolean isFloatingAbove() {
+    private boolean isFloatingAbove() {
         return y.getValue() >= getYPositionUP();
     }
 
@@ -172,20 +162,12 @@ public class DefaultFloatingLabel<T extends JComponent & BindableComponent> impl
         return yPositionDown;
     }
 
-    public float getTargetFontSize() {
+    private float getTargetFontSize() {
         return (target.isFocusOwner() || (target.getObject() != null && !target.getObject().toString().isEmpty())) ? target.getFont().getSize2D() * 0.8f : target.getFont().getSize2D();
     }
 
-    public int getTargetYPosition() {
+    private int getTargetYPosition() {
         return target.isFocusOwner() || (target.getObject() != null && !target.getObject().toString().isEmpty()) ? getYPositionUP() : getYPositionDOWN();
-    }
-
-    public int getTargetXPosition() {
-        //si hay front y esta bajando la x varia
-        /*if (!target.getFrontText().isEmpty() && getTargetYPosition() == getYPositionDOWN()) {
-            return target.getFontMetrics(target.getFont()).stringWidth(target.getFrontText()) + target.getDistanceFrontText();
-        }*/
-        return 0;
     }
 
     private Color getTargetColor() {
@@ -238,6 +220,9 @@ public class DefaultFloatingLabel<T extends JComponent & BindableComponent> impl
                 update();
                 break;
             case "processKeyEvent":
+                update();
+                break;
+            case "text":
                 update();
                 break;
             case "foreground":

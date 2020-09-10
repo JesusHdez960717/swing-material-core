@@ -9,6 +9,7 @@ import com.jhw.personalization.core.domain.Personalization;
 import com.jhw.personalization.services.PersonalizationHandler;
 import com.jhw.swing.material.effects.DefaultFloatingLabel;
 import com.jhw.swing.material.effects.FloatingLabel;
+import com.jhw.swing.material.effects.DefaultLine;
 import com.jhw.swing.material.effects.Line;
 import com.jhw.swing.material.standards.MaterialColors;
 import com.jhw.swing.material.standards.MaterialFontRoboto;
@@ -30,14 +31,15 @@ import java.awt.event.KeyEvent;
 import javax.swing.text.DefaultCaret;
 import org.jdesktop.swingx.JXFormattedTextField;
 import static com.jhw.swing.material.standards.Utils.LINE_OPACITY_MASK;
+
 /**
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-public class _MaterialFormatedTextField<T> extends JXFormattedTextField implements BindableComponent<T>, Wrong, MaterialComponent, FloatingLabel {
+public class _MaterialFormatedTextField<T> extends JXFormattedTextField implements Line, BindableComponent<T>, Wrong, MaterialComponent, FloatingLabel {
 
     private FloatingLabel floatingLabel = new DefaultFloatingLabel(this);
-    private Line line = new Line(this);
+    private Line line = new DefaultLine(this);
 
     private final Class<? extends T> clazz;
 
@@ -99,7 +101,18 @@ public class _MaterialFormatedTextField<T> extends JXFormattedTextField implemen
         this.setComponentPopupMenu(CopyPastePopup.INSTANCE);
     }
 
+//-------------------LINE-------------------------
+    @Override
+    public void paintLine(Graphics g2) {
+        line.paintLine(g2);
+    }
+
+    @Override
+    public int getYLine(Graphics g2) {
+        return line.getYLine(g2);
+    }
 //-------------------FLOATING_LABEL-------------------------
+
     @Override
     public Color getAccentFloatingLabel() {
         return floatingLabel.getAccentFloatingLabel();
@@ -251,8 +264,7 @@ public class _MaterialFormatedTextField<T> extends JXFormattedTextField implemen
     public void setText(String s) {
         super.setText(s);
         this.setCaretPosition(getText().length());
-        //floatingLabel.update();
-        line.update();
+        firePropertyChange("text", null, null);
         clearWrong(new KeyEvent(this, 0, 0, 0, 0, '0'));
     }
 
@@ -260,21 +272,17 @@ public class _MaterialFormatedTextField<T> extends JXFormattedTextField implemen
     protected void processFocusEvent(FocusEvent e) {
         super.processFocusEvent(e);
         firePropertyChange("processFocusEvent", null, null);
-        line.update();
     }
 
     @Override
     protected void processKeyEvent(KeyEvent e) {
         super.processKeyEvent(e);
         firePropertyChange("processKeyEvent", null, null);
-        line.update();
     }
 
     @Override
     protected void paintComponent(Graphics g) {
         Graphics2D g2 = MaterialDrawingUtils.getAliasedGraphics(g);
-
-        g2.setFont(getFont());
 
         super.paintComponent(g2);//paint the text, caret,higligth and foreground
 
@@ -283,7 +291,8 @@ public class _MaterialFormatedTextField<T> extends JXFormattedTextField implemen
 
         int yMid = getSize().height / 2;
 
-        FontMetrics metrics = g2.getFontMetrics(g2.getFont());
+        g2.setFont(getFont());
+        FontMetrics metrics = g2.getFontMetrics(getFont());
 
         //Paint the hint
         if (!getHint().isEmpty() && getText().isEmpty() && (getLabel().isEmpty() || isFocusOwner())) {
@@ -291,22 +300,13 @@ public class _MaterialFormatedTextField<T> extends JXFormattedTextField implemen
         }
 
         paintLabel(g2);
-
-        int yLine = yMid + metrics.getAscent() / 2 + 5;
-
-        //paint the under-line 
-        g2.setColor(Utils.applyAlphaMask(getForeground(), LINE_OPACITY_MASK));
-        g2.fillRect(0, yLine, getWidth(), 1);
-
-        //paint the real-line, this is the one that change colors and size
-        g2.setColor(getAccentFloatingLabel());
-        g2.fillRect((int) ((getWidth() - line.getWidth()) / 2), yLine, (int) line.getWidth(), 2);
+        paintLine(g2);
 
         //paint the wrong text if the flag is actived
         if (wrongFlag) {
             g2.setColor(getWrongColor());
             g2.setFont(getFont().deriveFont(getFont().getSize2D() * 0.8f).deriveFont(1));//1 for bold
-            g2.drawString(wrongText, 0, yLine + 15);//paint the wrong text
+            g2.drawString(wrongText, 0, getYLine(g2) + 15);//paint the wrong text
         }
 
         g2.setFont(getFont());

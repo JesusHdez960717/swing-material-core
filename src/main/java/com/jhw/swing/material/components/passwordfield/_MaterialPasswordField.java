@@ -11,6 +11,7 @@ import com.jhw.personalization.services.PersonalizationHandler;
 import com.jhw.swing.material.effects.FloatingLabel;
 import com.jhw.utils.security.SHA;
 import com.jhw.swing.util.MaterialDrawingUtils;
+import com.jhw.swing.material.effects.DefaultLine;
 import com.jhw.swing.material.effects.Line;
 import com.jhw.swing.util.interfaces.MaterialComponent;
 import com.jhw.swing.util.Utils;
@@ -30,11 +31,11 @@ import com.jhw.swing.util.interfaces.Wrong;
  * href="https://www.google.com/design/spec/components/text-fields.html">Text
  * fields (Google design guidelines)</a>
  */
-public class _MaterialPasswordField extends JPasswordField implements BindableComponent<char[]>, Wrong, MaterialComponent, FloatingLabel {
+public class _MaterialPasswordField extends JPasswordField implements Line, BindableComponent<char[]>, Wrong, MaterialComponent, FloatingLabel {
 
     private FloatingLabel floatingLabel = new DefaultFloatingLabel(this);
 
-    private Line line;
+    private Line line = new DefaultLine(this);
 
     //default
     private Color foreground = MaterialColors.BLACK;
@@ -94,12 +95,20 @@ public class _MaterialPasswordField extends JPasswordField implements BindableCo
             }
         });
 
-        line = new Line(this);
-
-        setText("");
     }
 
+//-------------------LINE-------------------------
+    @Override
+    public void paintLine(Graphics g2) {
+        line.paintLine(g2);
+    }
+
+    @Override
+    public int getYLine(Graphics g2) {
+        return line.getYLine(g2);
+    }
 //-------------------FLOATING_LABEL-------------------------
+
     @Override
     public Color getAccentFloatingLabel() {
         return floatingLabel.getAccentFloatingLabel();
@@ -250,7 +259,7 @@ public class _MaterialPasswordField extends JPasswordField implements BindableCo
     public void setText(String s) {
         super.setText(s);
         this.setCaretPosition(super.getPassword().length);
-        line.update();
+        firePropertyChange("text", null, null);
         clearWrong(new KeyEvent(this, 0, 0, 0, 0, '0'));
     }
 
@@ -258,14 +267,12 @@ public class _MaterialPasswordField extends JPasswordField implements BindableCo
     protected void processFocusEvent(FocusEvent e) {
         super.processFocusEvent(e);
         firePropertyChange("processFocusEvent", null, null);
-        line.update();
     }
 
     @Override
     protected void processKeyEvent(KeyEvent e) {
         super.processKeyEvent(e);
         firePropertyChange("processKeyEvent", null, null);
-        line.update();
     }
 
     @Override
@@ -274,43 +281,33 @@ public class _MaterialPasswordField extends JPasswordField implements BindableCo
 
         super.paintComponent(g2);//paint the text, caret,higligth and foreground
 
-
         g2.setColor(getBackground());//por defecto no pinta el background
         g2.fillRect(0, 0, getWidth(), getHeight());
 
+        int yMid = getSize().height / 2;
+
         g2.setFont(getFont());
         FontMetrics metrics = g2.getFontMetrics(g2.getFont());
-
-        int yMid = getSize().height / 2;
 
         //Paint the hint
         if (!getHint().isEmpty() && getText().isEmpty() && (getLabel().isEmpty() || isFocusOwner())) {
             paintHint(g2);
         }
+
         paintLabel(g2);
-
-        int yLine = yMid + metrics.getAscent() / 2 + 5;
-
-        //paint the back line
-        g2.setColor(Utils.applyAlphaMask(getForeground(), LINE_OPACITY_MASK));
-        g2.fillRect(0, yLine, getWidth(), 1);
-
-        //paint the front line, this is the one that change colors and size
-        g2.setColor(getAccentFloatingLabel());
-        g2.fillRect((int) ((getWidth() - line.getWidth()) / 2), yLine, (int) line.getWidth(), 2);
+        paintLine(g2);
 
         //paint the wrong text if the flag is actived
         if (wrongFlag) {
-            g2.setColor(getForeground());
+            g2.setColor(getWrongColor());
             g2.setFont(getFont().deriveFont(getFont().getSize2D() * 0.8f).deriveFont(1));//1 for bold
-            g2.drawString(wrongText, 0, yLine + 15);//paint the wrong text
+            g2.drawString(wrongText, 0, getYLine(g2) + 15);//paint the wrong text
         }
 
-        g2.setColor(getForeground());
         g2.setFont(getFont());
-        if (!extra.trim().isEmpty()) {
-            g2.drawString(extra, getWidth() - metrics.stringWidth(extra), getHeight() / 2 + metrics.getHeight() / 2 - 3);//paint the coin
-        }
+        g2.setColor(getForeground());
+
+        g2.drawString(getExtra(), getWidth() - metrics.stringWidth(getExtra()), getHeight() / 2 + metrics.getHeight() / 2 - 3);//paint the extra
     }
 
     @Override

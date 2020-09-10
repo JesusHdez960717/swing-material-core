@@ -123,22 +123,12 @@ public class _MaterialComboBoxFiltrable<T> extends _MaterialComboBox<T> {
         }
         paintLabel(g2);
 
-        FontMetrics metrics = g2.getFontMetrics(g2.getFont());
-        int yLine = yMid + metrics.getAscent() / 2 + 5;
-
-        //paint the back line
-        g2.setColor(Utils.applyAlphaMask(getForeground(), LINE_OPACITY_MASK));
-        g2.fillRect(0, yLine, getWidth(), 1);
-
-        //paint the front line, this is the one that change colors and size
-        g2.setColor(getAccentFloatingLabel());
-        g2.fillRect((int) ((getWidth() - getLine().getWidth()) / 2), yLine, (int) getLine().getWidth(), 2);
-
+        paintLine(g2);
         //paint the wrong text if the flag is actived
         if (isWrongFlag()) {
             g2.setColor(getWrongColor());
             g2.setFont(getFont().deriveFont(getFont().getSize2D() * 0.8f).deriveFont(Font.BOLD));//1 for bold
-            g2.drawString(getWrongText(), 0, yLine + 15);//paint the wrong text
+            g2.drawString(getWrongText(), 0, getYLine(g2) + 15);//paint the wrong text
         }
 
         //paint the arrow
