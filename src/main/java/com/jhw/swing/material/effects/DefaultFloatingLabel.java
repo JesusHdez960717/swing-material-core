@@ -1,6 +1,5 @@
 package com.jhw.swing.material.effects;
 
-import static com.jhw.swing.material.components.textfield._MaterialTextField.HINT_OPACITY_MASK;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontMetrics;
@@ -11,47 +10,108 @@ import com.jhw.personalization.core.domain.Personalization;
 import com.jhw.personalization.services.PersonalizationHandler;
 import com.jhw.swing.util.SafePropertySetter;
 import com.jhw.swing.util.Utils;
+import com.jhw.swing.util.interfaces.BindableComponent;
+import java.awt.Graphics;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import javax.swing.JComponent;
+import static com.jhw.swing.material.standards.Utils.*;
 
 /**
  * A floating label of a component that complies to the FloatingLabelStandar
  */
-public class DefaultFloatingLabel {
+public class DefaultFloatingLabel<T extends JComponent & BindableComponent> implements FloatingLabel, PropertyChangeListener {
 
     public static final int DURATION = 200;
 
-    private final FloatingLabelStandar target;
+    private final T target;
     private Animator animator;
+
     private final SafePropertySetter.Property<Integer> y;
-    private final SafePropertySetter.Property<Integer> x;
     private final SafePropertySetter.Property<Float> fontSize;
     private final SafePropertySetter.Property<Color> color;
-    private Color accentColor;
 
-    public DefaultFloatingLabel(FloatingLabelStandar target) {
+    private Color accentColor = PersonalizationHandler.getColor(Personalization.KEY_COLOR_ACCENT);
+    private String label = "label";
+    private String hint = "hint";
+
+    public DefaultFloatingLabel(T target) {
         this.target = target;
 
-        y = SafePropertySetter.animatableProperty(target.getComponent(), 0);//target.getSize().height / 2 + target.getFontMetrics(target.getFont()).getAscent() / 2);
-        x = SafePropertySetter.animatableProperty(target.getComponent(), 0);//target.getSize().height / 2 + target.getFontMetrics(target.getFont()).getAscent() / 2);
-        fontSize = SafePropertySetter.animatableProperty(target.getComponent(), target.getFont().getSize2D());
-        color = SafePropertySetter.animatableProperty(target.getComponent(), Utils.applyAlphaMask(target.getForeground(), HINT_OPACITY_MASK));
+        y = SafePropertySetter.animatableProperty(target, 0);//target.getSize().height / 2 + target.getFontMetrics(target.getFont()).getAscent() / 2);
+        fontSize = SafePropertySetter.animatableProperty(target, target.getFont().getSize2D());
+        color = SafePropertySetter.animatableProperty(target, Utils.applyAlphaMask(target.getForeground(), HINT_OPACITY_MASK));
 
-        this.updateForeground();
-
-        target.getComponent().addComponentListener(new ComponentAdapter() {
+        target.addComponentListener(new ComponentAdapter() {
             @Override
             public void componentResized(ComponentEvent e) {
                 update();
             }
         });
+        this.target.addPropertyChangeListener(this);
     }
 
-    public void updateForeground() {
-        color.setValue(Utils.applyAlphaMask(target.getForeground(), HINT_OPACITY_MASK));
+//-------------------FLOATING_LABEL-------------------------
+    @Override
+    public void setAccentFloatingLabel(Color accentColor) {
+        this.accentColor = accentColor;
+        update();
     }
 
-    public void update() {
+    @Override
+    public Color getAccentFloatingLabel() {
+        return accentColor;
+    }
+
+    @Override
+    public String getLabel() {
+        return label;
+    }
+
+    @Override
+    public void setLabel(String label) {
+        this.label = label;
+        update();
+    }
+
+    @Override
+    public String getHint() {
+        return hint;
+    }
+
+    @Override
+    public void setHint(String hint) {
+        this.hint = hint;
+        update();
+    }
+
+    @Override
+    public void paintLabel(Graphics g2) {
+        g2.setColor(getColor());
+        g2.setFont(getFont());
+        if (!getLabel().isEmpty()) {
+            g2.drawString(getLabel(), 0, getY());//paint the hint in the same place as the text
+        }
+    }
+
+    @Override
+    public void paintHint(Graphics g2) {
+        if (isFloatingAbove()) {
+            int yMid = (int) (target.getSize().getHeight() / 2);
+
+            FontMetrics metrics = g2.getFontMetrics(target.getFont());
+
+            g2.setColor(Utils.applyAlphaMask(target.getForeground(), HINT_OPACITY_MASK));
+            g2.setFont(target.getFont());
+            g2.drawString(getHint(), 0, metrics.getAscent() + yMid - metrics.getAscent() / 2);
+        }
+    }
+//-------------------FLOATING_LABEL-------------------------
+
+
+    private void update() {
         if (animator != null) {
             animator.stop();
         }
@@ -62,32 +122,23 @@ public class DefaultFloatingLabel {
         }
     }
 
-    public void setAccentColor(Color accentColor) {
-        this.accentColor = accentColor;
-        update();
-    }
-
-    public Color getColor() {
+    private Color getColor() {
         return color.getValue();
     }
 
-    public Font getFont() {
+    private Font getFont() {
         return target.getFont().deriveFont(fontSize.getValue());
     }
 
-    public int getY() {
+    private int getY() {
         return y.getValue();
     }
 
-    public int getX() {
-        return x.getValue();
-    }
-
-    public boolean isFloatingAbove() {
+    private boolean isFloatingAbove() {
         return y.getValue() >= getYPositionUP();
     }
 
-    private int getYPositionUP() {
+    protected int getYPositionUP() {
         int size = target.getSize().height;
         if (size == 0) {
             size = target.getPreferredSize().height;
@@ -99,7 +150,7 @@ public class DefaultFloatingLabel {
         return yPositionUP;
     }
 
-    private int getYPositionDOWN() {
+    protected int getYPositionDOWN() {
         int size = target.getSize().height;
         if (size == 0) {
             size = target.getPreferredSize().height;
@@ -111,20 +162,12 @@ public class DefaultFloatingLabel {
         return yPositionDown;
     }
 
-    public float getTargetFontSize() {
-        return (target.isFocusOwner() || !target.getText().isEmpty()) ? target.getFont().getSize2D() * 0.8f : target.getFont().getSize2D();
+    protected float getTargetFontSize() {
+        return (target.isFocusOwner() || (target.getObject() != null && !target.getObject().toString().isEmpty())) ? target.getFont().getSize2D() * 0.8f : target.getFont().getSize2D();
     }
 
-    public int getTargetYPosition() {
-        return target.isFocusOwner() || !target.getText().isEmpty() ? getYPositionUP() : getYPositionDOWN();
-    }
-
-    public int getTargetXPosition() {
-        //si hay front y esta bajando la x varia
-        /*if (!target.getFrontText().isEmpty() && getTargetYPosition() == getYPositionDOWN()) {
-            return target.getFontMetrics(target.getFont()).stringWidth(target.getFrontText()) + target.getDistanceFrontText();
-        }*/
-        return 0;
+    protected int getTargetYPosition() {
+        return target.isFocusOwner() || (target.getObject() != null && !target.getObject().toString().isEmpty()) ? getYPositionUP() : getYPositionDOWN();
     }
 
     private Color getTargetColor() {
@@ -149,12 +192,6 @@ public class DefaultFloatingLabel {
             builder.addTarget(SafePropertySetter.getTarget(y, y.getValue(), targetY));
         }
 
-        //X position
-        int targetX = getTargetXPosition();
-        if (Math.abs(targetX - x.getValue()) > 0.1) {
-            builder.addTarget(SafePropertySetter.getTarget(x, x.getValue(), targetX));
-        }
-
         //color, varia entre el color de accent y el de Opacity_Mask
         Color targetColor = getTargetColor();
         if (!targetColor.equals(color.getValue())) {
@@ -172,11 +209,26 @@ public class DefaultFloatingLabel {
         //Y position
         y.setValue(getTargetYPosition());
 
-        //X position
-        x.setValue(getTargetXPosition());
-
         //color, varia entre el color de accent y el de Opacity_Mask
         color.setValue(getTargetColor());
+    }
+
+    @Override
+    public void propertyChange(PropertyChangeEvent evt) {
+        switch (evt.getPropertyName()) {
+            case "processFocusEvent":
+                update();
+                break;
+            case "processKeyEvent":
+                update();
+                break;
+            case "text":
+                update();
+                break;
+            case "foreground":
+                update();
+                break;
+        }
     }
 
 }

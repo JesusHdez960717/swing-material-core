@@ -1,11 +1,13 @@
 package com.jhw.swing.material.components.table.editors_renders.money;
 
+import com.jhw.swing.material.components.container.MaterialContainersFactory;
 import com.jhw.swing.material.components.container.panel._PanelGradient;
 import com.jhw.swing.material.components.labels._MaterialLabel;
 import com.jhw.utils.others.StringFormating;
 import java.awt.GridLayout;
 import java.math.BigDecimal;
 import java.util.Objects;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
@@ -40,8 +42,8 @@ public class MoneyTableComponent {
         return coin;
     }
 
-    public _PanelGradient getRenderComponent() {
-        _PanelGradient panel = new _PanelGradient();
+    public JPanel getRenderComponent() {
+        JPanel panel = MaterialContainersFactory.buildPanelGradient();
         panel.setLayout(new GridLayout(1, 1));
 
         _MaterialLabel label = new _MaterialLabel();

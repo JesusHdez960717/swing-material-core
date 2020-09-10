@@ -22,6 +22,10 @@ import com.jhw.swing.util.interfaces.MaterialComponent;
  */
 public class _TabbedPaneClose extends JTabbedPane implements MaterialComponent {
 
+    public static _TabbedPaneClose from() {
+        return new _TabbedPaneClose();
+    }
+    
     private boolean confirmacion = false;
     protected Modelo modelo = Modelo.ROUND;
 

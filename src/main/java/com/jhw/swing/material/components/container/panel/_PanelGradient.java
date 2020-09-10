@@ -1,5 +1,12 @@
 package com.jhw.swing.material.components.container.panel;
 
+import com.jhw.personalization.core.domain.Personalization;
+import com.jhw.personalization.services.PersonalizationHandler;
+import com.jhw.swing.material.effects.DefaultMaterialLineBorder;
+import com.jhw.swing.material.effects.Iconable;
+import com.jhw.swing.material.effects.MaterialLineBorder;
+import com.jhw.swing.material.injection.Background_Force_Foreground;
+import com.jhw.swing.material.injection.Foreground_Force_Icon;
 import java.awt.Color;
 import java.awt.GradientPaint;
 import java.awt.Graphics;
@@ -13,84 +20,113 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import com.jhw.swing.util.MaterialDrawingUtils;
-import com.jhw.swing.util.Utils;
 import com.jhw.swing.util.enums.GradientEnum;
 import com.jhw.swing.util.interfaces.MaterialComponent;
 import com.jhw.swing.material.standards.MaterialColors;
+import java.awt.Component;
+import java.awt.Stroke;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 
 /**
  * Componente extraido su logica de edisoncorSX.
  */
-public class _PanelGradient extends JPanel implements MaterialComponent {
+@Background_Force_Foreground
+@Foreground_Force_Icon
+public class _PanelGradient extends JPanel implements Iconable, MaterialComponent, MaterialLineBorder, PropertyChangeListener {
+
+    public static _PanelGradient from() {
+        return new _PanelGradient();
+    }
+
+    private final MaterialLineBorder border = DefaultMaterialLineBorder.builder().borderRadius(5).listeners(this).build();
 
     protected Color primaryColor = MaterialColors.BLUE_600;
     protected Color secundaryColor = MaterialColors.BLACK;
-    protected GradientEnum gradient = GradientEnum.HORIZONTAL;
-    private Icon icon;
-    private Image image = null;
-    private int borderRadius = 0;
 
-    public _PanelGradient() {
+    protected GradientEnum gradient = GradientEnum.HORIZONTAL;
+
+    private Icon icon;
+
+    protected _PanelGradient() {
+        setBackground(PersonalizationHandler.getColor(Personalization.KEY_COLOR_BACKGROUND_PANEL));
     }
 
-    public _PanelGradient(Color back) {
+    protected _PanelGradient(Color back) {
         this.setBackground(back);
     }
+//-----------------LINE_BORDER------------------------
 
-    /**
-     * Gets the current border radius of this button.
-     *
-     * @return the current border radius of this button, in pixels.
-     */
+    @Override
+    public float getBorderThickness() {
+        return border.getBorderThickness();
+    }
+
+    @Override
+    public void setBorderThickness(float thickness) {
+        border.setBorderThickness(thickness);
+    }
+
+    @Override
+    public Color getBorderColor() {
+        return border.getBorderColor();
+    }
+
+    @Override
+    public void setBorderColor(Color color) {
+        border.setBorderColor(color);
+    }
+
+    @Override
     public int getBorderRadius() {
-        return borderRadius;
+        return border.getBorderRadius();
     }
 
-    /**
-     * Sets the border radius of this panel. You can define a custom radius in
-     * order to get some rounded corners in your button, making it look like a
-     * pill or even a circular action button.
-     *
-     * @param borderRadius the new border radius of this button, in pixels.
-     */
+    @Override
     public void setBorderRadius(int borderRadius) {
-        this.borderRadius = borderRadius;
+        this.border.setBorderRadius(borderRadius);
     }
 
-    /**
-     * Sets the background color of this panel. Keep on mind that setting a
-     * background color in a Material component like this will also set the
-     * foreground color to either white or black, depending of how bright or
-     * dark is the chosen background color.
-     * <p/>
-     * <b>NOTE:</b> It is up to the look and feel to honor this property, some
-     * may choose to ignore it. To avoid any conflicts, using the
-     * <a
-     * href="https://docs.oracle.com/javase/7/docs/api/javax/swing/plaf/metal/package-summary.html">
-     * Metal Look and Feel</a> is recommended.
-     *
-     * @param bg the desired background <code>Color</code>
-     */
+    @Override
+    public Stroke getBorderStroke() {
+        return border.getBorderStroke();
+    }
+
+    @Override
+    public void setBorderStroke(Stroke stroke) {
+        border.setBorderStroke(stroke);
+    }
+
+    @Override
+    public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
+        border.paintBorder(c, g, x, y, width, height);
+    }
+//-----------------LINE_BORDER------------------------
+
     @Override
     public void setBackground(Color bg) {
         super.setBackground(bg);
         this.setPrimaryColor(bg);
         this.setSecundaryColor(bg);
-        this.setForeground(Utils.getForegroundAccording(bg));
     }
 
     @Override
     protected void paintComponent(Graphics g) {
         Graphics2D g2 = MaterialDrawingUtils.getAliasedGraphics(g);
 
-        if (this.image != null) {
-            g2.drawImage(this.image, 0, 0, getWidth(), getHeight(), null);
+        if (this.icon != null) {
+            if (icon instanceof ImageIcon) {//si es image icon lo pinto completo de todo el tamanno
+                g2.drawImage(((ImageIcon) this.icon).getImage(), 0, 0, getWidth(), getHeight(), null);
+            } else {//si no lo pinto como un simple icon
+                icon.paintIcon(this, g2, 0, 0);
+            }
         } else {
             g2.setPaint(getGradientePaint());
-            g2.fill(new RoundRectangle2D.Float(0, 0, getWidth(), getHeight(), borderRadius * 2, borderRadius * 2));
+            g2.fill(new RoundRectangle2D.Float(0, 0, getWidth(), getHeight(), getBorderRadius() * 2, getBorderRadius() * 2));
             g2.setColor(getForeground());
+
+            paintBorder(this, g2, 0, 0, (int) (getWidth() + getBorderThickness()), (int) (getHeight() + getBorderThickness()));
         }
-        //super.paintChildren(g);
     }
 
     public Paint getGradientePaint() {
@@ -151,14 +187,18 @@ public class _PanelGradient extends JPanel implements MaterialComponent {
         repaint();
     }
 
+    @Override
     public Icon getIcon() {
         return this.icon;
     }
 
+    @Override
     public void setIcon(Icon icon) {
         this.icon = icon;
-        if (icon != null) {
-            this.image = ((ImageIcon) icon).getImage();
-        }
+    }
+
+    @Override
+    public void propertyChange(PropertyChangeEvent evt) {
+        firePropertyChange(evt.getPropertyName(), evt.getOldValue(), evt.getNewValue());
     }
 }

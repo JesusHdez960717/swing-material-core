@@ -13,6 +13,8 @@ import com.jhw.personalization.services.PersonalizationHandler;
 import com.jhw.swing.material.effects.DefaultMaterialLineBorder;
 import com.jhw.swing.material.effects.MaterialLineBorder;
 import com.jhw.swing.material.effects.ElevationEffect;
+import com.jhw.swing.material.injection.Background_Force_Foreground;
+import com.jhw.swing.material.injection.Foreground_Force_Icon;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
@@ -35,7 +37,13 @@ import java.beans.PropertyChangeListener;
  * the prefereable approach to follow is overriding {@link #doLayout()} and
  * taking care of any arrangements by yourself.
  */
+@Background_Force_Foreground
+@Foreground_Force_Icon
 public class _MaterialPanel extends JPanel implements MaterialComponent, ElevationEffect, MaterialLineBorder, PropertyChangeListener {
+
+    public static _MaterialPanel from() {
+        return new _MaterialPanel();
+    }
 
     private final ElevationEffect elevation = DefaultElevationEffect.applyTo(this, MaterialShadow.ELEVATION_DEFAULT);
 
@@ -48,7 +56,7 @@ public class _MaterialPanel extends JPanel implements MaterialComponent, Elevati
      * them, although technically it is painted inside its borders. If you don't
      * need a shadow to be casted from this panel, use a {@link JPanel} instead.
      */
-    public _MaterialPanel() {
+    protected _MaterialPanel() {
         this.setOpaque(false);
 
         this.setBackground(PersonalizationHandler.getColor(Personalization.KEY_COLOR_BACKGROUND_PANEL));
@@ -121,26 +129,6 @@ public class _MaterialPanel extends JPanel implements MaterialComponent, Elevati
         border.paintBorder(c, g, x, y, width, height);
     }
 //-----------------LINE_BORDER------------------------
-
-    /**
-     * Sets the background color of this panel. Keep on mind that setting a
-     * background color in a Material component like this will also set the
-     * foreground color to either white or black, depending of how bright or
-     * dark is the chosen background color.
-     * <p/>
-     * <b>NOTE:</b> It is up to the look and feel to honor this property, some
-     * may choose to ignore it. To avoid any conflicts, using the
-     * <a
-     * href="https://docs.oracle.com/javase/7/docs/api/javax/swing/plaf/metal/package-summary.html">
-     * Metal Look and Feel</a> is recommended.
-     *
-     * @param bg the desired background <code>Color</code>
-     */
-    @Override
-    public void setBackground(Color bg) {
-        super.setBackground(bg);
-        this.setForeground(Utils.getForegroundAccording(bg));
-    }
 
     @Override
     protected void paintComponent(Graphics g) {

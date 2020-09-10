@@ -5,6 +5,7 @@
  */
 package com.jhw.swing.material.components.splashScreen;
 
+import com.jhw.swing.material.components.container.MaterialContainersFactory;
 import com.jhw.swing.material.components.container.panel._PanelGradient;
 import com.jhw.swing.material.components.labels._MaterialLabel;
 import com.jhw.swing.material.standards.MaterialColors;
@@ -56,7 +57,7 @@ public class SplashScreen extends _PanelGradient {
      */
     @Deprecated
     public JPanel mainSplash() {
-        return new _PanelGradient(MaterialColors.AMBER_600);
+        return MaterialContainersFactory.buildPanelGradient();
     }
 
     private void redirectOut() {

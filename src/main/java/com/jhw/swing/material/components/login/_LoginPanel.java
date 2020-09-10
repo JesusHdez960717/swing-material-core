@@ -3,17 +3,20 @@ package com.jhw.swing.material.components.login;
 import com.clean.swing.app.login.LoginSimple;
 import com.jhw.swing.material.components.button.MaterialButtonsFactory;
 import com.jhw.swing.material.components.button._MaterialButton;
+import com.jhw.swing.material.components.container.MaterialContainersFactory;
 import com.jhw.swing.material.components.container.panel._MaterialPanel;
 import com.jhw.swing.material.components.container.panel._PanelGradient;
 import com.jhw.swing.material.components.labels._MaterialLabel;
 import com.jhw.swing.material.components.passwordfield._MaterialPasswordField;
 import com.jhw.swing.material.components.textfield._MaterialTextField;
+import com.jhw.swing.material.effects.BorderRadius;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import com.jhw.swing.material.standards.MaterialColors;
 import com.jhw.swing.material.standards.MaterialIcons;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 /**
  *
@@ -36,8 +39,8 @@ public class _LoginPanel extends LoginSimple {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//
     private void initComponents() {
 
-        panelBackground = new com.jhw.swing.material.components.container.panel._PanelGradient();
-        panelBackgroundLogin = new com.jhw.swing.material.components.container.panel._MaterialPanel();
+        panelBackground = MaterialContainersFactory.buildPanelGradient();
+        panelBackgroundLogin = MaterialContainersFactory.buildPanel();
         labelSecure = new com.jhw.swing.material.components.labels._MaterialLabel();
         textFieldUsuario = new com.jhw.swing.material.components.textfield._MaterialTextField();
         passwordUsuario = new com.jhw.swing.material.components.passwordfield._MaterialPasswordField();
@@ -48,21 +51,21 @@ public class _LoginPanel extends LoginSimple {
         setMinimumSize(new java.awt.Dimension(692, 460));
 
         panelBackgroundLogin.setBackground(new java.awt.Color(230, 230, 230));
-        panelBackgroundLogin.setBorderRadius(10);
+        ((BorderRadius)panelBackgroundLogin).setBorderRadius(10);
 
         labelSecure.setPreferredSize(new java.awt.Dimension(50, 150));
 
-        textFieldUsuario.setAccent(new java.awt.Color(0, 0, 0));
+        textFieldUsuario.setAccentFloatingLabel(new java.awt.Color(0, 0, 0));
         textFieldUsuario.setHint("Introduzca el nombre de usuario");
         textFieldUsuario.setLabel("Usuario");
 
-        passwordUsuario.setAccent(new java.awt.Color(0, 0, 0));
+        passwordUsuario.setAccentFloatingLabel(new java.awt.Color(0, 0, 0));
         passwordUsuario.setHint("Introduzca la contraseña");
         passwordUsuario.setLabel("Contraseña");
 
         buttonLogin.setBackground(new java.awt.Color(0, 0, 0));
         buttonLogin.setText("Login");
-        ((_MaterialButton) buttonLogin).setBorderRadius(7);
+        ((BorderRadius) buttonLogin).setBorderRadius(7);
 
         labelAnswer.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         labelAnswer.setForeground(new java.awt.Color(200, 0, 0));
@@ -131,8 +134,8 @@ public class _LoginPanel extends LoginSimple {
     private JButton buttonLogin;
     private javax.swing.JLabel labelAnswer;
     private com.jhw.swing.material.components.labels._MaterialLabel labelSecure;
-    private com.jhw.swing.material.components.container.panel._PanelGradient panelBackground;
-    private com.jhw.swing.material.components.container.panel._MaterialPanel panelBackgroundLogin;
+    private JPanel panelBackground;
+    private JPanel panelBackgroundLogin;
     private com.jhw.swing.material.components.passwordfield._MaterialPasswordField passwordUsuario;
     private com.jhw.swing.material.components.textfield._MaterialTextField textFieldUsuario;
     // End of variables declaration                   
@@ -221,8 +224,8 @@ public class _LoginPanel extends LoginSimple {
      */
     private void personalize() {
         //set up colors
-        this.panelBackground.setPrimaryColor(MaterialColors.GREY_400);
-        this.panelBackground.setSecundaryColor(MaterialColors.BLACK);
+        ((_PanelGradient)this.panelBackground).setPrimaryColor(MaterialColors.GREY_400);
+        ((_PanelGradient)this.panelBackground).setSecundaryColor(MaterialColors.BLACK);
         this.panelBackgroundLogin.setBackground(MaterialColors.BLUEA_400);
         this.labelSecure.setIcon(MaterialIcons.VERIFIED_USER.deriveIcon(130f));
     }
@@ -239,11 +242,11 @@ public class _LoginPanel extends LoginSimple {
         return labelSecure;
     }
 
-    public _PanelGradient getPanelBackground() {
+    public JPanel getPanelBackground() {
         return panelBackground;
     }
 
-    public _MaterialPanel getPanelBackgroundLogin() {
+    public JPanel getPanelBackgroundLogin() {
         return panelBackgroundLogin;
     }
 

@@ -12,6 +12,10 @@ import com.jhw.swing.util.interfaces.MaterialComponent;
  */
 public class _PanelTransparent extends JPanel implements MaterialComponent {
 
+    public static _PanelTransparent from() {
+        return new _PanelTransparent();
+    }
+
     public _PanelTransparent() {
         this.setOpaque(false);
     }

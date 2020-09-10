@@ -1,6 +1,6 @@
 package com.jhw.swing.material.components.datepicker;
 
-import com.jhw.swing.material.components.combobox.combobox_editable._MaterialComboBoxFiltrable;
+import com.jhw.swing.material.components.combobox._MaterialComboBoxFiltrable;
 import com.jhw.swing.util.interfaces.DateSelected;
 import java.util.ArrayList;
 import java.util.Date;

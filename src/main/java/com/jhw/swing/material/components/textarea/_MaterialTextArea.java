@@ -12,7 +12,7 @@ import java.awt.event.FocusListener;
 import javax.swing.border.TitledBorder;
 import com.jhw.personalization.core.domain.Personalization;
 import com.jhw.personalization.services.PersonalizationHandler;
-import static com.jhw.swing.material.components.textfield._MaterialTextField.HINT_OPACITY_MASK;
+import static com.jhw.swing.material.standards.Utils.HINT_OPACITY_MASK;
 import com.jhw.swing.util.Utils;
 import javax.swing.border.Border;
 

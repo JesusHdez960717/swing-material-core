@@ -16,6 +16,7 @@ import com.jhw.personalization.core.domain.Personalization;
 import com.jhw.personalization.services.PersonalizationHandler;
 import com.jhw.swing.material.components.button.MaterialButtonsFactory;
 import com.jhw.swing.material.components.button._MaterialButtonIconTransparent;
+import com.jhw.swing.material.components.container.MaterialContainersFactory;
 import com.jhw.swing.material.effects.RippleEffect;
 import com.jhw.swing.util.Utils;
 import com.jhw.swing.util.enums.GradientEnum;
@@ -23,6 +24,7 @@ import com.jhw.utils.interfaces.Update;
 import com.jhw.swing.material.standards.MaterialColors;
 import com.jhw.swing.material.standards.MaterialIcons;
 import javax.swing.JButton;
+import javax.swing.JPanel;
 
 /**
  *
@@ -52,21 +54,21 @@ public class _DashboardSmoot extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//
     private void initComponents() {
 
-        panelButtons = new com.jhw.swing.material.components.container.panel._PanelGradient();
-        panelButtonsInside = new com.jhw.swing.material.components.container.panel._PanelTransparent();
+        panelButtons = MaterialContainersFactory.buildPanelGradient();
+        panelButtonsInside = MaterialContainersFactory.buildPanelTransparent();
         buttonCollapse = MaterialButtonsFactory.buildIconTransparent();
-        panelMiddle = new com.jhw.swing.material.components.container.panel._PanelGradient();
-        panelUp = new com.jhw.swing.material.components.container.panel._PanelGradient();
-        panelUpperCornerRight = new com.jhw.swing.material.components.container.panel._PanelTransparent();
-        panelUpperCornerLeft = new com.jhw.swing.material.components.container.panel._PanelTransparent();
-        panelDown = new com.jhw.swing.material.components.container.panel._PanelGradient();
-        panelDownCornerRight = new com.jhw.swing.material.components.container.panel._PanelTransparent();
-        panelDownCornerLeft = new com.jhw.swing.material.components.container.panel._PanelTransparent();
-        panelComponentToDual = new com.jhw.swing.material.components.container.panel._PanelComponent();
+        panelMiddle = MaterialContainersFactory.buildPanelGradient();
+        panelUp = MaterialContainersFactory.buildPanelGradient();
+        panelUpperCornerRight = MaterialContainersFactory.buildPanelTransparent();
+        panelUpperCornerLeft = MaterialContainersFactory.buildPanelTransparent();
+        panelDown = MaterialContainersFactory.buildPanelGradient();
+        panelDownCornerRight = MaterialContainersFactory.buildPanelTransparent();
+        panelDownCornerLeft = MaterialContainersFactory.buildPanelTransparent();
+        panelComponentToDual = MaterialContainersFactory.buildPanelComponentTransparent();
 
         panelButtons.setPreferredSize(new java.awt.Dimension(230, 400));
-        panelButtons.setPrimaryColor(new java.awt.Color(255, 255, 255));
-        panelButtons.setSecundaryColor(new java.awt.Color(204, 204, 204));
+        ((_PanelGradient) panelButtons).setPrimaryColor(new java.awt.Color(255, 255, 255));
+        ((_PanelGradient) panelButtons).setSecundaryColor(new java.awt.Color(204, 204, 204));
 
         panelButtonsInside.setLayout(new java.awt.GridLayout(0, 1));
 
@@ -120,8 +122,8 @@ public class _DashboardSmoot extends javax.swing.JPanel {
 
         panelDown.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         panelDown.setPreferredSize(new java.awt.Dimension(384, 26));
-        panelDown.setPrimaryColor(new java.awt.Color(204, 204, 204));
-        panelDown.setSecundaryColor(new java.awt.Color(224, 224, 224));
+        ((_PanelGradient) panelDown).setPrimaryColor(new java.awt.Color(204, 204, 204));
+        ((_PanelGradient) panelDown).setSecundaryColor(new java.awt.Color(224, 224, 224));
 
         panelDownCornerRight.setPreferredSize(new java.awt.Dimension(180, 26));
         panelDownCornerRight.setLayout(new java.awt.GridLayout(1, 0));
@@ -180,16 +182,16 @@ public class _DashboardSmoot extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//:variables
     private JButton buttonCollapse;
-    private com.jhw.swing.material.components.container.panel._PanelGradient panelButtons;
-    private com.jhw.swing.material.components.container.panel._PanelTransparent panelButtonsInside;
-    private com.jhw.swing.material.components.container.panel._PanelComponent panelComponentToDual;
-    private com.jhw.swing.material.components.container.panel._PanelGradient panelDown;
-    private com.jhw.swing.material.components.container.panel._PanelTransparent panelDownCornerLeft;
-    private com.jhw.swing.material.components.container.panel._PanelTransparent panelDownCornerRight;
-    private com.jhw.swing.material.components.container.panel._PanelGradient panelMiddle;
-    private com.jhw.swing.material.components.container.panel._PanelGradient panelUp;
-    private com.jhw.swing.material.components.container.panel._PanelTransparent panelUpperCornerLeft;
-    private com.jhw.swing.material.components.container.panel._PanelTransparent panelUpperCornerRight;
+    private JPanel panelButtons;
+    private JPanel panelButtonsInside;
+    private JPanel panelComponentToDual;
+    private JPanel panelDown;
+    private JPanel panelDownCornerLeft;
+    private JPanel panelDownCornerRight;
+    private JPanel panelMiddle;
+    private JPanel panelUp;
+    private JPanel panelUpperCornerLeft;
+    private JPanel panelUpperCornerRight;
     // End of variables declaration                   
 
 //-----------------------------MAIN---------------------------------------------------------
@@ -354,7 +356,7 @@ public class _DashboardSmoot extends javax.swing.JPanel {
         this.mainElements = elements;
     }
 
-    public _PanelGradient getPanelButtons() {
+    public JPanel getPanelButtons() {
         return panelButtons;
     }
 
@@ -362,7 +364,7 @@ public class _DashboardSmoot extends javax.swing.JPanel {
         this.panelButtons = panelButtons;
     }
 
-    public _PanelGradient getPanelUp() {
+    public JPanel getPanelUp() {
         return panelUp;
     }
 
@@ -370,7 +372,7 @@ public class _DashboardSmoot extends javax.swing.JPanel {
         this.panelUp = panelUp;
     }
 
-    public _PanelTransparent getPanelUpperCornerLeft() {
+    public JPanel getPanelUpperCornerLeft() {
         return panelUpperCornerLeft;
     }
 
@@ -378,7 +380,7 @@ public class _DashboardSmoot extends javax.swing.JPanel {
         this.panelUpperCornerLeft = panelUpperCornerLeft;
     }
 
-    public _PanelTransparent getPanelUpperCornerRight() {
+    public JPanel getPanelUpperCornerRight() {
         return panelUpperCornerRight;
     }
 
@@ -386,7 +388,7 @@ public class _DashboardSmoot extends javax.swing.JPanel {
         this.panelUpperCornerRight = panelUpperCornerRight;
     }
 
-    public _PanelGradient getTabbedPaneDisplay() {
+    public JPanel getTabbedPaneDisplay() {
         return panelMiddle;
     }
 
@@ -394,7 +396,7 @@ public class _DashboardSmoot extends javax.swing.JPanel {
         this.panelMiddle = tabbedPaneDisplay;
     }
 
-    public _PanelTransparent getPanelDownCornerLeft() {
+    public JPanel getPanelDownCornerLeft() {
         return panelDownCornerLeft;
     }
 
@@ -402,7 +404,7 @@ public class _DashboardSmoot extends javax.swing.JPanel {
         this.panelDownCornerLeft = panelDownCornerLeft;
     }
 
-    public _PanelTransparent getPanelDownCornerRight() {
+    public JPanel getPanelDownCornerRight() {
         return panelDownCornerRight;
     }
 
@@ -413,18 +415,18 @@ public class _DashboardSmoot extends javax.swing.JPanel {
     private void personalize() {
         Color sec = Utils.darken(PersonalizationHandler.getColor(Personalization.KEY_COLOR_SECUNDARY));
 
-        panelUp.setPrimaryColor(PersonalizationHandler.getColor(Personalization.KEY_COLOR_MAIN));
-        panelUp.setSecundaryColor(sec);
-        panelUp.setGradient(GradientEnum.VERTICAL_3_4);
+        ((_PanelGradient) panelUp).setPrimaryColor(PersonalizationHandler.getColor(Personalization.KEY_COLOR_MAIN));
+        ((_PanelGradient) panelUp).setSecundaryColor(sec);
+        ((_PanelGradient) panelUp).setGradient(GradientEnum.VERTICAL_3_4);
 
         panelUpperCornerRight.setBackground(sec);
 
         panelDown.setBackground(MaterialColors.BLUEGREY_100);
 
-        panelButtons.setPrimaryColor(MaterialColors.WHITE);
-        panelButtons.setSecundaryColor(MaterialColors.BLUEGREY_100);
+        ((_PanelGradient) panelButtons).setPrimaryColor(MaterialColors.WHITE);
+        ((_PanelGradient) panelButtons).setSecundaryColor(MaterialColors.BLUEGREY_100);
 
-        panelComponentToDual.setComponent(dual);
+        panelComponentToDual.add(dual);
         ((RippleEffect) buttonCollapse).setPaintRipple(false);
     }
 

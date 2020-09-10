@@ -2,7 +2,7 @@ package com.jhw.swing.material.components.button;
 
 import com.jhw.swing.material.components.container.layout.HorizontalLayoutComponent;
 import com.jhw.swing.material.components.container.layout.HorizontalLayoutContainer;
-import com.jhw.swing.material.components.container.panel.prepared._MaterialPanelComponent;
+import com.jhw.swing.material.components.container.panel._MaterialPanelComponent;
 import com.jhw.swing.material.standards.MaterialColors;
 import com.jhw.swing.material.standards.MaterialIcons;
 import javax.swing.JButton;
@@ -41,7 +41,7 @@ public class _MaterialButtonDouble extends _MaterialPanelComponent {
         hlc.add(HorizontalLayoutComponent.builder(buttonLeft).gapRight(1).build());
         hlc.add(HorizontalLayoutComponent.builder(buttonRight).gapLeft(1).build());
 
-        setComponent(hlc.build());
+        add(hlc.build());
     }
 
     // Variables declaration - do not modify//:variables

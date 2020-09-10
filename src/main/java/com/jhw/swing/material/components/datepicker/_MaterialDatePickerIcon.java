@@ -16,12 +16,13 @@ import com.jhw.swing.material.standards.MaterialIcons;
 import com.jhw.swing.util.PersonalizationMaterial;
 import com.jhw.swing.util.interfaces.BindableComponent;
 import com.jhw.swing.util.interfaces.MaterialComponent;
-import com.jhw.swing.util.interfaces.Wrong;
+import com.jhw.swing.material.effects.Wrong;
 import com.jhw.swing.utils.icons.DerivableIcon;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.util.Date;
@@ -58,7 +59,7 @@ public class _MaterialDatePickerIcon extends _PanelTransparent implements Bindab
         datePicker.getFormatedTextField().addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
-                buttonIcon.setForeground(getAccent());
+                buttonIcon.setForeground(getAccentFloatingLabel());
             }
 
             @Override
@@ -114,18 +115,6 @@ public class _MaterialDatePickerIcon extends _PanelTransparent implements Bindab
         return datePicker.getDate();
     }
 
-    public Component getComponent() {
-        return datePicker.getComponent();
-    }
-
-    public Color getWrongColor() {
-        return datePicker.getWrongColor();
-    }
-
-    public String getWrongText() {
-        return datePicker.getWrongText();
-    }
-
     public int getMaxLength() {
         return datePicker.getMaxLength();
     }
@@ -146,16 +135,12 @@ public class _MaterialDatePickerIcon extends _PanelTransparent implements Bindab
         datePicker.setHint(hint);
     }
 
-    public Color getAccent() {
-        return datePicker.getAccent();
+    public Color getAccentFloatingLabel() {
+        return datePicker.getAccentFloatingLabel();
     }
 
-    public void setAccent(Color accentColor) {
-        datePicker.setAccent(accentColor);
-    }
-
-    public Color getRealForeground() {
-        return datePicker.getRealForeground();
+    public void setAccentFloatingLabel(Color accentColor) {
+        datePicker.setAccentFloatingLabel(accentColor);
     }
 
     public String getExtra() {
@@ -166,27 +151,8 @@ public class _MaterialDatePickerIcon extends _PanelTransparent implements Bindab
         datePicker.setExtra(extra);
     }
 
-    public void setForeground(Color fg) {
-        super.setForeground(fg);
-        if (datePicker != null) {
-            datePicker.setForeground(fg);
-        }
-    }
-
-    public void setWrongColor(Color wrongColor) {
-        datePicker.setWrongColor(wrongColor);
-    }
-
-    public void setWrongText(String wrongText) {
-        datePicker.setWrongText(wrongText);
-    }
-
     public void setMaxLength(int maxLength) {
         datePicker.setMaxLength(maxLength);
-    }
-
-    public void setRealForeground(Color fg) {
-        datePicker.setRealForeground(fg);
     }
 
     public void setText(String s) {
@@ -201,6 +167,34 @@ public class _MaterialDatePickerIcon extends _PanelTransparent implements Bindab
     @Override
     public void wrong(String wrongText) {
         datePicker.wrong(wrongText);
+    }
+
+    @Override
+    public Color getWrongColor() {
+        return datePicker.getWrongColor();
+    }
+
+    @Override
+    public void setWrongColor(Color wrongColor) {
+        datePicker.setWrongColor(wrongColor);
+    }
+
+    @Override
+    public void paintWrong(Graphics g2, int y) {
+        datePicker.paintWrong(g2, y);
+    }
+
+    @Override
+    public void clearWrong() {
+        datePicker.clearWrong();
+    }
+
+    @Override
+    public void setForeground(Color fg) {
+        super.setForeground(fg);
+        if (datePicker != null) {
+            datePicker.setForeground(fg);
+        }
     }
 
     @Override

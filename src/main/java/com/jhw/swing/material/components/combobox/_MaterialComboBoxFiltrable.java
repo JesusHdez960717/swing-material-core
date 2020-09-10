@@ -1,28 +1,24 @@
-package com.jhw.swing.material.components.combobox.combobox_editable;
+package com.jhw.swing.material.components.combobox;
 
-import com.jhw.swing.material.components.combobox._MaterialComboBox;
-import static com.jhw.swing.material.components.textfield._MaterialTextField.HINT_OPACITY_MASK;
-import static com.jhw.swing.material.components.textfield._MaterialTextField.LINE_OPACITY_MASK;
+import com.jhw.swing.material.components.combobox.filtrable_utils.ComboBoxFilterDecorator;
+import com.jhw.swing.material.components.combobox.filtrable_utils.CustomComboRenderer;
 import com.jhw.swing.util.MaterialDrawingUtils;
 import com.jhw.swing.util.Utils;
 import com.jhw.swing.utils.icons.DerivableIcon;
 import java.awt.Color;
-import java.awt.Component;
-import java.awt.Dimension;
-import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.FocusEvent;
 import java.util.List;
 import java.util.function.BiPredicate;
 import java.util.function.Function;
-import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.plaf.basic.BasicComboBoxUI;
 import javax.swing.plaf.basic.BasicComboPopup;
 import javax.swing.plaf.basic.ComboPopup;
+import static com.jhw.swing.material.standards.Utils.LINE_OPACITY_MASK;
 
 /**
  *
@@ -30,13 +26,12 @@ import javax.swing.plaf.basic.ComboPopup;
  */
 public class _MaterialComboBoxFiltrable<T> extends _MaterialComboBox<T> {
 
+    public static _MaterialComboBoxFiltrable from() {
+        return new _MaterialComboBoxFiltrable();
+    }
+    
     private boolean focus;
     private ComboBoxFilterDecorator<T> decorator;
-
-    public _MaterialComboBoxFiltrable(T[] items) {
-        super(items);
-        initComponent();
-    }
 
     public _MaterialComboBoxFiltrable() {
         initComponent();
@@ -49,21 +44,8 @@ public class _MaterialComboBoxFiltrable<T> extends _MaterialComboBox<T> {
     }
 
     @Override
-    public void setSelectedItem(Object obj) {
-        if (obj != null) {
-            super.setSelectedItem(obj);
-            getFloatingLabel().update();
-        }
-    }
-
-    @Override
     public T getSelectedItem() {
         return (T) super.getSelectedItem();
-    }
-
-    @Override
-    public void addItem(T item) {
-        super.addItem(item);
     }
 
     public void addItemAndDecorate(T item) {
@@ -133,41 +115,20 @@ public class _MaterialComboBoxFiltrable<T> extends _MaterialComboBox<T> {
 
         int yMid = getSize().height / 2;
 
-        g2.setColor(getFloatingLabel().getColor());
-        g2.setFont(getFloatingLabel().getFont());
-        if (!getLabel().isEmpty()) {
-            g2.drawString(getLabel(), getFloatingLabel().getX(), getFloatingLabel().getY());//paint the hint in the same place as the text
-        }
-
-        FontMetrics metrics = g2.getFontMetrics(g2.getFont());
-        g2.setFont(getFont());
         if (getSelectedItem() == null && isFocusOwner()) {
-            g2.setColor(Utils.applyAlphaMask(getForeground(), HINT_OPACITY_MASK));
-            g2.drawString(getHint(), getFloatingLabel().getX(), metrics.getAscent() + yMid - metrics.getAscent() / 2);
+            paintHint(g2);
         }
+        paintLabel(g2);
 
-        int yLine = yMid + metrics.getAscent() / 2 + 5;
+        paintLine(g2);
 
-        //paint the back line
-        g2.setColor(Utils.applyAlphaMask(getForeground(), LINE_OPACITY_MASK));
-        g2.fillRect(0, yLine, getWidth(), 1);
-
-        //paint the front line, this is the one that change colors and size
-        g2.setColor(getAccent());
-        g2.fillRect((int) ((getWidth() - getLine().getWidth()) / 2), yLine, (int) getLine().getWidth(), 2);
-
-        //paint the wrong text if the flag is actived
-        if (isWrongFlag()) {
-            g2.setColor(getWrongColor());
-            g2.setFont(getFloatingLabel().getFont().deriveFont(1));//1 for bold
-            g2.drawString(getWrongText(), 0, yLine + 15);//paint the wrong text
-        }
+        paintWrong(g2, getYLine(g2) + 15);
 
         //paint the arrow
         if (getIcon() != null) {
             Color iconColor;
             if (isFocusOwner()) {
-                iconColor = getAccent();
+                iconColor = getAccentFloatingLabel();
             } else {
                 iconColor = Utils.applyAlphaMask(getForeground(), LINE_OPACITY_MASK);
             }

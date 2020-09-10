@@ -5,6 +5,7 @@ import com.clean.swing.app.dashboard.MapeableContainer;
 import com.jhw.swing.material.components.button.MaterialButtonsFactory;
 import com.jhw.swing.material.components.button._MaterialButtonIconTransparent;
 import com.jhw.swing.material.components.button._MaterialButtonHiperlink;
+import com.jhw.swing.material.components.container.MaterialContainersFactory;
 import com.jhw.swing.material.components.container.panel._PanelGradient;
 import com.jhw.swing.material.components.container.panel._PanelTransparent;
 import com.jhw.swing.material.components.dashboard.taskpane.DashBoardTaskPane;
@@ -21,6 +22,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.Action;
 import javax.swing.JButton;
+import javax.swing.JPanel;
 
 /**
  *
@@ -37,20 +39,20 @@ public class UpPanel extends MapeableContainer {
     private void initComponents() {
         this.setLayout(new BorderLayout());
 
-        this.background = new _PanelGradient();
+        this.background = MaterialContainersFactory.buildPanelGradient();
         this.add(background, BorderLayout.CENTER);
 
         this.background.setLayout(new BorderLayout());
 
-        this.components = new _PanelTransparent();
+        this.components = MaterialContainersFactory.buildPanelTransparent();
         this.components.setLayout(new FlowLayout(FlowLayout.CENTER));
 
         this.background.add(this.components, BorderLayout.EAST);
     }
 
-    private _PanelGradient background;
+    private JPanel background;
     private JButton company;
-    private _PanelTransparent components;
+    private JPanel components;
 
     @Override
     public void update(HashMap<String, Object> hm) {
@@ -128,7 +130,7 @@ public class UpPanel extends MapeableContainer {
         components.add(component);
     }
 
-    public _PanelGradient getBackgroundPanel() {
+    public JPanel getBackgroundPanel() {
         return background;
     }
 

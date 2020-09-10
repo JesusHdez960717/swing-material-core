@@ -20,12 +20,15 @@ import com.jhw.swing.util.MaterialDrawingUtils;
 import com.jhw.swing.util.AvatarPanelAvatarChooser;
 import com.jhw.swing.util.interfaces.MaterialComponent;
 import com.jhw.swing.material.standards.MaterialIcons;
-import com.jhw.swing.material.standards.MaterialImages;
 
 /**
  * Componente extraido su logica de edisoncorSX.
  */
 public class _PanelAvatarChooser extends _PanelGradient implements MaterialComponent {
+
+    public static _PanelAvatarChooser from() {
+        return new _PanelAvatarChooser();
+    }
 
     private static final double ANIM_SCROLL_DELAY = 450.0d;
     private float alphaLevel = 0.0f;
@@ -286,6 +289,12 @@ public class _PanelAvatarChooser extends _PanelGradient implements MaterialCompo
         initInputListeners();
         addInputListeners();
         setAvatarIndex(0);
+        this.addComponentListener(new ComponentAdapter() {
+            @Override
+            public void componentResized(ComponentEvent e) {
+                repaint();
+            }
+        });
     }
 
     public void setAmount(int amount) {

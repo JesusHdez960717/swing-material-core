@@ -5,12 +5,11 @@
  */
 package com.jhw.swing.material.components.combobox;
 
-import com.jhw.swing.material.components.combobox.combobox_editable._MaterialComboBoxFiltrable;
 import javax.swing.JComboBox;
 
 /**
- * Por el momento los combo boxes no necesitan injection ni proxy, no tiene sentido
- * usarlos y agregarle capas innecesarias a los componentes
+ * Por el momento los combo boxes no necesitan injection ni proxy, no tiene
+ * sentido usarlos y agregarle capas innecesarias a los componentes
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
