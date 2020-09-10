@@ -15,6 +15,7 @@ import com.jhw.swing.material.standards.MaterialFontRoboto;
 import com.jhw.swing.material.standards.MaterialIcons;
 import com.jhw.personalization.core.domain.Personalization;
 import com.jhw.personalization.services.PersonalizationHandler;
+import com.jhw.swing.material.effects.DefaultWrong;
 import com.jhw.swing.material.effects.FloatingLabel;
 import com.jhw.swing.material.effects.Line;
 import com.jhw.swing.util.MaterialDrawingUtils;
@@ -25,7 +26,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
-import com.jhw.swing.util.interfaces.Wrong;
+import com.jhw.swing.material.effects.Wrong;
 import static com.jhw.swing.material.standards.Utils.LINE_OPACITY_MASK;
 
 /**
@@ -41,18 +42,11 @@ public class _MaterialComboBox<T> extends JComboBox<T> implements Line, Floating
         return new _MaterialComboBox();
     }
 
-    private FloatingLabel floatingLabel;
+    private FloatingLabel floatingLabel;//no se puede iniciar aqui xq da null pionter con el foreground
     private Line line = new DefaultLine(this);
-
-    //default
-    private Color foreground = MaterialColors.BLACK;
+    private final Wrong wrong = new DefaultWrong(this);
 
     private ImageIcon icon = MaterialIcons.ARROW_DROP_DOWN;
-
-    //flags for wrong
-    private Color wrongColor = PersonalizationHandler.getColor(Personalization.KEY_COLOR_WRONG);
-    private String wrongText = "Error en este campo";
-    private boolean wrongFlag = false;
 
     public _MaterialComboBox() {
         floatingLabel = new DefaultFloatingLabel(this);
@@ -81,12 +75,6 @@ public class _MaterialComboBox<T> extends JComboBox<T> implements Line, Floating
         this.setModel(new javax.swing.DefaultComboBoxModel(new String[]{}));
         this.setSelectedIndex(-1);
 
-        this.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                clearWrong();
-            }
-        });
     }
 //-------------------LINE-------------------------
 
@@ -140,91 +128,34 @@ public class _MaterialComboBox<T> extends JComboBox<T> implements Line, Floating
     public void paintHint(Graphics g) {
         floatingLabel.paintHint(g);
     }
-//-------------------FLOATING_LABEL-------------------------
-
-    /**
-     * Get the wrong color. The worng color is the color of the component when
-     * is wrong.
-     *
-     * @return the wrong color
-     */
-    public Color getWrongColor() {
-        return wrongColor;
-    }
-
-    /**
-     * Set the wrong color. The worng color is the color of the component when
-     * is wrong.
-     *
-     * @param wrongColor the wrong color
-     */
-    public void setWrongColor(Color wrongColor) {
-        this.wrongColor = wrongColor;
-    }
-
-    /**
-     * Get the wrong text. The worng text is the text to display with the
-     * explanaition of the error.
-     *
-     * @return the wrong color
-     */
-    public String getWrongText() {
-        return wrongText;
-    }
-
-    /**
-     * Set the wrong text. The worng text is the text to display with the
-     * explanaition of the error.
-     *
-     * @param wrongText the wrong text
-     */
-    public void setWrongText(String wrongText) {
-        this.wrongText = wrongText;
-    }
+//-------------------WRONG-------------------------
 
     @Override
     public void wrong() {
-        setAccentFloatingLabel(wrongColor);
-        this.wrongFlag = true;
+        wrong.wrong();
     }
 
     @Override
     public void wrong(String wrongText) {
-        this.wrongText = wrongText;
-        wrong();
+        wrong.wrong(wrongText);
     }
 
-    public void clearWrong() {
-        if (wrongFlag) {
-            this.wrongFlag = false;
-            this.setForeground(foreground);
-            //setAccentFloatingLabel(accentColor);
-        }
+    @Override
+    public Color getWrongColor() {
+        return wrong.getWrongColor();
     }
 
-    /**
-     * Set the real color of the foreground. The color of the foreground when
-     * the text field it's not wrong.
-     *
-     * @param fg the {@code "Color"} that should be used for the real color of
-     * the foreground.
-     */
-    public void setRealForeground(Color fg) {
-        this.foreground = fg;
-        setForeground(foreground);
+    @Override
+    public void setWrongColor(Color wrongColor) {
+        wrong.setWrongColor(wrongColor);
     }
 
-    /**
-     * get the real color of the foreground. The color of the foreground when
-     * the text field it's not wrong.
-     *
-     * @return the {@code "Color"} that should be used for the real color of the
-     * foreground.
-     */
-    public Color getRealForeground() {
-        return this.foreground;
+    @Override
+    public void paintWrong(Graphics g2, int y) {
+        wrong.paintWrong(g2, y);
     }
 
+//-------------------WRONG-------------------------
     @Override
     protected void processFocusEvent(FocusEvent e) {
         super.processFocusEvent(e);
@@ -252,13 +183,8 @@ public class _MaterialComboBox<T> extends JComboBox<T> implements Line, Floating
             g2.drawString(getSelectedItem().toString(), 0, metrics.getAscent() + yMid - metrics.getAscent() / 2);
         }
         paintLine(g2);
-        
-        //paint the wrong text if the flag is actived
-        if (wrongFlag) {
-            g2.setColor(getWrongColor());
-            g2.setFont(getFont().deriveFont(getFont().getSize2D() * 0.8f).deriveFont(Font.BOLD));//1 for bold
-            g2.drawString(getWrongText(), 0, getYLine(g2) + 15);//paint the wrong text
-        }
+
+        paintWrong(g2, getYLine(g2) + 15);
 
         //paint the arrow
         if (icon != null) {
@@ -274,15 +200,6 @@ public class _MaterialComboBox<T> extends JComboBox<T> implements Line, Floating
             icon.paintIcon(this, g2, (int) (this.getSize().getWidth() - icon.getIconHeight()), yMid - icon.getIconHeight() / 2);
         }
 
-    }
-
-    public boolean isWrongFlag() {
-        return wrongFlag;
-    }
-
-    @Override
-    public Color getForeground() {
-        return foreground;
     }
 
     @Override

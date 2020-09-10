@@ -1,6 +1,8 @@
 package com.jhw.swing.material.components.datepicker;
 
 import com.jhw.swing.material.components.textfield._MaterialFormatedTextField;
+import com.jhw.swing.material.effects.FloatingLabel;
+import com.jhw.swing.material.effects.Line;
 import com.jhw.swing.material.standards.MaterialColors;
 import java.util.Date;
 import org.jdesktop.swingx.JXDatePicker;
@@ -10,11 +12,12 @@ import com.jhw.swing.material.standards.MaterialFontRoboto;
 import com.jhw.swing.material.standards.MaterialIcons;
 import com.jhw.swing.util.interfaces.BindableComponent;
 import com.jhw.swing.util.interfaces.MaterialComponent;
-import com.jhw.swing.util.interfaces.Wrong;
+import com.jhw.swing.material.effects.Wrong;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.Insets;
 import javax.swing.JButton;
 import javax.swing.UIManager;
@@ -25,7 +28,7 @@ import org.jdesktop.swingx.calendar.DatePickerFormatter;
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-public class _MaterialDatePicker extends JXDatePicker implements DateSelected, BindableComponent<Date>, Wrong, MaterialComponent {
+public class _MaterialDatePicker extends JXDatePicker implements DateSelected, BindableComponent<Date>, FloatingLabel, Line, Wrong, MaterialComponent {
 
     static {
         UIManager.put("JXMonthView.monthDownFileName", MaterialIcons.KEYBOARD_ARROW_LEFT);
@@ -118,44 +121,53 @@ public class _MaterialDatePicker extends JXDatePicker implements DateSelected, B
         text.wrong(wrongText);
     }
 
+    @Override
+    public void paintWrong(Graphics g2, int y) {
+        text.paintWrong(g2, y);
+    }
+
+    @Override
     public Color getWrongColor() {
         return text.getWrongColor();
     }
 
-    public String getWrongText() {
-        return text.getWrongText();
+    @Override
+    public void paintHint(Graphics g) {
+        text.paintHint(g);
     }
 
     public int getMaxLength() {
         return text.getMaxLength();
     }
 
+    @Override
     public String getLabel() {
         return text.getLabel();
     }
 
+    @Override
     public void setLabel(String label) {
         text.setLabel(label);
     }
 
+    @Override
     public String getHint() {
         return text.getHint();
     }
 
+    @Override
     public void setHint(String hint) {
         text.setHint(hint);
     }
 
+    @Override
     public Color getAccentFloatingLabel() {
         return text.getAccentFloatingLabel();
     }
 
+    @Override
     public void setAccentFloatingLabel(Color accentColor) {
         text.setAccentFloatingLabel(accentColor);
-    }
-
-    public Color getRealForeground() {
-        return text.getRealForeground();
     }
 
     public String getExtra() {
@@ -166,6 +178,7 @@ public class _MaterialDatePicker extends JXDatePicker implements DateSelected, B
         text.setExtra(extra);
     }
 
+    @Override
     public void setForeground(Color fg) {
         super.setForeground(fg);
         if (text != null) {
@@ -173,20 +186,13 @@ public class _MaterialDatePicker extends JXDatePicker implements DateSelected, B
         }
     }
 
+    @Override
     public void setWrongColor(Color wrongColor) {
         text.setWrongColor(wrongColor);
     }
 
-    public void setWrongText(String wrongText) {
-        text.setWrongText(wrongText);
-    }
-
     public void setMaxLength(int maxLength) {
         text.setMaxLength(maxLength);
-    }
-
-    public void setRealForeground(Color fg) {
-        text.setRealForeground(fg);
     }
 
     public void setText(String s) {

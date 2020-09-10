@@ -12,6 +12,7 @@ import com.jhw.swing.material.effects.FloatingLabel;
 import com.jhw.utils.security.SHA;
 import com.jhw.swing.util.MaterialDrawingUtils;
 import com.jhw.swing.material.effects.DefaultLine;
+import com.jhw.swing.material.effects.DefaultWrong;
 import com.jhw.swing.material.effects.Line;
 import com.jhw.swing.util.interfaces.MaterialComponent;
 import com.jhw.swing.util.Utils;
@@ -19,7 +20,7 @@ import com.jhw.swing.material.standards.MaterialColors;
 import com.jhw.swing.material.standards.MaterialFontRoboto;
 import static com.jhw.swing.material.standards.Utils.LINE_OPACITY_MASK;
 import com.jhw.swing.util.interfaces.BindableComponent;
-import com.jhw.swing.util.interfaces.Wrong;
+import com.jhw.swing.material.effects.Wrong;
 
 /**
  * A Material Design single-line text field is the basic way of getting user
@@ -33,23 +34,15 @@ import com.jhw.swing.util.interfaces.Wrong;
  */
 public class _MaterialPasswordField extends JPasswordField implements Line, BindableComponent<char[]>, Wrong, MaterialComponent, FloatingLabel {
 
-    private FloatingLabel floatingLabel = new DefaultFloatingLabel(this);
-
-    private Line line = new DefaultLine(this);
-
-    //default
-    private Color foreground = MaterialColors.BLACK;
-
-    //flags for wrong
-    private Color wrongColor = PersonalizationHandler.getColor(Personalization.KEY_COLOR_WRONG);
-    private String wrongText = "Error en este campo";
-    private boolean wrongFlag = false;
+    private final FloatingLabel floatingLabel = new DefaultFloatingLabel(this);
+    private final Line line = new DefaultLine(this);
+    private final Wrong wrong = new DefaultWrong(this);
 
     private int maxLength = Integer.MAX_VALUE;
 
     private boolean doValidate = true;
 
-    //coin
+    //extra
     private String extra = "";
 
     private String hashAlgorithm = "SHA-256";
@@ -68,30 +61,12 @@ public class _MaterialPasswordField extends JPasswordField implements Line, Bind
         this.setBackground(MaterialColors.TRANSPARENT);
         this.setForeground(MaterialColors.BLACK);
 
-        this.setCaret(new DefaultCaret() {
-            @Override
-            protected synchronized void damage(Rectangle r) {
-                this.repaint(); //fix caret not being removed completely
-            }
-        });
         this.getCaret().setBlinkRate(500);
 
         this.addKeyListener(new java.awt.event.KeyAdapter() {
             @Override
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 validateText(evt);
-                clearWrong(evt);
-                repaint();
-            }
-        });
-        this.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                repaint();
-            }
-        });
-        this.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-
             }
         });
 
@@ -148,54 +123,40 @@ public class _MaterialPasswordField extends JPasswordField implements Line, Bind
     public void paintHint(Graphics g) {
         floatingLabel.paintHint(g);
     }
-//-------------------FLOATING_LABEL-------------------------
+//-------------------WRONG-------------------------
 
+    @Override
+    public void wrong() {
+        wrong.wrong();
+    }
+
+    @Override
+    public void wrong(String wrongText) {
+        wrong.wrong(wrongText);
+    }
+
+    @Override
+    public Color getWrongColor() {
+        return wrong.getWrongColor();
+    }
+
+    @Override
+    public void setWrongColor(Color wrongColor) {
+        wrong.setWrongColor(wrongColor);
+    }
+
+    @Override
+    public void paintWrong(Graphics g2, int y) {
+        wrong.paintWrong(g2, y);
+    }
+
+//-------------------WRONG-------------------------
     public String getHashAlgorithm() {
         return hashAlgorithm;
     }
 
     public void setHashAlgorithm(String hashAlgorithm) {
         this.hashAlgorithm = hashAlgorithm;
-    }
-
-    /**
-     * Get the wrong color. The worng color is the color of the component when
-     * is wrong.
-     *
-     * @return the wrong color
-     */
-    public Color getWrongColor() {
-        return wrongColor;
-    }
-
-    /**
-     * Set the wrong color. The worng color is the color of the component when
-     * is wrong.
-     *
-     * @param wrongColor the wrong color
-     */
-    public void setWrongColor(Color wrongColor) {
-        this.wrongColor = wrongColor;
-    }
-
-    /**
-     * Get the wrong text. The worng text is the text to display with the
-     * explanaition of the error.
-     *
-     * @return the wrong color
-     */
-    public String getWrongText() {
-        return wrongText;
-    }
-
-    /**
-     * Set the wrong text. The worng text is the text to display with the
-     * explanaition of the error.
-     *
-     * @param wrongText the wrong text
-     */
-    public void setWrongText(String wrongText) {
-        this.wrongText = wrongText;
     }
 
     /**
@@ -214,29 +175,6 @@ public class _MaterialPasswordField extends JPasswordField implements Line, Bind
      */
     public void setMaxLength(int maxLength) {
         this.maxLength = maxLength;
-    }
-
-    /**
-     * Set the real color of the foreground. The color of the foreground when
-     * the text field it's not wrong.
-     *
-     * @param fg the {@code "Color"} that should be used for the real color of
-     * the foreground.
-     */
-    public void setRealForeground(Color fg) {
-        this.foreground = fg;
-        setForeground(foreground);
-    }
-
-    /**
-     * get the real color of the foreground. The color of the foreground when
-     * the text field it's not wrong.
-     *
-     * @return the {@code "Color"} that should be used for the real color of the
-     * foreground.
-     */
-    public Color getRealForeground() {
-        return this.foreground;
     }
 
     public String getExtra() {
@@ -260,7 +198,6 @@ public class _MaterialPasswordField extends JPasswordField implements Line, Bind
         super.setText(s);
         this.setCaretPosition(super.getPassword().length);
         firePropertyChange("text", null, null);
-        clearWrong(new KeyEvent(this, 0, 0, 0, 0, '0'));
     }
 
     @Override
@@ -284,8 +221,6 @@ public class _MaterialPasswordField extends JPasswordField implements Line, Bind
         g2.setColor(getBackground());//por defecto no pinta el background
         g2.fillRect(0, 0, getWidth(), getHeight());
 
-        int yMid = getSize().height / 2;
-
         g2.setFont(getFont());
         FontMetrics metrics = g2.getFontMetrics(g2.getFont());
 
@@ -295,14 +230,10 @@ public class _MaterialPasswordField extends JPasswordField implements Line, Bind
         }
 
         paintLabel(g2);
+
         paintLine(g2);
 
-        //paint the wrong text if the flag is actived
-        if (wrongFlag) {
-            g2.setColor(getWrongColor());
-            g2.setFont(getFont().deriveFont(getFont().getSize2D() * 0.8f).deriveFont(1));//1 for bold
-            g2.drawString(wrongText, 0, getYLine(g2) + 15);//paint the wrong text
-        }
+        paintWrong(g2, getYLine(g2) + 15);
 
         g2.setFont(getFont());
         g2.setColor(getForeground());
@@ -340,27 +271,6 @@ public class _MaterialPasswordField extends JPasswordField implements Line, Bind
         }
 
         return ans;
-    }
-
-    @Override
-    public void wrong() {
-        setForeground(wrongColor);
-//        floatingLabel.setAccentColor(wrongColor);
-        this.wrongFlag = true;
-    }
-
-    @Override
-    public void wrong(String wrongText) {
-        this.wrongText = wrongText;
-        wrong();
-    }
-
-    private void clearWrong(KeyEvent evt) {
-        if (wrongFlag && !evt.isConsumed()) {
-            this.wrongFlag = false;
-            setForeground(foreground);
-//            floatingLabel.setAccentColor(accentColor);
-        }
     }
 
     /**

@@ -1,22 +1,17 @@
 package com.jhw.swing.material.components.combobox;
 
-import com.jhw.swing.material.components.combobox._MaterialComboBox;
 import com.jhw.swing.material.components.combobox.filtrable_utils.ComboBoxFilterDecorator;
 import com.jhw.swing.material.components.combobox.filtrable_utils.CustomComboRenderer;
 import com.jhw.swing.util.MaterialDrawingUtils;
 import com.jhw.swing.util.Utils;
 import com.jhw.swing.utils.icons.DerivableIcon;
 import java.awt.Color;
-import java.awt.Component;
-import java.awt.Dimension;
-import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.FocusEvent;
 import java.util.List;
 import java.util.function.BiPredicate;
 import java.util.function.Function;
-import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -24,7 +19,6 @@ import javax.swing.plaf.basic.BasicComboBoxUI;
 import javax.swing.plaf.basic.BasicComboPopup;
 import javax.swing.plaf.basic.ComboPopup;
 import static com.jhw.swing.material.standards.Utils.LINE_OPACITY_MASK;
-import static com.jhw.swing.material.standards.Utils.HINT_OPACITY_MASK;
 import java.awt.Font;
 
 /**
@@ -124,12 +118,8 @@ public class _MaterialComboBoxFiltrable<T> extends _MaterialComboBox<T> {
         paintLabel(g2);
 
         paintLine(g2);
-        //paint the wrong text if the flag is actived
-        if (isWrongFlag()) {
-            g2.setColor(getWrongColor());
-            g2.setFont(getFont().deriveFont(getFont().getSize2D() * 0.8f).deriveFont(Font.BOLD));//1 for bold
-            g2.drawString(getWrongText(), 0, getYLine(g2) + 15);//paint the wrong text
-        }
+
+        paintWrong(g2, getYLine(g2) + 15);
 
         //paint the arrow
         if (getIcon() != null) {

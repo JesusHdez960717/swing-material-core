@@ -7,18 +7,18 @@ package com.jhw.swing.material.components.textfield;
 
 import com.jhw.personalization.services.PersonalizationHandler;
 import com.jhw.swing.material.components.button.MaterialButtonsFactory;
-import com.jhw.swing.material.components.button._MaterialButtonIconTransparent;
 import com.jhw.swing.material.components.container.panel._PanelTransparent;
 import com.jhw.swing.material.effects.RippleEffect;
 import com.jhw.swing.material.standards.MaterialColors;
 import com.jhw.swing.util.PersonalizationMaterial;
 import com.jhw.swing.util.interfaces.BindableComponent;
 import com.jhw.swing.util.interfaces.MaterialComponent;
-import com.jhw.swing.util.interfaces.Wrong;
+import com.jhw.swing.material.effects.Wrong;
 import com.jhw.swing.utils.icons.DerivableIcon;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import javax.swing.ImageIcon;
@@ -104,22 +104,6 @@ public class _MaterialFormatedTextFieldIcon<T> extends _PanelTransparent impleme
         buttonIcon.setEnabled(enabled);
     }
 
-    public Color getWrongColor() {
-        return textField.getWrongColor();
-    }
-
-    public void setWrongColor(Color wrongColor) {
-        textField.setWrongColor(wrongColor);
-    }
-
-    public String getWrongText() {
-        return textField.getWrongText();
-    }
-
-    public void setWrongText(String wrongText) {
-        textField.setWrongText(wrongText);
-    }
-
     public int getMaxLength() {
         return textField.getMaxLength();
     }
@@ -152,14 +136,6 @@ public class _MaterialFormatedTextFieldIcon<T> extends _PanelTransparent impleme
         textField.setAccentFloatingLabel(accentColor);
     }
 
-    public void setRealForeground(Color fg) {
-        textField.setRealForeground(fg);
-    }
-
-    public Color getRealForeground() {
-        return textField.getRealForeground();
-    }
-
     public String getExtra() {
         return textField.getExtra();
     }
@@ -180,6 +156,21 @@ public class _MaterialFormatedTextFieldIcon<T> extends _PanelTransparent impleme
     @Override
     public void wrong(String wrongText) {
         textField.wrong(wrongText);
+    }
+
+    @Override
+    public void paintWrong(Graphics g2, int y) {
+        textField.paintWrong(g2, y);
+    }
+
+    @Override
+    public Color getWrongColor() {
+        return textField.getWrongColor();
+    }
+
+    @Override
+    public void setWrongColor(Color wrongColor) {
+        textField.setWrongColor(wrongColor);
     }
 
     @Override

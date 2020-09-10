@@ -16,12 +16,13 @@ import com.jhw.swing.material.standards.MaterialIcons;
 import com.jhw.swing.util.PersonalizationMaterial;
 import com.jhw.swing.util.interfaces.BindableComponent;
 import com.jhw.swing.util.interfaces.MaterialComponent;
-import com.jhw.swing.util.interfaces.Wrong;
+import com.jhw.swing.material.effects.Wrong;
 import com.jhw.swing.utils.icons.DerivableIcon;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.util.Date;
@@ -114,14 +115,6 @@ public class _MaterialDatePickerIcon extends _PanelTransparent implements Bindab
         return datePicker.getDate();
     }
 
-    public Color getWrongColor() {
-        return datePicker.getWrongColor();
-    }
-
-    public String getWrongText() {
-        return datePicker.getWrongText();
-    }
-
     public int getMaxLength() {
         return datePicker.getMaxLength();
     }
@@ -162,17 +155,6 @@ public class _MaterialDatePickerIcon extends _PanelTransparent implements Bindab
         datePicker.setExtra(extra);
     }
 
-    public void setForeground(Color fg) {
-        super.setForeground(fg);
-        if (datePicker != null) {
-            datePicker.setForeground(fg);
-        }
-    }
-
-    public void setWrongColor(Color wrongColor) {
-        datePicker.setWrongColor(wrongColor);
-    }
-
     public void setWrongText(String wrongText) {
         datePicker.setWrongText(wrongText);
     }
@@ -197,6 +179,29 @@ public class _MaterialDatePickerIcon extends _PanelTransparent implements Bindab
     @Override
     public void wrong(String wrongText) {
         datePicker.wrong(wrongText);
+    }
+
+    @Override
+    public Color getWrongColor() {
+        return datePicker.getWrongColor();
+    }
+
+    @Override
+    public void setWrongColor(Color wrongColor) {
+        datePicker.setWrongColor(wrongColor);
+    }
+
+    @Override
+    public void paintWrong(Graphics g2, int y) {
+        datePicker.paintWrong(g2, y);
+    }
+
+    @Override
+    public void setForeground(Color fg) {
+        super.setForeground(fg);
+        if (datePicker != null) {
+            datePicker.setForeground(fg);
+        }
     }
 
     @Override

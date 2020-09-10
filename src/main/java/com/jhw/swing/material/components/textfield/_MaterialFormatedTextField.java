@@ -10,6 +10,7 @@ import com.jhw.personalization.services.PersonalizationHandler;
 import com.jhw.swing.material.effects.DefaultFloatingLabel;
 import com.jhw.swing.material.effects.FloatingLabel;
 import com.jhw.swing.material.effects.DefaultLine;
+import com.jhw.swing.material.effects.DefaultWrong;
 import com.jhw.swing.material.effects.Line;
 import com.jhw.swing.material.standards.MaterialColors;
 import com.jhw.swing.material.standards.MaterialFontRoboto;
@@ -17,7 +18,7 @@ import com.jhw.swing.util.MaterialDrawingUtils;
 import com.jhw.swing.util.Utils;
 import com.jhw.swing.util.interfaces.BindableComponent;
 import com.jhw.swing.util.interfaces.MaterialComponent;
-import com.jhw.swing.util.interfaces.Wrong;
+import com.jhw.swing.material.effects.Wrong;
 import com.jhw.utils.interfaces.Formateable;
 import com.jhw.utils.services.ConverterService;
 import java.awt.Color;
@@ -30,7 +31,6 @@ import java.awt.event.FocusEvent;
 import java.awt.event.KeyEvent;
 import javax.swing.text.DefaultCaret;
 import org.jdesktop.swingx.JXFormattedTextField;
-import static com.jhw.swing.material.standards.Utils.LINE_OPACITY_MASK;
 
 /**
  *
@@ -38,21 +38,15 @@ import static com.jhw.swing.material.standards.Utils.LINE_OPACITY_MASK;
  */
 public class _MaterialFormatedTextField<T> extends JXFormattedTextField implements Line, BindableComponent<T>, Wrong, MaterialComponent, FloatingLabel {
 
-    private FloatingLabel floatingLabel = new DefaultFloatingLabel(this);
-    private Line line = new DefaultLine(this);
+    private final FloatingLabel floatingLabel = new DefaultFloatingLabel(this);
+    private final Line line = new DefaultLine(this);
+    private final Wrong wrong = new DefaultWrong(this);
 
     private final Class<? extends T> clazz;
 
-    //default
-    private Color foreground = MaterialColors.BLACK;
-
-    //flags for wrong
-    private Color wrongColor = PersonalizationHandler.getColor(Personalization.KEY_COLOR_WRONG);
-    private String wrongText = "Error en este campo";
-    private boolean wrongFlag = false;
-
     private int maxLength = 100;
 
+    //extra
     private String extra = "";
 
     public _MaterialFormatedTextField() {
@@ -74,25 +68,12 @@ public class _MaterialFormatedTextField<T> extends JXFormattedTextField implemen
         this.setBackground(MaterialColors.TRANSPARENT);
         this.setForeground(MaterialColors.BLACK);
 
-        this.setCaret(new DefaultCaret() {
-            @Override
-            protected synchronized void damage(Rectangle r) {
-                this.repaint(); //fix caret not being removed completely
-            }
-        });
         this.getCaret().setBlinkRate(500);
 
         this.addKeyListener(new java.awt.event.KeyAdapter() {
             @Override
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                clearWrong(evt);
                 validateSize(evt);
-                repaint();
-            }
-        });
-        this.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                repaint();
             }
         });
 
@@ -152,8 +133,34 @@ public class _MaterialFormatedTextField<T> extends JXFormattedTextField implemen
     public void paintHint(Graphics g) {
         floatingLabel.paintHint(g);
     }
-//-------------------FLOATING_LABEL-------------------------
+//-------------------WRONG-------------------------
 
+    @Override
+    public void wrong() {
+        wrong.wrong();
+    }
+
+    @Override
+    public void wrong(String wrongText) {
+        wrong.wrong(wrongText);
+    }
+
+    @Override
+    public Color getWrongColor() {
+        return wrong.getWrongColor();
+    }
+
+    @Override
+    public void setWrongColor(Color wrongColor) {
+        wrong.setWrongColor(wrongColor);
+    }
+
+    @Override
+    public void paintWrong(Graphics g2, int y) {
+        wrong.paintWrong(g2, y);
+    }
+
+//-------------------WRONG-------------------------
     private void validateSize(KeyEvent evt) {
         try {
             this.commitEdit();
@@ -168,46 +175,6 @@ public class _MaterialFormatedTextField<T> extends JXFormattedTextField implemen
 
     public Class<? extends T> getClazz() {
         return clazz;
-    }
-
-    /**
-     * Get the wrong color. The worng color is the color of the component when
-     * is wrong.
-     *
-     * @return the wrong color
-     */
-    public Color getWrongColor() {
-        return wrongColor;
-    }
-
-    /**
-     * Set the wrong color. The worng color is the color of the component when
-     * is wrong.
-     *
-     * @param wrongColor the wrong color
-     */
-    public void setWrongColor(Color wrongColor) {
-        this.wrongColor = wrongColor;
-    }
-
-    /**
-     * Get the wrong text. The worng text is the text to display with the
-     * explanaition of the error.
-     *
-     * @return the wrong color
-     */
-    public String getWrongText() {
-        return wrongText;
-    }
-
-    /**
-     * Set the wrong text. The worng text is the text to display with the
-     * explanaition of the error.
-     *
-     * @param wrongText the wrong text
-     */
-    public void setWrongText(String wrongText) {
-        this.wrongText = wrongText;
     }
 
     /**
@@ -228,29 +195,6 @@ public class _MaterialFormatedTextField<T> extends JXFormattedTextField implemen
         this.maxLength = maxLength;
     }
 
-    /**
-     * Set the real color of the foreground. The color of the foreground when
-     * the text field it's not wrong.
-     *
-     * @param fg the {@code "Color"} that should be used for the real color of
-     * the foreground.
-     */
-    public void setRealForeground(Color fg) {
-        this.foreground = fg;
-        setForeground(foreground);
-    }
-
-    /**
-     * get the real color of the foreground. The color of the foreground when
-     * the text field it's not wrong.
-     *
-     * @return the {@code "Color"} that should be used for the real color of the
-     * foreground.
-     */
-    public Color getRealForeground() {
-        return this.foreground;
-    }
-
     public String getExtra() {
         return extra;
     }
@@ -265,7 +209,6 @@ public class _MaterialFormatedTextField<T> extends JXFormattedTextField implemen
         super.setText(s);
         this.setCaretPosition(getText().length());
         firePropertyChange("text", null, null);
-        clearWrong(new KeyEvent(this, 0, 0, 0, 0, '0'));
     }
 
     @Override
@@ -289,8 +232,6 @@ public class _MaterialFormatedTextField<T> extends JXFormattedTextField implemen
         g2.setColor(getBackground());//por defecto no pinta el background
         g2.fillRect(0, 0, getWidth(), getHeight());
 
-        int yMid = getSize().height / 2;
-
         g2.setFont(getFont());
         FontMetrics metrics = g2.getFontMetrics(getFont());
 
@@ -303,11 +244,7 @@ public class _MaterialFormatedTextField<T> extends JXFormattedTextField implemen
         paintLine(g2);
 
         //paint the wrong text if the flag is actived
-        if (wrongFlag) {
-            g2.setColor(getWrongColor());
-            g2.setFont(getFont().deriveFont(getFont().getSize2D() * 0.8f).deriveFont(1));//1 for bold
-            g2.drawString(wrongText, 0, getYLine(g2) + 15);//paint the wrong text
-        }
+        paintWrong(g2, getYLine(g2) + 15);
 
         g2.setFont(getFont());
         g2.setColor(getForeground());
@@ -318,27 +255,6 @@ public class _MaterialFormatedTextField<T> extends JXFormattedTextField implemen
     @Override
     protected void paintBorder(Graphics g) {
         //intentionally left blank
-    }
-
-    @Override
-    public void wrong() {
-//        floatingLabel.setAccentColor(wrongColor);
-        this.wrongFlag = true;
-    }
-
-    @Override
-    public void wrong(String wrongText) {
-        setWrongText(wrongText);
-        wrong();
-    }
-
-    private void clearWrong(KeyEvent evt) {
-        if (wrongFlag && !evt.isConsumed()) {
-            this.wrongFlag = false;
-            setForeground(foreground);
-//            floatingLabel.setAccentColor(accentColor);
-            this.repaint();
-        }
     }
 
     @Override
