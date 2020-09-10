@@ -138,7 +138,7 @@ public class DefaultFloatingLabel<T extends JComponent & BindableComponent> impl
         return y.getValue() >= getYPositionUP();
     }
 
-    private int getYPositionUP() {
+    protected int getYPositionUP() {
         int size = target.getSize().height;
         if (size == 0) {
             size = target.getPreferredSize().height;
@@ -150,7 +150,7 @@ public class DefaultFloatingLabel<T extends JComponent & BindableComponent> impl
         return yPositionUP;
     }
 
-    private int getYPositionDOWN() {
+    protected int getYPositionDOWN() {
         int size = target.getSize().height;
         if (size == 0) {
             size = target.getPreferredSize().height;
@@ -162,11 +162,11 @@ public class DefaultFloatingLabel<T extends JComponent & BindableComponent> impl
         return yPositionDown;
     }
 
-    private float getTargetFontSize() {
+    protected float getTargetFontSize() {
         return (target.isFocusOwner() || (target.getObject() != null && !target.getObject().toString().isEmpty())) ? target.getFont().getSize2D() * 0.8f : target.getFont().getSize2D();
     }
 
-    private int getTargetYPosition() {
+    protected int getTargetYPosition() {
         return target.isFocusOwner() || (target.getObject() != null && !target.getObject().toString().isEmpty()) ? getYPositionUP() : getYPositionDOWN();
     }
 

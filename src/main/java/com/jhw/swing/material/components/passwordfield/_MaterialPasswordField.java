@@ -35,13 +35,21 @@ import java.awt.event.ActionEvent;
  */
 public class _MaterialPasswordField extends JPasswordField implements Line, BindableComponent<char[]>, Wrong, MaterialComponent, FloatingLabel {
 
-    private final FloatingLabel floatingLabel = new DefaultFloatingLabel(this);
+    private final FloatingLabel floatingLabel = new DefaultFloatingLabel(this) {
+        @Override
+        protected int getTargetYPosition() {
+            return _MaterialPasswordField.this.isFocusOwner() || !_MaterialPasswordField.this.getText().isEmpty() ? this.getYPositionUP() : this.getYPositionDOWN();
+        }
+
+        @Override
+        protected float getTargetFontSize() {
+            return (_MaterialPasswordField.this.isFocusOwner() || !_MaterialPasswordField.this.getText().isEmpty()) ? _MaterialPasswordField.this.getFont().getSize2D() * 0.8f : _MaterialPasswordField.this.getFont().getSize2D();
+        }
+    };
     private final Line line = new DefaultLine(this);
     private final Wrong wrong = new DefaultWrong(this);
 
-    private int maxLength = Integer.MAX_VALUE;
-
-    private boolean doValidate = true;
+    private int maxLength = 100;
 
     //extra
     private String extra = "";
@@ -55,7 +63,8 @@ public class _MaterialPasswordField extends JPasswordField implements Line, Bind
     public _MaterialPasswordField() {
         super();
         this.setPreferredSize(new Dimension(145, 65));
-        this.setBorder(null);
+        this.setBorder(null);//inicialemnte tiene un border empty que hay que quitarle
+
         this.setFont(MaterialFontRoboto.REGULAR.deriveFont(16f));
 
         this.setOpaque(false);
@@ -67,11 +76,11 @@ public class _MaterialPasswordField extends JPasswordField implements Line, Bind
         this.addKeyListener(new java.awt.event.KeyAdapter() {
             @Override
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                validateText(evt);
+                validateSize(evt);
                 clearWrong();
             }
         });
-
+        setText("");
     }
 
 //-------------------LINE-------------------------
@@ -166,6 +175,13 @@ public class _MaterialPasswordField extends JPasswordField implements Line, Bind
         this.hashAlgorithm = hashAlgorithm;
     }
 
+    private void validateSize(KeyEvent evt) {
+        if (getText().length() + 1 > getMaxLength()) {
+            Utils.beep();
+            evt.consume();
+        }
+    }
+
     /**
      * Get the max length of the text.
      *
@@ -192,18 +208,10 @@ public class _MaterialPasswordField extends JPasswordField implements Line, Bind
         this.extra = extra;
     }
 
-    public boolean isDoValidate() {
-        return doValidate;
-    }
-
-    public void setDoValidate(boolean doValidate) {
-        this.doValidate = doValidate;
-    }
-
     @Override
     public void setText(String s) {
         super.setText(s);
-        this.setCaretPosition(super.getPassword().length);
+        this.setCaretPosition(s.length());
         firePropertyChange("text", null, null);
     }
 
@@ -251,33 +259,6 @@ public class _MaterialPasswordField extends JPasswordField implements Line, Bind
     @Override
     protected void paintBorder(Graphics g) {
         //intentionally left blank
-    }
-
-    private Object validateText(KeyEvent evt) {
-        Object ans = null;
-        if (!doValidate) {//no tengo que validar, asumo todo ok
-            return true;
-        }
-
-        if (getPassword().length + 1 > maxLength) {
-            Utils.beep();
-            if (evt != null) {
-                evt.consume();
-            }
-            return false;
-        }
-        try {
-            ans = getPassword();
-        } catch (Exception e) {
-        }
-        if (ans == null) {
-            Utils.beep();
-            if (evt != null) {
-                evt.consume();
-            }
-        }
-
-        return ans;
     }
 
     /**
