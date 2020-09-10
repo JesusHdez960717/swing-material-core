@@ -15,6 +15,7 @@ import com.jhw.swing.material.standards.MaterialIcons;
 import com.jhw.personalization.core.domain.Personalization;
 import com.jhw.personalization.services.PersonalizationHandler;
 import com.jhw.swing.material.components.button.MaterialButtonsFactory;
+import com.jhw.swing.material.components.container.MaterialContainersFactory;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -65,7 +66,7 @@ public class DashBoardTaskPane extends DashBoardSimple implements PropertyChange
 
     private void initComponents() {
         panelContent = new javax.swing.JPanel();
-        panelSideMenu = new _PanelGradient();
+        panelSideMenu = MaterialContainersFactory.buildPanelGradient();
         panelUp = new javax.swing.JPanel();
         jButtonUp = MaterialButtonsFactory.buildIconTransparent(MaterialIcons.ARROW_BACK.deriveIcon(30));
         jPanelDown = new javax.swing.JPanel();

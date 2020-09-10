@@ -1,5 +1,7 @@
 package com.jhw.swing.material.components.container.panel;
 
+import com.jhw.swing.material.injection.Background_Force_Foreground;
+import com.jhw.swing.material.injection.Foreground_Force_Icon;
 import java.awt.AlphaComposite;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -11,10 +13,14 @@ import com.jhw.swing.util.interfaces.MaterialComponent;
 /**
  * Componente extraido su logica de edisoncorSX.
  */
+@Background_Force_Foreground
+@Foreground_Force_Icon
 public class _PanelGradientTranslucid extends _PanelGradient implements MaterialComponent {
 
-    private float inicial = 0.5f;
-    private float superior = 0.9f;
+    public static _PanelGradientTranslucid from() {
+        return new _PanelGradientTranslucid();
+    }
+
     protected float tran = 0.5f;
 
     @Override
@@ -48,43 +54,4 @@ public class _PanelGradientTranslucid extends _PanelGradient implements Material
         }
     }
 
-    public float getInicial() {
-        return this.inicial;
-    }
-
-    public void setInicial(float inicial) {
-        int i;
-        int i2 = 1;
-        if (inicial >= 0.0f) {
-            i = 1;
-        } else {
-            i = 0;
-        }
-        if (inicial > 1.0f) {
-            i2 = 0;
-        }
-        if ((i2 & i) != 0) {
-            this.inicial = inicial;
-        }
-    }
-
-    public float getSuperior() {
-        return this.superior;
-    }
-
-    public void setSuperior(float superior) {
-        int i;
-        int i2 = 1;
-        if (superior >= 0.0f) {
-            i = 1;
-        } else {
-            i = 0;
-        }
-        if (superior > 1.0f) {
-            i2 = 0;
-        }
-        if ((i2 & i) != 0) {
-            this.superior = superior;
-        }
-    }
 }

@@ -6,7 +6,7 @@ import com.jhw.swing.material.components.container.layout.HorizontalLayoutCompon
 import com.jhw.swing.material.components.container.layout.HorizontalLayoutContainer;
 import com.jhw.swing.material.components.container.panel._MaterialPanel;
 import com.jhw.swing.material.components.container.panel._PanelTransparent;
-import com.jhw.swing.material.components.container.panel.prepared._MaterialPanelComponent;
+import com.jhw.swing.material.components.container.panel._MaterialPanelComponent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import org.jdesktop.swingx.JXTextField;

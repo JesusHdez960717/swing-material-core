@@ -27,11 +27,14 @@ import com.jhw.swing.util.interfaces.MaterialComponent;
  */
 public class _TabbedPaneSelector extends JTabbedPane implements MaterialComponent {
 
+    public static _TabbedPaneSelector from() {
+        return new _TabbedPaneSelector();
+    }
+
     private static final Insets NO_INSETS = new Insets(7, 0, 7, 7);
     private Color colorBackGround = Color.BLACK;
     protected Color colorDeBorde = new Color(173, 173, 173);
     protected Color colorDeSegundoBorde = Color.WHITE;
-    private float listBorderOpacity = 0.4f;
     private Color listColor = Color.WHITE;
     private float listOpacity = 0.05f;
     private float selectionBorderOpacity = 0.8f;

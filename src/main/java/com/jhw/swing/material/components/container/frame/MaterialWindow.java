@@ -17,6 +17,9 @@ import com.jhw.swing.util.Utils;
  */
 public class MaterialWindow extends JFrame implements MaterialComponent {
 
+    public static MaterialWindow from() {
+        return new MaterialWindow();
+    }
     /**
      * This is the panel that contains the components placed inside this window.
      * If you are wondering what happened to the JFrame's {@code contentPane},

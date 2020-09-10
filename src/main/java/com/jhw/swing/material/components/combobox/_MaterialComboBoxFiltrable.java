@@ -19,7 +19,6 @@ import javax.swing.plaf.basic.BasicComboBoxUI;
 import javax.swing.plaf.basic.BasicComboPopup;
 import javax.swing.plaf.basic.ComboPopup;
 import static com.jhw.swing.material.standards.Utils.LINE_OPACITY_MASK;
-import java.awt.Font;
 
 /**
  *
@@ -27,6 +26,10 @@ import java.awt.Font;
  */
 public class _MaterialComboBoxFiltrable<T> extends _MaterialComboBox<T> {
 
+    public static _MaterialComboBoxFiltrable from() {
+        return new _MaterialComboBoxFiltrable();
+    }
+    
     private boolean focus;
     private ComboBoxFilterDecorator<T> decorator;
 
