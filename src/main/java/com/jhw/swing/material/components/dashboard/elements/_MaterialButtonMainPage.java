@@ -4,7 +4,7 @@ import com.jhw.swing.util.Utils;
 import com.jhw.swing.material.standards.MaterialFontRoboto;
 import com.jhw.swing.material.standards.MaterialIcons;
 import com.jhw.swing.material.components.button._MaterialButton;
-import com.jhw.swing.material.effects.RippleEffect;
+import com.jhw.swing.material.effects.DefaultRippleEffect;
 import com.jhw.swing.util.interfaces.MaterialComponent;
 import java.awt.*;
 import java.awt.event.*;
@@ -14,7 +14,7 @@ import javax.swing.plaf.basic.BasicButtonUI;
 import com.jhw.personalization.core.domain.Personalization;
 import com.jhw.personalization.services.PersonalizationHandler;
 import com.jhw.swing.util.MaterialDrawingUtils;
-import com.jhw.swing.material.effects.ColorFadeInto;
+import com.jhw.swing.material.effects.DefaultColorFadeInto;
 import com.jhw.swing.utils.icons.DerivableIcon;
 
 /**
@@ -26,8 +26,8 @@ import com.jhw.swing.utils.icons.DerivableIcon;
  */
 public class _MaterialButtonMainPage extends _MaterialButton implements MaterialComponent {
 
-    private ColorFadeInto fadeinto;
-    private RippleEffect ripple = RippleEffect.applyTo(this);
+    private DefaultColorFadeInto fadeinto;
+    private DefaultRippleEffect ripple = DefaultRippleEffect.applyTo(this);
     private boolean isMouseOver = false;
     private boolean isSelected = false;
     private Color rippleColor = Color.WHITE;
@@ -63,7 +63,7 @@ public class _MaterialButtonMainPage extends _MaterialButton implements Material
         this.setFocusable(false);
 
         this.setOpaque(false);
-        fadeinto = new ColorFadeInto(this, ColorFadeInto.ColorChangeTo.DARKEN);
+        fadeinto = new DefaultColorFadeInto(this);
         this.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -118,19 +118,17 @@ public class _MaterialButtonMainPage extends _MaterialButton implements Material
         Color bkAux = Utils.brighten(Utils.brighten(bg));
         setForeground(Utils.getForegroundAccording(bkAux));
         setRippleColor(Utils.getForegroundAccording(bkAux));
-        fadeinto = new ColorFadeInto(this, ColorFadeInto.ColorChangeTo.DARKEN);
+        fadeinto = new DefaultColorFadeInto(this);
     }
 
     @Override
     protected void processFocusEvent(FocusEvent focusEvent) {
         super.processFocusEvent(focusEvent);
-        fadeinto.update();
     }
 
     @Override
     protected void processMouseEvent(MouseEvent mouseEvent) {
         super.processMouseEvent(mouseEvent);
-        fadeinto.update();
     }
 
     /**
@@ -160,14 +158,14 @@ public class _MaterialButtonMainPage extends _MaterialButton implements Material
             if (this.isSelected) {
                 bg = Utils.darken(Utils.darken(bg));
             } else {
-                bg = fadeinto.getColor();
+                bg = fadeinto.getColorFadeInto();
             }
             g2.setColor(bg);
             g2.fill(new RoundRectangle2D.Float(0, 0, getWidth(), getHeight(), 0, 0));
 
             g2.setClip(new RoundRectangle2D.Float(0, 0, getWidth(), getHeight(), 0, 0));
             g2.setColor(rippleColor);
-            ripple.paint(g2);
+            ripple.paintRipple(g2);
         } else {
             g2.setColor(new Color(bg.getRed() / 255f, bg.getGreen() / 255f, bg.getBlue() / 255f, 0.6f));
             g2.fill(new RoundRectangle2D.Float(0, 0, getWidth(), getHeight(), 0, 0));

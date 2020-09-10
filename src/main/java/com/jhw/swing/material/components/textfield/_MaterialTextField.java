@@ -8,7 +8,7 @@ import javax.swing.text.DefaultCaret;
 import com.jhw.personalization.core.domain.Personalization;
 import com.jhw.personalization.services.PersonalizationHandler;
 import com.jhw.swing.util.MaterialDrawingUtils;
-import com.jhw.swing.material.effects.FloatingLabel;
+import com.jhw.swing.material.effects.DefaultFloatingLabel;
 import com.jhw.swing.material.effects.FloatingLabelStandar;
 import com.jhw.swing.material.effects.Line;
 import com.jhw.swing.util.Utils;
@@ -37,7 +37,7 @@ public class _MaterialTextField<T> extends JTextField implements BindableCompone
 
     private final Class<? extends T> clazz;
 
-    private FloatingLabel floatingLabel;
+    private DefaultFloatingLabel floatingLabel;
     private Line line;
     private String hint = "hint";
     private String label = "label";
@@ -95,7 +95,7 @@ public class _MaterialTextField<T> extends JTextField implements BindableCompone
             }
         });
 
-        floatingLabel = new FloatingLabel(this);
+        floatingLabel = new DefaultFloatingLabel(this);
         line = new Line(this);
         setAccent(accentColor);
         setText("");

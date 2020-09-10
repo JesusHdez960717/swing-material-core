@@ -7,8 +7,10 @@ package com.jhw.swing.material.components.datepicker;
 
 import com.jhw.swing.material.components.textfield.*;
 import com.jhw.personalization.services.PersonalizationHandler;
+import com.jhw.swing.material.components.button.MaterialButtonsFactory;
 import com.jhw.swing.material.components.button._MaterialButtonIconTransparent;
 import com.jhw.swing.material.components.container.panel._PanelTransparent;
+import com.jhw.swing.material.effects.RippleEffect;
 import com.jhw.swing.material.standards.MaterialColors;
 import com.jhw.swing.material.standards.MaterialIcons;
 import com.jhw.swing.util.PersonalizationMaterial;
@@ -24,6 +26,7 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.util.Date;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 
 /**
  *
@@ -46,8 +49,8 @@ public class _MaterialDatePickerIcon extends _PanelTransparent implements Bindab
     private void initComponents() {
         datePicker = new _MaterialDatePicker();
 
-        buttonIcon = new _MaterialButtonIconTransparent();
-        buttonIcon.setRippleColor(MaterialColors.TRANSPARENT);
+        buttonIcon = MaterialButtonsFactory.buildIconTransparent();
+        ((RippleEffect) buttonIcon).setPaintRipple(false);
 
         this.setLayout(new BorderLayout());
         this.add(datePicker, BorderLayout.CENTER);
@@ -66,7 +69,7 @@ public class _MaterialDatePickerIcon extends _PanelTransparent implements Bindab
     }
 
     private _MaterialDatePicker datePicker;
-    private _MaterialButtonIconTransparent buttonIcon;
+    private JButton buttonIcon;
 
     public void setIcon(ImageIcon icon) {
         if (!PersonalizationHandler.getBoolean(PersonalizationMaterial.KEY_SHOW_ICON_INPUT)) {

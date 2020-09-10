@@ -4,7 +4,7 @@ import com.jhw.swing.material.components.scrollpane._MaterialScrollPaneCore;
 import com.jhw.swing.material.effects.Line;
 import static com.jhw.swing.material.components.textfield._MaterialTextField.HINT_OPACITY_MASK;
 import static com.jhw.swing.material.components.textfield._MaterialTextField.LINE_OPACITY_MASK;
-import com.jhw.swing.material.effects.FloatingLabel;
+import com.jhw.swing.material.effects.DefaultFloatingLabel;
 import com.jhw.swing.material.effects.FloatingLabelStandar;
 import java.awt.*;
 import java.awt.event.FocusEvent;
@@ -37,7 +37,11 @@ import com.jhw.swing.util.interfaces.Wrong;
  */
 public class _MaterialComboBox<T> extends JComboBox<T> implements BindableComponent<T>, Wrong, MaterialComponent, FloatingLabelStandar {
 
-    private FloatingLabel floatingLabel;
+    public static _MaterialComboBox from() {
+        return new _MaterialComboBox();
+    }
+    
+    private DefaultFloatingLabel floatingLabel;
     private Line line = new Line(this);
     private String label = "label";
     private String hint = "hint";
@@ -78,7 +82,7 @@ public class _MaterialComboBox<T> extends JComboBox<T> implements BindableCompon
             }
         });
 
-        this.floatingLabel = new FloatingLabel(this);
+        this.floatingLabel = new DefaultFloatingLabel(this);
         this.setAccent(accentColor);
         this.setOpaque(false);
         this.setCursor(cursor);
@@ -333,7 +337,7 @@ public class _MaterialComboBox<T> extends JComboBox<T> implements BindableCompon
         return wrongFlag;
     }
 
-    public FloatingLabel getFloatingLabel() {
+    public DefaultFloatingLabel getFloatingLabel() {
         return floatingLabel;
     }
 

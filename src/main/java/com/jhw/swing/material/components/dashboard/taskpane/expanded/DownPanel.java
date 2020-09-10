@@ -2,7 +2,7 @@ package com.jhw.swing.material.components.dashboard.taskpane.expanded;
 
 import com.clean.swing.app.dashboard.DashboardConstants;
 import com.clean.swing.app.dashboard.MapeableContainer;
-import com.jhw.swing.material.components.button._MaterialButtonFlat;
+import com.jhw.swing.material.components.button.MaterialButtonsFactory;
 import com.jhw.swing.material.components.button._MaterialButtonIconTransparent;
 import com.jhw.swing.material.components.container.panel._PanelGradient;
 import com.jhw.swing.material.components.container.panel._PanelTransparent;
@@ -122,7 +122,7 @@ public class DownPanel extends MapeableContainer {
     }
 
     public void addTecnology(Action action) {
-        _MaterialButtonIconTransparent btn_Tec = new _MaterialButtonIconTransparent();
+        JButton btn_Tec = MaterialButtonsFactory.buildIconTransparent();
         btn_Tec.setAction(action);
         String name = ((String) action.getValue(Action.NAME)).trim();
         if (!name.isEmpty()) {

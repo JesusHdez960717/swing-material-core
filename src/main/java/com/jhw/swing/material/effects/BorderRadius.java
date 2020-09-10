@@ -5,18 +5,14 @@
  */
 package com.jhw.swing.material.effects;
 
-import java.awt.Color;
-
 /**
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-public interface ColorFadeInto {
+public interface BorderRadius {
+    
+    public int getBorderRadius();
 
-    public Color getColorFadeInto();
-
-    public Color getAccentColorFadeInto();
-
-    public void setAccentColorFadeInto(Color color);
+    public void setBorderRadius(int borderRadius);
 
 }

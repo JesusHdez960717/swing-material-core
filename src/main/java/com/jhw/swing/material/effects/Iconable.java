@@ -5,18 +5,15 @@
  */
 package com.jhw.swing.material.effects;
 
-import java.awt.Color;
+import javax.swing.Icon;
 
 /**
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-public interface ColorFadeInto {
+public interface Iconable {
 
-    public Color getColorFadeInto();
+    public void setIcon(Icon icon);
 
-    public Color getAccentColorFadeInto();
-
-    public void setAccentColorFadeInto(Color color);
-
+    public Icon getIcon();
 }

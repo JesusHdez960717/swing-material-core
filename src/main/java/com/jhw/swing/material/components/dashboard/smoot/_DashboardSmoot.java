@@ -14,11 +14,15 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import com.jhw.personalization.core.domain.Personalization;
 import com.jhw.personalization.services.PersonalizationHandler;
+import com.jhw.swing.material.components.button.MaterialButtonsFactory;
+import com.jhw.swing.material.components.button._MaterialButtonIconTransparent;
+import com.jhw.swing.material.effects.RippleEffect;
 import com.jhw.swing.util.Utils;
 import com.jhw.swing.util.enums.GradientEnum;
 import com.jhw.utils.interfaces.Update;
 import com.jhw.swing.material.standards.MaterialColors;
 import com.jhw.swing.material.standards.MaterialIcons;
+import javax.swing.JButton;
 
 /**
  *
@@ -50,7 +54,7 @@ public class _DashboardSmoot extends javax.swing.JPanel {
 
         panelButtons = new com.jhw.swing.material.components.container.panel._PanelGradient();
         panelButtonsInside = new com.jhw.swing.material.components.container.panel._PanelTransparent();
-        buttonCollapse = new com.jhw.swing.material.components.button._MaterialButtonIconTransparent();
+        buttonCollapse = MaterialButtonsFactory.buildIconTransparent();
         panelMiddle = new com.jhw.swing.material.components.container.panel._PanelGradient();
         panelUp = new com.jhw.swing.material.components.container.panel._PanelGradient();
         panelUpperCornerRight = new com.jhw.swing.material.components.container.panel._PanelTransparent();
@@ -68,7 +72,7 @@ public class _DashboardSmoot extends javax.swing.JPanel {
 
         buttonCollapse.setText("_MaterialIconButtonTranspRect1");
         buttonCollapse.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        buttonCollapse.setPaintRipple(false);
+        ((RippleEffect) buttonCollapse).setPaintRipple(false);
 
         javax.swing.GroupLayout panelButtonsLayout = new javax.swing.GroupLayout(panelButtons);
         panelButtons.setLayout(panelButtonsLayout);
@@ -175,7 +179,7 @@ public class _DashboardSmoot extends javax.swing.JPanel {
     }// </editor-fold>                        
 
     // Variables declaration - do not modify//:variables
-    private com.jhw.swing.material.components.button._MaterialButtonIconTransparent buttonCollapse;
+    private JButton buttonCollapse;
     private com.jhw.swing.material.components.container.panel._PanelGradient panelButtons;
     private com.jhw.swing.material.components.container.panel._PanelTransparent panelButtonsInside;
     private com.jhw.swing.material.components.container.panel._PanelComponent panelComponentToDual;
@@ -421,7 +425,7 @@ public class _DashboardSmoot extends javax.swing.JPanel {
         panelButtons.setSecundaryColor(MaterialColors.BLUEGREY_100);
 
         panelComponentToDual.setComponent(dual);
-        buttonCollapse.setRippleColor(MaterialColors.TRANSPARENT);
+        ((RippleEffect) buttonCollapse).setPaintRipple(false);
     }
 
     private void collapse(boolean in) {

@@ -1,6 +1,7 @@
 package com.jhw.swing.material.components.login;
 
 import com.clean.swing.app.login.LoginSimple;
+import com.jhw.swing.material.components.button.MaterialButtonsFactory;
 import com.jhw.swing.material.components.button._MaterialButton;
 import com.jhw.swing.material.components.container.panel._MaterialPanel;
 import com.jhw.swing.material.components.container.panel._PanelGradient;
@@ -11,6 +12,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import com.jhw.swing.material.standards.MaterialColors;
 import com.jhw.swing.material.standards.MaterialIcons;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 
 /**
@@ -39,7 +41,7 @@ public class _LoginPanel extends LoginSimple {
         labelSecure = new com.jhw.swing.material.components.labels._MaterialLabel();
         textFieldUsuario = new com.jhw.swing.material.components.textfield._MaterialTextField();
         passwordUsuario = new com.jhw.swing.material.components.passwordfield._MaterialPasswordField();
-        buttonLogin = new com.jhw.swing.material.components.button._MaterialButton();
+        buttonLogin = MaterialButtonsFactory.buildButton();
         labelAnswer = new javax.swing.JLabel();
 
         setMaximumSize(new java.awt.Dimension(692, 460));
@@ -60,7 +62,7 @@ public class _LoginPanel extends LoginSimple {
 
         buttonLogin.setBackground(new java.awt.Color(0, 0, 0));
         buttonLogin.setText("Login");
-        buttonLogin.setBorderRadius(7);
+        ((_MaterialButton) buttonLogin).setBorderRadius(7);
 
         labelAnswer.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         labelAnswer.setForeground(new java.awt.Color(200, 0, 0));
@@ -126,7 +128,7 @@ public class _LoginPanel extends LoginSimple {
     }// </editor-fold>                        
 
     // Variables declaration - do not modify//:variables
-    private com.jhw.swing.material.components.button._MaterialButton buttonLogin;
+    private JButton buttonLogin;
     private javax.swing.JLabel labelAnswer;
     private com.jhw.swing.material.components.labels._MaterialLabel labelSecure;
     private com.jhw.swing.material.components.container.panel._PanelGradient panelBackground;
@@ -225,7 +227,7 @@ public class _LoginPanel extends LoginSimple {
         this.labelSecure.setIcon(MaterialIcons.VERIFIED_USER.deriveIcon(130f));
     }
 
-    public _MaterialButton getButtonLogin() {
+    public JButton getButtonLogin() {
         return buttonLogin;
     }
 

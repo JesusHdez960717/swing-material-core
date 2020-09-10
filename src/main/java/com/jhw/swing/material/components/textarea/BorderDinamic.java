@@ -1,5 +1,7 @@
 package com.jhw.swing.material.components.textarea;
 
+import com.jhw.swing.material.effects.MaterialLineBorder;
+import com.jhw.swing.material.effects.DefaultMaterialLineBorder;
 import static com.jhw.swing.material.components.textfield._MaterialTextField.HINT_OPACITY_MASK;
 import java.awt.Color;
 import java.awt.Font;
@@ -107,12 +109,12 @@ public class BorderDinamic {
 
     private void repaintComponent() {
         TitledBorder titled = (TitledBorder) target.getScrollPane().getBorder();
-        MaterialLineBorder line = (MaterialLineBorder) titled.getBorder();
+        MaterialLineBorder line = (DefaultMaterialLineBorder) titled.getBorder();
 
-        line.setThickkness(thickness.getValue());
+        line.setBorderThickness(thickness.getValue());
 
         titled.setTitleColor(color.getValue());
-        line.setColor(color.getValue());
+        line.setBorderColor(color.getValue());
 
         titled.setTitleFont(getFont());
     }

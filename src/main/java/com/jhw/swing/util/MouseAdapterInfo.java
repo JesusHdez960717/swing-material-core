@@ -3,20 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.jhw.swing.material.effects;
+package com.jhw.swing.util;
 
-import java.awt.Color;
+import java.beans.PropertyChangeListener;
 
 /**
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-public interface ColorFadeInto {
+public interface MouseAdapterInfo {
 
-    public Color getColorFadeInto();
+    public boolean isMousePressed();
 
-    public Color getAccentColorFadeInto();
-
-    public void setAccentColorFadeInto(Color color);
+    public boolean isMouseOver();
 
 }

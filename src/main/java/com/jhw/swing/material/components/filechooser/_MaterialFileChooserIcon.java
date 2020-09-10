@@ -7,8 +7,10 @@ package com.jhw.swing.material.components.filechooser;
 
 import com.jhw.swing.material.components.textfield.*;
 import com.jhw.personalization.services.PersonalizationHandler;
+import com.jhw.swing.material.components.button.MaterialButtonsFactory;
 import com.jhw.swing.material.components.button._MaterialButtonIconTransparent;
 import com.jhw.swing.material.components.container.panel._PanelTransparent;
+import com.jhw.swing.material.effects.RippleEffect;
 import com.jhw.swing.material.standards.MaterialColors;
 import com.jhw.swing.material.standards.MaterialIcons;
 import com.jhw.swing.material.standards.MaterialShadow;
@@ -23,6 +25,7 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.util.List;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 
 /**
  *
@@ -39,10 +42,10 @@ public class _MaterialFileChooserIcon extends _PanelTransparent implements Binda
     private void initComponents() {
         fileChooser = new _MaterialFileChooser();
 
-        buttonIcon = new _MaterialButtonIconTransparent();
-        buttonIcon.setRippleColor(MaterialColors.TRANSPARENT);
+        buttonIcon = MaterialButtonsFactory.buildIconTransparent();
+        ((RippleEffect) buttonIcon).setPaintRipple(false);
 
-        buttonClear = new _MaterialButtonIconTransparent();
+        buttonClear = MaterialButtonsFactory.buildIconTransparent();
         buttonClear.setIcon(MaterialIcons.CLEAR);
 
         buttonClear.setPreferredSize(new Dimension(buttonClear.getIcon().getIconWidth() * 2 - MaterialShadow.OFFSET_RIGHT, (int) buttonClear.getPreferredSize().getHeight()));
@@ -53,8 +56,8 @@ public class _MaterialFileChooserIcon extends _PanelTransparent implements Binda
     }
 
     private _MaterialFileChooser fileChooser;
-    private _MaterialButtonIconTransparent buttonIcon;
-    private _MaterialButtonIconTransparent buttonClear;
+    private JButton buttonIcon;
+    private JButton buttonClear;
 
     public void setIcon(ImageIcon icon) {
         if (!PersonalizationHandler.getBoolean(PersonalizationMaterial.KEY_SHOW_ICON_INPUT)) {
