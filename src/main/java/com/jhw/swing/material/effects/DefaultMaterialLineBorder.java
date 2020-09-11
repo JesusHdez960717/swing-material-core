@@ -13,6 +13,7 @@ import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Stroke;
+import java.awt.geom.Rectangle2D;
 import java.awt.geom.RoundRectangle2D;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
@@ -45,13 +46,17 @@ public class DefaultMaterialLineBorder extends LineBorder implements MaterialLin
 
     @Override
     public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
-        if (getBorderThickness() == 0) {
+        if (getBorderThickness() < 0.05) {
             return;
         }
         Graphics2D g2 = MaterialDrawingUtils.getAliasedGraphics(g);
         g2.setStroke(getBorderStroke());
         g2.setColor(color);
-        g2.draw(new RoundRectangle2D.Float(x, y, width - getBorderThickness(), height - getBorderThickness(), borderRadius * 2, borderRadius * 2));
+        if (borderRadius == 0) {
+            g2.draw(new Rectangle2D.Float(x, y, width - getBorderThickness(), height - getBorderThickness()));
+        } else {
+            g2.draw(new RoundRectangle2D.Float(x, y, width - getBorderThickness(), height - getBorderThickness(), borderRadius * 2, borderRadius * 2));
+        }
     }
 
     @Override
