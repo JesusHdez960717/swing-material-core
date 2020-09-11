@@ -26,12 +26,12 @@ public class MaterialContainersFactory {
         return MaterialWindow.from();
     }
 
-    public static JPanel buildPanel() {
+    public static MaterialPanelBorder buildPanel() {
         return MaterialSwingInjector.getImplementation(_MaterialPanel.class);
         //return _MaterialPanel.from();
     }
 
-    public static JPanel buildPanelComponent() {
+    public static MaterialPanelBorder buildPanelComponent() {
         return MaterialSwingInjector.getImplementation(_MaterialPanelComponent.class);
         //return _MaterialPanelComponent.from();
     }
@@ -48,12 +48,12 @@ public class MaterialContainersFactory {
         return _PanelCurves.from();
     }
 
-    public static JPanel buildPanelGradient() {
+    public static MaterialPanelBorder buildPanelGradient() {
         return MaterialSwingInjector.getImplementation(_PanelGradient.class);
         //return _PanelGradient.from();
     }
 
-    public static JPanel buildPanelGradientTranslucid() {
+    public static MaterialPanelBorder buildPanelGradientTranslucid() {
         return MaterialSwingInjector.getImplementation(_PanelGradientTranslucid.class);
         //return _PanelGradientTranslucid.from();
     }
