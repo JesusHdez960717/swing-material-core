@@ -88,7 +88,7 @@ public class _MaterialToggleButton extends JToggleButton implements BindableComp
         Graphics2D g2 = MaterialDrawingUtils.getAliasedGraphics(g);
 
         if (getText().trim().isEmpty() && getIcon() != null) {//solo pinto icono en el medio
-            this.getIcon().paintIcon(this, g2, (this.getSize().width) / 2 - getIcon().getIconWidth() / 2, (this.getSize().height) / 2 - getIcon().getIconHeight() / 2);
+            this.getIcon().paintIcon(this, g2, (this.getSize().width - getIcon().getIconWidth()) / 2, (this.getSize().height - getIcon().getIconHeight()) / 2);
         } else {
             if ((isMousePressed && !this.isSelected()) || (!isMousePressed && this.isSelected()) || (isMousePressed && this.isSelected())) {
                 this.setIcon(selectedIcon);
@@ -132,7 +132,7 @@ public class _MaterialToggleButton extends JToggleButton implements BindableComp
             }
             g2.drawString(this.getText(), xText, y);//getText().toUpperCase()
 
-            this.getIcon().paintIcon(this, g2, xIcon, (this.getSize().height) / 2 - getIcon().getIconHeight() / 2);
+            this.getIcon().paintIcon(this, g2, xIcon, (this.getSize().height - getIcon().getIconHeight()) / 2);
 
         }
 
