@@ -81,9 +81,6 @@ public class DefaultWrong implements Wrong, PropertyChangeListener {
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         switch (evt.getPropertyName()) {
-            case "text":
-                clearWrong();
-                break;
             case "foreground":
                 Color fg = (Color) evt.getNewValue();
                 if (!fg.equals(wrongColor)) {

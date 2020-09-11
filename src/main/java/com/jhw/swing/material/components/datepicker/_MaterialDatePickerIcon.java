@@ -31,7 +31,7 @@ public class _MaterialDatePickerIcon extends MaterialDatePicker {
     public static _MaterialDatePickerIcon from() {
         return new _MaterialDatePickerIcon();
     }
-    
+
     private Color originalIconColor = MaterialColors.BLACK;
 
     public _MaterialDatePickerIcon() {
@@ -115,7 +115,9 @@ public class _MaterialDatePickerIcon extends MaterialDatePicker {
 
     @Override
     public void setDate(Date date) {
-        datePicker.setDate(date);
+        if (datePicker != null) {
+            datePicker.setDate(date);
+        }
     }
 
     @Override

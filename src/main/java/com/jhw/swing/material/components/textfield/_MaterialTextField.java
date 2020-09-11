@@ -4,9 +4,6 @@ import java.awt.*;
 import java.awt.event.FocusEvent;
 import java.awt.event.KeyEvent;
 import javax.swing.*;
-import javax.swing.text.DefaultCaret;
-import com.jhw.personalization.core.domain.Personalization;
-import com.jhw.personalization.services.PersonalizationHandler;
 import com.jhw.swing.util.MaterialDrawingUtils;
 import com.jhw.swing.material.effects.DefaultFloatingLabel;
 import com.jhw.swing.material.effects.FloatingLabel;
@@ -200,6 +197,7 @@ public class _MaterialTextField<T> extends JTextField implements BindableCompone
     @Override
     public void setText(String s) {
         super.setText(s);
+        clearWrong();
         this.setCaretPosition(getText().length());
         firePropertyChange("text", null, null);
     }

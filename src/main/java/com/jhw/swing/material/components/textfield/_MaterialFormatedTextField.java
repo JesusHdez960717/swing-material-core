@@ -243,6 +243,7 @@ public class _MaterialFormatedTextField<T> extends JXFormattedTextField implemen
         }
 
         paintLabel(g2);
+        
         paintLine(g2);
 
         //paint the wrong text if the flag is actived
@@ -264,14 +265,11 @@ public class _MaterialFormatedTextField<T> extends JXFormattedTextField implemen
         if (clazz == null) {
             throw new NullPointerException("Clase para convertir nula.");
         }
-        /*if (getValue().toString().trim().isEmpty()) {
-            return "";
-        }*/
         try {
             return ConverterService.convert(getValue(), clazz);
         } catch (Exception e) {
-            return null;
-            //throw new NullPointerException("Error convirtiendo.");
+            //return null;
+            throw new NullPointerException("Error convirtiendo.");
         }
     }
 

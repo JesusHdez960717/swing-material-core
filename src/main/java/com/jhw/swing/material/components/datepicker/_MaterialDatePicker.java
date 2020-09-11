@@ -12,6 +12,8 @@ import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.Icon;
 import javax.swing.JButton;
 import javax.swing.UIManager;
@@ -34,7 +36,12 @@ public class _MaterialDatePicker extends MaterialDatePicker {
     public static _MaterialDatePicker from() {
         return new _MaterialDatePicker();
     }
-    private final _MaterialFormatedTextField text = new _MaterialFormatedTextField();
+    private final _MaterialFormatedTextField<String> text = new _MaterialFormatedTextField<String>() {
+        @Override
+        public String getObject() {
+            return getValue() != null ? getValue().toString() : "";
+        }
+    };
 
     protected _MaterialDatePicker() {
         this("Fecha");
@@ -52,7 +59,11 @@ public class _MaterialDatePicker extends MaterialDatePicker {
         this.text.setFormatterFactory(new DefaultFormatterFactory(new DatePickerFormatter(getFormats(), getLocale())));
 
         this.setEditor(text);
-
+        
+        this.addActionListener((ActionEvent e) -> {
+            clearWrong();
+        });
+        
         personalizeButton();
     }
 

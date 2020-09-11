@@ -7,11 +7,17 @@ package com.jhw.swing.examples;
 
 //import com.jhw.swing.material.components.combobox.combobox_editable._MaterialComboBoxFiltrable;
 import com.jhw.swing.material.components.container.layout.VerticalLayoutContainer;
+import com.jhw.swing.material.components.datepicker.MaterialDatePicker;
 import com.jhw.swing.material.components.datepicker.MaterialDatePickersFactory;
 import com.jhw.swing.material.standards.MaterialColors;
 import com.jhw.swing.ui.MaterialLookAndFeel;
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import javax.swing.AbstractAction;
+import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
 /**
@@ -27,12 +33,31 @@ public class EXAMPLE_DATE_PICKER extends javax.swing.JFrame {
         initComponents();
 
         jPanel1.setLayout(new BorderLayout());
-        jPanel1.setBackground(MaterialColors.RED_800);
+        jPanel1.setBackground(MaterialColors.WHITE);
 
         VerticalLayoutContainer.builder vlc = VerticalLayoutContainer.builder();
 
-        vlc.add(MaterialDatePickersFactory.build(), true);
-        //vlc.add(MaterialDatePickersFactory.buildIcon(), true);
+        MaterialDatePicker date1 = MaterialDatePickersFactory.build();
+        vlc.add(date1, true);
+
+        MaterialDatePicker date2 = MaterialDatePickersFactory.buildIcon();
+        vlc.add(date2, true);
+
+        vlc.add(new JButton(new AbstractAction("Wrong") {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                date1.wrong("bu");
+                date2.wrong("jijiji");
+            }
+        }));
+
+        vlc.add(new JButton(new AbstractAction("Object") {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(null, date1.getObject());
+                JOptionPane.showMessageDialog(null, date2.getObject());
+            }
+        }));
 
         jPanel1.add(vlc.build());
 
