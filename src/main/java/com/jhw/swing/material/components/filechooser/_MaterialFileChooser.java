@@ -7,22 +7,26 @@ package com.jhw.swing.material.components.filechooser;
 
 import com.jhw.personalization.core.domain.Personalization;
 import com.jhw.personalization.services.PersonalizationHandler;
-import com.jhw.swing.material.components.button._MaterialButton;
+import com.jhw.swing.material.components.button.MaterialButton;
+import com.jhw.swing.material.components.button.MaterialButtonsFactory;
 import com.jhw.swing.material.standards.MaterialColors;
 import com.jhw.swing.material.standards.MaterialIcons;
-import com.jhw.swing.util.interfaces.BindableComponent;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Consumer;
+import javax.swing.Icon;
 
 /**
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-public class _MaterialFileChooser extends _MaterialButton implements BindableComponent<List<File>> {
+public class _MaterialFileChooser extends MaterialFileChooser {
 
+    public static _MaterialFileChooser from() {
+        return new _MaterialFileChooser();
+    }
     private FileChooser fc;
     private static File lastFile = new File("");
 
@@ -36,46 +40,66 @@ public class _MaterialFileChooser extends _MaterialButton implements BindableCom
 
     private String upload = "Upload";
 
-    public _MaterialFileChooser() {
+    protected _MaterialFileChooser() {
         initComponents();
         addListeners();
         this.setTransferHandler(new FileDropHandler(consumer));
     }
 
     private void initComponents() {
-        this.setBackground(PersonalizationHandler.getColor(Personalization.KEY_COLOR_BACKGROUND_PANEL));
-        this.setBorderColor(MaterialColors.BROWN_700);
-        this.setBorderThickness(2);
-        this.setIcon(MaterialIcons.FILE_UPLOAD);
-        this.setText(upload);
+        button = MaterialButtonsFactory.buildButton();
+
+        button.setBackground(PersonalizationHandler.getColor(Personalization.KEY_COLOR_BACKGROUND_PANEL));
+        button.setBorderColor(MaterialColors.BROWN_700);
+        button.setBorderThickness(2);
+        button.setIcon(MaterialIcons.FILE_UPLOAD);
+        button.setText(upload);
+
+        this.add(button);
+    }
+
+    private MaterialButton button;
+
+    @Override
+    public MaterialFileChooser getFileChooser() {
+        return this;
     }
 
     private void addListeners() {
-        addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                onButtonAbrirActionPerformed();
-            }
+        button.addActionListener((java.awt.event.ActionEvent evt) -> {
+            onButtonAbrirActionPerformed();
         });
     }
 
     private void onButtonAbrirActionPerformed() {
         fc = new FileChooser(lastFile);
-        fc.addConfirmListener(new java.awt.event.ActionListener() {
-            @Override
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mergeFiles(Arrays.asList(fc.getSelectedFiles()));
-            }
+        fc.addConfirmListener((java.awt.event.ActionEvent evt) -> {
+            mergeFiles(Arrays.asList(fc.getSelectedFiles()));
         });
     }
 
-    public String getUpload() {
+    @Override
+    public void setText(String text) {
+        button.setText(text);
+        this.upload = text;
+    }
+
+    @Override
+    public String getText() {
         return upload;
     }
 
-    public void setUpload(String upload) {
-        this.upload = upload;
+    @Override
+    public void setIcon(Icon icon) {
+        button.setIcon(icon);
     }
 
+    @Override
+    public Icon getIcon() {
+        return button.getIcon();
+    }
+
+    @Override
     public void clear() {
         selectedFiles.clear();
         setText(upload);
@@ -84,11 +108,13 @@ public class _MaterialFileChooser extends _MaterialButton implements BindableCom
         }
     }
 
+    @Override
     public void setSelectedFiles(List<File> files) {
         clear();
         selectedFiles.addAll(files);
     }
 
+    @Override
     public List<File> getSelectedFiles() {
         return selectedFiles;
     }
@@ -101,7 +127,7 @@ public class _MaterialFileChooser extends _MaterialButton implements BindableCom
         }
         if (!getSelectedFiles().isEmpty()) {
             lastFile = getSelectedFiles().get(0).getParentFile();
-            setText(upload + " (" + getSelectedFiles().size() + ")");
+            button.setText(upload + " (" + getSelectedFiles().size() + ")");
         }
     }
 
