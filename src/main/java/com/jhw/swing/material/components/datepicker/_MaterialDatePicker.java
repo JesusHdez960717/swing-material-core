@@ -1,24 +1,18 @@
 package com.jhw.swing.material.components.datepicker;
 
 import com.jhw.swing.material.components.textfield._MaterialFormatedTextField;
-import com.jhw.swing.material.effects.FloatingLabel;
-import com.jhw.swing.material.effects.Line;
 import com.jhw.swing.material.standards.MaterialColors;
 import java.util.Date;
-import org.jdesktop.swingx.JXDatePicker;
 import com.jhw.utils.others.SDF;
-import com.jhw.swing.util.interfaces.DateSelected;
 import com.jhw.swing.material.standards.MaterialFontRoboto;
 import com.jhw.swing.material.standards.MaterialIcons;
-import com.jhw.swing.util.interfaces.BindableComponent;
-import com.jhw.swing.util.interfaces.MaterialComponent;
-import com.jhw.swing.material.effects.Wrong;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Insets;
+import javax.swing.Icon;
 import javax.swing.JButton;
 import javax.swing.UIManager;
 import javax.swing.text.DefaultFormatterFactory;
@@ -28,7 +22,7 @@ import org.jdesktop.swingx.calendar.DatePickerFormatter;
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-public class _MaterialDatePicker extends JXDatePicker implements DateSelected, BindableComponent<Date>, FloatingLabel, Line, Wrong, MaterialComponent {
+public class _MaterialDatePicker extends MaterialDatePicker {
 
     static {
         UIManager.put("JXMonthView.monthDownFileName", MaterialIcons.KEYBOARD_ARROW_LEFT);
@@ -37,13 +31,16 @@ public class _MaterialDatePicker extends JXDatePicker implements DateSelected, B
         UIManager.put("JXMonthView.monthStringForeground", MaterialColors.BLACK);
     }
 
+    public static _MaterialDatePicker from() {
+        return new _MaterialDatePicker();
+    }
     private final _MaterialFormatedTextField text = new _MaterialFormatedTextField();
 
-    public _MaterialDatePicker() {
+    protected _MaterialDatePicker() {
         this("Fecha");
     }
 
-    public _MaterialDatePicker(String label) {
+    protected _MaterialDatePicker(String label) {
         super();
         this.setLabel(label);
 
@@ -59,14 +56,17 @@ public class _MaterialDatePicker extends JXDatePicker implements DateSelected, B
         personalizeButton();
     }
 
-    public _MaterialFormatedTextField getFormatedTextField() {
-        return text;
+    @Override
+    public MaterialDatePicker getDatePicker() {
+        return this;
     }
 
+    @Override
     public void setLowerBound(Date lower) {
         this.getMonthView().setLowerBound(lower);
     }
 
+    @Override
     public void setUpperBound(Date lower) {
         this.getMonthView().setUpperBound(lower);
     }
@@ -195,14 +195,6 @@ public class _MaterialDatePicker extends JXDatePicker implements DateSelected, B
         text.setAccentFloatingLabel(accentColor);
     }
 
-    public String getExtra() {
-        return text.getExtra();
-    }
-
-    public void setExtra(String extra) {
-        text.setExtra(extra);
-    }
-
     @Override
     public void setForeground(Color fg) {
         super.setForeground(fg);
@@ -211,12 +203,13 @@ public class _MaterialDatePicker extends JXDatePicker implements DateSelected, B
         }
     }
 
-    public void setMaxLength(int maxLength) {
-        text.setMaxLength(maxLength);
+    @Override
+    public void setIcon(Icon icon) {
     }
 
-    public void setText(String s) {
-        text.setText(s);
+    @Override
+    public Icon getIcon() {
+        return null;
     }
 
 }

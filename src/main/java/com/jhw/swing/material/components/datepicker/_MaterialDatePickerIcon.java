@@ -9,14 +9,9 @@ import com.jhw.swing.material.components.textfield.*;
 import com.jhw.personalization.services.PersonalizationHandler;
 import com.jhw.swing.material.components.button.MaterialButtonIcon;
 import com.jhw.swing.material.components.button.MaterialButtonsFactory;
-import com.jhw.swing.material.components.container.panel._PanelTransparent;
-import com.jhw.swing.material.effects.RippleEffect;
 import com.jhw.swing.material.standards.MaterialColors;
 import com.jhw.swing.material.standards.MaterialIcons;
 import com.jhw.swing.util.PersonalizationMaterial;
-import com.jhw.swing.util.interfaces.BindableComponent;
-import com.jhw.swing.util.interfaces.MaterialComponent;
-import com.jhw.swing.material.effects.Wrong;
 import com.jhw.swing.utils.icons.DerivableIcon;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -25,14 +20,18 @@ import java.awt.Graphics;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.util.Date;
-import javax.swing.ImageIcon;
+import javax.swing.Icon;
 
 /**
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-public class _MaterialDatePickerIcon extends _PanelTransparent implements BindableComponent<Date>, Wrong, MaterialComponent {
+public class _MaterialDatePickerIcon extends MaterialDatePicker {
 
+    public static _MaterialDatePickerIcon from() {
+        return new _MaterialDatePickerIcon();
+    }
+    
     private Color originalIconColor = MaterialColors.BLACK;
 
     public _MaterialDatePickerIcon() {
@@ -54,7 +53,7 @@ public class _MaterialDatePickerIcon extends _PanelTransparent implements Bindab
         this.setLayout(new BorderLayout());
         this.add(datePicker, BorderLayout.CENTER);
 
-        datePicker.getFormatedTextField().addFocusListener(new FocusListener() {
+        datePicker.getEditor().addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
                 buttonIcon.setForeground(getAccentFloatingLabel());
@@ -70,12 +69,18 @@ public class _MaterialDatePickerIcon extends _PanelTransparent implements Bindab
     private _MaterialDatePicker datePicker;
     private MaterialButtonIcon buttonIcon;
 
-    public void setIcon(ImageIcon icon) {
+    @Override
+    public MaterialDatePicker getDatePicker() {
+        return datePicker;
+    }
+
+    @Override
+    public void setIcon(Icon icon) {
         if (!PersonalizationHandler.getBoolean(PersonalizationMaterial.KEY_SHOW_ICON_INPUT)) {
             return;
         }
 
-        int h = (int) this.datePicker.getFormatedTextField().getPreferredSize().getHeight();
+        int h = (int) this.datePicker.getEditor().getPreferredSize().getHeight();
         if (icon instanceof DerivableIcon) {
             buttonIcon.setIcon(((DerivableIcon) icon).deriveIcon(h * _MaterialTextFieldIcon.ICON_SIZE_REDUCTION));
             originalIconColor = ((DerivableIcon) icon).getColor();
@@ -88,73 +93,84 @@ public class _MaterialDatePickerIcon extends _PanelTransparent implements Bindab
     }
 
     @Override
+    public Icon getIcon() {
+        return buttonIcon.getIcon();
+    }
+
+    @Override
     public void setEnabled(boolean enabled) {
         datePicker.setEnabled(enabled);
         buttonIcon.setEnabled(enabled);
     }
 
-    public _MaterialFormatedTextField getFormatedTextField() {
-        return datePicker.getFormatedTextField();
-    }
-
+    @Override
     public void setLowerBound(Date lower) {
         datePicker.setLowerBound(lower);
     }
 
-    public void setUpperBound(Date lower) {
-        datePicker.setUpperBound(lower);
+    @Override
+    public void setUpperBound(Date upper) {
+        datePicker.setUpperBound(upper);
     }
 
+    @Override
     public void setDate(Date date) {
         datePicker.setDate(date);
     }
 
+    @Override
     public Date getDate() {
         return datePicker.getDate();
     }
 
-    public int getMaxLength() {
-        return datePicker.getMaxLength();
-    }
-
+    @Override
     public String getLabel() {
         return datePicker.getLabel();
     }
 
+    @Override
     public void setLabel(String label) {
         datePicker.setLabel(label);
     }
 
+    @Override
     public String getHint() {
         return datePicker.getHint();
     }
 
+    @Override
     public void setHint(String hint) {
         datePicker.setHint(hint);
     }
 
+    @Override
     public Color getAccentFloatingLabel() {
         return datePicker.getAccentFloatingLabel();
     }
 
+    @Override
     public void setAccentFloatingLabel(Color accentColor) {
         datePicker.setAccentFloatingLabel(accentColor);
     }
 
-    public String getExtra() {
-        return datePicker.getExtra();
+    @Override
+    public void paintLabel(Graphics g) {
+        datePicker.paintLabel(g);
     }
 
-    public void setExtra(String extra) {
-        datePicker.setExtra(extra);
+    @Override
+    public void paintHint(Graphics g) {
+        datePicker.paintHint(g);
     }
 
-    public void setMaxLength(int maxLength) {
-        datePicker.setMaxLength(maxLength);
+    @Override
+    public void paintLine(Graphics g) {
+        datePicker.paintLine(g);
     }
 
-    public void setText(String s) {
-        datePicker.setText(s);
+    @Override
+    public int getYLine(Graphics g2) {
+        return datePicker.getYLine(g2);
     }
 
     @Override

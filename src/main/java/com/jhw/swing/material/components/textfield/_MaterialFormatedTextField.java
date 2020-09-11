@@ -264,10 +264,14 @@ public class _MaterialFormatedTextField<T> extends JXFormattedTextField implemen
         if (clazz == null) {
             throw new NullPointerException("Clase para convertir nula.");
         }
+        /*if (getValue().toString().trim().isEmpty()) {
+            return "";
+        }*/
         try {
             return ConverterService.convert(getValue(), clazz);
         } catch (Exception e) {
-            throw new NullPointerException("Error convirtiendo.");
+            return null;
+            //throw new NullPointerException("Error convirtiendo.");
         }
     }
 
