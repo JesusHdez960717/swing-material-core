@@ -5,8 +5,6 @@ import java.awt.geom.RoundRectangle2D;
 import javax.swing.*;
 import com.jhw.swing.util.MaterialDrawingUtils;
 import com.jhw.swing.material.effects.DefaultElevationEffect;
-import com.jhw.swing.util.Utils;
-import com.jhw.swing.util.interfaces.MaterialComponent;
 import com.jhw.swing.material.standards.MaterialShadow;
 import com.jhw.personalization.core.domain.Personalization;
 import com.jhw.personalization.services.PersonalizationHandler;
@@ -15,8 +13,6 @@ import com.jhw.swing.material.effects.MaterialLineBorder;
 import com.jhw.swing.material.effects.ElevationEffect;
 import com.jhw.swing.material.injection.Background_Force_Foreground;
 import com.jhw.swing.material.injection.Foreground_Force_Icon;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 
 /**
  * A JPanel customized for Material components. What makes these panels special
@@ -39,7 +35,7 @@ import java.beans.PropertyChangeListener;
  */
 @Background_Force_Foreground
 @Foreground_Force_Icon
-public class _MaterialPanel extends JPanel implements MaterialComponent, ElevationEffect, MaterialLineBorder, PropertyChangeListener {
+public class _MaterialPanel extends MaterialPanelBorder implements ElevationEffect {
 
     public static _MaterialPanel from() {
         return new _MaterialPanel();
@@ -51,6 +47,8 @@ public class _MaterialPanel extends JPanel implements MaterialComponent, Elevati
 
     private double elevationLevel = MaterialShadow.ELEVATION_DEFAULT;
 
+    private Icon icon;
+
     /**
      * Creates a new {@code MaterialPanel}. These panels cast a shadow below
      * them, although technically it is painted inside its borders. If you don't
@@ -58,7 +56,7 @@ public class _MaterialPanel extends JPanel implements MaterialComponent, Elevati
      */
     protected _MaterialPanel() {
         this.setOpaque(false);
-
+        this.setLayout(new BorderLayout());
         this.setBackground(PersonalizationHandler.getColor(Personalization.KEY_COLOR_BACKGROUND_PANEL));
     }
 //-----------------ELEVATION_EFFECT------------------------
@@ -131,6 +129,16 @@ public class _MaterialPanel extends JPanel implements MaterialComponent, Elevati
 //-----------------LINE_BORDER------------------------
 
     @Override
+    public Icon getIcon() {
+        return this.icon;
+    }
+
+    @Override
+    public void setIcon(Icon icon) {
+        this.icon = icon;
+    }
+
+    @Override
     protected void paintComponent(Graphics g) {
         Graphics2D g2 = MaterialDrawingUtils.getAliasedGraphics(g);
 
@@ -140,18 +148,22 @@ public class _MaterialPanel extends JPanel implements MaterialComponent, Elevati
         final int offset_lr = MaterialShadow.OFFSET_LEFT + MaterialShadow.OFFSET_RIGHT;
         final int offset_td = MaterialShadow.OFFSET_TOP + MaterialShadow.OFFSET_BOTTOM;
 
-        paintBorder(this, g2, 0, 0, (int) (getWidth() - offset_lr + getBorderThickness()), (int) (getHeight() - offset_td + getBorderThickness()));
-
         g2.setColor(getBackground());
         g2.fill(new RoundRectangle2D.Float(0, 0, getWidth() - offset_lr, getHeight() - offset_td, getBorderRadius() * 2, getBorderRadius() * 2));
 
         g2.setClip(null);
 
+        paintBorder(this, g2, 0, 0, (int) (getWidth() - offset_lr + getBorderThickness()), (int) (getHeight() - offset_td + getBorderThickness()));
+        
+        if (this.icon != null) {
+            if (icon instanceof ImageIcon) {//si es image icon lo pinto completo de todo el tamanno
+                g2.drawImage(((ImageIcon) this.icon).getImage(), 0, 0, getWidth() - offset_lr, getHeight() - offset_td, null);
+            } else {//si no lo pinto como un simple icon
+                icon.paintIcon(this, g2, (getWidth() - icon.getIconWidth()) / 2, (getHeight() - icon.getIconHeight()) / 2);
+            }
+        }
+
         g2.translate(-MaterialShadow.OFFSET_LEFT, -MaterialShadow.OFFSET_TOP);
     }
 
-    @Override
-    public void propertyChange(PropertyChangeEvent evt) {
-        firePropertyChange(evt.getPropertyName(), evt.getOldValue(), evt.getNewValue());
-    }
 }
