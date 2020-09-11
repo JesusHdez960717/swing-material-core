@@ -57,7 +57,7 @@ public class DefaultLine<T extends JComponent & FloatingLabel> implements Line, 
 
         //paint the real-line, this is the one that change colors and size
         g2.setColor(target.getAccentFloatingLabel());
-        g2.fillRect((int) ((getWidth() - getWidth()) / 2), yLine, (int) getWidth(), 2);
+        g2.fillRect((int) ((target.getWidth() - getWidth()) / 2), yLine, (int) getWidth(), 2);
     }
 
     private void update() {
