@@ -1,10 +1,9 @@
 package com.jhw.swing.material.components.login;
 
 import com.clean.swing.app.login.LoginSimple;
+import com.jhw.swing.material.components.button.MaterialButton;
 import com.jhw.swing.material.components.button.MaterialButtonsFactory;
-import com.jhw.swing.material.components.button._MaterialButton;
 import com.jhw.swing.material.components.container.MaterialContainersFactory;
-import com.jhw.swing.material.components.container.panel._MaterialPanel;
 import com.jhw.swing.material.components.container.panel._PanelGradient;
 import com.jhw.swing.material.components.labels._MaterialLabel;
 import com.jhw.swing.material.components.passwordfield._MaterialPasswordField;
@@ -65,7 +64,7 @@ public class _LoginPanel extends LoginSimple {
 
         buttonLogin.setBackground(new java.awt.Color(0, 0, 0));
         buttonLogin.setText("Login");
-        ((BorderRadius) buttonLogin).setBorderRadius(7);
+        buttonLogin.setBorderRadius(7);
 
         labelAnswer.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         labelAnswer.setForeground(new java.awt.Color(200, 0, 0));
@@ -131,7 +130,7 @@ public class _LoginPanel extends LoginSimple {
     }// </editor-fold>                        
 
     // Variables declaration - do not modify//:variables
-    private JButton buttonLogin;
+    private MaterialButton buttonLogin;
     private javax.swing.JLabel labelAnswer;
     private com.jhw.swing.material.components.labels._MaterialLabel labelSecure;
     private JPanel panelBackground;

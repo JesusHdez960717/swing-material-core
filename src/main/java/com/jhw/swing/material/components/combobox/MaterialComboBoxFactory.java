@@ -5,8 +5,6 @@
  */
 package com.jhw.swing.material.components.combobox;
 
-import javax.swing.JComboBox;
-
 /**
  * Por el momento los combo boxes no necesitan injection ni proxy, no tiene
  * sentido usarlos y agregarle capas innecesarias a los componentes
@@ -15,12 +13,12 @@ import javax.swing.JComboBox;
  */
 public class MaterialComboBoxFactory {
 
-    public static JComboBox build() {
+    public static MaterialComboBox build() {
         //return MaterialSwingInjector.getImplementation(_MaterialComboBox.class);
         return _MaterialComboBox.from();
     }
 
-    public static JComboBox buildFiltrable() {
+    public static MaterialComboBox buildFiltrable() {
         //return MaterialSwingInjector.getImplementation(_MaterialComboBoxFiltrable.class);
         return _MaterialComboBoxFiltrable.from();
     }

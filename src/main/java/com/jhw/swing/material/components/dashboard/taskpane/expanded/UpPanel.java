@@ -3,12 +3,10 @@ package com.jhw.swing.material.components.dashboard.taskpane.expanded;
 import com.clean.swing.app.dashboard.DashboardConstants;
 import com.clean.swing.app.dashboard.MapeableContainer;
 import com.jhw.swing.material.components.button.MaterialButtonsFactory;
-import com.jhw.swing.material.components.button._MaterialButtonIconTransparent;
 import com.jhw.swing.material.components.button._MaterialButtonHiperlink;
 import com.jhw.swing.material.components.container.MaterialContainersFactory;
-import com.jhw.swing.material.components.container.panel._PanelGradient;
-import com.jhw.swing.material.components.container.panel._PanelTransparent;
 import com.jhw.swing.material.components.dashboard.taskpane.DashBoardTaskPane;
+import com.jhw.swing.material.standards.MaterialColors;
 import com.jhw.swing.material.standards.MaterialFontRoboto;
 import com.jhw.swing.utils.icons.DerivableIcon;
 import java.awt.BorderLayout;
@@ -139,6 +137,8 @@ public class UpPanel extends MapeableContainer {
         public CompanyButton() {
             setText("");
             float h = HEIGHT_FINAL;
+            this.setMouseEnteredColor(MaterialColors.BLACK);
+            this.setMouseExitedColor(MaterialColors.BLACK);
             this.setFont(MaterialFontRoboto.MEDIUM.deriveFont(h * 0.65f));
             this.setIconTextGap(8);
         }

@@ -5,7 +5,6 @@ import com.jhw.swing.material.injection.Background_Force_Foreground;
 import com.jhw.swing.material.effects.Iconable;
 import com.jhw.swing.material.standards.*;
 import com.jhw.swing.material.effects.*;
-import com.jhw.swing.util.interfaces.MaterialComponent;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.geom.RoundRectangle2D;
@@ -14,7 +13,6 @@ import javax.swing.plaf.basic.BasicButtonUI;
 import com.jhw.swing.util.MaterialDrawingUtils;
 import com.jhw.swing.util.DefaultMouseAdapterInfo;
 import com.jhw.swing.util.*;
-import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
 /**
@@ -30,7 +28,7 @@ import java.beans.PropertyChangeListener;
  */
 @Background_Force_Foreground
 @Foreground_Force_Icon
-public class _MaterialButton extends JButton implements Iconable, ColorFadeInto, MouseAdapterInfo, RippleEffect, ElevationEffect, MaterialLineBorder, PropertyChangeListener, MaterialComponent {
+public class _MaterialButton extends MaterialButton {
 
     private final MouseAdapterInfo mouseInfo = DefaultMouseAdapterInfo.from(this);
 
@@ -315,11 +313,6 @@ public class _MaterialButton extends JButton implements Iconable, ColorFadeInto,
     @Override
     protected void paintBorder(Graphics g) {
         //intentionally left blank
-    }
-
-    @Override
-    public void propertyChange(PropertyChangeEvent evt) {
-        firePropertyChange(evt.getPropertyName(), evt.getOldValue(), evt.getNewValue());
     }
 
     /**

@@ -17,7 +17,7 @@ import javax.swing.JPopupMenu;
  */
 public class MaterialButtonsFactory {
 
-    public static JButton buildButton() {
+    public static MaterialButton buildButton() {
         return MaterialSwingInjector.getImplementation(_MaterialButton.class);
     }
 
@@ -25,7 +25,7 @@ public class MaterialButtonsFactory {
         return _MaterialButtonDouble.from();
     }
 
-    public static JButton buildFlat() {
+    public static MaterialButton buildFlat() {
         _MaterialButton btn = MaterialSwingInjector.getImplementation(_MaterialButton.class);
         btn.setType(_MaterialButton.Type.FLAT);
         btn.setBorderRadius(0);
@@ -33,28 +33,28 @@ public class MaterialButtonsFactory {
     }
 
     //-----------Icon Transparent----------------
-    public static JButton buildIconTranspRotate() {
+    public static MaterialButtonIcon buildIconTranspRotate() {
         return MaterialSwingInjector.getImplementation(_MaterialButtonIconTranspRotate.class);
     }
 
     //----------------Icon Transparent----------------
-    public static JButton buildIconTransparent() {
+    public static MaterialButtonIcon buildIconTransparent() {
         return MaterialSwingInjector.getImplementation(_MaterialButtonIconTransparent.class);
     }
 
-    public static JButton buildIconTransparent(ImageIcon icon) {
-        JButton btn = MaterialSwingInjector.getImplementation(_MaterialButtonIconTransparent.class);
+    public static MaterialButtonIcon buildIconTransparent(ImageIcon icon) {
+        MaterialButtonIcon btn = MaterialSwingInjector.getImplementation(_MaterialButtonIconTransparent.class);
         btn.setIcon(icon);
         return btn;
     }
 
     //----------------Popup----------------
-    public static JButton buildPopup() {
+    public static MaterialButton buildPopup() {
         return MaterialSwingInjector.getImplementation(_MaterialButtonPopup.class);
     }
 
-    public static JButton buildPopup(JPopupMenu menu) {
-        JButton btn = MaterialSwingInjector.getImplementation(_MaterialButtonPopup.class);
+    public static MaterialButton buildPopup(JPopupMenu menu) {
+        MaterialButton btn = MaterialSwingInjector.getImplementation(_MaterialButtonPopup.class);
         btn.setComponentPopupMenu(menu);
         return btn;
     }
@@ -64,15 +64,15 @@ public class MaterialButtonsFactory {
         return MaterialSwingInjector.getImplementation(_MaterialButtonHiperlink.class);
     }
 
-    public static JButton buildRound() {
+    public static MaterialButton buildRound() {
         return MaterialSwingInjector.getImplementation(_MaterialIconButtonRound.class);
     }
 
-    public static JButton buildView() {
+    public static MaterialButton buildView() {
         return MaterialSwingInjector.getImplementation(_buttonView.class);
     }
 
-    public static JButton buildAddEdit() {
+    public static MaterialButton buildAddEdit() {
         return MaterialSwingInjector.getImplementation(_buttonAddEdit.class);
     }
 }

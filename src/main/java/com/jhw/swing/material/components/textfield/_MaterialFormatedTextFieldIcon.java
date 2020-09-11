@@ -6,6 +6,7 @@
 package com.jhw.swing.material.components.textfield;
 
 import com.jhw.personalization.services.PersonalizationHandler;
+import com.jhw.swing.material.components.button.MaterialButtonIcon;
 import com.jhw.swing.material.components.button.MaterialButtonsFactory;
 import com.jhw.swing.material.components.container.panel._PanelTransparent;
 import com.jhw.swing.material.effects.RippleEffect;
@@ -22,7 +23,6 @@ import java.awt.Graphics;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 
 /**
  *
@@ -51,7 +51,7 @@ public class _MaterialFormatedTextFieldIcon<T> extends _PanelTransparent impleme
 
     private void initComponents() {
         buttonIcon = MaterialButtonsFactory.buildIconTransparent();
-        ((RippleEffect) buttonIcon).setPaintRipple(false);
+        buttonIcon.setPaintRipple(false);
 
         this.setLayout(new BorderLayout());
         this.add(textField, BorderLayout.CENTER);
@@ -70,7 +70,7 @@ public class _MaterialFormatedTextFieldIcon<T> extends _PanelTransparent impleme
     }
 
     private _MaterialFormatedTextField<T> textField;
-    private JButton buttonIcon;
+    private MaterialButtonIcon buttonIcon;
 
     public void setIcon(ImageIcon icon) {
         if (!PersonalizationHandler.getBoolean(PersonalizationMaterial.KEY_SHOW_ICON_INPUT)) {

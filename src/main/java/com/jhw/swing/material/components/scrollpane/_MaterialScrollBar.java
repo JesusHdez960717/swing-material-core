@@ -2,9 +2,7 @@ package com.jhw.swing.material.components.scrollpane;
 
 import com.jhw.swing.material.standards.MaterialColors;
 import com.jhw.swing.util.MaterialDrawingUtils;
-import com.jhw.swing.util.Utils;
 import java.awt.Adjustable;
-import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Container;
@@ -13,9 +11,7 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
-import java.awt.RenderingHints;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseWheelEvent;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JScrollBar;
@@ -180,11 +176,11 @@ public class _MaterialScrollBar extends JScrollBar {
     }
 
     private void doAdjust() {
-        if (entered || pressed) {
+        //if (entered || pressed) {
             this.width = THUMB_WIDTH_FOCUSED;
-        } else {
-            this.width = THUMB_WIDTH_UNFOCUSED;
-        }
+        //} else {
+        //    this.width = THUMB_WIDTH_UNFOCUSED;
+        //}
         setPreferredSize(new Dimension(width, width));
         revalidate();
     }

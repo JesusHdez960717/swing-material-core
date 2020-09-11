@@ -1,12 +1,8 @@
 package com.jhw.swing.material.components.searchfield;
 
+import com.jhw.swing.material.components.button.MaterialButtonIcon;
 import com.jhw.swing.material.components.button.MaterialButtonsFactory;
-import com.jhw.swing.material.components.button._MaterialButtonIconTransparent;
-import com.jhw.swing.material.components.container.layout.HorizontalLayoutComponent;
-import com.jhw.swing.material.components.container.layout.HorizontalLayoutContainer;
 import com.jhw.swing.material.components.container.panel._MaterialPanel;
-import com.jhw.swing.material.components.container.panel._PanelTransparent;
-import com.jhw.swing.material.components.container.panel._MaterialPanelComponent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import org.jdesktop.swingx.JXTextField;
@@ -16,7 +12,6 @@ import com.jhw.swing.material.standards.MaterialIcons;
 import com.jhw.swing.material.standards.MaterialShadow;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import javax.swing.JButton;
 import javax.swing.border.EmptyBorder;
 
 /**
@@ -61,7 +56,7 @@ public class _MaterialSearchField extends _MaterialPanel {
     }
 
     // Variables declaration - do not modify//
-    private JButton buttonSearch;
+    private MaterialButtonIcon buttonSearch;
     private org.jdesktop.swingx.JXTextField searchField;
     // End of variables declaration                   
 
@@ -145,7 +140,7 @@ public class _MaterialSearchField extends _MaterialPanel {
         return searchAction;
     }
 
-    public JButton getButtonSearch() {
+    public MaterialButtonIcon getButtonSearch() {
         return buttonSearch;
     }
 

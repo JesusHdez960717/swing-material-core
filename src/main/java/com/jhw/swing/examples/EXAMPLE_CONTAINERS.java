@@ -5,7 +5,6 @@
  */
 package com.jhw.swing.examples;
 
-import com.jhw.swing.material.components.combobox.*;
 import com.jhw.swing.material.components.container.MaterialContainersFactory;
 //import com.jhw.swing.material.components.combobox.combobox_editable._MaterialComboBoxFiltrable;
 import com.jhw.swing.material.components.container.layout.VerticalLayoutContainer;
@@ -15,14 +14,9 @@ import com.jhw.swing.material.standards.MaterialIcons;
 import com.jhw.swing.ui.MaterialLookAndFeel;
 import com.jhw.swing.util.AvatarPanelAvatarChooser;
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.event.ActionEvent;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import javax.swing.AbstractAction;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;

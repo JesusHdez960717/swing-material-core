@@ -5,9 +5,7 @@ import java.awt.*;
 import java.awt.event.FocusEvent;
 import java.awt.event.MouseEvent;
 import com.jhw.swing.util.MaterialDrawingUtils;
-import com.jhw.swing.util.interfaces.MaterialComponent;
 import com.jhw.swing.material.effects.DefaultRippleEffect;
-import com.jhw.swing.material.effects.Iconable;
 import com.jhw.swing.material.effects.RippleEffect;
 import com.jhw.swing.material.injection.Background_Force_Foreground;
 import com.jhw.swing.material.injection.Foreground_Force_Icon;
@@ -16,7 +14,7 @@ import javax.swing.plaf.basic.BasicButtonUI;
 
 @Background_Force_Foreground
 @Foreground_Force_Icon
-public class _MaterialButtonIconTransparent extends JButton implements Iconable, RippleEffect, MaterialComponent {
+public class _MaterialButtonIconTransparent extends MaterialButtonIcon {
 
     public static final String KEY_ACTION_POPUP = "popup";
 
@@ -126,7 +124,7 @@ public class _MaterialButtonIconTransparent extends JButton implements Iconable,
         }
 
         if (isEnabled()) {
-            ripple.paintRipple(g2);
+            paintRipple(g2);
         }
 
         if (getIcon() != null) {

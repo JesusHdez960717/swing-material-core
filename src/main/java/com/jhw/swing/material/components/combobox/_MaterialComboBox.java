@@ -22,6 +22,7 @@ import com.jhw.swing.utils.icons.DerivableIcon;
 import java.awt.event.ActionEvent;
 import com.jhw.swing.material.effects.Wrong;
 import static com.jhw.swing.material.standards.Utils.LINE_OPACITY_MASK;
+import java.util.ArrayList;
 
 /**
  * A Material Design combo box.
@@ -30,7 +31,7 @@ import static com.jhw.swing.material.standards.Utils.LINE_OPACITY_MASK;
  * href="https://www.google.com/design/spec/components/buttons.html#buttons-dropdown-buttons">Dropdown
  * buttons (Google design guidelines)</a>
  */
-public class _MaterialComboBox<T> extends JComboBox<T> implements Line, FloatingLabel, BindableComponent<T>, Wrong, MaterialComponent {
+public class _MaterialComboBox<T> extends MaterialComboBox<T> {
 
     public static _MaterialComboBox from() {
         return new _MaterialComboBox();
@@ -70,9 +71,17 @@ public class _MaterialComboBox<T> extends JComboBox<T> implements Line, Floating
 
         this.setFont(MaterialFontRoboto.REGULAR.deriveFont(16f));
         this.setHint("Select...");
-        this.setModel(new javax.swing.DefaultComboBoxModel(new String[]{}));
+
+        this.setModel(new ArrayList<>());
+
         this.setSelectedIndex(-1);
 
+    }
+
+    @Override
+    public void setModel(java.util.List<T> aModel) {
+        super.setModel(new DefaultComboBoxModel(aModel.toArray(new Object[aModel.size()])));
+        this.setSelectedIndex(-1);
     }
 //-------------------LINE-------------------------
 
