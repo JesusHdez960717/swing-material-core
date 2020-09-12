@@ -5,7 +5,6 @@
  */
 package com.jhw.swing.material.components.labels;
 
-import com.jhw.swing.material.components.container.panel._PanelTransparent;
 import com.jhw.utils.interfaces.Update;
 import java.awt.BorderLayout;
 import javax.swing.SwingConstants;
@@ -14,23 +13,30 @@ import javax.swing.SwingConstants;
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-public class _MaterialLabelDouble extends _PanelTransparent implements Update {
+public class _MaterialLabelDouble extends MaterialLabelDoble implements Update {
 
-    public _MaterialLabelDouble() {
+    public static _MaterialLabelDouble from() {
+        return new _MaterialLabelDouble();
+    }
+
+    protected _MaterialLabelDouble() {
         initComponents();
-        update();
     }
 
     private void initComponents() {
-        labelLeft = new _MaterialLabel();
+        labelLeft = MaterialLabelsFactory.build();
         labelLeft.setText("Left");
+        labelLeft.setFont(labelLeft.getFont().deriveFont(18));
 
-        labelRigth = new _MaterialLabel();
+        labelRigth = MaterialLabelsFactory.build();
         labelRigth.setText("Rigth");
+        labelRigth.setFont(labelRigth.getFont().deriveFont(20));
         labelRigth.setHorizontalAlignment(SwingConstants.RIGHT);
+        update();
     }
-    private _MaterialLabel labelLeft;
-    private _MaterialLabel labelRigth;
+
+    private MaterialLabel labelLeft;
+    private MaterialLabel labelRigth;
 
     @Override
     public void update() {
@@ -41,32 +47,46 @@ public class _MaterialLabelDouble extends _PanelTransparent implements Update {
         this.add(labelRigth, BorderLayout.CENTER);
     }
 
+    @Override
     public void setLeftText(String text) {
         this.labelLeft.setText(text);
     }
 
+    @Override
     public void setRigthText(String text) {
         this.labelRigth.setText(text);
     }
 
-    public _MaterialLabel getLabelLeft() {
-        return labelLeft;
+    @Override
+    public String getRigthText() {
+        return labelRigth.getObject();
     }
 
-    public void setLabelLeft(_MaterialLabel labelLeft) {
+    @Override
+    public String getLeftText() {
+        return labelLeft.getObject();
+    }
+
+    @Override
+    public void setLabelRigth(MaterialLabel labelRigth) {
+        this.labelRigth = labelRigth;
+        this.labelRigth.setHorizontalAlignment(SwingConstants.TRAILING);
+        update();
+    }
+
+    @Override
+    public void setLabelLeft(MaterialLabel labelLeft) {
         this.labelLeft = labelLeft;
         this.labelLeft.setHorizontalAlignment(SwingConstants.LEADING);
         update();
     }
 
-    public _MaterialLabel getLabelRigth() {
+    public MaterialLabel getLabelRigth() {
         return labelRigth;
     }
 
-    public void setLabelRigth(_MaterialLabel labelRigth) {
-        this.labelRigth = labelRigth;
-        this.labelRigth.setHorizontalAlignment(SwingConstants.TRAILING);
-        update();
+    public MaterialLabel getLabelLeft() {
+        return labelLeft;
     }
 
 }
