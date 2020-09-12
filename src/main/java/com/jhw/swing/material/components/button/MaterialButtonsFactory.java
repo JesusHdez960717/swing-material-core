@@ -26,7 +26,7 @@ public class MaterialButtonsFactory {
     }
 
     public static MaterialButton buildFlat() {
-        _MaterialButton btn = MaterialSwingInjector.getImplementation(_MaterialButton.class);
+        MaterialButton btn = MaterialSwingInjector.getImplementation(_MaterialButton.class);
         btn.setType(_MaterialButton.Type.FLAT);
         btn.setBorderRadius(0);
         return btn;

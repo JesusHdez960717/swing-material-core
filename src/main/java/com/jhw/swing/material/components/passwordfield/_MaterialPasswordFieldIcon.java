@@ -9,6 +9,7 @@ import com.jhw.personalization.services.PersonalizationHandler;
 import com.jhw.swing.material.components.button.MaterialButtonIcon;
 import com.jhw.swing.material.components.button.MaterialButtonsFactory;
 import com.jhw.swing.material.standards.MaterialColors;
+import com.jhw.swing.material.standards.MaterialIcons;
 import com.jhw.swing.util.PersonalizationMaterial;
 import com.jhw.swing.utils.icons.DerivableIcon;
 import java.awt.BorderLayout;
@@ -36,12 +37,15 @@ public class _MaterialPasswordFieldIcon extends MaterialPasswordField {
 
     protected _MaterialPasswordFieldIcon() {
         initComponents();
+        setIcon(MaterialIcons.SECURITY);
     }
 
     private void initComponents() {
+        this.setBorder(null);
         buttonIcon = MaterialButtonsFactory.buildIconTransparent();
         buttonIcon.setPaintRipple(false);
 
+        passwordField = MaterialPasswordFieldFactory.build();
         this.setLayout(new BorderLayout());
         this.add(passwordField, BorderLayout.CENTER);
 
@@ -58,7 +62,7 @@ public class _MaterialPasswordFieldIcon extends MaterialPasswordField {
         });
     }
 
-    private _MaterialPasswordField passwordField;
+    private MaterialPasswordField passwordField;
     private MaterialButtonIcon buttonIcon;
 
     @Override

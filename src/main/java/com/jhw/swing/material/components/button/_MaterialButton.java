@@ -194,7 +194,7 @@ public class _MaterialButton extends MaterialButton {
         border.paintBorder(c, g, x, y, width, height);
     }
 //------------------------------------------------------------------------------
-    //para si extiende uno con elevation round
+    //para si extiende uno con elevation round que extienda de aqui lo sobreescriba y ya
 
     protected void setElevation(DefaultElevationEffect elevation) {
         this.elevation = elevation;
@@ -207,6 +207,7 @@ public class _MaterialButton extends MaterialButton {
      * @return the type of this button
      * @see Type
      */
+    @Override
     public Type getType() {
         return type;
     }
@@ -217,6 +218,7 @@ public class _MaterialButton extends MaterialButton {
      * @param type the type of this button
      * @see Type
      */
+    @Override
     public void setType(Type type) {
         this.type = type;
         setEnabled(true);//para que pinte la sombra
@@ -315,24 +317,4 @@ public class _MaterialButton extends MaterialButton {
         //intentionally left blank
     }
 
-    /**
-     * Button types.
-     */
-    public enum Type {
-
-        /**
-         * A default button.
-         */
-        DEFAULT,
-        /**
-         * A raised button. Raised buttons have a shadow even if they are not
-         * focused.
-         */
-        RAISED,
-        /**
-         * A flat button. Flat buttons don't have shadows and are typically
-         * transparent.
-         */
-        FLAT
-    }
 }

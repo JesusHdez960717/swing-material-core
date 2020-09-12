@@ -16,4 +16,28 @@ import com.jhw.swing.util.MouseAdapterInfo;
  */
 public abstract class MaterialButton extends MaterialButtonIcon implements ColorFadeInto, MouseAdapterInfo, ElevationEffect, MaterialLineBorder {
 
+    public abstract Type getType();
+
+    public abstract void setType(Type type);
+
+    /**
+     * Button types.
+     */
+    public enum Type {
+
+        /**
+         * A default button.
+         */
+        DEFAULT,
+        /**
+         * A raised button. Raised buttons have a shadow even if they are not
+         * focused.
+         */
+        RAISED,
+        /**
+         * A flat button. Flat buttons don't have shadows and are typically
+         * transparent.
+         */
+        FLAT
+    }
 }
