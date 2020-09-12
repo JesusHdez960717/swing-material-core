@@ -1,6 +1,6 @@
 package com.jhw.swing.material.components.scrollpane;
 
-import com.jhw.swing.material.components.textarea.DefaultBorderDinamic;
+import com.jhw.swing.material.effects.DefaultBorderDinamic;
 import com.jhw.swing.material.effects.DefaultMaterialLineBorder;
 import javax.swing.JScrollPane;
 import javax.swing.border.Border;
@@ -60,28 +60,4 @@ public class _MaterialScrollPaneCore extends MaterialScrollPane {
         return horizontalScrollBar;
     }
 
-    @Override
-    public void setTitle(String text) {
-        this.setBorder(new TitledBorder(text));
-        TitledBorder titled = (TitledBorder) this.getBorder();
-        titled.setTitleColor(Utils.applyAlphaMask(getForeground(), HINT_OPACITY_MASK));
-        titled.setBorder(DefaultMaterialLineBorder.builder().build());
-        //borderEffect.update();
-        //this.setBorder(new TitledBorder(text));
-    }
-/*
-    @Override
-    public void setBorder(Border b) {
-        if (b instanceof TitledBorder) {
-            TitledBorder bor = (TitledBorder) b;
-            bor.setTitleFont(getFont());
-
-            LineBorder lb = new LineBorder(Utils.applyAlphaMask(getForeground(), LINE_OPACITY_MASK));
-            bor.setBorder(lb);
-
-            super.setBorder(bor);
-        } else {
-            super.setBorder(b);
-        }
-    }*/
 }

@@ -47,7 +47,7 @@ public class EXAMPLE_SCROLL extends javax.swing.JFrame {
         jPanel1.setBackground(Color.white);
 
         MaterialScrollPane scroll = MaterialScrollFactory.buildPane();
-        scroll.setTitle("buajajajaja");
+//        scroll.setTitle("buajajajaja");
         scroll.setViewportView(new JTextArea("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"));
 
         jPanel1.add(scroll);

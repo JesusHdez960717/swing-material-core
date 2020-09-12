@@ -17,6 +17,4 @@ public abstract class MaterialScrollPane extends JScrollPane {
 
     public abstract MaterialScrollBar getMaterialHorizontalScrollBar();
 
-    public abstract void setTitle(String text);
-
 }

@@ -1,4 +1,4 @@
-package com.jhw.swing.material.components.textarea;
+package com.jhw.swing.material.effects;
 
 import com.jhw.swing.material.effects.MaterialLineBorder;
 import com.jhw.swing.material.effects.DefaultMaterialLineBorder;

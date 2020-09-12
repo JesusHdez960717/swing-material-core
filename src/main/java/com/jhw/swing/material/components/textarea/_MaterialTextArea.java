@@ -1,15 +1,14 @@
 package com.jhw.swing.material.components.textarea;
 
+import com.jhw.swing.material.effects.DefaultBorderDinamic;
+import com.jhw.swing.material.effects.BorderDinamic;
 import com.jhw.swing.util.interfaces.BindableComponent;
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
-import com.jhw.swing.material.components.container.panel._PanelTransparent;
-import com.jhw.swing.material.components.scrollpane.MaterialScrollFactory;
-import com.jhw.swing.material.components.scrollpane.MaterialScrollPane;
+import com.jhw.swing.material.components.scrollpane._MaterialScrollPaneCore;
 import javax.swing.JComponent;
 import javax.swing.border.Border;
 
@@ -17,7 +16,7 @@ import javax.swing.border.Border;
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-public class _MaterialTextArea extends _PanelTransparent implements BindableComponent<String>, BorderDinamic {
+public class _MaterialTextArea extends _MaterialScrollPaneCore implements BindableComponent<String>, BorderDinamic {
 
     public static _MaterialTextArea from() {
         return new _MaterialTextArea();
@@ -29,23 +28,19 @@ public class _MaterialTextArea extends _PanelTransparent implements BindableComp
         initComponents();
         addListeners();
         borderEffect = new DefaultBorderDinamic(this);
-        setBorderTitle("label");
+        setBorderTitle("title");
     }
 
     private void initComponents() {
-        materialScrollPaneCore = MaterialScrollFactory.buildPane();
         materialTextAreaCore = new com.jhw.swing.material.components.textarea._MaterialTextAreaCore();
 
         materialTextAreaCore.setColumns(1);
         materialTextAreaCore.setRows(1);
-        materialScrollPaneCore.setViewportView(materialTextAreaCore);
+        this.setViewportView(materialTextAreaCore);
 
-        this.setLayout(new BorderLayout());
-        this.add(materialScrollPaneCore);
         this.setPreferredSize(new Dimension(230, 150));
     }
 
-    private MaterialScrollPane materialScrollPaneCore;
     private com.jhw.swing.material.components.textarea._MaterialTextAreaCore materialTextAreaCore;
 
     @Override
@@ -55,7 +50,7 @@ public class _MaterialTextArea extends _PanelTransparent implements BindableComp
 
     @Override
     public JComponent getBordeableComponent() {
-        return materialScrollPaneCore;
+        return this;
     }
 
     @Override
@@ -76,26 +71,6 @@ public class _MaterialTextArea extends _PanelTransparent implements BindableComp
     @Override
     public void setBorderAccentColor(Color accentColor) {
         borderEffect.setBorderAccentColor(accentColor);
-    }
-
-    public String getText() {
-        return materialTextAreaCore.getText();
-    }
-
-    public void setText(String text) {
-        materialTextAreaCore.setText(text);
-    }
-
-    public _MaterialTextAreaCore getTextArea() {
-        return materialTextAreaCore;
-    }
-
-    public MaterialScrollPane getScrollPane() {
-        return materialScrollPaneCore;
-    }
-
-    @Override
-    public void setBorder(Border border) {
     }
 
     @Override
@@ -134,12 +109,12 @@ public class _MaterialTextArea extends _PanelTransparent implements BindableComp
 
     @Override
     public String getObject() {
-        return getText();
+        return materialTextAreaCore.getText();
     }
 
     @Override
     public void setObject(String object) {
-        setText(object);
+        materialTextAreaCore.setText(object);
     }
 
     private void addListeners() {
