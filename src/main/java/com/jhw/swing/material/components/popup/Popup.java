@@ -5,6 +5,7 @@
  */
 package com.jhw.swing.material.components.popup;
 
+import com.jhw.swing.material.components.button.MaterialButton;
 import com.jhw.swing.material.components.button.MaterialButtonIcon;
 import com.jhw.swing.material.components.button.MaterialButtonsFactory;
 import com.jhw.swing.material.standards.MaterialColors;
@@ -23,6 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
 import javax.swing.SwingUtilities;
@@ -46,15 +48,20 @@ public class Popup extends JPopupMenu {
 
         this.setPreferredSize(new Dimension(w, w));
 
-        for (int i = 0; i < 10; i++) {
-            actions.add(new AbstractAction("" + i, MaterialIcons.ADD_A_PHOTO) {
+        for (int i = 0; i < 5; i++) {
+            actions.add(new AbstractAction("EXCEL", MaterialIcons.ADD_A_PHOTO) {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     JOptionPane.showMessageDialog(null, "Click en el boton.");
                 }
             });
         }
-        Panel panel = new Panel();
+        Panel panel = new Panel() {
+            @Override
+            protected JButton buildButton(Action act) {
+                return new Button(act);
+            }
+        };
         panel.setPreferredSize(new Dimension(w, w));
         panel.setUpActions(actions);
         this.setLayout(new BorderLayout());

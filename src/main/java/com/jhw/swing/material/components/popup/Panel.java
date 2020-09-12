@@ -11,10 +11,7 @@ import com.jhw.swing.material.standards.MaterialColors;
 import com.jhw.swing.material.standards.MaterialShadow;
 import com.jhw.swing.util.MaterialDrawingUtils;
 import java.awt.AlphaComposite;
-import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Component;
-import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
@@ -22,8 +19,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
 import javax.swing.Action;
+import javax.swing.JButton;
 import javax.swing.JPanel;
-import javax.swing.border.LineBorder;
 
 /**
  *
@@ -62,17 +59,15 @@ public class Panel extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2 = MaterialDrawingUtils.getAliasedGraphics(g);
-        int size = (int) Math.min(getPreferredSize().getWidth(), getPreferredSize().getHeight());
-        int margin = size / 20;
 
-        int shadowW = (int) size - margin;
-        g2.drawImage(shadowFast.render(shadowW, shadowW, 5, 2, MaterialShadow.Type.CIRCULAR), margin / 2, margin / 2, null);
+        int shadowW = (int) sizee() - margin();
+        g2.drawImage(shadowFast.render(shadowW, shadowW, 5, 2, MaterialShadow.Type.CIRCULAR), margin() / 2, margin() / 2, null);
 
         if (selectedComp != null) {
             g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.5f));
             g2.setColor(MaterialColors.GREY_50);
 
-            Point mid = new Point(size / 2, size / 2);
+            Point mid = new Point(sizee() / 2, sizee() / 2);
             int x = selectedComp.getLocation().x;
             int y = selectedComp.getLocation().y;
             Point p1 = new Point(x, y);
@@ -82,31 +77,42 @@ public class Panel extends JPanel {
     }
 
     public void setUpActions(List<Action> actions) {
-        this.setBorder(new LineBorder(Color.red, 3));
+        //this.setBorder(new LineBorder(Color.red, 3));//test
         this.setBackground(MaterialColors.TRANSPARENT);
         this.setOpaque(false);
-        //panel.setBackground(MaterialColors.YELLOW_200);
+        //panel.setBackground(MaterialColors.YELLOW_200);//test
         this.setLayout(null);
 
-        int size = (int) Math.min(this.getPreferredSize().getWidth(), this.getPreferredSize().getHeight());
-        Point center = new Point(size / 2, size / 2);
+        Point center = new Point(sizee() / 2, sizee() / 2);
         int radius = center.x;
 
         int numbers = (radius * 3) / 4;
         int max = actions.size();
         for (int i = 0; i < max; i++) {
-            MaterialButtonIcon btn = MaterialButtonsFactory.buildIconTransparent();
-            btn.setAction(actions.get(i));
-
+            JButton btn = buildButton(actions.get(i));
             double theta = (6.283185307179586d * ((double) (i + max * .75d))) / (double) max;
             float x = (float) Math.round((((double) numbers) * Math.cos(theta)) - (btn.getPreferredSize().getWidth() / 2.0d));
-            float y = (float) Math.round((((double) numbers) * Math.sin(theta)) - (btn.getPreferredSize().getHeight() / 2.0d));
+            float y = (float) Math.round((((double) numbers) * Math.sin(theta)) + margin() - (btn.getPreferredSize().getHeight() / 2.0d));
 
             this.add(btn);
             btn.setSize(btn.getPreferredSize());
-            btn.setLocation((int) x + size / 2, (int) y + size / 2);
+            btn.setLocation((int) x + sizee() / 2, (int) y + sizee() / 2);
         }
 
     }
 
+    private int sizee() {
+        return (int) Math.min(this.getPreferredSize().getWidth(), this.getPreferredSize().getHeight());
+    }
+
+    private int margin() {
+        return sizee() / 20;
+    }
+
+    protected JButton buildButton(Action act) {
+        //MaterialButton btn = MaterialButtonsFactory.buildRound();
+        MaterialButtonIcon btn = MaterialButtonsFactory.buildIconTransparent();
+        btn.setAction(act);
+        return btn;
+    }
 }

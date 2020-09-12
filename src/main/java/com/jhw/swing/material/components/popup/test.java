@@ -16,6 +16,7 @@ import com.jhw.swing.material.components.passwordfield._MaterialPasswordField;
 import com.jhw.swing.material.components.textfield.*;
 import com.jhw.swing.material.components.textfield.validated._MaterialTextFieldMoney;
 import com.jhw.swing.material.standards.MaterialColors;
+import com.jhw.swing.material.standards.MaterialIcons;
 import com.jhw.swing.ui.MaterialLookAndFeel;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -47,6 +48,14 @@ public class test extends javax.swing.JFrame {
 
         jPanel1.add(btn);
         jPanel1.add(_ClockFace1123123.from(), BorderLayout.NORTH);
+
+        Button b = Button.from();
+        b.setAction(new AbstractAction("123", MaterialIcons.ACCOUNT_CIRCLE) {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            }
+        });
+        jPanel1.add(b, BorderLayout.SOUTH);
     }
 
     private void initComponents() {
