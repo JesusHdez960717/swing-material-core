@@ -9,6 +9,8 @@ import com.clean.swing.app.dashboard.DashboardConstants;
 import com.jhw.swing.material.components.button.MaterialButton;
 import com.jhw.swing.material.components.button.MaterialButtonIcon;
 import com.jhw.swing.material.components.button.MaterialButtonsFactory;
+import com.jhw.swing.material.components.labels.MaterialLabel;
+import com.jhw.swing.material.components.labels.MaterialLabelsFactory;
 import com.jhw.swing.material.components.labels._MaterialLabel;
 import com.jhw.swing.material.effects.RippleEffect;
 import com.jhw.swing.material.standards.MaterialColors;
@@ -71,7 +73,7 @@ public class CollapseMenu extends JPanel {
         jPanelSubActions = new JXTaskPaneContainer();
         jPopupMenu1 = new javax.swing.JPopupMenu();
         jPanelFixed = new javax.swing.JPanel();
-        jLabelCant = new _MaterialLabel();
+        jLabelCant = MaterialLabelsFactory.build();
         jButtonIcono = MaterialButtonsFactory.buildIconTransparent();
         jButtonNombre = MaterialButtonsFactory.buildFlat();
         jPanelCollapsible = new org.jdesktop.swingx.JXCollapsiblePane();
@@ -118,7 +120,7 @@ public class CollapseMenu extends JPanel {
     // Variables declaration - do not modify//:variables
     private MaterialButtonIcon jButtonIcono;
     private MaterialButton jButtonNombre ;
-    private javax.swing.JLabel jLabelCant;
+    private MaterialLabel jLabelCant;
     private org.jdesktop.swingx.JXCollapsiblePane jPanelCollapsible;
     private javax.swing.JPanel jPanelFixed;
     private org.jdesktop.swingx.JXTaskPaneContainer jPanelSubActions;

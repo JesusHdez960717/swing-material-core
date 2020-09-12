@@ -1,6 +1,8 @@
 package com.jhw.swing.material.components.textarea;
 
 import com.jhw.swing.material.components.container.panel._PanelTransparent;
+import com.jhw.swing.material.components.labels.MaterialLabel;
+import com.jhw.swing.material.components.labels.MaterialLabelsFactory;
 import com.jhw.swing.material.components.labels._MaterialLabel;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -118,7 +120,7 @@ public class _ContentArea extends _PanelTransparent {
         StringTokenizer stHeader = new StringTokenizer(this.header, "\n");
         while (stHeader.hasMoreTokens()) {
             String tok = stHeader.nextToken();
-            _MaterialLabel label = new _MaterialLabel();
+            MaterialLabel label = MaterialLabelsFactory.build();
             label.setHorizontalAlignment(textHorizontalAlignment);
             label.setFont(this.headerFont);
             label.setText(tok);
@@ -129,7 +131,7 @@ public class _ContentArea extends _PanelTransparent {
         StringTokenizer stText = new StringTokenizer(this.text, "\n");
         while (stText.hasMoreTokens()) {
             String tok = stText.nextToken();
-            _MaterialLabel label = new _MaterialLabel();
+            MaterialLabel label = MaterialLabelsFactory.build();
             label.setHorizontalAlignment(textHorizontalAlignment);
             label.setFont(this.textFont);
             label.setText(tok);
@@ -156,7 +158,7 @@ public class _ContentArea extends _PanelTransparent {
             int tokW = fm.stringWidth(tok);
             width = Math.max(width, tokW);
 
-            _MaterialLabel label = new _MaterialLabel();
+            MaterialLabel label = MaterialLabelsFactory.build();
             label.setFont(this.headerFont);
             label.setText(tok);
             heigth += label.getPreferredSize().getHeight();
@@ -170,7 +172,7 @@ public class _ContentArea extends _PanelTransparent {
             int tokW = fm.stringWidth(tok);
             width = Math.max(width, tokW);
 
-            _MaterialLabel label = new _MaterialLabel();
+            MaterialLabel label = MaterialLabelsFactory.build();
             label.setFont(this.textFont);
             label.setText(tok);
             heigth += label.getPreferredSize().getHeight();

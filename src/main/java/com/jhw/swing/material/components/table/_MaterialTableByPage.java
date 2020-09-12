@@ -2,7 +2,10 @@ package com.jhw.swing.material.components.table;
 
 import com.jhw.swing.material.components.button.MaterialButtonsFactory;
 import com.jhw.swing.material.components.button._MaterialButtonDouble;
+import com.jhw.swing.material.components.container.MaterialContainersFactory;
 import com.jhw.swing.material.components.container.panel._PanelTransparent;
+import com.jhw.swing.material.components.labels.MaterialLabel;
+import com.jhw.swing.material.components.labels.MaterialLabelsFactory;
 import com.jhw.swing.material.components.labels._MaterialLabel;
 import com.jhw.swing.material.components.scrollpane._MaterialScrollPaneCore;
 import com.jhw.swing.material.components.textfield.validated._MaterialTextFieldInteger;
@@ -16,6 +19,7 @@ import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 import com.jhw.utils.interfaces.Update;
+import javax.swing.JPanel;
 
 /**
  *
@@ -43,13 +47,13 @@ public class _MaterialTableByPage extends _PanelTransparent implements Update {
     private void initComponents() {
 
         table = new com.jhw.swing.material.components.table._MaterialTable();
-        panelPages = new com.jhw.swing.material.components.container.panel._PanelTransparent();
+        panelPages = MaterialContainersFactory.buildPanelTransparent();
         textFieldPage = new com.jhw.swing.material.components.textfield.validated._MaterialTextFieldInteger();
-        labelTotPag = new com.jhw.swing.material.components.labels._MaterialLabel();
+        labelTotPag = MaterialLabelsFactory.build();
         buttonDouble = MaterialButtonsFactory.buildDouble();
         spinner = new javax.swing.JSpinner();
-        labelFilas = new com.jhw.swing.material.components.labels._MaterialLabel();
-        labelSeparator = new com.jhw.swing.material.components.labels._MaterialLabel();
+        labelFilas = MaterialLabelsFactory.build();
+        labelSeparator = MaterialLabelsFactory.build();
 
         textFieldPage.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
         textFieldPage.setText("1");
@@ -123,10 +127,10 @@ public class _MaterialTableByPage extends _PanelTransparent implements Update {
 
     // Variables declaration - do not modify//:variables
     private com.jhw.swing.material.components.button._MaterialButtonDouble buttonDouble;
-    private com.jhw.swing.material.components.labels._MaterialLabel labelFilas;
-    private com.jhw.swing.material.components.labels._MaterialLabel labelSeparator;
-    private com.jhw.swing.material.components.labels._MaterialLabel labelTotPag;
-    private com.jhw.swing.material.components.container.panel._PanelTransparent panelPages;
+    private MaterialLabel labelFilas;
+    private MaterialLabel labelSeparator;
+    private MaterialLabel labelTotPag;
+    private JPanel panelPages;
     private javax.swing.JSpinner spinner;
     private com.jhw.swing.material.components.table._MaterialTable table;
     private com.jhw.swing.material.components.textfield.validated._MaterialTextFieldInteger textFieldPage;
@@ -249,19 +253,19 @@ public class _MaterialTableByPage extends _PanelTransparent implements Update {
         return buttonDouble;
     }
 
-    public _MaterialLabel getLabelFilas() {
+    public MaterialLabel getLabelFilas() {
         return labelFilas;
     }
 
-    public _MaterialLabel getLabelSeparator() {
+    public MaterialLabel getLabelSeparator() {
         return labelSeparator;
     }
 
-    public _MaterialLabel getLabelTotPag() {
+    public MaterialLabel getLabelTotPag() {
         return labelTotPag;
     }
 
-    public _PanelTransparent getPanelPages() {
+    public JPanel getPanelPages() {
         return panelPages;
     }
 

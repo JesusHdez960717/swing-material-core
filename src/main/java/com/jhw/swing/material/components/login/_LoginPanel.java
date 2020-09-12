@@ -5,6 +5,8 @@ import com.jhw.swing.material.components.button.MaterialButton;
 import com.jhw.swing.material.components.button.MaterialButtonsFactory;
 import com.jhw.swing.material.components.container.MaterialContainersFactory;
 import com.jhw.swing.material.components.container.panel._PanelGradient;
+import com.jhw.swing.material.components.labels.MaterialLabel;
+import com.jhw.swing.material.components.labels.MaterialLabelsFactory;
 import com.jhw.swing.material.components.labels._MaterialLabel;
 import com.jhw.swing.material.components.passwordfield._MaterialPasswordField;
 import com.jhw.swing.material.components.textfield._MaterialTextField;
@@ -40,7 +42,7 @@ public class _LoginPanel extends LoginSimple {
 
         panelBackground = MaterialContainersFactory.buildPanelGradient();
         panelBackgroundLogin = MaterialContainersFactory.buildPanel();
-        labelSecure = new com.jhw.swing.material.components.labels._MaterialLabel();
+        labelSecure = MaterialLabelsFactory.build();
         textFieldUsuario = new com.jhw.swing.material.components.textfield._MaterialTextField();
         passwordUsuario = new com.jhw.swing.material.components.passwordfield._MaterialPasswordField();
         buttonLogin = MaterialButtonsFactory.buildButton();
@@ -132,7 +134,7 @@ public class _LoginPanel extends LoginSimple {
     // Variables declaration - do not modify//:variables
     private MaterialButton buttonLogin;
     private javax.swing.JLabel labelAnswer;
-    private com.jhw.swing.material.components.labels._MaterialLabel labelSecure;
+    private MaterialLabel labelSecure;
     private JPanel panelBackground;
     private JPanel panelBackgroundLogin;
     private com.jhw.swing.material.components.passwordfield._MaterialPasswordField passwordUsuario;
@@ -237,7 +239,7 @@ public class _LoginPanel extends LoginSimple {
         return labelAnswer;
     }
 
-    public _MaterialLabel getLabelSecure() {
+    public MaterialLabel getLabelSecure() {
         return labelSecure;
     }
 
