@@ -12,6 +12,10 @@ import com.jhw.swing.material.injection.Foreground_Force_Icon;
 import com.jhw.swing.material.standards.MaterialColors;
 import com.jhw.swing.material.standards.MaterialIcons;
 import com.jhw.swing.material.standards.MaterialShadow;
+import com.jhw.swing.util.Utils;
+import java.awt.MouseInfo;
+import java.awt.Point;
+import java.awt.Rectangle;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -51,9 +55,22 @@ public class _MaterialButtonPopup extends _MaterialButton {
 
     private void showPopup(MouseEvent e) {
         if (getComponentPopupMenu() != null) {
-//            getComponentPopupMenu().show(this, e.getX(), e.getY());
-            getComponentPopupMenu().show(this, 0 + MaterialShadow.OFFSET_LEFT, (int) this.getSize().getHeight() - MaterialShadow.OFFSET_BOTTOM);
+            //middle of mouse
+            Point mousePos = MouseInfo.getPointerInfo().getLocation();
 
+            Rectangle screen = Utils.getScreenSize();
+            int x = (int) (mousePos.getX() - getPreferredSize().getWidth() / 2);
+            x = Math.max(0, Math.min((int) (screen.getWidth() - getPreferredSize().getWidth()), x));
+
+            int y = (int) (mousePos.getY() - getPreferredSize().getWidth() / 2);
+            y = Math.max(0, Math.min((int) (screen.getHeight() - getPreferredSize().getHeight()), y));
+            getComponentPopupMenu().show(this, x, y);
+
+            //standar
+            //getComponentPopupMenu().show(this, e.getX(), e.getY());
+            
+            //down
+            //getComponentPopupMenu().show(this, 0 + MaterialShadow.OFFSET_LEFT, (int) this.getSize().getHeight() - MaterialShadow.OFFSET_BOTTOM);
         }
     }
 }
