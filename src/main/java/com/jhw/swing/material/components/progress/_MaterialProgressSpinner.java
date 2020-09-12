@@ -27,7 +27,7 @@ public class _MaterialProgressSpinner extends JComponent implements MaterialComp
     public static _MaterialProgressSpinner from() {
         return new _MaterialProgressSpinner();
     }
-    private int thick = 6;
+    private int thickness = 6;
     private final Property<Integer> startArc = SafePropertySetter.animatableProperty(this, 270);
     private final Property<Integer> arcSize = SafePropertySetter.animatableProperty(this, 0);
     private final Property<Integer> rotation = SafePropertySetter.animatableProperty(this, 0);
@@ -106,12 +106,12 @@ public class _MaterialProgressSpinner extends JComponent implements MaterialComp
         setOpaque(false);
     }
 
-    public int getThick() {
-        return thick;
+    public int getThickness() {
+        return thickness;
     }
 
-    public void setThick(int thick) {
-        this.thick = thick;
+    public void setThickness(int thickness) {
+        this.thickness = thickness;
     }
 
     @Override
@@ -126,8 +126,8 @@ public class _MaterialProgressSpinner extends JComponent implements MaterialComp
         g2.setRenderingHint(RenderingHints.KEY_STROKE_CONTROL, RenderingHints.VALUE_STROKE_PURE);
 
         g2.setColor(getForeground());
-        g2.setStroke(new BasicStroke(getThick(), BasicStroke.CAP_SQUARE, BasicStroke.JOIN_ROUND));
+        g2.setStroke(new BasicStroke(getThickness(), BasicStroke.CAP_SQUARE, BasicStroke.JOIN_ROUND));
         int size = Math.min(getHeight(), getWidth());
-        g2.drawArc((getWidth() - size) / 2 + getThick(), (getHeight() - size) / 2 + getThick(), size - 2 * getThick(), size - 2 * getThick(), startArc.getValue() + rotation.getValue() + 90, Math.max(1, arcSize.getValue()));
+        g2.drawArc((getWidth() - size) / 2 + getThickness(), (getHeight() - size) / 2 + getThickness(), size - 2 * getThickness(), size - 2 * getThickness(), startArc.getValue() + rotation.getValue() + 90, Math.max(1, arcSize.getValue()));
     }
 }

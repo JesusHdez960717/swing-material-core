@@ -1,6 +1,6 @@
 package com.jhw.swing.material.components.scrollpane;
 
-import com.jhw.swing.material.components.textarea.BorderDinamic;
+import com.jhw.swing.material.components.textarea.DefaultBorderDinamic;
 import com.jhw.swing.material.effects.DefaultMaterialLineBorder;
 import javax.swing.JScrollPane;
 import javax.swing.border.Border;
@@ -27,7 +27,7 @@ public class _MaterialScrollPaneCore extends MaterialScrollPane {
     private final _MaterialScrollBar verticalScrollBar = new _MaterialScrollBar(Adjustable.VERTICAL);
     private final _MaterialScrollBar horizontalScrollBar = new _MaterialScrollBar(Adjustable.HORIZONTAL);
 
-    //private final BorderDinamic borderEffect;
+    //private final DefaultBorderDinamic borderEffect;
     protected _MaterialScrollPaneCore() {
         //para el border
         this.setBackground(MaterialColors.WHITE);
@@ -47,7 +47,7 @@ public class _MaterialScrollPaneCore extends MaterialScrollPane {
         //le sobra el borde
         //this.setBorder(null);
         
-        //borderEffect = new BorderDinamic(this);
+        //borderEffect = new DefaultBorderDinamic(this);
     }
 
     @Override

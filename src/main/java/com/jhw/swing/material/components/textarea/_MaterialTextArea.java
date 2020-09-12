@@ -1,7 +1,5 @@
 package com.jhw.swing.material.components.textarea;
 
-import com.jhw.swing.material.effects.DefaultMaterialLineBorder;
-import com.jhw.swing.material.components.scrollpane._MaterialScrollPaneCore;
 import com.jhw.swing.util.interfaces.BindableComponent;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -9,32 +7,29 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
-import javax.swing.border.TitledBorder;
-import com.jhw.personalization.core.domain.Personalization;
-import com.jhw.personalization.services.PersonalizationHandler;
+import com.jhw.swing.material.components.container.panel._PanelTransparent;
 import com.jhw.swing.material.components.scrollpane.MaterialScrollFactory;
 import com.jhw.swing.material.components.scrollpane.MaterialScrollPane;
-import static com.jhw.swing.material.standards.Utils.HINT_OPACITY_MASK;
-import com.jhw.swing.util.Utils;
+import javax.swing.JComponent;
 import javax.swing.border.Border;
 
 /**
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-public class _MaterialTextArea extends javax.swing.JPanel implements BindableComponent<String> {
+public class _MaterialTextArea extends _PanelTransparent implements BindableComponent<String>, BorderDinamic {
 
-    private Color accentColor = PersonalizationHandler.getColor(Personalization.KEY_COLOR_ACCENT);
+    public static _MaterialTextArea from() {
+        return new _MaterialTextArea();
+    }
 
-    private final BorderDinamic borderEffect;
-
-    private String label;
+    private final DefaultBorderDinamic borderEffect;
 
     public _MaterialTextArea() {
         initComponents();
         addListeners();
-        borderEffect = new BorderDinamic(this);
-        setLabel("label");
+        borderEffect = new DefaultBorderDinamic(this);
+        setBorderTitle("label");
     }
 
     private void initComponents() {
@@ -53,22 +48,34 @@ public class _MaterialTextArea extends javax.swing.JPanel implements BindableCom
     private MaterialScrollPane materialScrollPaneCore;
     private com.jhw.swing.material.components.textarea._MaterialTextAreaCore materialTextAreaCore;
 
-    public String getLabel() {
-        return label;
+    @Override
+    public JComponent getFocusableComponent() {
+        return materialTextAreaCore;
     }
 
-    public void setLabel(String label) {
-        this.label = label;
-        this.setTitledBorder(label);
+    @Override
+    public JComponent getBordeableComponent() {
+        return materialScrollPaneCore;
     }
 
-    public Color getAccentColor() {
-        return accentColor;
+    @Override
+    public String getBorderTitle() {
+        return borderEffect.getBorderTitle();
     }
 
-    public void setAccentColor(Color accentColor) {
-        this.accentColor = accentColor;
-        borderEffect.update();
+    @Override
+    public void setBorderTitle(String title) {
+        borderEffect.setBorderTitle(title);
+    }
+
+    @Override
+    public Color getBorderAccentColor() {
+        return borderEffect.getBorderAccentColor();
+    }
+
+    @Override
+    public void setBorderAccentColor(Color accentColor) {
+        borderEffect.setBorderAccentColor(accentColor);
     }
 
     public String getText() {
@@ -85,14 +92,6 @@ public class _MaterialTextArea extends javax.swing.JPanel implements BindableCom
 
     public MaterialScrollPane getScrollPane() {
         return materialScrollPaneCore;
-    }
-
-    private void setTitledBorder(String text) {
-        materialScrollPaneCore.setBorder(new TitledBorder(text));
-        TitledBorder titled = (TitledBorder) materialScrollPaneCore.getBorder();
-        titled.setTitleColor(Utils.applyAlphaMask(getForeground(), HINT_OPACITY_MASK));
-        titled.setBorder(DefaultMaterialLineBorder.builder().build());
-        borderEffect.update();
     }
 
     @Override
@@ -122,16 +121,6 @@ public class _MaterialTextArea extends javax.swing.JPanel implements BindableCom
             materialTextAreaCore.setFont(font);
             borderEffect.update();
         }
-    }
-
-    @Override
-    public Font getFont() {
-        return super.getFont();
-    }
-
-    @Override
-    public Color getForeground() {
-        return super.getForeground();
     }
 
     @Override
