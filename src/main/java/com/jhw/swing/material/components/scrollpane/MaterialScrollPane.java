@@ -5,13 +5,14 @@
  */
 package com.jhw.swing.material.components.scrollpane;
 
+import com.jhw.swing.material.effects.BorderDinamic;
 import javax.swing.JScrollPane;
 
 /**
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-public abstract class MaterialScrollPane extends JScrollPane {
+public abstract class MaterialScrollPane extends JScrollPane implements BorderDinamic{
 
     public abstract MaterialScrollBar getMaterialVerticalScrollBar();
 

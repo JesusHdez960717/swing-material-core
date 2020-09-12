@@ -13,10 +13,26 @@ import com.jhw.swing.util.SafePropertySetter;
 import com.jhw.swing.util.Utils;
 import javax.swing.border.TitledBorder;
 import static com.jhw.swing.material.standards.Utils.HINT_OPACITY_MASK;
+import java.awt.Component;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import javax.swing.JComponent;
 
-public class DefaultBorderDinamic<T extends JComponent & BorderDinamic> implements BorderDinamic {
+public class DefaultBorderDinamic<T extends JComponent & BorderDinamic> implements BorderDinamic, PropertyChangeListener {
 
+    private final FocusListener focusListener = new FocusListener() {
+        @Override
+        public void focusGained(FocusEvent e) {
+            update();
+        }
+
+        @Override
+        public void focusLost(FocusEvent e) {
+            update();
+        }
+    };
     public static final int DURATION = 200;
 
     private Animator animator;
@@ -36,6 +52,8 @@ public class DefaultBorderDinamic<T extends JComponent & BorderDinamic> implemen
         fontSize = SafePropertySetter.animatableProperty(this.target, target.getFont().getSize2D());
         color = SafePropertySetter.animatableProperty(this.target, Utils.applyAlphaMask(target.getForeground(), HINT_OPACITY_MASK));
         thickness = SafePropertySetter.animatableProperty(this.target, 1f);
+
+        this.target.addPropertyChangeListener(this);
     }
 
     @Override
@@ -71,16 +89,26 @@ public class DefaultBorderDinamic<T extends JComponent & BorderDinamic> implemen
     }
 
     private void setTitledBorder(String text) {
+        if (text.trim().isEmpty()) {
+            return;
+        }
         getBordeableComponent().setBorder(new TitledBorder(text));
         TitledBorder titled = (TitledBorder) getBordeableComponent().getBorder();
         titled.setTitleColor(Utils.applyAlphaMask(getBordeableComponent().getForeground(), HINT_OPACITY_MASK));
         titled.setBorder(DefaultMaterialLineBorder.builder().build());
+
+        getFocusableComponent().removeFocusListener(focusListener);
+        getFocusableComponent().addFocusListener(focusListener);
+
         update();
     }
 
-    public void update() {
+    private void update() {
         if (animator != null) {
             animator.stop();
+        }
+        if (title.isEmpty()) {
+            return;
         }
         if (PersonalizationHandler.getBoolean(Personalization.KEY_USE_ANIMATIONS)) {
             setValuesAnimated();
@@ -153,6 +181,9 @@ public class DefaultBorderDinamic<T extends JComponent & BorderDinamic> implemen
     }
 
     private void repaintComponent() {
+        if (title.isEmpty()) {
+            return;
+        }
         TitledBorder titled = (TitledBorder) getBordeableComponent().getBorder();
         MaterialLineBorder line = (DefaultMaterialLineBorder) titled.getBorder();
 
@@ -175,6 +206,18 @@ public class DefaultBorderDinamic<T extends JComponent & BorderDinamic> implemen
         thickness.setValue(getTargetThickness());
 
         repaintComponent();
+    }
+
+    @Override
+    public void propertyChange(PropertyChangeEvent evt) {
+        switch (evt.getPropertyName()) {
+            case "font":
+                update();
+                break;
+            case "foreground":
+                update();
+                break;
+        }
     }
 
 }

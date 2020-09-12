@@ -26,6 +26,7 @@ import java.awt.Checkbox;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.math.BigDecimal;
+import javax.swing.JComponent;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.UIManager;
@@ -46,9 +47,15 @@ public class EXAMPLE_SCROLL extends javax.swing.JFrame {
         jPanel1.setBackground(MaterialColors.WHITE);
         jPanel1.setBackground(Color.white);
 
-        MaterialScrollPane scroll = MaterialScrollFactory.buildPane();
-//        scroll.setTitle("buajajajaja");
-        scroll.setViewportView(new JTextArea("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"));
+        JTextArea text = new JTextArea("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+        MaterialScrollPane scroll = new _MaterialScrollPaneCore() {
+            @Override
+            public JComponent getFocusableComponent() {
+                return text;
+            }
+        };//MaterialScrollFactory.buildPane();
+        scroll.setViewportView(text);
+        scroll.setBorderTitle("buajajajaja");
 
         jPanel1.add(scroll);
 
