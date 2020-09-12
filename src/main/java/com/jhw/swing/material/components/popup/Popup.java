@@ -5,42 +5,25 @@
  */
 package com.jhw.swing.material.components.popup;
 
-import com.jhw.swing.TEST.button_dialog_multiple.*;
-import com.jhw.swing.material.components.popup.Panel;
 import com.jhw.swing.material.components.button.MaterialButtonIcon;
 import com.jhw.swing.material.components.button.MaterialButtonsFactory;
-import com.jhw.swing.material.effects.DefaultElevationEffect;
-import com.jhw.swing.material.effects.ElevationEffect;
 import com.jhw.swing.material.standards.MaterialColors;
 import com.jhw.swing.material.standards.MaterialIcons;
-import com.jhw.swing.material.standards.MaterialShadow;
-import com.jhw.swing.util.MaterialDrawingUtils;
 import com.jhw.swing.util.Utils;
 import com.sun.awt.AWTUtilities;
-import java.awt.AlphaComposite;
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.MouseInfo;
 import java.awt.Point;
 import java.awt.Rectangle;
-import java.awt.Stroke;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.geom.Ellipse2D;
-import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.SwingUtilities;
 import javax.swing.border.LineBorder;
@@ -71,39 +54,9 @@ public class Popup extends JPopupMenu {
                 }
             });
         }
-        setUpActions();
-    }
-
-    private void setUpActions() {
-        this.removeAll();
-
         Panel panel = new Panel();
-        panel.setBorder(new LineBorder(Color.red, 3));
-        panel.setBackground(MaterialColors.TRANSPARENT);
-        panel.setOpaque(false);
-        //panel.setBackground(MaterialColors.YELLOW_200);
         panel.setPreferredSize(new Dimension(w, w));
-        panel.setLayout(null);
-
-        int size = (int) Math.min(panel.getPreferredSize().getWidth(), panel.getPreferredSize().getHeight());
-        Point center = new Point(size / 2, size / 2);
-        int radius = center.x;
-
-        int numbers = (radius * 3) / 4;
-        int max = actions.size();
-        for (int i = 0; i < max; i++) {
-            MaterialButtonIcon btn = MaterialButtonsFactory.buildIconTransparent();
-            btn.setAction(actions.get(i));
-
-            double theta = (6.283185307179586d * ((double) (i + max * .75d))) / (double) max;
-            float x = (float) Math.round((((double) numbers) * Math.cos(theta)) - (btn.getPreferredSize().getWidth() / 2.0d));
-            float y = (float) Math.round((((double) numbers) * Math.sin(theta)) - (btn.getPreferredSize().getHeight() / 2.0d));
-
-            panel.add(btn);
-            btn.setSize(btn.getPreferredSize());
-            btn.setLocation((int) x + size / 2, (int) y + size / 2);
-        }
-
+        panel.setUpActions(actions);
         this.setLayout(new BorderLayout());
         this.add(panel);
     }

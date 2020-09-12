@@ -5,17 +5,25 @@
  */
 package com.jhw.swing.material.components.popup;
 
+import com.jhw.swing.material.components.button.MaterialButtonIcon;
+import com.jhw.swing.material.components.button.MaterialButtonsFactory;
 import com.jhw.swing.material.standards.MaterialColors;
 import com.jhw.swing.material.standards.MaterialShadow;
 import com.jhw.swing.util.MaterialDrawingUtils;
 import java.awt.AlphaComposite;
+import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.List;
+import javax.swing.Action;
 import javax.swing.JPanel;
+import javax.swing.border.LineBorder;
 
 /**
  *
@@ -72,4 +80,33 @@ public class Panel extends JPanel {
             g2.fillPolygon(new int[]{mid.x, p1.x, p2.x}, new int[]{mid.y, p1.y, p2.y}, 3);
         }
     }
+
+    public void setUpActions(List<Action> actions) {
+        this.setBorder(new LineBorder(Color.red, 3));
+        this.setBackground(MaterialColors.TRANSPARENT);
+        this.setOpaque(false);
+        //panel.setBackground(MaterialColors.YELLOW_200);
+        this.setLayout(null);
+
+        int size = (int) Math.min(this.getPreferredSize().getWidth(), this.getPreferredSize().getHeight());
+        Point center = new Point(size / 2, size / 2);
+        int radius = center.x;
+
+        int numbers = (radius * 3) / 4;
+        int max = actions.size();
+        for (int i = 0; i < max; i++) {
+            MaterialButtonIcon btn = MaterialButtonsFactory.buildIconTransparent();
+            btn.setAction(actions.get(i));
+
+            double theta = (6.283185307179586d * ((double) (i + max * .75d))) / (double) max;
+            float x = (float) Math.round((((double) numbers) * Math.cos(theta)) - (btn.getPreferredSize().getWidth() / 2.0d));
+            float y = (float) Math.round((((double) numbers) * Math.sin(theta)) - (btn.getPreferredSize().getHeight() / 2.0d));
+
+            this.add(btn);
+            btn.setSize(btn.getPreferredSize());
+            btn.setLocation((int) x + size / 2, (int) y + size / 2);
+        }
+
+    }
+
 }
