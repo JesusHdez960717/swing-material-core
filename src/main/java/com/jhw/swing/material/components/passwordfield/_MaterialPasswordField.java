@@ -5,23 +5,16 @@ import java.awt.*;
 import java.awt.event.FocusEvent;
 import java.awt.event.KeyEvent;
 import javax.swing.*;
-import javax.swing.text.DefaultCaret;
-import com.jhw.personalization.core.domain.Personalization;
-import com.jhw.personalization.services.PersonalizationHandler;
 import com.jhw.swing.material.effects.FloatingLabel;
 import com.jhw.utils.security.SHA;
 import com.jhw.swing.util.MaterialDrawingUtils;
 import com.jhw.swing.material.effects.DefaultLine;
 import com.jhw.swing.material.effects.DefaultWrong;
 import com.jhw.swing.material.effects.Line;
-import com.jhw.swing.util.interfaces.MaterialComponent;
 import com.jhw.swing.util.Utils;
 import com.jhw.swing.material.standards.MaterialColors;
 import com.jhw.swing.material.standards.MaterialFontRoboto;
-import static com.jhw.swing.material.standards.Utils.LINE_OPACITY_MASK;
-import com.jhw.swing.util.interfaces.BindableComponent;
 import com.jhw.swing.material.effects.Wrong;
-import java.awt.event.ActionEvent;
 
 /**
  * A Material Design single-line text field is the basic way of getting user
@@ -33,7 +26,11 @@ import java.awt.event.ActionEvent;
  * href="https://www.google.com/design/spec/components/text-fields.html">Text
  * fields (Google design guidelines)</a>
  */
-public class _MaterialPasswordField extends JPasswordField implements Line, BindableComponent<char[]>, Wrong, MaterialComponent, FloatingLabel {
+public class _MaterialPasswordField extends MaterialPasswordField {
+
+    public static _MaterialPasswordField from() {
+        return new _MaterialPasswordField();
+    }
 
     private final FloatingLabel floatingLabel = new DefaultFloatingLabel(this) {
         @Override
@@ -167,10 +164,12 @@ public class _MaterialPasswordField extends JPasswordField implements Line, Bind
     }
 
 //-------------------WRONG-------------------------
+    @Override
     public String getHashAlgorithm() {
         return hashAlgorithm;
     }
 
+    @Override
     public void setHashAlgorithm(String hashAlgorithm) {
         this.hashAlgorithm = hashAlgorithm;
     }
@@ -187,6 +186,7 @@ public class _MaterialPasswordField extends JPasswordField implements Line, Bind
      *
      * @return the max length of the text
      */
+    @Override
     public int getMaxLength() {
         return maxLength;
     }
@@ -196,16 +196,28 @@ public class _MaterialPasswordField extends JPasswordField implements Line, Bind
      *
      * @param maxLength the max length of the text
      */
+    @Override
     public void setMaxLength(int maxLength) {
         this.maxLength = maxLength;
     }
 
+    @Override
     public String getExtra() {
         return extra;
     }
 
+    @Override
     public void setExtra(String extra) {
         this.extra = extra;
+    }
+
+    @Override
+    public void setIcon(Icon icon) {
+    }
+
+    @Override
+    public Icon getIcon() {
+        return null;
     }
 
     @Override
