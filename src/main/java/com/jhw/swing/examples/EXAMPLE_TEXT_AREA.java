@@ -20,8 +20,10 @@ import com.jhw.swing.material.components.scrollpane.MaterialScrollFactory;
 import com.jhw.swing.material.components.scrollpane.MaterialScrollPane;
 import com.jhw.swing.material.components.scrollpane._MaterialScrollPaneCore;
 import com.jhw.swing.material.components.textarea.MaterialTextAreaFactory;
+import com.jhw.swing.material.components.textarea.DefaultContentArea;
 import com.jhw.swing.material.components.textarea._MaterialTextArea;
 import com.jhw.swing.material.standards.MaterialColors;
+import com.jhw.swing.material.standards.MaterialFontRoboto;
 import com.jhw.swing.ui.MaterialLookAndFeel;
 import java.awt.BorderLayout;
 import java.awt.Checkbox;
@@ -30,6 +32,7 @@ import java.awt.Dimension;
 import java.math.BigDecimal;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
+import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 
 /**
@@ -53,6 +56,11 @@ public class EXAMPLE_TEXT_AREA extends javax.swing.JFrame {
         text.setObject("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
 
         jPanel1.add(text);
+
+        DefaultContentArea c = DefaultContentArea.from();
+        c.header("header").headerFont(MaterialFontRoboto.BOLD.deriveFont(50f));
+        c.text("123123123123\n12312313\ndfgdfgdfgdg\ndsfgsdfsdf");
+        jPanel1.add(c, BorderLayout.NORTH);
 
         jPanel1.add(new Checkbox("focus"), BorderLayout.SOUTH);
     }
