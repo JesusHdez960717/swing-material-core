@@ -12,6 +12,8 @@ import java.awt.event.FocusListener;
 import javax.swing.border.TitledBorder;
 import com.jhw.personalization.core.domain.Personalization;
 import com.jhw.personalization.services.PersonalizationHandler;
+import com.jhw.swing.material.components.scrollpane.MaterialScrollFactory;
+import com.jhw.swing.material.components.scrollpane.MaterialScrollPane;
 import static com.jhw.swing.material.standards.Utils.HINT_OPACITY_MASK;
 import com.jhw.swing.util.Utils;
 import javax.swing.border.Border;
@@ -36,7 +38,7 @@ public class _MaterialTextArea extends javax.swing.JPanel implements BindableCom
     }
 
     private void initComponents() {
-        materialScrollPaneCore = new com.jhw.swing.material.components.scrollpane._MaterialScrollPaneCore();
+        materialScrollPaneCore = MaterialScrollFactory.buildPane();
         materialTextAreaCore = new com.jhw.swing.material.components.textarea._MaterialTextAreaCore();
 
         materialTextAreaCore.setColumns(1);
@@ -48,7 +50,7 @@ public class _MaterialTextArea extends javax.swing.JPanel implements BindableCom
         this.setPreferredSize(new Dimension(230, 150));
     }
 
-    private com.jhw.swing.material.components.scrollpane._MaterialScrollPaneCore materialScrollPaneCore;
+    private MaterialScrollPane materialScrollPaneCore;
     private com.jhw.swing.material.components.textarea._MaterialTextAreaCore materialTextAreaCore;
 
     public String getLabel() {
@@ -81,7 +83,7 @@ public class _MaterialTextArea extends javax.swing.JPanel implements BindableCom
         return materialTextAreaCore;
     }
 
-    public _MaterialScrollPaneCore getScrollPane() {
+    public MaterialScrollPane getScrollPane() {
         return materialScrollPaneCore;
     }
 

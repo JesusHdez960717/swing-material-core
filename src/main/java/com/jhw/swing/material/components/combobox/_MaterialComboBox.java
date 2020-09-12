@@ -1,5 +1,6 @@
 package com.jhw.swing.material.components.combobox;
 
+import com.jhw.swing.material.components.scrollpane.MaterialScrollFactory;
 import com.jhw.swing.material.components.scrollpane._MaterialScrollPaneCore;
 import com.jhw.swing.material.effects.DefaultLine;
 import com.jhw.swing.material.effects.DefaultFloatingLabel;
@@ -285,7 +286,7 @@ public class _MaterialComboBox<T> extends MaterialComboBox<T> {
 
         @Override
         protected JScrollPane createScroller() {
-            JScrollPane scroller = new _MaterialScrollPaneCore();
+            JScrollPane scroller = MaterialScrollFactory.buildPane();
             scroller.setViewportView(super.getList());
             return scroller;
         }

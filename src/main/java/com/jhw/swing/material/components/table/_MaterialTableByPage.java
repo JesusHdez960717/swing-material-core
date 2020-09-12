@@ -7,6 +7,7 @@ import com.jhw.swing.material.components.container.panel._PanelTransparent;
 import com.jhw.swing.material.components.labels.MaterialLabel;
 import com.jhw.swing.material.components.labels.MaterialLabelsFactory;
 import com.jhw.swing.material.components.labels._MaterialLabel;
+import com.jhw.swing.material.components.scrollpane.MaterialScrollPane;
 import com.jhw.swing.material.components.scrollpane._MaterialScrollPaneCore;
 import com.jhw.swing.material.components.textfield.validated._MaterialTextFieldInteger;
 import java.awt.event.KeyEvent;
@@ -305,7 +306,7 @@ public class _MaterialTableByPage extends _PanelTransparent implements Update {
         return table.getRowHeight();
     }
 
-    public _MaterialScrollPaneCore getScrollPane() {
+    public MaterialScrollPane getScrollPane() {
         return table.getScrollPane();
     }
 

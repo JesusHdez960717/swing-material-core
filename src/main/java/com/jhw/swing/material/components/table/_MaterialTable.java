@@ -1,38 +1,15 @@
 package com.jhw.swing.material.components.table;
 
 import com.jhw.swing.material.components.container.panel._PanelTransparent;
+import com.jhw.swing.material.components.scrollpane.MaterialScrollFactory;
+import com.jhw.swing.material.components.scrollpane.MaterialScrollPane;
 import com.jhw.swing.material.components.scrollpane._MaterialScrollPaneCore;
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.HeadlessException;
-import java.awt.Point;
-import java.awt.Rectangle;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.print.Printable;
-import java.awt.print.PrinterException;
-import java.text.MessageFormat;
-import java.util.EventObject;
-import javax.accessibility.AccessibleContext;
-import javax.print.PrintService;
-import javax.print.attribute.PrintRequestAttributeSet;
-import javax.swing.DropMode;
-import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.ListSelectionModel;
-import javax.swing.RowSorter;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.RowSorterEvent;
-import javax.swing.event.TableColumnModelEvent;
-import javax.swing.event.TableModelEvent;
-import javax.swing.plaf.TableUI;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.JTableHeader;
-import javax.swing.table.TableCellEditor;
-import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
@@ -50,7 +27,7 @@ public class _MaterialTable extends _PanelTransparent {
 
     private void initComponents() {
 
-        scrollPane = new com.jhw.swing.material.components.scrollpane._MaterialScrollPaneCore();
+        scrollPane = MaterialScrollFactory.buildPane();
         table = new javax.swing.JTable();
 
         table.setModel(new javax.swing.table.DefaultTableModel(
@@ -73,11 +50,11 @@ public class _MaterialTable extends _PanelTransparent {
     }
 
     // Variables declaration - do not modify
-    private com.jhw.swing.material.components.scrollpane._MaterialScrollPaneCore scrollPane;
+    private MaterialScrollPane scrollPane;
     private javax.swing.JTable table;
     // End of variables declaration                   
 
-    public _MaterialScrollPaneCore getScrollPane() {
+    public MaterialScrollPane getScrollPane() {
         return scrollPane;
     }
 
