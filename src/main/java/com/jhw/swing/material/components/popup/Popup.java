@@ -25,6 +25,7 @@ import java.util.List;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
 import javax.swing.SwingUtilities;
@@ -38,17 +39,13 @@ public class Popup extends JPopupMenu {
 
     private final List<Action> actions = new ArrayList<Action>();
 
-    private int w = 200;
-
     public Popup() {
         this.setBorderPainted(false);
 
         this.setBackground(MaterialColors.TRANSPARENT);
         this.setOpaque(false);
 
-        this.setPreferredSize(new Dimension(w, w));
-
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 8; i++) {
             actions.add(new AbstractAction("EXCEL", MaterialIcons.ADD_A_PHOTO) {
                 @Override
                 public void actionPerformed(ActionEvent e) {
@@ -56,16 +53,26 @@ public class Popup extends JPopupMenu {
                 }
             });
         }
-        Panel panel = new Panel() {
-            @Override
-            protected JButton buildButton(Action act) {
-                return new Button(act);
-            }
-        };
-        panel.setPreferredSize(new Dimension(w, w));
-        panel.setUpActions(actions);
+        Panel panel = new Panel();
+
+        List<JComponent> list = buildButtons();
+        panel.setUpActions(list, (int) list.get(0).getPreferredSize().getWidth());
+        this.setPreferredSize(panel.getPreferredSize());
+
         this.setLayout(new BorderLayout());
         this.add(panel);
+    }
+
+    private List<JComponent> buildButtons() {
+        List<JComponent> comp = new ArrayList<>();
+        for (Action action : actions) {
+            comp.add(buildButton(action));
+        }
+        return comp;
+    }
+
+    private JButton buildButton(Action act) {
+        return new Button(act);
     }
 
     @Override

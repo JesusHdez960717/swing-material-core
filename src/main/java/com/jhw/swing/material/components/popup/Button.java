@@ -39,15 +39,20 @@ public class Button extends _MaterialButton {
     }
 
     public Button() {
+        this.setBackground(MaterialColors.BLUEGREY_300);
+        this.setBorderColor(MaterialColors.BLUEGREY_50);
+        this.setBorderThickness(2);
+    }
+
+    @Override
+    public void setAction(Action a) {
+        super.setAction(a);
         if (getIcon() != null) {
             int s = 3 * Math.max(getIcon().getIconWidth(), getIcon().getIconHeight());
             this.setPreferredSize(new Dimension(s, s));
         } else {
             this.setPreferredSize(new Dimension(75, 75));
         }
-        this.setBackground(MaterialColors.BLUEGREY_300);
-        this.setBorderColor(MaterialColors.BLUEGREY_50);
-        this.setBorderThickness(2);
     }
 
     @Override

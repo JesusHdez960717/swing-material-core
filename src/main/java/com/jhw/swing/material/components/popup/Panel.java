@@ -12,6 +12,7 @@ import com.jhw.swing.material.standards.MaterialShadow;
 import com.jhw.swing.util.MaterialDrawingUtils;
 import java.awt.AlphaComposite;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
@@ -20,6 +21,7 @@ import java.awt.event.MouseEvent;
 import java.util.List;
 import javax.swing.Action;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JPanel;
 
 /**
@@ -63,7 +65,7 @@ public class Panel extends JPanel {
         int shadowW = (int) sizee() - margin();
         g2.drawImage(shadowFast.render(shadowW, shadowW, 5, 2, MaterialShadow.Type.CIRCULAR), margin() / 2, margin() / 2, null);
 
-        if (selectedComp != null) {
+        /*if (selectedComp != null) {
             g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.5f));
             g2.setColor(MaterialColors.GREY_50);
 
@@ -73,10 +75,11 @@ public class Panel extends JPanel {
             Point p1 = new Point(x, y);
             Point p2 = new Point(x + 10, y);
             g2.fillPolygon(new int[]{mid.x, p1.x, p2.x}, new int[]{mid.y, p1.y, p2.y}, 3);
-        }
+        }*/
     }
 
-    public void setUpActions(List<Action> actions) {
+    public void setUpActions(List<JComponent> components, int size) {
+        adjustSize(components, size);
         //this.setBorder(new LineBorder(Color.red, 3));//test
         this.setBackground(MaterialColors.TRANSPARENT);
         this.setOpaque(false);
@@ -86,13 +89,13 @@ public class Panel extends JPanel {
         Point center = new Point(sizee() / 2, sizee() / 2);
         int radius = center.x;
 
-        int numbers = (radius * 3) / 4;
-        int max = actions.size();
+        int numbers = (int) ((radius) * .75f);
+        int max = components.size();
         for (int i = 0; i < max; i++) {
-            JButton btn = buildButton(actions.get(i));
+            JComponent btn = components.get(i);
             double theta = (6.283185307179586d * ((double) (i + max * .75d))) / (double) max;
-            float x = (float) Math.round((((double) numbers) * Math.cos(theta)) - (btn.getPreferredSize().getWidth() / 2.0d));
-            float y = (float) Math.round((((double) numbers) * Math.sin(theta)) + margin() - (btn.getPreferredSize().getHeight() / 2.0d));
+            float x = (float) Math.round((((double) numbers) * Math.cos(theta)) - (size / 2.0d));
+            float y = (float) Math.round((((double) numbers) * Math.sin(theta)) - (size / 2.0d));
 
             this.add(btn);
             btn.setSize(btn.getPreferredSize());
@@ -109,10 +112,24 @@ public class Panel extends JPanel {
         return sizee() / 20;
     }
 
-    protected JButton buildButton(Action act) {
-        //MaterialButton btn = MaterialButtonsFactory.buildRound();
-        MaterialButtonIcon btn = MaterialButtonsFactory.buildIconTransparent();
-        btn.setAction(act);
-        return btn;
+    /**
+     * Ajusta el tamaño de todos los compoenntes asi como el panel en general
+     * proporcionalmente a la cantidad de compoenntes.
+     *
+     * @param components
+     * @param size
+     */
+    private void adjustSize(List<JComponent> components, int size) {
+        if (components.isEmpty()) {
+            this.setPreferredSize(new Dimension(50, 50));
+        }
+        for (JComponent component : components) {
+            component.setPreferredSize(new Dimension(size, size));
+        }
+        int total = (int) ((double) (size * 3.45d));
+        if (components.size() > 6) {
+            total += (components.size() - 6) * 0.75 * size;
+        }
+        this.setPreferredSize(new Dimension(total, total));
     }
 }
