@@ -5,27 +5,23 @@
  */
 package com.jhw.swing.material.components.popup;
 
-import com.jhw.swing.TEST.button_dialog_multiple.*;
-import com.jhw.swing.TEST.factory.*;
+import com.jhw.swing.material.components.button._MaterialButtonSqrt;
 import com.jhw.swing.material.components.button.MaterialButton;
 import com.jhw.swing.material.components.button.MaterialButtonsFactory;
-import com.jhw.swing.material.components.combobox.*;
-//import com.jhw.swing.material.components.combobox.combobox_editable._MaterialComboBoxFiltrable;
-import com.jhw.swing.material.components.container.layout.VerticalLayoutContainer;
-import com.jhw.swing.material.components.passwordfield._MaterialPasswordField;
-import com.jhw.swing.material.components.textfield.*;
-import com.jhw.swing.material.components.textfield.validated._MaterialTextFieldMoney;
+import com.jhw.swing.material.components.clock._ClockFace1123123;
 import com.jhw.swing.material.standards.MaterialColors;
 import com.jhw.swing.material.standards.MaterialIcons;
 import com.jhw.swing.ui.MaterialLookAndFeel;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.AbstractAction;
-import javax.swing.DefaultComboBoxModel;
+import javax.swing.Action;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
+import javax.swing.JComponent;
+import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
 /**
@@ -43,13 +39,29 @@ public class test extends javax.swing.JFrame {
         jPanel1.setLayout(new BorderLayout());
         jPanel1.setBackground(MaterialColors.WHITE);
 
-        MaterialButton btn = MaterialButtonsFactory.buildPopup(new Popup());
+        List<Action> actions = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            actions.add(new AbstractAction("EXCEL", MaterialIcons.ADD_A_PHOTO.deriveIcon(35f)) {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    JOptionPane.showMessageDialog(null, "Click en el boton.");
+                }
+            });
+        }
+        MaterialButton btn = MaterialButtonsFactory.buildPopup(new Popup(actions) {
+            /*@Override
+            protected JComponent buildComponent(Action act) {
+                MaterialButton b = MaterialButtonsFactory.buildRound();
+                b.setAction(act);
+                return b;
+            }*/
+        });
         btn.setBackground(MaterialColors.GREEN_600);
 
         jPanel1.add(btn);
         jPanel1.add(_ClockFace1123123.from(), BorderLayout.NORTH);
 
-        Button b = Button.from();
+        _MaterialButtonSqrt b = _MaterialButtonSqrt.from();
         b.setAction(new AbstractAction("123", MaterialIcons.ACCOUNT_CIRCLE) {
             @Override
             public void actionPerformed(ActionEvent e) {

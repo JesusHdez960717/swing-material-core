@@ -32,6 +32,10 @@ public class MaterialButtonsFactory {
         return btn;
     }
 
+    public static MaterialButton buildSqrt() {
+        return MaterialSwingInjector.getImplementation(_MaterialButtonSqrt.class);
+    }
+
     //-----------Icon Transparent----------------
     public static MaterialButtonIcon buildIconTranspRotate() {
         return MaterialSwingInjector.getImplementation(_MaterialButtonIconTranspRotate.class);

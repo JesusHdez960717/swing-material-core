@@ -3,10 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.jhw.swing.material.components.popup;
+package com.jhw.swing.material.components.button;
 
 import com.jhw.swing.material.components.button._MaterialButton;
-import com.jhw.swing.material.effects.Iconable;
 import com.jhw.swing.material.injection.Background_Force_Foreground;
 import com.jhw.swing.material.injection.Foreground_Force_Icon;
 import com.jhw.swing.material.injection.MaterialSwingInjector;
@@ -27,18 +26,18 @@ import javax.swing.Action;
  */
 @Background_Force_Foreground
 @Foreground_Force_Icon
-public class Button extends _MaterialButton {
+public class _MaterialButtonSqrt extends _MaterialButton {
 
-    public static Button from() {
-        return MaterialSwingInjector.getImplementation(Button.class);
+    public static _MaterialButtonSqrt from() {
+        return new _MaterialButtonSqrt();
     }
 
-    public Button(Action act) {
+    public _MaterialButtonSqrt(Action act) {
         this();
         this.setAction(act);
     }
 
-    public Button() {
+    public _MaterialButtonSqrt() {
         this.setBackground(MaterialColors.BLUEGREY_300);
         this.setBorderColor(MaterialColors.BLUEGREY_50);
         this.setBorderThickness(2);
@@ -83,28 +82,29 @@ public class Button extends _MaterialButton {
             Color bg = getBackground();
             g2.setColor(new Color(bg.getRed() / 255f, bg.getGreen() / 255f, bg.getBlue() / 255f, 0.6f));
         }
-        g2.fill(new RoundRectangle2D.Float(0, 0, getWidth() - offset_lr, getHeight() - offset_td, getBorderRadius() * 2, getBorderRadius() * 2));
+        int size = Math.min(getWidth(), getHeight());
+        g2.fill(new RoundRectangle2D.Float(0, 0, size - offset_lr, size - offset_td, getBorderRadius() * 2, getBorderRadius() * 2));
 
         //borde
-        paintBorder(this, g2, 0, 0, (int) (getWidth() - offset_lr + getBorderThickness()), (int) (getHeight() - offset_td + getBorderThickness()));
+        paintBorder(this, g2, 0, 0, (int) (size - offset_lr + getBorderThickness()), (int) (size - offset_td + getBorderThickness()));
 
         //ripple
         if (this.isEnabled()) {//el ripple por debajo de las letras e iconos
-            g2.setClip(new RoundRectangle2D.Float(0, 0, getWidth() - offset_lr, getHeight() - offset_td, Math.max(getBorderRadius() * 2 - 4, 0), Math.max(getBorderRadius() * 2 - 4, 0)));
+            g2.setClip(new RoundRectangle2D.Float(0, 0, size - offset_lr, size - offset_td, Math.max(getBorderRadius() * 2 - 4, 0), Math.max(getBorderRadius() * 2 - 4, 0)));
             paintRipple(g2);
         }
 
         //icon
         if (this.getIcon() != null) {
-            int xIcon = (int) (getWidth() - getIcon().getIconWidth()) / 2 - offset_lr / 2;
-            int yIcon = (int) (getHeight() / 2 - getIcon().getIconHeight() - 5);
+            int xIcon = (int) (size - getIcon().getIconWidth()) / 2 - offset_lr / 2;
+            int yIcon = (int) (size / 2 - getIcon().getIconHeight() - 5);
             this.getIcon().paintIcon(this, g2, xIcon, yIcon);
         }
 
         FontMetrics metrics = g2.getFontMetrics(getFont());
 
-        int xText = (int) (getWidth() - metrics.stringWidth(getText())) / 2 - offset_lr / 2;
-        int yText = getHeight() / 2 + metrics.getAscent();
+        int xText = (int) (size - metrics.stringWidth(getText())) / 2 - offset_lr / 2;
+        int yText = size / 2 + metrics.getAscent();
 
         g2.setColor(getForeground());
         g2.setFont(getFont());

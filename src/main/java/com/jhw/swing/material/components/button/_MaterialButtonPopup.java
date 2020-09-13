@@ -11,7 +11,6 @@ import com.jhw.swing.material.injection.Background_Force_Foreground;
 import com.jhw.swing.material.injection.Foreground_Force_Icon;
 import com.jhw.swing.material.standards.MaterialColors;
 import com.jhw.swing.material.standards.MaterialIcons;
-import com.jhw.swing.material.standards.MaterialShadow;
 import com.jhw.swing.util.Utils;
 import java.awt.MouseInfo;
 import java.awt.Point;
