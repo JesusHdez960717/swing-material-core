@@ -5,13 +5,9 @@
  */
 package com.jhw.swing.material.components.popup;
 
-import com.jhw.swing.material.components.button.MaterialButtonIcon;
-import com.jhw.swing.material.components.button.MaterialButtonsFactory;
 import com.jhw.swing.material.standards.MaterialColors;
 import com.jhw.swing.material.standards.MaterialShadow;
 import com.jhw.swing.util.MaterialDrawingUtils;
-import java.awt.AlphaComposite;
-import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -20,11 +16,8 @@ import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
-import javax.swing.Action;
-import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
-import javax.swing.border.LineBorder;
 
 /**
  *

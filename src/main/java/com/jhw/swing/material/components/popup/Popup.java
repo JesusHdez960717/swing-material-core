@@ -7,7 +7,6 @@ package com.jhw.swing.material.components.popup;
 
 import com.jhw.swing.material.components.button.MaterialButton;
 import com.jhw.swing.material.components.button.MaterialButtonsFactory;
-import com.jhw.swing.material.components.button._MaterialButtonSqrt;
 import com.jhw.swing.material.standards.MaterialColors;
 import com.jhw.swing.util.Utils;
 import com.sun.awt.AWTUtilities;
@@ -65,9 +64,7 @@ public class Popup extends JPopupMenu {
     }
 
     protected JComponent buildComponent(Action act) {
-        MaterialButton b = MaterialButtonsFactory.buildSqrt();
-        b.setAction(act);
-        return b;
+        return ButtonSqrt.from(act);
     }
 
     @Override

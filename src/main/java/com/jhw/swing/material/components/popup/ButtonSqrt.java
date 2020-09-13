@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.jhw.swing.material.components.button;
+package com.jhw.swing.material.components.popup;
 
+import com.jhw.swing.material.components.button._MaterialButton;
 import com.jhw.swing.material.components.button._MaterialButton;
 import com.jhw.swing.material.injection.Background_Force_Foreground;
 import com.jhw.swing.material.injection.Foreground_Force_Icon;
@@ -21,23 +22,31 @@ import java.awt.geom.RoundRectangle2D;
 import javax.swing.Action;
 
 /**
+ * Boton cuadrado, no se puede poner en layouts que se expandan xq no hace bien
+ * el resize.
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
 @Background_Force_Foreground
 @Foreground_Force_Icon
-public class _MaterialButtonSqrt extends _MaterialButton {
+public class ButtonSqrt extends _MaterialButton {
 
-    public static _MaterialButtonSqrt from() {
-        return new _MaterialButtonSqrt();
+    public static ButtonSqrt from() {
+        return MaterialSwingInjector.getImplementation(ButtonSqrt.class);
     }
 
-    public _MaterialButtonSqrt(Action act) {
+    public static ButtonSqrt from(Action a) {
+        ButtonSqrt sqrt = MaterialSwingInjector.getImplementation(ButtonSqrt.class);
+        sqrt.setAction(a);
+        return sqrt;
+    }
+
+    public ButtonSqrt(Action act) {
         this();
         this.setAction(act);
     }
 
-    public _MaterialButtonSqrt() {
+    public ButtonSqrt() {
         this.setBackground(MaterialColors.BLUEGREY_300);
         this.setBorderColor(MaterialColors.BLUEGREY_50);
         this.setBorderThickness(2);

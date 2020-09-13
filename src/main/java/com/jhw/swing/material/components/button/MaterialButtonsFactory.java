@@ -5,6 +5,7 @@
  */
 package com.jhw.swing.material.components.button;
 
+import com.jhw.swing.material.components.popup.ButtonSqrt;
 import com.jhw.swing.material.components.button.prepared.*;
 import com.jhw.swing.material.injection.MaterialSwingInjector;
 import javax.swing.ImageIcon;
@@ -30,10 +31,6 @@ public class MaterialButtonsFactory {
         btn.setType(_MaterialButton.Type.FLAT);
         btn.setBorderRadius(0);
         return btn;
-    }
-
-    public static MaterialButton buildSqrt() {
-        return MaterialSwingInjector.getImplementation(_MaterialButtonSqrt.class);
     }
 
     //-----------Icon Transparent----------------

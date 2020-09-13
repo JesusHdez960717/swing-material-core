@@ -5,7 +5,6 @@
  */
 package com.jhw.swing.material.components.popup;
 
-import com.jhw.swing.material.components.button._MaterialButtonSqrt;
 import com.jhw.swing.material.components.button.MaterialButton;
 import com.jhw.swing.material.components.button.MaterialButtonsFactory;
 import com.jhw.swing.material.components.clock._ClockFace1123123;
@@ -61,7 +60,7 @@ public class test extends javax.swing.JFrame {
         jPanel1.add(btn);
         jPanel1.add(_ClockFace1123123.from(), BorderLayout.NORTH);
 
-        _MaterialButtonSqrt b = _MaterialButtonSqrt.from();
+        ButtonSqrt b = ButtonSqrt.from();
         b.setAction(new AbstractAction("123", MaterialIcons.ACCOUNT_CIRCLE) {
             @Override
             public void actionPerformed(ActionEvent e) {
