@@ -29,7 +29,7 @@ import javax.swing.JPanel;
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-public class Panel extends JPanel {
+public class PanelCircular extends JPanel {
 
     //para la sombra de background
     protected final MaterialShadow shadowFast = new MaterialShadow();
@@ -37,7 +37,7 @@ public class Panel extends JPanel {
     //para la sombra cuando le paso por arriba a cada component
     private Component selectedComp = null;
 
-    public Panel(List<JComponent> components, int size) {
+    public PanelCircular(List<JComponent> components, int size) {
         setUpComponents(components, size);
     }
 

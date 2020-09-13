@@ -24,8 +24,8 @@ import javax.swing.SwingUtilities;
  * Si se quiere personalizar el componente que se le pasa por parámetro se
  * reimplementa el metodo buildComponent.
  * <pre>
- *  new Popup(actions) {
- *      @Override
+  new PopupCircular(actions) {
+      @Override
  *      protected JComponent buildComponent(Action act) {
  *          MaterialButton b = MaterialButtonsFactory.buildRound();
  *          b.setAction(act);
@@ -36,20 +36,20 @@ import javax.swing.SwingUtilities;
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-public class Popup extends JPopupMenu {
+public class PopupCircular extends JPopupMenu {
 
-    public static Popup from(List<Action> actions) {
-        return new Popup(actions);
+    public static PopupCircular from(List<Action> actions) {
+        return new PopupCircular(actions);
     }
 
-    public Popup(List<Action> actions) {
+    public PopupCircular(List<Action> actions) {
         this.setBorderPainted(false);
 
         this.setBackground(MaterialColors.TRANSPARENT);
         this.setOpaque(false);
 
         List<JComponent> list = buildComponents(actions);
-        Panel panel = new Panel(list, (int) list.get(0).getPreferredSize().getWidth());
+        PanelCircular panel = new PanelCircular(list, (int) list.get(0).getPreferredSize().getWidth());
 
         this.setPreferredSize(panel.getPreferredSize());
 
