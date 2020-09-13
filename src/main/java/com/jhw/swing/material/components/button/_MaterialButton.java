@@ -31,6 +31,10 @@ import java.beans.PropertyChangeListener;
 @Foreground_Force_Icon
 public class _MaterialButton extends MaterialButton {
 
+    public static MaterialButton from() {
+        return MaterialSwingInjector.getImplementation(_MaterialButton.class);
+    }
+
     private final MouseAdapterInfo mouseInfo = DefaultMouseAdapterInfo.from(this);
 
     private final ColorFadeInto colorFadeInto = new DefaultColorFadeInto(this);
@@ -42,11 +46,6 @@ public class _MaterialButton extends MaterialButton {
     private final MaterialLineBorder border = DefaultMaterialLineBorder.builder().listeners(this).build();
 
     private Type type = Type.DEFAULT;
-
-    public static MaterialButton from() {
-        return MaterialSwingInjector.getImplementation(_MaterialButton.class);
-        //return new _MaterialButton();
-    }
 
     /**
      * NO USAR ESTE CONSTRUCTOR. Usar el _MaterialButton.from() que internamente

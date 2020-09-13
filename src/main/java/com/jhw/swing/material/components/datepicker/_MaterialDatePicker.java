@@ -26,6 +26,10 @@ import org.jdesktop.swingx.calendar.DatePickerFormatter;
  */
 public class _MaterialDatePicker extends MaterialDatePicker {
 
+    public static MaterialDatePicker from() {
+        return new _MaterialDatePicker();
+    }
+
     static {
         UIManager.put("JXMonthView.monthDownFileName", MaterialIcons.KEYBOARD_ARROW_LEFT);
         UIManager.put("JXMonthView.monthUpFileName", MaterialIcons.KEYBOARD_ARROW_RIGHT);
@@ -33,9 +37,6 @@ public class _MaterialDatePicker extends MaterialDatePicker {
         UIManager.put("JXMonthView.monthStringForeground", MaterialColors.BLACK);
     }
 
-    public static _MaterialDatePicker from() {
-        return new _MaterialDatePicker();
-    }
     private final _MaterialFormatedTextField<String> text = new _MaterialFormatedTextField<String>() {
         @Override
         public String getObject() {
@@ -43,11 +44,11 @@ public class _MaterialDatePicker extends MaterialDatePicker {
         }
     };
 
-    protected _MaterialDatePicker() {
+    public _MaterialDatePicker() {
         this("Fecha");
     }
 
-    protected _MaterialDatePicker(String label) {
+    public _MaterialDatePicker(String label) {
         super();
         this.setLabel(label);
 
@@ -59,11 +60,11 @@ public class _MaterialDatePicker extends MaterialDatePicker {
         this.text.setFormatterFactory(new DefaultFormatterFactory(new DatePickerFormatter(getFormats(), getLocale())));
 
         this.setEditor(text);
-        
+
         this.addActionListener((ActionEvent e) -> {
             clearWrong();
         });
-        
+
         personalizeButton();
     }
 

@@ -14,34 +14,35 @@ import com.jhw.swing.material.injection.MaterialSwingInjector;
 public class MaterialLabelsFactory {
 
     public static MaterialLabel build() {
-        return MaterialSwingInjector.getImplementation(_MaterialLabel.class);
+        return _MaterialLabel.from();
     }
 
     public static MaterialLabelMoney buildMoney() {
-        return MaterialSwingInjector.getImplementation(_MaterialLabelMoney.class);
-    }
-
-    public static MaterialLabelMoney buildMoneyPositive() {
-        return MaterialSwingInjector.getImplementation(_MaterialLabelPositive.class);
+        return _MaterialLabelMoney.from();
     }
 
     public static MaterialLabelMoney buildMoneyNegative() {
-        return MaterialSwingInjector.getImplementation(_MaterialLabelNegative.class);
+        return _MaterialLabelNegative.from();
+    }
+
+    public static MaterialLabelMoney buildMoneyPositive() {
+        return _MaterialLabelPositive.from();
     }
 
     public static MaterialLabelDoble buildDouble() {
-        return MaterialSwingInjector.getImplementation(_MaterialLabelDouble.class);
+        return _MaterialLabelDouble.from();
     }
 
     public static MaterialLabelDobleMoney buildDoubleMoney() {
-        return MaterialSwingInjector.getImplementation(_MaterialLabelDoubleMoney.class);
-    }
-
-    public static MaterialLabelDobleMoney buildDoubleMoneyPositive() {
-        return MaterialSwingInjector.getImplementation(_MaterialLabelDoubleMoneyPositive.class);
+        return _MaterialLabelDoubleMoney.from();
     }
 
     public static MaterialLabelDobleMoney buildDoubleMoneyNegative() {
-        return MaterialSwingInjector.getImplementation(_MaterialLabelDoubleMoneyNegative.class);
+        return _MaterialLabelDoubleMoneyNegative.from();
     }
+
+    public static MaterialLabelDobleMoney buildDoubleMoneyPositive() {
+        return _MaterialLabelDoubleMoneyPositive.from();
+    }
+
 }

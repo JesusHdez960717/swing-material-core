@@ -11,7 +11,6 @@ import com.jhw.swing.material.components.container.panel.*;
 import com.jhw.swing.material.components.container.tabbed._TabbedPaneClose;
 import com.jhw.swing.material.components.container.tabbed._TabbedPaneHeader;
 import com.jhw.swing.material.components.container.tabbed._TabbedPaneSelector;
-import com.jhw.swing.material.injection.MaterialSwingInjector;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
@@ -27,13 +26,11 @@ public class MaterialContainersFactory {
     }
 
     public static MaterialPanelBorder buildPanel() {
-        return MaterialSwingInjector.getImplementation(_MaterialPanel.class);
-        //return _MaterialPanel.from();
+        return _MaterialPanel.from();
     }
 
     public static MaterialPanelBorder buildPanelComponent() {
-        return MaterialSwingInjector.getImplementation(_MaterialPanelComponent.class);
-        //return _MaterialPanelComponent.from();
+        return _MaterialPanelComponent.from();
     }
 
     public static JPanel buildPanelComponentTransparent() {
@@ -49,13 +46,11 @@ public class MaterialContainersFactory {
     }
 
     public static MaterialPanelBorder buildPanelGradient() {
-        return MaterialSwingInjector.getImplementation(_PanelGradient.class);
-        //return _PanelGradient.from();
+        return _PanelGradient.from();
     }
 
     public static MaterialPanelBorder buildPanelGradientTranslucid() {
-        return MaterialSwingInjector.getImplementation(_PanelGradientTranslucid.class);
-        //return _PanelGradientTranslucid.from();
+        return _PanelGradientTranslucid.from();
     }
 
     public static JPanel buildPanelTransparent() {

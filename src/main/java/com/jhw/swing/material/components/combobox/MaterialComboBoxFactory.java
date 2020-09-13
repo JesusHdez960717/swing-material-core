@@ -14,12 +14,10 @@ package com.jhw.swing.material.components.combobox;
 public class MaterialComboBoxFactory {
 
     public static MaterialComboBox build() {
-        //return MaterialSwingInjector.getImplementation(_MaterialComboBox.class);
         return _MaterialComboBox.from();
     }
 
     public static MaterialComboBox buildFiltrable() {
-        //return MaterialSwingInjector.getImplementation(_MaterialComboBoxFiltrable.class);
         return _MaterialComboBoxFiltrable.from();
     }
 

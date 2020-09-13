@@ -2,6 +2,7 @@ package com.jhw.swing.material.components.container.panel;
 
 import com.jhw.swing.material.injection.Background_Force_Foreground;
 import com.jhw.swing.material.injection.Foreground_Force_Icon;
+import com.jhw.swing.material.injection.MaterialSwingInjector;
 import java.awt.AlphaComposite;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -16,7 +17,7 @@ import com.jhw.swing.util.interfaces.MaterialComponent;
 public class _PanelGradientTranslucid extends _PanelGradient implements MaterialComponent {
 
     public static _PanelGradientTranslucid from() {
-        return new _PanelGradientTranslucid();
+        return MaterialSwingInjector.getImplementation(_PanelGradientTranslucid.class);
     }
 
     protected float tran = 0.5f;

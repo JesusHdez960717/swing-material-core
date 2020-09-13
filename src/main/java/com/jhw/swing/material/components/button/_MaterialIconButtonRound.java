@@ -26,7 +26,7 @@ import javax.swing.plaf.basic.BasicButtonUI;
 @Foreground_Force_Icon
 public class _MaterialIconButtonRound extends _MaterialButton {
 
-    public static _MaterialIconButtonRound from() {
+    public static MaterialButton from() {
         return MaterialSwingInjector.getImplementation(_MaterialIconButtonRound.class);
     }
 

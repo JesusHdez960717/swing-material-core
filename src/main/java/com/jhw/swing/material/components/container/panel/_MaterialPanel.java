@@ -13,6 +13,7 @@ import com.jhw.swing.material.effects.MaterialLineBorder;
 import com.jhw.swing.material.effects.ElevationEffect;
 import com.jhw.swing.material.injection.Background_Force_Foreground;
 import com.jhw.swing.material.injection.Foreground_Force_Icon;
+import com.jhw.swing.material.injection.MaterialSwingInjector;
 
 /**
  * A JPanel customized for Material components. What makes these panels special
@@ -37,8 +38,8 @@ import com.jhw.swing.material.injection.Foreground_Force_Icon;
 @Foreground_Force_Icon
 public class _MaterialPanel extends MaterialPanelBorder implements ElevationEffect {
 
-    public static _MaterialPanel from() {
-        return new _MaterialPanel();
+    public static MaterialPanelBorder from() {
+        return MaterialSwingInjector.getImplementation(_MaterialPanel.class);
     }
 
     private final ElevationEffect elevation = DefaultElevationEffect.applyTo(this, MaterialShadow.ELEVATION_DEFAULT);
@@ -50,11 +51,16 @@ public class _MaterialPanel extends MaterialPanelBorder implements ElevationEffe
     private Icon icon;
 
     /**
+     * Use _MaterialPanel.from() para proy y AOP
+     *
      * Creates a new {@code MaterialPanel}. These panels cast a shadow below
      * them, although technically it is painted inside its borders. If you don't
      * need a shadow to be casted from this panel, use a {@link JPanel} instead.
+     *
+     * @deprecated
      */
-    protected _MaterialPanel() {
+    @Deprecated
+    public _MaterialPanel() {
         this.setOpaque(false);
         this.setLayout(new BorderLayout());
         this.setBackground(PersonalizationHandler.getColor(Personalization.KEY_COLOR_BACKGROUND_PANEL));
@@ -154,7 +160,7 @@ public class _MaterialPanel extends MaterialPanelBorder implements ElevationEffe
         g2.setClip(null);
 
         paintBorder(this, g2, 0, 0, (int) (getWidth() - offset_lr + getBorderThickness()), (int) (getHeight() - offset_td + getBorderThickness()));
-        
+
         if (this.icon != null) {
             if (icon instanceof ImageIcon) {//si es image icon lo pinto completo de todo el tamanno
                 g2.drawImage(((ImageIcon) this.icon).getImage(), 0, 0, getWidth() - offset_lr, getHeight() - offset_td, null);

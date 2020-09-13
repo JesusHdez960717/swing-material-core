@@ -2,6 +2,7 @@ package com.jhw.swing.material.components.labels;
 
 import com.jhw.swing.material.injection.Background_Force_Foreground;
 import com.jhw.swing.material.injection.Foreground_Force_Icon;
+import com.jhw.swing.material.injection.MaterialSwingInjector;
 import com.jhw.utils.others.StringFormating;
 import java.math.BigDecimal;
 
@@ -13,8 +14,18 @@ import java.math.BigDecimal;
 @Foreground_Force_Icon
 public class _MaterialLabelMoney extends MaterialLabelMoney {
 
-    public static _MaterialLabelMoney from() {
-        return new _MaterialLabelMoney();
+    public static MaterialLabelMoney from() {
+        return MaterialSwingInjector.getImplementation(_MaterialLabelMoney.class);
+    }
+
+    /**
+     * Use _MaterialLabel.from() para proy y AOP
+     *
+     * @deprecated
+     */
+    @Deprecated
+    public _MaterialLabelMoney() {
+        super();
     }
 
     @Override

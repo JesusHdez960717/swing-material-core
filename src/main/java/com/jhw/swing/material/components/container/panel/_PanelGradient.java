@@ -6,6 +6,7 @@ import com.jhw.swing.material.effects.DefaultMaterialLineBorder;
 import com.jhw.swing.material.effects.MaterialLineBorder;
 import com.jhw.swing.material.injection.Background_Force_Foreground;
 import com.jhw.swing.material.injection.Foreground_Force_Icon;
+import com.jhw.swing.material.injection.MaterialSwingInjector;
 import java.awt.Color;
 import java.awt.GradientPaint;
 import java.awt.Graphics;
@@ -31,7 +32,7 @@ import java.awt.Stroke;
 public class _PanelGradient extends MaterialPanelBorder {
 
     public static _PanelGradient from() {
-        return new _PanelGradient();
+        return MaterialSwingInjector.getImplementation(_PanelGradient.class);
     }
 
     private final MaterialLineBorder border = DefaultMaterialLineBorder.builder().borderRadius(5).listeners(this).build();
@@ -43,11 +44,23 @@ public class _PanelGradient extends MaterialPanelBorder {
 
     private Icon icon;
 
-    protected _PanelGradient() {
+    /**
+     * Use _PanelGradient.from() para proy y AOP
+     *
+     * @deprecated
+     */
+    @Deprecated
+    public _PanelGradient() {
         this(PersonalizationHandler.getColor(Personalization.KEY_COLOR_BACKGROUND_PANEL));
     }
 
-    protected _PanelGradient(Color back) {
+    /**
+     * Use _PanelGradient.from() para proy y AOP
+     *
+     * @deprecated
+     */
+    @Deprecated
+    public _PanelGradient(Color back) {
         this.setBackground(back);
         setBorderRadius(0);
         this.setLayout(new BorderLayout());

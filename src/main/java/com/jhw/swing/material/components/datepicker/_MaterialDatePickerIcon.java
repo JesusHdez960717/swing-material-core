@@ -28,7 +28,7 @@ import javax.swing.Icon;
  */
 public class _MaterialDatePickerIcon extends MaterialDatePicker {
 
-    public static _MaterialDatePickerIcon from() {
+    public static MaterialDatePicker from() {
         return new _MaterialDatePickerIcon();
     }
 

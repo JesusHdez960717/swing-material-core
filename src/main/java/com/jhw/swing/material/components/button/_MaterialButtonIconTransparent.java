@@ -21,7 +21,7 @@ public class _MaterialButtonIconTransparent extends MaterialButtonIcon {
 
     private final RippleEffect ripple = DefaultRippleEffect.applyFixedTo(this);
 
-    public static _MaterialButtonIconTransparent from() {
+    public static MaterialButtonIcon from() {
         return MaterialSwingInjector.getImplementation(_MaterialButtonIconTransparent.class);
     }
 

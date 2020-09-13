@@ -12,10 +12,6 @@ import com.jhw.swing.material.injection.Foreground_Force_Icon;
 import com.jhw.swing.material.injection.MaterialSwingInjector;
 import com.jhw.swing.material.standards.MaterialColors;
 import com.jhw.swing.material.standards.MaterialIcons;
-import com.jhw.swing.util.Utils;
-import java.awt.MouseInfo;
-import java.awt.Point;
-import java.awt.Rectangle;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JPopupMenu;
@@ -28,7 +24,7 @@ import javax.swing.JPopupMenu;
 @Foreground_Force_Icon
 public class _MaterialButtonPopup extends _MaterialButton {
 
-    public static _MaterialButtonPopup from() {
+    public static MaterialButton from() {
         return MaterialSwingInjector.getImplementation(_MaterialButtonPopup.class);
     }
 

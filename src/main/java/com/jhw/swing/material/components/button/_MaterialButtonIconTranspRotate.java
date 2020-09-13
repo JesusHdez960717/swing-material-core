@@ -27,9 +27,8 @@ public class _MaterialButtonIconTranspRotate extends _MaterialButtonIconTranspar
     private int anglulo = 0;
     private Animator anim;
 
-    public static _MaterialButtonIconTranspRotate from() {
+    public static MaterialButtonIcon from() {
         return MaterialSwingInjector.getImplementation(_MaterialButtonIconTranspRotate.class);
-        //return new _MaterialButtonIconTranspRotate();
     }
 
     /**

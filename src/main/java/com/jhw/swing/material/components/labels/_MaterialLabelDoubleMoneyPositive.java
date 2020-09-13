@@ -14,19 +14,19 @@ import java.math.BigDecimal;
  */
 public class _MaterialLabelDoubleMoneyPositive extends _MaterialLabelDoubleMoney {
 
-    public static _MaterialLabelDoubleMoneyPositive from() {
+    public static MaterialLabelDobleMoney from() {
         return new _MaterialLabelDoubleMoneyPositive();
     }
 
     public _MaterialLabelDoubleMoneyPositive() {
-        setLabelRigth(posit);
-        posit.setFont(MaterialFontRoboto.BOLD.deriveFont(20f));
+        setLabelRigth(positive);
+        positive.setFont(MaterialFontRoboto.BOLD.deriveFont(20f));
     }
 
-    private final _MaterialLabelPositive posit = new _MaterialLabelPositive();
+    private final MaterialLabelMoney positive = MaterialLabelsFactory.buildMoneyPositive();
 
     @Override
     public void setMoney(BigDecimal money, Object coin) {
-        posit.setMoney(money, coin.toString());
+        positive.setMoney(money, coin.toString());
     }
 }

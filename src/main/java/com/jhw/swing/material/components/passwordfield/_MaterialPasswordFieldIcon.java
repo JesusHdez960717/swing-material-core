@@ -26,7 +26,7 @@ import javax.swing.Icon;
  */
 public class _MaterialPasswordFieldIcon extends MaterialPasswordField {
 
-    public static _MaterialPasswordFieldIcon from() {
+    public static MaterialPasswordField from() {
         return new _MaterialPasswordFieldIcon();
     }
 
@@ -35,7 +35,7 @@ public class _MaterialPasswordFieldIcon extends MaterialPasswordField {
 
     private Color originalIconColor = MaterialColors.BLACK;
 
-    protected _MaterialPasswordFieldIcon() {
+    public _MaterialPasswordFieldIcon() {
         initComponents();
         setIcon(MaterialIcons.SECURITY);
     }

@@ -27,7 +27,7 @@ import javax.swing.JButton;
  */
 public class _MaterialComboBoxFiltrable<T> extends _MaterialComboBox<T> {
 
-    public static _MaterialComboBoxFiltrable from() {
+    public static MaterialComboBox from() {
         return new _MaterialComboBoxFiltrable();
     }
 

@@ -14,7 +14,7 @@ import java.math.BigDecimal;
  */
 public class _MaterialLabelDoubleMoneyNegative extends _MaterialLabelDoubleMoney {
 
-    public static _MaterialLabelDoubleMoneyNegative from() {
+    public static MaterialLabelDobleMoney from() {
         return new _MaterialLabelDoubleMoneyNegative();
     }
 
@@ -23,7 +23,7 @@ public class _MaterialLabelDoubleMoneyNegative extends _MaterialLabelDoubleMoney
         negative.setFont(MaterialFontRoboto.BOLD.deriveFont(20f));
     }
 
-    private final _MaterialLabelNegative negative = new _MaterialLabelNegative();
+    private final MaterialLabelMoney negative = MaterialLabelsFactory.buildMoneyNegative();
 
     @Override
     public void setMoney(BigDecimal money, Object coin) {

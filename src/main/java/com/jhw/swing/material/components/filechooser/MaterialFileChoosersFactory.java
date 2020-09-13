@@ -5,8 +5,6 @@
  */
 package com.jhw.swing.material.components.filechooser;
 
-import com.jhw.swing.material.components.datepicker.*;
-
 /**
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)

@@ -14,16 +14,16 @@ import java.math.BigDecimal;
  */
 public class _MaterialLabelDoubleMoney extends MaterialLabelDobleMoney {
 
-    public static _MaterialLabelDoubleMoney from() {
+    public static MaterialLabelDobleMoney from() {
         return new _MaterialLabelDoubleMoney();
     }
 
-    protected _MaterialLabelDoubleMoney() {
+    public _MaterialLabelDoubleMoney() {
         setLabelRigth(labelMoney);
         labelMoney.setFont(MaterialFontRoboto.BOLD.deriveFont(22f));
     }
 
-    private final MaterialLabelMoney labelMoney = new _MaterialLabelMoney();
+    private final MaterialLabelMoney labelMoney = MaterialLabelsFactory.buildMoney();
 
     @Override
     public void setMoney(BigDecimal value, Object coin) {

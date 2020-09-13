@@ -4,6 +4,7 @@ import com.jhw.personalization.core.domain.Personalization;
 import com.jhw.personalization.services.PersonalizationHandler;
 import com.jhw.swing.material.injection.Background_Force_Foreground;
 import com.jhw.swing.material.injection.Foreground_Force_Icon;
+import com.jhw.swing.material.injection.MaterialSwingInjector;
 
 /**
  * Label con foreground getColorMoneyNegative de la personalizacion.
@@ -14,10 +15,16 @@ import com.jhw.swing.material.injection.Foreground_Force_Icon;
 @Foreground_Force_Icon
 public class _MaterialLabelNegative extends _MaterialLabelMoney {
 
-    public static _MaterialLabelNegative from() {
-        return new _MaterialLabelNegative();
+    public static MaterialLabelMoney from() {
+        return MaterialSwingInjector.getImplementation(_MaterialLabelNegative.class);
     }
 
+    /**
+     * Use _MaterialLabelNegative.from() para proy y AOP
+     *
+     * @deprecated
+     */
+    @Deprecated
     public _MaterialLabelNegative() {
         this.setForeground(PersonalizationHandler.getColor(Personalization.KEY_COLOR_MONEY_NEGATIVE));
     }

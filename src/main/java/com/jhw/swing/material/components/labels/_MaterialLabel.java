@@ -2,6 +2,7 @@ package com.jhw.swing.material.components.labels;
 
 import com.jhw.swing.material.injection.Background_Force_Foreground;
 import com.jhw.swing.material.injection.Foreground_Force_Icon;
+import com.jhw.swing.material.injection.MaterialSwingInjector;
 import java.awt.Color;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
@@ -18,11 +19,17 @@ import com.jhw.swing.material.standards.MaterialFontRoboto;
 @Foreground_Force_Icon
 public class _MaterialLabel extends MaterialLabel {
 
-    public static _MaterialLabel from() {
-        return new _MaterialLabel();
+    public static MaterialLabel from() {
+        return MaterialSwingInjector.getImplementation(_MaterialLabel.class);
     }
 
-    protected _MaterialLabel() {
+    /**
+     * Use _MaterialLabel.from() para proy y AOP
+     *
+     * @deprecated
+     */
+    @Deprecated
+    public _MaterialLabel() {
         this.setFont(MaterialFontRoboto.MEDIUM.deriveFont(16f));
     }
 

@@ -28,7 +28,7 @@ import com.jhw.swing.material.effects.Wrong;
  */
 public class _MaterialPasswordField extends MaterialPasswordField {
 
-    public static _MaterialPasswordField from() {
+    public static MaterialPasswordField from() {
         return new _MaterialPasswordField();
     }
 

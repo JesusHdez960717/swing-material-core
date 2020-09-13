@@ -15,11 +15,11 @@ import javax.swing.SwingConstants;
  */
 public class _MaterialLabelDouble extends MaterialLabelDoble implements Update {
 
-    public static _MaterialLabelDouble from() {
+    public static MaterialLabelDoble from() {
         return new _MaterialLabelDouble();
     }
 
-    protected _MaterialLabelDouble() {
+    public _MaterialLabelDouble() {
         initComponents();
     }
 

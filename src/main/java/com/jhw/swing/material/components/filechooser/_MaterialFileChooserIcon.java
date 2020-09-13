@@ -26,18 +26,18 @@ import javax.swing.Icon;
  */
 public class _MaterialFileChooserIcon extends MaterialFileChooser {
 
-    public static _MaterialFileChooserIcon from() {
+    public static MaterialFileChooser from() {
         return new _MaterialFileChooserIcon();
     }
 
-    protected _MaterialFileChooserIcon() {
+    public _MaterialFileChooserIcon() {
         initComponents();
         this.setIcon(MaterialIcons.FOLDER);
         addListeners();
     }
 
     private void initComponents() {
-        fileChooser = _MaterialFileChooser.from();
+        fileChooser = MaterialFileChoosersFactory.build();
 
         buttonIcon = MaterialButtonsFactory.buildIconTransparent();
         buttonIcon.setPaintRipple(false);
@@ -52,7 +52,7 @@ public class _MaterialFileChooserIcon extends MaterialFileChooser {
         this.add(buttonClear, BorderLayout.EAST);
     }
 
-    private _MaterialFileChooser fileChooser;
+    private MaterialFileChooser fileChooser;
     private MaterialButtonIcon buttonIcon;
     private MaterialButtonIcon buttonClear;
 

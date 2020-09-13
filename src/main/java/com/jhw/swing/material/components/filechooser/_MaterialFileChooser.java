@@ -24,9 +24,10 @@ import javax.swing.Icon;
  */
 public class _MaterialFileChooser extends MaterialFileChooser {
 
-    public static _MaterialFileChooser from() {
+    public static MaterialFileChooser from() {
         return new _MaterialFileChooser();
     }
+    
     private FileChooser fc;
     private static File lastFile = new File("");
 
@@ -36,11 +37,12 @@ public class _MaterialFileChooser extends MaterialFileChooser {
             mergeFiles(t);
         }
     };
+    
     private final List<File> selectedFiles = new ArrayList<>();
 
     private String upload = "Upload";
 
-    protected _MaterialFileChooser() {
+    public _MaterialFileChooser() {
         initComponents();
         addListeners();
         this.setTransferHandler(new FileDropHandler(consumer));

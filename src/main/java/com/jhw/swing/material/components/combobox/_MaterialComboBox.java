@@ -34,7 +34,7 @@ import java.util.ArrayList;
  */
 public class _MaterialComboBox<T> extends MaterialComboBox<T> {
 
-    public static _MaterialComboBox from() {
+    public static MaterialComboBox from() {
         return new _MaterialComboBox();
     }
 

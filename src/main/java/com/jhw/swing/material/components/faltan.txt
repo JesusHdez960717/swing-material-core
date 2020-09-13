@@ -8,3 +8,17 @@ _MaterialButtonIconTranspRotate: setIconRotate no sale en la definicion x defect
 _MaterialIconButtonRound: tiene el atributo circle sin ser estandar
 
 _buttonAddEdit: isCreate no es estandar
+
+panelAvatar y curves: sin estandar
+
+_PanelGradient: color primario y secundario sin definicion en superclase
+
+_PanelGradientTranslucid: trans sin definicion
+
+
+dashboard completo
+glasspane completo
+login completo
+
+
+
