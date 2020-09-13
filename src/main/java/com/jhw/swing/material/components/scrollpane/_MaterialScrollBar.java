@@ -15,7 +15,7 @@ import javax.swing.plaf.basic.BasicScrollBarUI;
  */
 public class _MaterialScrollBar extends MaterialScrollBar {
 
-    public static _MaterialScrollBar from(int orientation) {
+    public static MaterialScrollBar from(int orientation) {
         return new _MaterialScrollBar(orientation);
     }
 
@@ -29,11 +29,11 @@ public class _MaterialScrollBar extends MaterialScrollBar {
     private Color background = MaterialColors.WHITE;
     private Color foreground = MaterialColors.GREY_600;
 
-    protected _MaterialScrollBar(Color background, int orientation) {
+    public _MaterialScrollBar(Color background, int orientation) {
         this(background, MaterialColors.GREY_600, orientation);
     }
 
-    protected _MaterialScrollBar(int orientation) {
+    public _MaterialScrollBar(int orientation) {
         this(MaterialColors.WHITE, MaterialColors.GREY_600, orientation);
     }
 

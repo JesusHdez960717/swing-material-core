@@ -6,12 +6,8 @@
 package com.jhw.swing.material.components.popup;
 
 import com.jhw.swing.material.standards.MaterialColors;
-import com.jhw.swing.util.Utils;
 import com.sun.awt.AWTUtilities;
 import java.awt.BorderLayout;
-import java.awt.MouseInfo;
-import java.awt.Point;
-import java.awt.Rectangle;
 import java.awt.Window;
 import java.util.ArrayList;
 import java.util.List;

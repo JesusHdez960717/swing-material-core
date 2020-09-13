@@ -28,7 +28,7 @@ import javax.swing.JComponent;
  */
 public class _MaterialScrollPaneCore extends MaterialScrollPane {
 
-    public static _MaterialScrollPaneCore from() {
+    public static MaterialScrollPane from() {
         return new _MaterialScrollPaneCore();
     }
 

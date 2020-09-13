@@ -37,8 +37,8 @@ public class PanelCircular extends JPanel {
     //para la sombra cuando le paso por arriba a cada component
     private Component selectedComp = null;
 
-    public PanelCircular(List<JComponent> components, int size) {
-        setUpComponents(components, size);
+    public PanelCircular(List<JComponent> components, int eachComponentSize) {
+        setUpComponents(components, eachComponentSize);
     }
 
     private Component addInner(Component comp) {

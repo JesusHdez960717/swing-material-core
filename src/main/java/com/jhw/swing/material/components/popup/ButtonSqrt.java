@@ -6,12 +6,10 @@
 package com.jhw.swing.material.components.popup;
 
 import com.jhw.swing.material.components.button._MaterialButton;
-import com.jhw.swing.material.components.button._MaterialButton;
 import com.jhw.swing.material.injection.Background_Force_Foreground;
 import com.jhw.swing.material.injection.Foreground_Force_Icon;
 import com.jhw.swing.material.injection.MaterialSwingInjector;
 import com.jhw.swing.material.standards.MaterialColors;
-import com.jhw.swing.material.standards.MaterialShadow;
 import com.jhw.swing.util.MaterialDrawingUtils;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -36,16 +34,28 @@ public class ButtonSqrt extends _MaterialButton {
     }
 
     public static ButtonSqrt from(Action a) {
-        ButtonSqrt sqrt = MaterialSwingInjector.getImplementation(ButtonSqrt.class);
+        ButtonSqrt sqrt = from();
         sqrt.setAction(a);
         return sqrt;
     }
 
+    /**
+     * Use ButtonSqrt.from() para proy y AOP
+     *
+     * @deprecated
+     */
+    @Deprecated
     public ButtonSqrt(Action act) {
         this();
         this.setAction(act);
     }
 
+    /**
+     * Use ButtonSqrt.from() para proy y AOP
+     *
+     * @deprecated
+     */
+    @Deprecated
     public ButtonSqrt() {
         this.setBackground(MaterialColors.BLUEGREY_300);
         this.setBorderColor(MaterialColors.BLUEGREY_50);

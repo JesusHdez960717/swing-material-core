@@ -2,7 +2,6 @@ package com.jhw.swing.material.components.textarea;
 
 import com.jhw.swing.material.components.container.layout.VerticalLayoutComponent;
 import com.jhw.swing.material.components.container.layout.VerticalLayoutContainer;
-import com.jhw.swing.material.components.container.panel._PanelTransparent;
 import com.jhw.swing.material.components.labels.MaterialLabel;
 import com.jhw.swing.material.components.labels.MaterialLabelsFactory;
 import java.awt.Color;
@@ -37,7 +36,7 @@ public class DefaultContentArea extends ContentArea {
         return new DefaultContentArea();
     }
 
-    protected DefaultContentArea() {
+    public DefaultContentArea() {
         setLayout(new BorderLayout());
     }
 

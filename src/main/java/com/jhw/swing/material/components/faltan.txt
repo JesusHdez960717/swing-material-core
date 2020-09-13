@@ -19,6 +19,10 @@ _PanelGradientTranslucid: trans sin definicion
 dashboard completo
 glasspane completo
 login completo
+spinner completo
+
+_MaterialTextArea estandar en superclase
 
 
 
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! text field, task pane, table!!!!!!!!!!!!!!!!!!!!!!!!!!!

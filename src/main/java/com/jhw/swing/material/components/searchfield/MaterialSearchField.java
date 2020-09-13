@@ -10,7 +10,6 @@ import com.jhw.swing.material.components.container.panel._MaterialPanel;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import javax.swing.JTextField;
-import org.jdesktop.swingx.JXTextField;
 
 /**
  *

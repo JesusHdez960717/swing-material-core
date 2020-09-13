@@ -8,7 +8,6 @@ package com.jhw.swing.material.components.textarea;
 import com.jhw.swing.material.components.container.panel._PanelTransparent;
 import java.awt.Color;
 import java.awt.Font;
-import javax.swing.JComponent;
 
 /**
  *

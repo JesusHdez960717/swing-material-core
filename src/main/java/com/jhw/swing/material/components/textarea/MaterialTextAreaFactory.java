@@ -14,6 +14,7 @@ public class MaterialTextAreaFactory {
     public static _MaterialTextArea build() {
         return _MaterialTextArea.from();
     }
+
     public static ContentArea buildContentArea() {
         return DefaultContentArea.from();
     }
