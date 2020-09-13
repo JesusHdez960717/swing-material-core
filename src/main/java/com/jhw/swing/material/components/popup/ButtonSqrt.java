@@ -50,13 +50,14 @@ public class ButtonSqrt extends _MaterialButton {
         this.setBackground(MaterialColors.BLUEGREY_300);
         this.setBorderColor(MaterialColors.BLUEGREY_50);
         this.setBorderThickness(2);
+        this.setType(Type.FLAT);
     }
 
     @Override
     public void setAction(Action a) {
         super.setAction(a);
         if (getIcon() != null) {
-            int s = 3 * Math.max(getIcon().getIconWidth(), getIcon().getIconHeight());
+            int s = (int) (2.5f * Math.max(getIcon().getIconWidth(), getIcon().getIconHeight()));
             this.setPreferredSize(new Dimension(s, s));
         } else {
             this.setPreferredSize(new Dimension(75, 75));
@@ -67,22 +68,8 @@ public class ButtonSqrt extends _MaterialButton {
     protected void paintComponent(Graphics g) {
         Graphics2D g2 = MaterialDrawingUtils.getAliasedGraphics(g);
 
-        int offset_lr = MaterialShadow.OFFSET_LEFT + MaterialShadow.OFFSET_RIGHT;
-        int offset_td = MaterialShadow.OFFSET_TOP + MaterialShadow.OFFSET_BOTTOM;
-        int offset_left = MaterialShadow.OFFSET_LEFT;
-        int offset_top = MaterialShadow.OFFSET_TOP;
-
-        if (getType() != Type.FLAT && isEnabled()) {
-            paintElevation(g2);
-        }
-
-        if (getType() == Type.FLAT) {//si es flat quito correcciones de offset
-            offset_lr = 0;
-            offset_td = 0;
-            offset_left = 0;
-            offset_top = 0;
-        }
-        g2.translate(offset_left, offset_top);
+        int offset_lr = (int) getBorderThickness();
+        int offset_td = (int) getBorderThickness();
 
         //color de fondo
         if (isEnabled()) {
@@ -106,20 +93,19 @@ public class ButtonSqrt extends _MaterialButton {
         //icon
         if (this.getIcon() != null) {
             int xIcon = (int) (size - getIcon().getIconWidth()) / 2 - offset_lr / 2;
-            int yIcon = (int) (size / 2 - getIcon().getIconHeight() - 5);
+            int yIcon = (int) (size / 2 - getIcon().getIconHeight() + 3);
             this.getIcon().paintIcon(this, g2, xIcon, yIcon);
         }
 
         FontMetrics metrics = g2.getFontMetrics(getFont());
 
         int xText = (int) (size - metrics.stringWidth(getText())) / 2 - offset_lr / 2;
-        int yText = size / 2 + metrics.getAscent();
+        int yText = size / 2 + metrics.getAscent() + 3;
 
         g2.setColor(getForeground());
         g2.setFont(getFont());
         g2.drawString(this.getText(), xText, yText);
 
-        g2.translate(-offset_left, -offset_top);
     }
 
 }
