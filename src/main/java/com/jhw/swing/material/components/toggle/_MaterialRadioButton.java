@@ -12,6 +12,7 @@ public class _MaterialRadioButton extends _MaterialToggleButton {
 
     public _MaterialRadioButton() {
         super(_MaterialToggleButton.Type.RADIO_BUTTON);
+        this.setText("Radio");
     }
 
 }

@@ -7,7 +7,6 @@ package com.jhw.swing.examples;
 
 import com.jhw.swing.material.components.button.MaterialButton;
 import com.jhw.swing.material.components.button.MaterialButtonsFactory;
-import com.jhw.swing.material.components.clock._ClockFace1123123;
 import com.jhw.swing.material.standards.MaterialColors;
 import com.jhw.swing.material.standards.MaterialIcons;
 import com.jhw.swing.ui.MaterialLookAndFeel;
@@ -18,8 +17,6 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
-import javax.swing.JButton;
-import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 

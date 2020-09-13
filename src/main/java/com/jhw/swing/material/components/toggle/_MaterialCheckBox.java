@@ -14,6 +14,7 @@ public class _MaterialCheckBox extends _MaterialToggleButton implements Material
 
     public _MaterialCheckBox() {
         super(_MaterialToggleButton.Type.CHECK_BOX);
+        this.setText("Check Box");
     }
 
 }

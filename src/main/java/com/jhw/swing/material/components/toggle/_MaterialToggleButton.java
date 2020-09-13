@@ -33,27 +33,8 @@ public class _MaterialToggleButton extends MaterialToggleButton {
         this(_MaterialToggleButton.Type.DEFAULT);
     }
 
-    @Override
-    public ImageIcon getUnselectedIcon() {
-        return unselectedIcon;
-    }
-
-    @Override
-    public void setUnselectedIcon(ImageIcon unselectedIcon) {
-        this.unselectedIcon = unselectedIcon;
-    }
-
-    @Override
-    public ImageIcon getSelectedIcon() {
-        return selectedIcon;
-    }
-
-    @Override
-    public void setSelectedIcon(ImageIcon selectedIcon) {
-        this.selectedIcon = selectedIcon;
-    }
-
     public _MaterialToggleButton(Type type) {
+        //this.setText("Toggle");
         setCorrespondingIcons(type);
         this.setFont(MaterialFontRoboto.REGULAR.deriveFont(16f));
         this.setOpaque(false);
@@ -74,6 +55,26 @@ public class _MaterialToggleButton extends MaterialToggleButton {
         });
     }
 
+    @Override
+    public ImageIcon getUnselectedIcon() {
+        return unselectedIcon;
+    }
+
+    @Override
+    public void setUnselectedIcon(ImageIcon unselectedIcon) {
+        this.unselectedIcon = unselectedIcon;
+    }
+
+    @Override
+    public ImageIcon getSelectedIcon() {
+        return selectedIcon;
+    }
+
+    @Override
+    public void setSelectedIcon(ImageIcon selectedIcon) {
+        this.selectedIcon = selectedIcon;
+    }
+
     private void setCorrespondingIcons(Type type) {
         if (type == Type.CHECK_BOX) {
             unselectedIcon = MaterialIcons.CHECK_BOX_OUTLINE_BLANK;
@@ -89,9 +90,15 @@ public class _MaterialToggleButton extends MaterialToggleButton {
 
     @Override
     protected void paintComponent(Graphics g) {
+        //super.paintComponent(MaterialDrawingUtils.getAliasedGraphics(g));
         Graphics2D g2 = MaterialDrawingUtils.getAliasedGraphics(g);
 
         if (getText().trim().isEmpty() && getIcon() != null) {//solo pinto icono en el medio
+            if ((isMousePressed && !this.isSelected()) || (!isMousePressed && this.isSelected()) || (isMousePressed && this.isSelected())) {
+                this.setIcon(selectedIcon);
+            } else {
+                this.setIcon(unselectedIcon);
+            }
             this.getIcon().paintIcon(this, g2, (this.getSize().width - getIcon().getIconWidth()) / 2, (this.getSize().height - getIcon().getIconHeight()) / 2);
         } else {
             if ((isMousePressed && !this.isSelected()) || (!isMousePressed && this.isSelected()) || (isMousePressed && this.isSelected())) {
