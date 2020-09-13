@@ -39,8 +39,8 @@ public class test extends javax.swing.JFrame {
         jPanel1.setBackground(MaterialColors.WHITE);
 
         List<Action> actions = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            actions.add(new AbstractAction("EXCEL", MaterialIcons.ADD_A_PHOTO.deriveIcon(35f)) {
+        for (int i = 0; i < 8; i++) {
+            actions.add(new AbstractAction("EXCEL", MaterialIcons.ADD_A_PHOTO) {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     JOptionPane.showMessageDialog(null, "Click en el boton.");

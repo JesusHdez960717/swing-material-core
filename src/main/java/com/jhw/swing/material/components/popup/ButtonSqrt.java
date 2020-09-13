@@ -51,6 +51,7 @@ public class ButtonSqrt extends _MaterialButton {
         this.setBorderColor(MaterialColors.BLUEGREY_50);
         this.setBorderThickness(2);
         this.setType(Type.FLAT);
+        this.setAccentColorFadeInto(MaterialColors.WHITE);
     }
 
     @Override

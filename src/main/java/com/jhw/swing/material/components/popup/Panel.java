@@ -126,10 +126,10 @@ public class Panel extends JPanel {
 
         //si son los de los 4 ptos cardinales cogo los 2 mas cerca
         if (Math.abs(four.get(0).distance(mid) - four.get(1).distance(mid)) < 1) {
-            return new Pair<Point>(four.get(0), four.get(1));
+            return new Pair<>(four.get(0), four.get(1));
         }
         //si no, cogo los 2 del medio
-        return new Pair<Point>(four.get(1), four.get(2));
+        return new Pair<>(four.get(1), four.get(2));
     }
 
     private void setUpComponents(List<JComponent> components, int size) {
@@ -183,9 +183,10 @@ public class Panel extends JPanel {
         for (JComponent component : components) {
             component.setPreferredSize(new Dimension(size, size));
         }
-        int total = (int) ((double) (size * 3.45d));
+        int total = (int) ((double) (size * 4.1d));
         if (components.size() > 6) {
-            total += (components.size() - 6) * size / 3;
+            int increase = (int) ((components.size() - 6) * ((double) size / 2d));
+            total += increase;
         }
         this.setPreferredSize(new Dimension(total, total));
     }
