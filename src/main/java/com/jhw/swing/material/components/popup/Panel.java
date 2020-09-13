@@ -11,6 +11,7 @@ import com.jhw.swing.material.standards.MaterialColors;
 import com.jhw.swing.material.standards.MaterialShadow;
 import com.jhw.swing.util.MaterialDrawingUtils;
 import java.awt.AlphaComposite;
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -23,6 +24,7 @@ import javax.swing.Action;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
+import javax.swing.border.LineBorder;
 
 /**
  *
@@ -30,11 +32,17 @@ import javax.swing.JPanel;
  */
 public class Panel extends JPanel {
 
+    //para la sombra de background
     protected final MaterialShadow shadowFast = new MaterialShadow();
+
+    //para la sombra cuando le paso por arriba a cada component
     private Component selectedComp = null;
 
-    @Override
-    public Component add(Component comp) {
+    public Panel(List<JComponent> components, int size) {
+        setUpComponents(components, size);
+    }
+
+    private Component addInner(Component comp) {
         super.add(comp);
         addListenerComponent(comp);
         return comp;
@@ -53,7 +61,6 @@ public class Panel extends JPanel {
                 selectedComp = null;
                 repaint();
             }
-
         });
     }
 
@@ -62,8 +69,11 @@ public class Panel extends JPanel {
         super.paintComponent(g);
         Graphics2D g2 = MaterialDrawingUtils.getAliasedGraphics(g);
 
-        int shadowW = (int) sizee() - margin();
-        g2.drawImage(shadowFast.render(shadowW, shadowW, 5, 2, MaterialShadow.Type.CIRCULAR), margin() / 2, margin() / 2, null);
+        int border = 5;
+        int elevation = 2;
+        int margin = margin();
+        int shadowW = (int) sizee() - margin;
+        g2.drawImage(shadowFast.render(shadowW, shadowW, border, elevation, MaterialShadow.Type.CIRCULAR), margin / 2, margin / 2, null);
 
         /*if (selectedComp != null) {
             g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.5f));
@@ -78,15 +88,17 @@ public class Panel extends JPanel {
         }*/
     }
 
-    public void setUpActions(List<JComponent> components, int size) {
+    private void setUpComponents(List<JComponent> components, int size) {
         adjustSize(components, size);
+
         //this.setBorder(new LineBorder(Color.red, 3));//test
         this.setBackground(MaterialColors.TRANSPARENT);
         this.setOpaque(false);
         //panel.setBackground(MaterialColors.YELLOW_200);//test
         this.setLayout(null);
 
-        Point center = new Point(sizee() / 2, sizee() / 2);
+        int sizee = sizee();
+        Point center = new Point(sizee / 2, sizee / 2);
         int radius = center.x;
 
         int numbers = (int) ((radius) * .75f);
@@ -97,9 +109,9 @@ public class Panel extends JPanel {
             float x = (float) Math.round((((double) numbers) * Math.cos(theta)) - (size / 2.0d));
             float y = (float) Math.round((((double) numbers) * Math.sin(theta)) - (size / 2.0d));
 
-            this.add(btn);
+            this.addInner(btn);
             btn.setSize(btn.getPreferredSize());
-            btn.setLocation((int) x + sizee() / 2, (int) y + sizee() / 2);
+            btn.setLocation((int) x + sizee / 2, (int) y + sizee / 2);
         }
 
     }
@@ -109,7 +121,8 @@ public class Panel extends JPanel {
     }
 
     private int margin() {
-        return sizee() / 20;
+        Component c = getComponent(0);
+        return (int) (c.getLocation().y + (double) c.getPreferredSize().getHeight() / 3d);
     }
 
     /**
@@ -128,7 +141,7 @@ public class Panel extends JPanel {
         }
         int total = (int) ((double) (size * 3.45d));
         if (components.size() > 6) {
-            total += (components.size() - 6) * 0.75 * size;
+            total += (components.size() - 6) * size / 3;
         }
         this.setPreferredSize(new Dimension(total, total));
     }
