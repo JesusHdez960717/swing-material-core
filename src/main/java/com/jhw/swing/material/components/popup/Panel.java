@@ -8,6 +8,9 @@ package com.jhw.swing.material.components.popup;
 import com.jhw.swing.material.standards.MaterialColors;
 import com.jhw.swing.material.standards.MaterialShadow;
 import com.jhw.swing.util.MaterialDrawingUtils;
+import com.jhw.utils.others.Pair;
+import com.jhw.utils.others.PairDifferent;
+import java.awt.AlphaComposite;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -15,6 +18,9 @@ import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
@@ -66,19 +72,56 @@ public class Panel extends JPanel {
         int elevation = 2;
         int margin = margin();
         int shadowW = (int) sizee() - margin;
+
+        //transparencia de la sombre
+        g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.6f));
+
         g2.drawImage(shadowFast.render(shadowW, shadowW, border, elevation, MaterialShadow.Type.CIRCULAR), margin / 2, margin / 2, null);
 
-        /*if (selectedComp != null) {
+        if (selectedComp != null) {
             g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.5f));
             g2.setColor(MaterialColors.GREY_50);
 
             Point mid = new Point(sizee() / 2, sizee() / 2);
             int x = selectedComp.getLocation().x;
             int y = selectedComp.getLocation().y;
-            Point p1 = new Point(x, y);
-            Point p2 = new Point(x + 10, y);
-            g2.fillPolygon(new int[]{mid.x, p1.x, p2.x}, new int[]{mid.y, p1.y, p2.y}, 3);
-        }*/
+            Pair<Point> p = getPointsSelected();
+            g2.fillPolygon(new int[]{mid.x, p.getA().x, p.getB().x}, new int[]{mid.y, p.getA().y, p.getB().y}, 3);
+        }
+    }
+
+    private Pair<Point> getPointsSelected() {
+        Point mid = new Point(sizee() / 2, sizee() / 2);
+
+        int x = selectedComp.getLocation().x;
+        int y = selectedComp.getLocation().y;
+
+        List<Point> four = new ArrayList<>();
+
+        //1er punto, punto donde esta el component, superior izquierdo
+        Point p1 = new Point(x, y);
+        four.add(p1);
+
+        //2do punto, superior derecho
+        Point p2 = new Point((int) (x + selectedComp.getSize().getWidth()), y);
+        four.add(p2);
+
+        //3er punto, inferior izquierdo
+        Point p3 = new Point(x, (int) (y + selectedComp.getSize().getHeight()));
+        four.add(p3);
+
+        //4to punto, inferior derecho
+        Point p4 = new Point((int) (x + selectedComp.getSize().getWidth()), (int) (y + selectedComp.getSize().getHeight()));
+        four.add(p4);
+
+        Collections.sort(four, (Point o1, Point o2) -> Double.compare(o1.distance(mid), o2.distance(mid)));
+
+        //si son los de los 4 ptos cardinales cogo los 2 mas cerca
+        if (Math.abs(four.get(0).distance(mid) - four.get(1).distance(mid)) < 1) {
+            return new Pair<Point>(four.get(0), four.get(1));
+        }
+        //si no, cogo los 2 del medio
+        return new Pair<Point>(four.get(1), four.get(2));
     }
 
     private void setUpComponents(List<JComponent> components, int size) {
