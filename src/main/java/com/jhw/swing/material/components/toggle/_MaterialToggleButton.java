@@ -1,6 +1,5 @@
 package com.jhw.swing.material.components.toggle;
 
-import com.jhw.swing.material.components.labels._MaterialLabel;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.FontMetrics;
@@ -9,20 +8,21 @@ import java.awt.Graphics2D;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.ImageIcon;
-import javax.swing.JToggleButton;
 import javax.swing.SwingConstants;
 import com.jhw.swing.util.MaterialDrawingUtils;
-import com.jhw.swing.util.interfaces.MaterialComponent;
 import com.jhw.swing.material.standards.MaterialFontRoboto;
 import com.jhw.swing.material.standards.MaterialIcons;
 import com.jhw.swing.material.standards.MaterialImages;
-import com.jhw.swing.util.interfaces.BindableComponent;
 
 /**
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-public class _MaterialToggleButton extends JToggleButton implements BindableComponent<Boolean>, MaterialComponent {
+public class _MaterialToggleButton extends MaterialToggleButton {
+
+    public static MaterialToggleButton from() {
+        return new _MaterialToggleButton();
+    }
 
     private ImageIcon unselectedIcon;
     private ImageIcon selectedIcon;
@@ -33,18 +33,22 @@ public class _MaterialToggleButton extends JToggleButton implements BindableComp
         this(_MaterialToggleButton.Type.DEFAULT);
     }
 
+    @Override
     public ImageIcon getUnselectedIcon() {
         return unselectedIcon;
     }
 
+    @Override
     public void setUnselectedIcon(ImageIcon unselectedIcon) {
         this.unselectedIcon = unselectedIcon;
     }
 
+    @Override
     public ImageIcon getSelectedIcon() {
         return selectedIcon;
     }
 
+    @Override
     public void setSelectedIcon(ImageIcon selectedIcon) {
         this.selectedIcon = selectedIcon;
     }

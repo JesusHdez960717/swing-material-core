@@ -8,6 +8,10 @@ import com.jhw.swing.util.interfaces.MaterialComponent;
  */
 public class _MaterialCheckBox extends _MaterialToggleButton implements MaterialComponent {
 
+    public static MaterialToggleButton from() {
+        return new _MaterialCheckBox();
+    }
+
     public _MaterialCheckBox() {
         super(_MaterialToggleButton.Type.CHECK_BOX);
     }
