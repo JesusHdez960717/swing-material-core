@@ -8,6 +8,7 @@ import com.jhw.personalization.services.PersonalizationHandler;
 import com.jhw.swing.material.effects.Iconable;
 import com.jhw.swing.material.injection.Background_Force_Foreground;
 import com.jhw.swing.material.injection.Foreground_Force_Icon;
+import com.jhw.swing.material.injection.MaterialSwingInjector;
 import com.jhw.swing.util.interfaces.MaterialComponent;
 import com.jhw.swing.material.standards.MaterialFontRoboto;
 import com.jhw.swing.material.standards.MaterialIcons;
@@ -24,12 +25,19 @@ import java.awt.event.MouseEvent;
 public class _MaterialButtonHiperlink extends JButton implements Iconable, MaterialComponent {
 
     public static _MaterialButtonHiperlink from() {
-        return new _MaterialButtonHiperlink();
+        return MaterialSwingInjector.getImplementation(_MaterialButtonHiperlink.class);
+        //return new _MaterialButtonHiperlink();
     }
 
     private Color mouseEnteredColor = MaterialColors.BLUEA_700;
     private Color mouseExitedColor = MaterialColors.GREENA_700;
 
+    /**
+     * Usar _MaterialButtonHiperlink.from() para que coja proxy y AOP.
+     *
+     * @deprecated
+     */
+    @Deprecated
     public _MaterialButtonHiperlink() {
         mouseExitedColor = (PersonalizationHandler.getColor(Personalization.KEY_COLOR_BUTTON_ADD));
         this.setFont(MaterialFontRoboto.MEDIUM.deriveFont(16f));
@@ -67,53 +75,4 @@ public class _MaterialButtonHiperlink extends JButton implements Iconable, Mater
         this.mouseExitedColor = mouseExitedColor;
     }
 
-    /*
-    @Override
-    protected void paintComponent(Graphics g) {
-        Graphics2D g2 = MaterialDrawingUtils.getAliasedGraphics(g);
-
-        int iconWidth = 0;
-        if (getIcon() != null) {
-            iconWidth = getIcon().getIconWidth();
-        }
-
-        FontMetrics metrics = g2.getFontMetrics(getFont());
-        int y = (getHeight() - metrics.getHeight()) / 2 + metrics.getAscent();
-
-        int xText = 0;
-        int xIcon = 0;
-        int widthReal = getWidth();
-        int strWidth = metrics.stringWidth(getText());
-        int align = getHorizontalAlignment();
-
-        if (align == SwingConstants.TRAILING || align == SwingConstants.RIGHT) {
-            xText = widthReal - strWidth - 2 * getIconTextGap();
-            xIcon = xText - iconWidth - 2 * getIconTextGap();
-        } else if (align == SwingConstants.LEADING || align == SwingConstants.LEFT) {
-            xIcon = getIconTextGap();
-            xText = iconWidth + getIconTextGap();
-        } else {
-            xText = (widthReal - strWidth) / 2 + getIconTextGap() / 2 + iconWidth / 2;
-            xIcon = xText - iconWidth - getIconTextGap();
-        }
-
-        Color fg = this.getForeground();
-        if (!this.isEnabled()) {
-            g2.setColor(new Color(fg.getRed() / 255f, fg.getGreen() / 255f, fg.getBlue() / 255f, 0.6f));
-        }
-        g2.setColor(fg);
-        g2.setFont(getFont());
-        g2.drawString(this.getText(), xText, y);
-
-        if (this.getIcon() != null) {
-            this.getIcon().paintIcon(this, g2, xIcon, (getHeight() - getIcon().getIconHeight()) / 2);
-        }
-
-    }
-
-    @Override
-    protected void paintBorder(Graphics g) {
-        //intentionally left blank
-    }
-     */
 }

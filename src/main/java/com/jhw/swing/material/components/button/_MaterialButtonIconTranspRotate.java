@@ -2,6 +2,7 @@ package com.jhw.swing.material.components.button;
 
 import com.jhw.swing.material.injection.Background_Force_Foreground;
 import com.jhw.swing.material.injection.Foreground_Force_Icon;
+import com.jhw.swing.material.injection.MaterialSwingInjector;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.concurrent.TimeUnit;
@@ -27,10 +28,19 @@ public class _MaterialButtonIconTranspRotate extends _MaterialButtonIconTranspar
     private Animator anim;
 
     public static _MaterialButtonIconTranspRotate from() {
-        return new _MaterialButtonIconTranspRotate();
+        return MaterialSwingInjector.getImplementation(_MaterialButtonIconTranspRotate.class);
+        //return new _MaterialButtonIconTranspRotate();
     }
 
-    protected _MaterialButtonIconTranspRotate() {
+    /**
+     * NO USAR ESTE CONSTRUCTOR. Usar el _MaterialButtonIconTranspRotate.from() que internamente
+     * le asigna el proxy y demas para el trabajo automatizado con AOP.(Aspect
+     * Oriented Programing)
+     *
+     * @deprecated
+     */
+    @Deprecated
+    public _MaterialButtonIconTranspRotate() {
     }
 
     public void setIconRotate(Icon icon) {

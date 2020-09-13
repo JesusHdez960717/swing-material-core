@@ -5,16 +5,13 @@
  */
 package com.jhw.swing.material.components.button;
 
-import com.jhw.swing.material.components.popup.ButtonSqrt;
 import com.jhw.swing.material.components.button.prepared.*;
 import com.jhw.swing.material.components.popup.MaterialPopupFactory;
-import com.jhw.swing.material.components.popup.PopupCircular;
 import com.jhw.swing.material.injection.MaterialSwingInjector;
 import java.util.List;
 import javax.swing.Action;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JPopupMenu;
 
 /**
  *
@@ -23,7 +20,7 @@ import javax.swing.JPopupMenu;
 public class MaterialButtonsFactory {
 
     public static MaterialButton buildButton() {
-        return MaterialSwingInjector.getImplementation(_MaterialButton.class);
+        return _MaterialButton.from();
     }
 
     public static _MaterialButtonDouble buildDouble() {
@@ -31,7 +28,7 @@ public class MaterialButtonsFactory {
     }
 
     public static MaterialButton buildFlat() {
-        MaterialButton btn = MaterialSwingInjector.getImplementation(_MaterialButton.class);
+        MaterialButton btn = buildButton();
         btn.setType(_MaterialButton.Type.FLAT);
         btn.setBorderRadius(0);
         return btn;
@@ -39,12 +36,12 @@ public class MaterialButtonsFactory {
 
     //-----------Icon Transparent----------------
     public static MaterialButtonIcon buildIconTranspRotate() {
-        return MaterialSwingInjector.getImplementation(_MaterialButtonIconTranspRotate.class);
+        return _MaterialButtonIconTranspRotate.from();
     }
 
     //----------------Icon Transparent----------------
     public static MaterialButtonIcon buildIconTransparent() {
-        return MaterialSwingInjector.getImplementation(_MaterialButtonIconTransparent.class);
+        return _MaterialButtonIconTransparent.from();
     }
 
     public static MaterialButtonIcon buildIconTransparent(ImageIcon icon) {
@@ -54,30 +51,37 @@ public class MaterialButtonsFactory {
     }
 
     //----------------PopupCircular----------------
+    /**
+     * Preferiblemente usar directo con la lista de acciones.
+     *
+     * @return
+     * @deprecated
+     */
+    @Deprecated
     public static MaterialButton buildPopup() {
-        return MaterialSwingInjector.getImplementation(_MaterialButtonPopup.class);
+        return _MaterialButtonPopup.from();
     }
 
     public static MaterialButton buildPopup(List<Action> actions) {
-        MaterialButton btn = MaterialSwingInjector.getImplementation(_MaterialButtonPopup.class);
+        MaterialButton btn = buildPopup();
         btn.setComponentPopupMenu(MaterialPopupFactory.buildCircular(actions));
         return btn;
     }
     //----------------------------------------
 
     public static JButton buildHyperlink() {
-        return MaterialSwingInjector.getImplementation(_MaterialButtonHiperlink.class);
+        return _MaterialButtonHiperlink.from();
     }
 
     public static MaterialButton buildRound() {
-        return MaterialSwingInjector.getImplementation(_MaterialIconButtonRound.class);
+        return _MaterialIconButtonRound.from();
     }
 
     public static MaterialButton buildView() {
-        return MaterialSwingInjector.getImplementation(_buttonView.class);
+        return _buttonView.from();
     }
 
     public static MaterialButton buildAddEdit() {
-        return MaterialSwingInjector.getImplementation(_buttonAddEdit.class);
+        return _buttonAddEdit.from();
     }
 }

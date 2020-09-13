@@ -16,7 +16,7 @@ public class _MaterialButtonDouble extends _MaterialPanelComponent {
         return new _MaterialButtonDouble();
     }
 
-    private _MaterialButtonDouble() {
+    public _MaterialButtonDouble() {
         super(0);
         initComponents();
         personalize();

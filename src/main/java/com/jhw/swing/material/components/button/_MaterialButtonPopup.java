@@ -9,6 +9,7 @@ import com.jhw.personalization.core.domain.Personalization;
 import com.jhw.personalization.services.PersonalizationHandler;
 import com.jhw.swing.material.injection.Background_Force_Foreground;
 import com.jhw.swing.material.injection.Foreground_Force_Icon;
+import com.jhw.swing.material.injection.MaterialSwingInjector;
 import com.jhw.swing.material.standards.MaterialColors;
 import com.jhw.swing.material.standards.MaterialIcons;
 import com.jhw.swing.util.Utils;
@@ -28,17 +29,23 @@ import javax.swing.JPopupMenu;
 public class _MaterialButtonPopup extends _MaterialButton {
 
     public static _MaterialButtonPopup from() {
-        return new _MaterialButtonPopup();
+        return MaterialSwingInjector.getImplementation(_MaterialButtonPopup.class);
     }
 
     private JPopupMenu popup;
 
-    protected _MaterialButtonPopup() {
-        presonalize();
+    /**
+     * Usar _MaterialButtonPopup.from() para proxy y AOP.
+     *
+     * @deprecated
+     */
+    @Deprecated
+    public _MaterialButtonPopup() {
+        personalize();
         addListeners();
     }
 
-    private void presonalize() {
+    private void personalize() {
         this.setBackground(PersonalizationHandler.getColor(Personalization.KEY_COLOR_BACKGROUND_PANEL));
         this.setAccentColorFadeInto(MaterialColors.BLUEGREY_50);
         this.setPaintRipple(false);

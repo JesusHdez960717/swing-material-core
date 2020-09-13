@@ -9,6 +9,7 @@ import com.jhw.swing.material.effects.DefaultRippleEffect;
 import com.jhw.swing.material.effects.RippleEffect;
 import com.jhw.swing.material.injection.Background_Force_Foreground;
 import com.jhw.swing.material.injection.Foreground_Force_Icon;
+import com.jhw.swing.material.injection.MaterialSwingInjector;
 import com.jhw.swing.material.standards.MaterialIcons;
 import javax.swing.plaf.basic.BasicButtonUI;
 
@@ -21,13 +22,16 @@ public class _MaterialButtonIconTransparent extends MaterialButtonIcon {
     private final RippleEffect ripple = DefaultRippleEffect.applyFixedTo(this);
 
     public static _MaterialButtonIconTransparent from() {
-        return new _MaterialButtonIconTransparent();
+        return MaterialSwingInjector.getImplementation(_MaterialButtonIconTransparent.class);
     }
 
     /**
-     * Creates a new button.
+     * Usar _MaterialButtonIconTransparent.from() para proxy y AOP
+     *
+     * @deprecated
      */
-    protected _MaterialButtonIconTransparent() {
+    @Deprecated
+    public _MaterialButtonIconTransparent() {
         this.setIcon(MaterialIcons.COMPUTER);
         this.setPreferredSize(new Dimension(2 * this.getIcon().getIconWidth(), 2 * this.getIcon().getIconHeight()));
         this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));

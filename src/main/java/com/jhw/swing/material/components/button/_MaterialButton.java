@@ -5,6 +5,7 @@ import com.jhw.swing.material.injection.Background_Force_Foreground;
 import com.jhw.swing.material.effects.Iconable;
 import com.jhw.swing.material.standards.*;
 import com.jhw.swing.material.effects.*;
+import com.jhw.swing.material.injection.MaterialSwingInjector;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.geom.RoundRectangle2D;
@@ -43,11 +44,16 @@ public class _MaterialButton extends MaterialButton {
     private Type type = Type.DEFAULT;
 
     public static MaterialButton from() {
-        return new _MaterialButton();
+        return MaterialSwingInjector.getImplementation(_MaterialButton.class);
+        //return new _MaterialButton();
     }
 
     /**
-     * Creates a new button.
+     * NO USAR ESTE CONSTRUCTOR. Usar el _MaterialButton.from() que internamente
+     * le asigna el proxy y demas para el trabajo automatizado con AOP.(Aspect
+     * Oriented Programing)
+     *
+     * @deprecated
      */
     @Deprecated
     public _MaterialButton() {

@@ -26,10 +26,34 @@ import javax.swing.SwingConstants;
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-public class SplashScreen extends _PanelGradient {
+public class SplashScreen extends JPanel {
+
+    public static SplashScreen from(JPanel panel) {
+        return new SplashScreen() {
+            @Override
+            public JPanel mainSplash() {
+                return panel;
+            }
+        };
+    }
 
     private String text = "Cargando...\n";
 
+    /**
+     * Usar SplashScreen.from(panel). Si se va a usar este constructor
+     * asegurarse de reimplementar mainSplash(), asi:
+     * <pre>
+     *  new SplashScreen() {
+     *      @Override
+     *      public JPanel mainSplash() {
+     *          return panel;//el panel que se quiere mostrar
+     *      }
+     *  };
+     * </pre>
+     *
+     * @deprecated
+     */
+    @Deprecated
     public SplashScreen() {
         initComponents();
         redirectOut();

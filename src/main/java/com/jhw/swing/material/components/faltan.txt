@@ -1,0 +1,10 @@
+_MaterialButtonDouble: sin estandar de clase generica abstracta
+
+_MaterialButtonHiperlink: sin estandar de clase generica abstracta
+
+_MaterialButtonIconTranspRotate: setIconRotate no sale en la definicion x defecto,
+    no puede xq la def es para icon generales, ver como hacer que el setIcon sea rotate
+
+_MaterialIconButtonRound: tiene el atributo circle sin ser estandar
+
+_buttonAddEdit: isCreate no es estandar
