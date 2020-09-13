@@ -27,6 +27,7 @@ public class _MaterialProgressSpinner extends JComponent implements MaterialComp
     public static _MaterialProgressSpinner from() {
         return new _MaterialProgressSpinner();
     }
+    
     private int thickness = 6;
     private final Property<Integer> startArc = SafePropertySetter.animatableProperty(this, 270);
     private final Property<Integer> arcSize = SafePropertySetter.animatableProperty(this, 0);
