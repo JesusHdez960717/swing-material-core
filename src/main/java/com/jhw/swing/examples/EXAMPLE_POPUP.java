@@ -75,6 +75,7 @@ public class EXAMPLE_POPUP extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Click en el boton de java.");
             }
         });
+        
         MaterialButton btn = MaterialButtonsFactory.buildPopup(actions);
         btn.setBackground(MaterialColors.GREEN_600);
 

@@ -7,6 +7,7 @@ package com.jhw.swing.material.components.button;
 
 import com.jhw.swing.material.components.popup.ButtonSqrt;
 import com.jhw.swing.material.components.button.prepared.*;
+import com.jhw.swing.material.components.popup.MaterialPopupFactory;
 import com.jhw.swing.material.components.popup.PopupCircular;
 import com.jhw.swing.material.injection.MaterialSwingInjector;
 import java.util.List;
@@ -59,7 +60,7 @@ public class MaterialButtonsFactory {
 
     public static MaterialButton buildPopup(List<Action> actions) {
         MaterialButton btn = MaterialSwingInjector.getImplementation(_MaterialButtonPopup.class);
-        btn.setComponentPopupMenu(PopupCircular.from(actions));
+        btn.setComponentPopupMenu(MaterialPopupFactory.buildCircular(actions));
         return btn;
     }
     //----------------------------------------
