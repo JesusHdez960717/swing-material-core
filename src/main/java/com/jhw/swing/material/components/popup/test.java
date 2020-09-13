@@ -39,15 +39,43 @@ public class test extends javax.swing.JFrame {
         jPanel1.setBackground(MaterialColors.WHITE);
 
         List<Action> actions = new ArrayList<>();
-        for (int i = 0; i < 8; i++) {
-            actions.add(new AbstractAction("EXCEL", MaterialIcons.ADD_A_PHOTO) {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    JOptionPane.showMessageDialog(null, "Click en el boton.");
-                }
-            });
-        }
-        MaterialButton btn = MaterialButtonsFactory.buildPopup(new Popup(actions));
+        actions.add(new AbstractAction("EXCEL", MaterialIcons.EXCEL.deriveIcon(24)) {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(null, "Click en el boton de excel.");
+            }
+        });
+        actions.add(new AbstractAction("NB", MaterialIcons.TEC_NB.deriveIcon(24)) {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(null, "Click en el boton de NB.");
+            }
+        });
+        actions.add(new AbstractAction("ADOBE", MaterialIcons.TEC_ADOBE.deriveIcon(24)) {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(null, "Click en el boton de adobe.");
+            }
+        });
+        actions.add(new AbstractAction("FLAT", MaterialIcons.TEC_FLATICON.deriveIcon(24)) {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(null, "Click en el boton de flaticon.");
+            }
+        });
+        actions.add(new AbstractAction("GIT", MaterialIcons.TEC_GIT.deriveIcon(24)) {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(null, "Click en el boton de git.");
+            }
+        });
+        actions.add(new AbstractAction("JAVA", MaterialIcons.TEC_JAVA.deriveIcon(24)) {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(null, "Click en el boton de java.");
+            }
+        });
+        MaterialButton btn = MaterialButtonsFactory.buildPopup(actions);
         btn.setBackground(MaterialColors.GREEN_600);
 
         jPanel1.add(btn);

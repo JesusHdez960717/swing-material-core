@@ -38,6 +38,10 @@ import javax.swing.SwingUtilities;
  */
 public class Popup extends JPopupMenu {
 
+    public static Popup from(List<Action> actions) {
+        return new Popup(actions);
+    }
+
     public Popup(List<Action> actions) {
         this.setBorderPainted(false);
 

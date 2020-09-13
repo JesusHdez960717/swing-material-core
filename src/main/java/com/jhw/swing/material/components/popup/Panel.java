@@ -73,8 +73,8 @@ public class Panel extends JPanel {
         int margin = margin();
         int shadowW = (int) sizee() - margin;
 
-        //transparencia de la sombre
-        g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.6f));
+        //transparencia de la sombra general
+        g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.75f));
 
         g2.drawImage(shadowFast.render(shadowW, shadowW, border, elevation, MaterialShadow.Type.CIRCULAR), margin / 2, margin / 2, null);
 
