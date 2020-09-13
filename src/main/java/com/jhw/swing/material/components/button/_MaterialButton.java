@@ -42,14 +42,15 @@ public class _MaterialButton extends MaterialButton {
 
     private Type type = Type.DEFAULT;
 
-    public static _MaterialButton from() {
+    public static MaterialButton from() {
         return new _MaterialButton();
     }
 
     /**
      * Creates a new button.
      */
-    protected _MaterialButton() {
+    @Deprecated
+    public _MaterialButton() {
         this.setIconTextGap(2);
         this.setFont(MaterialFontRoboto.MEDIUM.deriveFont(16f));
         this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));

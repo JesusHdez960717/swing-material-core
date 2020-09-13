@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.jhw.swing.material.components.popup;
+package com.jhw.swing.examples;
 
 import com.jhw.swing.material.components.button.MaterialButton;
 import com.jhw.swing.material.components.button.MaterialButtonsFactory;
@@ -27,12 +27,12 @@ import javax.swing.UIManager;
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-public class test extends javax.swing.JFrame {
+public class EXAMPLE_POPUP extends javax.swing.JFrame {
 
     /**
      * Creates new form NewJFrame
      */
-    public test() {
+    public EXAMPLE_POPUP() {
         initComponents();
 
         jPanel1.setLayout(new BorderLayout());
@@ -109,7 +109,7 @@ public class test extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new test().setVisible(true);
+                new EXAMPLE_POPUP().setVisible(true);
             }
         });
     }
