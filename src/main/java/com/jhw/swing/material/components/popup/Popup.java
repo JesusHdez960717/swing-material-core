@@ -5,8 +5,6 @@
  */
 package com.jhw.swing.material.components.popup;
 
-import com.jhw.swing.material.components.button.MaterialButton;
-import com.jhw.swing.material.components.button.MaterialButtonsFactory;
 import com.jhw.swing.material.standards.MaterialColors;
 import com.jhw.swing.util.Utils;
 import com.sun.awt.AWTUtilities;
@@ -73,18 +71,9 @@ public class Popup extends JPopupMenu {
         Window w = SwingUtilities.getWindowAncestor(this);
         if (b) {
             try {
-                Point mousePos = MouseInfo.getPointerInfo().getLocation();
-
-                Rectangle screen = Utils.getScreenSize();
-                int x = (int) (mousePos.getX() - getPreferredSize().getWidth() / 2);
-                x = Math.max(0, Math.min((int) (screen.getWidth() - getPreferredSize().getWidth()), x));
-
-                int y = (int) (mousePos.getY() - getPreferredSize().getWidth() / 2);
-                y = Math.max(0, Math.min((int) (screen.getHeight() - getPreferredSize().getHeight()), y));
-
-                w.setLocation(x, y);//middle of the click
                 AWTUtilities.setWindowOpaque(w, false);
             } catch (Exception e) {
+                System.out.println("Error poniendo el opaque a la ventana de popup, en realidad no afecta en nada.");
             }
         }
     }

@@ -47,26 +47,10 @@ public class test extends javax.swing.JFrame {
                 }
             });
         }
-        MaterialButton btn = MaterialButtonsFactory.buildPopup(new Popup(actions) {
-            /*@Override
-            protected JComponent buildComponent(Action act) {
-                MaterialButton b = MaterialButtonsFactory.buildRound();
-                b.setAction(act);
-                return b;
-            }*/
-        });
+        MaterialButton btn = MaterialButtonsFactory.buildPopup(new Popup(actions));
         btn.setBackground(MaterialColors.GREEN_600);
 
         jPanel1.add(btn);
-        jPanel1.add(_ClockFace1123123.from(), BorderLayout.NORTH);
-
-        ButtonSqrt b = ButtonSqrt.from();
-        b.setAction(new AbstractAction("123", MaterialIcons.ACCOUNT_CIRCLE) {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-            }
-        });
-        jPanel1.add(b, BorderLayout.SOUTH);
     }
 
     private void initComponents() {
