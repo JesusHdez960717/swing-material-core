@@ -5,11 +5,11 @@
  */
 package com.jhw.swing.material.components.popup;
 
+import com.jhw.swing.material.standards.FastGaussianBlur;
 import com.jhw.swing.material.standards.MaterialColors;
 import com.jhw.swing.material.standards.MaterialShadow;
 import com.jhw.swing.util.MaterialDrawingUtils;
 import com.jhw.utils.others.Pair;
-import com.jhw.utils.others.PairDifferent;
 import java.awt.AlphaComposite;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -18,9 +18,9 @@ import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
@@ -80,14 +80,22 @@ public class Panel extends JPanel {
 
         if (selectedComp != null) {
             g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.5f));
-            g2.setColor(MaterialColors.GREY_50);
-
-            Point mid = new Point(sizee() / 2, sizee() / 2);
-            int x = selectedComp.getLocation().x;
-            int y = selectedComp.getLocation().y;
-            Pair<Point> p = getPointsSelected();
-            g2.fillPolygon(new int[]{mid.x, p.getA().x, p.getB().x}, new int[]{mid.y, p.getA().y, p.getB().y}, 3);
+            g2.drawImage(getTriangleShadow(), 0, 0, null);
         }
+    }
+
+    private BufferedImage getTriangleShadow() {
+        BufferedImage bf = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_ARGB);
+
+        Graphics2D g2 = MaterialDrawingUtils.getAliasedGraphics(bf.createGraphics());
+        g2.setColor(MaterialColors.GREY_50);
+
+        Point mid = new Point(sizee() / 2, sizee() / 2);
+        Pair<Point> p = getPointsSelected();
+        g2.fillPolygon(new int[]{mid.x, p.getA().x, p.getB().x}, new int[]{mid.y, p.getA().y, p.getB().y}, 3);
+
+        return FastGaussianBlur.blur(bf, (int) 6, true);
+        //return bf;
     }
 
     private Pair<Point> getPointsSelected() {
