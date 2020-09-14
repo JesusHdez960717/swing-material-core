@@ -26,19 +26,23 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.FocusEvent;
 import java.awt.event.KeyEvent;
-import org.jdesktop.swingx.JXFormattedTextField;
+import javax.swing.Icon;
 
 /**
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-public class _MaterialFormatedTextField<T> extends JXFormattedTextField implements Line, BindableComponent<T>, Wrong, MaterialComponent, FloatingLabel {
+public class _MaterialFormatedTextField<T> extends MaterialFormatedTextField<T> {
+
+    public static MaterialFormatedTextField from() {
+        return new _MaterialFormatedTextField();
+    }
+
+    private final Class<? extends T> clazz;
 
     private final FloatingLabel floatingLabel = new DefaultFloatingLabel(this);
     private final Line line = new DefaultLine(this);
     private final Wrong wrong = new DefaultWrong(this);
-
-    private final Class<? extends T> clazz;
 
     private int maxLength = 100;
 
@@ -77,6 +81,20 @@ public class _MaterialFormatedTextField<T> extends JXFormattedTextField implemen
         setText("");
 
         this.setComponentPopupMenu(CopyPastePopup.INSTANCE);
+    }
+
+    @Override
+    public MaterialFormatedTextField getFormatedTextField() {
+        return this;
+    }
+
+    @Override
+    public void setIcon(Icon icon) {
+    }
+
+    @Override
+    public Icon getIcon() {
+        return null;
     }
 
 //-------------------LINE-------------------------
@@ -175,32 +193,22 @@ public class _MaterialFormatedTextField<T> extends JXFormattedTextField implemen
         }
     }
 
-    public Class<? extends T> getClazz() {
-        return clazz;
-    }
-
-    /**
-     * Get the max length of the text.
-     *
-     * @return the max length of the text
-     */
+    @Override
     public int getMaxLength() {
         return maxLength;
     }
 
-    /**
-     * Set the max length of the text.
-     *
-     * @param maxLength the max length of the text
-     */
+    @Override
     public void setMaxLength(int maxLength) {
         this.maxLength = maxLength;
     }
 
+    @Override
     public String getExtra() {
         return extra;
     }
 
+    @Override
     public void setExtra(String extra) {
         this.extra = extra;
         this.repaint();
@@ -243,7 +251,7 @@ public class _MaterialFormatedTextField<T> extends JXFormattedTextField implemen
         }
 
         paintLabel(g2);
-        
+
         paintLine(g2);
 
         //paint the wrong text if the flag is actived
@@ -258,6 +266,10 @@ public class _MaterialFormatedTextField<T> extends JXFormattedTextField implemen
     @Override
     protected void paintBorder(Graphics g) {
         //intentionally left blank
+    }
+
+    public Class<? extends T> getClazz() {
+        return clazz;
     }
 
     @Override
