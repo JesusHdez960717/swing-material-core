@@ -46,7 +46,9 @@ public class _MaterialButtonPopup extends _MaterialButton {
         this.setAccentColorFadeInto(MaterialColors.BLUEGREY_50);
         this.setPaintRipple(false);
         this.setBorderThickness(2);
+        this.setBorderColor(MaterialColors.GREY_700);
         this.setIcon(MaterialIcons.FILE_UPLOAD);
+        this.setIconTextGap(5);
     }
 
     private void addListeners() {

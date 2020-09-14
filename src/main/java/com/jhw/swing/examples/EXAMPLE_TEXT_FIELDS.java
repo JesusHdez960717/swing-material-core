@@ -5,59 +5,46 @@
  */
 package com.jhw.swing.examples;
 
-//import com.jhw.swing.material.components.combobox.combobox_editable._MaterialComboBoxFiltrable;
+import com.jhw.swing.material.components.container.layout.HorizontalLayoutContainer;
 import com.jhw.swing.material.components.container.layout.VerticalLayoutContainer;
-import com.jhw.swing.material.components.datepicker.MaterialDatePicker;
-import com.jhw.swing.material.components.datepicker.MaterialDatePickersFactory;
+import com.jhw.swing.material.components.textfield.MaterialTextAreaFactory;
+import com.jhw.swing.material.components.textfield.MaterialTextField;
+import com.jhw.swing.material.components.toggle.MaterialToggleButton;
+import com.jhw.swing.material.components.toggle.MaterialToggleFactory;
+import com.jhw.swing.material.components.toggle.ToggleGroup;
 import com.jhw.swing.material.standards.MaterialColors;
 import com.jhw.swing.ui.MaterialLookAndFeel;
 import java.awt.BorderLayout;
-import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.event.ActionEvent;
-import javax.swing.AbstractAction;
-import javax.swing.JButton;
-import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
 /**
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-public class EXAMPLE_DATE_PICKER extends javax.swing.JFrame {
+public class EXAMPLE_TEXT_FIELDS extends javax.swing.JFrame {
 
     /**
      * Creates new form NewJFrame
      */
-    public EXAMPLE_DATE_PICKER() {
+    public EXAMPLE_TEXT_FIELDS() {
         initComponents();
 
         jPanel1.setLayout(new BorderLayout());
         jPanel1.setBackground(MaterialColors.REDA_200);
 
+        /*MaterialToggleButton btn = MaterialToggleFactory.buildButton();
+        btn.addActionListener((ActionEvent e) -> {
+            System.out.println(btn.isSelected());
+        });
+        this.add(btn);*/
         VerticalLayoutContainer.builder vlc = VerticalLayoutContainer.builder();
 
-        MaterialDatePicker date1 = MaterialDatePickersFactory.build();
-        vlc.add(date1, true);
+        MaterialTextField simple = MaterialTextAreaFactory.build();
+        vlc.add(simple, true);
 
-        MaterialDatePicker date2 = MaterialDatePickersFactory.buildIcon();
-        vlc.add(date2, true);
-
-        vlc.add(new JButton(new AbstractAction("Wrong") {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                date1.wrong("bu");
-                date2.wrong("jijiji");
-            }
-        }));
-
-        vlc.add(new JButton(new AbstractAction("Object") {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null, date1.getObject());
-                JOptionPane.showMessageDialog(null, date2.getObject());
-            }
-        }));
+        MaterialTextField icon = MaterialTextAreaFactory.buildIcon();
+        vlc.add(icon, true);
 
         jPanel1.add(vlc.build());
 
@@ -74,8 +61,6 @@ public class EXAMPLE_DATE_PICKER extends javax.swing.JFrame {
         pack();
 
         this.setSize(new Dimension(500, 500));
-        //this.setExtendedState(MAXIMIZED_BOTH);
-
         this.setLocationRelativeTo(null);
     }
 
@@ -91,7 +76,7 @@ public class EXAMPLE_DATE_PICKER extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new EXAMPLE_DATE_PICKER().setVisible(true);
+                new EXAMPLE_TEXT_FIELDS().setVisible(true);
             }
         });
     }

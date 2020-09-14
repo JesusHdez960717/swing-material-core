@@ -5,6 +5,7 @@
  */
 package com.jhw.swing.material.components.datepicker;
 
+import com.jhw.swing.material.components.textfield.TextMaxLength;
 import com.jhw.swing.material.effects.FloatingLabel;
 import com.jhw.swing.material.effects.Iconable;
 import com.jhw.swing.material.effects.Line;
@@ -19,7 +20,7 @@ import org.jdesktop.swingx.JXDatePicker;
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-public abstract class MaterialDatePicker extends JXDatePicker implements Iconable, DateSelected, BindableComponent<Date>, FloatingLabel, Line, Wrong, MaterialComponent {
+public abstract class MaterialDatePicker extends JXDatePicker implements TextMaxLength, Iconable, DateSelected, BindableComponent<Date>, FloatingLabel, Line, Wrong, MaterialComponent {
 
     public abstract void setLowerBound(Date lower);
 

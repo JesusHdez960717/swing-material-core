@@ -74,8 +74,9 @@ public class EXAMPLE_POPUP extends javax.swing.JFrame {
         });
 
         MaterialButton btn = MaterialButtonsFactory.buildPopup(actions);
-        btn.setBackground(MaterialColors.GREEN_600);
-
+        btn.setText("Exportar");
+        btn.setIcon(MaterialIcons.EXPORT);
+        
         jPanel1.add(btn);
     }
 

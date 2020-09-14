@@ -158,8 +158,14 @@ public class _MaterialDatePicker extends MaterialDatePicker {
         text.paintHint(g);
     }
 
+    @Override
     public int getMaxLength() {
         return text.getMaxLength();
+    }
+
+    @Override
+    public void setMaxLength(int maxLength) {
+        text.setMaxLength(maxLength);
     }
 
     @Override

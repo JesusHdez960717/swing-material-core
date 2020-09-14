@@ -80,7 +80,12 @@ public class _MaterialPasswordField extends MaterialPasswordField {
         setText("");
     }
 
+    @Override
+    public MaterialPasswordField getPasswordField() {
+        return this;
+    }
 //-------------------LINE-------------------------
+
     @Override
     public void paintLine(Graphics g2) {
         line.paintLine(g2);
@@ -181,21 +186,11 @@ public class _MaterialPasswordField extends MaterialPasswordField {
         }
     }
 
-    /**
-     * Get the max length of the text.
-     *
-     * @return the max length of the text
-     */
     @Override
     public int getMaxLength() {
         return maxLength;
     }
 
-    /**
-     * Set the max length of the text.
-     *
-     * @param maxLength the max length of the text
-     */
     @Override
     public void setMaxLength(int maxLength) {
         this.maxLength = maxLength;

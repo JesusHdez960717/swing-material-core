@@ -84,6 +84,11 @@ public class _MaterialPasswordFieldIcon extends MaterialPasswordField {
     }
 
     @Override
+    public MaterialPasswordField getPasswordField() {
+        return passwordField;
+    }
+
+    @Override
     public String getHashAlgorithm() {
         return passwordField.getHashAlgorithm();
     }

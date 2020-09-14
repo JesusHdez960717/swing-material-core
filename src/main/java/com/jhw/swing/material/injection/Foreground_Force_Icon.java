@@ -38,7 +38,7 @@ public @interface Foreground_Force_Icon {
 
             T component = (T) invocation.getThis();
             Icon icon = component.getIcon();
-            if (icon instanceof DerivableIcon) {
+            if (icon != null && icon instanceof DerivableIcon) {
                 icon = ((DerivableIcon) icon).deriveIcon(component.getForeground());
             }
             component.setIcon(icon);

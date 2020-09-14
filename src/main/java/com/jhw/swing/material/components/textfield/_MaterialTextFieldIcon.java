@@ -8,13 +8,9 @@ package com.jhw.swing.material.components.textfield;
 import com.jhw.personalization.services.PersonalizationHandler;
 import com.jhw.swing.material.components.button.MaterialButtonIcon;
 import com.jhw.swing.material.components.button.MaterialButtonsFactory;
-import com.jhw.swing.material.components.container.panel._PanelTransparent;
-import com.jhw.swing.material.effects.RippleEffect;
 import com.jhw.swing.material.standards.MaterialColors;
+import com.jhw.swing.material.standards.MaterialIcons;
 import com.jhw.swing.util.PersonalizationMaterial;
-import com.jhw.swing.util.interfaces.BindableComponent;
-import com.jhw.swing.util.interfaces.MaterialComponent;
-import com.jhw.swing.material.effects.Wrong;
 import com.jhw.swing.utils.icons.DerivableIcon;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -22,13 +18,17 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
-import javax.swing.ImageIcon;
+import javax.swing.Icon;
 
 /**
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-public class _MaterialTextFieldIcon<T> extends _PanelTransparent implements BindableComponent<T>, Wrong, MaterialComponent {
+public class _MaterialTextFieldIcon<T> extends MaterialTextField<T> {
+
+    public static MaterialTextField from() {
+        return new _MaterialTextFieldIcon();
+    }
 
     public static float ICON_SIZE_REDUCTION = .4f;
     public static float ICON_WIDTH_REDUCTION = .55f;
@@ -53,8 +53,10 @@ public class _MaterialTextFieldIcon<T> extends _PanelTransparent implements Bind
         buttonIcon = MaterialButtonsFactory.buildIconTransparent();
         buttonIcon.setPaintRipple(false);
 
+        this.setBorder(null);
         this.setLayout(new BorderLayout());
         this.add(textField, BorderLayout.CENTER);
+        this.setOpaque(false);
 
         textField.addFocusListener(new FocusListener() {
             @Override
@@ -67,12 +69,14 @@ public class _MaterialTextFieldIcon<T> extends _PanelTransparent implements Bind
                 buttonIcon.setForeground(originalIconColor);
             }
         });
+        setIcon(MaterialIcons.EDIT);
     }
 
-    private _MaterialTextField<T> textField;
+    private MaterialTextField<T> textField;
     private MaterialButtonIcon buttonIcon;
 
-    public void setIcon(ImageIcon icon) {
+    @Override
+    public void setIcon(Icon icon) {
         if (!PersonalizationHandler.getBoolean(PersonalizationMaterial.KEY_SHOW_ICON_INPUT)) {
             return;
         }
@@ -89,11 +93,16 @@ public class _MaterialTextFieldIcon<T> extends _PanelTransparent implements Bind
         this.add(buttonIcon, BorderLayout.WEST);
     }
 
+    @Override
+    public MaterialTextField getTextField() {
+        return textField;
+    }
+
     protected void setTextFiedl(_MaterialTextField<T> textField) {
         this.textField = textField;
     }
 
-    //DELEGATE
+    @Override
     public String getText() {
         return textField.getText();
     }
@@ -104,46 +113,57 @@ public class _MaterialTextFieldIcon<T> extends _PanelTransparent implements Bind
         buttonIcon.setEnabled(enabled);
     }
 
+    @Override
     public int getMaxLength() {
         return textField.getMaxLength();
     }
 
+    @Override
     public void setMaxLength(int maxLength) {
         textField.setMaxLength(maxLength);
     }
 
+    @Override
     public String getLabel() {
         return textField.getLabel();
     }
 
+    @Override
     public void setLabel(String label) {
         textField.setLabel(label);
     }
 
+    @Override
     public String getHint() {
         return textField.getHint();
     }
 
+    @Override
     public void setHint(String hint) {
         textField.setHint(hint);
     }
 
+    @Override
     public Color getAccentFloatingLabel() {
         return textField.getAccentFloatingLabel();
     }
 
+    @Override
     public void setAccentFloatingLabel(Color accentColor) {
         textField.setAccentFloatingLabel(accentColor);
     }
 
+    @Override
     public String getExtra() {
         return textField.getExtra();
     }
 
+    @Override
     public void setExtra(String extra) {
         textField.setExtra(extra);
     }
 
+    @Override
     public void setText(String s) {
         textField.setText(s);
     }
@@ -186,6 +206,31 @@ public class _MaterialTextFieldIcon<T> extends _PanelTransparent implements Bind
     @Override
     public void setObject(T object) {
         textField.setObject(object);
+    }
+
+    @Override
+    public Icon getIcon() {
+        return buttonIcon.getIcon();
+    }
+
+    @Override
+    public void paintLine(Graphics g2) {
+        textField.paintLine(g2);
+    }
+
+    @Override
+    public int getYLine(Graphics g2) {
+        return textField.getYLine(g2);
+    }
+
+    @Override
+    public void paintLabel(Graphics g) {
+        textField.paintLabel(g);
+    }
+
+    @Override
+    public void paintHint(Graphics g) {
+        textField.paintHint(g);
     }
 
 }

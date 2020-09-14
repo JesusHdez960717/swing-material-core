@@ -50,6 +50,7 @@ public class _MaterialDatePickerIcon extends MaterialDatePicker {
         buttonIcon = MaterialButtonsFactory.buildIconTransparent();
         buttonIcon.setPaintRipple(false);
 
+        this.setBorder(null);
         this.setLayout(new BorderLayout());
         this.add(datePicker, BorderLayout.CENTER);
 
@@ -211,6 +212,16 @@ public class _MaterialDatePickerIcon extends MaterialDatePicker {
         if (datePicker != null) {
             datePicker.setForeground(fg);
         }
+    }
+
+    @Override
+    public int getMaxLength() {
+        return datePicker.getMaxLength();
+    }
+
+    @Override
+    public void setMaxLength(int maxLength) {
+        datePicker.setMaxLength(maxLength);
     }
 
     @Override
