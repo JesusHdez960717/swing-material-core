@@ -36,7 +36,7 @@ public class EXAMPLE_POPUP extends javax.swing.JFrame {
         jPanel1.setBackground(MaterialColors.WHITE);
 
         List<Action> actions = new ArrayList<>();
-        actions.add(new AbstractAction("EXCEL", MaterialIcons.EXCEL.deriveIcon(24)) {
+        actions.add(new AbstractAction("", MaterialIcons.EXCEL.deriveIcon(30)) {
             @Override
             public void actionPerformed(ActionEvent e) {
                 JOptionPane.showMessageDialog(null, "Click en el boton de excel.");
@@ -72,7 +72,7 @@ public class EXAMPLE_POPUP extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Click en el boton de java.");
             }
         });
-        
+
         MaterialButton btn = MaterialButtonsFactory.buildPopup(actions);
         btn.setBackground(MaterialColors.GREEN_600);
 

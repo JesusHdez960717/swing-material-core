@@ -11,6 +11,8 @@ import com.jhw.swing.material.standards.MaterialShadow;
 import com.jhw.swing.util.MaterialDrawingUtils;
 import com.jhw.utils.others.Pair;
 import java.awt.AlphaComposite;
+import java.awt.BasicStroke;
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -82,6 +84,16 @@ public class PanelCircular extends JPanel {
             g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.5f));
             g2.drawImage(getTriangleShadow(), 0, 0, null);
         }
+
+        g2.setColor(MaterialColors.WHITE);
+        g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
+        float w = 10;
+        g2.fill(new java.awt.geom.Ellipse2D.Float((sizee() - w) / 2, (sizee() - w) / 2, w, w));
+
+        w += 10;
+        g2.setStroke(new BasicStroke(2));
+        g2.draw(new java.awt.geom.Ellipse2D.Float((sizee() - w) / 2, (sizee() - w) / 2, w, w));
+
     }
 
     private BufferedImage getTriangleShadow() {
