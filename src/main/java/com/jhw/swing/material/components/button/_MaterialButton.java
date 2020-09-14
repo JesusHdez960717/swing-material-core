@@ -295,6 +295,10 @@ public class _MaterialButton extends MaterialButton {
         int strWidth = metrics.stringWidth(getText());
         int align = getHorizontalAlignment();
 
+        int oldDist = getIconTextGap();
+        if (getText().trim().isEmpty()) {
+            setIconTextGap(0);
+        }
         if (align == SwingConstants.TRAILING || align == SwingConstants.RIGHT) {
             xText = widthReal - strWidth - 2 * getIconTextGap();
             xIcon = xText - iconWidth - 2 * getIconTextGap();
@@ -315,6 +319,7 @@ public class _MaterialButton extends MaterialButton {
         if (this.getIcon() != null) {
             this.getIcon().paintIcon(this, g2, xIcon, (getHeight() - offset_td - getIcon().getIconHeight()) / 2);
         }
+        setIconTextGap(oldDist);
         g2.translate(-offset_left, -offset_top);
     }
 
