@@ -306,10 +306,6 @@ public class _MaterialTableByPage extends _PanelTransparent implements Update {
         return table.getRowHeight();
     }
 
-    public MaterialScrollPane getScrollPane() {
-        return table.getScrollPane();
-    }
-
     public JTable getJTable() {
         return table.getTable();
     }

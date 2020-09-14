@@ -1,24 +1,19 @@
 package com.jhw.swing.material.components.table;
 
-import com.jhw.swing.material.components.container.panel._PanelTransparent;
-import com.jhw.swing.material.components.scrollpane.MaterialScrollFactory;
-import com.jhw.swing.material.components.scrollpane.MaterialScrollPane;
-import com.jhw.swing.material.components.scrollpane._MaterialScrollPaneCore;
-import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumn;
-import javax.swing.table.TableColumnModel;
-import javax.swing.table.TableModel;
 
 /**
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-public class _MaterialTable extends _PanelTransparent {
+public class _MaterialTable extends MaterialTable {
+
+    public static MaterialTable from() {
+        return new _MaterialTable();
+    }
 
     public _MaterialTable() {
         initComponents();
@@ -27,7 +22,6 @@ public class _MaterialTable extends _PanelTransparent {
 
     private void initComponents() {
 
-        scrollPane = MaterialScrollFactory.buildPane();
         table = new javax.swing.JTable();
 
         table.setModel(new javax.swing.table.DefaultTableModel(
@@ -41,81 +35,20 @@ public class _MaterialTable extends _PanelTransparent {
                     "Title 1", "Title 2", "Title 3", "Title 4"
                 }
         ));
-        scrollPane.setViewportView(table);
+        this.setViewportView(table);
 
-        this.setLayout(new BorderLayout());
-        this.add(scrollPane);
         this.setPreferredSize(new Dimension(150, 200));
-
     }
 
-    // Variables declaration - do not modify
-    private MaterialScrollPane scrollPane;
     private javax.swing.JTable table;
-    // End of variables declaration                   
 
-    public MaterialScrollPane getScrollPane() {
-        return scrollPane;
-    }
-
-    public void setScrollPane(_MaterialScrollPaneCore scrollPane) {
-        this.scrollPane = scrollPane;
-    }
-
+    @Override
     public JTable getTable() {
         return table;
     }
 
-    public void setTable(JTable table) {
-        this.table = table;
-    }
-
-    public DefaultTableModel getModel() {
-        return (DefaultTableModel) table.getModel();
-    }
-
-    public void setModel(TableModel dataModel) {
-        table.setModel(dataModel);
-    }
-
-    public TableColumn getColumn(Object identifier) {
-        return table.getColumn(identifier);
-    }
-
-    public TableColumnModel getColumnModel() {
-        return table.getColumnModel();
-    }
-
-    public int getSelectedRow() {
-        return table.getSelectedRow();
-    }
-
-    public Object getValueAt(int row, int column) {
-        return table.getValueAt(row, column);
-    }
-
-    public void clear() {
-        getModel().setRowCount(0);
-    }
-
-    public void addRow(Object[] row) {
-        getModel().addRow(row);
-    }
-
-    public void removeRow(int row) {
-        getModel().removeRow(row);
-    }
-
-    public int getRowHeight() {
-        return table.getRowHeight();
-    }
-
-    public int getRowCount() {
-        return table.getRowCount();
-    }
-
     private void addListeners() {
-        table.addMouseListener(new MouseAdapter() {
+        getTable().addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
                 handleRowClick(e);
