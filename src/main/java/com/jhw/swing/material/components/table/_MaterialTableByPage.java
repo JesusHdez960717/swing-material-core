@@ -6,19 +6,12 @@ import com.jhw.swing.material.components.container.MaterialContainersFactory;
 import com.jhw.swing.material.components.container.panel._PanelTransparent;
 import com.jhw.swing.material.components.labels.MaterialLabel;
 import com.jhw.swing.material.components.labels.MaterialLabelsFactory;
-import com.jhw.swing.material.components.labels._MaterialLabel;
-import com.jhw.swing.material.components.scrollpane.MaterialScrollPane;
-import com.jhw.swing.material.components.scrollpane._MaterialScrollPaneCore;
 import com.jhw.swing.material.components.textfield.validated._MaterialTextFieldInteger;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JSpinner;
 import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumn;
-import javax.swing.table.TableColumnModel;
-import javax.swing.table.TableModel;
 import com.jhw.utils.interfaces.Update;
 import javax.swing.JPanel;
 
@@ -26,8 +19,12 @@ import javax.swing.JPanel;
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-public class _MaterialTableByPage extends _PanelTransparent implements Update {
+public class _MaterialTableByPage extends _PanelTransparent implements Update, Table {
 
+    public static _MaterialTableByPage from() {
+        return new _MaterialTableByPage();
+    }
+    
     public static final int SPINNER_DEFAULT = 50;
     private List<Object[]> rows = new ArrayList<>();
 
@@ -143,8 +140,13 @@ public class _MaterialTableByPage extends _PanelTransparent implements Update {
         fillTable();
     }
 
+    @Override
+    public JTable getTable() {
+        return table.getTable();
+    }
+
     private void fillTable() {
-        getTable().getModel().setRowCount(0);//clear pero sin borrar el arreglo
+        setRowCount(0);//clear pero sin borrar el arreglo
         int page = textFieldPage.getObject();
         int maxPerPage = (int) spinner.getValue();
 
@@ -161,17 +163,19 @@ public class _MaterialTableByPage extends _PanelTransparent implements Update {
         }
     }
 
+    @Override
     public void addRow(Object[] row) {
         rows.add(row);
-        getTable().addRow(row);
+        table.addRow(row);
     }
 
+    @Override
     public void removeRow(int row) {
         int page = textFieldPage.getObject() - 1;
         int maxPerPage = (int) spinner.getValue();
         int real = page * maxPerPage + row;
         rows.remove(real);
-        getTable().removeRow(row);
+        table.removeRow(row);
     }
 
     public void setPageVisibility(boolean visible) {
@@ -232,8 +236,9 @@ public class _MaterialTableByPage extends _PanelTransparent implements Update {
         return (int) Math.ceil((double) ((1.0d * rows.size()) / (1.0d * ((int) spinner.getValue()))));
     }
 
+    @Override
     public void clear() {
-        rows = new ArrayList<>();
+        rows.clear();
         table.clear();
     }
 
@@ -244,10 +249,6 @@ public class _MaterialTableByPage extends _PanelTransparent implements Update {
 
     public JSpinner getSpinner() {
         return spinner;
-    }
-
-    public int getRowCount() {
-        return table.getRowCount();
     }
 
     public _MaterialButtonDouble getButtonDouble() {
@@ -270,43 +271,8 @@ public class _MaterialTableByPage extends _PanelTransparent implements Update {
         return panelPages;
     }
 
-    public _MaterialTable getTable() {
-        return table;
-    }
-
     public _MaterialTextFieldInteger getTextFieldPage() {
         return textFieldPage;
     }
 
-    public DefaultTableModel getModel() {
-        return (DefaultTableModel) table.getModel();
-    }
-
-    public void setModel(TableModel dataModel) {
-        table.setModel(dataModel);
-    }
-
-    public TableColumnModel getColumnModel() {
-        return table.getColumnModel();
-    }
-
-    public TableColumn getColumn(Object identifier) {
-        return table.getColumn(identifier);
-    }
-
-    public int getSelectedRow() {
-        return table.getSelectedRow();
-    }
-
-    public Object getValueAt(int row, int column) {
-        return table.getValueAt(row, column);
-    }
-
-    public int getRowHeight() {
-        return table.getRowHeight();
-    }
-
-    public JTable getJTable() {
-        return table.getTable();
-    }
 }

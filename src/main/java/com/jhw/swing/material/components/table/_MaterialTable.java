@@ -1,5 +1,6 @@
 package com.jhw.swing.material.components.table;
 
+import com.jhw.swing.material.standards.MaterialColors;
 import java.awt.Dimension;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -26,9 +27,6 @@ public class _MaterialTable extends MaterialTable {
 
         table.setModel(new javax.swing.table.DefaultTableModel(
                 new Object[][]{
-                    {null, null, null, null},
-                    {null, null, null, null},
-                    {null, null, null, null},
                     {null, null, null, null}
                 },
                 new String[]{
@@ -36,7 +34,7 @@ public class _MaterialTable extends MaterialTable {
                 }
         ));
         this.setViewportView(table);
-
+        
         this.setPreferredSize(new Dimension(150, 200));
     }
 

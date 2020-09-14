@@ -5,26 +5,13 @@
  */
 package com.jhw.swing.examples;
 
-import com.jhw.swing.material.components.button.*;
-import com.jhw.swing.material.components.button.prepared._buttonAddEdit;
-import com.jhw.swing.material.components.container.layout.HorizontalLayoutContainer;
-import com.jhw.swing.material.components.container.layout.VerticalLayoutContainer;
 import com.jhw.swing.material.components.table.MaterialTable;
 import com.jhw.swing.material.components.table.MaterialTableFactory;
-import com.jhw.swing.material.components.toggle.MaterialToggleButton;
-import com.jhw.swing.material.components.toggle.MaterialToggleFactory;
-import com.jhw.swing.material.components.toggle.ToggleGroup;
+import com.jhw.swing.material.components.table._MaterialTableByPage;
 import com.jhw.swing.material.standards.MaterialColors;
-import com.jhw.swing.material.standards.MaterialIcons;
 import com.jhw.swing.ui.MaterialLookAndFeel;
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import javax.swing.JButton;
-import javax.swing.JMenuItem;
-import javax.swing.JPopupMenu;
 import javax.swing.UIManager;
 
 /**
@@ -39,11 +26,25 @@ public class EXAMPLE_TABLE extends javax.swing.JFrame {
     public EXAMPLE_TABLE() {
         initComponents();
 
-        jPanel1.setBackground(MaterialColors.BLUE_50);
+        jPanel1.setBackground(MaterialColors.RED_200);
         jPanel1.setLayout(new BorderLayout());
 
         MaterialTable simple = MaterialTableFactory.build();
+        simple.clear();
+        simple.addRow(new Object[]{"1", "2", "3", "4"});
+        simple.addRow(new Object[]{"1", "2", "3", "4"});
+        simple.addRow(new Object[]{"1", "2", "3", "4"});
+        simple.addRow(new Object[]{"1", "2", "3", "4"});
+        simple.addRow(new Object[]{"1", "2", "3", "4"});
         jPanel1.add(simple, BorderLayout.NORTH);
+
+        _MaterialTableByPage page = MaterialTableFactory.buildByPage();
+        page.setPageVisibility(true);
+        page.clear();
+        for (int i = 0; i < 150; i++) {
+            page.addRow(new Object[]{i, i, i, i});
+        }
+        jPanel1.add(page);
 
     }
 

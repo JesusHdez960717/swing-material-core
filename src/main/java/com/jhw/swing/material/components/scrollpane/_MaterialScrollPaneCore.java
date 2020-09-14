@@ -50,8 +50,10 @@ public class _MaterialScrollPaneCore extends MaterialScrollPane {
         this.addMouseWheelListener(new SmoothScrollMouseWheelListener(this));
 
         //transparente
-        this.getViewport().setOpaque(false);
+        this.setBackground(MaterialColors.TRANSPARENT);
         this.getViewport().setBackground(MaterialColors.TRANSPARENT);
+        this.setOpaque(false);
+        this.getViewport().setOpaque(false);
 
         //le sobra el borde
         //this.setBorder(null);

@@ -44,8 +44,15 @@ public interface Table {
         return getTable().getValueAt(row, column);
     }
 
+    /**
+     * Vacia la table, pone el row count en 0 (cero)
+     */
     public default void clear() {
         getModel().setRowCount(0);
+    }
+
+    public default void setRowCount(int count) {
+        getModel().setRowCount(count);
     }
 
     public default void addRow(Object[] row) {
