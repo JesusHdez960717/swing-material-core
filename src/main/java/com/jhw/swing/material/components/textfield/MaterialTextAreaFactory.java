@@ -39,11 +39,11 @@ public class MaterialTextAreaFactory {
     }
 
     public static MaterialFormatedTextField buildFormatedRuntimeIcon(AbstractFormatter formateer) {
-        return _MaterialFormatedTextFieldRuntime.from(formateer);
+        return _MaterialFormatedTextFieldRuntimeIcon.from(formateer);
     }
 
     public static MaterialFormatedTextField buildFormatedRuntimeIcon(AbstractFormatter formateer, Class clazz) {
-        return _MaterialFormatedTextFieldRuntime.from(formateer, clazz);
+        return _MaterialFormatedTextFieldRuntimeIcon.from(formateer, clazz);
     }
 
     public static MaterialFormatedTextField buildFormatedMoney() {
@@ -52,5 +52,21 @@ public class MaterialTextAreaFactory {
 
     public static MaterialFormatedTextField buildFormatedMoneyIcon() {
         return _MaterialTextFieldMoneyIcon.from();
+    }
+
+    public static MaterialTextField buildDouble() {
+        return _MaterialTextFieldDouble.from();
+    }
+
+    public static MaterialTextField buildDoubleIcon() {
+        return _MaterialTextFieldDoubleIcon.from();
+    }
+
+    public static MaterialTextField buildInteger() {
+        return _MaterialTextFieldInteger.from();
+    }
+
+    public static MaterialTextField buildIntegerIcon() {
+        return _MaterialTextFieldIntegerIcon.from();
     }
 }

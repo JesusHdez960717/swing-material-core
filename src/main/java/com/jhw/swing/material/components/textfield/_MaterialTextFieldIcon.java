@@ -44,7 +44,7 @@ public class _MaterialTextFieldIcon<T> extends MaterialTextField<T> {
         initComponents();
     }
 
-    public _MaterialTextFieldIcon(_MaterialTextField textField) {
+    protected _MaterialTextFieldIcon(MaterialTextField textField) {
         this.textField = textField;
         initComponents();
     }

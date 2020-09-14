@@ -37,41 +37,63 @@ public class EXAMPLE_TEXT_FIELDS extends javax.swing.JFrame {
             System.out.println(btn.isSelected());
         });
         this.add(btn);*/
-        VerticalLayoutContainer.builder vlc = VerticalLayoutContainer.builder();
+        //-------------------SIMPLE-------------------------
+        VerticalLayoutContainer.builder vlcSimple = VerticalLayoutContainer.builder();
 
         MaterialTextField textFieldSimple = MaterialTextAreaFactory.build();
         textFieldSimple.setLabel("simple");
-        vlc.add(textFieldSimple, true);
+        vlcSimple.add(textFieldSimple, true);
 
         MaterialTextField textFieldIcon = MaterialTextAreaFactory.buildIcon();
         textFieldIcon.setLabel("icon");
-        vlc.add(textFieldIcon, true);
+        vlcSimple.add(textFieldIcon, true);
 
+        MaterialTextField textFieldDouble = MaterialTextAreaFactory.buildDouble();
+        textFieldDouble.setLabel("text field simple double");
+        vlcSimple.add(textFieldDouble, true);
+
+        MaterialTextField textFieldDoubleIcon = MaterialTextAreaFactory.buildDoubleIcon();
+        textFieldDoubleIcon.setLabel("text field simple double icon");
+        vlcSimple.add(textFieldDoubleIcon, true);
+
+        MaterialTextField textFieldInt = MaterialTextAreaFactory.buildInteger();
+        textFieldInt.setLabel("text field simple integer");
+        vlcSimple.add(textFieldInt, true);
+
+        MaterialTextField textFieldIntIcon = MaterialTextAreaFactory.buildIntegerIcon();
+        textFieldIntIcon.setLabel("text field simple integer icon");
+        vlcSimple.add(textFieldIntIcon, true);
+        //-------------------SIMPLE-------------------------
+
+        //-------------------Formated-------------------------
+        VerticalLayoutContainer.builder vlcFormated = VerticalLayoutContainer.builder();
         MaterialFormatedTextField formatedTextFieldSimple = MaterialTextAreaFactory.buildFormated();
         formatedTextFieldSimple.setLabel("formated simple");
-        vlc.add(formatedTextFieldSimple, true);
+        vlcFormated.add(formatedTextFieldSimple, true);
 
         MaterialFormatedTextField formatedTextFieldIcon = MaterialTextAreaFactory.buildFormatedIcon();
         formatedTextFieldIcon.setLabel("formated icon");
-        vlc.add(formatedTextFieldIcon, true);
+        vlcFormated.add(formatedTextFieldIcon, true);
 
         MaterialFormatedTextField formatedTextFieldRuntime = MaterialTextAreaFactory.buildFormatedRuntime(new MoneyFormateer(), BigDecimal.class);
         formatedTextFieldRuntime.setLabel("formated runtime simple");
-        vlc.add(formatedTextFieldRuntime, true);
+        vlcFormated.add(formatedTextFieldRuntime, true);
 
         MaterialFormatedTextField formatedTextFieldRuntimeIcon = MaterialTextAreaFactory.buildFormatedRuntimeIcon(new MoneyFormateer(), BigDecimal.class);
         formatedTextFieldRuntimeIcon.setLabel("formated runtime simple icon");
-        vlc.add(formatedTextFieldRuntimeIcon, true);
-        
+        vlcFormated.add(formatedTextFieldRuntimeIcon, true);
+
         MaterialFormatedTextField formatedTextFieldMoney = MaterialTextAreaFactory.buildFormatedMoney();
         formatedTextFieldMoney.setLabel("formated runtime money");
-        vlc.add(formatedTextFieldMoney, true);
-        
+        vlcFormated.add(formatedTextFieldMoney, true);
+
         MaterialFormatedTextField formatedTextFieldMoneyIcon = MaterialTextAreaFactory.buildFormatedMoneyIcon();
         formatedTextFieldMoneyIcon.setLabel("formated runtime money icon");
-        vlc.add(formatedTextFieldMoneyIcon, true);
+        vlcSimple.add(formatedTextFieldMoneyIcon, true);
+        //-------------------Formated-------------------------
 
-        jPanel1.add(vlc.build());
+        jPanel1.add(vlcSimple.build(), BorderLayout.WEST);
+        jPanel1.add(vlcFormated.build(), BorderLayout.EAST);
 
     }
 
