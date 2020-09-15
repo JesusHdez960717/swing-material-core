@@ -7,6 +7,7 @@ package com.jhw.swing.material.components.container.panel;
 
 import com.jhw.swing.material.injection.Background_Force_Foreground;
 import com.jhw.swing.material.injection.Foreground_Force_Icon;
+import com.jhw.swing.material.injection.MaterialSwingInjector;
 import com.jhw.swing.material.standards.MaterialShadow;
 import java.awt.BorderLayout;
 import java.awt.Component;
@@ -20,17 +21,31 @@ import javax.swing.border.EmptyBorder;
 @Foreground_Force_Icon
 public class _MaterialPanelComponent extends _MaterialPanel {
 
-    public static _MaterialPanelComponent from() {
-        return new _MaterialPanelComponent();
+    public static MaterialPanelBorder from() {
+        return MaterialSwingInjector.getImplementation(_MaterialPanelComponent.class);
     }
 
     private final static int DEFAULT_GAP = 10;
 
-    protected _MaterialPanelComponent() {
+    /**
+     * Use _MaterialPanelComponent.from() para proy y AOP
+     *
+     * @param gap
+     * @deprecated
+     */
+    @Deprecated
+    public _MaterialPanelComponent() {
         this(DEFAULT_GAP);
     }
 
-    protected _MaterialPanelComponent(int gap) {
+    /**
+     * Use _MaterialPanelComponent.from() para proy y AOP
+     *
+     * @param gap
+     * @deprecated
+     */
+    @Deprecated
+    public _MaterialPanelComponent(int gap) {
         setGap(gap);
     }
 

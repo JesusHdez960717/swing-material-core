@@ -9,6 +9,7 @@ import com.jhw.swing.material.effects.DefaultRippleEffect;
 import com.jhw.swing.material.effects.RippleEffect;
 import com.jhw.swing.material.injection.Background_Force_Foreground;
 import com.jhw.swing.material.injection.Foreground_Force_Icon;
+import com.jhw.swing.material.injection.MaterialSwingInjector;
 import com.jhw.swing.material.standards.MaterialIcons;
 import javax.swing.JComponent;
 import javax.swing.plaf.basic.BasicButtonUI;
@@ -23,18 +24,22 @@ import javax.swing.plaf.basic.BasicButtonUI;
  */
 @Background_Force_Foreground
 @Foreground_Force_Icon
-public class _MaterialIconButtonRound extends _MaterialButton implements MaterialComponent {
+public class _MaterialIconButtonRound extends _MaterialButton {
 
-    public static _MaterialIconButtonRound from() {
-        return new _MaterialIconButtonRound();
+    public static MaterialButton from() {
+        return MaterialSwingInjector.getImplementation(_MaterialIconButtonRound.class);
     }
+
     private final RippleEffect ripple = DefaultRippleEffect.applyFixedTo(this);
 
     private boolean circle = true;
 
     /**
-     * Creates a new button.
+     * Usar _MaterialIconButtonRound.from() para proxy y AOP
+     *
+     * @deprecated
      */
+    @Deprecated
     protected _MaterialIconButtonRound() {
         this.setText("");
 

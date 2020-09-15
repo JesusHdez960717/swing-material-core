@@ -1,5 +1,6 @@
 package com.jhw.swing.material.components.textfield.validated;
 
+import com.jhw.swing.material.components.textfield.MaterialTextField;
 import com.jhw.swing.material.components.textfield._MaterialTextField;
 import com.jhw.swing.util.Utils;
 import java.awt.event.KeyEvent;
@@ -9,6 +10,14 @@ import java.awt.event.KeyEvent;
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
 public class _MaterialTextFieldInteger extends _MaterialTextField<Integer> {
+
+    public static MaterialTextField from() {
+        return new _MaterialTextFieldInteger();
+    }
+
+    public static MaterialTextField from(boolean negative) {
+        return new _MaterialTextFieldInteger(negative);
+    }
 
     private boolean negative = false;
 

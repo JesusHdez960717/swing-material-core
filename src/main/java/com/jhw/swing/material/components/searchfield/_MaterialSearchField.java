@@ -1,12 +1,7 @@
 package com.jhw.swing.material.components.searchfield;
 
+import com.jhw.swing.material.components.button.MaterialButtonIcon;
 import com.jhw.swing.material.components.button.MaterialButtonsFactory;
-import com.jhw.swing.material.components.button._MaterialButtonIconTransparent;
-import com.jhw.swing.material.components.container.layout.HorizontalLayoutComponent;
-import com.jhw.swing.material.components.container.layout.HorizontalLayoutContainer;
-import com.jhw.swing.material.components.container.panel._MaterialPanel;
-import com.jhw.swing.material.components.container.panel._PanelTransparent;
-import com.jhw.swing.material.components.container.panel._MaterialPanelComponent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import org.jdesktop.swingx.JXTextField;
@@ -16,19 +11,20 @@ import com.jhw.swing.material.standards.MaterialIcons;
 import com.jhw.swing.material.standards.MaterialShadow;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import javax.swing.JButton;
 import javax.swing.border.EmptyBorder;
 
 /**
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-public class _MaterialSearchField extends _MaterialPanel {
+public class _MaterialSearchField extends MaterialSearchField {
 
-    private ActionListener searchAction = new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            System.out.println("Accion buscar no implementada.");
-        }
+    public static MaterialSearchField from() {
+        return new _MaterialSearchField();
+    }
+    
+    private ActionListener searchAction = (java.awt.event.ActionEvent evt) -> {
+        System.out.println("Accion buscar no implementada.");
     };
 
     private int maxLength = 50;
@@ -61,7 +57,7 @@ public class _MaterialSearchField extends _MaterialPanel {
     }
 
     // Variables declaration - do not modify//
-    private JButton buttonSearch;
+    private MaterialButtonIcon buttonSearch;
     private org.jdesktop.swingx.JXTextField searchField;
     // End of variables declaration                   
 
@@ -85,11 +81,8 @@ public class _MaterialSearchField extends _MaterialPanel {
             }
         });
 
-        buttonSearch.addActionListener(new java.awt.event.ActionListener() {
-            @Override
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchAction.actionPerformed(null);
-            }
+        buttonSearch.addActionListener((java.awt.event.ActionEvent evt) -> {
+            searchAction.actionPerformed(evt);
         });
     }
 
@@ -108,14 +101,17 @@ public class _MaterialSearchField extends _MaterialPanel {
         }
     }
 
+    @Override
     public void setHint(String hint) {
         searchField.setPrompt(hint);
     }
 
+    @Override
     public String getHint() {
         return searchField.getPrompt();
     }
 
+    @Override
     public void clear(KeyEvent evt) {
         if (evt.getKeyChar() == KeyEvent.VK_ESCAPE) {
             searchField.setText("");
@@ -124,31 +120,38 @@ public class _MaterialSearchField extends _MaterialPanel {
         searchField.requestFocusInWindow();
     }
 
+    @Override
     public int getMaxLength() {
         return maxLength;
     }
 
+    @Override
     public void setMaxLength(int maxLength) {
         this.maxLength = maxLength;
     }
 
+    @Override
     public void setSearchActionListener(ActionListener searchAction) {
         this.searchAction = searchAction;
         this.searchAction.actionPerformed(null);//activa la accion de busqueda
     }
 
+    @Override
     public String getText() {
         return searchField.getText();
     }
 
+    @Override
     public ActionListener getSearchAction() {
         return searchAction;
     }
 
-    public JButton getButtonSearch() {
+    @Override
+    public MaterialButtonIcon getButtonSearch() {
         return buttonSearch;
     }
 
+    @Override
     public JXTextField getSearchField() {
         return searchField;
     }

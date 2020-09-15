@@ -33,11 +33,11 @@ public class EXAMPLE_COMBO extends javax.swing.JFrame {
 
         VerticalLayoutContainer.builder vlc = VerticalLayoutContainer.builder();
 
-        _MaterialComboBox<Integer> combo = (_MaterialComboBox<Integer>) MaterialComboBoxFactory.build();
+        MaterialComboBox<Integer> combo = (_MaterialComboBox<Integer>) MaterialComboBoxFactory.build();
         combo.setModel(new DefaultComboBoxModel(new Object[]{1, 2, 3, 4, 5, 6}));
         vlc.add(combo, true);
 
-        _MaterialComboBoxFiltrable comboFiltrable = (_MaterialComboBoxFiltrable) MaterialComboBoxFactory.buildFiltrable();
+        MaterialComboBox comboFiltrable = (_MaterialComboBoxFiltrable) MaterialComboBoxFactory.buildFiltrable();
         comboFiltrable.setModel(Arrays.asList(new Object[]{1, 2, 3, 4, 5, 6}));
         vlc.add(comboFiltrable, true);
 

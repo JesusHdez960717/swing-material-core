@@ -1,6 +1,8 @@
 package com.jhw.swing.bundles.jop;
 
 import com.jhw.swing.material.components.container.panel._MaterialPanel;
+import com.jhw.swing.material.components.labels.MaterialLabel;
+import com.jhw.swing.material.components.labels.MaterialLabelsFactory;
 import com.jhw.swing.util.interfaces.MaterialComponent;
 
 /**
@@ -22,10 +24,10 @@ public class _InputOption extends _MaterialPanel implements MaterialComponent {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//
     private void initComponents() {
 
-        _MaterialLabel1 = new com.jhw.swing.material.components.labels._MaterialLabel();
+        label = MaterialLabelsFactory.build();
         _MaterialTextField1 = new com.jhw.swing.material.components.textfield._MaterialTextField();
 
-        _MaterialLabel1.setText("Introduzca algo");
+        label.setText("Introduzca algo");
 
         _MaterialTextField1.setText("Aqui");
         _MaterialTextField1.setLabel("arriba");
@@ -37,7 +39,7 @@ public class _InputOption extends _MaterialPanel implements MaterialComponent {
                         .addGroup(layout.createSequentialGroup()
                                 .addContainerGap(25, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(_MaterialLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(_MaterialTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 325, Short.MAX_VALUE))
                                 .addContainerGap(25, Short.MAX_VALUE))
         );
@@ -45,7 +47,7 @@ public class _InputOption extends _MaterialPanel implements MaterialComponent {
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
                                 .addContainerGap()
-                                .addComponent(_MaterialLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE)
+                                .addComponent(label, javax.swing.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(_MaterialTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap(40, Short.MAX_VALUE))
@@ -53,7 +55,7 @@ public class _InputOption extends _MaterialPanel implements MaterialComponent {
     }// </editor-fold>                        
 
     // Variables declaration - do not modify//:variables
-    private com.jhw.swing.material.components.labels._MaterialLabel _MaterialLabel1;
+    private MaterialLabel label;
     private com.jhw.swing.material.components.textfield._MaterialTextField _MaterialTextField1;
     // End of variables declaration                   
 }

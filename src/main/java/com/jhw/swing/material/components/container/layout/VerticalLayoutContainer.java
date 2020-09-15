@@ -3,6 +3,7 @@ package com.jhw.swing.material.components.container.layout;
 import com.jhw.swing.material.components.container.panel._PanelTransparent;
 import java.awt.Component;
 import java.util.ArrayList;
+import java.util.List;
 import javax.swing.GroupLayout;
 import net.miginfocom.layout.AC;
 import net.miginfocom.layout.LC;
@@ -76,6 +77,10 @@ public class VerticalLayoutContainer extends _PanelTransparent {
         public builder add(VerticalLayoutComponent comp) {
             components.add(comp);
             return this;
+        }
+
+        public List<VerticalLayoutComponent> components() {
+            return components;
         }
 
         public VerticalLayoutContainer build() {

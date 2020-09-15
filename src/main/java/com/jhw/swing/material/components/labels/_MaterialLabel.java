@@ -1,49 +1,36 @@
 package com.jhw.swing.material.components.labels;
 
+import com.jhw.swing.material.injection.Background_Force_Foreground;
+import com.jhw.swing.material.injection.Foreground_Force_Icon;
+import com.jhw.swing.material.injection.MaterialSwingInjector;
 import java.awt.Color;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import com.jhw.swing.util.MaterialDrawingUtils;
-import com.jhw.utils.others.StringFormating;
-import com.jhw.swing.util.Utils;
-import com.jhw.swing.utils.icons.DerivableIcon;
-import com.jhw.swing.util.interfaces.MaterialComponent;
 import com.jhw.swing.material.standards.MaterialFontRoboto;
-import com.jhw.swing.util.interfaces.BindableComponent;
-import java.math.BigDecimal;
-import javax.swing.Icon;
 
 /**
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-public class _MaterialLabel extends JLabel implements MaterialComponent, BindableComponent<String> {
+@Background_Force_Foreground
+@Foreground_Force_Icon
+public class _MaterialLabel extends MaterialLabel {
 
+    public static MaterialLabel from() {
+        return MaterialSwingInjector.getImplementation(_MaterialLabel.class);
+    }
+
+    /**
+     * Use _MaterialLabel.from() para proy y AOP
+     *
+     * @deprecated
+     */
+    @Deprecated
     public _MaterialLabel() {
         this.setFont(MaterialFontRoboto.MEDIUM.deriveFont(16f));
-    }
-
-    @Override
-    public void setBackground(Color bg) {
-        super.setBackground(bg);
-        setForeground(Utils.getForegroundAccording(bg));
-    }
-
-    @Override
-    public void setForeground(Color fg) {
-        super.setForeground(fg);
-        setIcon(getIcon());
-    }
-
-    @Override
-    public void setIcon(Icon icon) {
-        if (icon instanceof DerivableIcon) {
-            icon = ((DerivableIcon) icon).deriveIcon(getForeground());
-        }
-        super.setIcon(icon);
     }
 
     @Override
@@ -118,10 +105,6 @@ public class _MaterialLabel extends JLabel implements MaterialComponent, Bindabl
     @Override
     protected void paintBorder(Graphics g) {
         //intentionally left blank
-    }
-
-    public void setMoney(BigDecimal value, String coin) {
-        setText("$ " + StringFormating.formatToMoney(value) + " " + coin);
     }
 
     @Override

@@ -27,7 +27,7 @@ public class _ClockDigitalText extends JComponent implements MaterialComponent {
         return new _ClockDigitalText();
     }
 
-    protected _ClockDigitalText() {
+    public _ClockDigitalText() {
         this.setPreferredSize(new Dimension(200, 40));
         this.setBackground(MaterialColors.BLACK);
         this.setForeground(MaterialColors.BLACK);

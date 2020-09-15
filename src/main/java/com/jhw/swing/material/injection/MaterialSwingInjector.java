@@ -5,7 +5,6 @@
  */
 package com.jhw.swing.material.injection;
 
-import com.clean.core.app.modules.AbstractModule;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 

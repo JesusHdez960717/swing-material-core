@@ -14,11 +14,12 @@ import java.util.function.BiPredicate;
 import java.util.function.Function;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.plaf.basic.BasicComboBoxUI;
 import javax.swing.plaf.basic.BasicComboPopup;
 import javax.swing.plaf.basic.ComboPopup;
 import static com.jhw.swing.material.standards.Utils.LINE_OPACITY_MASK;
+import javax.swing.ComboBoxModel;
+import javax.swing.JButton;
 
 /**
  *
@@ -26,10 +27,10 @@ import static com.jhw.swing.material.standards.Utils.LINE_OPACITY_MASK;
  */
 public class _MaterialComboBoxFiltrable<T> extends _MaterialComboBox<T> {
 
-    public static _MaterialComboBoxFiltrable from() {
+    public static MaterialComboBox from() {
         return new _MaterialComboBoxFiltrable();
     }
-    
+
     private boolean focus;
     private ComboBoxFilterDecorator<T> decorator;
 
@@ -37,6 +38,14 @@ public class _MaterialComboBoxFiltrable<T> extends _MaterialComboBox<T> {
         initComponent();
     }
 
+    @Override
+    public void setModel(ComboBoxModel<T> aModel) {
+        super.setModel(aModel);
+        decorateInner();
+        this.setSelectedIndex(-1);
+    }
+
+    @Override
     public void setModel(List<T> aModel) {
         super.setModel(new DefaultComboBoxModel(aModel.toArray(new Object[aModel.size()])));
         decorateInner();

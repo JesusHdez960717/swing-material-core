@@ -7,31 +7,28 @@ package com.jhw.swing.material.components.filechooser;
 
 import com.jhw.swing.material.components.textfield.*;
 import com.jhw.personalization.services.PersonalizationHandler;
+import com.jhw.swing.material.components.button.MaterialButtonIcon;
 import com.jhw.swing.material.components.button.MaterialButtonsFactory;
-import com.jhw.swing.material.components.button._MaterialButtonIconTransparent;
-import com.jhw.swing.material.components.container.panel._PanelTransparent;
-import com.jhw.swing.material.effects.RippleEffect;
-import com.jhw.swing.material.standards.MaterialColors;
 import com.jhw.swing.material.standards.MaterialIcons;
 import com.jhw.swing.material.standards.MaterialShadow;
 import com.jhw.swing.util.PersonalizationMaterial;
-import com.jhw.swing.util.interfaces.BindableComponent;
-import com.jhw.swing.util.interfaces.MaterialComponent;
 import com.jhw.swing.utils.icons.DerivableIcon;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.File;
 import java.util.List;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
+import javax.swing.Icon;
 
 /**
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-public class _MaterialFileChooserIcon extends _PanelTransparent implements BindableComponent<List<File>>, MaterialComponent {
+public class _MaterialFileChooserIcon extends MaterialFileChooser {
+
+    public static MaterialFileChooser from() {
+        return new _MaterialFileChooserIcon();
+    }
 
     public _MaterialFileChooserIcon() {
         initComponents();
@@ -40,10 +37,10 @@ public class _MaterialFileChooserIcon extends _PanelTransparent implements Binda
     }
 
     private void initComponents() {
-        fileChooser = new _MaterialFileChooser();
+        fileChooser = MaterialFileChoosersFactory.build();
 
         buttonIcon = MaterialButtonsFactory.buildIconTransparent();
-        ((RippleEffect) buttonIcon).setPaintRipple(false);
+        buttonIcon.setPaintRipple(false);
 
         buttonClear = MaterialButtonsFactory.buildIconTransparent();
         buttonClear.setIcon(MaterialIcons.CLEAR);
@@ -55,11 +52,17 @@ public class _MaterialFileChooserIcon extends _PanelTransparent implements Binda
         this.add(buttonClear, BorderLayout.EAST);
     }
 
-    private _MaterialFileChooser fileChooser;
-    private JButton buttonIcon;
-    private JButton buttonClear;
+    private MaterialFileChooser fileChooser;
+    private MaterialButtonIcon buttonIcon;
+    private MaterialButtonIcon buttonClear;
 
-    public void setIcon(ImageIcon icon) {
+    @Override
+    public MaterialFileChooser getFileChooser() {
+        return fileChooser;
+    }
+
+    @Override
+    public void setIcon(Icon icon) {
         if (!PersonalizationHandler.getBoolean(PersonalizationMaterial.KEY_SHOW_ICON_INPUT)) {
             return;
         }
@@ -75,15 +78,32 @@ public class _MaterialFileChooserIcon extends _PanelTransparent implements Binda
     }
 
     @Override
+    public Icon getIcon() {
+        return buttonIcon.getIcon();
+    }
+
+    @Override
+    public void setText(String text) {
+        fileChooser.setText(text);
+    }
+
+    @Override
+    public String getText() {
+        return fileChooser.getText();
+    }
+
+    @Override
     public void setEnabled(boolean enabled) {
         fileChooser.setEnabled(enabled);
         buttonIcon.setEnabled(enabled);
     }
 
+    @Override
     public void setSelectedFiles(List<File> files) {
         fileChooser.setSelectedFiles(files);
     }
 
+    @Override
     public List<File> getSelectedFiles() {
         return fileChooser.getSelectedFiles();
     }
@@ -98,16 +118,14 @@ public class _MaterialFileChooserIcon extends _PanelTransparent implements Binda
         fileChooser.setObject(object);
     }
 
+    @Override
     public void clear() {
         fileChooser.clear();
     }
 
     private void addListeners() {
-        buttonClear.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                clear();
-            }
+        buttonClear.addActionListener((ActionEvent e) -> {
+            clear();
         });
     }
 

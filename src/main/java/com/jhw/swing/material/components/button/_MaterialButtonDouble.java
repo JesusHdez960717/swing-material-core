@@ -5,7 +5,6 @@ import com.jhw.swing.material.components.container.layout.HorizontalLayoutContai
 import com.jhw.swing.material.components.container.panel._MaterialPanelComponent;
 import com.jhw.swing.material.standards.MaterialColors;
 import com.jhw.swing.material.standards.MaterialIcons;
-import javax.swing.JButton;
 
 /**
  *
@@ -17,25 +16,25 @@ public class _MaterialButtonDouble extends _MaterialPanelComponent {
         return new _MaterialButtonDouble();
     }
 
-    private _MaterialButtonDouble() {
+    public _MaterialButtonDouble() {
         super(0);
         initComponents();
         personalize();
     }
 
     private void initComponents() {
-        buttonLeft = MaterialButtonsFactory.buildButton();
-        buttonRight = MaterialButtonsFactory.buildButton();
+        buttonLeft = MaterialButtonsFactory.buildFlat();
+        buttonRight = MaterialButtonsFactory.buildFlat();
 
         this.setBackground(new java.awt.Color(204, 204, 204));
         this.setBorderRadius(2);
         this.setPreferredSize(new java.awt.Dimension(120, 35));
 
         buttonLeft.setBackground(new java.awt.Color(255, 255, 255));
-        ((_MaterialButton) buttonLeft).setBorderRadius(2);
+        buttonLeft.setBorderRadius(2);
 
         buttonRight.setBackground(new java.awt.Color(255, 255, 255));
-        ((_MaterialButton) buttonRight).setBorderRadius(2);
+        buttonRight.setBorderRadius(2);
 
         HorizontalLayoutContainer.builder hlc = HorizontalLayoutContainer.builder((int) buttonLeft.getPreferredSize().getHeight());
         hlc.add(HorizontalLayoutComponent.builder(buttonLeft).gapRight(1).build());
@@ -45,29 +44,27 @@ public class _MaterialButtonDouble extends _MaterialPanelComponent {
     }
 
     // Variables declaration - do not modify//:variables
-    private JButton buttonLeft;
-    private JButton buttonRight;
+    private MaterialButton buttonLeft;
+    private MaterialButton buttonRight;
     // End of variables declaration//GEN-END:variables
 
     private void personalize() {
-        ((_MaterialButton) buttonLeft).setType(_MaterialButton.Type.FLAT);
-        ((_MaterialButton) buttonLeft).setAccentColorFadeInto(MaterialColors.GREY_200);
-        ((_MaterialButton) buttonLeft).setRippleColor(MaterialColors.GREY_300);
+        buttonLeft.setAccentColorFadeInto(MaterialColors.GREY_200);
+        buttonLeft.setRippleColor(MaterialColors.GREY_300);
         buttonLeft.setText("");
         buttonLeft.setIcon(MaterialIcons.KEYBOARD_ARROW_LEFT);
 
-        ((_MaterialButton) buttonRight).setType(_MaterialButton.Type.FLAT);
-        ((_MaterialButton) buttonRight).setAccentColorFadeInto(MaterialColors.GREY_200);
-        ((_MaterialButton) buttonRight).setRippleColor(MaterialColors.GREY_300);
+        buttonRight.setAccentColorFadeInto(MaterialColors.GREY_200);
+        buttonRight.setRippleColor(MaterialColors.GREY_300);
         buttonRight.setText("");
         buttonRight.setIcon(MaterialIcons.KEYBOARD_ARROW_RIGHT);
     }
 
-    public JButton getButtonLeft() {
+    public MaterialButton getButtonLeft() {
         return buttonLeft;
     }
 
-    public JButton getButtonRight() {
+    public MaterialButton getButtonRight() {
         return buttonRight;
     }
 

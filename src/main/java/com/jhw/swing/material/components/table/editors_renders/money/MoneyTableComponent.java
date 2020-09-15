@@ -2,6 +2,8 @@ package com.jhw.swing.material.components.table.editors_renders.money;
 
 import com.jhw.swing.material.components.container.MaterialContainersFactory;
 import com.jhw.swing.material.components.container.panel._PanelGradient;
+import com.jhw.swing.material.components.labels.MaterialLabelMoney;
+import com.jhw.swing.material.components.labels.MaterialLabelsFactory;
 import com.jhw.swing.material.components.labels._MaterialLabel;
 import com.jhw.utils.others.StringFormating;
 import java.awt.GridLayout;
@@ -46,7 +48,7 @@ public class MoneyTableComponent {
         JPanel panel = MaterialContainersFactory.buildPanelGradient();
         panel.setLayout(new GridLayout(1, 1));
 
-        _MaterialLabel label = new _MaterialLabel();
+        MaterialLabelMoney label = MaterialLabelsFactory.buildMoney();
         label.setFont(UIManager.getFont("Table.font"));
         label.setForeground(UIManager.getColor("Table.selectionForeground"));
         label.setMoney(money, coin);

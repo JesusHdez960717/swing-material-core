@@ -20,6 +20,14 @@ import javax.swing.JFormattedTextField.AbstractFormatter;
  */
 public class _MaterialFormatedTextFieldRuntime<T> extends _MaterialFormatedTextField<T> {
 
+    public static MaterialFormatedTextField from(AbstractFormatter formateer) {
+        return new _MaterialFormatedTextFieldRuntime(formateer);
+    }
+
+    public static MaterialFormatedTextField from(AbstractFormatter formateer, Class clazz) {
+        return new _MaterialFormatedTextFieldRuntime(formateer, clazz);
+    }
+    
     private final List<Integer> scapeCharacters = new ArrayList<>();
 
     public _MaterialFormatedTextFieldRuntime(AbstractFormatter formateer) {

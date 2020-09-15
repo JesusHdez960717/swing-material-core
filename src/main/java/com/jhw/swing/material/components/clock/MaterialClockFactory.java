@@ -17,17 +17,14 @@ import javax.swing.JComponent;
 public class MaterialClockFactory {
 
     public static JComponent buildDigitalCircle() {
-        //return MaterialSwingInjector.getImplementation(_ClockDigitalCircle.class);
         return _ClockDigitalCircle.from();
     }
 
     public static JComponent buildDigitalText() {
-        //return MaterialSwingInjector.getImplementation(_ClockDigitalText.class);
         return _ClockDigitalText.from();
     }
 
     public static JComponent buildClasic() {
-        //return MaterialSwingInjector.getImplementation(_ClockFace.class);
         return _ClockFace.from();
     }
 }

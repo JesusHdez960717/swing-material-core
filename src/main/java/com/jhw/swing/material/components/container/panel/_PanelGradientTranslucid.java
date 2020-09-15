@@ -2,11 +2,10 @@ package com.jhw.swing.material.components.container.panel;
 
 import com.jhw.swing.material.injection.Background_Force_Foreground;
 import com.jhw.swing.material.injection.Foreground_Force_Icon;
+import com.jhw.swing.material.injection.MaterialSwingInjector;
 import java.awt.AlphaComposite;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.RenderingHints;
-import java.awt.geom.RoundRectangle2D;
 import com.jhw.swing.util.MaterialDrawingUtils;
 import com.jhw.swing.util.interfaces.MaterialComponent;
 
@@ -18,7 +17,7 @@ import com.jhw.swing.util.interfaces.MaterialComponent;
 public class _PanelGradientTranslucid extends _PanelGradient implements MaterialComponent {
 
     public static _PanelGradientTranslucid from() {
-        return new _PanelGradientTranslucid();
+        return MaterialSwingInjector.getImplementation(_PanelGradientTranslucid.class);
     }
 
     protected float tran = 0.5f;
@@ -26,11 +25,8 @@ public class _PanelGradientTranslucid extends _PanelGradient implements Material
     @Override
     protected void paintComponent(Graphics g) {
         Graphics2D g2 = MaterialDrawingUtils.getAliasedGraphics(g);
-        g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
-
         g2.setComposite(AlphaComposite.getInstance(3, this.tran));
-        g2.setPaint(getGradientePaint());
-        g2.fill(new RoundRectangle2D.Float(0, 0, getWidth(), getHeight(), getBorderRadius() * 2, getBorderRadius() * 2));
+        super.paintComponent(g2);
     }
 
     public float getTran() {

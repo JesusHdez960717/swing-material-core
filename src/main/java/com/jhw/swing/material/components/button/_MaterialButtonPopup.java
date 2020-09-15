@@ -9,11 +9,12 @@ import com.jhw.personalization.core.domain.Personalization;
 import com.jhw.personalization.services.PersonalizationHandler;
 import com.jhw.swing.material.injection.Background_Force_Foreground;
 import com.jhw.swing.material.injection.Foreground_Force_Icon;
+import com.jhw.swing.material.injection.MaterialSwingInjector;
 import com.jhw.swing.material.standards.MaterialColors;
 import com.jhw.swing.material.standards.MaterialIcons;
-import com.jhw.swing.material.standards.MaterialShadow;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.JPopupMenu;
 
 /**
  *
@@ -23,21 +24,31 @@ import java.awt.event.MouseEvent;
 @Foreground_Force_Icon
 public class _MaterialButtonPopup extends _MaterialButton {
 
-    public static _MaterialButtonPopup from() {
-        return new _MaterialButtonPopup();
+    public static MaterialButton from() {
+        return MaterialSwingInjector.getImplementation(_MaterialButtonPopup.class);
     }
 
-    protected _MaterialButtonPopup() {
-        presonalize();
+    private JPopupMenu popup;
+
+    /**
+     * Usar _MaterialButtonPopup.from() para proxy y AOP.
+     *
+     * @deprecated
+     */
+    @Deprecated
+    public _MaterialButtonPopup() {
+        personalize();
         addListeners();
     }
 
-    private void presonalize() {
+    private void personalize() {
         this.setBackground(PersonalizationHandler.getColor(Personalization.KEY_COLOR_BACKGROUND_PANEL));
         this.setAccentColorFadeInto(MaterialColors.BLUEGREY_50);
         this.setPaintRipple(false);
         this.setBorderThickness(2);
+        this.setBorderColor(MaterialColors.GREY_700);
         this.setIcon(MaterialIcons.FILE_UPLOAD);
+        this.setIconTextGap(5);
     }
 
     private void addListeners() {
@@ -49,11 +60,40 @@ public class _MaterialButtonPopup extends _MaterialButton {
         });
     }
 
-    private void showPopup(MouseEvent e) {
-        if (getComponentPopupMenu() != null) {
-//            getComponentPopupMenu().show(this, e.getX(), e.getY());
-            getComponentPopupMenu().show(this, 0 + MaterialShadow.OFFSET_LEFT, (int) this.getSize().getHeight() - MaterialShadow.OFFSET_BOTTOM);
+    @Override
+    public JPopupMenu getComponentPopupMenu() {
+        return null;
+    }
 
+    @Override
+    public void setComponentPopupMenu(JPopupMenu popup) {
+        this.popup = popup;
+    }
+
+    private void showPopup(MouseEvent e) {
+        if (popup != null) {
+            //middle of component
+            int x = (int) ((getSize().getWidth() - popup.getPreferredSize().getWidth()) / 2);
+
+            int y = (int) ((getSize().getHeight() - popup.getPreferredSize().getHeight()) / 2);
+            popup.show(this, x, y);
         }
     }
 }
+
+
+/*Otras posiciones donde puede salir el popup
+//middle of mouse
+Point mousePos = MouseInfo.getPointerInfo().getLocation();
+
+Rectangle screen = Utils.getScreenSize();
+int x = (int) (mousePos.getX() - getPreferredSize().getWidth() / 2);
+x = Math.max(0, Math.min((int) (screen.getWidth() - getPreferredSize().getWidth()), x));
+
+int y = (int) (mousePos.getY() - getPreferredSize().getWidth() / 2);
+y = Math.max(0, Math.min((int) (screen.getHeight() - getPreferredSize().getHeight()), y));
+popup.show(this, x, y);
+ 
+//standar
+//popup.show(this, e.getX(), e.getY());
+ */

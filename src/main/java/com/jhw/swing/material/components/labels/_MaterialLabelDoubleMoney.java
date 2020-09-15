@@ -5,15 +5,33 @@
  */
 package com.jhw.swing.material.components.labels;
 
+import com.jhw.swing.material.standards.MaterialFontRoboto;
 import java.math.BigDecimal;
 
 /**
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-public interface _MaterialLabelDoubleMoney {
+public class _MaterialLabelDoubleMoney extends MaterialLabelDobleMoney {
 
-    public void setMoney(BigDecimal money, Object coin);
+    public static MaterialLabelDobleMoney from() {
+        return new _MaterialLabelDoubleMoney();
+    }
 
-    public void setText(String text);
+    public _MaterialLabelDoubleMoney() {
+        setLabelRigth(labelMoney);
+        labelMoney.setFont(MaterialFontRoboto.BOLD.deriveFont(22f));
+    }
+
+    private final MaterialLabelMoney labelMoney = MaterialLabelsFactory.buildMoney();
+
+    @Override
+    public void setMoney(BigDecimal value, Object coin) {
+        labelMoney.setMoney(value, coin.toString());
+    }
+
+    @Override
+    public void setText(String text) {
+        setLeftText(text);
+    }
 }

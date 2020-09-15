@@ -1,5 +1,6 @@
 package com.jhw.swing.material.components.combobox;
 
+import com.jhw.swing.material.components.scrollpane.MaterialScrollFactory;
 import com.jhw.swing.material.components.scrollpane._MaterialScrollPaneCore;
 import com.jhw.swing.material.effects.DefaultLine;
 import com.jhw.swing.material.effects.DefaultFloatingLabel;
@@ -22,6 +23,7 @@ import com.jhw.swing.utils.icons.DerivableIcon;
 import java.awt.event.ActionEvent;
 import com.jhw.swing.material.effects.Wrong;
 import static com.jhw.swing.material.standards.Utils.LINE_OPACITY_MASK;
+import java.util.ArrayList;
 
 /**
  * A Material Design combo box.
@@ -30,9 +32,9 @@ import static com.jhw.swing.material.standards.Utils.LINE_OPACITY_MASK;
  * href="https://www.google.com/design/spec/components/buttons.html#buttons-dropdown-buttons">Dropdown
  * buttons (Google design guidelines)</a>
  */
-public class _MaterialComboBox<T> extends JComboBox<T> implements Line, FloatingLabel, BindableComponent<T>, Wrong, MaterialComponent {
+public class _MaterialComboBox<T> extends MaterialComboBox<T> {
 
-    public static _MaterialComboBox from() {
+    public static MaterialComboBox from() {
         return new _MaterialComboBox();
     }
 
@@ -70,9 +72,17 @@ public class _MaterialComboBox<T> extends JComboBox<T> implements Line, Floating
 
         this.setFont(MaterialFontRoboto.REGULAR.deriveFont(16f));
         this.setHint("Select...");
-        this.setModel(new javax.swing.DefaultComboBoxModel(new String[]{}));
+
+        this.setModel(new ArrayList<>());
+
         this.setSelectedIndex(-1);
 
+    }
+
+    @Override
+    public void setModel(java.util.List<T> aModel) {
+        super.setModel(new DefaultComboBoxModel(aModel.toArray(new Object[aModel.size()])));
+        this.setSelectedIndex(-1);
     }
 //-------------------LINE-------------------------
 
@@ -276,7 +286,7 @@ public class _MaterialComboBox<T> extends JComboBox<T> implements Line, Floating
 
         @Override
         protected JScrollPane createScroller() {
-            JScrollPane scroller = new _MaterialScrollPaneCore();
+            JScrollPane scroller = MaterialScrollFactory.buildPane();
             scroller.setViewportView(super.getList());
             return scroller;
         }

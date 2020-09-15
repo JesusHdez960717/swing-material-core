@@ -1,5 +1,8 @@
 package com.jhw.swing.material.components.taskpane;
 
+import com.jhw.swing.material.injection.Background_Force_Foreground;
+import com.jhw.swing.material.injection.Foreground_Force_Icon;
+import com.jhw.swing.material.injection.MaterialSwingInjector;
 import com.jhw.swing.material.standards.MaterialIcons;
 import com.jhw.swing.util.MaterialDrawingUtils;
 import com.jhw.swing.util.interfaces.MaterialComponent;
@@ -11,27 +14,30 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.Action;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.SwingConstants;
-import com.jhw.swing.material.components.button.*;//_MaterialButtonFlat
 import com.jhw.swing.material.standards.MaterialColors;
-import com.jhw.swing.utils.icons.DerivableIcon;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import javax.swing.Icon;
+import javax.swing.JButton;
 
 /**
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
+@Background_Force_Foreground
+@Foreground_Force_Icon
 public class TaskButton extends JButton implements MaterialComponent {
+
+    public static TaskButton from() {
+        return MaterialSwingInjector.getImplementation(TaskButton.class);
+    }
 
     private boolean selected = false;
     private Color selectedColor = MaterialColors.BLUE_200;
     private Color deselectedColor = MaterialColors.BLUE_800;
     private Color mauseOverColor = MaterialColors.BLUE_800;
 
-    public TaskButton(Action a, CollapseMenu parent) {
+    protected TaskButton(Action a, CollapseMenu parent) {
         setAction(a);
 
         setPreferredSize(parent.getjPanelFixed().getPreferredSize());
@@ -64,20 +70,6 @@ public class TaskButton extends JButton implements MaterialComponent {
                 }
             }
         });
-    }
-
-    @Override
-    public void setForeground(Color fg) {
-        super.setForeground(fg);
-        setIcon(getIcon());
-    }
-
-    @Override
-    public void setIcon(Icon icon) {
-        if (icon instanceof DerivableIcon) {
-            icon = ((DerivableIcon) icon).deriveIcon(getForeground());
-        }
-        super.setIcon(icon);
     }
 
     public Color getMauseOverColor() {

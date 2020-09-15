@@ -5,11 +5,12 @@
  */
 package com.jhw.swing.examples;
 
-import com.jhw.swing.material.components.combobox.*;
 import com.jhw.swing.material.components.container.MaterialContainersFactory;
 //import com.jhw.swing.material.components.combobox.combobox_editable._MaterialComboBoxFiltrable;
 import com.jhw.swing.material.components.container.layout.VerticalLayoutContainer;
+import com.jhw.swing.material.components.container.panel.MaterialPanelBorder;
 import com.jhw.swing.material.components.container.panel._PanelAvatarChooser;
+import com.jhw.swing.material.components.container.panel._PanelGradient;
 import com.jhw.swing.material.standards.MaterialColors;
 import com.jhw.swing.material.standards.MaterialIcons;
 import com.jhw.swing.ui.MaterialLookAndFeel;
@@ -17,12 +18,8 @@ import com.jhw.swing.util.AvatarPanelAvatarChooser;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.event.ActionEvent;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import javax.swing.AbstractAction;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
@@ -44,8 +41,11 @@ public class EXAMPLE_CONTAINERS extends javax.swing.JFrame {
         jPanel1.setBackground(MaterialColors.RED_800);
 
         VerticalLayoutContainer.builder vlc = VerticalLayoutContainer.builder();
-
-        vlc.add(MaterialContainersFactory.buildPanel(), true);
+        MaterialPanelBorder clasic = MaterialContainersFactory.buildPanel();
+        clasic.setBorderRadius(0);
+        clasic.setBorderColor(Color.black);
+        clasic.setBorderThickness(5);
+        vlc.add(clasic, true);
 
         _PanelAvatarChooser avatars = MaterialContainersFactory.buildPanelAvatar();
         List<AvatarPanelAvatarChooser> avatares = new ArrayList<>();
@@ -58,7 +58,7 @@ public class EXAMPLE_CONTAINERS extends javax.swing.JFrame {
         avatars.setAvatars(avatares);
         vlc.add(avatars, true);
 
-        JPanel comp = MaterialContainersFactory.buildPanelComponent();
+        MaterialPanelBorder comp = MaterialContainersFactory.buildPanelComponent();
         comp.add(new JButton("Component"));
         vlc.add(comp, true);
 
@@ -68,7 +68,13 @@ public class EXAMPLE_CONTAINERS extends javax.swing.JFrame {
 
         vlc.add(MaterialContainersFactory.buildPanelCurves(), true);
 
-        vlc.add(MaterialContainersFactory.buildPanelGradient(), true);
+        MaterialPanelBorder grad = MaterialContainersFactory.buildPanelGradient();
+        ((_PanelGradient) grad).setPrimaryColor(Color.gray);
+        ((_PanelGradient) grad).setSecundaryColor(Color.ORANGE);
+        grad.setBorderColor(Color.black);
+        grad.setBorderRadius(0);
+        grad.setBorderThickness(5);
+        vlc.add(grad, true);
         vlc.add(MaterialContainersFactory.buildPanelGradientTranslucid(), true);
         vlc.add(MaterialContainersFactory.buildPanelTransparent(), true);
 
@@ -87,8 +93,7 @@ public class EXAMPLE_CONTAINERS extends javax.swing.JFrame {
         header.add("2", new JPanel());
         header.add("3", new JPanel());
         vlc2.add(header, true);
-        
-        
+
         JTabbedPane selector = MaterialContainersFactory.buildTabbedSelector();
         selector.add("1", new JPanel());
         selector.add("2", new JPanel());

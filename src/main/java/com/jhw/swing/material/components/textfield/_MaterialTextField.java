@@ -4,9 +4,6 @@ import java.awt.*;
 import java.awt.event.FocusEvent;
 import java.awt.event.KeyEvent;
 import javax.swing.*;
-import javax.swing.text.DefaultCaret;
-import com.jhw.personalization.core.domain.Personalization;
-import com.jhw.personalization.services.PersonalizationHandler;
 import com.jhw.swing.util.MaterialDrawingUtils;
 import com.jhw.swing.material.effects.DefaultFloatingLabel;
 import com.jhw.swing.material.effects.FloatingLabel;
@@ -14,10 +11,8 @@ import com.jhw.swing.material.effects.DefaultLine;
 import com.jhw.swing.material.effects.DefaultWrong;
 import com.jhw.swing.material.effects.Line;
 import com.jhw.swing.util.Utils;
-import com.jhw.swing.util.interfaces.MaterialComponent;
 import com.jhw.swing.material.standards.MaterialColors;
 import com.jhw.swing.material.standards.MaterialFontRoboto;
-import com.jhw.swing.util.interfaces.BindableComponent;
 import com.jhw.swing.material.effects.Wrong;
 import com.jhw.utils.interfaces.Formateable;
 import com.jhw.utils.services.ConverterService;
@@ -32,8 +27,12 @@ import com.jhw.utils.services.ConverterService;
  * href="https://www.google.com/design/spec/components/text-fields.html">Text
  * fields (Google design guidelines)</a>
  */
-public class _MaterialTextField<T> extends JTextField implements BindableComponent<T>, Line, Wrong, MaterialComponent, FloatingLabel {
+public class _MaterialTextField<T> extends MaterialTextField<T> {
 
+    public static MaterialTextField from() {
+        return new _MaterialTextField();
+    }
+    
     private final Class<? extends T> clazz;
 
     private final FloatingLabel floatingLabel = new DefaultFloatingLabel(this);
@@ -77,6 +76,11 @@ public class _MaterialTextField<T> extends JTextField implements BindableCompone
         setText("");
 
         this.setComponentPopupMenu(CopyPastePopup.INSTANCE);
+    }
+
+    @Override
+    public MaterialTextField getTextField() {
+        return this;
     }
 
 //-------------------LINE-------------------------
@@ -170,36 +174,40 @@ public class _MaterialTextField<T> extends JTextField implements BindableCompone
         }
     }
 
-    /**
-     * Get the max length of the text.
-     *
-     * @return the max length of the text
-     */
+    @Override
     public int getMaxLength() {
         return maxLength;
     }
 
-    /**
-     * Set the max length of the text.
-     *
-     * @param maxLength the max length of the text
-     */
+    @Override
     public void setMaxLength(int maxLength) {
         this.maxLength = maxLength;
     }
 
+    @Override
     public String getExtra() {
         return extra;
     }
 
+    @Override
     public void setExtra(String extra) {
         this.extra = extra;
         this.repaint();
     }
 
     @Override
+    public void setIcon(Icon icon) {
+    }
+
+    @Override
+    public Icon getIcon() {
+        return null;
+    }
+
+    @Override
     public void setText(String s) {
         super.setText(s);
+        clearWrong();
         this.setCaretPosition(getText().length());
         firePropertyChange("text", null, null);
     }

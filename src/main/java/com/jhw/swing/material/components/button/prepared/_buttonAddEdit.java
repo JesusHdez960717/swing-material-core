@@ -6,6 +6,7 @@ import com.jhw.personalization.core.domain.Personalization;
 import com.jhw.personalization.services.PersonalizationHandler;
 import com.jhw.swing.material.injection.Background_Force_Foreground;
 import com.jhw.swing.material.injection.Foreground_Force_Icon;
+import com.jhw.swing.material.injection.MaterialSwingInjector;
 
 /**
  * MaterialButton con background getColorButtonAdd, e icon iconButtonAdd de la
@@ -18,9 +19,15 @@ import com.jhw.swing.material.injection.Foreground_Force_Icon;
 public class _buttonAddEdit extends _MaterialButton {
 
     public static _buttonAddEdit from() {
-        return new _buttonAddEdit();
+        return MaterialSwingInjector.getImplementation(_buttonAddEdit.class);
     }
 
+    /**
+     * Usar _buttonAddEdit.from() para proxy y AOP.
+     *
+     * @deprecated
+     */
+    @Deprecated
     protected _buttonAddEdit() {
         this.setBackground(PersonalizationHandler.getColor(Personalization.KEY_COLOR_BUTTON_ADD));
         this.setIcon(PersonalizationHandler.getDerivableIcon(Personalization.KEY_ICON_BUTTON_ADD));

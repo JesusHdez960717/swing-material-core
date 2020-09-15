@@ -1,5 +1,7 @@
 package com.jhw.swing.material.components.combobox.filtrable_utils;
 
+import com.jhw.swing.material.components.labels.MaterialLabel;
+import com.jhw.swing.material.components.labels.MaterialLabelsFactory;
 import com.jhw.swing.material.components.labels._MaterialLabel;
 import java.awt.Component;
 import java.awt.event.ActionListener;
@@ -15,7 +17,7 @@ import javax.swing.UIManager;
  */
 public class FilterEditor<T> extends BasicComboBoxEditor {
 
-    private JLabel filterLabel = new _MaterialLabel();
+    private MaterialLabel filterLabel = MaterialLabelsFactory.build();
     private String text = "";
     private boolean editing;
     private Function<T, String> formater;

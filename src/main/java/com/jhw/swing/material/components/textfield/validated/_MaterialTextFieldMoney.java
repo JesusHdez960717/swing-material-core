@@ -5,6 +5,7 @@
  */
 package com.jhw.swing.material.components.textfield.validated;
 
+import com.jhw.swing.material.components.textfield.MaterialFormatedTextField;
 import com.jhw.swing.material.components.textfield._MaterialFormatedTextFieldRuntime;
 import com.jhw.swing.util.Utils;
 import java.awt.event.KeyEvent;
@@ -17,6 +18,14 @@ import java.util.StringTokenizer;
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
 public class _MaterialTextFieldMoney extends _MaterialFormatedTextFieldRuntime<BigDecimal> {
+
+    public static MaterialFormatedTextField from() {
+        return new _MaterialTextFieldMoney();
+    }
+
+    public static MaterialFormatedTextField from(boolean negative) {
+        return new _MaterialTextFieldMoney(negative);
+    }
 
     private static final String INCORRECTO = "Tipo de dato incorrecto";
 

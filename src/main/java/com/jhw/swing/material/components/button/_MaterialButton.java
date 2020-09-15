@@ -5,7 +5,7 @@ import com.jhw.swing.material.injection.Background_Force_Foreground;
 import com.jhw.swing.material.effects.Iconable;
 import com.jhw.swing.material.standards.*;
 import com.jhw.swing.material.effects.*;
-import com.jhw.swing.util.interfaces.MaterialComponent;
+import com.jhw.swing.material.injection.MaterialSwingInjector;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.geom.RoundRectangle2D;
@@ -14,7 +14,6 @@ import javax.swing.plaf.basic.BasicButtonUI;
 import com.jhw.swing.util.MaterialDrawingUtils;
 import com.jhw.swing.util.DefaultMouseAdapterInfo;
 import com.jhw.swing.util.*;
-import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
 /**
@@ -30,7 +29,11 @@ import java.beans.PropertyChangeListener;
  */
 @Background_Force_Foreground
 @Foreground_Force_Icon
-public class _MaterialButton extends JButton implements Iconable, ColorFadeInto, MouseAdapterInfo, RippleEffect, ElevationEffect, MaterialLineBorder, PropertyChangeListener, MaterialComponent {
+public class _MaterialButton extends MaterialButton {
+
+    public static MaterialButton from() {
+        return MaterialSwingInjector.getImplementation(_MaterialButton.class);
+    }
 
     private final MouseAdapterInfo mouseInfo = DefaultMouseAdapterInfo.from(this);
 
@@ -44,14 +47,15 @@ public class _MaterialButton extends JButton implements Iconable, ColorFadeInto,
 
     private Type type = Type.DEFAULT;
 
-    public static _MaterialButton from() {
-        return new _MaterialButton();
-    }
-
     /**
-     * Creates a new button.
+     * NO USAR ESTE CONSTRUCTOR. Usar el _MaterialButton.from() que internamente
+     * le asigna el proxy y demas para el trabajo automatizado con AOP.(Aspect
+     * Oriented Programing)
+     *
+     * @deprecated
      */
-    protected _MaterialButton() {
+    @Deprecated
+    public _MaterialButton() {
         this.setIconTextGap(2);
         this.setFont(MaterialFontRoboto.MEDIUM.deriveFont(16f));
         this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -196,7 +200,7 @@ public class _MaterialButton extends JButton implements Iconable, ColorFadeInto,
         border.paintBorder(c, g, x, y, width, height);
     }
 //------------------------------------------------------------------------------
-    //para si extiende uno con elevation round
+    //para si extiende uno con elevation round que extienda de aqui lo sobreescriba y ya
 
     protected void setElevation(DefaultElevationEffect elevation) {
         this.elevation = elevation;
@@ -209,6 +213,7 @@ public class _MaterialButton extends JButton implements Iconable, ColorFadeInto,
      * @return the type of this button
      * @see Type
      */
+    @Override
     public Type getType() {
         return type;
     }
@@ -219,6 +224,7 @@ public class _MaterialButton extends JButton implements Iconable, ColorFadeInto,
      * @param type the type of this button
      * @see Type
      */
+    @Override
     public void setType(Type type) {
         this.type = type;
         setEnabled(true);//para que pinte la sombra
@@ -289,6 +295,10 @@ public class _MaterialButton extends JButton implements Iconable, ColorFadeInto,
         int strWidth = metrics.stringWidth(getText());
         int align = getHorizontalAlignment();
 
+        int oldDist = getIconTextGap();
+        if (getText().trim().isEmpty()) {
+            setIconTextGap(0);
+        }
         if (align == SwingConstants.TRAILING || align == SwingConstants.RIGHT) {
             xText = widthReal - strWidth - 2 * getIconTextGap();
             xIcon = xText - iconWidth - 2 * getIconTextGap();
@@ -309,6 +319,7 @@ public class _MaterialButton extends JButton implements Iconable, ColorFadeInto,
         if (this.getIcon() != null) {
             this.getIcon().paintIcon(this, g2, xIcon, (getHeight() - offset_td - getIcon().getIconHeight()) / 2);
         }
+        setIconTextGap(oldDist);
         g2.translate(-offset_left, -offset_top);
     }
 
@@ -317,29 +328,4 @@ public class _MaterialButton extends JButton implements Iconable, ColorFadeInto,
         //intentionally left blank
     }
 
-    @Override
-    public void propertyChange(PropertyChangeEvent evt) {
-        firePropertyChange(evt.getPropertyName(), evt.getOldValue(), evt.getNewValue());
-    }
-
-    /**
-     * Button types.
-     */
-    public enum Type {
-
-        /**
-         * A default button.
-         */
-        DEFAULT,
-        /**
-         * A raised button. Raised buttons have a shadow even if they are not
-         * focused.
-         */
-        RAISED,
-        /**
-         * A flat button. Flat buttons don't have shadows and are typically
-         * transparent.
-         */
-        FLAT
-    }
 }

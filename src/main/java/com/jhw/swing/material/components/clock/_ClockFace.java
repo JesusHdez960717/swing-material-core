@@ -31,7 +31,7 @@ public class _ClockFace extends JComponent implements MaterialComponent {
     private Stroke secondHand;
     private Stroke ticks;
 
-    protected _ClockFace() {
+    public _ClockFace() {
         setPreferredSize(new Dimension(150, 150));
         setSize(new Dimension(150, 150));
         setOpaque(false);

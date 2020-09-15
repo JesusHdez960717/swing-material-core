@@ -29,7 +29,7 @@ public class _ClockDigitalCircle extends JComponent implements MaterialComponent
     
     public static int FPS = 60;
 
-    protected _ClockDigitalCircle() {
+    public _ClockDigitalCircle() {
         this.setPreferredSize(new Dimension(100, 100));
         this.setBackground(MaterialColors.BLACK);
         this.setForeground(MaterialColors.BLACK);

@@ -1,11 +1,11 @@
 package com.jhw.swing.bundles.jop;
 
+import com.jhw.swing.material.components.button.MaterialButton;
 import com.jhw.swing.material.components.button.MaterialButtonsFactory;
 import com.jhw.swing.material.components.button._MaterialButton;
 import com.jhw.swing.material.components.container.panel._MaterialPanel;
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.GridLayout;
 import java.awt.Window;
 import java.awt.event.ComponentEvent;
 import javax.swing.JComponent;
@@ -13,7 +13,6 @@ import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import com.jhw.swing.util.interfaces.MaterialComponent;
 import com.jhw.swing.material.standards.MaterialColors;
-import javax.swing.JButton;
 
 /**
  *
@@ -88,8 +87,8 @@ public class _OptionPanel extends _MaterialPanel implements MaterialComponent {
     }// </editor-fold>                        
 
     // Variables declaration - do not modify//:variables
-    private JButton buttonNegative;
-    private JButton buttonPositive;
+    private MaterialButton buttonNegative;
+    private MaterialButton buttonPositive;
     private com.jhw.swing.material.components.container.panel._PanelComponent panelOption;
     // End of variables declaration                   
 
@@ -107,7 +106,7 @@ public class _OptionPanel extends _MaterialPanel implements MaterialComponent {
         window.dispose();//realeases all of the native screen resources ued by this its subcomponents, and all of its owned children
     }
 
-    public JButton getButtonNegative() {
+    public MaterialButton getButtonNegative() {
         return buttonNegative;
     }
 
@@ -115,7 +114,7 @@ public class _OptionPanel extends _MaterialPanel implements MaterialComponent {
         this.buttonNegative = buttonNegative;
     }
 
-    public JButton getButtonPositive() {
+    public MaterialButton getButtonPositive() {
         return buttonPositive;
     }
 

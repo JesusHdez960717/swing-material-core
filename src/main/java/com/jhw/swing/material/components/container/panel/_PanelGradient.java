@@ -3,40 +3,36 @@ package com.jhw.swing.material.components.container.panel;
 import com.jhw.personalization.core.domain.Personalization;
 import com.jhw.personalization.services.PersonalizationHandler;
 import com.jhw.swing.material.effects.DefaultMaterialLineBorder;
-import com.jhw.swing.material.effects.Iconable;
 import com.jhw.swing.material.effects.MaterialLineBorder;
 import com.jhw.swing.material.injection.Background_Force_Foreground;
 import com.jhw.swing.material.injection.Foreground_Force_Icon;
+import com.jhw.swing.material.injection.MaterialSwingInjector;
 import java.awt.Color;
 import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Image;
 import java.awt.LinearGradientPaint;
 import java.awt.Paint;
 import java.awt.RadialGradientPaint;
 import java.awt.geom.RoundRectangle2D;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
-import javax.swing.JPanel;
 import com.jhw.swing.util.MaterialDrawingUtils;
 import com.jhw.swing.util.enums.GradientEnum;
-import com.jhw.swing.util.interfaces.MaterialComponent;
 import com.jhw.swing.material.standards.MaterialColors;
+import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Stroke;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 
 /**
  * Componente extraido su logica de edisoncorSX.
  */
 @Background_Force_Foreground
 @Foreground_Force_Icon
-public class _PanelGradient extends JPanel implements Iconable, MaterialComponent, MaterialLineBorder, PropertyChangeListener {
+public class _PanelGradient extends MaterialPanelBorder {
 
     public static _PanelGradient from() {
-        return new _PanelGradient();
+        return MaterialSwingInjector.getImplementation(_PanelGradient.class);
     }
 
     private final MaterialLineBorder border = DefaultMaterialLineBorder.builder().borderRadius(5).listeners(this).build();
@@ -48,12 +44,26 @@ public class _PanelGradient extends JPanel implements Iconable, MaterialComponen
 
     private Icon icon;
 
-    protected _PanelGradient() {
-        setBackground(PersonalizationHandler.getColor(Personalization.KEY_COLOR_BACKGROUND_PANEL));
+    /**
+     * Use _PanelGradient.from() para proy y AOP
+     *
+     * @deprecated
+     */
+    @Deprecated
+    public _PanelGradient() {
+        this(PersonalizationHandler.getColor(Personalization.KEY_COLOR_BACKGROUND_PANEL));
     }
 
-    protected _PanelGradient(Color back) {
+    /**
+     * Use _PanelGradient.from() para proy y AOP
+     *
+     * @deprecated
+     */
+    @Deprecated
+    public _PanelGradient(Color back) {
         this.setBackground(back);
+        setBorderRadius(0);
+        this.setLayout(new BorderLayout());
     }
 //-----------------LINE_BORDER------------------------
 
@@ -114,19 +124,23 @@ public class _PanelGradient extends JPanel implements Iconable, MaterialComponen
     protected void paintComponent(Graphics g) {
         Graphics2D g2 = MaterialDrawingUtils.getAliasedGraphics(g);
 
+        g2.translate(getBorderThickness() / 2, getBorderThickness() / 2);
+
         if (this.icon != null) {
             if (icon instanceof ImageIcon) {//si es image icon lo pinto completo de todo el tamanno
                 g2.drawImage(((ImageIcon) this.icon).getImage(), 0, 0, getWidth(), getHeight(), null);
             } else {//si no lo pinto como un simple icon
-                icon.paintIcon(this, g2, 0, 0);
+                icon.paintIcon(this, g2, (getWidth() - icon.getIconWidth()) / 2, (getHeight() - icon.getIconHeight()) / 2);
             }
         } else {
             g2.setPaint(getGradientePaint());
-            g2.fill(new RoundRectangle2D.Float(0, 0, getWidth(), getHeight(), getBorderRadius() * 2, getBorderRadius() * 2));
+            g2.fill(new RoundRectangle2D.Float(0, 0, getWidth() - getBorderThickness(), getHeight() - getBorderThickness(), getBorderRadius() * 2, getBorderRadius() * 2));
             g2.setColor(getForeground());
 
-            paintBorder(this, g2, 0, 0, (int) (getWidth() + getBorderThickness()), (int) (getHeight() + getBorderThickness()));
+            paintBorder(this, g2, 0, 0, (int) (getWidth()), (int) (getHeight()));
         }
+        g2.translate(-getBorderThickness(), -getBorderThickness());
+
     }
 
     public Paint getGradientePaint() {
@@ -197,8 +211,4 @@ public class _PanelGradient extends JPanel implements Iconable, MaterialComponen
         this.icon = icon;
     }
 
-    @Override
-    public void propertyChange(PropertyChangeEvent evt) {
-        firePropertyChange(evt.getPropertyName(), evt.getOldValue(), evt.getNewValue());
-    }
 }

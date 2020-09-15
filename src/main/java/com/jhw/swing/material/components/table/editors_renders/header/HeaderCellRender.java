@@ -1,5 +1,7 @@
 package com.jhw.swing.material.components.table.editors_renders.header;
 
+import com.jhw.swing.material.components.labels.MaterialLabel;
+import com.jhw.swing.material.components.labels.MaterialLabelsFactory;
 import com.jhw.swing.material.components.labels._MaterialLabel;
 import java.awt.Component;
 import javax.swing.ImageIcon;
@@ -15,13 +17,13 @@ import com.jhw.swing.material.standards.MaterialIcons;
  */
 public class HeaderCellRender extends DefaultTableCellRenderer {
 
-    private final _MaterialLabel label;
+    private final MaterialLabel label;
 
     /**
      * Default crea un label con los 3puntitos del more
      */
     public HeaderCellRender() {
-        label = new _MaterialLabel();
+        label = MaterialLabelsFactory.build();
         label.setIcon(MaterialIcons.MORE_HORIZ);
         label.setText("");
         estandarizarLabel();
@@ -33,7 +35,7 @@ public class HeaderCellRender extends DefaultTableCellRenderer {
     }
 
     public HeaderCellRender(ImageIcon icon, String text) {
-        _MaterialLabel labelAct = new _MaterialLabel();
+        MaterialLabel labelAct = MaterialLabelsFactory.build();
         labelAct.setIcon(icon);
         labelAct.setText(text);
         labelAct.setHorizontalAlignment(SwingConstants.CENTER);

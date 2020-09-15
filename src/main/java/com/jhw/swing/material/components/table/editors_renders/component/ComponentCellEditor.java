@@ -25,13 +25,14 @@ public class ComponentCellEditor<T> extends AbstractCellEditor implements TableC
 
     /**
      * Este constructor se creo para en caso de que no se quiera pintar el
-     * background de un componeente con el selected.<\br>
+     * background de un componente con el selected.<\br>
      * Por ejemplo, supongamos que se tienen dos componentes, uno boton y un
      * panel, el boton quiere que se pinte el background de acuerdo a si esta
-     * seleccionado o no. Pero si el panel es para mostrar un color especifico
-     * en dependencia de alguna propiedad, no tiene que pintar el background de
+     * seleccionado o no.Pero si el panel es para mostrar un color especifico en
+     * dependencia de alguna propiedad, no tiene que pintar el background de
      * acuerdo al selected.
      *
+     * @param render
      * @param paintBackground Booleano para saber si se pinta el background.
      */
     public ComponentCellEditor(ComponentCellRender render, boolean paintBackground) {
