@@ -5,6 +5,8 @@
  */
 package com.jhw.swing.material.components.textarea;
 
+import com.jhw.swing.material.components.textarea.prepared._MaterialTextAreaDescripcion;
+
 /**
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
@@ -17,5 +19,9 @@ public class MaterialTextAreaFactory {
 
     public static ContentArea buildContentArea() {
         return DefaultContentArea.from();
+    }
+
+    public static MaterialTextArea buildDescripcion() {
+        return _MaterialTextAreaDescripcion.from();
     }
 }

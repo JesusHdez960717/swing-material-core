@@ -21,4 +21,11 @@ public class MaterialComboBoxFactory {
         return _MaterialComboBoxFiltrable.from();
     }
 
+    public static MaterialComboBox buildIcon() {
+        return _MaterialComboBoxIcon.from();
+    }
+
+    public static MaterialComboBox buildFiltrableIcon() {
+        return _MaterialComboBoxIcon.from(buildFiltrable());
+    }
 }

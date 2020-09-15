@@ -19,6 +19,7 @@ import javax.swing.plaf.basic.BasicComboPopup;
 import javax.swing.plaf.basic.ComboPopup;
 import static com.jhw.swing.material.standards.Utils.LINE_OPACITY_MASK;
 import javax.swing.ComboBoxModel;
+import javax.swing.Icon;
 import javax.swing.JButton;
 
 /**
@@ -35,7 +36,29 @@ public class _MaterialComboBoxFiltrable<T> extends _MaterialComboBox<T> {
     private ComboBoxFilterDecorator<T> decorator;
 
     public _MaterialComboBoxFiltrable() {
-        initComponent();
+        this.setUI(new BasicComboBoxUI() {
+            @Override
+            protected ComboPopup createPopup() {
+                BasicComboPopup popupAct = new Popup(comboBox);
+                popupAct.getAccessibleContext().setAccessibleParent(comboBox);
+                return popupAct;
+            }
+
+            @Override
+            protected JButton createArrowButton() {
+                return new JButton() {
+                    @Override
+                    public int getWidth() {
+                        return 0;
+                    }
+                };
+            }
+        });
+    }
+
+    @Override
+    public MaterialComboBox getComboBox() {
+        return this;
     }
 
     @Override
@@ -87,27 +110,6 @@ public class _MaterialComboBoxFiltrable<T> extends _MaterialComboBox<T> {
         }
     }
 
-    private void initComponent() {
-        this.setUI(new BasicComboBoxUI() {
-            @Override
-            protected ComboPopup createPopup() {
-                BasicComboPopup popupAct = new Popup(comboBox);
-                popupAct.getAccessibleContext().setAccessibleParent(comboBox);
-                return popupAct;
-            }
-
-            @Override
-            protected JButton createArrowButton() {
-                return new JButton() {
-                    @Override
-                    public int getWidth() {
-                        return 0;
-                    }
-                };
-            }
-        });
-    }
-
     public void processExternalFocusEvent(boolean focus, FocusEvent e) {
         this.focus = focus;
         processFocusEvent(e);
@@ -134,19 +136,19 @@ public class _MaterialComboBoxFiltrable<T> extends _MaterialComboBox<T> {
         paintWrong(g2, getYLine(g2) + 15);
 
         //paint the arrow
-        if (getIcon() != null) {
+        if (getIconArrow()!= null) {
             Color iconColor;
             if (isFocusOwner()) {
                 iconColor = getAccentFloatingLabel();
             } else {
                 iconColor = Utils.applyAlphaMask(getForeground(), LINE_OPACITY_MASK);
             }
-            ImageIcon icon = getIcon();
+            ImageIcon icon = getIconArrow();
             if (icon instanceof DerivableIcon) {
                 icon = ((DerivableIcon) icon).deriveIcon(iconColor);
             }
-            icon.paintIcon(this, g2, (int) (this.getSize().getWidth() - getIcon().getIconHeight()), yMid - icon.getIconHeight() / 2);
+            icon.paintIcon(this, g2, (int) (this.getSize().getWidth() - icon.getIconHeight()), yMid - icon.getIconHeight() / 2);
         }
-
     }
+
 }

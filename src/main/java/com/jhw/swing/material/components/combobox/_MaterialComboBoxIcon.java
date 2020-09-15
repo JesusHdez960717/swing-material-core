@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.jhw.swing.material.components.datepicker;
+package com.jhw.swing.material.components.combobox;
 
+import com.jhw.swing.material.components.datepicker.*;
 import com.jhw.swing.material.components.textfield.*;
 import com.jhw.personalization.services.PersonalizationHandler;
 import com.jhw.swing.material.components.button.MaterialButtonIcon;
@@ -20,41 +21,36 @@ import java.awt.Graphics;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.util.Date;
+import java.util.List;
+import javax.swing.ComboBoxModel;
 import javax.swing.Icon;
 
 /**
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-public class _MaterialDatePickerIcon extends MaterialDatePicker {
+public class _MaterialComboBoxIcon<T> extends MaterialComboBox<T> {
 
-    public static MaterialDatePicker from() {
-        return new _MaterialDatePickerIcon();
+    public static _MaterialComboBoxIcon from() {
+        return new _MaterialComboBoxIcon();
+    }
+
+    public static _MaterialComboBoxIcon from(MaterialComboBox comboBox) {
+        return new _MaterialComboBoxIcon(comboBox);
     }
 
     private Color originalIconColor = MaterialColors.BLACK;
 
-    public _MaterialDatePickerIcon() {
-        this("Fecha");
+    public _MaterialComboBoxIcon() {
+        this(MaterialComboBoxFactory.build());
     }
 
-    public _MaterialDatePickerIcon(String label) {
+    public _MaterialComboBoxIcon(MaterialComboBox comboBox) {
+        this.comboBox = new _MaterialComboBox();
         initComponents();
-        this.setLabel(label);
-        this.setIcon(MaterialIcons.DATE_RANGE);
-    }
+        this.setIcon(MaterialIcons.COMPARE_ARROWS);
 
-    private void initComponents() {
-        datePicker = MaterialDatePickersFactory.build();
-
-        buttonIcon = MaterialButtonsFactory.buildIconTransparent();
-        buttonIcon.setPaintRipple(false);
-
-        this.setBorder(null);
-        this.setLayout(new BorderLayout());
-        this.add(datePicker, BorderLayout.CENTER);
-
-        datePicker.getEditor().addFocusListener(new FocusListener() {
+        getComboBox().addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
                 buttonIcon.setForeground(getAccentFloatingLabel());
@@ -67,21 +63,43 @@ public class _MaterialDatePickerIcon extends MaterialDatePicker {
         });
     }
 
-    private MaterialDatePicker datePicker;
+    private void initComponents() {
+        buttonIcon = MaterialButtonsFactory.buildIconTransparent();
+        buttonIcon.setPaintRipple(false);
+
+        this.setBackground(MaterialColors.TRANSPARENT);
+        this.setOpaque(false);
+        
+        this.setBorder(null);
+        this.setLayout(new BorderLayout());
+        this.add(comboBox, BorderLayout.CENTER);
+    }
+
+    private MaterialComboBox<T> comboBox;
     private MaterialButtonIcon buttonIcon;
 
     @Override
-    public MaterialDatePicker getDatePicker() {
-        return datePicker;
+    public MaterialComboBox<T> getComboBox() {
+        return comboBox;
     }
 
+    @Override
+    public void setModel(List<T> aModel) {
+        comboBox.setModel(aModel);
+    }
+
+    /*@Override
+    public void setModel(ComboBoxModel<T> aModel) {
+        comboBox.setModel(aModel);
+    }
+*/
     @Override
     public void setIcon(Icon icon) {
         if (!PersonalizationHandler.getBoolean(PersonalizationMaterial.KEY_SHOW_ICON_INPUT)) {
             return;
         }
 
-        int h = (int) this.datePicker.getEditor().getPreferredSize().getHeight();
+        int h = (int) this.comboBox.getPreferredSize().getHeight();
         if (icon instanceof DerivableIcon) {
             buttonIcon.setIcon(((DerivableIcon) icon).deriveIcon(h * _MaterialTextFieldIcon.ICON_SIZE_REDUCTION));
             originalIconColor = ((DerivableIcon) icon).getColor();
@@ -100,138 +118,106 @@ public class _MaterialDatePickerIcon extends MaterialDatePicker {
 
     @Override
     public void setEnabled(boolean enabled) {
-        datePicker.setEnabled(enabled);
+        comboBox.setEnabled(enabled);
         buttonIcon.setEnabled(enabled);
     }
 
     @Override
-    public void setLowerBound(Date lower) {
-        datePicker.setLowerBound(lower);
-    }
-
-    @Override
-    public void setUpperBound(Date upper) {
-        datePicker.setUpperBound(upper);
-    }
-
-    @Override
-    public void setDate(Date date) {
-        if (datePicker != null) {
-            datePicker.setDate(date);
-        }
-    }
-
-    @Override
-    public Date getDate() {
-        return datePicker.getDate();
-    }
-
-    @Override
     public String getLabel() {
-        return datePicker.getLabel();
+        return comboBox.getLabel();
     }
 
     @Override
     public void setLabel(String label) {
-        datePicker.setLabel(label);
+        comboBox.setLabel(label);
     }
 
     @Override
     public String getHint() {
-        return datePicker.getHint();
+        return comboBox.getHint();
     }
 
     @Override
     public void setHint(String hint) {
-        datePicker.setHint(hint);
+        comboBox.setHint(hint);
     }
 
     @Override
     public Color getAccentFloatingLabel() {
-        return datePicker.getAccentFloatingLabel();
+        return comboBox.getAccentFloatingLabel();
     }
 
     @Override
     public void setAccentFloatingLabel(Color accentColor) {
-        datePicker.setAccentFloatingLabel(accentColor);
+        comboBox.setAccentFloatingLabel(accentColor);
     }
 
     @Override
     public void paintLabel(Graphics g) {
-        datePicker.paintLabel(g);
+        comboBox.paintLabel(g);
     }
 
     @Override
     public void paintHint(Graphics g) {
-        datePicker.paintHint(g);
+        comboBox.paintHint(g);
     }
 
     @Override
     public void paintLine(Graphics g) {
-        datePicker.paintLine(g);
+        comboBox.paintLine(g);
     }
 
     @Override
     public int getYLine(Graphics g2) {
-        return datePicker.getYLine(g2);
+        return comboBox.getYLine(g2);
     }
 
     @Override
     public void wrong() {
-        datePicker.wrong();
+        comboBox.wrong();
     }
 
     @Override
     public void wrong(String wrongText) {
-        datePicker.wrong(wrongText);
+        comboBox.wrong(wrongText);
     }
 
     @Override
     public Color getWrongColor() {
-        return datePicker.getWrongColor();
+        return comboBox.getWrongColor();
     }
 
     @Override
     public void setWrongColor(Color wrongColor) {
-        datePicker.setWrongColor(wrongColor);
+        comboBox.setWrongColor(wrongColor);
     }
 
     @Override
     public void paintWrong(Graphics g2, int y) {
-        datePicker.paintWrong(g2, y);
+        comboBox.paintWrong(g2, y);
     }
 
     @Override
     public void clearWrong() {
-        datePicker.clearWrong();
+        comboBox.clearWrong();
     }
 
     @Override
     public void setForeground(Color fg) {
         super.setForeground(fg);
-        if (datePicker != null) {
-            datePicker.setForeground(fg);
+        if (comboBox != null) {
+            comboBox.setForeground(fg);
         }
     }
 
     @Override
-    public int getMaxLength() {
-        return datePicker.getMaxLength();
+    public T getObject() {
+        return getComboBox().getObject();
     }
 
     @Override
-    public void setMaxLength(int maxLength) {
-        datePicker.setMaxLength(maxLength);
-    }
-
-    @Override
-    public Date getObject() {
-        return datePicker.getObject();
-    }
-
-    @Override
-    public void setObject(Date object) {
-        datePicker.setObject(object);
+    public void setObject(T object) {
+        getComboBox().setObject(object);
     }
 
 }

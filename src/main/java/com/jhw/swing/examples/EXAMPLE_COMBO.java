@@ -5,12 +5,15 @@
  */
 package com.jhw.swing.examples;
 
+import com.jhw.swing.material.components.button.MaterialButtonsFactory;
 import com.jhw.swing.material.components.combobox.*;
+import com.jhw.swing.material.components.container.MaterialContainersFactory;
 //import com.jhw.swing.material.components.combobox.combobox_editable._MaterialComboBoxFiltrable;
 import com.jhw.swing.material.components.container.layout.VerticalLayoutContainer;
 import com.jhw.swing.material.standards.MaterialColors;
 import com.jhw.swing.ui.MaterialLookAndFeel;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.util.Arrays;
@@ -33,27 +36,36 @@ public class EXAMPLE_COMBO extends javax.swing.JFrame {
 
         VerticalLayoutContainer.builder vlc = VerticalLayoutContainer.builder();
 
-        MaterialComboBox<Integer> combo = (_MaterialComboBox<Integer>) MaterialComboBoxFactory.build();
+        MaterialComboBox<Integer> combo = MaterialComboBoxFactory.build();
         combo.setModel(new DefaultComboBoxModel(new Object[]{1, 2, 3, 4, 5, 6}));
         vlc.add(combo, true);
 
-        MaterialComboBox comboFiltrable = (_MaterialComboBoxFiltrable) MaterialComboBoxFactory.buildFiltrable();
+        /*MaterialComboBox<Integer> comboIcon = MaterialComboBoxFactory.buildIcon();
+        comboIcon.setModel(new DefaultComboBoxModel(new Object[]{1, 2, 3, 4, 5, 6}));
+        vlc.add(comboIcon, true);
+         */
+        MaterialComboBox comboFiltrable = MaterialComboBoxFactory.buildFiltrable();
         comboFiltrable.setModel(Arrays.asList(new Object[]{1, 2, 3, 4, 5, 6}));
         vlc.add(comboFiltrable, true);
 
+        MaterialComboBox comboFiltrableIcon = MaterialComboBoxFactory.buildFiltrableIcon();
+        comboFiltrableIcon.setModel(Arrays.asList(new Object[]{1, 2, 3, 4, 5, 6}));
+        vlc.add(comboFiltrableIcon, true);
+        
         jPanel1.setLayout(new BorderLayout());
         jPanel1.add(vlc.build());
-        jPanel1.setBackground(MaterialColors.WHITE);
+        jPanel1.setBackground(MaterialColors.RED_200);
 
         JButton wrong = new JButton(new AbstractAction("wrong") {
             @Override
             public void actionPerformed(ActionEvent e) {
                 combo.wrong("RUUUN");
-                comboFiltrable.wrong("bu");
+                comboFiltrableIcon.wrong("bu");
             }
         });
         jPanel1.add(wrong, BorderLayout.SOUTH);
-
+        
+        jPanel1.add(MaterialButtonsFactory.buildIconTransparent(), BorderLayout.EAST);
     }
 
     private void initComponents() {

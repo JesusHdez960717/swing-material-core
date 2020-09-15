@@ -12,7 +12,7 @@ import javax.swing.JFormattedTextField.AbstractFormatter;
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-public class MaterialTextAreaFactory {
+public class MaterialTextFactory {
 
     public static MaterialTextField build() {
         return _MaterialTextField.from();

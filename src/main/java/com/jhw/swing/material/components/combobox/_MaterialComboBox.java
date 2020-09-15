@@ -42,7 +42,7 @@ public class _MaterialComboBox<T> extends MaterialComboBox<T> {
     private Line line = new DefaultLine(this);
     private final Wrong wrong = new DefaultWrong(this);
 
-    private ImageIcon icon = MaterialIcons.ARROW_DROP_DOWN;
+    private ImageIcon iconArrow = MaterialIcons.ARROW_DROP_DOWN;
 
     public _MaterialComboBox() {
         floatingLabel = new DefaultFloatingLabel(this);
@@ -76,7 +76,11 @@ public class _MaterialComboBox<T> extends MaterialComboBox<T> {
         this.setModel(new ArrayList<>());
 
         this.setSelectedIndex(-1);
+    }
 
+    @Override
+    public MaterialComboBox getComboBox() {
+        return this;
     }
 
     @Override
@@ -175,8 +179,8 @@ public class _MaterialComboBox<T> extends MaterialComboBox<T> {
         firePropertyChange("processFocusEvent", null, null);
     }
 
-    protected ImageIcon getIcon() {
-        return icon;
+    protected ImageIcon getIconArrow() {
+        return iconArrow;
     }
 
     @Override
@@ -200,17 +204,17 @@ public class _MaterialComboBox<T> extends MaterialComboBox<T> {
         paintWrong(g2, getYLine(g2) + 15);
 
         //paint the arrow
-        if (icon != null) {
+        if (iconArrow != null) {
             Color iconColor;
             if (isFocusOwner()) {
                 iconColor = getAccentFloatingLabel();
             } else {
                 iconColor = Utils.applyAlphaMask(getForeground(), LINE_OPACITY_MASK);
             }
-            if (icon instanceof DerivableIcon) {
-                icon = ((DerivableIcon) icon).deriveIcon(iconColor);
+            if (iconArrow instanceof DerivableIcon) {
+                iconArrow = ((DerivableIcon) iconArrow).deriveIcon(iconColor);
             }
-            icon.paintIcon(this, g2, (int) (this.getSize().getWidth() - icon.getIconHeight()), yMid - icon.getIconHeight() / 2);
+            iconArrow.paintIcon(this, g2, (int) (this.getSize().getWidth() - iconArrow.getIconHeight()), yMid - iconArrow.getIconHeight() / 2);
         }
 
     }
@@ -304,5 +308,14 @@ public class _MaterialComboBox<T> extends MaterialComboBox<T> {
         public void paint(Graphics g) {
             super.paint(MaterialDrawingUtils.getAliasedGraphics(g));
         }
+    }
+
+    @Override
+    public void setIcon(Icon icon) {
+    }
+
+    @Override
+    public Icon getIcon() {
+        return null;
     }
 }
