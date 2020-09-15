@@ -27,6 +27,6 @@ _MaterialTextArea estandar en superclase
 
 
 
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!task pane, table!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!task pane, table by page bien!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 Toggle icons en input view, segun standar del htlm

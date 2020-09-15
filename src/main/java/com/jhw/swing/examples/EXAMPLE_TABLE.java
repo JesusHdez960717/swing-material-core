@@ -6,6 +6,7 @@
 package com.jhw.swing.examples;
 
 import com.jhw.swing.material.components.table.MaterialTable;
+import com.jhw.swing.material.components.table.MaterialTableByPage;
 import com.jhw.swing.material.components.table.MaterialTableFactory;
 import com.jhw.swing.material.components.table._MaterialTableByPage;
 import com.jhw.swing.material.standards.MaterialColors;
@@ -38,7 +39,7 @@ public class EXAMPLE_TABLE extends javax.swing.JFrame {
         simple.addRow(new Object[]{"1", "2", "3", "4"});
         jPanel1.add(simple, BorderLayout.NORTH);
 
-        _MaterialTableByPage page = MaterialTableFactory.buildByPage();
+        MaterialTableByPage page = MaterialTableFactory.buildByPage();
         page.setPageVisibility(true);
         page.clear();
         for (int i = 0; i < 150; i++) {

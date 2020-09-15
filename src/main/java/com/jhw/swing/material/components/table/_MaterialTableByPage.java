@@ -19,12 +19,12 @@ import javax.swing.JPanel;
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-public class _MaterialTableByPage extends _PanelTransparent implements Update, Table {
+public class _MaterialTableByPage extends MaterialTableByPage {
 
     public static _MaterialTableByPage from() {
         return new _MaterialTableByPage();
     }
-    
+
     public static final int SPINNER_DEFAULT = 50;
     private List<Object[]> rows = new ArrayList<>();
 
@@ -134,17 +134,6 @@ public class _MaterialTableByPage extends _PanelTransparent implements Update, T
     private com.jhw.swing.material.components.textfield.validated._MaterialTextFieldInteger textFieldPage;
     // End of variables declaration                   
 
-    @Override
-    public void update() {
-        labelTotPag.setText("de " + getMaxPages());
-        fillTable();
-    }
-
-    @Override
-    public JTable getTable() {
-        return table.getTable();
-    }
-
     private void fillTable() {
         setRowCount(0);//clear pero sin borrar el arreglo
         int page = textFieldPage.getObject();
@@ -164,6 +153,17 @@ public class _MaterialTableByPage extends _PanelTransparent implements Update, T
     }
 
     @Override
+    public void update() {
+        labelTotPag.setText("de " + getMaxPages());
+        fillTable();
+    }
+
+    @Override
+    public JTable getTable() {
+        return table.getTable();
+    }
+
+    @Override
     public void addRow(Object[] row) {
         rows.add(row);
         table.addRow(row);
@@ -178,6 +178,7 @@ public class _MaterialTableByPage extends _PanelTransparent implements Update, T
         table.removeRow(row);
     }
 
+    @Override
     public void setPageVisibility(boolean visible) {
         spinner.setValue(visible ? SPINNER_DEFAULT : Integer.MAX_VALUE);
         panelPages.setVisible(visible);
@@ -242,37 +243,11 @@ public class _MaterialTableByPage extends _PanelTransparent implements Update, T
         table.clear();
     }
 
+    @Override
     public void setData(List<Object[]> rows) {
-        this.rows = rows;
+        this.rows.clear();
+        this.rows.addAll(rows);
         update();
-    }
-
-    public JSpinner getSpinner() {
-        return spinner;
-    }
-
-    public _MaterialButtonDouble getButtonDouble() {
-        return buttonDouble;
-    }
-
-    public MaterialLabel getLabelFilas() {
-        return labelFilas;
-    }
-
-    public MaterialLabel getLabelSeparator() {
-        return labelSeparator;
-    }
-
-    public MaterialLabel getLabelTotPag() {
-        return labelTotPag;
-    }
-
-    public JPanel getPanelPages() {
-        return panelPages;
-    }
-
-    public _MaterialTextFieldInteger getTextFieldPage() {
-        return textFieldPage;
     }
 
 }

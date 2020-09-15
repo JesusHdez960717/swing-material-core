@@ -5,16 +5,13 @@
  */
 package com.jhw.swing.material.components.table;
 
+import com.jhw.swing.material.components.container.panel._PanelTransparent;
+import com.jhw.utils.interfaces.Update;
+
 /**
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-public class MaterialTableFactory {
+public abstract class MaterialTableByPage extends _PanelTransparent implements TableByPage, Update {
 
-    public static MaterialTable build() {
-        return _MaterialTable.from();
-    }
-    public static MaterialTableByPage buildByPage() {
-        return _MaterialTableByPage.from();
-    }
 }

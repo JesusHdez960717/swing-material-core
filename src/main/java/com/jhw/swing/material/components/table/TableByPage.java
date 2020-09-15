@@ -5,16 +5,16 @@
  */
 package com.jhw.swing.material.components.table;
 
+import java.util.List;
+
 /**
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-public class MaterialTableFactory {
+public interface TableByPage extends Table {
 
-    public static MaterialTable build() {
-        return _MaterialTable.from();
-    }
-    public static MaterialTableByPage buildByPage() {
-        return _MaterialTableByPage.from();
-    }
+    public void setPageVisibility(boolean visible);
+
+    public void setData(List<Object[]> rows);
+
 }
