@@ -26,6 +26,10 @@ import com.jhw.swing.util.interfaces.MaterialComponent;
  */
 public class _TabbedPaneHeader extends JTabbedPane implements MaterialComponent {
 
+    public static _TabbedPaneHeader from() {
+        return new _TabbedPaneHeader();
+    }
+    
     private static final Insets NO_INSETS = new Insets(0, 0, 0, 0);
     protected BufferedImage background = loadImage("/imgs/header_gradient.png");
     protected BufferedImage buttonHighlight = loadImage("/imgs/header_halo.png");

@@ -14,6 +14,9 @@ import com.jhw.swing.material.components.taskpane.TaskPaneMainContainer;
 import com.jhw.swing.material.standards.MaterialIcons;
 import com.jhw.personalization.core.domain.Personalization;
 import com.jhw.personalization.services.PersonalizationHandler;
+import com.jhw.swing.material.components.button.MaterialButtonIcon;
+import com.jhw.swing.material.components.button.MaterialButtonsFactory;
+import com.jhw.swing.material.components.container.MaterialContainersFactory;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -64,11 +67,11 @@ public class DashBoardTaskPane extends DashBoardSimple implements PropertyChange
 
     private void initComponents() {
         panelContent = new javax.swing.JPanel();
-        panelSideMenu = new _PanelGradient();
+        panelSideMenu = MaterialContainersFactory.buildPanelGradient();
         panelUp = new javax.swing.JPanel();
-        jButtonUp = new com.jhw.swing.material.components.button._MaterialButtonIconTransparent(MaterialIcons.ARROW_BACK.deriveIcon(30));
+        jButtonUp = MaterialButtonsFactory.buildIconTransparent(MaterialIcons.ARROW_BACK.deriveIcon(30));
         jPanelDown = new javax.swing.JPanel();
-        jButtonDown = new com.jhw.swing.material.components.button._MaterialButtonIconTransparent(MaterialIcons.ARROW_BACK.deriveIcon(30));
+        jButtonDown = MaterialButtonsFactory.buildIconTransparent(MaterialIcons.ARROW_BACK.deriveIcon(30));
         jPanelMenu = new javax.swing.JPanel();
 
         setBackground(new java.awt.Color(255, 255, 255));
@@ -135,8 +138,8 @@ public class DashBoardTaskPane extends DashBoardSimple implements PropertyChange
     }//GEN-LAST:event_jButtonUpActionPerformed
 
     // Variables declaration - do not modify
-    private javax.swing.JButton jButtonDown;
-    private javax.swing.JButton jButtonUp;
+    private MaterialButtonIcon jButtonDown;
+    private MaterialButtonIcon jButtonUp;
     private javax.swing.JPanel jPanelDown;
     private javax.swing.JPanel jPanelMenu;
     private javax.swing.JPanel panelUp;

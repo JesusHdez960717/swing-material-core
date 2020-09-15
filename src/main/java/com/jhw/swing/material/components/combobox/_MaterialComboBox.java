@@ -1,11 +1,9 @@
 package com.jhw.swing.material.components.combobox;
 
+import com.jhw.swing.material.components.scrollpane.MaterialScrollFactory;
 import com.jhw.swing.material.components.scrollpane._MaterialScrollPaneCore;
-import com.jhw.swing.material.effects.Line;
-import static com.jhw.swing.material.components.textfield._MaterialTextField.HINT_OPACITY_MASK;
-import static com.jhw.swing.material.components.textfield._MaterialTextField.LINE_OPACITY_MASK;
-import com.jhw.swing.material.effects.FloatingLabel;
-import com.jhw.swing.material.effects.FloatingLabelStandar;
+import com.jhw.swing.material.effects.DefaultLine;
+import com.jhw.swing.material.effects.DefaultFloatingLabel;
 import java.awt.*;
 import java.awt.event.FocusEvent;
 import javax.swing.*;
@@ -13,20 +11,19 @@ import javax.swing.plaf.basic.BasicComboBoxUI;
 import javax.swing.plaf.basic.BasicComboPopup;
 import javax.swing.plaf.basic.ComboPopup;
 import com.jhw.swing.util.interfaces.MaterialComponent;
-import com.jhw.swing.material.standards.MaterialColors;
 import com.jhw.swing.material.standards.MaterialFontRoboto;
 import com.jhw.swing.material.standards.MaterialIcons;
-import com.jhw.personalization.core.domain.Personalization;
-import com.jhw.personalization.services.PersonalizationHandler;
+import com.jhw.swing.material.effects.DefaultWrong;
+import com.jhw.swing.material.effects.FloatingLabel;
+import com.jhw.swing.material.effects.Line;
 import com.jhw.swing.util.MaterialDrawingUtils;
 import com.jhw.swing.util.Utils;
 import com.jhw.swing.util.interfaces.BindableComponent;
 import com.jhw.swing.utils.icons.DerivableIcon;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
-import com.jhw.swing.util.interfaces.Wrong;
+import com.jhw.swing.material.effects.Wrong;
+import static com.jhw.swing.material.standards.Utils.LINE_OPACITY_MASK;
+import java.util.ArrayList;
 
 /**
  * A Material Design combo box.
@@ -35,33 +32,21 @@ import com.jhw.swing.util.interfaces.Wrong;
  * href="https://www.google.com/design/spec/components/buttons.html#buttons-dropdown-buttons">Dropdown
  * buttons (Google design guidelines)</a>
  */
-public class _MaterialComboBox<T> extends JComboBox<T> implements BindableComponent<T>, Wrong, MaterialComponent, FloatingLabelStandar {
+public class _MaterialComboBox<T> extends MaterialComboBox<T> {
 
-    private FloatingLabel floatingLabel;
-    private Line line = new Line(this);
-    private String label = "label";
-    private String hint = "hint";
-    private Color accentColor = MaterialColors.BLUEA_400;
+    public static MaterialComboBox from() {
+        return new _MaterialComboBox();
+    }
 
-    //default
-    private Color foreground = MaterialColors.BLACK;
-
-    private Cursor cursor = Cursor.getPredefinedCursor(Cursor.HAND_CURSOR);
+    private FloatingLabel floatingLabel;//no se puede iniciar aqui xq da null pionter con el foreground
+    private Line line = new DefaultLine(this);
+    private final Wrong wrong = new DefaultWrong(this);
 
     private ImageIcon icon = MaterialIcons.ARROW_DROP_DOWN;
 
-    //flags for wrong
-    private Color wrongColor = PersonalizationHandler.getColor(Personalization.KEY_COLOR_WRONG);
-    private String wrongText = "Error en este campo";
-    private boolean wrongFlag = false;
-
-    public _MaterialComboBox(T[] items) {
-        this();
-        setModel(new DefaultComboBoxModel<T>(items));
-        this.setSelectedIndex(-1);
-    }
-
     public _MaterialComboBox() {
+        floatingLabel = new DefaultFloatingLabel(this);
+
         this.setPreferredSize(new Dimension(145, 65));
         this.setRenderer(new FieldRenderer<>(this));
         this.setUI(new BasicComboBoxUI() {
@@ -78,200 +63,120 @@ public class _MaterialComboBox<T> extends JComboBox<T> implements BindableCompon
             }
         });
 
-        this.floatingLabel = new FloatingLabel(this);
-        this.setAccent(accentColor);
+        this.addActionListener((ActionEvent e) -> {
+            clearWrong();
+        });
+
         this.setOpaque(false);
-        this.setCursor(cursor);
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+
         this.setFont(MaterialFontRoboto.REGULAR.deriveFont(16f));
         this.setHint("Select...");
-        this.setModel(new javax.swing.DefaultComboBoxModel(new String[]{}));
+
+        this.setModel(new ArrayList<>());
+
         this.setSelectedIndex(-1);
 
-        this.addComponentListener(new ComponentAdapter() {
-            @Override
-            public void componentResized(ComponentEvent e) {
-                floatingLabel.update();
-            }
-        });
-
-        this.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                clearWrong();
-            }
-        });
-    }
-
-    /**
-     * Get the wrong color. The worng color is the color of the component when
-     * is wrong.
-     *
-     * @return the wrong color
-     */
-    public Color getWrongColor() {
-        return wrongColor;
-    }
-
-    /**
-     * Set the wrong color. The worng color is the color of the component when
-     * is wrong.
-     *
-     * @param wrongColor the wrong color
-     */
-    public void setWrongColor(Color wrongColor) {
-        this.wrongColor = wrongColor;
-    }
-
-    /**
-     * Get the wrong text. The worng text is the text to display with the
-     * explanaition of the error.
-     *
-     * @return the wrong color
-     */
-    public String getWrongText() {
-        return wrongText;
-    }
-
-    /**
-     * Set the wrong text. The worng text is the text to display with the
-     * explanaition of the error.
-     *
-     * @param wrongText the wrong text
-     */
-    public void setWrongText(String wrongText) {
-        this.wrongText = wrongText;
-    }
-
-    public ImageIcon getIcon() {
-        return icon;
-    }
-
-    public void setIcon(ImageIcon icon) {
-        this.icon = icon;
-    }
-
-    /**
-     * Gets the color the label changes to when this {@code materialTextField}
-     * is focused.
-     *
-     * @return the {@code "Color"} currently in use for accent. The default
-     * value is {@link MaterialColor#BLUEA_400}.
-     */
-    public Color getAccent() {
-        return accentColor;
-    }
-
-    /**
-     * Sets the color the label changes to when this {@code materialTextField}
-     * is focused. The default value is {@link MaterialColor#PINK_500}.
-     *
-     * @param accentColor the {@code "Color"} that should be used for accent.
-     */
-    public void setAccent(Color accentColor) {
-        this.accentColor = accentColor;
-        this.floatingLabel.setAccentColor(accentColor);
-        repaint();
-    }
-
-    /**
-     * Gets the label text. The label will float above any contents input into
-     * this text field.
-     *
-     * @return the text being used in the floating label
-     */
-    public String getLabel() {
-        return this.label;
-    }
-
-    /**
-     * Sets the label text. The label will float above any contents input into
-     * this text field.
-     *
-     * @param label the text to use in the floating label
-     */
-    public void setLabel(String label) {
-        this.label = label;
-        floatingLabel.update();
-        repaint();
-    }
-
-    /**
-     * Gets the hint text. The hint text is displayed when the list inside this
-     * combo box is empty or no element has been selected yet.
-     *
-     * @return hint text
-     */
-    public String getHint() {
-        return hint;
     }
 
     @Override
-    public void setForeground(Color fg) {
-        super.setForeground(fg);
-        if (floatingLabel != null) {
-            floatingLabel.updateForeground();
-        }
+    public void setModel(java.util.List<T> aModel) {
+        super.setModel(new DefaultComboBoxModel(aModel.toArray(new Object[aModel.size()])));
+        this.setSelectedIndex(-1);
+    }
+//-------------------LINE-------------------------
+
+    @Override
+    public void paintLine(Graphics g2) {
+        line.paintLine(g2);
     }
 
-    /**
-     * Sets the hint text. The hint text is displayed when the list inside this
-     * combo box is empty or no element has been selected yet.
-     *
-     * @param hint hint text
-     */
-    public void setHint(String hint) {
-        this.hint = hint;
-        repaint();
+    @Override
+    public int getYLine(Graphics g2) {
+        return line.getYLine(g2);
     }
+//-------------------FLOATING_LABEL-------------------------
+
+    @Override
+    public Color getAccentFloatingLabel() {
+        return floatingLabel.getAccentFloatingLabel();
+    }
+
+    @Override
+    public void setAccentFloatingLabel(Color accentColor) {
+        floatingLabel.setAccentFloatingLabel(accentColor);
+    }
+
+    @Override
+    public String getLabel() {
+        return floatingLabel.getLabel();
+    }
+
+    @Override
+    public void setLabel(String label) {
+        floatingLabel.setLabel(label);
+    }
+
+    @Override
+    public String getHint() {
+        return floatingLabel.getHint();
+    }
+
+    @Override
+    public void setHint(String hint) {
+        floatingLabel.setHint(hint);
+    }
+
+    @Override
+    public void paintLabel(Graphics g) {
+        floatingLabel.paintLabel(g);
+    }
+
+    @Override
+    public void paintHint(Graphics g) {
+        floatingLabel.paintHint(g);
+    }
+//-------------------WRONG-------------------------
 
     @Override
     public void wrong() {
-        floatingLabel.setAccentColor(wrongColor);
-        this.wrongFlag = true;
+        wrong.wrong();
     }
 
     @Override
     public void wrong(String wrongText) {
-        this.wrongText = wrongText;
-        wrong();
-    }
-
-    public void clearWrong() {
-        if (wrongFlag) {
-            this.wrongFlag = false;
-            this.setForeground(foreground);
-            floatingLabel.setAccentColor(accentColor);
-        }
-    }
-
-    /**
-     * Set the real color of the foreground. The color of the foreground when
-     * the text field it's not wrong.
-     *
-     * @param fg the {@code "Color"} that should be used for the real color of
-     * the foreground.
-     */
-    public void setRealForeground(Color fg) {
-        this.foreground = fg;
-        setForeground(foreground);
-    }
-
-    /**
-     * get the real color of the foreground. The color of the foreground when
-     * the text field it's not wrong.
-     *
-     * @return the {@code "Color"} that should be used for the real color of the
-     * foreground.
-     */
-    public Color getRealForeground() {
-        return this.foreground;
+        wrong.wrong(wrongText);
     }
 
     @Override
+    public Color getWrongColor() {
+        return wrong.getWrongColor();
+    }
+
+    @Override
+    public void setWrongColor(Color wrongColor) {
+        wrong.setWrongColor(wrongColor);
+    }
+
+    @Override
+    public void clearWrong() {
+        wrong.clearWrong();
+    }
+
+    @Override
+    public void paintWrong(Graphics g2, int y) {
+        wrong.paintWrong(g2, y);
+    }
+
+//-------------------WRONG-------------------------
+    @Override
     protected void processFocusEvent(FocusEvent e) {
         super.processFocusEvent(e);
-        floatingLabel.update();
-        line.update();
+        firePropertyChange("processFocusEvent", null, null);
+    }
+
+    protected ImageIcon getIcon() {
+        return icon;
     }
 
     @Override
@@ -280,44 +185,25 @@ public class _MaterialComboBox<T> extends JComboBox<T> implements BindableCompon
 
         int yMid = getSize().height / 2;
 
-        g2.setColor(floatingLabel.getColor());
-        g2.setFont(floatingLabel.getFont());
-        if (!getLabel().isEmpty()) {
-            g2.drawString(getLabel(), floatingLabel.getX(), floatingLabel.getY());//paint the hint in the same place as the text
-        }
+        paintLabel(g2);
 
         FontMetrics metrics = g2.getFontMetrics(g2.getFont());
         g2.setFont(getFont());
         if (getSelectedItem() == null && isFocusOwner()) {
-            g2.setColor(Utils.applyAlphaMask(getForeground(), HINT_OPACITY_MASK));
-            g2.drawString(hint, floatingLabel.getX(), metrics.getAscent() + yMid - metrics.getAscent() / 2);
+            paintHint(g2);
         } else if (getSelectedItem() != null) {
             g2.setColor(getForeground());
-            g2.drawString(getSelectedItem().toString(), floatingLabel.getX(), metrics.getAscent() + yMid - metrics.getAscent() / 2);
+            g2.drawString(getSelectedItem().toString(), 0, metrics.getAscent() + yMid - metrics.getAscent() / 2);
         }
+        paintLine(g2);
 
-        int yLine = yMid + metrics.getAscent() / 2 + 8;
-
-        //paint the back line
-        g2.setColor(Utils.applyAlphaMask(getForeground(), LINE_OPACITY_MASK));
-        g2.fillRect(0, yLine, getWidth(), 1);
-
-        //paint the front line, this is the one that change colors and size
-        g2.setColor(accentColor);
-        g2.fillRect((int) ((getWidth() - line.getWidth()) / 2), yLine, (int) line.getWidth(), 2);
-
-        //paint the wrong text if the flag is actived
-        if (wrongFlag) {
-            g2.setColor(getWrongColor());
-            g2.setFont(floatingLabel.getFont().deriveFont(1));//1 for bold
-            g2.drawString(getWrongText(), 0, yLine + 15);//paint the wrong text
-        }
+        paintWrong(g2, getYLine(g2) + 15);
 
         //paint the arrow
         if (icon != null) {
             Color iconColor;
             if (isFocusOwner()) {
-                iconColor = accentColor;
+                iconColor = getAccentFloatingLabel();
             } else {
                 iconColor = Utils.applyAlphaMask(getForeground(), LINE_OPACITY_MASK);
             }
@@ -329,45 +215,9 @@ public class _MaterialComboBox<T> extends JComboBox<T> implements BindableCompon
 
     }
 
-    public boolean isWrongFlag() {
-        return wrongFlag;
-    }
-
-    public FloatingLabel getFloatingLabel() {
-        return floatingLabel;
-    }
-
-    public Line getLine() {
-        return line;
-    }
-
-    public Color getAccentColor() {
-        return accentColor;
-    }
-
-    @Override
-    public Color getForeground() {
-        return foreground;
-    }
-
-    @Override
-    public Cursor getCursor() {
-        return cursor;
-    }
-
     @Override
     protected void paintBorder(Graphics g) {
         //intentionally left blank
-    }
-
-    @Override
-    public String getText() {
-        return getSelectedItem() == null ? "" : getSelectedItem().toString();
-    }
-
-    @Override
-    public Component getComponent() {
-        return this;
     }
 
     @Override
@@ -416,7 +266,7 @@ public class _MaterialComboBox<T> extends JComboBox<T> implements BindableCompon
 
             g.setFont(comboBox.getFont());
             if (selected) {
-                g2.setColor(comboBox.accentColor);
+                g2.setColor(comboBox.getAccentFloatingLabel());
             } else {
                 g2.setColor(comboBox.getForeground());
             }
@@ -436,7 +286,7 @@ public class _MaterialComboBox<T> extends JComboBox<T> implements BindableCompon
 
         @Override
         protected JScrollPane createScroller() {
-            JScrollPane scroller = new _MaterialScrollPaneCore();
+            JScrollPane scroller = MaterialScrollFactory.buildPane();
             scroller.setViewportView(super.getList());
             return scroller;
         }

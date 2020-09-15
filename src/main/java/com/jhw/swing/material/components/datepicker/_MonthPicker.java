@@ -1,6 +1,6 @@
 package com.jhw.swing.material.components.datepicker;
 
-import com.jhw.swing.material.components.combobox.combobox_editable._MaterialComboBoxFiltrable;
+import com.jhw.swing.material.components.combobox._MaterialComboBoxFiltrable;
 import com.jhw.swing.material.components.container.layout.HorizontalLayoutComponent;
 import com.jhw.swing.material.components.container.layout.HorizontalLayoutContainer;
 import com.jhw.swing.material.components.container.panel._PanelComponent;

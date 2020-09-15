@@ -2,11 +2,11 @@ package com.jhw.swing.material.components.dashboard.taskpane.expanded;
 
 import com.clean.swing.app.dashboard.DashboardConstants;
 import com.clean.swing.app.dashboard.MapeableContainer;
-import com.jhw.swing.material.components.button._MaterialButtonIconTransparent;
-import com.jhw.swing.material.components.button._MaterialButtonTransparent;
-import com.jhw.swing.material.components.container.panel._PanelGradient;
-import com.jhw.swing.material.components.container.panel._PanelTransparent;
+import com.jhw.swing.material.components.button.MaterialButtonsFactory;
+import com.jhw.swing.material.components.button._MaterialButtonHiperlink;
+import com.jhw.swing.material.components.container.MaterialContainersFactory;
 import com.jhw.swing.material.components.dashboard.taskpane.DashBoardTaskPane;
+import com.jhw.swing.material.standards.MaterialColors;
 import com.jhw.swing.material.standards.MaterialFontRoboto;
 import com.jhw.swing.utils.icons.DerivableIcon;
 import java.awt.BorderLayout;
@@ -20,6 +20,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.Action;
 import javax.swing.JButton;
+import javax.swing.JPanel;
 
 /**
  *
@@ -36,20 +37,20 @@ public class UpPanel extends MapeableContainer {
     private void initComponents() {
         this.setLayout(new BorderLayout());
 
-        this.background = new _PanelGradient();
+        this.background = MaterialContainersFactory.buildPanelGradient();
         this.add(background, BorderLayout.CENTER);
 
         this.background.setLayout(new BorderLayout());
 
-        this.components = new _PanelTransparent();
+        this.components = MaterialContainersFactory.buildPanelTransparent();
         this.components.setLayout(new FlowLayout(FlowLayout.CENTER));
 
         this.background.add(this.components, BorderLayout.EAST);
     }
 
-    private _PanelGradient background;
+    private JPanel background;
     private JButton company;
-    private _PanelTransparent components;
+    private JPanel components;
 
     @Override
     public void update(HashMap<String, Object> hm) {
@@ -111,7 +112,7 @@ public class UpPanel extends MapeableContainer {
     }
 
     public void addComponentGeneral(Action action) {
-        _MaterialButtonIconTransparent component = new _MaterialButtonIconTransparent();
+        JButton component = MaterialButtonsFactory.buildIconTransparent();
         component.setAction(action);
 
         if (action.getValue(Action.SMALL_ICON) instanceof DerivableIcon) {
@@ -127,15 +128,17 @@ public class UpPanel extends MapeableContainer {
         components.add(component);
     }
 
-    public _PanelGradient getBackgroundPanel() {
+    public JPanel getBackgroundPanel() {
         return background;
     }
 
-    private class CompanyButton extends _MaterialButtonTransparent {
+    private class CompanyButton extends _MaterialButtonHiperlink {
 
         public CompanyButton() {
-            super("");
+            setText("");
             float h = HEIGHT_FINAL;
+            this.setMouseEnteredColor(MaterialColors.BLACK);
+            this.setMouseExitedColor(MaterialColors.BLACK);
             this.setFont(MaterialFontRoboto.MEDIUM.deriveFont(h * 0.65f));
             this.setIconTextGap(8);
         }

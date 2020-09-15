@@ -1,6 +1,5 @@
 package com.jhw.swing.material.components.toggle;
 
-import com.jhw.swing.material.components.labels._MaterialLabel;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.FontMetrics;
@@ -9,20 +8,21 @@ import java.awt.Graphics2D;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.ImageIcon;
-import javax.swing.JToggleButton;
 import javax.swing.SwingConstants;
 import com.jhw.swing.util.MaterialDrawingUtils;
-import com.jhw.swing.util.interfaces.MaterialComponent;
 import com.jhw.swing.material.standards.MaterialFontRoboto;
 import com.jhw.swing.material.standards.MaterialIcons;
 import com.jhw.swing.material.standards.MaterialImages;
-import com.jhw.swing.util.interfaces.BindableComponent;
 
 /**
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-public class _MaterialToggleButton extends JToggleButton implements BindableComponent<Boolean>, MaterialComponent {
+public class _MaterialToggleButton extends MaterialToggleButton {
+
+    public static MaterialToggleButton from() {
+        return new _MaterialToggleButton();
+    }
 
     private ImageIcon unselectedIcon;
     private ImageIcon selectedIcon;
@@ -33,23 +33,8 @@ public class _MaterialToggleButton extends JToggleButton implements BindableComp
         this(_MaterialToggleButton.Type.DEFAULT);
     }
 
-    public ImageIcon getUnselectedIcon() {
-        return unselectedIcon;
-    }
-
-    public void setUnselectedIcon(ImageIcon unselectedIcon) {
-        this.unselectedIcon = unselectedIcon;
-    }
-
-    public ImageIcon getSelectedIcon() {
-        return selectedIcon;
-    }
-
-    public void setSelectedIcon(ImageIcon selectedIcon) {
-        this.selectedIcon = selectedIcon;
-    }
-
     public _MaterialToggleButton(Type type) {
+        //this.setText("Toggle");
         setCorrespondingIcons(type);
         this.setFont(MaterialFontRoboto.REGULAR.deriveFont(16f));
         this.setOpaque(false);
@@ -70,6 +55,26 @@ public class _MaterialToggleButton extends JToggleButton implements BindableComp
         });
     }
 
+    @Override
+    public ImageIcon getUnselectedIcon() {
+        return unselectedIcon;
+    }
+
+    @Override
+    public void setUnselectedIcon(ImageIcon unselectedIcon) {
+        this.unselectedIcon = unselectedIcon;
+    }
+
+    @Override
+    public ImageIcon getSelectedIcon() {
+        return selectedIcon;
+    }
+
+    @Override
+    public void setSelectedIcon(ImageIcon selectedIcon) {
+        this.selectedIcon = selectedIcon;
+    }
+
     private void setCorrespondingIcons(Type type) {
         if (type == Type.CHECK_BOX) {
             unselectedIcon = MaterialIcons.CHECK_BOX_OUTLINE_BLANK;
@@ -85,10 +90,16 @@ public class _MaterialToggleButton extends JToggleButton implements BindableComp
 
     @Override
     protected void paintComponent(Graphics g) {
+        //super.paintComponent(MaterialDrawingUtils.getAliasedGraphics(g));
         Graphics2D g2 = MaterialDrawingUtils.getAliasedGraphics(g);
 
         if (getText().trim().isEmpty() && getIcon() != null) {//solo pinto icono en el medio
-            this.getIcon().paintIcon(this, g2, (this.getSize().width) / 2 - getIcon().getIconWidth() / 2, (this.getSize().height) / 2 - getIcon().getIconHeight() / 2);
+            if ((isMousePressed && !this.isSelected()) || (!isMousePressed && this.isSelected()) || (isMousePressed && this.isSelected())) {
+                this.setIcon(selectedIcon);
+            } else {
+                this.setIcon(unselectedIcon);
+            }
+            this.getIcon().paintIcon(this, g2, (this.getSize().width - getIcon().getIconWidth()) / 2, (this.getSize().height - getIcon().getIconHeight()) / 2);
         } else {
             if ((isMousePressed && !this.isSelected()) || (!isMousePressed && this.isSelected()) || (isMousePressed && this.isSelected())) {
                 this.setIcon(selectedIcon);
@@ -132,7 +143,7 @@ public class _MaterialToggleButton extends JToggleButton implements BindableComp
             }
             g2.drawString(this.getText(), xText, y);//getText().toUpperCase()
 
-            this.getIcon().paintIcon(this, g2, xIcon, (this.getSize().height) / 2 - getIcon().getIconHeight() / 2);
+            this.getIcon().paintIcon(this, g2, xIcon, (this.getSize().height - getIcon().getIconHeight()) / 2);
 
         }
 

@@ -1,26 +1,29 @@
 package com.jhw.swing.material.components.table;
 
+import com.jhw.swing.material.components.button.MaterialButtonsFactory;
 import com.jhw.swing.material.components.button._MaterialButtonDouble;
+import com.jhw.swing.material.components.container.MaterialContainersFactory;
 import com.jhw.swing.material.components.container.panel._PanelTransparent;
-import com.jhw.swing.material.components.labels._MaterialLabel;
-import com.jhw.swing.material.components.scrollpane._MaterialScrollPaneCore;
+import com.jhw.swing.material.components.labels.MaterialLabel;
+import com.jhw.swing.material.components.labels.MaterialLabelsFactory;
 import com.jhw.swing.material.components.textfield.validated._MaterialTextFieldInteger;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JSpinner;
 import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumn;
-import javax.swing.table.TableColumnModel;
-import javax.swing.table.TableModel;
 import com.jhw.utils.interfaces.Update;
+import javax.swing.JPanel;
 
 /**
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-public class _MaterialTableByPage extends _PanelTransparent implements Update {
+public class _MaterialTableByPage extends MaterialTableByPage {
+
+    public static _MaterialTableByPage from() {
+        return new _MaterialTableByPage();
+    }
 
     public static final int SPINNER_DEFAULT = 50;
     private List<Object[]> rows = new ArrayList<>();
@@ -42,13 +45,13 @@ public class _MaterialTableByPage extends _PanelTransparent implements Update {
     private void initComponents() {
 
         table = new com.jhw.swing.material.components.table._MaterialTable();
-        panelPages = new com.jhw.swing.material.components.container.panel._PanelTransparent();
+        panelPages = MaterialContainersFactory.buildPanelTransparent();
         textFieldPage = new com.jhw.swing.material.components.textfield.validated._MaterialTextFieldInteger();
-        labelTotPag = new com.jhw.swing.material.components.labels._MaterialLabel();
-        buttonDouble = new com.jhw.swing.material.components.button._MaterialButtonDouble();
+        labelTotPag = MaterialLabelsFactory.build();
+        buttonDouble = MaterialButtonsFactory.buildDouble();
         spinner = new javax.swing.JSpinner();
-        labelFilas = new com.jhw.swing.material.components.labels._MaterialLabel();
-        labelSeparator = new com.jhw.swing.material.components.labels._MaterialLabel();
+        labelFilas = MaterialLabelsFactory.build();
+        labelSeparator = MaterialLabelsFactory.build();
 
         textFieldPage.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
         textFieldPage.setText("1");
@@ -122,23 +125,17 @@ public class _MaterialTableByPage extends _PanelTransparent implements Update {
 
     // Variables declaration - do not modify//:variables
     private com.jhw.swing.material.components.button._MaterialButtonDouble buttonDouble;
-    private com.jhw.swing.material.components.labels._MaterialLabel labelFilas;
-    private com.jhw.swing.material.components.labels._MaterialLabel labelSeparator;
-    private com.jhw.swing.material.components.labels._MaterialLabel labelTotPag;
-    private com.jhw.swing.material.components.container.panel._PanelTransparent panelPages;
+    private MaterialLabel labelFilas;
+    private MaterialLabel labelSeparator;
+    private MaterialLabel labelTotPag;
+    private JPanel panelPages;
     private javax.swing.JSpinner spinner;
     private com.jhw.swing.material.components.table._MaterialTable table;
     private com.jhw.swing.material.components.textfield.validated._MaterialTextFieldInteger textFieldPage;
     // End of variables declaration                   
 
-    @Override
-    public void update() {
-        labelTotPag.setText("de " + getMaxPages());
-        fillTable();
-    }
-
     private void fillTable() {
-        getTable().getModel().setRowCount(0);//clear pero sin borrar el arreglo
+        setRowCount(0);//clear pero sin borrar el arreglo
         int page = textFieldPage.getObject();
         int maxPerPage = (int) spinner.getValue();
 
@@ -155,19 +152,33 @@ public class _MaterialTableByPage extends _PanelTransparent implements Update {
         }
     }
 
-    public void addRow(Object[] row) {
-        rows.add(row);
-        getTable().addRow(row);
+    @Override
+    public void update() {
+        labelTotPag.setText("de " + getMaxPages());
+        fillTable();
     }
 
+    @Override
+    public JTable getTable() {
+        return table.getTable();
+    }
+
+    @Override
+    public void addRow(Object[] row) {
+        rows.add(row);
+        table.addRow(row);
+    }
+
+    @Override
     public void removeRow(int row) {
         int page = textFieldPage.getObject() - 1;
         int maxPerPage = (int) spinner.getValue();
         int real = page * maxPerPage + row;
         rows.remove(real);
-        getTable().removeRow(row);
+        table.removeRow(row);
     }
 
+    @Override
     public void setPageVisibility(boolean visible) {
         spinner.setValue(visible ? SPINNER_DEFAULT : Integer.MAX_VALUE);
         panelPages.setVisible(visible);
@@ -226,85 +237,17 @@ public class _MaterialTableByPage extends _PanelTransparent implements Update {
         return (int) Math.ceil((double) ((1.0d * rows.size()) / (1.0d * ((int) spinner.getValue()))));
     }
 
+    @Override
     public void clear() {
-        rows = new ArrayList<>();
+        rows.clear();
         table.clear();
     }
 
+    @Override
     public void setData(List<Object[]> rows) {
-        this.rows = rows;
+        this.rows.clear();
+        this.rows.addAll(rows);
         update();
     }
 
-    public JSpinner getSpinner() {
-        return spinner;
-    }
-
-    public int getRowCount() {
-        return table.getRowCount();
-    }
-
-    public _MaterialButtonDouble getButtonDouble() {
-        return buttonDouble;
-    }
-
-    public _MaterialLabel getLabelFilas() {
-        return labelFilas;
-    }
-
-    public _MaterialLabel getLabelSeparator() {
-        return labelSeparator;
-    }
-
-    public _MaterialLabel getLabelTotPag() {
-        return labelTotPag;
-    }
-
-    public _PanelTransparent getPanelPages() {
-        return panelPages;
-    }
-
-    public _MaterialTable getTable() {
-        return table;
-    }
-
-    public _MaterialTextFieldInteger getTextFieldPage() {
-        return textFieldPage;
-    }
-
-    public DefaultTableModel getModel() {
-        return (DefaultTableModel) table.getModel();
-    }
-
-    public void setModel(TableModel dataModel) {
-        table.setModel(dataModel);
-    }
-
-    public TableColumnModel getColumnModel() {
-        return table.getColumnModel();
-    }
-
-    public TableColumn getColumn(Object identifier) {
-        return table.getColumn(identifier);
-    }
-
-    public int getSelectedRow() {
-        return table.getSelectedRow();
-    }
-
-    public Object getValueAt(int row, int column) {
-        return table.getValueAt(row, column);
-    }
-
-    public int getRowHeight() {
-        return table.getRowHeight();
-    }
-
-    public _MaterialScrollPaneCore getScrollPane() {
-        return table.getScrollPane();
-    }
-
-    public JTable getJTable() {
-        return table.getTable();
-    }
 }

@@ -2,7 +2,7 @@ package com.jhw.swing.material.components.button;
 
 import com.jhw.swing.material.components.container.layout.HorizontalLayoutComponent;
 import com.jhw.swing.material.components.container.layout.HorizontalLayoutContainer;
-import com.jhw.swing.material.components.container.panel.prepared._MaterialPanelComponent;
+import com.jhw.swing.material.components.container.panel._MaterialPanelComponent;
 import com.jhw.swing.material.standards.MaterialColors;
 import com.jhw.swing.material.standards.MaterialIcons;
 
@@ -12,6 +12,10 @@ import com.jhw.swing.material.standards.MaterialIcons;
  */
 public class _MaterialButtonDouble extends _MaterialPanelComponent {
 
+    public static _MaterialButtonDouble from() {
+        return new _MaterialButtonDouble();
+    }
+
     public _MaterialButtonDouble() {
         super(0);
         initComponents();
@@ -19,8 +23,8 @@ public class _MaterialButtonDouble extends _MaterialPanelComponent {
     }
 
     private void initComponents() {
-        buttonLeft = new com.jhw.swing.material.components.button._MaterialButton();
-        buttonRight = new com.jhw.swing.material.components.button._MaterialButton();
+        buttonLeft = MaterialButtonsFactory.buildFlat();
+        buttonRight = MaterialButtonsFactory.buildFlat();
 
         this.setBackground(new java.awt.Color(204, 204, 204));
         this.setBorderRadius(2);
@@ -36,33 +40,31 @@ public class _MaterialButtonDouble extends _MaterialPanelComponent {
         hlc.add(HorizontalLayoutComponent.builder(buttonLeft).gapRight(1).build());
         hlc.add(HorizontalLayoutComponent.builder(buttonRight).gapLeft(1).build());
 
-        setComponent(hlc.build());
+        add(hlc.build());
     }
 
     // Variables declaration - do not modify//:variables
-    private com.jhw.swing.material.components.button._MaterialButton buttonLeft;
-    private com.jhw.swing.material.components.button._MaterialButton buttonRight;
+    private MaterialButton buttonLeft;
+    private MaterialButton buttonRight;
     // End of variables declaration//GEN-END:variables
 
     private void personalize() {
-        buttonLeft.setType(_MaterialButton.Type.FLAT);
+        buttonLeft.setAccentColorFadeInto(MaterialColors.GREY_200);
+        buttonLeft.setRippleColor(MaterialColors.GREY_300);
         buttonLeft.setText("");
         buttonLeft.setIcon(MaterialIcons.KEYBOARD_ARROW_LEFT);
-        buttonLeft.getFadeinto().setAccent(MaterialColors.GREY_200);
-        buttonLeft.setRippleColor(MaterialColors.GREY_300);
 
-        buttonRight.setType(_MaterialButton.Type.FLAT);
+        buttonRight.setAccentColorFadeInto(MaterialColors.GREY_200);
+        buttonRight.setRippleColor(MaterialColors.GREY_300);
         buttonRight.setText("");
         buttonRight.setIcon(MaterialIcons.KEYBOARD_ARROW_RIGHT);
-        buttonRight.getFadeinto().setAccent(MaterialColors.GREY_200);
-        buttonRight.setRippleColor(MaterialColors.GREY_300);
     }
 
-    public _MaterialButton getButtonLeft() {
+    public MaterialButton getButtonLeft() {
         return buttonLeft;
     }
 
-    public _MaterialButton getButtonRight() {
+    public MaterialButton getButtonRight() {
         return buttonRight;
     }
 

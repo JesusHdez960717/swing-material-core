@@ -4,12 +4,16 @@ import java.awt.*;
 import java.awt.geom.RoundRectangle2D;
 import javax.swing.*;
 import com.jhw.swing.util.MaterialDrawingUtils;
-import com.jhw.swing.material.effects.ElevationEffect;
-import com.jhw.swing.util.Utils;
-import com.jhw.swing.util.interfaces.MaterialComponent;
+import com.jhw.swing.material.effects.DefaultElevationEffect;
 import com.jhw.swing.material.standards.MaterialShadow;
 import com.jhw.personalization.core.domain.Personalization;
 import com.jhw.personalization.services.PersonalizationHandler;
+import com.jhw.swing.material.effects.DefaultMaterialLineBorder;
+import com.jhw.swing.material.effects.MaterialLineBorder;
+import com.jhw.swing.material.effects.ElevationEffect;
+import com.jhw.swing.material.injection.Background_Force_Foreground;
+import com.jhw.swing.material.injection.Foreground_Force_Icon;
+import com.jhw.swing.material.injection.MaterialSwingInjector;
 
 /**
  * A JPanel customized for Material components. What makes these panels special
@@ -30,105 +34,142 @@ import com.jhw.personalization.services.PersonalizationHandler;
  * the prefereable approach to follow is overriding {@link #doLayout()} and
  * taking care of any arrangements by yourself.
  */
-public class _MaterialPanel extends JPanel implements MaterialComponent {
+@Background_Force_Foreground
+@Foreground_Force_Icon
+public class _MaterialPanel extends MaterialPanelBorder implements ElevationEffect {
 
-    private final ElevationEffect elevation;
-    private int borderRadius = 5;
+    public static MaterialPanelBorder from() {
+        return MaterialSwingInjector.getImplementation(_MaterialPanel.class);
+    }
+
+    private final ElevationEffect elevation = DefaultElevationEffect.applyTo(this, MaterialShadow.ELEVATION_DEFAULT);
+
+    private final MaterialLineBorder border = DefaultMaterialLineBorder.builder().borderRadius(5).listeners(this).build();
+
+    private double elevationLevel = MaterialShadow.ELEVATION_DEFAULT;
+
+    private Icon icon;
 
     /**
+     * Use _MaterialPanel.from() para proy y AOP
+     *
      * Creates a new {@code MaterialPanel}. These panels cast a shadow below
      * them, although technically it is painted inside its borders. If you don't
      * need a shadow to be casted from this panel, use a {@link JPanel} instead.
+     *
+     * @deprecated
      */
+    @Deprecated
     public _MaterialPanel() {
         this.setOpaque(false);
+        this.setLayout(new BorderLayout());
         this.setBackground(PersonalizationHandler.getColor(Personalization.KEY_COLOR_BACKGROUND_PANEL));
-        elevation = ElevationEffect.applyTo(this, MaterialShadow.ELEVATION_DEFAULT);
-        elevation.setBorderRadius(borderRadius);
     }
+//-----------------ELEVATION_EFFECT------------------------
 
-    /**
-     * Gets the elevation level of this panel. Changes in elevation trigger an
-     * animated transition if the component is currently visible, so it is
-     * incorrect to assume the returned value will reflect how the resulting
-     * shadow looks right now.
-     *
-     * @return elevation level [0~5]
-     * @see ElevationEffect
-     */
-    public double getElevation() {
+    @Override
+    public double getLevel() {
         return elevation.getLevel();
     }
 
-    /**
-     * Sets the elevation level of this panel. Changes in elevation trigger an
-     * animated transition if the component is currently visible, so it will
-     * take a little while for the resulting shadow to reflect the level once it
-     * is set.
-     *
-     * @param elevation elevation level [0~5]
-     * @see ElevationEffect
-     */
-    public void setElevation(int elevation) {
-        this.elevation.setLevel(elevation);
-    }
-
-    /**
-     * Gets the current border radius of this button.
-     *
-     * @return the current border radius of this button, in pixels.
-     */
-    public int getBorderRadius() {
-        return borderRadius;
-    }
-
-    /**
-     * Sets the border radius of this button. You can define a custom radius in
-     * order to get some rounded corners in your button, making it look like a
-     * pill or even a circular action button.
-     *
-     * @param borderRadius the new border radius of this button, in pixels.
-     */
-    public void setBorderRadius(int borderRadius) {
-        this.borderRadius = borderRadius;
-        elevation.setBorderRadius(borderRadius);
-    }
-
-    /**
-     * Sets the background color of this panel. Keep on mind that setting a
-     * background color in a Material component like this will also set the
-     * foreground color to either white or black, depending of how bright or
-     * dark is the chosen background color.
-     * <p/>
-     * <b>NOTE:</b> It is up to the look and feel to honor this property, some
-     * may choose to ignore it. To avoid any conflicts, using the
-     * <a
-     * href="https://docs.oracle.com/javase/7/docs/api/javax/swing/plaf/metal/package-summary.html">
-     * Metal Look and Feel</a> is recommended.
-     *
-     * @param bg the desired background <code>Color</code>
-     */
     @Override
-    public void setBackground(Color bg) {
-        super.setBackground(bg);
-        this.setForeground(Utils.getForegroundAccording(bg));
+    public double getElevation() {
+        return elevationLevel;
+    }
+
+    @Override
+    public void paintElevation(Graphics2D g2) {
+        elevation.paintElevation(g2);
+    }
+
+    public void setElevationLevel(double elevationLevel) {
+        this.elevationLevel = elevationLevel;
+    }
+//-----------------LINE_BORDER------------------------
+
+    @Override
+    public float getBorderThickness() {
+        return border.getBorderThickness();
+    }
+
+    @Override
+    public void setBorderThickness(float thickness) {
+        border.setBorderThickness(thickness);
+    }
+
+    @Override
+    public Color getBorderColor() {
+        return border.getBorderColor();
+    }
+
+    @Override
+    public void setBorderColor(Color color) {
+        border.setBorderColor(color);
+    }
+
+    @Override
+    public int getBorderRadius() {
+        return border.getBorderRadius();
+    }
+
+    @Override
+    public void setBorderRadius(int borderRadius) {
+        this.border.setBorderRadius(borderRadius);
+        this.elevation.setBorderRadius(borderRadius);
+    }
+
+    @Override
+    public Stroke getBorderStroke() {
+        return border.getBorderStroke();
+    }
+
+    @Override
+    public void setBorderStroke(Stroke stroke) {
+        border.setBorderStroke(stroke);
+    }
+
+    @Override
+    public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
+        border.paintBorder(c, g, x, y, width, height);
+    }
+//-----------------LINE_BORDER------------------------
+
+    @Override
+    public Icon getIcon() {
+        return this.icon;
+    }
+
+    @Override
+    public void setIcon(Icon icon) {
+        this.icon = icon;
     }
 
     @Override
     protected void paintComponent(Graphics g) {
         Graphics2D g2 = MaterialDrawingUtils.getAliasedGraphics(g);
 
-        elevation.paint(g2);
+        paintElevation(g2);
         g2.translate(MaterialShadow.OFFSET_LEFT, MaterialShadow.OFFSET_TOP);
 
         final int offset_lr = MaterialShadow.OFFSET_LEFT + MaterialShadow.OFFSET_RIGHT;
         final int offset_td = MaterialShadow.OFFSET_TOP + MaterialShadow.OFFSET_BOTTOM;
 
         g2.setColor(getBackground());
-        g2.fill(new RoundRectangle2D.Float(0, 0, getWidth() - offset_lr, getHeight() - offset_td, borderRadius * 2, borderRadius * 2));
+        g2.fill(new RoundRectangle2D.Float(0, 0, getWidth() - offset_lr, getHeight() - offset_td, getBorderRadius() * 2, getBorderRadius() * 2));
 
         g2.setClip(null);
 
+        paintBorder(this, g2, 0, 0, (int) (getWidth() - offset_lr + getBorderThickness()), (int) (getHeight() - offset_td + getBorderThickness()));
+
+        if (this.icon != null) {
+            if (icon instanceof ImageIcon) {//si es image icon lo pinto completo de todo el tamanno
+                g2.drawImage(((ImageIcon) this.icon).getImage(), 0, 0, getWidth() - offset_lr, getHeight() - offset_td, null);
+            } else {//si no lo pinto como un simple icon
+                icon.paintIcon(this, g2, (getWidth() - icon.getIconWidth()) / 2, (getHeight() - icon.getIconHeight()) / 2);
+            }
+        }
+
         g2.translate(-MaterialShadow.OFFSET_LEFT, -MaterialShadow.OFFSET_TOP);
     }
+
 }

@@ -23,15 +23,17 @@ import com.jhw.swing.material.standards.MaterialFontRoboto;
  */
 public class _ClockDigitalCircle extends JComponent implements MaterialComponent {
 
+    public static _ClockDigitalCircle from() {
+        return new _ClockDigitalCircle();
+    }
+    
     public static int FPS = 60;
-
-    private Font f = MaterialFontRoboto.BOLD.deriveFont(30f);
 
     public _ClockDigitalCircle() {
         this.setPreferredSize(new Dimension(100, 100));
         this.setBackground(MaterialColors.BLACK);
         this.setForeground(MaterialColors.BLACK);
-        this.setFont(f);
+        this.setFont(MaterialFontRoboto.BOLD.deriveFont(30f));
 
         Timer timer = new Timer(1000 / FPS, new ActionListener() {
             @Override
@@ -41,17 +43,6 @@ public class _ClockDigitalCircle extends JComponent implements MaterialComponent
         });
         timer.setRepeats(true);
         timer.start();
-    }
-
-    @Override
-    public void setFont(Font font) {
-        this.f = font;
-        super.setFont(f);
-    }
-
-    @Override
-    public Font getFont() {
-        return f;
     }
 
     @Override

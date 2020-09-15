@@ -1,0 +1,32 @@
+_MaterialButtonDouble: sin estandar de clase generica abstracta
+
+_MaterialButtonHiperlink: sin estandar de clase generica abstracta
+
+_MaterialButtonIconTranspRotate: setIconRotate no sale en la definicion x defecto,
+    no puede xq la def es para icon generales, ver como hacer que el setIcon sea rotate
+
+_MaterialIconButtonRound: tiene el atributo circle sin ser estandar
+
+_buttonAddEdit: isCreate no es estandar
+
+panelAvatar y curves: sin estandar
+
+_PanelGradient: color primario y secundario sin definicion en superclase
+
+_PanelGradientTranslucid: trans sin definicion
+
+
+dashboard completo, example
+glasspane completo, example
+login completo, example
+spinner completo, example
+searchField example
+spinner
+
+_MaterialTextArea estandar en superclase
+
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!task pane, table by page bien!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+Toggle icons en input view, segun standar del htlm

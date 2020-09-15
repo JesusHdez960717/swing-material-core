@@ -2,10 +2,8 @@ package com.jhw.swing.material.components.dashboard.taskpane.expanded;
 
 import com.clean.swing.app.dashboard.DashboardConstants;
 import com.clean.swing.app.dashboard.MapeableContainer;
-import com.jhw.swing.material.components.button._MaterialButtonFlat;
-import com.jhw.swing.material.components.button._MaterialButtonIconTransparent;
-import com.jhw.swing.material.components.container.panel._PanelGradient;
-import com.jhw.swing.material.components.container.panel._PanelTransparent;
+import com.jhw.swing.material.components.button.MaterialButtonsFactory;
+import com.jhw.swing.material.components.container.MaterialContainersFactory;
 import com.jhw.swing.material.components.dashboard.taskpane.DashBoardTaskPane;
 import com.jhw.swing.material.standards.MaterialColors;
 import com.jhw.swing.util.Utils;
@@ -22,6 +20,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.Action;
 import javax.swing.JButton;
+import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 
 /**
@@ -39,19 +38,19 @@ public class DownPanel extends MapeableContainer {
     private void initComponents() {
         this.setLayout(new BorderLayout());
 
-        this.background = new _PanelGradient();
+        this.background = MaterialContainersFactory.buildPanelGradient();
         this.add(background, BorderLayout.CENTER);
         this.background.setLayout(new BorderLayout());
 
-        this.components = new _PanelTransparent();
+        this.components = MaterialContainersFactory.buildPanelTransparent();
         this.components.setLayout(new FlowLayout(FlowLayout.CENTER, 15, 3));
 
         this.background.add(this.components, BorderLayout.EAST);
     }
 
-    private _PanelGradient background;
+    private JPanel background;
     private JButton licence;
-    private _PanelTransparent components;
+    private JPanel components;
 
     @Override
     public void update(HashMap<String, Object> hm) {
@@ -102,7 +101,7 @@ public class DownPanel extends MapeableContainer {
         doSetLicence(licence);
     }
 
-    public _PanelGradient getBackgroundPanel() {
+    public JPanel getBackgroundPanel() {
         return background;
     }
 
@@ -122,7 +121,7 @@ public class DownPanel extends MapeableContainer {
     }
 
     public void addTecnology(Action action) {
-        _MaterialButtonIconTransparent btn_Tec = new _MaterialButtonIconTransparent();
+        JButton btn_Tec = MaterialButtonsFactory.buildIconTransparent();
         btn_Tec.setAction(action);
         String name = ((String) action.getValue(Action.NAME)).trim();
         if (!name.isEmpty()) {

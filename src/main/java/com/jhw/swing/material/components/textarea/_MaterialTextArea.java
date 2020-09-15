@@ -1,99 +1,49 @@
 package com.jhw.swing.material.components.textarea;
 
-import com.jhw.swing.material.components.scrollpane._MaterialScrollPaneCore;
 import com.jhw.swing.util.interfaces.BindableComponent;
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
-import javax.swing.border.TitledBorder;
-import com.jhw.personalization.core.domain.Personalization;
-import com.jhw.personalization.services.PersonalizationHandler;
-import static com.jhw.swing.material.components.textfield._MaterialTextField.HINT_OPACITY_MASK;
+import com.jhw.swing.material.components.scrollpane._MaterialScrollPaneCore;
+import com.jhw.swing.material.components.textfield.CopyPastePopup;
+import com.jhw.swing.material.injection.Background_Force_Foreground;
+import com.jhw.swing.material.injection.MaterialSwingInjector;
+import com.jhw.swing.material.standards.MaterialColors;
+import com.jhw.swing.material.standards.MaterialFontRoboto;
 import com.jhw.swing.util.Utils;
-import javax.swing.border.Border;
+import javax.swing.JComponent;
+import javax.swing.JTextArea;
 
 /**
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-public class _MaterialTextArea extends javax.swing.JPanel implements BindableComponent<String> {
+public class _MaterialTextArea extends _MaterialScrollPaneCore implements BindableComponent<String> {
 
-    private Color accentColor = PersonalizationHandler.getColor(Personalization.KEY_COLOR_ACCENT);
-
-    private final BorderDinamic borderEffect;
-
-    private String label;
+    public static _MaterialTextArea from() {
+        return new _MaterialTextArea();
+    }
 
     public _MaterialTextArea() {
         initComponents();
-        addListeners();
-        borderEffect = new BorderDinamic(this);
-        setLabel("label");
+        setBorderTitle("title");
     }
 
     private void initComponents() {
-        materialScrollPaneCore = new com.jhw.swing.material.components.scrollpane._MaterialScrollPaneCore();
-        materialTextAreaCore = new com.jhw.swing.material.components.textarea._MaterialTextAreaCore();
+        materialTextAreaCore = _MaterialTextAreaCore.from();
 
         materialTextAreaCore.setColumns(1);
         materialTextAreaCore.setRows(1);
-        materialScrollPaneCore.setViewportView(materialTextAreaCore);
+        this.setViewportView(materialTextAreaCore);
 
-        this.setLayout(new BorderLayout());
-        this.add(materialScrollPaneCore);
         this.setPreferredSize(new Dimension(230, 150));
     }
 
-    private com.jhw.swing.material.components.scrollpane._MaterialScrollPaneCore materialScrollPaneCore;
-    private com.jhw.swing.material.components.textarea._MaterialTextAreaCore materialTextAreaCore;
-
-    public String getLabel() {
-        return label;
-    }
-
-    public void setLabel(String label) {
-        this.label = label;
-        this.setTitledBorder(label);
-    }
-
-    public Color getAccentColor() {
-        return accentColor;
-    }
-
-    public void setAccentColor(Color accentColor) {
-        this.accentColor = accentColor;
-        borderEffect.update();
-    }
-
-    public String getText() {
-        return materialTextAreaCore.getText();
-    }
-
-    public void setText(String text) {
-        materialTextAreaCore.setText(text);
-    }
-
-    public _MaterialTextAreaCore getTextArea() {
-        return materialTextAreaCore;
-    }
-
-    public _MaterialScrollPaneCore getScrollPane() {
-        return materialScrollPaneCore;
-    }
-
-    private void setTitledBorder(String text) {
-        materialScrollPaneCore.setBorder(new TitledBorder(text));
-        TitledBorder titled = (TitledBorder) materialScrollPaneCore.getBorder();
-        titled.setTitleColor(Utils.applyAlphaMask(getForeground(), HINT_OPACITY_MASK));
-        titled.setBorder(new MaterialLineBorder());
-        borderEffect.update();
-    }
+    private _MaterialTextAreaCore materialTextAreaCore;
 
     @Override
-    public void setBorder(Border border) {
+    public JComponent getFocusableComponent() {
+        return materialTextAreaCore;
     }
 
     @Override
@@ -117,18 +67,7 @@ public class _MaterialTextArea extends javax.swing.JPanel implements BindableCom
         super.setFont(font);
         if (materialTextAreaCore != null) {
             materialTextAreaCore.setFont(font);
-            borderEffect.update();
         }
-    }
-
-    @Override
-    public Font getFont() {
-        return super.getFont();
-    }
-
-    @Override
-    public Color getForeground() {
-        return super.getForeground();
     }
 
     @Override
@@ -136,31 +75,42 @@ public class _MaterialTextArea extends javax.swing.JPanel implements BindableCom
         super.setForeground(fore);
         if (materialTextAreaCore != null) {
             materialTextAreaCore.setForeground(fore);
-            borderEffect.update();
         }
     }
 
     @Override
     public String getObject() {
-        return getText();
+        return materialTextAreaCore.getText();
     }
 
     @Override
     public void setObject(String object) {
-        setText(object);
+        materialTextAreaCore.setText(object);
     }
 
-    private void addListeners() {
-        materialTextAreaCore.addFocusListener(new FocusListener() {
-            @Override
-            public void focusGained(FocusEvent e) {
-                borderEffect.update();
-            }
+    @Background_Force_Foreground
+    public static class _MaterialTextAreaCore extends JTextArea implements BindableComponent<String> {
 
-            @Override
-            public void focusLost(FocusEvent e) {
-                borderEffect.update();
-            }
-        });
+        public static _MaterialTextAreaCore from() {
+            return MaterialSwingInjector.getImplementation(_MaterialTextAreaCore.class);
+        }
+
+        protected _MaterialTextAreaCore() {
+            this.setBackground(MaterialColors.WHITE);
+            this.setFont(MaterialFontRoboto.REGULAR.deriveFont(16f));
+            this.setLineWrap(true);
+            this.setComponentPopupMenu(CopyPastePopup.INSTANCE);
+        }
+
+        @Override
+        public String getObject() {
+            return getText();
+        }
+
+        @Override
+        public void setObject(String object) {
+            setText(object);
+        }
     }
+
 }

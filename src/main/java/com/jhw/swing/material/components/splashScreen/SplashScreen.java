@@ -5,10 +5,10 @@
  */
 package com.jhw.swing.material.components.splashScreen;
 
-import com.jhw.swing.material.components.container.panel._PanelGradient;
-import com.jhw.swing.material.components.labels._MaterialLabel;
+import com.jhw.swing.material.components.container.MaterialContainersFactory;
+import com.jhw.swing.material.components.labels.MaterialLabel;
+import com.jhw.swing.material.components.labels.MaterialLabelsFactory;
 import com.jhw.swing.material.standards.MaterialColors;
-import com.jhw.swing.material.standards.MaterialIcons;
 import com.jhw.swing.util.Utils;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -23,10 +23,34 @@ import javax.swing.SwingConstants;
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-public class SplashScreen extends _PanelGradient {
+public class SplashScreen extends JPanel {
+
+    public static SplashScreen from(JPanel panel) {
+        return new SplashScreen() {
+            @Override
+            public JPanel mainSplash() {
+                return panel;
+            }
+        };
+    }
 
     private String text = "Cargando...\n";
 
+    /**
+     * Usar SplashScreen.from(panel). Si se va a usar este constructor
+     * asegurarse de reimplementar mainSplash(), asi:
+     * <pre>
+     *  new SplashScreen() {
+     *      @Override
+     *      public JPanel mainSplash() {
+     *          return panel;//el panel que se quiere mostrar
+     *      }
+     *  };
+     * </pre>
+     *
+     * @deprecated
+     */
+    @Deprecated
     public SplashScreen() {
         initComponents();
         redirectOut();
@@ -35,7 +59,7 @@ public class SplashScreen extends _PanelGradient {
     private void initComponents() {
         Rectangle screen = Utils.getScreenSize();
         this.setPreferredSize(new Dimension((int) (screen.getWidth() / 3), (int) (screen.getHeight() / 3)));
-        labelProgress = new _MaterialLabel();
+        labelProgress = MaterialLabelsFactory.build();
         labelProgress.setPreferredSize(new Dimension(0, 20));
         labelProgress.setText(text);
         labelProgress.setHorizontalAlignment(SwingConstants.CENTER);
@@ -46,7 +70,7 @@ public class SplashScreen extends _PanelGradient {
         this.add(labelProgress, BorderLayout.SOUTH);
     }
 
-    private _MaterialLabel labelProgress;
+    private MaterialLabel labelProgress;
 
     /**
      * Method to Override for personalized image display
@@ -56,7 +80,7 @@ public class SplashScreen extends _PanelGradient {
      */
     @Deprecated
     public JPanel mainSplash() {
-        return new _PanelGradient(MaterialColors.AMBER_600);
+        return MaterialContainersFactory.buildPanelGradient();
     }
 
     private void redirectOut() {

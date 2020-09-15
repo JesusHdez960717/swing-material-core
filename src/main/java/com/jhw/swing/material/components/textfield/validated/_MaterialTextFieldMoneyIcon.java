@@ -5,8 +5,8 @@
  */
 package com.jhw.swing.material.components.textfield.validated;
 
+import com.jhw.swing.material.components.textfield.MaterialFormatedTextField;
 import com.jhw.swing.material.components.textfield._MaterialFormatedTextFieldIcon;
-import com.jhw.swing.material.components.textfield._MaterialTextFieldIcon;
 import com.jhw.swing.material.standards.MaterialIcons;
 import java.math.BigDecimal;
 
@@ -16,12 +16,16 @@ import java.math.BigDecimal;
  */
 public class _MaterialTextFieldMoneyIcon extends _MaterialFormatedTextFieldIcon<BigDecimal> {
 
+    public static MaterialFormatedTextField from() {
+        return new _MaterialTextFieldMoneyIcon();
+    }
+
     public _MaterialTextFieldMoneyIcon() {
         this(false);
     }
 
     public _MaterialTextFieldMoneyIcon(boolean negative) {
-        super(new _MaterialTextFieldMoney(negative));
+        super(_MaterialTextFieldMoney.from(negative));
         setIcon(MaterialIcons.ATTACH_MONEY);
     }
 

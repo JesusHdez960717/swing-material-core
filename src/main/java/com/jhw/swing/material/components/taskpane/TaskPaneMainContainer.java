@@ -1,6 +1,7 @@
 package com.jhw.swing.material.components.taskpane;
 
-import com.jhw.swing.material.components.scrollpane._MaterialScrollPaneCore;
+import com.jhw.swing.material.components.scrollpane.MaterialScrollFactory;
+import com.jhw.swing.material.components.scrollpane.MaterialScrollPane;
 import com.jhw.swing.ui.componentsui.panel.MaterialPanelUI;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -17,7 +18,7 @@ import org.jdesktop.swingx.VerticalLayout;
 public class TaskPaneMainContainer extends JXCollapsiblePane {
 
     private final JXTaskPaneContainer taskPane = new JXTaskPaneContainer();
-    private final _MaterialScrollPaneCore scrollPane = new _MaterialScrollPaneCore();
+    private final MaterialScrollPane scrollPane = MaterialScrollFactory.buildPane();
 
     public TaskPaneMainContainer() {
         initComponents();

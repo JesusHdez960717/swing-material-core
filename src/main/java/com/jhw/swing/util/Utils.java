@@ -23,6 +23,7 @@ import com.jhw.personalization.core.domain.Personalization;
 import com.jhw.personalization.services.PersonalizationHandler;
 import com.jhw.swing.material.standards.MaterialColors;
 import java.awt.Canvas;
+import java.awt.Window;
 import org.jdesktop.swing.animation.timing.sources.SwingTimerTimingSource;
 
 /**
@@ -87,6 +88,19 @@ public class Utils {
         }
         useSun2D = found;
         getUsableBounds = getMethod;
+    }
+
+    public static void setOpaque(Window w, boolean opaque) {
+        try {
+            Class<?> awtUtilsClass = Class.forName("com.sun.awt.AWTUtilities");
+            if (awtUtilsClass != null) {
+                Method method = awtUtilsClass.getDeclaredMethod("setWindowOpaque", Window.class, Boolean.class);
+                method.invoke(null, w, opaque);
+            }
+        } catch (Exception e) {
+            System.out.println("NO SE PUEDO PONER LA TRANSPARENCIA A LA VENTANA." );
+            e.printStackTrace();
+        }
     }
 
     public static BufferedImage resize(BufferedImage img, int newW, int newH) {

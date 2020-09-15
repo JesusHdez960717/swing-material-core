@@ -1,6 +1,8 @@
 package com.jhw.swing.bundles.loading;
 
 import com.jhw.swing.material.components.container.panel._MaterialPanel;
+import com.jhw.swing.material.components.labels.MaterialLabel;
+import com.jhw.swing.material.components.labels.MaterialLabelsFactory;
 import com.jhw.swing.material.standards.MaterialColors;
 
 /**
@@ -24,13 +26,13 @@ public class LoadingPanel extends _MaterialPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//
     private void initComponents() {
 
-        _MaterialLabel1 = new com.jhw.swing.material.components.labels._MaterialLabel();
+        label = MaterialLabelsFactory.build();
         _MaterialProgressSpinner1 = new com.jhw.swing.material.components.progress._MaterialProgressSpinner();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
-        _MaterialLabel1.setText("Cargando...");
-        _MaterialLabel1.setFont(new java.awt.Font("Roboto Medium", 1, 24)); // NOI18N
+        label.setText("Cargando...");
+        label.setFont(new java.awt.Font("Roboto Medium", 1, 24)); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -40,7 +42,7 @@ public class LoadingPanel extends _MaterialPanel {
                                 .addGap(35, 35, 35)
                                 .addComponent(_MaterialProgressSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(_MaterialLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(label, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap(30, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -49,13 +51,13 @@ public class LoadingPanel extends _MaterialPanel {
                                 .addGap(30, 30, 30)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(_MaterialProgressSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(_MaterialLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(label, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addContainerGap(35, Short.MAX_VALUE))
         );
     }// </editor-fold>                        
 
     // Variables declaration - do not modify//:variables
-    private com.jhw.swing.material.components.labels._MaterialLabel _MaterialLabel1;
+    private MaterialLabel label;
     private com.jhw.swing.material.components.progress._MaterialProgressSpinner _MaterialProgressSpinner1;
     // End of variables declaration                   
 

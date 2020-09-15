@@ -2,30 +2,22 @@ package com.jhw.swing.material.components.scrollpane;
 
 import com.jhw.swing.material.standards.MaterialColors;
 import com.jhw.swing.util.MaterialDrawingUtils;
-import com.jhw.swing.util.Utils;
 import java.awt.Adjustable;
-import java.awt.BasicStroke;
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Container;
-import java.awt.Cursor;
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Rectangle;
-import java.awt.RenderingHints;
+import java.awt.*;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseWheelEvent;
 import javax.swing.JButton;
 import javax.swing.JComponent;
-import javax.swing.JScrollBar;
 import javax.swing.plaf.basic.BasicScrollBarUI;
 
 /**
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-public class _MaterialScrollBar extends JScrollBar {
+public class _MaterialScrollBar extends MaterialScrollBar {
+
+    public static MaterialScrollBar from(int orientation) {
+        return new _MaterialScrollBar(orientation);
+    }
 
     public static int THUMB_WIDTH_FOCUSED = 10;
     public static int THUMB_WIDTH_UNFOCUSED = 5;
@@ -43,24 +35,6 @@ public class _MaterialScrollBar extends JScrollBar {
 
     public _MaterialScrollBar(int orientation) {
         this(MaterialColors.WHITE, MaterialColors.GREY_600, orientation);
-    }
-
-    public Color getBackgroundThumb() {
-        return background;
-    }
-
-    public void setBackgroundThumb(Color background) {
-        this.background = background;
-        repaint();
-    }
-
-    public Color getForegroundThumb() {
-        return foreground;
-    }
-
-    public void setForegroundThumb(Color foreground) {
-        this.foreground = foreground;
-        repaint();
     }
 
     public _MaterialScrollBar(Color background, Color foreground, int orientation) {
@@ -100,7 +74,7 @@ public class _MaterialScrollBar extends JScrollBar {
 
             @Override
             protected Dimension getMinimumThumbSize() {
-                return new Dimension(5, 50);
+                return new Dimension(0, 0);//se crea de verdad en el doAdjust del constructor
             }
 
             @Override
@@ -153,8 +127,32 @@ public class _MaterialScrollBar extends JScrollBar {
 
         });
         this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        doAdjust();
     }
 
+    @Override
+    public Color getBackgroundThumb() {
+        return background;
+    }
+
+    @Override
+    public void setBackgroundThumb(Color background) {
+        this.background = background;
+        repaint();
+    }
+
+    @Override
+    public Color getForegroundThumb() {
+        return foreground;
+    }
+
+    @Override
+    public void setForegroundThumb(Color foreground) {
+        this.foreground = foreground;
+        repaint();
+    }
+
+    @Override
     public int getThumbWidth() {
         return width;
     }
@@ -180,11 +178,11 @@ public class _MaterialScrollBar extends JScrollBar {
     }
 
     private void doAdjust() {
-        if (entered || pressed) {
-            this.width = THUMB_WIDTH_FOCUSED;
-        } else {
-            this.width = THUMB_WIDTH_UNFOCUSED;
-        }
+        //if (entered || pressed) {
+        this.width = THUMB_WIDTH_FOCUSED;
+        //} else {
+        //    this.width = THUMB_WIDTH_UNFOCUSED;
+        //}
         setPreferredSize(new Dimension(width, width));
         revalidate();
     }
@@ -197,10 +195,4 @@ public class _MaterialScrollBar extends JScrollBar {
         return null;
     }
 
-    @Override
-    public void paint(Graphics g) {
-        g.setColor(MaterialColors.RED_800);
-        g.fillRect(0, 0, getWidth(), getHeight());
-        super.paint(g);
-    }
 }

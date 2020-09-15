@@ -5,7 +5,9 @@
  */
 package com.jhw.swing.util;
 
+import com.jhw.personalization.core.domain.Personalization;
 import com.jhw.personalization.services.PersonalizationHandler;
+import javax.swing.ToolTipManager;
 
 /**
  *
@@ -28,5 +30,10 @@ public class PersonalizationMaterial {
 
     private static String init() {
         return "material_personalization.key.";
+    }
+
+    public static void setUpInitialGlobal() {
+        ToolTipManager.sharedInstance().setInitialDelay(PersonalizationHandler.getInt(Personalization.KEY_INT_TOOLTIP_INITIAL_DELAY));
+        ToolTipManager.sharedInstance().setDismissDelay(PersonalizationHandler.getInt(Personalization.KEY_INT_TOOLTIP_DISMISS_DELAY));
     }
 }

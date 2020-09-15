@@ -1,26 +1,43 @@
 package com.jhw.swing.material.components.scrollpane;
 
-import static com.jhw.swing.material.components.textfield._MaterialTextField.LINE_OPACITY_MASK;
-import javax.swing.JScrollPane;
-import javax.swing.border.Border;
-import javax.swing.border.LineBorder;
-import javax.swing.border.TitledBorder;
-import com.jhw.swing.util.Utils;
+import com.jhw.swing.material.effects.DefaultBorderDinamic;
 import com.jhw.swing.material.standards.MaterialColors;
 import com.jhw.swing.material.standards.MaterialFontRoboto;
 import java.awt.Adjustable;
-import javax.swing.JScrollBar;
+import java.awt.Color;
+import javax.swing.JComponent;
 
 /**
+ * <p>
+ * Para poner el focus directamente sobre el nuevo componente hacel algo como
+ * esto
+ * <pre>
+ * JTextArea text = new JTextArea("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+ *      MaterialScrollPane scroll = new _MaterialScrollPaneCore() {
+ *          @Override
+ *          public JComponent getFocusableComponent() {
+ *              return text;
+ *          }
+ *      };//MaterialScrollFactory.buildPane();
+ * scroll.setViewportView(text);
+ * scroll.setBorderTitle("buajajajaja");
+ * </pre>
+ * <p>
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-public class _MaterialScrollPaneCore extends JScrollPane {
+public class _MaterialScrollPaneCore extends MaterialScrollPane {
+
+    public static MaterialScrollPane from() {
+        return new _MaterialScrollPaneCore();
+    }
 
     private final _MaterialScrollBar verticalScrollBar = new _MaterialScrollBar(Adjustable.VERTICAL);
     private final _MaterialScrollBar horizontalScrollBar = new _MaterialScrollBar(Adjustable.HORIZONTAL);
 
-    public _MaterialScrollPaneCore() {
+    private final DefaultBorderDinamic borderEffect;
+
+    public _MaterialScrollPaneCore() {//constructor publico para poder hacer: new _MaterialScrollPaneCore(){@Override}
         //para el border
         this.setBackground(MaterialColors.WHITE);
         this.setFont(MaterialFontRoboto.REGULAR.deriveFont(16f));
@@ -33,37 +50,54 @@ public class _MaterialScrollPaneCore extends JScrollPane {
         this.addMouseWheelListener(new SmoothScrollMouseWheelListener(this));
 
         //transparente
-        this.getViewport().setOpaque(false);
+        this.setBackground(MaterialColors.TRANSPARENT);
         this.getViewport().setBackground(MaterialColors.TRANSPARENT);
+        this.setOpaque(false);
+        this.getViewport().setOpaque(false);
 
         //le sobra el borde
         //this.setBorder(null);
-    }
-
-    public _MaterialScrollBar getMaterialVerticalScrollBar() {
-        return verticalScrollBar;
-    }
-
-    public JScrollBar getMaterialHorizontalScrollBar() {
-        return horizontalScrollBar;
-    }
-
-    public void setTitledBorder(String text) {
-        this.setBorder(new TitledBorder(text));
+        borderEffect = new DefaultBorderDinamic(this);
     }
 
     @Override
-    public void setBorder(Border b) {
-        if (b instanceof TitledBorder) {
-            TitledBorder bor = (TitledBorder) b;
-            bor.setTitleFont(getFont());
-
-            LineBorder lb = new LineBorder(Utils.applyAlphaMask(getForeground(), LINE_OPACITY_MASK));
-            bor.setBorder(lb);
-
-            super.setBorder(bor);
-        } else {
-            super.setBorder(b);
-        }
+    public MaterialScrollBar getMaterialVerticalScrollBar() {
+        return verticalScrollBar;
     }
+
+    @Override
+    public MaterialScrollBar getMaterialHorizontalScrollBar() {
+        return horizontalScrollBar;
+    }
+
+    @Override
+    public JComponent getFocusableComponent() {
+        return getViewport();
+    }
+
+    @Override
+    public JComponent getBordeableComponent() {
+        return this;
+    }
+
+    @Override
+    public String getBorderTitle() {
+        return borderEffect.getBorderTitle();
+    }
+
+    @Override
+    public void setBorderTitle(String title) {
+        borderEffect.setBorderTitle(title);
+    }
+
+    @Override
+    public Color getBorderAccentColor() {
+        return borderEffect.getBorderAccentColor();
+    }
+
+    @Override
+    public void setBorderAccentColor(Color accentColor) {
+        borderEffect.setBorderAccentColor(accentColor);
+    }
+
 }

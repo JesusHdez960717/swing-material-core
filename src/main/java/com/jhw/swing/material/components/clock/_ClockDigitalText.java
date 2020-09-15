@@ -23,6 +23,10 @@ public class _ClockDigitalText extends JComponent implements MaterialComponent {
 
     public static int FPS = 60;
 
+    public static _ClockDigitalText from() {
+        return new _ClockDigitalText();
+    }
+
     public _ClockDigitalText() {
         this.setPreferredSize(new Dimension(200, 40));
         this.setBackground(MaterialColors.BLACK);

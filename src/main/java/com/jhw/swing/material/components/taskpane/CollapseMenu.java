@@ -5,15 +5,16 @@
  */
 package com.jhw.swing.material.components.taskpane;
 
-import com.clean.swing.app.dashboard.DashBoardSimple;
 import com.clean.swing.app.dashboard.DashboardConstants;
-import com.jhw.swing.material.components.button._MaterialButton;
-import com.jhw.swing.material.components.button._MaterialButtonIconTransparent;
-import com.jhw.swing.material.components.dashboard.taskpane.DashBoardTaskPane;
+import com.jhw.swing.material.components.button.MaterialButton;
+import com.jhw.swing.material.components.button.MaterialButtonIcon;
+import com.jhw.swing.material.components.button.MaterialButtonsFactory;
+import com.jhw.swing.material.components.labels.MaterialLabel;
+import com.jhw.swing.material.components.labels.MaterialLabelsFactory;
 import com.jhw.swing.material.components.labels._MaterialLabel;
+import com.jhw.swing.material.effects.RippleEffect;
 import com.jhw.swing.material.standards.MaterialColors;
 import com.jhw.swing.ui.componentsui.panel.MaterialPanelUI;
-import com.jhw.swing.util.Utils;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
@@ -25,7 +26,6 @@ import java.beans.PropertyChangeEvent;
 import java.util.ArrayList;
 import javax.swing.Action;
 import javax.swing.Icon;
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
@@ -73,9 +73,9 @@ public class CollapseMenu extends JPanel {
         jPanelSubActions = new JXTaskPaneContainer();
         jPopupMenu1 = new javax.swing.JPopupMenu();
         jPanelFixed = new javax.swing.JPanel();
-        jLabelCant = new _MaterialLabel();
-        jButtonIcono = new com.jhw.swing.material.components.button._MaterialButtonIconTransparent();
-        jButtonNombre = new com.jhw.swing.material.components.button._MaterialButtonFlat();
+        jLabelCant = MaterialLabelsFactory.build();
+        jButtonIcono = MaterialButtonsFactory.buildIconTransparent();
+        jButtonNombre = MaterialButtonsFactory.buildFlat();
         jPanelCollapsible = new org.jdesktop.swingx.JXCollapsiblePane();
 
         jPanelSubActions.setBackground(new java.awt.Color(204, 0, 204));
@@ -118,9 +118,9 @@ public class CollapseMenu extends JPanel {
     }// </editor-fold>                        
 
     // Variables declaration - do not modify//:variables
-    private javax.swing.JButton jButtonIcono;
-    private javax.swing.JButton jButtonNombre;
-    private javax.swing.JLabel jLabelCant;
+    private MaterialButtonIcon jButtonIcono;
+    private MaterialButton jButtonNombre ;
+    private MaterialLabel jLabelCant;
     private org.jdesktop.swingx.JXCollapsiblePane jPanelCollapsible;
     private javax.swing.JPanel jPanelFixed;
     private org.jdesktop.swingx.JXTaskPaneContainer jPanelSubActions;
@@ -295,8 +295,8 @@ public class CollapseMenu extends JPanel {
         jPanelSubActions.setUI(new MaterialPanelUI());//sobreescribir el ui para que coja los colores
 
         jButtonNombre.setBackground(MaterialColors.TRANSPARENT);
-        ((_MaterialButton) jButtonNombre).setRippleColor(MaterialColors.TRANSPARENT);
-        ((_MaterialButtonIconTransparent) jButtonIcono).setRippleColor(MaterialColors.TRANSPARENT);
+        ((RippleEffect) jButtonNombre).setPaintRipple(false);
+        ((RippleEffect) jButtonIcono).setPaintRipple(false);
 
         jPanelCollapsible.setLayout(new BorderLayout());
         jPanelCollapsible.add(jPanelSubActions, BorderLayout.CENTER);
@@ -349,11 +349,11 @@ public class CollapseMenu extends JPanel {
 
     }
 
-    public JButton getjButtonIcono() {
+    public MaterialButtonIcon getjButtonIcono() {
         return jButtonIcono;
     }
 
-    public JButton getjButtonNombre() {
+    public MaterialButton getjButtonNombre() {
         return jButtonNombre;
     }
 

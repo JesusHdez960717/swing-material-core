@@ -10,7 +10,6 @@ import java.awt.Paint;
 import java.awt.Rectangle;
 import java.awt.RenderingHints;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.geom.GeneralPath;
 import javax.swing.JPanel;
 import javax.swing.Timer;
@@ -21,6 +20,10 @@ import com.jhw.swing.util.interfaces.MaterialComponent;
  * Componente extraido su logica de edisoncorSX.
  */
 public class _PanelCurves extends JPanel implements MaterialComponent {
+
+    public static _PanelCurves from() {
+        return new _PanelCurves();
+    }
 
     protected int counter;
     protected Color end;
@@ -42,11 +45,9 @@ public class _PanelCurves extends JPanel implements MaterialComponent {
     }
 
     private void startAnimation() {
-        new Timer(50, new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                _PanelCurves.this.animate();
-                _PanelCurves.this.repaint();
-            }
+        new Timer(50, (ActionEvent e) -> {
+            _PanelCurves.this.animate();
+            _PanelCurves.this.repaint();
         }).start();
     }
 
@@ -66,6 +67,7 @@ public class _PanelCurves extends JPanel implements MaterialComponent {
         return false;
     }
 
+    @Override
     protected void paintComponent(Graphics g) {
         Graphics2D g2 = MaterialDrawingUtils.getAliasedGraphics(g);
 

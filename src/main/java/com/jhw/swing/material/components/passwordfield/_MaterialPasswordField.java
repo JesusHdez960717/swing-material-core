@@ -1,29 +1,20 @@
 package com.jhw.swing.material.components.passwordfield;
 
-import static com.jhw.swing.material.components.textfield._MaterialTextField.HINT_OPACITY_MASK;
-import static com.jhw.swing.material.components.textfield._MaterialTextField.LINE_OPACITY_MASK;
-import com.clean.core.exceptions.ValidationException;
-import com.jhw.swing.material.effects.FloatingLabel;
-import com.jhw.swing.material.effects.FloatingLabelStandar;
+import com.jhw.swing.material.effects.DefaultFloatingLabel;
 import java.awt.*;
 import java.awt.event.FocusEvent;
 import java.awt.event.KeyEvent;
-import java.util.ArrayList;
 import javax.swing.*;
-import javax.swing.text.DefaultCaret;
-import com.jhw.personalization.core.domain.Personalization;
-import com.jhw.personalization.services.PersonalizationHandler;
+import com.jhw.swing.material.effects.FloatingLabel;
 import com.jhw.utils.security.SHA;
 import com.jhw.swing.util.MaterialDrawingUtils;
+import com.jhw.swing.material.effects.DefaultLine;
+import com.jhw.swing.material.effects.DefaultWrong;
 import com.jhw.swing.material.effects.Line;
-import com.jhw.swing.util.interfaces.MaterialComponent;
 import com.jhw.swing.util.Utils;
 import com.jhw.swing.material.standards.MaterialColors;
 import com.jhw.swing.material.standards.MaterialFontRoboto;
-import com.jhw.swing.util.interfaces.BindableComponent;
-import com.jhw.swing.util.validations.Validation;
-import com.jhw.swing.util.validations.textfield.TextFieldValidation;
-import com.jhw.swing.util.interfaces.Wrong;
+import com.jhw.swing.material.effects.Wrong;
 
 /**
  * A Material Design single-line text field is the basic way of getting user
@@ -35,31 +26,30 @@ import com.jhw.swing.util.interfaces.Wrong;
  * href="https://www.google.com/design/spec/components/text-fields.html">Text
  * fields (Google design guidelines)</a>
  */
-public class _MaterialPasswordField extends JPasswordField implements BindableComponent<char[]>, Wrong, MaterialComponent, FloatingLabelStandar {
+public class _MaterialPasswordField extends MaterialPasswordField {
 
-    private FloatingLabel floatingLabel;
-    private Line line;
-    private String hint = "hint";
-    private String label = "label";
-    private Color accentColor = PersonalizationHandler.getColor(Personalization.KEY_COLOR_ACCENT);
+    public static MaterialPasswordField from() {
+        return new _MaterialPasswordField();
+    }
 
-    //default
-    private Color foreground = MaterialColors.BLACK;
+    private final FloatingLabel floatingLabel = new DefaultFloatingLabel(this) {
+        @Override
+        protected int getTargetYPosition() {
+            return _MaterialPasswordField.this.isFocusOwner() || !_MaterialPasswordField.this.getText().isEmpty() ? this.getYPositionUP() : this.getYPositionDOWN();
+        }
 
-    //flags for wrong
-    private Color wrongColor = PersonalizationHandler.getColor(Personalization.KEY_COLOR_WRONG);
-    private String wrongText = "Error en este campo";
-    private boolean wrongFlag = false;
+        @Override
+        protected float getTargetFontSize() {
+            return (_MaterialPasswordField.this.isFocusOwner() || !_MaterialPasswordField.this.getText().isEmpty()) ? _MaterialPasswordField.this.getFont().getSize2D() * 0.8f : _MaterialPasswordField.this.getFont().getSize2D();
+        }
+    };
+    private final Line line = new DefaultLine(this);
+    private final Wrong wrong = new DefaultWrong(this);
 
-    private int maxLength = Integer.MAX_VALUE;
+    private int maxLength = 100;
 
-    private boolean doValidate = true;
-
-    //coin
+    //extra
     private String extra = "";
-
-    private final ArrayList<TextFieldValidation> preValidations = new ArrayList<>();
-    private final ArrayList<TextFieldValidation> postValidations = new ArrayList<>();
 
     private String hashAlgorithm = "SHA-256";
 
@@ -70,275 +60,178 @@ public class _MaterialPasswordField extends JPasswordField implements BindableCo
     public _MaterialPasswordField() {
         super();
         this.setPreferredSize(new Dimension(145, 65));
-        this.setBorder(null);
+        this.setBorder(null);//inicialemnte tiene un border empty que hay que quitarle
+
         this.setFont(MaterialFontRoboto.REGULAR.deriveFont(16f));
 
         this.setOpaque(false);
         this.setBackground(MaterialColors.TRANSPARENT);
         this.setForeground(MaterialColors.BLACK);
 
-        this.setCaret(new DefaultCaret() {
-            @Override
-            protected synchronized void damage(Rectangle r) {
-                this.repaint(); //fix caret not being removed completely
-            }
-        });
         this.getCaret().setBlinkRate(500);
 
         this.addKeyListener(new java.awt.event.KeyAdapter() {
             @Override
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                validateText(evt);
-                clearWrong(evt);
-                repaint();
+                validateSize(evt);
+                clearWrong();
             }
         });
-        this.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                repaint();
-            }
-        });
-        this.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-
-            }
-        });
-
-        floatingLabel = new FloatingLabel(this);
-        line = new Line(this);
-        setAccent(accentColor);
         setText("");
     }
 
-    /**
-     * Default constructor for {@code MaterialTextField}. A default model is
-     * created and the initial string is the one provided.
-     *
-     * @param text An starting value for this text field
-     */
-    public _MaterialPasswordField(String text) {
-        this();
-        setText(text);
+    @Override
+    public MaterialPasswordField getPasswordField() {
+        return this;
+    }
+//-------------------LINE-------------------------
+
+    @Override
+    public void paintLine(Graphics g2) {
+        line.paintLine(g2);
     }
 
+    @Override
+    public int getYLine(Graphics g2) {
+        return line.getYLine(g2);
+    }
+//-------------------FLOATING_LABEL-------------------------
+
+    @Override
+    public Color getAccentFloatingLabel() {
+        return floatingLabel.getAccentFloatingLabel();
+    }
+
+    @Override
+    public void setAccentFloatingLabel(Color accentColor) {
+        floatingLabel.setAccentFloatingLabel(accentColor);
+    }
+
+    @Override
+    public String getLabel() {
+        return floatingLabel.getLabel();
+    }
+
+    @Override
+    public void setLabel(String label) {
+        floatingLabel.setLabel(label);
+    }
+
+    @Override
+    public String getHint() {
+        return floatingLabel.getHint();
+    }
+
+    @Override
+    public void setHint(String hint) {
+        floatingLabel.setHint(hint);
+    }
+
+    @Override
+    public void paintLabel(Graphics g) {
+        floatingLabel.paintLabel(g);
+    }
+
+    @Override
+    public void paintHint(Graphics g) {
+        floatingLabel.paintHint(g);
+    }
+//-------------------WRONG-------------------------
+
+    @Override
+    public void wrong() {
+        wrong.wrong();
+    }
+
+    @Override
+    public void wrong(String wrongText) {
+        wrong.wrong(wrongText);
+    }
+
+    @Override
+    public Color getWrongColor() {
+        return wrong.getWrongColor();
+    }
+
+    @Override
+    public void setWrongColor(Color wrongColor) {
+        wrong.setWrongColor(wrongColor);
+    }
+
+    @Override
+    public void clearWrong() {
+        wrong.clearWrong();
+    }
+
+    @Override
+    public void paintWrong(Graphics g2, int y) {
+        wrong.paintWrong(g2, y);
+    }
+
+//-------------------WRONG-------------------------
+    @Override
     public String getHashAlgorithm() {
         return hashAlgorithm;
     }
 
+    @Override
     public void setHashAlgorithm(String hashAlgorithm) {
         this.hashAlgorithm = hashAlgorithm;
     }
 
-    /**
-     * Get the wrong color. The worng color is the color of the component when
-     * is wrong.
-     *
-     * @return the wrong color
-     */
-    public Color getWrongColor() {
-        return wrongColor;
+    private void validateSize(KeyEvent evt) {
+        if (getText().length() + 1 > getMaxLength()) {
+            Utils.beep();
+            evt.consume();
+        }
     }
 
-    /**
-     * Set the wrong color. The worng color is the color of the component when
-     * is wrong.
-     *
-     * @param wrongColor the wrong color
-     */
-    public void setWrongColor(Color wrongColor) {
-        this.wrongColor = wrongColor;
-    }
-
-    /**
-     * Get the wrong text. The worng text is the text to display with the
-     * explanaition of the error.
-     *
-     * @return the wrong color
-     */
-    public String getWrongText() {
-        return wrongText;
-    }
-
-    /**
-     * Set the wrong text. The worng text is the text to display with the
-     * explanaition of the error.
-     *
-     * @param wrongText the wrong text
-     */
-    public void setWrongText(String wrongText) {
-        this.wrongText = wrongText;
-    }
-
-    /**
-     * Get the max length of the text.
-     *
-     * @return the max length of the text
-     */
+    @Override
     public int getMaxLength() {
         return maxLength;
     }
 
-    /**
-     * Set the max length of the text.
-     *
-     * @param maxLength the max length of the text
-     */
+    @Override
     public void setMaxLength(int maxLength) {
         this.maxLength = maxLength;
     }
 
-    /**
-     * Gets the label text. The label will float above any contents input into
-     * this text field.
-     *
-     * @return the text being used in the floating label
-     */
-    public String getLabel() {
-        return this.label;
-    }
-
-    /**
-     * Sets the label text. The label will float above any contents input into
-     * this text field.
-     *
-     * @param label the text to use in the floating label
-     */
-    public void setLabel(String label) {
-        this.label = label;
-        floatingLabel.update();
-        repaint();
-    }
-
-    public ArrayList<TextFieldValidation> getPostValidations() {
-        return postValidations;
-    }
-
-    public void addPostValidation(TextFieldValidation val) {
-        postValidations.remove(val);
-        postValidations.add(val);
-    }
-
-    public ArrayList<TextFieldValidation> getPreValidations() {
-        return preValidations;
-    }
-
-    public void addPreValidation(TextFieldValidation val) {
-        preValidations.remove(val);
-        preValidations.add(val);
-    }
-
-    /**
-     * Gets the hint text. The hint text is displayed when this textfield is
-     * empty.
-     *
-     * @return the text being used as hint
-     */
-    public String getHint() {
-        return hint;
-    }
-
-    /**
-     * Sets the hint text. The hint text is displayed when this textfield is
-     * empty.
-     *
-     * @param hint the text to use as hint
-     */
-    public void setHint(String hint) {
-        this.hint = hint;
-        repaint();
-    }
-
-    /**
-     * Gets the color the label changes to when this {@code materialTextField}
-     * is focused.
-     *
-     * @return the {@code "Color"} currently in use for accent. The default
-     * value is {@link MaterialColor#CYAN_300}.
-     */
-    public Color getAccent() {
-        return accentColor;
-    }
-
-    /**
-     * Sets the color the label changes to when this {@code materialTextField}
-     * is focused. The default value is {@link MaterialColor#CYAN_300}.
-     *
-     * @param accentColor the {@code "Color"} that should be used for accent.
-     */
-    public void setAccent(Color accentColor) {
-        this.accentColor = accentColor;
-        this.floatingLabel.setAccentColor(accentColor);
-        repaint();
-    }
-
-    /**
-     * Set the real color of the foreground. The color of the foreground when
-     * the text field it's not wrong.
-     *
-     * @param fg the {@code "Color"} that should be used for the real color of
-     * the foreground.
-     */
-    public void setRealForeground(Color fg) {
-        this.foreground = fg;
-        setForeground(foreground);
-    }
-
-    /**
-     * get the real color of the foreground. The color of the foreground when
-     * the text field it's not wrong.
-     *
-     * @return the {@code "Color"} that should be used for the real color of the
-     * foreground.
-     */
-    public Color getRealForeground() {
-        return this.foreground;
-    }
-
+    @Override
     public String getExtra() {
         return extra;
     }
 
+    @Override
     public void setExtra(String extra) {
         this.extra = extra;
     }
 
     @Override
-    public void setForeground(Color fg) {
-        super.setForeground(fg);
-        if (floatingLabel != null) {
-            floatingLabel.updateForeground();
-        }
+    public void setIcon(Icon icon) {
     }
 
-    public boolean isDoValidate() {
-        return doValidate;
-    }
-
-    public void setDoValidate(boolean doValidate) {
-        this.doValidate = doValidate;
+    @Override
+    public Icon getIcon() {
+        return null;
     }
 
     @Override
     public void setText(String s) {
         super.setText(s);
-        this.setCaretPosition(super.getPassword().length);
-        floatingLabel.update();
-        line.update();
-        clearWrong(new KeyEvent(this, 0, 0, 0, 0, '0'));
+        this.setCaretPosition(s.length());
+        firePropertyChange("text", null, null);
     }
 
     @Override
     protected void processFocusEvent(FocusEvent e) {
         super.processFocusEvent(e);
-        floatingLabel.update();
-        line.update();
+        firePropertyChange("processFocusEvent", null, null);
     }
 
     @Override
     protected void processKeyEvent(KeyEvent e) {
         super.processKeyEvent(e);
-        floatingLabel.update();
-        line.update();
+        firePropertyChange("processKeyEvent", null, null);
     }
 
     @Override
@@ -353,93 +246,26 @@ public class _MaterialPasswordField extends JPasswordField implements BindableCo
         g2.setFont(getFont());
         FontMetrics metrics = g2.getFontMetrics(g2.getFont());
 
-        int yMid = getSize().height / 2;
-
         //Paint the hint
-        if (!getHint().isEmpty() && getText().isEmpty() && (getLabel().isEmpty() || isFocusOwner()) && floatingLabel.isFloatingAbove()) {
-            g2.setColor(Utils.applyAlphaMask(getForeground(), HINT_OPACITY_MASK));
-            g2.drawString(getHint(), floatingLabel.getX(), yMid + metrics.getAscent() / 2);//paint the hint in the same place as the text
+        if (!getHint().isEmpty() && getText().isEmpty() && (getLabel().isEmpty() || isFocusOwner())) {
+            paintHint(g2);
         }
 
-        g2.setColor(floatingLabel.getColor());
-        g2.setFont(floatingLabel.getFont());
-        g2.drawString(getLabel(), floatingLabel.getX(), floatingLabel.getY());//paint the hint in the same place as the text
+        paintLabel(g2);
 
-        int yLine = yMid + metrics.getAscent() / 2 + 5;
+        paintLine(g2);
 
-        //paint the back line
-        g2.setColor(Utils.applyAlphaMask(getForeground(), LINE_OPACITY_MASK));
-        g2.fillRect(0, yLine, getWidth(), 1);
+        paintWrong(g2, getYLine(g2) + 15);
 
-        //paint the front line, this is the one that change colors and size
-        g2.setColor(floatingLabel.getColor());
-        g2.fillRect((int) ((getWidth() - line.getWidth()) / 2), yLine, (int) line.getWidth(), 2);
-
-        //paint the wrong text if the flag is actived
-        if (wrongFlag) {
-            g2.setColor(getForeground());
-            g2.setFont(floatingLabel.getFont().deriveFont(1));//1 for bold
-            g2.drawString(wrongText, 0, yLine + 15);//paint the wrong text
-        }
-
-        g2.setColor(getForeground());
         g2.setFont(getFont());
-        if (!extra.trim().isEmpty()) {
-            g2.drawString(extra, getWidth() - metrics.stringWidth(extra), getHeight() / 2 + metrics.getHeight() / 2 - 3);//paint the coin
-        }
+        g2.setColor(getForeground());
+
+        g2.drawString(getExtra(), getWidth() - metrics.stringWidth(getExtra()), getHeight() / 2 + metrics.getHeight() / 2 - 3);//paint the extra
     }
 
     @Override
     protected void paintBorder(Graphics g) {
         //intentionally left blank
-    }
-
-    private Object validateText(KeyEvent evt) {
-        Object ans = null;
-        if (!doValidate) {//no tengo que validar, asumo todo ok
-            return true;
-        }
-
-        if (getPassword().length + 1 > maxLength) {
-            Utils.beep();
-            if (evt != null) {
-                evt.consume();
-            }
-            return false;
-        }
-        try {
-            ans = getPassword();
-        } catch (Exception e) {
-        }
-        if (ans == null) {
-            Utils.beep();
-            if (evt != null) {
-                evt.consume();
-            }
-        }
-
-        return ans;
-    }
-
-    @Override
-    public void wrong() {
-        setForeground(wrongColor);
-        floatingLabel.setAccentColor(wrongColor);
-        this.wrongFlag = true;
-    }
-
-    @Override
-    public void wrong(String wrongText) {
-        this.wrongText = wrongText;
-        wrong();
-    }
-
-    private void clearWrong(KeyEvent evt) {
-        if (wrongFlag && !evt.isConsumed()) {
-            this.wrongFlag = false;
-            setForeground(foreground);
-            floatingLabel.setAccentColor(accentColor);
-        }
     }
 
     /**
@@ -454,49 +280,7 @@ public class _MaterialPasswordField extends JPasswordField implements BindableCo
         if (hashAlgorithm != null && !hashAlgorithm.trim().isEmpty()) {
             pass = SHA.hash(new String(pass), hashAlgorithm).toCharArray();
         }
-        runPreValidations(pass);
-        runPostValidations(pass);
         return pass;
-    }
-
-    private void runPostValidations(Object ans) {
-        for (Validation v : postValidations) {
-            if (!v.validate(ans)) {
-                setWrongText(v.getWrongText());
-                throw new ValidationException(v.getDetailedText());
-            }
-        }
-    }
-
-    private void runPreValidations(Object ans) {
-        for (Validation v : preValidations) {
-            if (!v.validate(ans)) {
-                setWrongText(v.getWrongText());
-                throw new ValidationException(v.getDetailedText());
-            }
-        }
-    }
-
-    public void clearPreValidations() {
-        preValidations.clear();
-    }
-
-    public void clearPostValidations() {
-        postValidations.clear();
-    }
-
-    public void clearAllValidations() {
-        preValidations.clear();
-        postValidations.clear();
-    }
-
-    public boolean containValidation(TextFieldValidation v) {
-        return preValidations.contains(v) || postValidations.contains(v);
-    }
-
-    @Override
-    public Component getComponent() {
-        return this;
     }
 
     @Override

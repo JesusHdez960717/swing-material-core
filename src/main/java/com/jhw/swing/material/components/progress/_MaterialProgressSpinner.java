@@ -5,13 +5,10 @@ import com.jhw.swing.util.SafePropertySetter.Property;
 import org.jdesktop.core.animation.timing.Animator;
 import org.jdesktop.core.animation.timing.Interpolator;
 import org.jdesktop.core.animation.timing.interpolators.SplineInterpolator;
-
-import javax.swing.*;
 import java.awt.*;
 import java.util.concurrent.TimeUnit;
 import com.jhw.swing.util.Utils;
 import com.jhw.swing.util.MaterialDrawingUtils;
-import com.jhw.swing.util.interfaces.MaterialComponent;
 import com.jhw.swing.material.standards.MaterialColors;
 
 /**
@@ -22,8 +19,13 @@ import com.jhw.swing.material.standards.MaterialColors;
  * href="https://www.google.com/design/spec/components/progress-activity.html">Progress
  * &amp; activity (Google design guidelines)</a>
  */
-public class _MaterialProgressSpinner extends JComponent implements MaterialComponent {
+public class _MaterialProgressSpinner extends MaterialProgressSpinner {
 
+    public static MaterialProgressSpinner from() {
+        return new _MaterialProgressSpinner();
+    }
+
+    private int thickness = 6;
     private final Property<Integer> startArc = SafePropertySetter.animatableProperty(this, 270);
     private final Property<Integer> arcSize = SafePropertySetter.animatableProperty(this, 0);
     private final Property<Integer> rotation = SafePropertySetter.animatableProperty(this, 0);
@@ -103,6 +105,16 @@ public class _MaterialProgressSpinner extends JComponent implements MaterialComp
     }
 
     @Override
+    public int getThickness() {
+        return thickness;
+    }
+
+    @Override
+    public void setThickness(int thickness) {
+        this.thickness = thickness;
+    }
+
+    @Override
     public void paintComponent(Graphics g) {
         Graphics2D g2 = MaterialDrawingUtils.getAliasedGraphics(g);
         g2.setRenderingHint(RenderingHints.KEY_ALPHA_INTERPOLATION, RenderingHints.VALUE_ALPHA_INTERPOLATION_QUALITY);
@@ -114,7 +126,8 @@ public class _MaterialProgressSpinner extends JComponent implements MaterialComp
         g2.setRenderingHint(RenderingHints.KEY_STROKE_CONTROL, RenderingHints.VALUE_STROKE_PURE);
 
         g2.setColor(getForeground());
-        g2.setStroke(new BasicStroke(5, BasicStroke.CAP_SQUARE, BasicStroke.JOIN_ROUND));
-        g2.drawArc(5, 5, getWidth() - 10, getHeight() - 10, startArc.getValue() + rotation.getValue() + 90, Math.max(1, arcSize.getValue()));
+        g2.setStroke(new BasicStroke(getThickness(), BasicStroke.CAP_SQUARE, BasicStroke.JOIN_ROUND));
+        int size = Math.min(getHeight(), getWidth());
+        g2.drawArc((getWidth() - size) / 2 + getThickness(), (getHeight() - size) / 2 + getThickness(), size - 2 * getThickness(), size - 2 * getThickness(), startArc.getValue() + rotation.getValue() + 90, Math.max(1, arcSize.getValue()));
     }
 }

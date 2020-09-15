@@ -1,182 +1,69 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package com.jhw.swing.material.effects;
 
-import static com.jhw.swing.material.components.textfield._MaterialTextField.HINT_OPACITY_MASK;
 import java.awt.Color;
-import java.awt.Font;
-import java.awt.FontMetrics;
-import java.util.concurrent.TimeUnit;
-import org.jdesktop.core.animation.timing.Animator;
-import org.jdesktop.core.animation.timing.interpolators.SplineInterpolator;
-import com.jhw.personalization.core.domain.Personalization;
-import com.jhw.personalization.services.PersonalizationHandler;
-import com.jhw.swing.util.SafePropertySetter;
-import com.jhw.swing.util.Utils;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
+import java.awt.Graphics;
 
 /**
- * A floating label of a component that complies to the FloatingLabelStandar
+ *
+ * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-public class FloatingLabel {
+public interface FloatingLabel {
 
-    public static final int DURATION = 200;
+    /**
+     * Gets the color the label changes to when this {@code materialTextField}
+     * is focused.
+     *
+     * @return the {@code "Color"} currently in use for accent. The default
+     * value is {@link MaterialColor#BLUEA_400}.
+     */
+    public Color getAccentFloatingLabel();
 
-    private final FloatingLabelStandar target;
-    private Animator animator;
-    private final SafePropertySetter.Property<Integer> y;
-    private final SafePropertySetter.Property<Integer> x;
-    private final SafePropertySetter.Property<Float> fontSize;
-    private final SafePropertySetter.Property<Color> color;
-    private Color accentColor;
+    /**
+     * Sets the color the label changes to when this {@code materialTextField}
+     * is focused. The default value is {@link MaterialColor#PINK_500}.
+     *
+     * @param accentColor the {@code "Color"} that should be used for accent.
+     */
+    public void setAccentFloatingLabel(Color accentColor);
 
-    public FloatingLabel(FloatingLabelStandar target) {
-        this.target = target;
+    /**
+     * Gets the label text. The label will float above any contents input into
+     * this text field.
+     *
+     * @return the text being used in the floating label
+     */
+    public String getLabel();
 
-        y = SafePropertySetter.animatableProperty(target.getComponent(), 0);//target.getSize().height / 2 + target.getFontMetrics(target.getFont()).getAscent() / 2);
-        x = SafePropertySetter.animatableProperty(target.getComponent(), 0);//target.getSize().height / 2 + target.getFontMetrics(target.getFont()).getAscent() / 2);
-        fontSize = SafePropertySetter.animatableProperty(target.getComponent(), target.getFont().getSize2D());
-        color = SafePropertySetter.animatableProperty(target.getComponent(), Utils.applyAlphaMask(target.getForeground(), HINT_OPACITY_MASK));
+    /**
+     * Sets the label text. The label will float above any contents input into
+     * this text field.
+     *
+     * @param label the text to use in the floating label
+     */
+    public void setLabel(String label);
 
-        this.updateForeground();
+    /**
+     * Gets the hint text. The hint text is displayed when the list inside this
+     * combo box is empty or no element has been selected yet.
+     *
+     * @return hint text
+     */
+    public String getHint();
 
-        target.getComponent().addComponentListener(new ComponentAdapter() {
-            @Override
-            public void componentResized(ComponentEvent e) {
-                update();
-            }
-        });
-    }
+    /**
+     * Sets the hint text. The hint text is displayed when the list inside this
+     * combo box is empty or no element has been selected yet.
+     *
+     * @param hint hint text
+     */
+    public void setHint(String hint);
 
-    public void updateForeground() {
-        color.setValue(Utils.applyAlphaMask(target.getForeground(), HINT_OPACITY_MASK));
-    }
+    public void paintLabel(Graphics g);
 
-    public void update() {
-        if (animator != null) {
-            animator.stop();
-        }
-        if (PersonalizationHandler.getBoolean(Personalization.KEY_USE_ANIMATIONS)) {
-            setValuesAnimated();
-        } else {
-            setValuesStatics();
-        }
-    }
-
-    public void setAccentColor(Color accentColor) {
-        this.accentColor = accentColor;
-        update();
-    }
-
-    public Color getColor() {
-        return color.getValue();
-    }
-
-    public Font getFont() {
-        return target.getFont().deriveFont(fontSize.getValue());
-    }
-
-    public int getY() {
-        return y.getValue();
-    }
-
-    public int getX() {
-        return x.getValue();
-    }
-
-    public boolean isFloatingAbove() {
-        return y.getValue() >= getYPositionUP();
-    }
-
-    private int getYPositionUP() {
-        int size = target.getSize().height;
-        if (size == 0) {
-            size = target.getPreferredSize().height;
-        }
-
-        int yMid = size / 2;
-        FontMetrics metrics = target.getFontMetrics(target.getFont());
-        int yPositionUP = yMid - metrics.getAscent() / 2 - 7;//un poquito mas arriba del texto
-        return yPositionUP;
-    }
-
-    private int getYPositionDOWN() {
-        int size = target.getSize().height;
-        if (size == 0) {
-            size = target.getPreferredSize().height;
-        }
-
-        int yMid = size / 2;
-        FontMetrics metrics = target.getFontMetrics(target.getFont());
-        int yPositionDown = yMid + metrics.getAscent() / 2;//un poquito mas arriba del texto
-        return yPositionDown;
-    }
-
-    public float getTargetFontSize() {
-        return (target.isFocusOwner() || !target.getText().isEmpty()) ? target.getFont().getSize2D() * 0.8f : target.getFont().getSize2D();
-    }
-
-    public int getTargetYPosition() {
-        return target.isFocusOwner() || !target.getText().isEmpty() ? getYPositionUP() : getYPositionDOWN();
-    }
-
-    public int getTargetXPosition() {
-        //si hay front y esta bajando la x varia
-        /*if (!target.getFrontText().isEmpty() && getTargetYPosition() == getYPositionDOWN()) {
-            return target.getFontMetrics(target.getFont()).stringWidth(target.getFrontText()) + target.getDistanceFrontText();
-        }*/
-        return 0;
-    }
-
-    private Color getTargetColor() {
-        return target.isFocusOwner() ? accentColor : Utils.applyAlphaMask(target.getForeground(), HINT_OPACITY_MASK);
-    }
-
-    private void setValuesAnimated() {
-        Animator.Builder builder = new Animator.Builder(Utils.getSwingTimerTimingSource())
-                .setDuration(DURATION, TimeUnit.MILLISECONDS)
-                .setEndBehavior(Animator.EndBehavior.HOLD)
-                .setInterpolator(new SplineInterpolator(0.4, 0, 0.2, 1));
-
-        //Font size, si no hay letra es tamaño real, si esta arriba es el 80% del tamaño(1 poquito mas chiquito)
-        float targetFontSize = getTargetFontSize();
-        if (fontSize.getValue() != targetFontSize) {
-            builder.addTarget(SafePropertySetter.getTarget(fontSize, fontSize.getValue(), targetFontSize));
-        }
-
-        //Y position
-        int targetY = getTargetYPosition();
-        if (Math.abs(targetY - y.getValue()) > 0.1) {
-            builder.addTarget(SafePropertySetter.getTarget(y, y.getValue(), targetY));
-        }
-
-        //X position
-        int targetX = getTargetXPosition();
-        if (Math.abs(targetX - x.getValue()) > 0.1) {
-            builder.addTarget(SafePropertySetter.getTarget(x, x.getValue(), targetX));
-        }
-
-        //color, varia entre el color de accent y el de Opacity_Mask
-        Color targetColor = getTargetColor();
-        if (!targetColor.equals(color.getValue())) {
-            builder.addTarget(SafePropertySetter.getTarget(color, color.getValue(), targetColor));
-        }
-
-        animator = builder.build();
-        animator.start();
-    }
-
-    private void setValuesStatics() {
-        //Font size, si no hay letra es tamaño real, si esta arriba es el 80% del tamaño(1 poquito mas chiquito)
-        fontSize.setValue(getTargetFontSize());
-
-        //Y position
-        y.setValue(getTargetYPosition());
-
-        //X position
-        x.setValue(getTargetXPosition());
-
-        //color, varia entre el color de accent y el de Opacity_Mask
-        color.setValue(getTargetColor());
-    }
-
+    public void paintHint(Graphics g);
 }

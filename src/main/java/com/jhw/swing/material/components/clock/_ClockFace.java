@@ -19,6 +19,10 @@ import com.jhw.swing.util.interfaces.MaterialComponent;
 
 public class _ClockFace extends JComponent implements MaterialComponent {
 
+    public static _ClockFace from() {
+        return new _ClockFace();
+    }
+    
     public static int FPS = 60;
     private Stroke border;
     private Stroke hourHand;

@@ -5,6 +5,7 @@ import com.jhw.swing.material.components.labels._MaterialLabel;
 import java.awt.Component;
 import java.util.HashMap;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
@@ -32,7 +33,7 @@ public class MoneyCellRender extends DefaultTableCellRenderer implements TableCe
                 }
             }
         }
-        _PanelGradient panel = map.get(row).getRenderComponent();
+        JPanel panel = map.get(row).getRenderComponent();
         panel.setBackground(isSelected ? table.getSelectionBackground() : table.getBackground());
         return panel;
     }
