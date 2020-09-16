@@ -29,8 +29,8 @@ public class _MaterialButtonHiperlink extends JButton implements Iconable, Mater
         //return new _MaterialButtonHiperlink();
     }
 
-    private Color mouseEnteredColor = MaterialColors.BLUEA_700;
-    private Color mouseExitedColor = MaterialColors.GREENA_700;
+    private Color mouseEnteredColor = MaterialColors.BLACK;
+    private Color mouseExitedColor = MaterialColors.BLACK;
 
     /**
      * Usar _MaterialButtonHiperlink.from() para que coja proxy y AOP.
@@ -65,6 +65,7 @@ public class _MaterialButtonHiperlink extends JButton implements Iconable, Mater
 
     public void setMouseEnteredColor(Color mouseEnteredColor) {
         this.mouseEnteredColor = mouseEnteredColor;
+        this.setForeground(mouseEnteredColor);
     }
 
     public Color getMouseExitedColor() {
@@ -73,6 +74,7 @@ public class _MaterialButtonHiperlink extends JButton implements Iconable, Mater
 
     public void setMouseExitedColor(Color mouseExitedColor) {
         this.mouseExitedColor = mouseExitedColor;
+        this.setForeground(mouseExitedColor);
     }
 
 }
