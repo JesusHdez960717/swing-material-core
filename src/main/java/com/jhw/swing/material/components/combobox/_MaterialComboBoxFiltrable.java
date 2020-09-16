@@ -67,14 +67,7 @@ public class _MaterialComboBoxFiltrable<T> extends _MaterialComboBox<T> {
         decorateInner();
         this.setSelectedIndex(-1);
     }
-
-    @Override
-    public void setModel(List<T> aModel) {
-        super.setModel(new DefaultComboBoxModel(aModel.toArray(new Object[aModel.size()])));
-        decorateInner();
-        this.setSelectedIndex(-1);
-    }
-
+    
     @Override
     public T getSelectedItem() {
         return (T) super.getSelectedItem();

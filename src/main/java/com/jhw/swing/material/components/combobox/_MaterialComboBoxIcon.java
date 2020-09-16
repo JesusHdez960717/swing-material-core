@@ -5,7 +5,6 @@
  */
 package com.jhw.swing.material.components.combobox;
 
-import com.jhw.swing.material.components.datepicker.*;
 import com.jhw.swing.material.components.textfield.*;
 import com.jhw.personalization.services.PersonalizationHandler;
 import com.jhw.swing.material.components.button.MaterialButtonIcon;
@@ -20,7 +19,6 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
-import java.util.Date;
 import java.util.List;
 import javax.swing.ComboBoxModel;
 import javax.swing.Icon;
@@ -29,7 +27,7 @@ import javax.swing.Icon;
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-public class _MaterialComboBoxIcon<T> extends MaterialComboBox<T> {
+public class _MaterialComboBoxIcon<T> extends MaterialComboBoxIcon<T> {
 
     public static _MaterialComboBoxIcon from() {
         return new _MaterialComboBoxIcon();
@@ -46,7 +44,7 @@ public class _MaterialComboBoxIcon<T> extends MaterialComboBox<T> {
     }
 
     public _MaterialComboBoxIcon(MaterialComboBox comboBox) {
-        this.comboBox = new _MaterialComboBox();
+        this.comboBox = comboBox;
         initComponents();
         this.setIcon(MaterialIcons.COMPARE_ARROWS);
 
@@ -67,9 +65,6 @@ public class _MaterialComboBoxIcon<T> extends MaterialComboBox<T> {
         buttonIcon = MaterialButtonsFactory.buildIconTransparent();
         buttonIcon.setPaintRipple(false);
 
-        this.setBackground(MaterialColors.TRANSPARENT);
-        this.setOpaque(false);
-        
         this.setBorder(null);
         this.setLayout(new BorderLayout());
         this.add(comboBox, BorderLayout.CENTER);
@@ -84,15 +79,10 @@ public class _MaterialComboBoxIcon<T> extends MaterialComboBox<T> {
     }
 
     @Override
-    public void setModel(List<T> aModel) {
-        comboBox.setModel(aModel);
-    }
-
-    /*@Override
     public void setModel(ComboBoxModel<T> aModel) {
         comboBox.setModel(aModel);
     }
-*/
+
     @Override
     public void setIcon(Icon icon) {
         if (!PersonalizationHandler.getBoolean(PersonalizationMaterial.KEY_SHOW_ICON_INPUT)) {

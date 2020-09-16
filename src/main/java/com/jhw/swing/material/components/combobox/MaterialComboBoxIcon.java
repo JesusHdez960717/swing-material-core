@@ -5,12 +5,12 @@
  */
 package com.jhw.swing.material.components.combobox;
 
-import javax.swing.*;
+import com.jhw.swing.material.components.container.panel._PanelTransparent;
 
 /**
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-public abstract class MaterialComboBox<T> extends JComboBox<T> implements MaterialComboBoxDefinition<T> {
+public abstract class MaterialComboBoxIcon<T> extends _PanelTransparent implements MaterialComboBoxDefinition<T> {
 
 }

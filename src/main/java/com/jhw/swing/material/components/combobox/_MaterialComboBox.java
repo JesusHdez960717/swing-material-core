@@ -233,12 +233,12 @@ public class _MaterialComboBox<T> extends MaterialComboBox<T> {
 
     public static class FieldRenderer<T> extends JComponent implements ListCellRenderer<T> {
 
-        private final _MaterialComboBox comboBox;
+        private final MaterialComboBox comboBox;
         private String text;
         private boolean mouseOver = false;
         private boolean selected = false;
 
-        public FieldRenderer(_MaterialComboBox comboBox) {
+        public FieldRenderer(MaterialComboBox comboBox) {
             this.comboBox = comboBox;
         }
 
