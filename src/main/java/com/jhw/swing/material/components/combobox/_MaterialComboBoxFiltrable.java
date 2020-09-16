@@ -54,17 +54,12 @@ public class _MaterialComboBoxFiltrable<T> extends _MaterialComboBox<T> {
     }
 
     @Override
-    public MaterialComboBox getComboBox() {
-        return this;
-    }
-
-    @Override
     public void setModel(ComboBoxModel<T> aModel) {
         super.setModel(aModel);
         decorateInner();
         this.setSelectedIndex(-1);
     }
-    
+
     @Override
     public T getSelectedItem() {
         return (T) super.getSelectedItem();
@@ -126,7 +121,7 @@ public class _MaterialComboBoxFiltrable<T> extends _MaterialComboBox<T> {
         paintWrong(g2, getYLine(g2) + 15);
 
         //paint the arrow
-        if (getIconArrow()!= null) {
+        if (getIconArrow() != null) {
             Color iconColor;
             if (isFocusOwner()) {
                 iconColor = getAccentFloatingLabel();

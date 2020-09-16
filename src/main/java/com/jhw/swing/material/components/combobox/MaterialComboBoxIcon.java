@@ -14,4 +14,5 @@ import com.jhw.swing.material.effects.Iconable;
  */
 public abstract class MaterialComboBoxIcon<T> extends _PanelTransparent implements Iconable, MaterialComboBoxDefinition<T> {
 
+    public abstract MaterialComboBox getComboBox();
 }

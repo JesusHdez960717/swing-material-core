@@ -25,6 +25,4 @@ public interface MaterialPasswordFieldDefinition extends TextMaxLength, TextExtr
     public String getHashAlgorithm();
 
     public void setHashAlgorithm(String hashAlgorithm);
-
-    public MaterialPasswordField getPasswordField();
 }

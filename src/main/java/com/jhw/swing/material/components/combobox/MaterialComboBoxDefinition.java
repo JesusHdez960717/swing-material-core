@@ -29,6 +29,4 @@ public interface MaterialComboBoxDefinition<T> extends Line, FloatingLabel, Bind
     }
 
     public void setModel(ComboBoxModel<T> aModel);
-
-    public MaterialComboBox getComboBox();
 }

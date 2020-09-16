@@ -14,4 +14,5 @@ import com.jhw.swing.material.effects.Iconable;
  */
 public abstract class MaterialDatePickerIcon extends _PanelTransparent implements Iconable, MaterialDatePickerDefinition {
 
+    public abstract MaterialDatePicker getDatePicker();
 }

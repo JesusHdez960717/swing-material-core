@@ -80,10 +80,6 @@ public class _MaterialPasswordField extends MaterialPasswordField {
         setText("");
     }
 
-    @Override
-    public MaterialPasswordField getPasswordField() {
-        return this;
-    }
 //-------------------LINE-------------------------
 
     @Override

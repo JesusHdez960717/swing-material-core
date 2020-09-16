@@ -14,4 +14,5 @@ import com.jhw.swing.material.effects.Iconable;
  */
 public abstract class MaterialPasswordFieldIcon extends _PanelTransparent implements Iconable, MaterialPasswordFieldDefinition {
 
+    public abstract MaterialPasswordField getPasswordField();
 }

@@ -13,7 +13,6 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
-import javax.swing.Icon;
 import javax.swing.JButton;
 import javax.swing.UIManager;
 import javax.swing.text.DefaultFormatterFactory;
@@ -65,11 +64,6 @@ public class _MaterialDatePicker extends MaterialDatePicker {
         });
 
         personalizeButton();
-    }
-
-    @Override
-    public MaterialDatePicker getDatePicker() {
-        return this;
     }
 
     @Override

@@ -21,9 +21,7 @@ import java.util.Date;
  */
 public interface MaterialDatePickerDefinition extends TextMaxLength, DateSelected, BindableComponent<Date>, FloatingLabel, Line, Wrong, MaterialComponent {
     
-    public abstract void setLowerBound(Date lower);
+    public void setLowerBound(Date lower);
 
-    public abstract void setUpperBound(Date upper);
-
-    public abstract MaterialDatePicker getDatePicker();
+    public void setUpperBound(Date upper);
 }

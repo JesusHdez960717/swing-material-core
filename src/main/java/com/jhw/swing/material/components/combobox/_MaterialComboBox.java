@@ -76,11 +76,6 @@ public class _MaterialComboBox<T> extends MaterialComboBox<T> {
     }
 
     @Override
-    public MaterialComboBox getComboBox() {
-        return this;
-    }
-
-    @Override
     public void setModel(java.util.List<T> aModel) {
         super.setModel(new DefaultComboBoxModel(aModel.toArray(new Object[aModel.size()])));
         this.setSelectedIndex(-1);
