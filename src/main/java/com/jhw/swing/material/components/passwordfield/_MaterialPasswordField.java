@@ -207,15 +207,6 @@ public class _MaterialPasswordField extends MaterialPasswordField {
     }
 
     @Override
-    public void setIcon(Icon icon) {
-    }
-
-    @Override
-    public Icon getIcon() {
-        return null;
-    }
-
-    @Override
     public void setText(String s) {
         super.setText(s);
         this.setCaretPosition(s.length());

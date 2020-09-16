@@ -24,9 +24,9 @@ import javax.swing.Icon;
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-public class _MaterialPasswordFieldIcon extends MaterialPasswordField {
+public class _MaterialPasswordFieldIcon extends MaterialPasswordFieldIcon {
 
-    public static MaterialPasswordField from() {
+    public static MaterialPasswordFieldIcon from() {
         return new _MaterialPasswordFieldIcon();
     }
 

@@ -6,19 +6,25 @@
 package com.jhw.swing.material.components.passwordfield;
 
 import com.jhw.swing.material.components.textfield.TextExtra;
+import com.jhw.swing.material.components.textfield.TextMaxLength;
 import com.jhw.swing.material.effects.FloatingLabel;
 import com.jhw.swing.material.effects.Iconable;
 import com.jhw.swing.material.effects.Line;
 import com.jhw.swing.material.effects.Wrong;
 import com.jhw.swing.util.interfaces.BindableComponent;
 import com.jhw.swing.util.interfaces.MaterialComponent;
-import javax.swing.JPasswordField;
-import com.jhw.swing.material.components.textfield.TextMaxLength;
 
 /**
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-public abstract class MaterialPasswordField extends JPasswordField implements MaterialPasswordFieldDefinition {
+public interface MaterialPasswordFieldDefinition extends TextMaxLength, TextExtra, Line, BindableComponent<char[]>, Wrong, MaterialComponent, FloatingLabel {
 
+    public void setText(String s);
+
+    public String getHashAlgorithm();
+
+    public void setHashAlgorithm(String hashAlgorithm);
+
+    public MaterialPasswordField getPasswordField();
 }

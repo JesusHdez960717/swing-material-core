@@ -5,17 +5,13 @@
  */
 package com.jhw.swing.material.components.passwordfield;
 
+import com.jhw.swing.material.components.container.panel._PanelTransparent;
+import com.jhw.swing.material.effects.Iconable;
+
 /**
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-public class MaterialPasswordFieldFactory {
+public abstract class MaterialPasswordFieldIcon extends _PanelTransparent implements Iconable, MaterialPasswordFieldDefinition {
 
-    public static MaterialPasswordField build() {
-        return _MaterialPasswordField.from();
-    }
-
-    public static MaterialPasswordFieldIcon buildIcon() {
-        return _MaterialPasswordFieldIcon.from();
-    }
 }
