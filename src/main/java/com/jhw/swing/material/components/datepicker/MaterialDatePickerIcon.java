@@ -6,11 +6,12 @@
 package com.jhw.swing.material.components.datepicker;
 
 import com.jhw.swing.material.components.container.panel._PanelTransparent;
+import com.jhw.swing.material.effects.Iconable;
 
 /**
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-public abstract class MaterialDatePickerIcon extends _PanelTransparent implements MaterialDatePickerDefinition {
+public abstract class MaterialDatePickerIcon extends _PanelTransparent implements Iconable, MaterialDatePickerDefinition {
 
 }

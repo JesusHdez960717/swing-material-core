@@ -6,11 +6,12 @@
 package com.jhw.swing.material.components.combobox;
 
 import com.jhw.swing.material.components.container.panel._PanelTransparent;
+import com.jhw.swing.material.effects.Iconable;
 
 /**
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-public abstract class MaterialComboBoxIcon<T> extends _PanelTransparent implements MaterialComboBoxDefinition<T> {
+public abstract class MaterialComboBoxIcon<T> extends _PanelTransparent implements Iconable, MaterialComboBoxDefinition<T> {
 
 }

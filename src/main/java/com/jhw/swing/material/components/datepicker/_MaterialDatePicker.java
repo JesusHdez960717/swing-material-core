@@ -220,15 +220,6 @@ public class _MaterialDatePicker extends MaterialDatePicker {
         }
     }
 
-    @Override
-    public void setIcon(Icon icon) {
-    }
-
-    @Override
-    public Icon getIcon() {
-        return null;
-    }
-
 }
 
 /*

@@ -9,17 +9,14 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.FocusEvent;
-import java.util.List;
 import java.util.function.BiPredicate;
 import java.util.function.Function;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.plaf.basic.BasicComboBoxUI;
 import javax.swing.plaf.basic.BasicComboPopup;
 import javax.swing.plaf.basic.ComboPopup;
 import static com.jhw.swing.material.standards.Utils.LINE_OPACITY_MASK;
 import javax.swing.ComboBoxModel;
-import javax.swing.Icon;
 import javax.swing.JButton;
 
 /**

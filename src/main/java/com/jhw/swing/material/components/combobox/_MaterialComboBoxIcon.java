@@ -19,7 +19,6 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
-import java.util.List;
 import javax.swing.ComboBoxModel;
 import javax.swing.Icon;
 

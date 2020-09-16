@@ -307,12 +307,4 @@ public class _MaterialComboBox<T> extends MaterialComboBox<T> {
         }
     }
 
-    @Override
-    public void setIcon(Icon icon) {
-    }
-
-    @Override
-    public Icon getIcon() {
-        return null;
-    }
 }

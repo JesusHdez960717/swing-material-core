@@ -19,7 +19,7 @@ import java.util.Date;
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-public interface MaterialDatePickerDefinition extends TextMaxLength, Iconable, DateSelected, BindableComponent<Date>, FloatingLabel, Line, Wrong, MaterialComponent {
+public interface MaterialDatePickerDefinition extends TextMaxLength, DateSelected, BindableComponent<Date>, FloatingLabel, Line, Wrong, MaterialComponent {
     
     public abstract void setLowerBound(Date lower);
 
