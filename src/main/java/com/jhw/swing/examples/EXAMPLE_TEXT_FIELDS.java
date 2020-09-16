@@ -9,6 +9,7 @@ import com.jhw.swing.material.components.container.layout.VerticalLayoutContaine
 import com.jhw.swing.material.components.textfield.MaterialFormatedTextField;
 import com.jhw.swing.material.components.textfield.MaterialTextFactory;
 import com.jhw.swing.material.components.textfield.MaterialTextField;
+import com.jhw.swing.material.components.textfield.MaterialTextFieldIcon;
 import com.jhw.swing.material.standards.MaterialColors;
 import com.jhw.swing.ui.MaterialLookAndFeel;
 import com.jhw.utils.formateer.MoneyFormateer;
@@ -44,7 +45,7 @@ public class EXAMPLE_TEXT_FIELDS extends javax.swing.JFrame {
         textFieldSimple.setLabel("simple");
         vlcSimple.add(textFieldSimple, true);
 
-        MaterialTextField textFieldIcon = MaterialTextFactory.buildIcon();
+        MaterialTextFieldIcon textFieldIcon = MaterialTextFactory.buildIcon();
         textFieldIcon.setLabel("icon");
         vlcSimple.add(textFieldIcon, true);
 
@@ -52,7 +53,7 @@ public class EXAMPLE_TEXT_FIELDS extends javax.swing.JFrame {
         textFieldDouble.setLabel("text field simple double");
         vlcSimple.add(textFieldDouble, true);
 
-        MaterialTextField textFieldDoubleIcon = MaterialTextFactory.buildDoubleIcon();
+        MaterialTextFieldIcon textFieldDoubleIcon = MaterialTextFactory.buildDoubleIcon();
         textFieldDoubleIcon.setLabel("text field simple double icon");
         vlcSimple.add(textFieldDoubleIcon, true);
 
@@ -60,7 +61,7 @@ public class EXAMPLE_TEXT_FIELDS extends javax.swing.JFrame {
         textFieldInt.setLabel("text field simple integer");
         vlcSimple.add(textFieldInt, true);
 
-        MaterialTextField textFieldIntIcon = MaterialTextFactory.buildIntegerIcon();
+        MaterialTextFieldIcon textFieldIntIcon = MaterialTextFactory.buildIntegerIcon();
         textFieldIntIcon.setLabel("text field simple integer icon");
         vlcSimple.add(textFieldIntIcon, true);
         //-------------------SIMPLE-------------------------

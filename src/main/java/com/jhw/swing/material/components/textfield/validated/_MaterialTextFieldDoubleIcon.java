@@ -5,7 +5,7 @@
  */
 package com.jhw.swing.material.components.textfield.validated;
 
-import com.jhw.swing.material.components.textfield.MaterialTextField;
+import com.jhw.swing.material.components.textfield.MaterialTextFieldIcon;
 import com.jhw.swing.material.components.textfield._MaterialTextFieldIcon;
 import com.jhw.swing.material.standards.MaterialIcons;
 
@@ -15,11 +15,11 @@ import com.jhw.swing.material.standards.MaterialIcons;
  */
 public class _MaterialTextFieldDoubleIcon extends _MaterialTextFieldIcon<Double> {
 
-    public static MaterialTextField from() {
+    public static MaterialTextFieldIcon from() {
         return new _MaterialTextFieldDoubleIcon();
     }
 
-    public static MaterialTextField from(boolean negative) {
+    public static MaterialTextFieldIcon from(boolean negative) {
         return new _MaterialTextFieldDoubleIcon(negative);
     }
 

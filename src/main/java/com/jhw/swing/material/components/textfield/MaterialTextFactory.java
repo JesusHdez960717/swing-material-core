@@ -18,7 +18,7 @@ public class MaterialTextFactory {
         return _MaterialTextField.from();
     }
 
-    public static MaterialTextField buildIcon() {
+    public static MaterialTextFieldIcon buildIcon() {
         return _MaterialTextFieldIcon.from();
     }
 
@@ -58,7 +58,7 @@ public class MaterialTextFactory {
         return _MaterialTextFieldDouble.from();
     }
 
-    public static MaterialTextField buildDoubleIcon() {
+    public static MaterialTextFieldIcon buildDoubleIcon() {
         return _MaterialTextFieldDoubleIcon.from();
     }
 
@@ -66,7 +66,7 @@ public class MaterialTextFactory {
         return _MaterialTextFieldInteger.from();
     }
 
-    public static MaterialTextField buildIntegerIcon() {
+    public static MaterialTextFieldIcon buildIntegerIcon() {
         return _MaterialTextFieldIntegerIcon.from();
     }
 }

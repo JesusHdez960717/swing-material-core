@@ -24,9 +24,9 @@ import javax.swing.Icon;
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-public class _MaterialTextFieldIcon<T> extends MaterialTextField<T> {
+public class _MaterialTextFieldIcon<T> extends MaterialTextFieldIcon<T> {
 
-    public static MaterialTextField from() {
+    public static MaterialTextFieldIcon from() {
         return new _MaterialTextFieldIcon();
     }
 

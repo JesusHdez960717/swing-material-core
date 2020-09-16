@@ -78,11 +78,6 @@ public class _MaterialTextField<T> extends MaterialTextField<T> {
         this.setComponentPopupMenu(CopyPastePopup.INSTANCE);
     }
 
-    @Override
-    public MaterialTextField getTextField() {
-        return this;
-    }
-
 //-------------------LINE-------------------------
     @Override
     public void paintLine(Graphics g2) {
@@ -193,15 +188,6 @@ public class _MaterialTextField<T> extends MaterialTextField<T> {
     public void setExtra(String extra) {
         this.extra = extra;
         this.repaint();
-    }
-
-    @Override
-    public void setIcon(Icon icon) {
-    }
-
-    @Override
-    public Icon getIcon() {
-        return null;
     }
 
     @Override
