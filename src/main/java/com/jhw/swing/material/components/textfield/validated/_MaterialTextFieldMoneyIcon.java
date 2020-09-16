@@ -6,6 +6,7 @@
 package com.jhw.swing.material.components.textfield.validated;
 
 import com.jhw.swing.material.components.textfield.MaterialFormatedTextField;
+import com.jhw.swing.material.components.textfield.MaterialFormatedTextFieldIcon;
 import com.jhw.swing.material.components.textfield._MaterialFormatedTextFieldIcon;
 import com.jhw.swing.material.standards.MaterialIcons;
 import java.math.BigDecimal;
@@ -16,7 +17,7 @@ import java.math.BigDecimal;
  */
 public class _MaterialTextFieldMoneyIcon extends _MaterialFormatedTextFieldIcon<BigDecimal> {
 
-    public static MaterialFormatedTextField from() {
+    public static MaterialFormatedTextFieldIcon from() {
         return new _MaterialTextFieldMoneyIcon();
     }
 

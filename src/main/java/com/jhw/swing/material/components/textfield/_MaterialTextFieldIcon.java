@@ -103,11 +103,6 @@ public class _MaterialTextFieldIcon<T> extends MaterialTextFieldIcon<T> {
     }
 
     @Override
-    public String getText() {
-        return textField.getText();
-    }
-
-    @Override
     public void setEnabled(boolean enabled) {
         textField.setEnabled(enabled);
         buttonIcon.setEnabled(enabled);
@@ -161,11 +156,6 @@ public class _MaterialTextFieldIcon<T> extends MaterialTextFieldIcon<T> {
     @Override
     public void setExtra(String extra) {
         textField.setExtra(extra);
-    }
-
-    @Override
-    public void setText(String s) {
-        textField.setText(s);
     }
 
     @Override

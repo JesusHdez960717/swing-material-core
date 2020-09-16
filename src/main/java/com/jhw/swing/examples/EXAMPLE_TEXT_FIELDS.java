@@ -7,6 +7,7 @@ package com.jhw.swing.examples;
 
 import com.jhw.swing.material.components.container.layout.VerticalLayoutContainer;
 import com.jhw.swing.material.components.textfield.MaterialFormatedTextField;
+import com.jhw.swing.material.components.textfield.MaterialFormatedTextFieldIcon;
 import com.jhw.swing.material.components.textfield.MaterialTextFactory;
 import com.jhw.swing.material.components.textfield.MaterialTextField;
 import com.jhw.swing.material.components.textfield.MaterialTextFieldIcon;
@@ -72,7 +73,7 @@ public class EXAMPLE_TEXT_FIELDS extends javax.swing.JFrame {
         formatedTextFieldSimple.setLabel("formated simple");
         vlcFormated.add(formatedTextFieldSimple, true);
 
-        MaterialFormatedTextField formatedTextFieldIcon = MaterialTextFactory.buildFormatedIcon();
+        MaterialFormatedTextFieldIcon formatedTextFieldIcon = MaterialTextFactory.buildFormatedIcon();
         formatedTextFieldIcon.setLabel("formated icon");
         vlcFormated.add(formatedTextFieldIcon, true);
 
@@ -80,7 +81,7 @@ public class EXAMPLE_TEXT_FIELDS extends javax.swing.JFrame {
         formatedTextFieldRuntime.setLabel("formated runtime simple");
         vlcFormated.add(formatedTextFieldRuntime, true);
 
-        MaterialFormatedTextField formatedTextFieldRuntimeIcon = MaterialTextFactory.buildFormatedRuntimeIcon(new MoneyFormateer(), BigDecimal.class);
+        MaterialFormatedTextFieldIcon formatedTextFieldRuntimeIcon = MaterialTextFactory.buildFormatedRuntimeIcon(new MoneyFormateer(), BigDecimal.class);
         formatedTextFieldRuntimeIcon.setLabel("formated runtime simple icon");
         vlcFormated.add(formatedTextFieldRuntimeIcon, true);
 
@@ -88,9 +89,9 @@ public class EXAMPLE_TEXT_FIELDS extends javax.swing.JFrame {
         formatedTextFieldMoney.setLabel("formated runtime money");
         vlcFormated.add(formatedTextFieldMoney, true);
 
-        MaterialFormatedTextField formatedTextFieldMoneyIcon = MaterialTextFactory.buildFormatedMoneyIcon();
+        MaterialFormatedTextFieldIcon formatedTextFieldMoneyIcon = MaterialTextFactory.buildFormatedMoneyIcon();
         formatedTextFieldMoneyIcon.setLabel("formated runtime money icon");
-        vlcSimple.add(formatedTextFieldMoneyIcon, true);
+        vlcFormated.add(formatedTextFieldMoneyIcon, true);
         //-------------------Formated-------------------------
 
         jPanel1.add(vlcSimple.build(), BorderLayout.WEST);
