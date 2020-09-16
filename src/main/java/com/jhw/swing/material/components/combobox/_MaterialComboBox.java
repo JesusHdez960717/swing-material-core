@@ -1,7 +1,6 @@
 package com.jhw.swing.material.components.combobox;
 
 import com.jhw.swing.material.components.scrollpane.MaterialScrollFactory;
-import com.jhw.swing.material.components.scrollpane._MaterialScrollPaneCore;
 import com.jhw.swing.material.effects.DefaultLine;
 import com.jhw.swing.material.effects.DefaultFloatingLabel;
 import java.awt.*;
@@ -10,7 +9,6 @@ import javax.swing.*;
 import javax.swing.plaf.basic.BasicComboBoxUI;
 import javax.swing.plaf.basic.BasicComboPopup;
 import javax.swing.plaf.basic.ComboPopup;
-import com.jhw.swing.util.interfaces.MaterialComponent;
 import com.jhw.swing.material.standards.MaterialFontRoboto;
 import com.jhw.swing.material.standards.MaterialIcons;
 import com.jhw.swing.material.effects.DefaultWrong;
@@ -18,7 +16,6 @@ import com.jhw.swing.material.effects.FloatingLabel;
 import com.jhw.swing.material.effects.Line;
 import com.jhw.swing.util.MaterialDrawingUtils;
 import com.jhw.swing.util.Utils;
-import com.jhw.swing.util.interfaces.BindableComponent;
 import com.jhw.swing.utils.icons.DerivableIcon;
 import java.awt.event.ActionEvent;
 import com.jhw.swing.material.effects.Wrong;
@@ -258,24 +255,24 @@ public class _MaterialComboBox<T> extends MaterialComboBox<T> {
 
         @Override
         public void paint(Graphics g) {
-            super.paint(g);
             Graphics2D g2 = MaterialDrawingUtils.getAliasedGraphics(g);
+            super.paint(g2);
 
             if (mouseOver) {
-                g.setColor(Utils.isDark(comboBox.getBackground()) ? Utils.brighten(comboBox.getBackground()) : Utils.darken(comboBox.getBackground()));
+                g2.setColor(Utils.isDark(comboBox.getBackground()) ? Utils.brighten(comboBox.getBackground()) : Utils.darken(comboBox.getBackground()));
             } else {
-                g.setColor(comboBox.getBackground());
+                g2.setColor(comboBox.getBackground());
             }
-            g.fillRect(0, 0, getWidth(), getHeight());
+            g2.fillRect(0, 0, getWidth(), getHeight());
 
-            g.setFont(comboBox.getFont());
+            g2.setFont(comboBox.getFont());
             if (selected) {
                 g2.setColor(comboBox.getAccentFloatingLabel());
             } else {
                 g2.setColor(comboBox.getForeground());
             }
-            FontMetrics metrics = g.getFontMetrics(g.getFont());
-            g.drawString(text, 24, metrics.getAscent() + (getHeight() - metrics.getHeight()) / 2);
+            FontMetrics metrics = g2.getFontMetrics(g2.getFont());
+            g2.drawString(text, 24, metrics.getAscent() + (getHeight() - metrics.getHeight()) / 2);
         }
     }
 
