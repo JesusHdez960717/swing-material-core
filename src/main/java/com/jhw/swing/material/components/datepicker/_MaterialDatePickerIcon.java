@@ -26,9 +26,9 @@ import javax.swing.Icon;
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-public class _MaterialDatePickerIcon extends MaterialDatePicker {
+public class _MaterialDatePickerIcon extends MaterialDatePickerIcon {
 
-    public static MaterialDatePicker from() {
+    public static MaterialDatePickerIcon from() {
         return new _MaterialDatePickerIcon();
     }
 
