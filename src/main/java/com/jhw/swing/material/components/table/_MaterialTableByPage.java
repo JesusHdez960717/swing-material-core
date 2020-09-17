@@ -6,7 +6,7 @@ import com.jhw.swing.material.components.container.MaterialContainersFactory;
 import com.jhw.swing.material.components.container.panel._PanelTransparent;
 import com.jhw.swing.material.components.labels.MaterialLabel;
 import com.jhw.swing.material.components.labels.MaterialLabelsFactory;
-import com.jhw.swing.material.components.textfield.validated._MaterialTextFieldInteger;
+import com.jhw.swing.prepared.textfield._MaterialTextFieldInteger;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
@@ -46,7 +46,7 @@ public class _MaterialTableByPage extends MaterialTableByPage {
 
         table = new com.jhw.swing.material.components.table._MaterialTable();
         panelPages = MaterialContainersFactory.buildPanelTransparent();
-        textFieldPage = new com.jhw.swing.material.components.textfield.validated._MaterialTextFieldInteger();
+        textFieldPage = new com.jhw.swing.prepared.textfield._MaterialTextFieldInteger();
         labelTotPag = MaterialLabelsFactory.build();
         buttonDouble = MaterialButtonsFactory.buildDouble();
         spinner = new javax.swing.JSpinner();
@@ -131,7 +131,7 @@ public class _MaterialTableByPage extends MaterialTableByPage {
     private JPanel panelPages;
     private javax.swing.JSpinner spinner;
     private com.jhw.swing.material.components.table._MaterialTable table;
-    private com.jhw.swing.material.components.textfield.validated._MaterialTextFieldInteger textFieldPage;
+    private com.jhw.swing.prepared.textfield._MaterialTextFieldInteger textFieldPage;
     // End of variables declaration                   
 
     private void fillTable() {

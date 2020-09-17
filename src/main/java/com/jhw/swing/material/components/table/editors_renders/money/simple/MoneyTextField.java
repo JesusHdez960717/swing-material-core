@@ -1,6 +1,6 @@
 package com.jhw.swing.material.components.table.editors_renders.money.simple;
 
-import com.jhw.swing.material.components.textfield.validated._MaterialTextFieldMoney;
+import com.jhw.swing.prepared.textfield._MaterialTextFieldMoney;
 
 /**
  *

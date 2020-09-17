@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.jhw.swing.material.components.textfield.validated;
+package com.jhw.swing.prepared.textfield;
 
 import com.jhw.swing.material.components.textfield.MaterialFormatedTextField;
 import com.jhw.swing.material.components.textfield.MaterialFormatedTextFieldIcon;

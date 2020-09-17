@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.jhw.swing.material.components.textfield.validated;
+package com.jhw.swing.prepared.textfield;
 
 import com.jhw.swing.material.components.textfield.MaterialTextFieldIcon;
 import com.jhw.swing.material.components.textfield._MaterialTextFieldIcon;
@@ -13,22 +13,22 @@ import com.jhw.swing.material.standards.MaterialIcons;
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-public class _MaterialTextFieldIntegerIcon extends _MaterialTextFieldIcon<Integer> {
+public class _MaterialTextFieldDoubleIcon extends _MaterialTextFieldIcon<Double> {
 
     public static MaterialTextFieldIcon from() {
-        return new _MaterialTextFieldIntegerIcon();
+        return new _MaterialTextFieldDoubleIcon();
     }
 
     public static MaterialTextFieldIcon from(boolean negative) {
-        return new _MaterialTextFieldIntegerIcon(negative);
+        return new _MaterialTextFieldDoubleIcon(negative);
     }
 
-    public _MaterialTextFieldIntegerIcon() {
+    public _MaterialTextFieldDoubleIcon() {
         this(false);
     }
 
-    public _MaterialTextFieldIntegerIcon(boolean negative) {
-        super(new _MaterialTextFieldInteger(negative));
+    public _MaterialTextFieldDoubleIcon(boolean negative) {
+        super(_MaterialTextFieldDouble.from(negative));
         this.setIcon(MaterialIcons.EDIT);
     }
 

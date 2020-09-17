@@ -5,7 +5,6 @@
  */
 package com.jhw.swing.material.components.textfield;
 
-import com.jhw.swing.material.components.textfield.validated.*;
 import javax.swing.JFormattedTextField.AbstractFormatter;
 
 /**
@@ -44,29 +43,5 @@ public class MaterialTextFactory {
 
     public static MaterialFormatedTextFieldIcon buildFormatedRuntimeIcon(AbstractFormatter formateer, Class clazz) {
         return _MaterialFormatedTextFieldRuntimeIcon.from(formateer, clazz);
-    }
-
-    public static MaterialFormatedTextField buildFormatedMoney() {
-        return _MaterialTextFieldMoney.from();
-    }
-
-    public static MaterialFormatedTextFieldIcon buildFormatedMoneyIcon() {
-        return _MaterialTextFieldMoneyIcon.from();
-    }
-
-    public static MaterialTextField buildDouble() {
-        return _MaterialTextFieldDouble.from();
-    }
-
-    public static MaterialTextFieldIcon buildDoubleIcon() {
-        return _MaterialTextFieldDoubleIcon.from();
-    }
-
-    public static MaterialTextField buildInteger() {
-        return _MaterialTextFieldInteger.from();
-    }
-
-    public static MaterialTextFieldIcon buildIntegerIcon() {
-        return _MaterialTextFieldIntegerIcon.from();
     }
 }

@@ -6,7 +6,7 @@
 package com.jhw.swing.examples;
 
 import com.jhw.swing.material.components.button.*;
-import com.jhw.swing.material.components.button.prepared._buttonAddEdit;
+import com.jhw.swing.prepared.button._buttonAddEdit;
 import com.jhw.swing.material.components.container.layout.HorizontalLayoutContainer;
 import com.jhw.swing.material.components.container.layout.VerticalLayoutContainer;
 import com.jhw.swing.material.components.toggle.MaterialToggleButton;

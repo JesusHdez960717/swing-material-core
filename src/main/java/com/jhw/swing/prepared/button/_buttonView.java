@@ -1,4 +1,4 @@
-package com.jhw.swing.material.components.button.prepared;
+package com.jhw.swing.prepared.button;
 
 import com.jhw.swing.material.components.button._MaterialButton;
 import java.awt.Dimension;

@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.jhw.swing.examples;
+package com.jhw.swing.prepared.exmaples;
 
+import com.jhw.swing.examples.*;
 import com.jhw.swing.material.components.button.*;
 import com.jhw.swing.prepared.button._buttonAddEdit;
 import com.jhw.swing.material.components.container.layout.VerticalLayoutContainer;
@@ -17,8 +18,11 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Arrays;
+import javax.swing.AbstractAction;
 import javax.swing.JButton;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
 import javax.swing.UIManager;
 
@@ -36,52 +40,31 @@ public class EXAMPLE_BUTTONS extends javax.swing.JFrame {
 
         VerticalLayoutContainer.builder vlc = VerticalLayoutContainer.builder();
 
-        MaterialButton btnSimple = MaterialButtonsFactory.buildButton();
-        btnSimple.setText("material button simple");
-        btnSimple.setIcon(MaterialIcons.ACCESSIBILITY);
-        btnSimple.setBackground(Color.yellow);
-        btnSimple.setRippleColor(Color.pink);
-        vlc.add(btnSimple);
+        MaterialButtonAddEdit addEdit = MaterialPreparedButtonsFactory.buildAddEdit();
+        addEdit.isCreated(true);
+        vlc.add(addEdit);
 
-        vlc.add(MaterialButtonsFactory.buildDouble());
-
-        MaterialButton flat = MaterialButtonsFactory.buildFlat();
-        flat.setText("flat simple");
-        vlc.add(flat);
-
-        JButton link = MaterialButtonsFactory.buildHyperlink();
-        link.setText("hyperlink");
-        vlc.add(link);
-
-        MaterialButtonIcon rot = MaterialButtonsFactory.buildIconTranspRotate();
-        rot.addActionListener(new ActionListener() {
-            boolean a = false;
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                ((_MaterialButtonIconTranspRotate)rot).setIconRotate(a ? MaterialIcons.ARROW_DROP_LEFT : MaterialIcons.ARROW_DROP_RIGHT);
-                a = !a;
-            }
-        });
-        rot.doClick();
-
-        vlc.add(rot);
-        vlc.add(MaterialButtonsFactory.buildIconTransparent());
-
-        MaterialButton popup = MaterialButtonsFactory.buildPopup();
-        JPopupMenu menu = new JPopupMenu();
-        menu.add(new JMenuItem("1"));
-        menu.add(new JMenuItem("2"));
-        menu.add(new JMenuItem("3"));
-        popup.setComponentPopupMenu(menu);
-        vlc.add(popup);
-
-        MaterialButton round = MaterialButtonsFactory.buildRound();
-        round.setRippleColor(Color.yellow);
-        vlc.add(round);
+        MaterialButtonAddEdit addEdit2 = MaterialPreparedButtonsFactory.buildAddEdit();
+        addEdit2.isCreated(false);
+        vlc.add(addEdit2);
 
         MaterialButton view = MaterialPreparedButtonsFactory.buildView();
         vlc.add(view);
+
+        MaterialButton popup = MaterialPreparedButtonsFactory.buildReport(Arrays.asList(
+                new AbstractAction("ONE") {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(null, "ONE");
+            }
+        }, new AbstractAction("TWO") {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(null, "TWO");
+            }
+        }
+        ));
+        vlc.add(popup);
 
         jPanel1.setBackground(MaterialColors.BLUE_50);
         jPanel1.setLayout(new BorderLayout());

@@ -1,4 +1,4 @@
-package com.jhw.swing.material.components.button.prepared;
+package com.jhw.swing.prepared.button;
 
 import com.jhw.swing.material.components.button._MaterialButton;
 import java.awt.Dimension;
@@ -16,7 +16,7 @@ import com.jhw.swing.material.injection.MaterialSwingInjector;
  */
 @Background_Force_Foreground
 @Foreground_Force_Icon
-public class _buttonAddEdit extends _MaterialButton {
+public class _buttonAddEdit extends MaterialButtonAddEdit {
 
     public static _buttonAddEdit from() {
         return MaterialSwingInjector.getImplementation(_buttonAddEdit.class);
