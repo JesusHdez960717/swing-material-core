@@ -6,19 +6,19 @@
 package com.jhw.swing.examples;
 
 import com.jhw.swing.material.components.button.*;
-import com.jhw.swing.prepared.button._buttonAddEdit;
 import com.jhw.swing.material.components.container.layout.VerticalLayoutContainer;
 import com.jhw.swing.material.standards.MaterialColors;
 import com.jhw.swing.material.standards.MaterialIcons;
-import com.jhw.swing.prepared.button.MaterialButtonAddEdit;
-import com.jhw.swing.prepared.button.MaterialPreparedButtonsFactory;
 import com.jhw.swing.ui.MaterialLookAndFeel;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Arrays;
+import javax.swing.AbstractAction;
 import javax.swing.JButton;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
 import javax.swing.UIManager;
 
@@ -59,7 +59,7 @@ public class EXAMPLE_BUTTONS extends javax.swing.JFrame {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                ((_MaterialButtonIconTranspRotate)rot).setIconRotate(a ? MaterialIcons.ARROW_DROP_LEFT : MaterialIcons.ARROW_DROP_RIGHT);
+                ((_MaterialButtonIconTranspRotate) rot).setIconRotate(a ? MaterialIcons.ARROW_DROP_LEFT : MaterialIcons.ARROW_DROP_RIGHT);
                 a = !a;
             }
         });
@@ -76,12 +76,16 @@ public class EXAMPLE_BUTTONS extends javax.swing.JFrame {
         popup.setComponentPopupMenu(menu);
         vlc.add(popup);
 
+        vlc.add(MaterialButtonsFactory.buildPopup(Arrays.asList(new AbstractAction("123") {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(null, "BU");
+            }
+        })));
+        
         MaterialButton round = MaterialButtonsFactory.buildRound();
         round.setRippleColor(Color.yellow);
         vlc.add(round);
-
-        MaterialButton view = MaterialPreparedButtonsFactory.buildView();
-        vlc.add(view);
 
         jPanel1.setBackground(MaterialColors.BLUE_50);
         jPanel1.setLayout(new BorderLayout());

@@ -5,30 +5,11 @@
  */
 package com.jhw.swing.material.property_reflection;
 
-import com.google.inject.Guice;
-import com.google.inject.Injector;
-import com.jhw.swing.examples.*;
 import com.jhw.swing.material.components.button.*;
-import com.jhw.swing.prepared.button._buttonAddEdit;
-import com.jhw.swing.material.components.container.layout.VerticalLayoutContainer;
-import com.jhw.swing.material.effects.RippleEffect;
-import com.jhw.swing.material.injection.MaterialComponentsInjectionConfig;
-import com.jhw.swing.material.injection.MaterialSwingInjector;
 import com.jhw.swing.material.standards.MaterialColors;
 import com.jhw.swing.material.standards.MaterialIcons;
 import com.jhw.swing.ui.MaterialLookAndFeel;
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.MethodHandles;
-import java.lang.invoke.MethodType;
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
-import javax.swing.JButton;
-import javax.swing.JMenuItem;
-import javax.swing.JPopupMenu;
 import javax.swing.UIManager;
 
 /**

@@ -12,7 +12,6 @@ import com.jhw.swing.material.components.textfield.MaterialTextFactory;
 import com.jhw.swing.material.components.textfield.MaterialTextField;
 import com.jhw.swing.material.components.textfield.MaterialTextFieldIcon;
 import com.jhw.swing.material.standards.MaterialColors;
-import com.jhw.swing.prepared.textfield.MaterialPreparedTextFactory;
 import com.jhw.swing.ui.MaterialLookAndFeel;
 import com.jhw.utils.formateer.CreditCardFormateer;
 import com.jhw.utils.formateer.MoneyFormateer;

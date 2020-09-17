@@ -1,18 +1,15 @@
 package com.jhw.swing.material.components.table;
 
 import com.jhw.swing.material.components.button.MaterialButtonsFactory;
-import com.jhw.swing.material.components.button._MaterialButtonDouble;
 import com.jhw.swing.material.components.container.MaterialContainersFactory;
-import com.jhw.swing.material.components.container.panel._PanelTransparent;
 import com.jhw.swing.material.components.labels.MaterialLabel;
 import com.jhw.swing.material.components.labels.MaterialLabelsFactory;
-import com.jhw.swing.prepared.textfield._MaterialTextFieldInteger;
+import com.jhw.swing.material.components.textfield.MaterialTextFactory;
+import com.jhw.swing.material.components.textfield.MaterialTextField;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.JSpinner;
 import javax.swing.JTable;
-import com.jhw.utils.interfaces.Update;
 import javax.swing.JPanel;
 
 /**
@@ -44,9 +41,9 @@ public class _MaterialTableByPage extends MaterialTableByPage {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//
     private void initComponents() {
 
-        table = new com.jhw.swing.material.components.table._MaterialTable();
+        table = MaterialTableFactory.build();
         panelPages = MaterialContainersFactory.buildPanelTransparent();
-        textFieldPage = new com.jhw.swing.prepared.textfield._MaterialTextFieldInteger();
+        textFieldPage = MaterialTextFactory.build();
         labelTotPag = MaterialLabelsFactory.build();
         buttonDouble = MaterialButtonsFactory.buildDouble();
         spinner = new javax.swing.JSpinner();
@@ -130,8 +127,8 @@ public class _MaterialTableByPage extends MaterialTableByPage {
     private MaterialLabel labelTotPag;
     private JPanel panelPages;
     private javax.swing.JSpinner spinner;
-    private com.jhw.swing.material.components.table._MaterialTable table;
-    private com.jhw.swing.prepared.textfield._MaterialTextFieldInteger textFieldPage;
+    private MaterialTable table;
+    private MaterialTextField<Integer> textFieldPage;
     // End of variables declaration                   
 
     private void fillTable() {
