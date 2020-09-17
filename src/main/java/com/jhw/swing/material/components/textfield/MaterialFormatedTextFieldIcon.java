@@ -5,13 +5,15 @@
  */
 package com.jhw.swing.material.components.textfield;
 
-import javax.swing.JFormattedTextField;
+import com.jhw.swing.material.components.container.panel._PanelTransparent;
+import com.jhw.swing.material.effects.Iconable;
 
 /**
  * this.setFormatterFactory(new DefaultFormatterFactory(formateer));
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-public abstract class MaterialFormatedTextField<T> extends JFormattedTextField implements MaterialFormatedTextFieldDefinition<T>{
+public abstract class MaterialFormatedTextFieldIcon<T> extends _PanelTransparent implements Iconable, MaterialFormatedTextFieldDefinition<T> {
 
+    public abstract MaterialFormatedTextField getFormatedTextField();
 }

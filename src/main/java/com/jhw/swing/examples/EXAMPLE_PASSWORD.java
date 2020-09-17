@@ -15,6 +15,7 @@ import com.jhw.swing.material.components.labels.MaterialLabelMoney;
 import com.jhw.swing.material.components.labels.MaterialLabelsFactory;
 import com.jhw.swing.material.components.passwordfield.MaterialPasswordField;
 import com.jhw.swing.material.components.passwordfield.MaterialPasswordFieldFactory;
+import com.jhw.swing.material.components.passwordfield.MaterialPasswordFieldIcon;
 import com.jhw.swing.material.standards.MaterialColors;
 import com.jhw.swing.ui.MaterialLookAndFeel;
 import java.awt.BorderLayout;
@@ -42,7 +43,7 @@ public class EXAMPLE_PASSWORD extends javax.swing.JFrame {
         MaterialPasswordField pass = MaterialPasswordFieldFactory.build();
         vlc.add(pass, true);
 
-        MaterialPasswordField passIcon = MaterialPasswordFieldFactory.buildIcon();
+        MaterialPasswordFieldIcon passIcon = MaterialPasswordFieldFactory.buildIcon();
         //passIcon.
         vlc.add(passIcon, true);
 

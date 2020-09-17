@@ -32,6 +32,7 @@ public class _buttonAddEdit extends _MaterialButton {
         this.setBackground(PersonalizationHandler.getColor(Personalization.KEY_COLOR_BUTTON_ADD));
         this.setIcon(PersonalizationHandler.getDerivableIcon(Personalization.KEY_ICON_BUTTON_ADD));
         this.setPreferredSize(new Dimension(125, 50));
+        this.isCreated(true);
     }
 
     public void isCreated(boolean created) {

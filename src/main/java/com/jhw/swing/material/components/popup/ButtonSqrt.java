@@ -36,6 +36,7 @@ public class ButtonSqrt extends _MaterialButton {
     public static ButtonSqrt from(Action a) {
         ButtonSqrt sqrt = from();
         sqrt.setAction(a);
+        sqrt.setToolTipText((String) a.getValue(Action.SHORT_DESCRIPTION));
         return sqrt;
     }
 

@@ -80,10 +80,6 @@ public class _MaterialPasswordField extends MaterialPasswordField {
         setText("");
     }
 
-    @Override
-    public MaterialPasswordField getPasswordField() {
-        return this;
-    }
 //-------------------LINE-------------------------
 
     @Override
@@ -204,15 +200,6 @@ public class _MaterialPasswordField extends MaterialPasswordField {
     @Override
     public void setExtra(String extra) {
         this.extra = extra;
-    }
-
-    @Override
-    public void setIcon(Icon icon) {
-    }
-
-    @Override
-    public Icon getIcon() {
-        return null;
     }
 
     @Override

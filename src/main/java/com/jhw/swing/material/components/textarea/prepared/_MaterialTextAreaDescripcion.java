@@ -5,13 +5,17 @@
  */
 package com.jhw.swing.material.components.textarea.prepared;
 
-import com.jhw.swing.material.components.textarea._MaterialTextArea;
+import com.jhw.swing.material.components.textarea.MaterialTextArea;
 
 /**
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-public class _MaterialTextAreaDescripcion extends _MaterialTextArea {
+public class _MaterialTextAreaDescripcion extends MaterialTextArea {
+
+    public static MaterialTextArea from() {
+        return new _MaterialTextAreaDescripcion();
+    }
 
     public _MaterialTextAreaDescripcion() {
         super.setBorderTitle("Descripción");

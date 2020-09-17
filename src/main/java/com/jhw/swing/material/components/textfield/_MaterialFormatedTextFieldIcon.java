@@ -24,9 +24,9 @@ import javax.swing.Icon;
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-public class _MaterialFormatedTextFieldIcon<T> extends MaterialFormatedTextField<T> {
+public class _MaterialFormatedTextFieldIcon<T> extends MaterialFormatedTextFieldIcon<T> {
 
-    public static MaterialFormatedTextField from() {
+    public static MaterialFormatedTextFieldIcon from() {
         return new _MaterialFormatedTextFieldIcon();
     }
 
@@ -104,11 +104,6 @@ public class _MaterialFormatedTextFieldIcon<T> extends MaterialFormatedTextField
     }
 
     @Override
-    public String getText() {
-        return textField.getText();
-    }
-
-    @Override
     public void setEnabled(boolean enabled) {
         textField.setEnabled(enabled);
         buttonIcon.setEnabled(enabled);
@@ -162,11 +157,6 @@ public class _MaterialFormatedTextFieldIcon<T> extends MaterialFormatedTextField
     @Override
     public void setExtra(String extra) {
         textField.setExtra(extra);
-    }
-
-    @Override
-    public void setText(String s) {
-        textField.setText(s);
     }
 
     @Override

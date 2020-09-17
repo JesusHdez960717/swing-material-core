@@ -74,7 +74,7 @@ public class DefaultBorderDinamic<T extends JComponent & BorderDinamic> implemen
     @Override
     public void setBorderTitle(String title) {
         this.title = title;
-        this.setTitledBorder(title);
+        this.setTitledBorder();
     }
 
     @Override
@@ -88,27 +88,22 @@ public class DefaultBorderDinamic<T extends JComponent & BorderDinamic> implemen
         update();
     }
 
-    private void setTitledBorder(String text) {
-        if (text.trim().isEmpty()) {
+    private void setTitledBorder() {
+        if (title.trim().isEmpty()) {
             return;
         }
-        getBordeableComponent().setBorder(new TitledBorder(text));
+        getBordeableComponent().setBorder(new TitledBorder(title));
         TitledBorder titled = (TitledBorder) getBordeableComponent().getBorder();
-        titled.setTitleColor(Utils.applyAlphaMask(getBordeableComponent().getForeground(), HINT_OPACITY_MASK));
         titled.setBorder(DefaultMaterialLineBorder.builder().build());
-
+        repaintComponent();//este es el que le da la forma con los valores que son
+        
         getFocusableComponent().removeFocusListener(focusListener);
         getFocusableComponent().addFocusListener(focusListener);
-
-        update();
     }
 
     private void update() {
         if (animator != null) {
             animator.stop();
-        }
-        if (title.isEmpty()) {
-            return;
         }
         if (PersonalizationHandler.getBoolean(Personalization.KEY_USE_ANIMATIONS)) {
             setValuesAnimated();

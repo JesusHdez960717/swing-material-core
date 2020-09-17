@@ -7,10 +7,13 @@ package com.jhw.swing.examples;
 
 import com.jhw.swing.material.components.container.layout.VerticalLayoutContainer;
 import com.jhw.swing.material.components.textfield.MaterialFormatedTextField;
-import com.jhw.swing.material.components.textfield.MaterialTextAreaFactory;
+import com.jhw.swing.material.components.textfield.MaterialFormatedTextFieldIcon;
+import com.jhw.swing.material.components.textfield.MaterialTextFactory;
 import com.jhw.swing.material.components.textfield.MaterialTextField;
+import com.jhw.swing.material.components.textfield.MaterialTextFieldIcon;
 import com.jhw.swing.material.standards.MaterialColors;
 import com.jhw.swing.ui.MaterialLookAndFeel;
+import com.jhw.utils.formateer.CreditCardFormateer;
 import com.jhw.utils.formateer.MoneyFormateer;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -40,56 +43,56 @@ public class EXAMPLE_TEXT_FIELDS extends javax.swing.JFrame {
         //-------------------SIMPLE-------------------------
         VerticalLayoutContainer.builder vlcSimple = VerticalLayoutContainer.builder();
 
-        MaterialTextField textFieldSimple = MaterialTextAreaFactory.build();
+        MaterialTextField textFieldSimple = MaterialTextFactory.build();
         textFieldSimple.setLabel("simple");
         vlcSimple.add(textFieldSimple, true);
 
-        MaterialTextField textFieldIcon = MaterialTextAreaFactory.buildIcon();
+        MaterialTextFieldIcon textFieldIcon = MaterialTextFactory.buildIcon();
         textFieldIcon.setLabel("icon");
         vlcSimple.add(textFieldIcon, true);
 
-        MaterialTextField textFieldDouble = MaterialTextAreaFactory.buildDouble();
+        MaterialTextField textFieldDouble = MaterialTextFactory.buildDouble();
         textFieldDouble.setLabel("text field simple double");
         vlcSimple.add(textFieldDouble, true);
 
-        MaterialTextField textFieldDoubleIcon = MaterialTextAreaFactory.buildDoubleIcon();
+        MaterialTextFieldIcon textFieldDoubleIcon = MaterialTextFactory.buildDoubleIcon();
         textFieldDoubleIcon.setLabel("text field simple double icon");
         vlcSimple.add(textFieldDoubleIcon, true);
 
-        MaterialTextField textFieldInt = MaterialTextAreaFactory.buildInteger();
+        MaterialTextField textFieldInt = MaterialTextFactory.buildInteger();
         textFieldInt.setLabel("text field simple integer");
         vlcSimple.add(textFieldInt, true);
 
-        MaterialTextField textFieldIntIcon = MaterialTextAreaFactory.buildIntegerIcon();
+        MaterialTextFieldIcon textFieldIntIcon = MaterialTextFactory.buildIntegerIcon();
         textFieldIntIcon.setLabel("text field simple integer icon");
         vlcSimple.add(textFieldIntIcon, true);
         //-------------------SIMPLE-------------------------
 
         //-------------------Formated-------------------------
         VerticalLayoutContainer.builder vlcFormated = VerticalLayoutContainer.builder();
-        MaterialFormatedTextField formatedTextFieldSimple = MaterialTextAreaFactory.buildFormated();
+        MaterialFormatedTextField formatedTextFieldSimple = MaterialTextFactory.buildFormated();
         formatedTextFieldSimple.setLabel("formated simple");
         vlcFormated.add(formatedTextFieldSimple, true);
 
-        MaterialFormatedTextField formatedTextFieldIcon = MaterialTextAreaFactory.buildFormatedIcon();
+        MaterialFormatedTextFieldIcon formatedTextFieldIcon = MaterialTextFactory.buildFormatedIcon();
         formatedTextFieldIcon.setLabel("formated icon");
         vlcFormated.add(formatedTextFieldIcon, true);
 
-        MaterialFormatedTextField formatedTextFieldRuntime = MaterialTextAreaFactory.buildFormatedRuntime(new MoneyFormateer(), BigDecimal.class);
+        MaterialFormatedTextField formatedTextFieldRuntime = MaterialTextFactory.buildFormatedRuntime(new MoneyFormateer(), BigDecimal.class);
         formatedTextFieldRuntime.setLabel("formated runtime simple");
         vlcFormated.add(formatedTextFieldRuntime, true);
 
-        MaterialFormatedTextField formatedTextFieldRuntimeIcon = MaterialTextAreaFactory.buildFormatedRuntimeIcon(new MoneyFormateer(), BigDecimal.class);
+        MaterialFormatedTextFieldIcon formatedTextFieldRuntimeIcon = MaterialTextFactory.buildFormatedRuntimeIcon(CreditCardFormateer.from());
         formatedTextFieldRuntimeIcon.setLabel("formated runtime simple icon");
         vlcFormated.add(formatedTextFieldRuntimeIcon, true);
 
-        MaterialFormatedTextField formatedTextFieldMoney = MaterialTextAreaFactory.buildFormatedMoney();
+        MaterialFormatedTextField formatedTextFieldMoney = MaterialTextFactory.buildFormatedMoney();
         formatedTextFieldMoney.setLabel("formated runtime money");
         vlcFormated.add(formatedTextFieldMoney, true);
 
-        MaterialFormatedTextField formatedTextFieldMoneyIcon = MaterialTextAreaFactory.buildFormatedMoneyIcon();
+        MaterialFormatedTextFieldIcon formatedTextFieldMoneyIcon = MaterialTextFactory.buildFormatedMoneyIcon();
         formatedTextFieldMoneyIcon.setLabel("formated runtime money icon");
-        vlcSimple.add(formatedTextFieldMoneyIcon, true);
+        vlcFormated.add(formatedTextFieldMoneyIcon, true);
         //-------------------Formated-------------------------
 
         jPanel1.add(vlcSimple.build(), BorderLayout.WEST);
