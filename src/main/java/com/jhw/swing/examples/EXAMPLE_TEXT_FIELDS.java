@@ -13,6 +13,7 @@ import com.jhw.swing.material.components.textfield.MaterialTextField;
 import com.jhw.swing.material.components.textfield.MaterialTextFieldIcon;
 import com.jhw.swing.material.standards.MaterialColors;
 import com.jhw.swing.ui.MaterialLookAndFeel;
+import com.jhw.utils.formateer.CreditCardFormateer;
 import com.jhw.utils.formateer.MoneyFormateer;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -81,7 +82,7 @@ public class EXAMPLE_TEXT_FIELDS extends javax.swing.JFrame {
         formatedTextFieldRuntime.setLabel("formated runtime simple");
         vlcFormated.add(formatedTextFieldRuntime, true);
 
-        MaterialFormatedTextFieldIcon formatedTextFieldRuntimeIcon = MaterialTextFactory.buildFormatedRuntimeIcon(new MoneyFormateer(), BigDecimal.class);
+        MaterialFormatedTextFieldIcon formatedTextFieldRuntimeIcon = MaterialTextFactory.buildFormatedRuntimeIcon(CreditCardFormateer.from());
         formatedTextFieldRuntimeIcon.setLabel("formated runtime simple icon");
         vlcFormated.add(formatedTextFieldRuntimeIcon, true);
 
