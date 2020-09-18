@@ -1,7 +1,9 @@
 package com.jhw.swing.util;
 
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.AbstractAction;
+import javax.swing.Action;
 import javax.swing.ImageIcon;
 
 /**
@@ -26,5 +28,16 @@ public class AbstractActionUtils {
                 return;
             }
         };
+    }
+
+    public static AbstractAction from(String name, ImageIcon icon, String tooltip, ActionListener l) {
+        AbstractAction a = new AbstractAction(name, icon) {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                l.actionPerformed(e);
+            }
+        };
+        a.putValue(Action.SHORT_DESCRIPTION, tooltip);
+        return a;
     }
 }

@@ -8,6 +8,7 @@ package com.jhw.swing.examples;
 //import com.jhw.swing.material.components.combobox.combobox_editable._MaterialComboBoxFiltrable;
 import com.jhw.swing.material.components.container.layout.VerticalLayoutContainer;
 import com.jhw.swing.material.components.datepicker.MaterialDatePicker;
+import com.jhw.swing.material.components.datepicker.MaterialDatePickerIcon;
 import com.jhw.swing.material.components.datepicker.MaterialDatePickersFactory;
 import com.jhw.swing.material.standards.MaterialColors;
 import com.jhw.swing.ui.MaterialLookAndFeel;
@@ -40,7 +41,7 @@ public class EXAMPLE_DATE_PICKER extends javax.swing.JFrame {
         MaterialDatePicker date1 = MaterialDatePickersFactory.build();
         vlc.add(date1, true);
 
-        MaterialDatePicker date2 = MaterialDatePickersFactory.buildIcon();
+        MaterialDatePickerIcon date2 = MaterialDatePickersFactory.buildIcon();
         vlc.add(date2, true);
 
         vlc.add(new JButton(new AbstractAction("Wrong") {

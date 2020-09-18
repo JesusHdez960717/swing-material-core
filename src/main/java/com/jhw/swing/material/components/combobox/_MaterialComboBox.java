@@ -1,7 +1,6 @@
 package com.jhw.swing.material.components.combobox;
 
 import com.jhw.swing.material.components.scrollpane.MaterialScrollFactory;
-import com.jhw.swing.material.components.scrollpane._MaterialScrollPaneCore;
 import com.jhw.swing.material.effects.DefaultLine;
 import com.jhw.swing.material.effects.DefaultFloatingLabel;
 import java.awt.*;
@@ -10,7 +9,6 @@ import javax.swing.*;
 import javax.swing.plaf.basic.BasicComboBoxUI;
 import javax.swing.plaf.basic.BasicComboPopup;
 import javax.swing.plaf.basic.ComboPopup;
-import com.jhw.swing.util.interfaces.MaterialComponent;
 import com.jhw.swing.material.standards.MaterialFontRoboto;
 import com.jhw.swing.material.standards.MaterialIcons;
 import com.jhw.swing.material.effects.DefaultWrong;
@@ -18,7 +16,6 @@ import com.jhw.swing.material.effects.FloatingLabel;
 import com.jhw.swing.material.effects.Line;
 import com.jhw.swing.util.MaterialDrawingUtils;
 import com.jhw.swing.util.Utils;
-import com.jhw.swing.util.interfaces.BindableComponent;
 import com.jhw.swing.utils.icons.DerivableIcon;
 import java.awt.event.ActionEvent;
 import com.jhw.swing.material.effects.Wrong;
@@ -42,7 +39,7 @@ public class _MaterialComboBox<T> extends MaterialComboBox<T> {
     private Line line = new DefaultLine(this);
     private final Wrong wrong = new DefaultWrong(this);
 
-    private ImageIcon icon = MaterialIcons.ARROW_DROP_DOWN;
+    private ImageIcon iconArrow = MaterialIcons.ARROW_DROP_DOWN;
 
     public _MaterialComboBox() {
         floatingLabel = new DefaultFloatingLabel(this);
@@ -76,7 +73,6 @@ public class _MaterialComboBox<T> extends MaterialComboBox<T> {
         this.setModel(new ArrayList<>());
 
         this.setSelectedIndex(-1);
-
     }
 
     @Override
@@ -175,8 +171,8 @@ public class _MaterialComboBox<T> extends MaterialComboBox<T> {
         firePropertyChange("processFocusEvent", null, null);
     }
 
-    protected ImageIcon getIcon() {
-        return icon;
+    protected ImageIcon getIconArrow() {
+        return iconArrow;
     }
 
     @Override
@@ -200,17 +196,17 @@ public class _MaterialComboBox<T> extends MaterialComboBox<T> {
         paintWrong(g2, getYLine(g2) + 15);
 
         //paint the arrow
-        if (icon != null) {
+        if (iconArrow != null) {
             Color iconColor;
             if (isFocusOwner()) {
                 iconColor = getAccentFloatingLabel();
             } else {
                 iconColor = Utils.applyAlphaMask(getForeground(), LINE_OPACITY_MASK);
             }
-            if (icon instanceof DerivableIcon) {
-                icon = ((DerivableIcon) icon).deriveIcon(iconColor);
+            if (iconArrow instanceof DerivableIcon) {
+                iconArrow = ((DerivableIcon) iconArrow).deriveIcon(iconColor);
             }
-            icon.paintIcon(this, g2, (int) (this.getSize().getWidth() - icon.getIconHeight()), yMid - icon.getIconHeight() / 2);
+            iconArrow.paintIcon(this, g2, (int) (this.getSize().getWidth() - iconArrow.getIconHeight()), yMid - iconArrow.getIconHeight() / 2);
         }
 
     }
@@ -232,12 +228,12 @@ public class _MaterialComboBox<T> extends MaterialComboBox<T> {
 
     public static class FieldRenderer<T> extends JComponent implements ListCellRenderer<T> {
 
-        private final _MaterialComboBox comboBox;
+        private final MaterialComboBox comboBox;
         private String text;
         private boolean mouseOver = false;
         private boolean selected = false;
 
-        public FieldRenderer(_MaterialComboBox comboBox) {
+        public FieldRenderer(MaterialComboBox comboBox) {
             this.comboBox = comboBox;
         }
 
@@ -254,24 +250,24 @@ public class _MaterialComboBox<T> extends MaterialComboBox<T> {
 
         @Override
         public void paint(Graphics g) {
-            super.paint(g);
             Graphics2D g2 = MaterialDrawingUtils.getAliasedGraphics(g);
+            super.paint(g2);
 
             if (mouseOver) {
-                g.setColor(Utils.isDark(comboBox.getBackground()) ? Utils.brighten(comboBox.getBackground()) : Utils.darken(comboBox.getBackground()));
+                g2.setColor(Utils.isDark(comboBox.getBackground()) ? Utils.brighten(comboBox.getBackground()) : Utils.darken(comboBox.getBackground()));
             } else {
-                g.setColor(comboBox.getBackground());
+                g2.setColor(comboBox.getBackground());
             }
-            g.fillRect(0, 0, getWidth(), getHeight());
+            g2.fillRect(0, 0, getWidth(), getHeight());
 
-            g.setFont(comboBox.getFont());
+            g2.setFont(comboBox.getFont());
             if (selected) {
                 g2.setColor(comboBox.getAccentFloatingLabel());
             } else {
                 g2.setColor(comboBox.getForeground());
             }
-            FontMetrics metrics = g.getFontMetrics(g.getFont());
-            g.drawString(text, 24, metrics.getAscent() + (getHeight() - metrics.getHeight()) / 2);
+            FontMetrics metrics = g2.getFontMetrics(g2.getFont());
+            g2.drawString(text, 24, metrics.getAscent() + (getHeight() - metrics.getHeight()) / 2);
         }
     }
 
@@ -305,4 +301,5 @@ public class _MaterialComboBox<T> extends MaterialComboBox<T> {
             super.paint(MaterialDrawingUtils.getAliasedGraphics(g));
         }
     }
+
 }

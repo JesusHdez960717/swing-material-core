@@ -15,7 +15,7 @@ public class MaterialDatePickersFactory {
         return _MaterialDatePicker.from();
     }
 
-    public static MaterialDatePicker buildIcon() {
+    public static MaterialDatePickerIcon buildIcon() {
         return _MaterialDatePickerIcon.from();
     }
 }

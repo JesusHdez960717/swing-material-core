@@ -141,6 +141,7 @@ public class UpPanel extends MapeableContainer {
             this.setMouseExitedColor(MaterialColors.BLACK);
             this.setFont(MaterialFontRoboto.MEDIUM.deriveFont(h * 0.65f));
             this.setIconTextGap(8);
+            this.repaint();
         }
     }
 }

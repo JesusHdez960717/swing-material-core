@@ -5,12 +5,14 @@
  */
 package com.jhw.swing.material.components.textfield;
 
-import javax.swing.JTextField;
+import com.jhw.swing.material.components.container.panel._PanelTransparent;
+import com.jhw.swing.material.effects.Iconable;
 
 /**
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-public abstract class MaterialTextField<T> extends JTextField implements MaterialTextFieldDefinition<T> {
+public abstract class MaterialTextFieldIcon<T> extends _PanelTransparent implements Iconable, MaterialTextFieldDefinition<T> {
 
+    public abstract MaterialTextField getTextField();
 }

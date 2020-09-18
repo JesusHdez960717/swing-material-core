@@ -7,6 +7,7 @@ package com.jhw.swing.material.components.textfield;
 
 import com.jhw.swing.material.standards.MaterialIcons;
 import java.math.BigDecimal;
+import javax.swing.JFormattedTextField.AbstractFormatter;
 
 /**
  *
@@ -14,11 +15,11 @@ import java.math.BigDecimal;
  */
 public class _MaterialFormatedTextFieldRuntimeIcon extends _MaterialFormatedTextFieldIcon<BigDecimal> {
 
-    public static MaterialFormatedTextField from(AbstractFormatter formateer) {
+    public static MaterialFormatedTextFieldIcon from(AbstractFormatter formateer) {
         return new _MaterialFormatedTextFieldRuntimeIcon(formateer);
     }
 
-    public static MaterialFormatedTextField from(AbstractFormatter formateer, Class clazz) {
+    public static MaterialFormatedTextFieldIcon from(AbstractFormatter formateer, Class clazz) {
         return new _MaterialFormatedTextFieldRuntimeIcon(formateer, clazz);
     }
 

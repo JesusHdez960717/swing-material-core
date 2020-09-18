@@ -5,12 +5,14 @@
  */
 package com.jhw.swing.material.components.datepicker;
 
-import org.jdesktop.swingx.JXDatePicker;
+import com.jhw.swing.material.components.container.panel._PanelTransparent;
+import com.jhw.swing.material.effects.Iconable;
 
 /**
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-public abstract class MaterialDatePicker extends JXDatePicker implements MaterialDatePickerDefinition {
+public abstract class MaterialDatePickerIcon extends _PanelTransparent implements Iconable, MaterialDatePickerDefinition {
 
+    public abstract MaterialDatePicker getDatePicker();
 }

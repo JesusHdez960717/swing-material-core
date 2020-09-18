@@ -82,22 +82,8 @@ public class _MaterialFormatedTextField<T> extends MaterialFormatedTextField<T> 
 
         this.setComponentPopupMenu(CopyPastePopup.INSTANCE);
     }
-
-    @Override
-    public MaterialFormatedTextField getFormatedTextField() {
-        return this;
-    }
-
-    @Override
-    public void setIcon(Icon icon) {
-    }
-
-    @Override
-    public Icon getIcon() {
-        return null;
-    }
-
 //-------------------LINE-------------------------
+
     @Override
     public void paintLine(Graphics g2) {
         line.paintLine(g2);
