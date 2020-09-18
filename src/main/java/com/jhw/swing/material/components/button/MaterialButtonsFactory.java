@@ -5,7 +5,6 @@
  */
 package com.jhw.swing.material.components.button;
 
-import com.jhw.swing.material.components.button.prepared.*;
 import com.jhw.swing.material.components.popup.MaterialPopupFactory;
 import com.jhw.swing.material.injection.MaterialSwingInjector;
 import java.util.List;
@@ -52,7 +51,8 @@ public class MaterialButtonsFactory {
 
     //----------------PopupCircular----------------
     /**
-     * Preferiblemente usar directo con la lista de acciones.
+     * Preferiblemente usar directo con la lista de acciones que crea popup
+     * redondo chulo.
      *
      * @return
      * @deprecated
@@ -77,11 +77,4 @@ public class MaterialButtonsFactory {
         return _MaterialIconButtonRound.from();
     }
 
-    public static MaterialButton buildView() {
-        return _buttonView.from();
-    }
-
-    public static MaterialButton buildAddEdit() {
-        return _buttonAddEdit.from();
-    }
 }

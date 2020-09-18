@@ -50,22 +50,6 @@ public class EXAMPLE_TEXT_FIELDS extends javax.swing.JFrame {
         MaterialTextFieldIcon textFieldIcon = MaterialTextFactory.buildIcon();
         textFieldIcon.setLabel("icon");
         vlcSimple.add(textFieldIcon, true);
-
-        MaterialTextField textFieldDouble = MaterialTextFactory.buildDouble();
-        textFieldDouble.setLabel("text field simple double");
-        vlcSimple.add(textFieldDouble, true);
-
-        MaterialTextFieldIcon textFieldDoubleIcon = MaterialTextFactory.buildDoubleIcon();
-        textFieldDoubleIcon.setLabel("text field simple double icon");
-        vlcSimple.add(textFieldDoubleIcon, true);
-
-        MaterialTextField textFieldInt = MaterialTextFactory.buildInteger();
-        textFieldInt.setLabel("text field simple integer");
-        vlcSimple.add(textFieldInt, true);
-
-        MaterialTextFieldIcon textFieldIntIcon = MaterialTextFactory.buildIntegerIcon();
-        textFieldIntIcon.setLabel("text field simple integer icon");
-        vlcSimple.add(textFieldIntIcon, true);
         //-------------------SIMPLE-------------------------
 
         //-------------------Formated-------------------------
@@ -85,14 +69,6 @@ public class EXAMPLE_TEXT_FIELDS extends javax.swing.JFrame {
         MaterialFormatedTextFieldIcon formatedTextFieldRuntimeIcon = MaterialTextFactory.buildFormatedRuntimeIcon(CreditCardFormateer.from());
         formatedTextFieldRuntimeIcon.setLabel("formated runtime simple icon");
         vlcFormated.add(formatedTextFieldRuntimeIcon, true);
-
-        MaterialFormatedTextField formatedTextFieldMoney = MaterialTextFactory.buildFormatedMoney();
-        formatedTextFieldMoney.setLabel("formated runtime money");
-        vlcFormated.add(formatedTextFieldMoney, true);
-
-        MaterialFormatedTextFieldIcon formatedTextFieldMoneyIcon = MaterialTextFactory.buildFormatedMoneyIcon();
-        formatedTextFieldMoneyIcon.setLabel("formated runtime money icon");
-        vlcFormated.add(formatedTextFieldMoneyIcon, true);
         //-------------------Formated-------------------------
 
         jPanel1.add(vlcSimple.build(), BorderLayout.WEST);
