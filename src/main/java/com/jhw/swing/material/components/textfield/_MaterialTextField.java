@@ -32,6 +32,10 @@ public class _MaterialTextField<T> extends MaterialTextField<T> {
     public static MaterialTextField from() {
         return new _MaterialTextField();
     }
+
+    public static MaterialTextField from(Class clazz) {
+        return new _MaterialTextField(clazz);
+    }
     
     private final Class<? extends T> clazz;
 

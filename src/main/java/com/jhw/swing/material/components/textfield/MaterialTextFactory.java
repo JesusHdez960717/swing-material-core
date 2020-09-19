@@ -17,6 +17,10 @@ public class MaterialTextFactory {
         return _MaterialTextField.from();
     }
 
+    public static MaterialTextField build(Class clazz) {
+        return _MaterialTextField.from(clazz);
+    }
+
     public static MaterialTextFieldIcon buildIcon() {
         return _MaterialTextFieldIcon.from();
     }

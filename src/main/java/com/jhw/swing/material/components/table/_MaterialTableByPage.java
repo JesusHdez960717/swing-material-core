@@ -43,7 +43,7 @@ public class _MaterialTableByPage extends MaterialTableByPage {
 
         table = MaterialTableFactory.build();
         panelPages = MaterialContainersFactory.buildPanelTransparent();
-        textFieldPage = MaterialTextFactory.build();
+        textFieldPage = MaterialTextFactory.build(Integer.class);
         labelTotPag = MaterialLabelsFactory.build();
         buttonDouble = MaterialButtonsFactory.buildDouble();
         spinner = new javax.swing.JSpinner();
