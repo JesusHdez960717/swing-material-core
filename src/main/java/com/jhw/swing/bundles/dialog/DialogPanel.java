@@ -24,6 +24,8 @@ public class DialogPanel extends JDialog {
         this.setUndecorated(true);
 
         setUpDialog();
+        
+        this.setVisible(true);
     }
 
     public DialogPanel(String title, JPanel modelPanel) {
@@ -33,6 +35,19 @@ public class DialogPanel extends JDialog {
         this.setTitle(title);
 
         setUpDialog();
+        
+        this.setVisible(true);
+    }
+
+    public DialogPanel(String title, JPanel modelPanel, boolean visible) {
+        super();
+        this.basePanel = modelPanel;
+        this.setUndecorated(false);
+        this.setTitle(title);
+
+        setUpDialog();
+        
+        this.setVisible(visible);
     }
 
     private void setUpDialog() {
@@ -44,7 +59,6 @@ public class DialogPanel extends JDialog {
         this.setLocationRelativeTo(null);
         this.setResizable(false);
 
-        this.setVisible(true);
     }
 
     public JPanel getBasePanel() {
