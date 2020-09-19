@@ -39,6 +39,11 @@ public class MaterialComponentsInjectionConfig extends AbstractModule {
                 MatcherByName.from(ToolTipInterceptor.SIGNATURE),
                 ToolTipInterceptor.from()
         );
+        bindInterceptor(
+                Matchers.subclassesOf(JButton.class),
+                MatcherByName.from(ActionInterceptor.SIGNATURE),
+                ActionInterceptor.from()
+        );
         //bind(ButtonAopInter.class).to(ButtonAOP.class);
     }
 

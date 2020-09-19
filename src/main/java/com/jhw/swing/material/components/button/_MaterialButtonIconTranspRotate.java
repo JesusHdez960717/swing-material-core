@@ -22,19 +22,19 @@ import com.jhw.swing.util.SafePropertySetter;
 @Foreground_Force_Icon
 public class _MaterialButtonIconTranspRotate extends _MaterialButtonIconTransparent {
 
+    public static MaterialButtonIcon from() {
+        return MaterialSwingInjector.getImplementation(_MaterialButtonIconTranspRotate.class);
+    }
+
     private final int DURATION = 250;
     private Icon newIcon;
     private int anglulo = 0;
     private Animator anim;
 
-    public static MaterialButtonIcon from() {
-        return MaterialSwingInjector.getImplementation(_MaterialButtonIconTranspRotate.class);
-    }
-
     /**
-     * NO USAR ESTE CONSTRUCTOR. Usar el _MaterialButtonIconTranspRotate.from() que internamente
-     * le asigna el proxy y demas para el trabajo automatizado con AOP.(Aspect
-     * Oriented Programing)
+     * NO USAR ESTE CONSTRUCTOR. Usar el _MaterialButtonIconTranspRotate.from()
+     * que internamente le asigna el proxy y demas para el trabajo automatizado
+     * con AOP.(Aspect Oriented Programing)
      *
      * @deprecated
      */
