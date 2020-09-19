@@ -17,6 +17,7 @@ import com.jhw.swing.material.components.labels.MaterialLabelsFactory;
 import com.jhw.swing.material.standards.MaterialColors;
 import com.jhw.swing.material.standards.MaterialIcons;
 import com.jhw.swing.util.interfaces.BindableComponent;
+import com.jhw.swing.util.interfaces.MaterialComponent;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Cursor;
@@ -37,6 +38,10 @@ import javax.swing.SwingConstants;
  */
 public class _MaterialColorChooserCore extends _PanelGradient implements BindableComponent<Color> {
 
+    public static _MaterialColorChooserCore from() {
+        return new _MaterialColorChooserCore();
+    }
+
     private static final Dimension DEFAULT_DIM = new Dimension(30, 30);
     private static final String DEFAULT_TEXT = "Ejemplo de texto";
     private static final Icon DEFAULT_ICON = MaterialIcons.PALETTE;
@@ -54,7 +59,7 @@ public class _MaterialColorChooserCore extends _PanelGradient implements Bindabl
         this.setLayout(new BorderLayout());
 
         colors = MaterialContainersFactory.buildPanelTransparent();
-        colors.setLayout(new GridLayout(DEFAULT_ROW, DEFAULT_COL));
+        colors.setLayout(new GridLayout(DEFAULT_ROW, DEFAULT_COL, 0, 0));
         createColors();
 
         buttonTest = MaterialButtonsFactory.buildButton();
@@ -74,6 +79,8 @@ public class _MaterialColorChooserCore extends _PanelGradient implements Bindabl
         this.add(hlcTest.build(), BorderLayout.SOUTH);
     }
 
+    private class Btn extends JButton implements MaterialComponent {
+    }
     private JPanel colors;
     private MaterialButton buttonTest;
     private MaterialLabel labelTest;
@@ -131,7 +138,7 @@ public class _MaterialColorChooserCore extends _PanelGradient implements Bindabl
 
                     String rgba = c.getRed() + ", " + c.getGreen() + ", " + c.getBlue() + ", " + c.getAlpha();
 
-                    JButton btn = new JButton();
+                    JButton btn = new Btn();
                     btn.setCursor(Cursor.getPredefinedCursor(java.awt.Cursor.HAND_CURSOR));
                     btn.setBorder(null);
                     btn.setPreferredSize(DEFAULT_DIM);
