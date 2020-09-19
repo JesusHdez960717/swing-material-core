@@ -6,6 +6,7 @@
 package com.jhw.swing.examples;
 
 import com.jhw.swing.material.components.clock.MaterialClockFactory;
+import com.jhw.swing.material.components.colorchooser.MaterialColorChooserFactory;
 import com.jhw.swing.material.components.colorchooser._MaterialColorChooser;
 import com.jhw.swing.material.components.container.layout.VerticalLayoutContainer;
 import com.jhw.swing.material.standards.MaterialColors;
@@ -26,7 +27,8 @@ public class EXAMPLE_COLOR_CHOOSER extends javax.swing.JFrame {
         initComponents();
 
         VerticalLayoutContainer.builder vlc = VerticalLayoutContainer.builder();
-        vlc.add(_MaterialColorChooser.from(), true);
+        vlc.add(MaterialColorChooserFactory.build(), true);
+        vlc.add(MaterialColorChooserFactory.buildIcon(), true);
 
         jPanel1.setBackground(MaterialColors.BLUE_50);
         jPanel1.setLayout(new BorderLayout());

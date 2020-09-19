@@ -5,12 +5,17 @@
  */
 package com.jhw.swing.material.components.colorchooser;
 
-import com.jhw.swing.material.components.button._MaterialButton;
-
 /**
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-public abstract class MaterialColorChooser extends _MaterialButton implements MaterialColorChooserDefinition {
+public class MaterialColorChooserFactory {
 
+    public static final MaterialColorChooser build() {
+        return _MaterialColorChooser.from();
+    }
+
+    public static final MaterialColorChooserIcon buildIcon() {
+        return _MaterialColorChooserIcon.from();
+    }
 }
