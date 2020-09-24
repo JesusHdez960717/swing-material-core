@@ -100,6 +100,7 @@ public class _MaterialTextArea extends _MaterialScrollPaneCore implements Bindab
             this.setFont(MaterialFontRoboto.REGULAR.deriveFont(16f));
             this.setLineWrap(true);
             this.setComponentPopupMenu(CopyPastePopup.INSTANCE);
+            this.setTabSize(2);
         }
 
         @Override
