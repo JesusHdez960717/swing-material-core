@@ -53,7 +53,7 @@ public class EXAMPLE_TEXT_AREA extends javax.swing.JFrame {
 
         _MaterialTextArea text = MaterialTextAreaFactory.build();
         text.setBorderTitle("buajajajaja");
-        text.setObject("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+        text.setObject("\n\n\n\n\n\n\n");
 
         jPanel1.add(text);
 

@@ -46,6 +46,7 @@ public class _MaterialPanelComponent extends _MaterialPanel {
      */
     @Deprecated
     public _MaterialPanelComponent(int gap) {
+        this.setLayout(new BorderLayout());
         setGap(gap);
     }
 
@@ -59,8 +60,6 @@ public class _MaterialPanelComponent extends _MaterialPanel {
 
     @Override
     public Component add(Component comp) {
-        this.removeAll();
-        this.setLayout(new BorderLayout());
         this.add(comp, BorderLayout.CENTER);
         return comp;
     }

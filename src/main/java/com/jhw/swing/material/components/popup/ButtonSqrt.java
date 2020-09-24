@@ -10,6 +10,7 @@ import com.jhw.swing.material.injection.Background_Force_Foreground;
 import com.jhw.swing.material.injection.Foreground_Force_Icon;
 import com.jhw.swing.material.injection.MaterialSwingInjector;
 import com.jhw.swing.material.standards.MaterialColors;
+import com.jhw.swing.util.AbstractActionUtils;
 import com.jhw.swing.util.MaterialDrawingUtils;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -73,7 +74,7 @@ public class ButtonSqrt extends _MaterialButton {
         if (getText().isEmpty()) {//si no tiene texto pongo el icono mas pequeño para que se ajuste al icono
             prop = 1.75f;
         }
-        if (getIcon() != null) {
+        if (getIcon() != null) {//si tiene icono lo ajusto
             int s = (int) (prop * Math.max(getIcon().getIconWidth(), getIcon().getIconHeight()));
             this.setPreferredSize(new Dimension(s, s));
         } else {

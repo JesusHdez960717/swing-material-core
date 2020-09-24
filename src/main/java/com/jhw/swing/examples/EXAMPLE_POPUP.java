@@ -10,6 +10,7 @@ import com.jhw.swing.material.components.button.MaterialButtonsFactory;
 import com.jhw.swing.material.standards.MaterialColors;
 import com.jhw.swing.material.standards.MaterialIcons;
 import com.jhw.swing.ui.MaterialLookAndFeel;
+import com.jhw.swing.util.AbstractActionUtils;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
@@ -66,17 +67,19 @@ public class EXAMPLE_POPUP extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Click en el boton de git.");
             }
         });
-        actions.add(new AbstractAction("JAVA", MaterialIcons.TEC_JAVA.deriveIcon(24)) {
+        Action ac = new AbstractAction("JAVA", MaterialIcons.TEC_JAVA.deriveIcon(24)) {
             @Override
             public void actionPerformed(ActionEvent e) {
                 JOptionPane.showMessageDialog(null, "Click en el boton de java.");
             }
-        });
+        };
+        ac.putValue(AbstractActionUtils.KEY_BACKGROUND, MaterialColors.YELLOW_600);
+        actions.add(ac);
 
         MaterialButton btn = MaterialButtonsFactory.buildPopup(actions);
         btn.setText("Exportar");
         btn.setIcon(MaterialIcons.EXPORT);
-        
+
         jPanel1.add(btn);
     }
 

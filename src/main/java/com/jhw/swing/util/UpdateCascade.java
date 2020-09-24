@@ -5,8 +5,15 @@ import java.awt.Component;
 import java.awt.Container;
 
 /**
+ * @Deprecated <br/>
  * Actualiza recursivamente una serie de elementos que implementes la interfaz
  * actualizable.
+ *
+ * @THIS <br/>
+ * Ya no actualiza todos los componentes recursivamente, xq cada componente
+ * tiene que saber quienes son los hijos que va a actualizar. Ahora solo se
+ * limita a actualizar la lista de componentes, que eventualmente no va a
+ * actualizar ninguno xq el bind direcot con el caso de uso
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
@@ -24,10 +31,11 @@ public class UpdateCascade {
 
     public void updateCascade() {
         try {
-            for (Update act : toUpdate) {
-                act.update();//actualiza todos
-                if (act instanceof Container) {//si es container se mete adentro
-                    updateCascadeRecursive((Container) act);
+            if (toUpdate != null) {
+                for (Update upd : toUpdate) {
+                    if (upd != null) {
+                        upd.update();
+                    }
                 }
             }
         } catch (Exception e) {

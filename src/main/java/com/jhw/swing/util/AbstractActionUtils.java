@@ -12,6 +12,9 @@ import javax.swing.ImageIcon;
  */
 public class AbstractActionUtils {
 
+    public static final String KEY_BACKGROUND = "BACKGROUND";
+    public static final String KEY_FOREGROUND = "FOREGROUND";
+
     public static AbstractAction from(ImageIcon icon) {
         return new AbstractAction("empty", icon) {
             @Override
