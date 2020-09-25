@@ -9,6 +9,7 @@ import com.jhw.swing.material.components.taskpane.TaskButton;
 import com.jhw.swing.util.enums.GradientEnum;
 import java.awt.Component;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.function.Consumer;
 
 /**
@@ -120,4 +121,15 @@ public class DashBoardExtends extends DashBoardSimple {
     public Component getView(String string) {
         return dashboardCore.getView(string);
     }
+
+    @Override
+    public void removeView(Component ct) {
+        dashboardCore.removeView(ct);
+    }
+
+    @Override
+    public Map<String, Component> getAll() {
+        return dashboardCore.getAll();
+    }
+
 }
