@@ -50,7 +50,7 @@ public class _MaterialPanelComponent extends _MaterialPanel {
         setGap(gap);
     }
 
-    protected void setGap(int gap) {
+    public void setGap(int gap) {
         this.setBorder(new EmptyBorder(
                 MaterialShadow.OFFSET_TOP + gap,
                 MaterialShadow.OFFSET_LEFT + gap,
