@@ -5,7 +5,8 @@
  */
 package com.jhw.swing.util;
 
-import com.jhw.swing.material.standards.MaterialColors;
+import com.clean.core.app.services.Notification;
+import com.clean.core.app.services.NotificationsGeneralType;
 import java.awt.Toolkit;
 import java.awt.datatransfer.StringSelection;
 
@@ -22,9 +23,7 @@ public class ClipboardUtils {
                         new StringSelection(textToCopy),
                         null
                 );
-        /*NotificationFactory.buildTextTOAST(NotificationBuilder.builder()
-                .location(NotificationLocation.DOWN_CENTER)
-                .color(MaterialColors.GREY_900)
-                .text("\"" + textToCopy + "\" copiado al portapapeles"));*/
+        String text = "\"" + textToCopy + "\" copiado al portapapeles";
+        Notification.showNotification(NotificationsGeneralType.NOTIFICATION_SIMPLE_TEXT, text);
     }
 }
