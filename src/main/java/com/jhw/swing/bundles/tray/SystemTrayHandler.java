@@ -11,7 +11,7 @@ import javax.swing.JFrame;
 import static java.awt.Frame.*;
 
 /**
- *
+ * @author Mohammad Faisal ermohammadfaisal.blogspot.com
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
 public class SystemTrayHandler {
@@ -56,7 +56,7 @@ public class SystemTrayHandler {
     }
 
     /**
-     * Esconde el es System tray el frame, por lo que agrega el trayIcon y pone
+     * Esconde en el System tray el frame, por lo que agrega el trayIcon y pone
      * setVisible(false) al frame
      */
     private void hideInTray() {

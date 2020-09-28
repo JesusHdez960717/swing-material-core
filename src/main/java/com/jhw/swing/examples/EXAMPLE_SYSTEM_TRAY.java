@@ -19,7 +19,7 @@ import javax.swing.UnsupportedLookAndFeelException;
 
 /**
  *
- * @author Mohammad Faisal ermohammadfaisal.blogspot.com
+ * @author Mohammad Faisal ermohammadfaisal.blogspot.com,
  * facebook.com/m.faisal6621
  *
  */
