@@ -6,8 +6,6 @@
 package com.jhw.swing.examples;
 
 import com.jhw.swing.bundles.dnd.DragHandler;
-import com.jhw.swing.bundles.dnd.DragPane;
-import com.jhw.swing.bundles.dnd.DropPane;
 import com.jhw.swing.bundles.dnd.DropHandler;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -74,6 +72,7 @@ public class EXAMPLE_DRAG_DROP_PANELS implements Serializable {
 
     }
 
+    //Rojo, el que se va a arrastrar
     public class DragPane extends JPanel {
 
         public DragPane() {
@@ -89,6 +88,7 @@ public class EXAMPLE_DRAG_DROP_PANELS implements Serializable {
 
     }
 
+    //azul, donde se suelta
     public class DropPane extends JPanel {
 
         DropTarget dropTarget;
@@ -117,6 +117,7 @@ public class EXAMPLE_DRAG_DROP_PANELS implements Serializable {
         }
     }
 
+    //verde, donde inicia, se le agrego tanquien que se 'drop' aqui
     public class OutterPane extends JPanel {
 
         DropTarget dropTarget;
