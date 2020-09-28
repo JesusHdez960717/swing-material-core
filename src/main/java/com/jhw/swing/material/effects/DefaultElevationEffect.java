@@ -13,11 +13,12 @@ import com.jhw.personalization.core.domain.Personalization;
 import com.jhw.personalization.services.PersonalizationHandler;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.io.Serializable;
 
 /**
  * An elevation effect.
  */
-public class DefaultElevationEffect<T extends JComponent & ElevationEffect> implements ElevationEffect, PropertyChangeListener {
+public class DefaultElevationEffect<T extends JComponent & ElevationEffect> implements ElevationEffect, PropertyChangeListener, Serializable {
 
     public static final long DURATION = 250;
 

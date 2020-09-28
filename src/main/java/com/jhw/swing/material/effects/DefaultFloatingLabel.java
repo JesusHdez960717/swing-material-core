@@ -18,11 +18,12 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import javax.swing.JComponent;
 import static com.jhw.swing.material.standards.Utils.*;
+import java.io.Serializable;
 
 /**
  * A floating label of a component that complies to the FloatingLabelStandar
  */
-public class DefaultFloatingLabel<T extends JComponent & BindableComponent> implements FloatingLabel, PropertyChangeListener {
+public class DefaultFloatingLabel<T extends JComponent & BindableComponent> implements FloatingLabel, Serializable, PropertyChangeListener {
 
     public static final int DURATION = 200;
 
@@ -109,7 +110,6 @@ public class DefaultFloatingLabel<T extends JComponent & BindableComponent> impl
         }
     }
 //-------------------FLOATING_LABEL-------------------------
-
 
     private void update() {
         if (animator != null) {

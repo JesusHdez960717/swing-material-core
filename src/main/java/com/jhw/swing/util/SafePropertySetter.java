@@ -6,6 +6,7 @@ import org.jdesktop.core.animation.timing.TimingTarget;
 import org.jdesktop.core.animation.timing.TimingTargetAdapter;
 
 import java.awt.*;
+import java.io.Serializable;
 import java.util.concurrent.atomic.AtomicReference;
 
 /**
@@ -19,7 +20,7 @@ import java.util.concurrent.atomic.AtomicReference;
  * Framework</a>
  * @see org.jdesktop.core.animation.timing.PropertySetter
  */
-public class SafePropertySetter<T> extends TimingTargetAdapter {
+public class SafePropertySetter<T> extends TimingTargetAdapter implements Serializable {
 
     private final AtomicReference<KeyFrames<T>> keyFrames;
     private final boolean isToAnimation;
@@ -98,7 +99,7 @@ public class SafePropertySetter<T> extends TimingTargetAdapter {
     public interface GetterAndSetter<T> extends Getter<T>, Setter<T> {
     }
 
-    public static class Property<T> implements GetterAndSetter<T> {
+    public static class Property<T> implements GetterAndSetter<T>, Serializable {
 
         private final Component component;
         private T value;
