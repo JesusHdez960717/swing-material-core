@@ -5,10 +5,13 @@
  */
 package com.jhw.swing.bundles.tray;
 
+import com.jhw.swing.material.standards.MaterialIcons;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.JFrame;
 import static java.awt.Frame.*;
+import javax.swing.AbstractAction;
+import javax.swing.JPopupMenu;
 
 /**
  * @author Mohammad Faisal ermohammadfaisal.blogspot.com
@@ -23,12 +26,10 @@ public class SystemTrayInstaller {
     private final TrayIcon trayIcon;
     private final JFrame target;
 
-    public SystemTrayInstaller(JFrame target, PopupMenu popup) {
+    public SystemTrayInstaller(JFrame target, JPopupMenu popup) {
         this.target = target;
 
-        addOpenCloseItems(popup);
-
-        trayIcon = new TrayIcon(target.getIconImage(), "SystemTray Demo", popup);
+        trayIcon = new TrayIcon(target.getIconImage(), "SystemTray Demo");
         trayIcon.setImageAutoSize(true);
 
         trayIcon.addActionListener((ActionEvent e) -> {
@@ -36,8 +37,23 @@ public class SystemTrayInstaller {
         });
         trayIcon.addMouseListener(new MouseAdapter() {
             @Override
-            public void mouseClicked(MouseEvent e) {
-                System.out.println("Mouse clicked tryIcon");
+            public void mouseReleased(MouseEvent e) {
+                maybeShowPopup(e);
+                System.out.println("release");
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+                maybeShowPopup(e);
+                System.out.println("presed");
+            }
+
+            private void maybeShowPopup(MouseEvent e) {
+                if (e.isPopupTrigger()) {
+                    popup.setLocation(e.getX(), (int) (e.getY() - popup.getPreferredSize().getWidth()));
+                    popup.setInvoker(popup);
+                    popup.setVisible(true);
+                }
             }
         });
 
@@ -79,22 +95,8 @@ public class SystemTrayInstaller {
      * Show action, setVisible(true), setExtendedState(JFrame.NORMAL).
      */
     private void show() {
-        SystemTrayInstaller.this.target.setVisible(true);
-        SystemTrayInstaller.this.target.setExtendedState(JFrame.NORMAL);
-    }
-
-    private void addOpenCloseItems(PopupMenu popup) {
-        MenuItem exitMenuItem = new MenuItem("Cerrar");
-        exitMenuItem.addActionListener((ActionEvent e) -> {
-            SystemTrayInstaller.this.target.dispose();
-        });
-        popup.add(exitMenuItem);
-
-        MenuItem openMenuItem = new MenuItem("Abrir");
-        openMenuItem.addActionListener((ActionEvent e) -> {
-            show();
-        });
-        popup.add(openMenuItem);
+        target.setVisible(true);
+        target.setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
 
     public static builder builder(JFrame frame) {
@@ -104,14 +106,31 @@ public class SystemTrayInstaller {
     public static class builder {
 
         private final JFrame target;
-        private PopupMenu popup = new PopupMenu();
+        private JPopupMenu popup = new JPopupMenu();
 
         public builder(JFrame target) {
             this.target = target;
+            addOpenCloseItems(popup);
         }
 
-        public void setPopup(PopupMenu popup) {
+        public void popup(JPopupMenu popup) {
             this.popup = popup;
+        }
+
+        private void addOpenCloseItems(JPopupMenu popup) {
+            popup.add(new AbstractAction("Cerrar", MaterialIcons.CLOSE) {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    builder.this.target.dispatchEvent(new WindowEvent(builder.this.target, WindowEvent.WINDOW_CLOSING));
+                }
+            });
+            popup.add(new AbstractAction("Abrir", MaterialIcons.OPEN_WITH) {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    target.setVisible(true);
+                    target.setExtendedState(JFrame.MAXIMIZED_BOTH);
+                }
+            });
         }
 
         public SystemTrayInstaller build() {
