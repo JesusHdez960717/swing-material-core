@@ -37,6 +37,7 @@ public class EXAMPLE_BUTTONS extends javax.swing.JFrame {
         VerticalLayoutContainer.builder vlc = VerticalLayoutContainer.builder();
 
         MaterialButton btnSimple = MaterialButtonsFactory.buildButton();
+        btnSimple.setToolTipText("hi\nbuajajaja\n123\n");
         btnSimple.setText("material button simple");
         btnSimple.setIcon(MaterialIcons.ACCESSIBILITY);
         btnSimple.setBackground(Color.yellow);
@@ -46,6 +47,7 @@ public class EXAMPLE_BUTTONS extends javax.swing.JFrame {
         vlc.add(MaterialButtonsFactory.buildDouble());
 
         MaterialButton flat = MaterialButtonsFactory.buildFlat();
+        flat.setToolTipText("<html>hi<br>buajajaja<br>123<br></html>");
         flat.setText("flat simple");
         vlc.add(flat);
 

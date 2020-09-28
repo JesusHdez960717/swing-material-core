@@ -27,6 +27,7 @@ import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Consumer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -213,6 +214,7 @@ public class DashBoardTaskPane extends DashBoardSimple implements PropertyChange
 
     @Override
     public void addView(String name, Component compoment) {
+        compoment.setName(name);
         panelContent.add(name, compoment);
     }
 
@@ -229,6 +231,20 @@ public class DashBoardTaskPane extends DashBoardSimple implements PropertyChange
             }
         }
         return panelContent;
+    }
+
+    @Override
+    public void removeView(Component component) {
+        panelContent.remove(component);
+    }
+
+    @Override
+    public Map<String, Component> getAll() {
+        Map<String, Component> m = new HashMap();
+        for (Component component : panelContent.getComponents()) {
+            m.put(component.getName(), component);
+        }
+        return m;
     }
 
     private void personalize() {

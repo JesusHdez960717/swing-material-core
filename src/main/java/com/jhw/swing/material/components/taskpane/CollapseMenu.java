@@ -119,7 +119,7 @@ public class CollapseMenu extends JPanel {
 
     // Variables declaration - do not modify//:variables
     private MaterialButtonIcon jButtonIcono;
-    private MaterialButton jButtonNombre ;
+    private MaterialButton jButtonNombre;
     private MaterialLabel jLabelCant;
     private org.jdesktop.swingx.JXCollapsiblePane jPanelCollapsible;
     private javax.swing.JPanel jPanelFixed;
@@ -173,6 +173,13 @@ public class CollapseMenu extends JPanel {
         //add the popup
         JMenuItem item = jPopupMenu1.add(action);//add to the menu
         item.addActionListener(childSelectedListener);
+    }
+
+    public void clear() {
+        buttons.clear();
+        jPanelSubActions.removeAll();
+        jLabelCant.setText("0");
+        jPopupMenu1.removeAll();
     }
 
     public void childSelected() {

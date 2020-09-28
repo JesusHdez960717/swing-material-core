@@ -27,6 +27,12 @@ public class ToolTipInterceptor implements MethodInterceptor {
             if (tip.trim().isEmpty()) {
                 return null;
             }
+            
+            //formateo para multi-linea
+            String str = invocation.getArguments()[0].toString();
+            String format = "<html>" + str.replace("\n", "<br>") + "</html>";
+            invocation.getArguments()[0] = format;
+
             return invocation.proceed();
         }
         return null;
