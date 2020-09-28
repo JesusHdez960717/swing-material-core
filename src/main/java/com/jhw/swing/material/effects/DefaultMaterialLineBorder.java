@@ -17,13 +17,14 @@ import java.awt.geom.Rectangle2D;
 import java.awt.geom.RoundRectangle2D;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.io.Serializable;
 import javax.swing.border.LineBorder;
 
 /**
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-public class DefaultMaterialLineBorder extends LineBorder implements MaterialLineBorder {
+public class DefaultMaterialLineBorder extends LineBorder implements MaterialLineBorder, Serializable {
 
     private transient final PropertyChangeSupport propertyChangeSupport = new PropertyChangeSupport(this);
 
@@ -95,7 +96,7 @@ public class DefaultMaterialLineBorder extends LineBorder implements MaterialLin
     @Override
     public void setBorderThickness(float thickness) {
         this.borderThickness = thickness;
-        borderStroke = new BasicStroke(borderThickness);
+        borderStroke = new SerializedStroke(borderThickness);
     }
 
     @Override
@@ -131,7 +132,7 @@ public class DefaultMaterialLineBorder extends LineBorder implements MaterialLin
         private int borderRadius = 5;
         private float borderThickness = 0;
         private Color color = MaterialColors.GREEN_700;
-        private Stroke borderStroke = new BasicStroke(borderThickness);
+        private Stroke borderStroke = new SerializedStroke(borderThickness);
         public PropertyChangeListener[] listeners = new PropertyChangeListener[0];
 
         public builder listeners(PropertyChangeListener... listeners) {
@@ -186,4 +187,26 @@ public class DefaultMaterialLineBorder extends LineBorder implements MaterialLin
         propertyChangeSupport.removePropertyChangeListener(listener);
     }
 
+    private static class SerializedStroke extends BasicStroke implements Serializable {
+
+        public SerializedStroke(float f, int i, int i1, float f1, float[] floats, float f2) {
+            super(f, i, i1, f1, floats, f2);
+        }
+
+        public SerializedStroke(float f, int i, int i1, float f1) {
+            super(f, i, i1, f1);
+        }
+
+        public SerializedStroke(float f, int i, int i1) {
+            super(f, i, i1);
+        }
+
+        public SerializedStroke(float f) {
+            super(f);
+        }
+
+        public SerializedStroke() {
+        }
+
+    }
 }

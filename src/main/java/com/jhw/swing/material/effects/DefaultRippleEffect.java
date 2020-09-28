@@ -17,13 +17,14 @@ import com.jhw.personalization.core.domain.Personalization;
 import com.jhw.personalization.services.PersonalizationHandler;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.io.Serializable;
 
 /**
  * A {@code DefaultRippleEffect} is applied into certain components, like
  * buttons and certain list elements. Basically, is that wave of color that
  * appears when you click stuff.
  */
-public class DefaultRippleEffect implements RippleEffect, PropertyChangeListener {
+public class DefaultRippleEffect implements RippleEffect, PropertyChangeListener, Serializable {
 
     public static final int DURATION = 750;
 

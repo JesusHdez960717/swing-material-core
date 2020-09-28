@@ -12,6 +12,7 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.io.Serializable;
 import java.util.concurrent.TimeUnit;
 import javax.swing.JComponent;
 import org.jdesktop.core.animation.timing.Animator;
@@ -23,7 +24,7 @@ import org.jdesktop.core.animation.timing.interpolators.SplineInterpolator;
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  * @param <T>
  */
-public class DefaultColorFadeInto<T extends JComponent & MouseAdapterInfo> implements ColorFadeInto, PropertyChangeListener {
+public class DefaultColorFadeInto<T extends JComponent & MouseAdapterInfo> implements ColorFadeInto, PropertyChangeListener, Serializable {
 
     private final T target;
     private Animator animator;
