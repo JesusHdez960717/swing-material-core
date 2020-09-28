@@ -5,7 +5,7 @@
  */
 package com.jhw.swing.examples;
 
-import com.jhw.swing.bundles.tray.SystemTrayHandler;
+import com.jhw.swing.bundles.tray.SystemTrayInstaller;
 import com.jhw.swing.material.standards.MaterialIcons;
 import com.jhw.swing.ui.MaterialLookAndFeel;
 import java.awt.*;
@@ -34,7 +34,7 @@ public class EXAMPLE_SYSTEM_TRAY extends JFrame {
 
         setIconImage(MaterialIcons.ADD.getImage());
 
-        SystemTrayHandler.builder(this).build();
+        SystemTrayInstaller.builder(this).build();
         //SystemTrayHandler.installSystemTray(this);
 
         this.setLocationRelativeTo(null);

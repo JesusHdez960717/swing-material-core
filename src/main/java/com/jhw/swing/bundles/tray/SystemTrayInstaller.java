@@ -14,16 +14,16 @@ import static java.awt.Frame.*;
  * @author Mohammad Faisal ermohammadfaisal.blogspot.com
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-public class SystemTrayHandler {
+public class SystemTrayInstaller {
 
-    public static SystemTrayHandler installSystemTray(JFrame frame) {
-        return SystemTrayHandler.builder(frame).build();
+    public static SystemTrayInstaller installSystemTray(JFrame frame) {
+        return SystemTrayInstaller.builder(frame).build();
     }
 
     private final TrayIcon trayIcon;
     private final JFrame target;
 
-    public SystemTrayHandler(JFrame target, PopupMenu popup) {
+    public SystemTrayInstaller(JFrame target, PopupMenu popup) {
         this.target = target;
 
         addOpenCloseItems(popup);
@@ -79,14 +79,14 @@ public class SystemTrayHandler {
      * Show action, setVisible(true), setExtendedState(JFrame.NORMAL).
      */
     private void show() {
-        SystemTrayHandler.this.target.setVisible(true);
-        SystemTrayHandler.this.target.setExtendedState(JFrame.NORMAL);
+        SystemTrayInstaller.this.target.setVisible(true);
+        SystemTrayInstaller.this.target.setExtendedState(JFrame.NORMAL);
     }
 
     private void addOpenCloseItems(PopupMenu popup) {
         MenuItem exitMenuItem = new MenuItem("Cerrar");
         exitMenuItem.addActionListener((ActionEvent e) -> {
-            SystemTrayHandler.this.target.dispose();
+            SystemTrayInstaller.this.target.dispose();
         });
         popup.add(exitMenuItem);
 
@@ -114,8 +114,8 @@ public class SystemTrayHandler {
             this.popup = popup;
         }
 
-        public SystemTrayHandler build() {
-            return new SystemTrayHandler(target, popup);
+        public SystemTrayInstaller build() {
+            return new SystemTrayInstaller(target, popup);
         }
     }
 }
