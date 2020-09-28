@@ -33,7 +33,9 @@ public class EXAMPLE_SYSTEM_TRAY extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         setIconImage(MaterialIcons.ADD.getImage());
-        SystemTrayHandler.installSystemTray(this);
+
+        SystemTrayHandler.builder(this).build();
+        //SystemTrayHandler.installSystemTray(this);
 
         this.setLocationRelativeTo(null);
     }

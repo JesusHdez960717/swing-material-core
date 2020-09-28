@@ -17,11 +17,7 @@ import static java.awt.Frame.*;
 public class SystemTrayHandler {
 
     public static SystemTrayHandler installSystemTray(JFrame frame) {
-        return new SystemTrayHandler(frame, new PopupMenu());
-    }
-
-    public static SystemTrayHandler installSystemTray(JFrame frame, PopupMenu popup) {
-        return new SystemTrayHandler(frame, popup);
+        return SystemTrayHandler.builder(frame).build();
     }
 
     private final TrayIcon trayIcon;
@@ -88,18 +84,38 @@ public class SystemTrayHandler {
     }
 
     private void addOpenCloseItems(PopupMenu popup) {
-        MenuItem exitMenuItem = new MenuItem("Exit");
+        MenuItem exitMenuItem = new MenuItem("Cerrar");
         exitMenuItem.addActionListener((ActionEvent e) -> {
-            System.out.println("Exiting....");
-            System.exit(0);//TODO
+            SystemTrayHandler.this.target.dispose();
         });
         popup.add(exitMenuItem);
 
-        MenuItem openMenuItem = new MenuItem("Open");
+        MenuItem openMenuItem = new MenuItem("Abrir");
         openMenuItem.addActionListener((ActionEvent e) -> {
             show();
         });
         popup.add(openMenuItem);
     }
 
+    public static builder builder(JFrame frame) {
+        return new builder(frame);
+    }
+
+    public static class builder {
+
+        private final JFrame target;
+        private PopupMenu popup = new PopupMenu();
+
+        public builder(JFrame target) {
+            this.target = target;
+        }
+
+        public void setPopup(PopupMenu popup) {
+            this.popup = popup;
+        }
+
+        public SystemTrayHandler build() {
+            return new SystemTrayHandler(target, popup);
+        }
+    }
 }
