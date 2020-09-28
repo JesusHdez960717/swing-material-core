@@ -60,7 +60,17 @@ public class DragHandler implements DragGestureListener, DragSourceListener, Ser
         // Start the "drag" process...
         DragSource ds = dge.getDragSource();
         ds.startDrag(dge, null, transferable, this);
+        doDrag();
+    }
 
+    /**
+     * Do the visual action of the drag, by default, remove the panel from it's
+     * parent
+     *
+     * @deprecated
+     */
+    @Deprecated
+    protected void doDrag() {
         parent.remove(getPanel());
         // Update the display
         parent.invalidate();
@@ -88,12 +98,33 @@ public class DragHandler implements DragGestureListener, DragSourceListener, Ser
         // If the drop was not successful, we need to
         // return the component back to it's previous
         // parent
-        if (!dsde.getDropSuccess()) {
-            getParent().add(getPanel());
+        if (dsde.getDropSuccess()) {
+            dragSuccess();
         } else {
-            getPanel().remove(getPanel());
+            dragFail();
         }
         getParent().invalidate();
         getParent().repaint();
+    }
+
+    /**
+     * If success, by default, remove for good the panel from it's parent
+     *
+     * @deprecated
+     */
+    @Deprecated
+    protected void dragSuccess() {
+        getPanel().remove(getPanel());
+    }
+
+    /**
+     * If the drag fail, by default add the component to it's parent in order to
+     * return to it's original state
+     *
+     * @deprecated
+     */
+    @Deprecated
+    protected void dragFail() {
+        getParent().add(getPanel());
     }
 }
