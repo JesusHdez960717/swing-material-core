@@ -78,7 +78,27 @@ public class EXAMPLE_DRAG_DROP_PANELS implements Serializable {
         public DragPane() {
             System.out.println("DragPane = " + this.hashCode());
             setBackground(Color.RED);
-            DragSource.getDefaultDragSource().createDefaultDragGestureRecognizer(this, DnDConstants.ACTION_MOVE, new DragHandler(this));
+            DragSource.getDefaultDragSource()
+                    .createDefaultDragGestureRecognizer(
+                            this, DnDConstants.ACTION_MOVE,
+                            new DragHandler(this) {
+                        @Override
+                        protected void dragSuccess() {
+                            //super.dragSuccess();
+                        }
+
+                        @Override
+                        protected void doDrag() {
+                            //super.doDrag();
+                        }
+
+                        @Override
+                        protected void dragFail() {
+                            //super.dragFail();
+                        }
+
+                    }
+                    );
         }
 
         @Override
