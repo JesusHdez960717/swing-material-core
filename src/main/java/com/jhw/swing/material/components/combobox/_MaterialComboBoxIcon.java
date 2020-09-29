@@ -45,7 +45,7 @@ public class _MaterialComboBoxIcon<T> extends MaterialComboBoxIcon<T> {
     public _MaterialComboBoxIcon(MaterialComboBox comboBox) {
         this.comboBox = comboBox;
         initComponents();
-        this.setIcon(MaterialIcons.COMPARE_ARROWS);
+        //this.setIcon(MaterialIcons.COMPARE_ARROWS);
 
         getComboBox().addFocusListener(new FocusListener() {
             @Override
