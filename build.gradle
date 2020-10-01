@@ -4,54 +4,30 @@ plugins {
 
 group = 'com.jhw.swing'
 
-//mainClassName = 'com.jhw.swing.examples.application.MAIN_APP_TEST'
-
 repositories {
     jcenter()
     mavenCentral()
 }
+
 compileJava{
     options.encoding='UTF-8'
 }
+
 dependencies {
     testCompile 'junit:junit:4.13'
     
-    implementation project(':utils')
-    implementation project(':clean-core')
+    implementation project(':utils-core')
+    implementation project(':clean-core-full')
     implementation project(':clean-swing')
-    implementation project(':derivable-icons')
-    implementation project(':material-standards')
-    implementation project(':material-personalization')
-        
-    //Jackson
-    compile group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.10.2'
-    compile group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: '2.10.2'
-    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.10.2'
-    
+    implementation project(':swing-derivable_icons')
+    implementation project(':swing-material-standards')
+    implementation project(':module-util-personalization')
+
     //SWINGX
     compile group: 'org.swinglabs', name: 'swingx', version: '1.6.1'
     
     //timingframework
     implementation 'net.java.timingframework:timingframework-swing:7.3.0'
     
-    //JavaX validation, solo las annotation
-    compile group: 'javax.validation', name: 'validation-api', version: '2.0.1.Final' 
-    
-    //Validator Hibernate
-    compile group: 'org.hibernate.validator', name: 'hibernate-validator', version: '6.1.0.Final'
-    compile group: 'org.hibernate.validator', name: 'hibernate-validator-annotation-processor', version: '6.1.0.Final'
-	
-    //EL, Expresion languaje(tengo entendido que para el validation)
-    compile group: 'javax.el', name: 'javax.el-api', version: '3.0.0'
-    implementation 'org.glassfish.web:javax.el:2.2.6'
-    
-    // https://mvnrepository.com/artifact/com.miglayout/miglayout-swing
     compile group: 'com.miglayout', name: 'miglayout-swing', version: '5.2'
-
-    compile group: 'org.fluttercode.datafactory', name: 'datafactory', version: '0.8'
 }
-/*
-launch4j {
-outfile = 'material.exe'
-mainClassName = 'com.jhw.swing.examples.application.Main'
-}*/
