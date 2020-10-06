@@ -1,8 +1,8 @@
 package com.jhw.swing.util;
 
 import java.awt.*;
-import com.jhw.personalization.core.domain.Personalization;
-import com.jhw.personalization.services.PersonalizationHandler;
+import com.jhw.module.util.personalization.core.domain.Personalization;
+import com.jhw.module.util.personalization.services.PersonalizationHandler;
 
 public class MaterialDrawingUtils {
 

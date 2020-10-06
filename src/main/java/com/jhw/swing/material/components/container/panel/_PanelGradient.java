@@ -1,7 +1,7 @@
 package com.jhw.swing.material.components.container.panel;
 
-import com.jhw.personalization.core.domain.Personalization;
-import com.jhw.personalization.services.PersonalizationHandler;
+import com.jhw.module.util.personalization.core.domain.Personalization;
+import com.jhw.module.util.personalization.services.PersonalizationHandler;
 import com.jhw.swing.material.effects.DefaultMaterialLineBorder;
 import com.jhw.swing.material.effects.MaterialLineBorder;
 import com.jhw.swing.material.injection.Background_Force_Foreground;
