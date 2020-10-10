@@ -39,7 +39,9 @@ public class TaskButton extends JButton implements MaterialComponent {
 
     protected TaskButton(Action a, CollapseMenu parent) {
         setAction(a);
-
+        
+        this.setToolTipText((String) a.getValue(Action.NAME));
+        
         setPreferredSize(parent.getjPanelFixed().getPreferredSize());
         setHorizontalAlignment(SwingConstants.LEADING);
 
