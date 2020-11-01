@@ -26,7 +26,7 @@ import javax.swing.UnsupportedLookAndFeelException;
 public class EXAMPLE_SYSTEM_TRAY extends JFrame {
 
     EXAMPLE_SYSTEM_TRAY() {
-        super("SystemTray test");
+        super("Title del frame");
 
         setVisible(true);
         setSize(300, 200);
