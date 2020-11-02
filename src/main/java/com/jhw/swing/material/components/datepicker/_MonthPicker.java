@@ -2,54 +2,35 @@ package com.jhw.swing.material.components.datepicker;
 
 import com.jhw.swing.material.components.combobox.*;
 import com.jhw.swing.material.injection.MaterialSwingInjector;
-import java.time.Year;
+import java.time.Month;
+import java.time.YearMonth;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Hay que usar _Month xq el java.time.Month tiene los meses como enum en
+ * ingles, x lo que hay que usar un wrapper y sobreescribir el toString
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-public class _MonthPicker extends _MaterialComboBox<Year> {
+public class _MonthPicker extends _MaterialComboBox<_Month> {
 
     public static _MonthPicker from() {
         return MaterialSwingInjector.getImplementation(_MonthPicker.class);
     }
 
-    private Year minYear = Year.now().minusYears(10);
-    private Year maxYear = Year.now().plusYears(10);
-
     public _MonthPicker() {
-        setYears();
-        setLabel("Año");
+        setMonths();
+        setLabel("Mes");
     }
 
-    private void setYears() {
-        List<Year> model = new ArrayList<>();
-        for (Year i = minYear; i.isBefore(maxYear); i = i.plusYears(1)) {
-            model.add(Year.parse(String.valueOf(i)));
+    private void setMonths() {
+        List<_Month> model = new ArrayList<>();
+        for (int i = 1; i <= 12; i++) {
+            model.add(_Month.from(i));
         }
         setModel(model);
-        this.setSelectedItem(Year.now());
-    }
-
-    public Year getMinYear() {
-        return minYear;
-    }
-
-    public void setMinYear(Year minYear) {
-        this.minYear = minYear;
-        this.setYears();
-        this.setSelectedItem(minYear);
-    }
-
-    public Year getMaxYear() {
-        return maxYear;
-    }
-
-    public void setMaxYear(Year maxYear) {
-        this.maxYear = maxYear;
-        this.setYears();
+        this.setSelectedItem(_Month.from(Month.from(YearMonth.now()).getValue()));
     }
 
 }
