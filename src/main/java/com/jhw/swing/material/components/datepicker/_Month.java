@@ -15,7 +15,7 @@ import java.util.Locale;
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-public class _Month {
+public class _Month implements Comparable<_Month> {
 
     public static _Month from(int id) {
         return new _Month(id);
@@ -31,11 +31,36 @@ public class _Month {
     public String toString() {
         String name = month.getDisplayName(TextStyle.FULL, Locale.getDefault());//cojo el nombre
 
+        //el formato del nombre
         name = Character.toUpperCase(name.charAt(0)) + name.substring(1, name.length());//primera letra mayuscula
         //name = name.toUpperCase();//all mayuscula
         //name = name.toLowerCase();//all minuscula, no hace falta, por defecto all in minusculas
 
-        name = month.getValue() + " - " + name;
+        //el numero del mes
+        //name = month.getValue() + " - " + name;// 1 - Enero
+        name += " (" + month.getValue() + ")";
         return name;
     }
+
+    @Override
+    public int compareTo(_Month o) {
+        return month.compareTo(o.month);
+    }
+
+    @Override
+    public int hashCode() {
+        return month.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Month) {
+            return month.equals((Month) obj);
+        }
+        if (!(obj instanceof _Month)) {
+            return false;
+        }
+        return this.compareTo((_Month) obj) == 0;
+    }
+
 }
