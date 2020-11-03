@@ -10,13 +10,13 @@ import com.jhw.swing.material.components.container.layout.VerticalLayoutContaine
 import com.jhw.swing.material.components.datepicker.MaterialDatePicker;
 import com.jhw.swing.material.components.datepicker.MaterialDatePickerIcon;
 import com.jhw.swing.material.components.datepicker.MaterialDatePickersFactory;
+import com.jhw.swing.material.components.datepicker.MaterialMonthPicker;
+import com.jhw.swing.material.components.datepicker.MaterialMonthPickerIcon;
+import com.jhw.swing.material.components.datepicker.MaterialYearPicker;
+import com.jhw.swing.material.components.datepicker.MaterialYearPickerIcon;
 import com.jhw.swing.material.components.datepicker._Month;
-import com.jhw.swing.material.components.datepicker._MonthPicker;
 import com.jhw.swing.material.components.datepicker._YearMonthPicker;
-import com.jhw.swing.material.components.datepicker._YearPicker;
-import com.jhw.swing.material.components.datepicker._YearPickerIcon;
 import com.jhw.swing.material.standards.MaterialColors;
-import com.jhw.swing.material.standards.MaterialIcons;
 import com.jhw.swing.ui.MaterialLookAndFeel;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -52,15 +52,19 @@ public class EXAMPLE_DATE_PICKER extends javax.swing.JFrame {
         MaterialDatePickerIcon date2 = MaterialDatePickersFactory.buildIcon();
         vlc.add(date2, true);
 
-        _MonthPicker month = _MonthPicker.from();
+        MaterialMonthPicker month = MaterialDatePickersFactory.buildMonthPicker();
         month.setObject(_Month.from(9));
         vlc.add(month, true);
 
-        _YearPicker year = _YearPicker.from();
+        MaterialMonthPickerIcon monthIcon = MaterialDatePickersFactory.buildMonthPickerIcon();
+        monthIcon.setObject(_Month.from(9));
+        vlc.add(monthIcon, true);
+        
+        MaterialYearPicker year = MaterialDatePickersFactory.buildYearPicker();
         year.setObject(Year.of(2021));
         vlc.add(year, true);
 
-        _YearPickerIcon yearIcon = _YearPickerIcon.from();
+        MaterialYearPickerIcon yearIcon = MaterialDatePickersFactory.buildYearPickerIcon();
         yearIcon.setObject(Year.of(2021));
         vlc.add(yearIcon, true);
 
