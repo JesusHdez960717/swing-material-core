@@ -14,7 +14,9 @@ import com.jhw.swing.material.components.datepicker._Month;
 import com.jhw.swing.material.components.datepicker._MonthPicker;
 import com.jhw.swing.material.components.datepicker._YearMonthPicker;
 import com.jhw.swing.material.components.datepicker._YearPicker;
+import com.jhw.swing.material.components.datepicker._YearPickerIcon;
 import com.jhw.swing.material.standards.MaterialColors;
+import com.jhw.swing.material.standards.MaterialIcons;
 import com.jhw.swing.ui.MaterialLookAndFeel;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -58,6 +60,10 @@ public class EXAMPLE_DATE_PICKER extends javax.swing.JFrame {
         year.setObject(Year.of(2021));
         vlc.add(year, true);
 
+        _YearPickerIcon yearIcon = _YearPickerIcon.from();
+        yearIcon.setObject(Year.of(2021));
+        vlc.add(yearIcon, true);
+
         _YearMonthPicker yearMonth = _YearMonthPicker.from();
         yearMonth.setObject(YearMonth.of(2025, Month.MARCH));
         vlc.add(yearMonth, true);
@@ -79,7 +85,7 @@ public class EXAMPLE_DATE_PICKER extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, date1.getObject());
                 JOptionPane.showMessageDialog(null, date2.getObject());
                 JOptionPane.showMessageDialog(null, month.getObject());
-                JOptionPane.showMessageDialog(null, year.getObject());
+                JOptionPane.showMessageDialog(null, yearIcon.getObject());
                 JOptionPane.showMessageDialog(null, yearMonth.getObject());
             }
         }));
