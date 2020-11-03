@@ -10,12 +10,18 @@ import com.jhw.swing.material.components.container.layout.VerticalLayoutContaine
 import com.jhw.swing.material.components.datepicker.MaterialDatePicker;
 import com.jhw.swing.material.components.datepicker.MaterialDatePickerIcon;
 import com.jhw.swing.material.components.datepicker.MaterialDatePickersFactory;
+import com.jhw.swing.material.components.datepicker._Month;
+import com.jhw.swing.material.components.datepicker._MonthPicker;
+import com.jhw.swing.material.components.datepicker._YearMonthPicker;
+import com.jhw.swing.material.components.datepicker._YearPicker;
 import com.jhw.swing.material.standards.MaterialColors;
 import com.jhw.swing.ui.MaterialLookAndFeel;
 import java.awt.BorderLayout;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
+import java.time.Month;
+import java.time.Year;
+import java.time.YearMonth;
 import javax.swing.AbstractAction;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
@@ -34,7 +40,7 @@ public class EXAMPLE_DATE_PICKER extends javax.swing.JFrame {
         initComponents();
 
         jPanel1.setLayout(new BorderLayout());
-        jPanel1.setBackground(MaterialColors.REDA_200);
+        jPanel1.setBackground(MaterialColors.YELLOWA_400);
 
         VerticalLayoutContainer.builder vlc = VerticalLayoutContainer.builder();
 
@@ -44,11 +50,26 @@ public class EXAMPLE_DATE_PICKER extends javax.swing.JFrame {
         MaterialDatePickerIcon date2 = MaterialDatePickersFactory.buildIcon();
         vlc.add(date2, true);
 
+        _MonthPicker month = _MonthPicker.from();
+        month.setObject(_Month.from(9));
+        vlc.add(month, true);
+
+        _YearPicker year = _YearPicker.from();
+        year.setObject(Year.of(2021));
+        vlc.add(year, true);
+
+        _YearMonthPicker yearMonth = _YearMonthPicker.from();
+        yearMonth.setObject(YearMonth.of(2025, Month.MARCH));
+        vlc.add(yearMonth, true);
+
         vlc.add(new JButton(new AbstractAction("Wrong") {
             @Override
             public void actionPerformed(ActionEvent e) {
                 date1.wrong("bu");
                 date2.wrong("jijiji");
+                month.wrong("aaa");
+                year.wrong("123");
+                yearMonth.wrong("123");
             }
         }));
 
@@ -57,6 +78,9 @@ public class EXAMPLE_DATE_PICKER extends javax.swing.JFrame {
             public void actionPerformed(ActionEvent e) {
                 JOptionPane.showMessageDialog(null, date1.getObject());
                 JOptionPane.showMessageDialog(null, date2.getObject());
+                JOptionPane.showMessageDialog(null, month.getObject());
+                JOptionPane.showMessageDialog(null, year.getObject());
+                JOptionPane.showMessageDialog(null, yearMonth.getObject());
             }
         }));
 

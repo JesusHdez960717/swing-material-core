@@ -1,67 +1,55 @@
 package com.jhw.swing.material.components.datepicker;
 
-import com.jhw.swing.material.components.combobox._MaterialComboBoxFiltrable;
-import com.jhw.swing.util.interfaces.DateSelected;
+import com.jhw.swing.material.components.combobox.*;
+import com.jhw.swing.material.injection.MaterialSwingInjector;
+import java.time.Year;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-public class _YearPicker extends _MaterialComboBoxFiltrable<Integer> implements DateSelected {
+public class _YearPicker extends _MaterialComboBox<Year> {
 
-    private int minYear = 1800;
-    private int maxYear = 2200;
+    public static _YearPicker from() {
+        return MaterialSwingInjector.getImplementation(_YearPicker.class);
+    }
+
+    private Year minYear = Year.now().minusYears(10);
+    private Year maxYear = Year.now().plusYears(10);
 
     public _YearPicker() {
         setYears();
-        setActualDate();
         setLabel("Año");
     }
 
     private void setYears() {
-        List<Integer> model = new ArrayList<>(maxYear - minYear);
-        for (int i = minYear; i <= maxYear; i++) {
-            model.add(i);
+        List<Year> model = new ArrayList<>();
+        for (Year i = minYear; i.isBefore(maxYear); i = i.plusYears(1)) {
+            model.add(Year.parse(String.valueOf(i)));
         }
         setModel(model);
+        this.setSelectedItem(Year.now());
     }
 
-    public int getMinYear() {
+    public Year getMinYear() {
         return minYear;
     }
 
-    public void setMinYear(int minYear) {
+    public void setMinYear(Year minYear) {
         this.minYear = minYear;
+        this.setYears();
+        this.setSelectedItem(minYear);
     }
 
-    public int getMaxYear() {
+    public Year getMaxYear() {
         return maxYear;
     }
 
-    public void setMaxYear(int maxYear) {
+    public void setMaxYear(Year maxYear) {
         this.maxYear = maxYear;
-    }
-
-    private void setActualDate() {
-        Date hoy = new Date();
-        this.setSelectedItem(hoy.getYear() + 1900);
-    }
-
-    public int getSelectedYear() {
-        return (int) getSelectedItem();
-    }
-
-    @Override
-    public Date getDate() {
-        return new Date(getSelectedYear() - 1900, 0, 1);
-    }
-
-    @Override
-    public void setDate(Date date) {
-        setSelectedItem(date.getYear() + 1900);
+        this.setYears();
     }
 
 }

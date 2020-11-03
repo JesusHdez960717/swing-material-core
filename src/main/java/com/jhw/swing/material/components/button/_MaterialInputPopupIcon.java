@@ -6,14 +6,14 @@
 package com.jhw.swing.material.components.button;
 
 import com.jhw.swing.material.components.textfield.*;
-import com.jhw.personalization.services.PersonalizationHandler;
+import com.jhw.module.util.personalization.services.PersonalizationHandler;
 import com.jhw.swing.material.components.button.MaterialButton;
 import com.jhw.swing.material.components.button.MaterialButtonIcon;
 import com.jhw.swing.material.components.button.MaterialButtonsFactory;
 import com.jhw.swing.material.components.popup.MaterialPopupFactory;
 import com.jhw.swing.material.standards.MaterialIcons;
 import com.jhw.swing.util.PersonalizationMaterial;
-import com.jhw.swing.utils.icons.DerivableIcon;
+import com.jhw.swing.derivable_icons.DerivableIcon;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;

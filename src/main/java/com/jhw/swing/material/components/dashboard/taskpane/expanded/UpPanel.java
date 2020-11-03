@@ -8,7 +8,7 @@ import com.jhw.swing.material.components.container.MaterialContainersFactory;
 import com.jhw.swing.material.components.dashboard.taskpane.DashBoardTaskPane;
 import com.jhw.swing.material.standards.MaterialColors;
 import com.jhw.swing.material.standards.MaterialFontRoboto;
-import com.jhw.swing.utils.icons.DerivableIcon;
+import com.jhw.swing.derivable_icons.DerivableIcon;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Dimension;

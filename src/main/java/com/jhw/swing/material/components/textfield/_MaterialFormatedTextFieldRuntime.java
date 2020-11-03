@@ -5,7 +5,7 @@
  */
 package com.jhw.swing.material.components.textfield;
 
-import com.jhw.personalization.services.PersonalizationHandler;
+import com.jhw.module.util.personalization.services.PersonalizationHandler;
 import com.jhw.swing.util.PersonalizationMaterial;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;

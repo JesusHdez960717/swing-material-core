@@ -29,7 +29,7 @@ public class SystemTrayInstaller {
     public SystemTrayInstaller(JFrame target, JPopupMenu popup) {
         this.target = target;
 
-        trayIcon = new TrayIcon(target.getIconImage(), "SystemTray Demo");
+        trayIcon = new TrayIcon(target.getIconImage(), target.getTitle());
         trayIcon.setImageAutoSize(true);
 
         trayIcon.addActionListener((ActionEvent e) -> {

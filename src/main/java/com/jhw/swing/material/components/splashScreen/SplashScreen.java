@@ -9,6 +9,7 @@ import com.jhw.swing.material.components.container.MaterialContainersFactory;
 import com.jhw.swing.material.components.labels.MaterialLabel;
 import com.jhw.swing.material.components.labels.MaterialLabelsFactory;
 import com.jhw.swing.material.standards.MaterialColors;
+import com.jhw.swing.material.standards.MaterialFontRoboto;
 import com.jhw.swing.util.Utils;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -16,6 +17,7 @@ import java.awt.Rectangle;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintStream;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
@@ -59,10 +61,11 @@ public class SplashScreen extends JPanel {
     private void initComponents() {
         Rectangle screen = Utils.getScreenSize();
         this.setPreferredSize(new Dimension((int) (screen.getWidth() / 3), (int) (screen.getHeight() / 3)));
-        labelProgress = MaterialLabelsFactory.build();
+        labelProgress = new JLabel();
+        labelProgress.setFont(MaterialFontRoboto.MEDIUM.deriveFont(16f));
         labelProgress.setPreferredSize(new Dimension(0, 20));
         labelProgress.setText(text);
-        labelProgress.setHorizontalAlignment(SwingConstants.CENTER);
+        //labelProgress.setHorizontalAlignment(SwingConstants.CENTER);
         setBackground(MaterialColors.GREY_200);
 
         this.setLayout(new BorderLayout());
@@ -70,7 +73,7 @@ public class SplashScreen extends JPanel {
         this.add(labelProgress, BorderLayout.SOUTH);
     }
 
-    private MaterialLabel labelProgress;
+    private JLabel labelProgress;
 
     /**
      * Method to Override for personalized image display

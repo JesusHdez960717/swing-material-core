@@ -6,7 +6,7 @@
 package com.jhw.swing.material.property_reflection;
 
 import com.jhw.swing.material.effects.Iconable;
-import com.jhw.swing.utils.icons.DerivableIcon;
+import com.jhw.swing.derivable_icons.DerivableIcon;
 import javax.swing.Icon;
 import javax.swing.JComponent;
 import org.aopalliance.intercept.MethodInterceptor;
