@@ -12,10 +12,11 @@ import com.jhw.swing.material.components.datepicker.MaterialDatePickerIcon;
 import com.jhw.swing.material.components.datepicker.MaterialDatePickersFactory;
 import com.jhw.swing.material.components.datepicker.MaterialMonthPicker;
 import com.jhw.swing.material.components.datepicker.MaterialMonthPickerIcon;
+import com.jhw.swing.material.components.datepicker.MaterialYearMonthPicker;
+import com.jhw.swing.material.components.datepicker.MaterialYearMonthPickerIcon;
 import com.jhw.swing.material.components.datepicker.MaterialYearPicker;
 import com.jhw.swing.material.components.datepicker.MaterialYearPickerIcon;
 import com.jhw.swing.material.components.datepicker._Month;
-import com.jhw.swing.material.components.datepicker._YearMonthPicker;
 import com.jhw.swing.material.standards.MaterialColors;
 import com.jhw.swing.ui.MaterialLookAndFeel;
 import java.awt.BorderLayout;
@@ -68,9 +69,13 @@ public class EXAMPLE_DATE_PICKER extends javax.swing.JFrame {
         yearIcon.setObject(Year.of(2021));
         vlc.add(yearIcon, true);
 
-        _YearMonthPicker yearMonth = _YearMonthPicker.from();
+        MaterialYearMonthPicker yearMonth = MaterialDatePickersFactory.buildYearMonthPicker();
         yearMonth.setObject(YearMonth.of(2025, Month.MARCH));
         vlc.add(yearMonth, true);
+
+        MaterialYearMonthPickerIcon yearMonthIcon = MaterialDatePickersFactory.buildYearMonthPickerIcon();
+        yearMonthIcon.setObject(YearMonth.of(2025, Month.DECEMBER));
+        vlc.add(yearMonthIcon, true);
 
         vlc.add(new JButton(new AbstractAction("Wrong") {
             @Override

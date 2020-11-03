@@ -34,4 +34,12 @@ public class MaterialDatePickersFactory {
     public static MaterialMonthPickerIcon buildMonthPickerIcon() {
         return _MonthPickerIcon.from();
     }
+
+    public static MaterialYearMonthPicker buildYearMonthPicker() {
+        return _YearMonthPicker.from();
+    }
+
+    public static MaterialYearMonthPickerIcon buildYearMonthPickerIcon() {
+        return _YearMonthPickerIcon.from();
+    }
 }
