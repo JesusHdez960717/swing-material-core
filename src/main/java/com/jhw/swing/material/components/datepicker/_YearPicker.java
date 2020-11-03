@@ -1,6 +1,5 @@
 package com.jhw.swing.material.components.datepicker;
 
-import com.jhw.swing.material.components.combobox.*;
 import com.jhw.swing.material.injection.MaterialSwingInjector;
 import java.time.Year;
 import java.util.ArrayList;
@@ -10,7 +9,7 @@ import java.util.List;
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-public class _YearPicker extends _MaterialComboBox<Year> {
+public class _YearPicker extends MaterialYearPicker {
 
     public static _YearPicker from() {
         return MaterialSwingInjector.getImplementation(_YearPicker.class);
@@ -33,20 +32,24 @@ public class _YearPicker extends _MaterialComboBox<Year> {
         this.setSelectedItem(Year.now());
     }
 
+    @Override
     public Year getMinYear() {
         return minYear;
     }
 
+    @Override
     public void setMinYear(Year minYear) {
         this.minYear = minYear;
         this.setYears();
         this.setSelectedItem(minYear);
     }
 
+    @Override
     public Year getMaxYear() {
         return maxYear;
     }
 
+    @Override
     public void setMaxYear(Year maxYear) {
         this.maxYear = maxYear;
         this.setYears();
