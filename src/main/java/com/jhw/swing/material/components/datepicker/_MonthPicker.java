@@ -1,6 +1,5 @@
 package com.jhw.swing.material.components.datepicker;
 
-import com.jhw.swing.material.components.combobox.*;
 import com.jhw.swing.material.injection.MaterialSwingInjector;
 import java.time.Month;
 import java.time.YearMonth;
@@ -13,7 +12,7 @@ import java.util.List;
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-public class _MonthPicker extends _MaterialComboBox<_Month> {
+public class _MonthPicker extends MaterialMonthPicker {
 
     public static _MonthPicker from() {
         return MaterialSwingInjector.getImplementation(_MonthPicker.class);

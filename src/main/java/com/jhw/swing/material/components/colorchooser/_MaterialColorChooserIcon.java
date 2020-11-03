@@ -55,6 +55,10 @@ public class _MaterialColorChooserIcon extends MaterialColorChooserIcon {
 
     @Override
     public void setIcon(Icon icon) {
+        if (icon == null) {
+            this.remove(buttonIcon);
+            return;
+        }
         if (!PersonalizationHandler.getBoolean(PersonalizationMaterial.KEY_SHOW_ICON_INPUT)) {
             return;
         }
