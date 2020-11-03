@@ -84,6 +84,10 @@ public class _MaterialComboBoxIcon<T> extends MaterialComboBoxIcon<T> {
 
     @Override
     public void setIcon(Icon icon) {
+        if (icon == null) {
+            this.remove(buttonIcon);
+            return;
+        }
         if (!PersonalizationHandler.getBoolean(PersonalizationMaterial.KEY_SHOW_ICON_INPUT)) {
             return;
         }
