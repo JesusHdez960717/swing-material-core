@@ -6,6 +6,7 @@ import java.util.Date;
 import com.jhw.utils.others.SDF;
 import com.jhw.swing.material.standards.MaterialFontRoboto;
 import com.jhw.swing.material.standards.MaterialIcons;
+import com.jhw.utils.others.DTF;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Cursor;
@@ -13,6 +14,7 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
+import java.time.LocalDate;
 import javax.swing.JButton;
 import javax.swing.UIManager;
 import javax.swing.text.DefaultFormatterFactory;
@@ -107,13 +109,13 @@ public class _MaterialDatePicker extends MaterialDatePicker {
     }
 
     @Override
-    public Date getObject() {
-        return this.getDate();
+    public LocalDate getObject() {
+        return DTF.convert(this.getDate());
     }
 
     @Override
-    public void setObject(Date object) {
-        this.setDate(object);
+    public void setObject(LocalDate object) {
+        this.setDate(DTF.convert(object));
     }
 
     @Override

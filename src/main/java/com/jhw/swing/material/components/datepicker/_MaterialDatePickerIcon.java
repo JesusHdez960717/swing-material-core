@@ -19,6 +19,7 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.time.LocalDate;
 import java.util.Date;
 import javax.swing.Icon;
 
@@ -229,12 +230,12 @@ public class _MaterialDatePickerIcon extends MaterialDatePickerIcon {
     }
 
     @Override
-    public Date getObject() {
+    public LocalDate getObject() {
         return datePicker.getObject();
     }
 
     @Override
-    public void setObject(Date object) {
+    public void setObject(LocalDate object) {
         datePicker.setObject(object);
     }
 
