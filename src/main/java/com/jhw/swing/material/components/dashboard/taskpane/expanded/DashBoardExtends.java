@@ -123,6 +123,11 @@ public class DashBoardExtends extends DashBoardSimple {
     }
 
     @Override
+    public String getSelectedViewName() {
+        return dashboardCore.getSelectedViewName();
+    }
+
+    @Override
     public void removeView(Component ct) {
         dashboardCore.removeView(ct);
     }
