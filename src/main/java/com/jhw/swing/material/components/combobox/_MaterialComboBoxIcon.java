@@ -213,4 +213,9 @@ public class _MaterialComboBoxIcon<T> extends MaterialComboBoxIcon<T> {
         getComboBox().setObject(object);
     }
 
+    @Override
+    public void addElement(T element) {
+        getComboBox().addElement(element);
+    }
+
 }

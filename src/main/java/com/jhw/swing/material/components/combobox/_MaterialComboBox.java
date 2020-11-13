@@ -71,14 +71,17 @@ public class _MaterialComboBox<T> extends MaterialComboBox<T> {
         this.setHint("Select...");
 
         this.setModel(new ArrayList<>());
-
-        this.setSelectedIndex(-1);
     }
 
     @Override
     public void setModel(java.util.List<T> aModel) {
         super.setModel(new DefaultComboBoxModel(aModel.toArray(new Object[aModel.size()])));
         this.setSelectedIndex(-1);
+    }
+
+    @Override
+    public void addElement(T element) {
+        ((DefaultComboBoxModel<T>) getModel()).addElement(element);
     }
 //-------------------LINE-------------------------
 
