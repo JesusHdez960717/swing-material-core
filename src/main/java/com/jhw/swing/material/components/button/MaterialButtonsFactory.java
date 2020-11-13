@@ -7,6 +7,7 @@ package com.jhw.swing.material.components.button;
 
 import com.jhw.swing.material.components.popup.MaterialPopupFactory;
 import com.jhw.swing.material.injection.MaterialSwingInjector;
+import java.awt.Dimension;
 import java.util.List;
 import javax.swing.Action;
 import javax.swing.ImageIcon;
@@ -45,6 +46,8 @@ public class MaterialButtonsFactory {
 
     public static MaterialButtonIcon buildIconTransparent(ImageIcon icon) {
         MaterialButtonIcon btn = MaterialSwingInjector.getImplementation(_MaterialButtonIconTransparent.class);
+        int w = (int) (1.5f * icon.getIconWidth());
+        btn.setMaximumSize(new Dimension(w, w));
         btn.setIcon(icon);
         return btn;
     }
