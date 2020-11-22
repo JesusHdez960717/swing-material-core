@@ -24,6 +24,8 @@ public interface MaterialComboBoxDefinition<T> extends Line, FloatingLabel, Bind
         setObject(null);
     }
 
+    public void addElement(T element);
+
     public default void clear() {
         setObject(null);
     }

@@ -2,7 +2,6 @@ package com.jhw.swing.material.components.button;
 
 import java.awt.*;
 import com.jhw.swing.util.MaterialDrawingUtils;
-import com.jhw.swing.util.interfaces.MaterialComponent;
 import com.jhw.swing.material.standards.MaterialShadow;
 import com.jhw.swing.material.effects.DefaultElevationEffect;
 import com.jhw.swing.material.effects.DefaultRippleEffect;
@@ -13,6 +12,8 @@ import com.jhw.swing.material.injection.MaterialSwingInjector;
 import com.jhw.swing.material.standards.MaterialIcons;
 import javax.swing.JComponent;
 import javax.swing.plaf.basic.BasicButtonUI;
+import static com.jhw.swing.material.standards.Utils.HINT_OPACITY_MASK;
+import com.jhw.swing.util.Utils;
 
 /**
  * A Material Design button. A round button with a icon in the middle
@@ -112,7 +113,9 @@ public class _MaterialIconButtonRound extends _MaterialButton {
             g2.setColor(getColorFadeInto());
         } else {
             Color bg = getBackground();
-            g2.setColor(new Color(bg.getRed() / 255f, bg.getGreen() / 255f, bg.getBlue() / 255f, 0.6f));
+                            g2.setColor(Utils.applyAlphaMask(bg, HINT_OPACITY_MASK));
+
+            //g2.setColor(new Color(bg.getRed() / 255f, bg.getGreen() / 255f, bg.getBlue() / 255f, 0.6f));
         }
         g2.fill(shape);
 

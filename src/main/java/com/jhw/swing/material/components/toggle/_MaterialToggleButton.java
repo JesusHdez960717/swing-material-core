@@ -13,6 +13,8 @@ import com.jhw.swing.util.MaterialDrawingUtils;
 import com.jhw.swing.material.standards.MaterialFontRoboto;
 import com.jhw.swing.material.standards.MaterialIcons;
 import com.jhw.swing.material.standards.MaterialImages;
+import static com.jhw.swing.material.standards.Utils.HINT_OPACITY_MASK;
+import com.jhw.swing.util.Utils;
 
 /**
  *
@@ -111,7 +113,8 @@ public class _MaterialToggleButton extends MaterialToggleButton {
                 g2.setColor(this.getForeground());
             } else {
                 Color fg = this.getForeground();
-                g2.setColor(new Color(fg.getRed() / 255f, fg.getGreen() / 255f, fg.getBlue() / 255f, 0.6f));
+                g2.setColor(Utils.applyAlphaMask(fg, HINT_OPACITY_MASK));
+                //g2.setColor(new Color(fg.getRed() / 255f, fg.getGreen() / 255f, fg.getBlue() / 255f, 0.6f));
             }
 
             int iconWidth = 0;

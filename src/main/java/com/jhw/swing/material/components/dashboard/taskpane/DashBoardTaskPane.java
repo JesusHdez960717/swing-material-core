@@ -226,11 +226,21 @@ public class DashBoardTaskPane extends DashBoardSimple implements PropertyChange
     @Override
     public Component getView(String string) {
         for (Component c : panelContent.getComponents()) {
-            if (c.isVisible()) {
+            if (c.getName().equals(string)) {
                 return c;
             }
         }
         return panelContent;
+    }
+
+    @Override
+    public String getSelectedViewName() {
+        for (Component c : panelContent.getComponents()) {
+            if (c.isVisible()) {
+                return c.getName();
+            }
+        }
+        return "NO VIEW SELECTED";
     }
 
     @Override
