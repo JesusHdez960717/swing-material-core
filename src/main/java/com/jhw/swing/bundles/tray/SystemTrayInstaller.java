@@ -39,13 +39,11 @@ public class SystemTrayInstaller {
             @Override
             public void mouseReleased(MouseEvent e) {
                 maybeShowPopup(e);
-                System.out.println("release");
             }
 
             @Override
             public void mousePressed(MouseEvent e) {
                 maybeShowPopup(e);
-                System.out.println("presed");
             }
 
             private void maybeShowPopup(MouseEvent e) {
@@ -75,9 +73,9 @@ public class SystemTrayInstaller {
         try {
             SystemTray.getSystemTray().add(trayIcon);
             this.target.setVisible(false);
-            System.out.println("added to SystemTray");
+            System.out.println("Agregada App al SystemTray");
         } catch (Exception ex) {
-            System.out.println("unable to add to system tray");
+            System.out.println("Error agregando la App al SystemTray");
         }
     }
 
@@ -88,7 +86,7 @@ public class SystemTrayInstaller {
     private void showFromTry() {
         SystemTray.getSystemTray().remove(trayIcon);
         this.target.setVisible(true);
-        System.out.println("Tray icon removed");
+        System.out.println("Removido Tray Icon");
     }
 
     /**
