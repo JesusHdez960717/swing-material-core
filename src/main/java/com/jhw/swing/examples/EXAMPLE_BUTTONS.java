@@ -68,7 +68,10 @@ public class EXAMPLE_BUTTONS extends javax.swing.JFrame {
         rot.doClick();
 
         vlc.add(rot);
-        vlc.add(MaterialButtonsFactory.buildIconTransparent());
+
+        MaterialButtonIcon transp = MaterialButtonsFactory.buildIconTransparent();
+        transp.setEnabled(false);
+        vlc.add(transp);
 
         MaterialButton popup = MaterialButtonsFactory.buildPopup();
         JPopupMenu menu = new JPopupMenu();
@@ -84,7 +87,7 @@ public class EXAMPLE_BUTTONS extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "BU");
             }
         })));
-        
+
         MaterialButton round = MaterialButtonsFactory.buildRound();
         round.setRippleColor(Color.yellow);
         vlc.add(round);

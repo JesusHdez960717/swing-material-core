@@ -10,6 +10,9 @@ import java.awt.Graphics2D;
 import javax.swing.SwingConstants;
 import com.jhw.swing.util.MaterialDrawingUtils;
 import com.jhw.swing.material.standards.MaterialFontRoboto;
+import com.jhw.swing.util.Utils;
+import static com.jhw.swing.material.standards.Utils.HINT_OPACITY_MASK;
+
 
 /**
  *
@@ -47,7 +50,8 @@ public class _MaterialLabel extends MaterialLabel {
                 g2.setColor(this.getForeground());
             } else {
                 Color fg = this.getForeground();
-                g2.setColor(new Color(fg.getRed() / 255f, fg.getGreen() / 255f, fg.getBlue() / 255f, 0.6f));
+                g2.setColor(Utils.applyAlphaMask(fg, HINT_OPACITY_MASK));
+                //g2.setColor(new Color(fg.getRed() / 255f, fg.getGreen() / 255f, fg.getBlue() / 255f, 0.6f));
             }
 
             int iconWidth = 0;

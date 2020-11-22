@@ -10,7 +10,6 @@ import com.jhw.swing.material.injection.Background_Force_Foreground;
 import com.jhw.swing.material.injection.Foreground_Force_Icon;
 import com.jhw.swing.material.injection.MaterialSwingInjector;
 import com.jhw.swing.material.standards.MaterialColors;
-import com.jhw.swing.util.AbstractActionUtils;
 import com.jhw.swing.util.MaterialDrawingUtils;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -19,6 +18,8 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.geom.RoundRectangle2D;
 import javax.swing.Action;
+import static com.jhw.swing.material.standards.Utils.HINT_OPACITY_MASK;
+import com.jhw.swing.util.Utils;
 
 /**
  * Boton cuadrado, no se puede poner en layouts que se expandan xq no hace bien
@@ -94,7 +95,8 @@ public class ButtonSqrt extends _MaterialButton {
             g2.setColor(getColorFadeInto());
         } else {
             Color bg = getBackground();
-            g2.setColor(new Color(bg.getRed() / 255f, bg.getGreen() / 255f, bg.getBlue() / 255f, 0.6f));
+            g2.setColor(Utils.applyAlphaMask(bg, HINT_OPACITY_MASK));
+            //g2.setColor(new Color(bg.getRed() / 255f, bg.getGreen() / 255f, bg.getBlue() / 255f, 0.6f));
         }
         int size = Math.min(getWidth(), getHeight());
         g2.fill(new RoundRectangle2D.Float(0, 0, size - offset_lr, size - offset_td, getBorderRadius() * 2, getBorderRadius() * 2));

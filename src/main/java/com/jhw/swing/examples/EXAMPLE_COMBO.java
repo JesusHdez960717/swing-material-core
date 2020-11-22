@@ -44,6 +44,7 @@ public class EXAMPLE_COMBO extends javax.swing.JFrame {
         MaterialComboBoxIcon<Integer> comboIcon = MaterialComboBoxFactory.buildIcon();
         comboIcon.setLabel("simple icon");
         comboIcon.setModel(new DefaultComboBoxModel(new Object[]{1, 2, 3, 4, 5, 6}));
+        comboIcon.setEnabled(false);
         vlc.add(comboIcon, true);
 
         MaterialComboBox comboFiltrable = MaterialComboBoxFactory.buildFiltrable();
@@ -58,7 +59,7 @@ public class EXAMPLE_COMBO extends javax.swing.JFrame {
 
         jPanel1.setLayout(new BorderLayout());
         jPanel1.add(vlc.build());
-        jPanel1.setBackground(MaterialColors.RED_200);
+        jPanel1.setBackground(MaterialColors.WHITE);
 
         JButton wrong = new JButton(new AbstractAction("wrong") {
             @Override

@@ -38,6 +38,8 @@ public class EXAMPLE_LABELS extends javax.swing.JFrame {
         VerticalLayoutContainer.builder vlc = VerticalLayoutContainer.builder();
 
         MaterialLabel simple = MaterialLabelsFactory.build();
+        simple.setText("simple");
+        simple.setEnabled(false);
         vlc.add(simple, true);
 
         MaterialLabelMoney money = MaterialLabelsFactory.buildMoney();

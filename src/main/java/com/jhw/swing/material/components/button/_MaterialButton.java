@@ -2,7 +2,6 @@ package com.jhw.swing.material.components.button;
 
 import com.jhw.swing.material.injection.Foreground_Force_Icon;
 import com.jhw.swing.material.injection.Background_Force_Foreground;
-import com.jhw.swing.material.effects.Iconable;
 import com.jhw.swing.material.standards.*;
 import com.jhw.swing.material.effects.*;
 import com.jhw.swing.material.injection.MaterialSwingInjector;
@@ -14,7 +13,8 @@ import javax.swing.plaf.basic.BasicButtonUI;
 import com.jhw.swing.util.MaterialDrawingUtils;
 import com.jhw.swing.util.DefaultMouseAdapterInfo;
 import com.jhw.swing.util.*;
-import java.beans.PropertyChangeListener;
+import static com.jhw.swing.material.standards.Utils.HINT_OPACITY_MASK;
+import com.jhw.swing.util.Utils;
 
 /**
  * A Material Design button. El orden en que setteen las cosas varia el
@@ -268,7 +268,8 @@ public class _MaterialButton extends MaterialButton {
             g2.setColor(getColorFadeInto());
         } else {
             Color bg = getBackground();
-            g2.setColor(new Color(bg.getRed() / 255f, bg.getGreen() / 255f, bg.getBlue() / 255f, 0.6f));
+            g2.setColor(Utils.applyAlphaMask(bg, HINT_OPACITY_MASK));
+            //g2.setColor(new Color(bg.getRed() / 255f, bg.getGreen() / 255f, bg.getBlue() / 255f, 0.6f));
         }
         g2.fill(new RoundRectangle2D.Float(0, 0, getWidth() - offset_lr, getHeight() - offset_td, getBorderRadius() * 2, getBorderRadius() * 2));
 
