@@ -11,7 +11,10 @@ import com.jhw.swing.material.injection.Background_Force_Foreground;
 import com.jhw.swing.material.injection.Foreground_Force_Icon;
 import com.jhw.swing.material.injection.MaterialSwingInjector;
 import com.jhw.swing.material.standards.MaterialIcons;
+import com.jhw.swing.material.standards.MaterialColors;
+import com.jhw.swing.util.Utils;
 import javax.swing.plaf.basic.BasicButtonUI;
+import static com.jhw.swing.material.standards.Utils.HINT_OPACITY_MASK;
 
 @Background_Force_Foreground
 @Foreground_Force_Icon
@@ -52,6 +55,25 @@ public class _MaterialButtonIconTransparent extends MaterialButtonIcon {
                 }
             }
         });
+
+        setForeground(MaterialColors.BLACK);
+    }
+    private Color foregroundOriginalColor;
+
+    @Override
+    public void setForeground(Color fg) {
+        foregroundOriginalColor = fg;
+        super.setForeground(fg);
+    }
+
+    @Override
+    public void setEnabled(boolean enabled) {
+        super.setEnabled(enabled);
+        if (enabled) {
+            this.setForeground(foregroundOriginalColor);
+        } else {
+            this.setForeground(Utils.applyAlphaMask(foregroundOriginalColor, HINT_OPACITY_MASK));
+        }
     }
 
     @Override
