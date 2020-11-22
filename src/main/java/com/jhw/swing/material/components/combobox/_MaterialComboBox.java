@@ -19,7 +19,7 @@ import com.jhw.swing.util.Utils;
 import com.jhw.swing.derivable_icons.DerivableIcon;
 import java.awt.event.ActionEvent;
 import com.jhw.swing.material.effects.Wrong;
-import static com.jhw.swing.material.standards.Utils.LINE_OPACITY_MASK;
+import static com.jhw.swing.material.standards.Utils.*;
 import java.util.ArrayList;
 
 /**
@@ -191,7 +191,11 @@ public class _MaterialComboBox<T> extends MaterialComboBox<T> {
         if (getSelectedItem() == null && isFocusOwner()) {
             paintHint(g2);
         } else if (getSelectedItem() != null) {
-            g2.setColor(getForeground());
+            if (isEnabled()) {
+                g2.setColor(getForeground());
+            } else {
+                g2.setColor(Utils.applyAlphaMask(getForeground(), HINT_OPACITY_MASK));
+            }
             g2.drawString(getSelectedItem().toString(), 0, metrics.getAscent() + yMid - metrics.getAscent() / 2);
         }
         paintLine(g2);
