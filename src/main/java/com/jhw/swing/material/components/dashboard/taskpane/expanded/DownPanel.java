@@ -10,6 +10,7 @@ import com.jhw.swing.util.Utils;
 import com.jhw.swing.util.interfaces.MaterialComponent;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -76,11 +77,12 @@ public class DownPanel extends MapeableContainer {
             for (Object single : (List) component) {
                 if (single instanceof Action) {
                     addDownElement((Action) single);
+                } else if (single instanceof Component) {
+                    components.add((Component) single);
                 }
             }
         } else {
-            String logMSG = "Component " + component + " not supperted for down panel.";
-            Logger.getLogger(DashBoardTaskPane.class.getName()).log(Level.WARNING, logMSG);
+            System.out.println("Component " + component + " not supported for down panel.");
         }
     }
 
@@ -88,8 +90,7 @@ public class DownPanel extends MapeableContainer {
         if (component instanceof Action) {
             setLicence((Action) component);
         } else {
-            String logMSG = "Component " + component + " not supperted for licence.";
-            Logger.getLogger(DashBoardTaskPane.class.getName()).log(Level.WARNING, logMSG);
+            System.out.println("Component " + component + " not supperted for licence.");
         }
     }
 
