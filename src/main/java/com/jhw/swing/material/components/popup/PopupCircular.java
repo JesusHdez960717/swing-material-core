@@ -9,8 +9,11 @@ import com.jhw.swing.material.standards.MaterialColors;
 import com.sun.awt.AWTUtilities;
 import java.awt.BorderLayout;
 import java.awt.Window;
+import java.awt.event.ActionEvent;
+import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.JComponent;
 import javax.swing.JPopupMenu;
@@ -20,8 +23,8 @@ import javax.swing.SwingUtilities;
  * Si se quiere personalizar el componente que se le pasa por parámetro se
  * reimplementa el metodo buildComponent.
  * <pre>
-  new PopupCircular(actions) {
-      @Override
+ * new PopupCircular(actions) {
+ * @Override
  *      protected JComponent buildComponent(Action act) {
  *          MaterialButton b = MaterialButtonsFactory.buildRound();
  *          b.setAction(act);
@@ -56,7 +59,27 @@ public class PopupCircular extends JPopupMenu {
     private List<JComponent> buildComponents(List<Action> actions) {
         List<JComponent> comp = new ArrayList<>();
         for (Action action : actions) {
-            comp.add(buildComponent(action));
+            if (action instanceof AbstractAction) {
+                AbstractAction a = (AbstractAction) action;
+                if (a.getKeys() != null) {
+                    Action aop = new AbstractAction() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            a.actionPerformed(e);
+                            setVisible(false);
+                        }
+                    };
+                    for (Object key : a.getKeys()) {
+                        String keyStr = (String) key;
+                        aop.putValue(keyStr, a.getValue(keyStr));
+                    }
+                    comp.add(buildComponent(aop));
+                } else {
+                    comp.add(buildComponent(action));
+                }
+            } else {
+                comp.add(buildComponent(action));
+            }
         }
         return comp;
     }
