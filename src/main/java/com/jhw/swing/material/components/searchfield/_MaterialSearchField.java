@@ -11,6 +11,8 @@ import com.jhw.swing.material.standards.MaterialIcons;
 import com.jhw.swing.material.standards.MaterialShadow;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import javax.swing.Timer;
 import javax.swing.border.EmptyBorder;
 
 /**
@@ -19,10 +21,16 @@ import javax.swing.border.EmptyBorder;
  */
 public class _MaterialSearchField extends MaterialSearchField {
 
+    public static int SEARCH_ACTION_AFTER = 2 * 1000;
+
+    private final Timer timer = new Timer(SEARCH_ACTION_AFTER, (ActionEvent e) -> {
+        doAction();
+    });
+
     public static MaterialSearchField from() {
         return new _MaterialSearchField();
     }
-    
+
     private ActionListener searchAction = (java.awt.event.ActionEvent evt) -> {
         System.out.println("Accion buscar no implementada.");
     };
@@ -115,9 +123,12 @@ public class _MaterialSearchField extends MaterialSearchField {
     public void clear(KeyEvent evt) {
         if (evt.getKeyChar() == KeyEvent.VK_ESCAPE) {
             searchField.setText("");
+            doAction();
+        } else if (evt.getKeyChar() == KeyEvent.VK_ENTER) {
+            doAction();
+        } else {//espera SEARCH_ACTION_AFTER(2sec) para actualizar
+            doDelayAction();
         }
-        searchAction.actionPerformed(null);
-        searchField.requestFocusInWindow();
     }
 
     @Override
@@ -133,7 +144,7 @@ public class _MaterialSearchField extends MaterialSearchField {
     @Override
     public void setSearchActionListener(ActionListener searchAction) {
         this.searchAction = searchAction;
-        this.searchAction.actionPerformed(null);//activa la accion de busqueda
+        doAction();
     }
 
     @Override
@@ -161,5 +172,20 @@ public class _MaterialSearchField extends MaterialSearchField {
         this.searchField.setEnabled(enabled);
         this.buttonSearch.setEnabled(enabled);
         super.setEnabled(enabled);
+    }
+
+    private void doAction() {
+        this.searchAction.actionPerformed(null);
+        searchField.requestFocusInWindow();
+        stopDelayAction();
+    }
+
+    private void doDelayAction() {
+        timer.restart();
+        timer.start();
+    }
+
+    private void stopDelayAction() {
+        timer.stop();
     }
 }
