@@ -3,7 +3,6 @@ package com.jhw.swing.material.injection;
 import com.google.inject.AbstractModule;
 import com.google.inject.matcher.Matchers;
 import com.jhw.swing.material.effects.Iconable;
-import com.jhw.swing.material.property_reflection.NameInterceptor;
 import com.jhw.utils.interfaces.Update;
 import javax.swing.JButton;
 import javax.swing.JComponent;
@@ -29,13 +28,6 @@ public class MaterialComponentsInjectionConfig extends AbstractModule {
                 Matchers.subclassesOf(JComponent.class).and(Matchers.subclassesOf(Iconable.class)).and(Matchers.annotatedWith(Foreground_Force_Icon.class)),
                 NameMatcher.from(Foreground_Force_Icon.SIGNATURE),
                 Foreground_Force_Icon.Interceptor.from()
-        );
-
-        //for => name(properties por el name)
-        bindInterceptor(
-                Matchers.subclassesOf(JComponent.class),
-                NameMatcher.from(NameInterceptor.SIGNATURE),
-                NameInterceptor.from()
         );
 
         //for => Tooltip
