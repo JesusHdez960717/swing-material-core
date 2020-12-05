@@ -1,5 +1,6 @@
 package com.jhw.swing.material.components.searchfield;
 
+import com.jhw.swing.derivable_icons.DerivableIcon;
 import com.jhw.swing.material.components.button.MaterialButtonIcon;
 import com.jhw.swing.material.components.button.MaterialButtonsFactory;
 import java.awt.event.ActionListener;
@@ -70,7 +71,7 @@ public class _MaterialSearchField extends MaterialSearchField {
     // End of variables declaration                   
 
     private void personalize() {
-        buttonSearch.setIcon(MaterialIcons.SEARCH.deriveIcon(getForeground()).deriveIcon(20f));
+        changeSearchIcon(MaterialIcons.SEARCH);
         searchField.setBorder(null);
         searchField.setFont(MaterialFontRoboto.REGULAR.deriveFont(16f));
         searchField.setForeground(getForeground());
@@ -183,9 +184,15 @@ public class _MaterialSearchField extends MaterialSearchField {
     private void doDelayAction() {
         timer.restart();
         timer.start();
+        changeSearchIcon(MaterialIcons.UPDATE);
     }
 
     private void stopDelayAction() {
         timer.stop();
+        changeSearchIcon(MaterialIcons.SEARCH);
+    }
+
+    private void changeSearchIcon(DerivableIcon icon) {
+        buttonSearch.setIcon(icon.deriveIcon(getForeground()).deriveIcon(20f));
     }
 }
