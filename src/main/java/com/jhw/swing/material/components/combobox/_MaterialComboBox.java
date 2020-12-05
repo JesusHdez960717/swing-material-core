@@ -231,6 +231,7 @@ public class _MaterialComboBox<T> extends MaterialComboBox<T> {
     @Override
     public void setObject(T object) {
         setSelectedItem(object);
+        firePropertyChange("text", null, null);//hacer un fire para que el floating label se entere que algo cambio y se tiene que actualizar
     }
 
     public static class FieldRenderer<T> extends JComponent implements ListCellRenderer<T> {
