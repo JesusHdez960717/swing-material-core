@@ -1,6 +1,6 @@
 package com.jhw.swing.material.components.login;
 
-import com.clean.core.app.services.LoginHandler;
+import com.clean.core.app.services.AuthenticationHandler;
 import com.clean.core.app.services.Navigation;
 import com.clean.core.app.services.Notification;
 import com.clean.core.app.services.NotificationsGeneralType;
@@ -18,7 +18,7 @@ public class DefaultLoginPanel extends _LoginPanel {
         this.addLoginAction(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                boolean resp = (boolean) LoginHandler.getLoginHandlerService().login(getUser(), getPass());
+                boolean resp = (boolean) AuthenticationHandler.getAuthHandlerService().login(getUser(), getPass());
 
                 setUpAnswer(resp);
 
