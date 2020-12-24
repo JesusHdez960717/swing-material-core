@@ -14,6 +14,7 @@ import com.jhw.swing.material.effects.ElevationEffect;
 import com.jhw.swing.material.injection.Background_Force_Foreground;
 import com.jhw.swing.material.injection.Foreground_Force_Icon;
 import com.jhw.swing.material.injection.MaterialSwingInjector;
+import com.jhw.swing.material.standards.MaterialColors;
 
 /**
  * A JPanel customized for Material components. What makes these panels special
@@ -64,6 +65,12 @@ public class _MaterialPanel extends MaterialPanelBorder implements ElevationEffe
         this.setOpaque(false);
         this.setLayout(new BorderLayout());
         this.setBackground(PersonalizationHandler.getColor(Personalization.KEY_COLOR_BACKGROUND_PANEL));
+        
+        //si no usa sombra un bordecito para definir los paneles
+        if (!PersonalizationHandler.getBoolean(Personalization.KEY_USE_SHADOW)) {
+            this.setBorderThickness(1);
+            this.setBorderColor(MaterialColors.GREY_400);
+        }
     }
 //-----------------ELEVATION_EFFECT------------------------
 
