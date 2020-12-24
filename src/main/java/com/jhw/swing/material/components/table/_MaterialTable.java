@@ -19,6 +19,7 @@ public class _MaterialTable extends MaterialTable {
     public _MaterialTable() {
         initComponents();
         addListeners();
+        table.setAutoCreateRowSorter(true);
     }
 
     private void initComponents() {
@@ -34,7 +35,7 @@ public class _MaterialTable extends MaterialTable {
                 }
         ));
         this.setViewportView(table);
-        
+
         this.setPreferredSize(new Dimension(150, 200));
     }
 
