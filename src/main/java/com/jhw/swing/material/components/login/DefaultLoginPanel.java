@@ -1,12 +1,11 @@
 package com.jhw.swing.material.components.login;
 
-import com.clean.core.app.services.LoginHandler;
+import com.clean.core.app.services.AuthenticationHandler;
 import com.clean.core.app.services.Navigation;
 import com.clean.core.app.services.Notification;
 import com.clean.core.app.services.NotificationsGeneralType;
 import static com.clean.swing.app.RootView.DASH_NAME;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 /**
  *
@@ -15,19 +14,16 @@ import java.awt.event.ActionListener;
 public class DefaultLoginPanel extends _LoginPanel {
 
     public DefaultLoginPanel() {
-        this.addLoginAction(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                boolean resp = (boolean) LoginHandler.getLoginHandlerService().login(getUser(), getPass());
+        this.addLoginAction((ActionEvent e) -> {
+            boolean resp = AuthenticationHandler.getAuthHandlerService().login(getUser(), getPass());
 
-                setUpAnswer(resp);
+            setUpAnswer(resp);
 
-                if (resp) {
-                    Navigation.getNavigationService().navigateTo(DASH_NAME);
-                    Notification.showNotification(NotificationsGeneralType.NOTIFICATION_LOGIN, getUser());
-                }
+            if (resp) {
+                Navigation.getNavigationService().navigateTo(DASH_NAME);
+                Notification.showNotification(NotificationsGeneralType.NOTIFICATION_LOGIN, getUser());
+                clear();
             }
         });
     }
-
 }

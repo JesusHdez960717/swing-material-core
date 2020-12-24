@@ -18,11 +18,8 @@ import com.jhw.swing.util.interfaces.MaterialComponent;
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-public interface MaterialPasswordFieldDefinition extends TextMaxLength, TextExtra, Line, BindableComponent<char[]>, Wrong, MaterialComponent, FloatingLabel {
+public interface MaterialPasswordFieldDefinition extends TextMaxLength, TextExtra, Line, BindableComponent<String>, Wrong, MaterialComponent, FloatingLabel {
 
     public void setText(String s);
 
-    public String getHashAlgorithm();
-
-    public void setHashAlgorithm(String hashAlgorithm);
 }

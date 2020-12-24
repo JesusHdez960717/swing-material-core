@@ -51,8 +51,6 @@ public class _MaterialPasswordField extends MaterialPasswordField {
     //extra
     private String extra = "";
 
-    private String hashAlgorithm = "SHA-256";
-
     /**
      * Default constructor for {@code MaterialTextField}. A default model is
      * created and the initial string is empty.
@@ -165,15 +163,6 @@ public class _MaterialPasswordField extends MaterialPasswordField {
     }
 
 //-------------------WRONG-------------------------
-    @Override
-    public String getHashAlgorithm() {
-        return hashAlgorithm;
-    }
-
-    @Override
-    public void setHashAlgorithm(String hashAlgorithm) {
-        this.hashAlgorithm = hashAlgorithm;
-    }
 
     private void validateSize(KeyEvent evt) {
         if (getText().length() + 1 > getMaxLength()) {
@@ -255,29 +244,14 @@ public class _MaterialPasswordField extends MaterialPasswordField {
         //intentionally left blank
     }
 
-    /**
-     * Get the password in this text field.<\br>
-     * By default, it hash via SHA-256.
-     *
-     * @return
-     */
     @Override
-    public char[] getPassword() {
-        char[] pass = super.getPassword();
-        if (hashAlgorithm != null && !hashAlgorithm.trim().isEmpty()) {
-            pass = SHA.hash(new String(pass), hashAlgorithm).toCharArray();
-        }
-        return pass;
+    public String getObject() {
+        return new String(getPassword());
     }
 
     @Override
-    public char[] getObject() {
-        return getPassword();
-    }
-
-    @Override
-    public void setObject(char[] object) {
-        setText(new String(object));
+    public void setObject(String object) {
+        setText(object);
     }
 
 }

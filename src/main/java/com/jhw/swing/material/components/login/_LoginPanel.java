@@ -52,7 +52,7 @@ public class _LoginPanel extends LoginSimple {
         setMinimumSize(new java.awt.Dimension(692, 460));
 
         panelBackgroundLogin.setBackground(new java.awt.Color(230, 230, 230));
-        ((BorderRadius)panelBackgroundLogin).setBorderRadius(10);
+        ((BorderRadius) panelBackgroundLogin).setBorderRadius(10);
 
         labelSecure.setPreferredSize(new java.awt.Dimension(50, 150));
 
@@ -141,6 +141,12 @@ public class _LoginPanel extends LoginSimple {
     private com.jhw.swing.material.components.textfield._MaterialTextField textFieldUsuario;
     // End of variables declaration                   
 
+    protected void clear() {
+        clearAnswer();
+        textFieldUsuario.setText("");
+        passwordUsuario.setText("");
+    }
+
     @Override
     public String getUser() {
         return textFieldUsuario.getText();
@@ -148,7 +154,7 @@ public class _LoginPanel extends LoginSimple {
 
     @Override
     public String getPass() {
-        return new String(passwordUsuario.getPassword());
+        return passwordUsuario.getObject();
     }
 
     @Override
@@ -190,7 +196,6 @@ public class _LoginPanel extends LoginSimple {
                 clearAnswer();
             }
         });
-
     }
 
     private void onTextFieldUsuarioKeyTyped(KeyEvent evt) {
@@ -209,7 +214,7 @@ public class _LoginPanel extends LoginSimple {
     }
 
     private void displayWrongCredentials() {
-        labelAnswer.setText("Contraseña incorrecta".toUpperCase());
+        labelAnswer.setText("Credenciales incorrectas".toUpperCase());
         labelAnswer.setIcon(MaterialIcons.CLOSE.deriveIcon(MaterialColors.RED_900));
         labelAnswer.setForeground(MaterialColors.RED_900);
     }
@@ -225,8 +230,8 @@ public class _LoginPanel extends LoginSimple {
      */
     private void personalize() {
         //set up colors
-        ((_PanelGradient)this.panelBackground).setPrimaryColor(MaterialColors.GREY_400);
-        ((_PanelGradient)this.panelBackground).setSecundaryColor(MaterialColors.BLACK);
+        ((_PanelGradient) this.panelBackground).setPrimaryColor(MaterialColors.GREY_400);
+        ((_PanelGradient) this.panelBackground).setSecundaryColor(MaterialColors.BLACK);
         this.panelBackgroundLogin.setBackground(MaterialColors.BLUEA_400);
         this.labelSecure.setIcon(MaterialIcons.VERIFIED_USER.deriveIcon(130f));
     }
