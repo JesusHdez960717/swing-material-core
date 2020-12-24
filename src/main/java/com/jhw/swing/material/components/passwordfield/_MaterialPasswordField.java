@@ -245,13 +245,13 @@ public class _MaterialPasswordField extends MaterialPasswordField {
     }
 
     @Override
-    public char[] getObject() {
-        return getPassword();
+    public String getObject() {
+        return new String(getPassword());
     }
 
     @Override
-    public void setObject(char[] object) {
-        setText(new String(object));
+    public void setObject(String object) {
+        setText(object);
     }
 
 }

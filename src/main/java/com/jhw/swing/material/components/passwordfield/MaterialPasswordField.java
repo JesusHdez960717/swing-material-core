@@ -5,15 +5,7 @@
  */
 package com.jhw.swing.material.components.passwordfield;
 
-import com.jhw.swing.material.components.textfield.TextExtra;
-import com.jhw.swing.material.effects.FloatingLabel;
-import com.jhw.swing.material.effects.Iconable;
-import com.jhw.swing.material.effects.Line;
-import com.jhw.swing.material.effects.Wrong;
-import com.jhw.swing.util.interfaces.BindableComponent;
-import com.jhw.swing.util.interfaces.MaterialComponent;
 import javax.swing.JPasswordField;
-import com.jhw.swing.material.components.textfield.TextMaxLength;
 
 /**
  *
