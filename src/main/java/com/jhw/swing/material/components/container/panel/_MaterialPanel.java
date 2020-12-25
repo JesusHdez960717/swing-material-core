@@ -69,7 +69,7 @@ public class _MaterialPanel extends MaterialPanelBorder implements ElevationEffe
         //si no usa sombra un bordecito para definir los paneles
         if (!PersonalizationHandler.getBoolean(Personalization.KEY_USE_SHADOW)) {
             this.setBorderThickness(1);
-            this.setBorderColor(MaterialColors.GREY_400);
+            this.setBorderColor(PersonalizationHandler.getColor(Personalization.KEY_COLOR_SHADOW_OFF));
         }
     }
 //-----------------ELEVATION_EFFECT------------------------
