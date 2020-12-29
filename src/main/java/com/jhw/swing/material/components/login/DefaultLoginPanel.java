@@ -21,7 +21,6 @@ public class DefaultLoginPanel extends _LoginPanel {
 
             if (resp) {
                 Navigation.getNavigationService().navigateTo(DASH_NAME);
-                Notification.showNotification(NotificationsGeneralType.NOTIFICATION_LOGIN, getUser());
                 clear();
             }
         });

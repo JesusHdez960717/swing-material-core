@@ -5,6 +5,8 @@
  */
 package com.jhw.swing.bundles.tray;
 
+import com.jhw.module.util.personalization.core.domain.Personalization;
+import com.jhw.module.util.personalization.services.PersonalizationHandler;
 import com.jhw.swing.material.standards.MaterialIcons;
 import java.awt.*;
 import java.awt.event.*;
@@ -73,6 +75,7 @@ public class SystemTrayInstaller {
         try {
             SystemTray.getSystemTray().add(trayIcon);
             this.target.setVisible(false);
+            showNotification();
             System.out.println("Agregada App al SystemTray");
         } catch (Exception ex) {
             System.out.println("Error agregando la App al SystemTray");
@@ -99,6 +102,12 @@ public class SystemTrayInstaller {
 
     public static builder builder(JFrame frame) {
         return new builder(frame);
+    }
+
+    private void showNotification() {
+        if (PersonalizationHandler.getBoolean(Personalization.KEY_SHOW_NOTIF_AFTER_TRAY)) {
+            trayIcon.displayMessage(target.getTitle(), "Minimizado a la barra de tareas", TrayIcon.MessageType.INFO);
+        }
     }
 
     public static class builder {
