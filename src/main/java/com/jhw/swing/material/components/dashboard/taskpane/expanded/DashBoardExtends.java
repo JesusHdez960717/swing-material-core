@@ -1,6 +1,6 @@
 package com.jhw.swing.material.components.dashboard.taskpane.expanded;
 
-import com.clean.swing.app.dashboard.DashBoardSimple;
+import com.root101.clean.swing.app.dashboard.DashBoardSimple;
 import com.jhw.swing.material.components.dashboard.taskpane.DashBoardTaskPane;
 import java.awt.BorderLayout;
 import java.awt.Color;

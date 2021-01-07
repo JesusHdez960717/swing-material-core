@@ -2,11 +2,9 @@ package com.jhw.swing.material.components.datepicker;
 
 import com.jhw.swing.material.components.textfield._MaterialFormatedTextField;
 import com.jhw.swing.material.standards.MaterialColors;
-import java.util.Date;
-import com.jhw.utils.others.SDF;
 import com.jhw.swing.material.standards.MaterialFontRoboto;
 import com.jhw.swing.material.standards.MaterialIcons;
-import com.jhw.utils.others.DTF;
+import com.root101.utils.others.DTF;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Cursor;
@@ -14,7 +12,9 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.util.Date;
 import javax.swing.JButton;
 import javax.swing.UIManager;
 import javax.swing.text.DefaultFormatterFactory;
@@ -29,6 +29,8 @@ public class _MaterialDatePicker extends MaterialDatePicker {
     public static MaterialDatePicker from() {
         return new _MaterialDatePicker();
     }
+
+    public static final SimpleDateFormat SDF = new SimpleDateFormat("dd-MMM-yyyy");
 
     static {
         UIManager.put("JXMonthView.monthDownFileName", MaterialIcons.KEYBOARD_ARROW_LEFT);
@@ -52,7 +54,7 @@ public class _MaterialDatePicker extends MaterialDatePicker {
         super();
         this.setLabel(label);
 
-        this.setFormats(SDF.SDF);
+        this.setFormats(SDF);
         this.setDate(new Date());
         this.setFont(MaterialFontRoboto.MEDIUM.deriveFont(18f));
 

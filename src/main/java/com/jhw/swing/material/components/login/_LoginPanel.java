@@ -1,13 +1,11 @@
 package com.jhw.swing.material.components.login;
 
-import com.clean.swing.app.login.LoginSimple;
 import com.jhw.swing.material.components.button.MaterialButton;
 import com.jhw.swing.material.components.button.MaterialButtonsFactory;
 import com.jhw.swing.material.components.container.MaterialContainersFactory;
 import com.jhw.swing.material.components.container.panel._PanelGradient;
 import com.jhw.swing.material.components.labels.MaterialLabel;
 import com.jhw.swing.material.components.labels.MaterialLabelsFactory;
-import com.jhw.swing.material.components.labels._MaterialLabel;
 import com.jhw.swing.material.components.passwordfield._MaterialPasswordField;
 import com.jhw.swing.material.components.textfield._MaterialTextField;
 import com.jhw.swing.material.effects.BorderRadius;
@@ -15,6 +13,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import com.jhw.swing.material.standards.MaterialColors;
 import com.jhw.swing.material.standards.MaterialIcons;
+import com.root101.clean.swing.app.login.LoginSimple;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;

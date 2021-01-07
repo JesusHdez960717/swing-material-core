@@ -14,11 +14,9 @@ import com.jhw.swing.material.standards.MaterialColors;
 import com.jhw.swing.material.standards.MaterialFontRoboto;
 import com.jhw.swing.util.MaterialDrawingUtils;
 import com.jhw.swing.util.Utils;
-import com.jhw.swing.util.interfaces.BindableComponent;
-import com.jhw.swing.util.interfaces.MaterialComponent;
 import com.jhw.swing.material.effects.Wrong;
-import com.jhw.utils.interfaces.Formateable;
-import com.jhw.utils.services.ConverterService;
+import com.root101.utils.interfaces.Formateable;
+import com.root101.utils.services.ConverterService;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FontMetrics;
@@ -26,7 +24,6 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.FocusEvent;
 import java.awt.event.KeyEvent;
-import javax.swing.Icon;
 
 /**
  *

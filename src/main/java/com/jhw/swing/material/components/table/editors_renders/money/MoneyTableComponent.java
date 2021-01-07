@@ -1,11 +1,9 @@
 package com.jhw.swing.material.components.table.editors_renders.money;
 
 import com.jhw.swing.material.components.container.MaterialContainersFactory;
-import com.jhw.swing.material.components.container.panel._PanelGradient;
 import com.jhw.swing.material.components.labels.MaterialLabelMoney;
 import com.jhw.swing.material.components.labels.MaterialLabelsFactory;
-import com.jhw.swing.material.components.labels._MaterialLabel;
-import com.jhw.utils.others.StringFormating;
+import com.root101.utils.others.StringFormating;
 import java.awt.GridLayout;
 import java.math.BigDecimal;
 import java.util.Objects;

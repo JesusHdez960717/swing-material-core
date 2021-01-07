@@ -1,8 +1,8 @@
 package com.jhw.swing.material.components.combobox.filtrable_utils;
 
 import com.jhw.swing.material.components.combobox._MaterialComboBoxFiltrable;
-import com.jhw.utils.interfaces.Formateable;
-import com.jhw.utils.interfaces.Filtrable;
+import com.root101.utils.interfaces.Formateable;
+import com.root101.utils.interfaces.Filtrable;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

@@ -4,7 +4,7 @@ import com.jhw.swing.material.components.combobox.filtrable_utils.ComboBoxFilter
 import com.jhw.swing.material.components.combobox.filtrable_utils.CustomComboRenderer;
 import com.jhw.swing.util.MaterialDrawingUtils;
 import com.jhw.swing.util.Utils;
-import com.jhw.swing.derivable_icons.DerivableIcon;
+import com.root101.swing.derivable_icons.DerivableIcon;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;

@@ -1,7 +1,7 @@
 package com.jhw.swing.material.components.dashboard.taskpane.expanded;
 
-import com.clean.swing.app.dashboard.DashboardConstants;
-import com.clean.swing.app.dashboard.MapeableContainer;
+import com.root101.clean.swing.app.dashboard.DashboardConstants;
+import com.root101.clean.swing.app.dashboard.MapeableContainer;
 import com.jhw.swing.material.components.button.MaterialButtonsFactory;
 import com.jhw.swing.material.components.container.MaterialContainersFactory;
 import com.jhw.swing.material.components.dashboard.taskpane.DashBoardTaskPane;

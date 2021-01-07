@@ -5,8 +5,8 @@
  */
 package com.jhw.swing.material.components.dashboard.taskpane;
 
-import com.clean.swing.app.dashboard.DashBoardSimple;
-import com.clean.swing.app.dashboard.DashboardConstants;
+import com.root101.clean.swing.app.dashboard.DashBoardSimple;
+import com.root101.clean.swing.app.dashboard.DashboardConstants;
 import com.jhw.swing.material.components.container.panel._PanelGradient;
 import com.jhw.swing.material.components.taskpane.CollapseMenu;
 import com.jhw.swing.material.components.taskpane.TaskButton;

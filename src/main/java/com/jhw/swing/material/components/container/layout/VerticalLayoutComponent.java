@@ -1,8 +1,8 @@
 package com.jhw.swing.material.components.container.layout;
 
-import com.clean.core.exceptions.ValidationException;
-import com.clean.core.utils.validation.Validable;
-import com.clean.core.utils.validation.ValidationResult;
+import com.root101.clean.core.exceptions.ValidationException;
+import com.root101.clean.core.utils.validation.Validable;
+import com.root101.clean.core.utils.validation.ValidationResult;
 import java.awt.Component;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PositiveOrZero;

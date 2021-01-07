@@ -5,7 +5,7 @@
  */
 package com.jhw.swing.material.components.labels;
 
-import com.jhw.utils.interfaces.Update;
+import com.root101.utils.interfaces.Update;
 import java.awt.BorderLayout;
 import javax.swing.SwingConstants;
 

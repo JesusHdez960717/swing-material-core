@@ -11,7 +11,7 @@ import com.jhw.swing.material.components.button.MaterialButtonIcon;
 import com.jhw.swing.material.components.button.MaterialButtonsFactory;
 import com.jhw.swing.material.standards.MaterialColors;
 import com.jhw.swing.util.PersonalizationMaterial;
-import com.jhw.swing.derivable_icons.DerivableIcon;
+import com.root101.swing.derivable_icons.DerivableIcon;
 import com.jhw.swing.material.injection.MaterialSwingInjector;
 import com.jhw.swing.material.standards.MaterialIcons;
 import java.awt.BorderLayout;

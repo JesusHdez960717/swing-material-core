@@ -6,7 +6,7 @@
 package com.jhw.swing.material.injection;
 
 import com.jhw.swing.material.effects.Iconable;
-import com.jhw.swing.derivable_icons.DerivableIcon;
+import com.root101.swing.derivable_icons.DerivableIcon;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

@@ -5,7 +5,7 @@
  */
 package com.jhw.swing.material.components.taskpane;
 
-import com.clean.swing.app.dashboard.DashboardConstants;
+import com.root101.clean.swing.app.dashboard.DashboardConstants;
 import com.jhw.swing.material.components.button.MaterialButton;
 import com.jhw.swing.material.components.button.MaterialButtonIcon;
 import com.jhw.swing.material.components.button.MaterialButtonsFactory;

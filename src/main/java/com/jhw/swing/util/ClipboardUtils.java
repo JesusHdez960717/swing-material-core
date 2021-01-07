@@ -5,8 +5,8 @@
  */
 package com.jhw.swing.util;
 
-import com.clean.core.app.services.Notification;
-import com.clean.core.app.services.NotificationsGeneralType;
+import com.root101.clean.core.app.services.NotificationHandler;
+import com.root101.clean.core.app.services.NotificationsGeneralType;
 import java.awt.Toolkit;
 import java.awt.datatransfer.StringSelection;
 
@@ -24,6 +24,6 @@ public class ClipboardUtils {
                         null
                 );
         String text = "\"" + textToCopy + "\" copiado al portapapeles";
-        Notification.showNotification(NotificationsGeneralType.NOTIFICATION_SIMPLE_TEXT, text);
+        NotificationHandler.showNotification(NotificationsGeneralType.NOTIFICATION_SIMPLE_TEXT, text);
     }
 }

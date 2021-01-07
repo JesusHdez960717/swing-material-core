@@ -2,7 +2,7 @@ package com.jhw.swing.material.components.container.tabbed.prepared;
 
 import com.jhw.swing.material.components.container.tabbed._TabbedPaneHeader;
 import java.awt.Component;
-import com.jhw.utils.interfaces.Update;
+import com.root101.utils.interfaces.Update;
 
 /**
  *

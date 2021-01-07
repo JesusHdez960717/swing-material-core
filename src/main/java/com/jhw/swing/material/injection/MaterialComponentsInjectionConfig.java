@@ -3,7 +3,7 @@ package com.jhw.swing.material.injection;
 import com.google.inject.AbstractModule;
 import com.google.inject.matcher.Matchers;
 import com.jhw.swing.material.effects.Iconable;
-import com.jhw.utils.interfaces.Update;
+import com.root101.utils.interfaces.Update;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 

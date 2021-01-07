@@ -3,7 +3,7 @@ package com.jhw.swing.material.components.labels;
 import com.jhw.swing.material.injection.Background_Force_Foreground;
 import com.jhw.swing.material.injection.Foreground_Force_Icon;
 import com.jhw.swing.material.injection.MaterialSwingInjector;
-import com.jhw.utils.others.StringFormating;
+import com.root101.utils.others.StringFormating;
 import java.math.BigDecimal;
 
 /**

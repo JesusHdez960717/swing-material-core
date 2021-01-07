@@ -12,7 +12,7 @@ import com.jhw.swing.material.components.button.MaterialButtonsFactory;
 import com.jhw.swing.material.standards.MaterialIcons;
 import com.jhw.swing.material.standards.MaterialShadow;
 import com.jhw.swing.util.PersonalizationMaterial;
-import com.jhw.swing.derivable_icons.DerivableIcon;
+import com.root101.swing.derivable_icons.DerivableIcon;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;

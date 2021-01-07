@@ -9,7 +9,7 @@ import com.jhw.swing.material.standards.FastGaussianBlur;
 import com.jhw.swing.material.standards.MaterialColors;
 import com.jhw.swing.material.standards.MaterialShadow;
 import com.jhw.swing.util.MaterialDrawingUtils;
-import com.jhw.utils.others.Pair;
+import com.root101.utils.others.Pair;
 import java.awt.AlphaComposite;
 import java.awt.BasicStroke;
 import java.awt.Color;
