@@ -41,7 +41,7 @@ import com.root101.utils.services.ConverterService;
  * @see <a
  * href="https://www.google.com/design/spec/components/text-fields.html">Text
  * fields (Google design guidelines)</a>
- * 
+ *
  * @author Root101 (jhernandezb96@gmail.com, +53-5-426-8660)
  * @author JesusHdezWaterloo@Github
  */
@@ -54,7 +54,7 @@ public class _MaterialTextField<T> extends MaterialTextField<T> {
     public static MaterialTextField from(Class clazz) {
         return new _MaterialTextField(clazz);
     }
-    
+
     private final Class<? extends T> clazz;
 
     private final FloatingLabel floatingLabel = new DefaultFloatingLabel(this);

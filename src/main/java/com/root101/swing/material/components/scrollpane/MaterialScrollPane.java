@@ -24,7 +24,7 @@ import javax.swing.JScrollPane;
  * @author Root101 (jhernandezb96@gmail.com, +53-5-426-8660)
  * @author JesusHdezWaterloo@Github
  */
-public abstract class MaterialScrollPane extends JScrollPane implements BorderDinamic{
+public abstract class MaterialScrollPane extends JScrollPane implements BorderDinamic {
 
     public abstract MaterialScrollBar getMaterialVerticalScrollBar();
 

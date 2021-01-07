@@ -23,6 +23,6 @@ import javax.swing.JFormattedTextField;
  * @author Root101 (jhernandezb96@gmail.com, +53-5-426-8660)
  * @author JesusHdezWaterloo@Github
  */
-public abstract class MaterialFormatedTextField<T> extends JFormattedTextField implements MaterialFormatedTextFieldDefinition<T>{
+public abstract class MaterialFormatedTextField<T> extends JFormattedTextField implements MaterialFormatedTextFieldDefinition<T> {
 
 }

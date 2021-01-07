@@ -24,6 +24,6 @@ import java.time.Year;
  * @author Root101 (jhernandezb96@gmail.com, +53-5-426-8660)
  * @author JesusHdezWaterloo@Github
  */
-public abstract class MaterialYearPicker extends _MaterialComboBox<Year> implements MaterialYearPickerDefinition{
-    
+public abstract class MaterialYearPicker extends _MaterialComboBox<Year> implements MaterialYearPickerDefinition {
+
 }

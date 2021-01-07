@@ -130,7 +130,7 @@ public class _MaterialIconButtonRound extends _MaterialButton {
             g2.setColor(getColorFadeInto());
         } else {
             Color bg = getBackground();
-                            g2.setColor(Utils.applyAlphaMask(bg, HINT_OPACITY_MASK));
+            g2.setColor(Utils.applyAlphaMask(bg, HINT_OPACITY_MASK));
 
             //g2.setColor(new Color(bg.getRed() / 255f, bg.getGreen() / 255f, bg.getBlue() / 255f, 0.6f));
         }

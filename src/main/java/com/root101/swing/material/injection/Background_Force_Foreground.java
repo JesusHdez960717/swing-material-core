@@ -52,10 +52,10 @@ public @interface Background_Force_Foreground {
         @Override
         public Object invoke(MethodInvocation invocation) throws Throwable {
             Object answ = invocation.proceed();
-            
+
             JComponent component = (JComponent) invocation.getThis();
             component.setForeground(Utils.getForegroundAccording(component.getBackground()));
-            
+
             return answ;
         }
     }

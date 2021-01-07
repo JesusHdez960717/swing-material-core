@@ -22,7 +22,7 @@ import java.awt.event.FocusEvent;
 import java.awt.event.KeyEvent;
 import javax.swing.*;
 import com.root101.swing.material.effects.FloatingLabel;
-import  com.root101.security.SHA;
+import com.root101.security.SHA;
 import com.root101.swing.util.MaterialDrawingUtils;
 import com.root101.swing.material.effects.DefaultLine;
 import com.root101.swing.material.effects.DefaultWrong;
@@ -41,7 +41,7 @@ import com.root101.swing.material.effects.Wrong;
  * @see <a
  * href="https://www.google.com/design/spec/components/text-fields.html">Text
  * fields (Google design guidelines)</a>
- * 
+ *
  * @author Root101 (jhernandezb96@gmail.com, +53-5-426-8660)
  * @author JesusHdezWaterloo@Github
  */
@@ -98,7 +98,6 @@ public class _MaterialPasswordField extends MaterialPasswordField {
     }
 
 //-------------------LINE-------------------------
-
     @Override
     public void paintLine(Graphics g2) {
         line.paintLine(g2);
@@ -182,7 +181,6 @@ public class _MaterialPasswordField extends MaterialPasswordField {
     }
 
 //-------------------WRONG-------------------------
-
     private void validateSize(KeyEvent evt) {
         if (getText().length() + 1 > getMaxLength()) {
             Utils.beep();

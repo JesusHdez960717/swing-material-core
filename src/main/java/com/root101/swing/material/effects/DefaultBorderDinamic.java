@@ -114,7 +114,7 @@ public class DefaultBorderDinamic<T extends JComponent & BorderDinamic> implemen
         TitledBorder titled = (TitledBorder) getBordeableComponent().getBorder();
         titled.setBorder(DefaultMaterialLineBorder.builder().build());
         repaintComponent();//este es el que le da la forma con los valores que son
-        
+
         getFocusableComponent().removeFocusListener(focusListener);
         getFocusableComponent().addFocusListener(focusListener);
     }

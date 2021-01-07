@@ -22,7 +22,7 @@ package com.root101.swing.material.effects;
  * @author JesusHdezWaterloo@Github
  */
 public interface BorderRadius {
-    
+
     public int getBorderRadius();
 
     public void setBorderRadius(int borderRadius);

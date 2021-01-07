@@ -62,7 +62,7 @@ public class DragHandler implements DragGestureListener, DragSourceListener, Ser
         // Start the "drag" process...
         DragSource ds = dge.getDragSource();
         ds.startDrag(dge, null, transferable, this);
-        
+
         doDrag();
     }
 

@@ -39,7 +39,7 @@ import java.io.Serializable;
  * A {@code DefaultRippleEffect} is applied into certain components, like
  * buttons and certain list elements. Basically, is that wave of color that
  * appears when you click stuff.
- * 
+ *
  * @author Root101 (jhernandezb96@gmail.com, +53-5-426-8660)
  * @author JesusHdezWaterloo@Github
  */

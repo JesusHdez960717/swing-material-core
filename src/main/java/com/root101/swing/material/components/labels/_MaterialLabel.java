@@ -29,7 +29,6 @@ import com.root101.swing.material.standards.MaterialFontRoboto;
 import com.root101.swing.util.Utils;
 import static com.root101.swing.material.standards.Utils.HINT_OPACITY_MASK;
 
-
 /**
  *
  * @author Root101 (jhernandezb96@gmail.com, +53-5-426-8660)

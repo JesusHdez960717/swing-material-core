@@ -30,7 +30,7 @@ import com.root101.swing.util.Utils;
  * A {@code MaterialWindow} is the prefered top-level container for your
  * Material applications. It includes its own nice Material shadow out of the
  * box, as well as some convenient methods.
- * 
+ *
  * @author Root101 (jhernandezb96@gmail.com, +53-5-426-8660)
  * @author JesusHdezWaterloo@Github
  */

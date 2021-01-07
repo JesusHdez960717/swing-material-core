@@ -34,7 +34,7 @@ import javax.swing.JButton;
 
 /**
  * Componente extraido su logica de edisoncorSX.
- * 
+ *
  * @author Root101 (jhernandezb96@gmail.com, +53-5-426-8660)
  * @author JesusHdezWaterloo@Github
  */
@@ -43,7 +43,7 @@ public class _TabbedPaneClose extends JTabbedPane implements MaterialComponent {
     public static _TabbedPaneClose from() {
         return new _TabbedPaneClose();
     }
-    
+
     private boolean confirmacion = false;
     protected Modelo modelo = Modelo.ROUND;
 

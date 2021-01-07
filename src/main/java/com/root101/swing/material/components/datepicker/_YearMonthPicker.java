@@ -40,7 +40,7 @@ public class _YearMonthPicker extends MaterialYearMonthPicker {
 
     private void initComponents() {
         monthPicker = _MonthPicker.from();
-        
+
         yearPicker = _YearPicker.from();
 
         this.setLayout(new BorderLayout());

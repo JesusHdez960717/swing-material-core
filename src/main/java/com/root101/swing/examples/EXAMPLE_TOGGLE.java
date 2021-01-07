@@ -48,7 +48,6 @@ public class EXAMPLE_TOGGLE extends javax.swing.JFrame {
             System.out.println(btn.isSelected());
         });
         this.add(btn);*/
-        
         VerticalLayoutContainer.builder vlc = VerticalLayoutContainer.builder();
 
         vlc.add(MaterialToggleFactory.buildButton());
@@ -71,7 +70,7 @@ public class EXAMPLE_TOGGLE extends javax.swing.JFrame {
 
         vlc.add(hlcGroup.build());
         jPanel1.add(vlc.build());
-         
+
     }
 
     private void initComponents() {

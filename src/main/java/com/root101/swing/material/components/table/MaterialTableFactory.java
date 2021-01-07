@@ -26,6 +26,7 @@ public class MaterialTableFactory {
     public static MaterialTable build() {
         return _MaterialTable.from();
     }
+
     public static MaterialTableByPage buildByPage() {
         return _MaterialTableByPage.from();
     }

@@ -72,7 +72,7 @@ public class EXAMPLE_DATE_PICKER extends javax.swing.JFrame {
         MaterialMonthPickerIcon monthIcon = MaterialDatePickersFactory.buildMonthPickerIcon();
         monthIcon.setObject(_Month.from(9));
         vlc.add(monthIcon, true);
-        
+
         MaterialYearPicker year = MaterialDatePickersFactory.buildYearPicker();
         year.setObject(Year.of(2021));
         vlc.add(year, true);

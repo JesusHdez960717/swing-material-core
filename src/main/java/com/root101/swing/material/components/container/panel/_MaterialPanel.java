@@ -49,8 +49,8 @@ import com.root101.swing.material.injection.MaterialSwingInjector;
  * prefered, minimum and maximum size of each component by yourself. Currently,
  * the prefereable approach to follow is overriding {@link #doLayout()} and
  * taking care of any arrangements by yourself.
- * 
- * 
+ *
+ *
  * @author Root101 (jhernandezb96@gmail.com, +53-5-426-8660)
  * @author JesusHdezWaterloo@Github
  */
@@ -84,7 +84,7 @@ public class _MaterialPanel extends MaterialPanelBorder implements ElevationEffe
         this.setOpaque(false);
         this.setLayout(new BorderLayout());
         this.setBackground(PersonalizationHandler.getColor(Personalization.KEY_COLOR_BACKGROUND_PANEL));
-        
+
         //si no usa sombra un bordecito para definir los paneles
         if (!PersonalizationHandler.getBoolean(Personalization.KEY_USE_SHADOW)) {
             this.setBorderThickness(1);

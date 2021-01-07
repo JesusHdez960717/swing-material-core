@@ -39,7 +39,7 @@ public class _MaterialFormatedTextFieldRuntime<T> extends _MaterialFormatedTextF
     public static MaterialFormatedTextField from(AbstractFormatter formateer, Class clazz) {
         return new _MaterialFormatedTextFieldRuntime(formateer, clazz);
     }
-    
+
     private final List<Integer> scapeCharacters = new ArrayList<>();
 
     public _MaterialFormatedTextFieldRuntime(AbstractFormatter formateer) {

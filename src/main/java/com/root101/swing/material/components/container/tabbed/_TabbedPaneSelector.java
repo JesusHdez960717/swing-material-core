@@ -40,7 +40,7 @@ import com.root101.swing.util.interfaces.MaterialComponent;
 
 /**
  * Componente extraido su logica de edisoncorSX.
- * 
+ *
  * @author Root101 (jhernandezb96@gmail.com, +53-5-426-8660)
  * @author JesusHdezWaterloo@Github
  */

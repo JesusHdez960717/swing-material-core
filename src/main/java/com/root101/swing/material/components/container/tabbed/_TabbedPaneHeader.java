@@ -38,7 +38,7 @@ import com.root101.swing.util.interfaces.MaterialComponent;
 
 /**
  * Componente extraido su logica de edisoncorSX.
- * 
+ *
  * @author Root101 (jhernandezb96@gmail.com, +53-5-426-8660)
  * @author JesusHdezWaterloo@Github
  */
@@ -47,7 +47,7 @@ public class _TabbedPaneHeader extends JTabbedPane implements MaterialComponent 
     public static _TabbedPaneHeader from() {
         return new _TabbedPaneHeader();
     }
-    
+
     private static final Insets NO_INSETS = new Insets(0, 0, 0, 0);
     protected BufferedImage background = loadImage("/imgs/header_gradient.png");
     protected BufferedImage buttonHighlight = loadImage("/imgs/header_halo.png");

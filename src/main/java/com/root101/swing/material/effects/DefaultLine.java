@@ -35,7 +35,7 @@ import static com.root101.swing.material.standards.Utils.LINE_OPACITY_MASK;
 
 /**
  * An animated line that appears below a component when it is focused.
- * 
+ *
  * @author Root101 (jhernandezb96@gmail.com, +53-5-426-8660)
  * @author JesusHdezWaterloo@Github
  */

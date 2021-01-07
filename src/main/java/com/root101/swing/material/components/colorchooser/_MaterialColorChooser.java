@@ -41,14 +41,14 @@ import javax.swing.JPanel;
 @Background_Force_Foreground
 @Foreground_Force_Icon
 public class _MaterialColorChooser extends MaterialColorChooser {
-    
+
     public static MaterialColorChooser from() {
         return MaterialSwingInjector.getImplementation(_MaterialColorChooser.class);
     }
-    
+
     private final _MaterialColorChooserCore core = _MaterialColorChooserCore.from();
     private final Dialog dialog = new Dialog(core);
-    
+
     public _MaterialColorChooser() {
         this.setText("Selector de colores");
         this.setBackground(MaterialColors.WHITE);
@@ -57,32 +57,32 @@ public class _MaterialColorChooser extends MaterialColorChooser {
         this.setBorderThickness(2f);
         this.setBorderColor(MaterialColors.BLACK);
     }
-    
+
     @Override
     public Color getObject() {
         return core.getObject();
     }
-    
+
     @Override
     public void setObject(Color object) {
         core.setObject(object);
         this.setBackground(core.getObject());
     }
-    
+
     private void addListeners() {
         this.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dialog.setVisible(true);
             }
-            
+
         });
     }
-    
+
     private void initColorsPalette() {
         JPanel panel = MaterialContainersFactory.buildPanelTransparent();
         panel.setLayout(new BorderLayout());
-        
+
         MaterialButton btnAcept = MaterialButtonsFactory.buildButton();
         btnAcept.setBorderColor(MaterialColors.BLACK);
         btnAcept.setBorderThickness(2f);
@@ -95,14 +95,14 @@ public class _MaterialColorChooser extends MaterialColorChooser {
             }
         });
         btnAcept.setPreferredSize(new Dimension((int) btnAcept.getPreferredSize().getWidth(), 50));
-        
+
         panel.add(btnAcept, BorderLayout.EAST);
         dialog.add(panel, BorderLayout.SOUTH);
-        
+
     }
-    
+
     private class Dialog extends DialogPanel {
-        
+
         public Dialog(JPanel modelPanel) {
             super("Seleccione color", modelPanel, false);
         }

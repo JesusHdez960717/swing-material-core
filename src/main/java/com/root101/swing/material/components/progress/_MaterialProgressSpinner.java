@@ -34,7 +34,7 @@ import com.root101.swing.material.standards.MaterialColors;
  * @see <a
  * href="https://www.google.com/design/spec/components/progress-activity.html">Progress
  * &amp; activity (Google design guidelines)</a>
- * 
+ *
  * @author Root101 (jhernandezb96@gmail.com, +53-5-426-8660)
  * @author JesusHdezWaterloo@Github
  */

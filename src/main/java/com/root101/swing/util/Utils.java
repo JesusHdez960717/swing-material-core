@@ -116,7 +116,7 @@ public class Utils {
                 method.invoke(null, w, opaque);
             }
         } catch (Exception e) {
-            System.out.println("NO SE PUEDO PONER LA TRANSPARENCIA A LA VENTANA." );
+            System.out.println("NO SE PUEDO PONER LA TRANSPARENCIA A LA VENTANA.");
             e.printStackTrace();
         }
     }
