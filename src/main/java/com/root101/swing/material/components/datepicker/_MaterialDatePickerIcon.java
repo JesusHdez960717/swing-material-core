@@ -120,18 +120,6 @@ public class _MaterialDatePickerIcon extends MaterialDatePickerIcon {
     }
 
     @Override
-    public void setDate(Date date) {
-        if (datePicker != null) {
-            datePicker.setDate(date);
-        }
-    }
-
-    @Override
-    public Date getDate() {
-        return datePicker.getDate();
-    }
-
-    @Override
     public String getLabel() {
         return datePicker.getLabel();
     }

@@ -10,7 +10,6 @@ import com.root101.swing.material.effects.FloatingLabel;
 import com.root101.swing.material.effects.Line;
 import com.root101.swing.material.effects.Wrong;
 import com.root101.swing.util.interfaces.BindableComponent;
-import com.root101.swing.util.interfaces.DateSelected;
 import com.root101.swing.util.interfaces.MaterialComponent;
 import java.time.LocalDate;
 import java.util.Date;
@@ -19,7 +18,7 @@ import java.util.Date;
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-public interface MaterialDatePickerDefinition extends TextMaxLength, DateSelected, BindableComponent<LocalDate>, FloatingLabel, Line, Wrong, MaterialComponent {
+public interface MaterialDatePickerDefinition extends TextMaxLength, BindableComponent<LocalDate>, FloatingLabel, Line, Wrong, MaterialComponent {
     
     public void setLowerBound(Date lower);
 
