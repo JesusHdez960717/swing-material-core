@@ -2,9 +2,9 @@ plugins {
     id 'java'
 }
 
-group = 'com.jhw.swing.material'
+group = 'com.root101.swing'
 
-version = '5.4.0.SNAPSHOT.20201228'
+version = '6.0.0.SNAPSHOT.20210107'
 
 repositories {
     jcenter()
@@ -19,7 +19,7 @@ dependencies {
     testCompile 'junit:junit:4.13'
     
     implementation project(':utils-core')
-    implementation project(':clean-core-full')
+    implementation project(':clean-core')
     implementation project(':clean-swing')
     implementation project(':swing-derivable_icons')
     implementation project(':swing-material-standards')
