@@ -1,0 +1,120 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.root101.swing.bundles.dnd;
+
+import java.awt.Container;
+import java.awt.datatransfer.*;
+import java.awt.dnd.*;
+import java.io.Serializable;
+import javax.swing.JPanel;
+
+/**
+ *
+ * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
+ */
+public class DragHandler implements DragGestureListener, DragSourceListener, Serializable {
+
+    private Container parent;
+    private final JPanel child;
+
+    public DragHandler(JPanel child) {
+        this.child = child;
+    }
+
+    public JPanel getPanel() {
+        return child;
+    }
+
+    public void setParent(Container parent) {
+        this.parent = parent;
+    }
+
+    public Container getParent() {
+        return parent;
+    }
+
+    @Override
+    public void dragGestureRecognized(DragGestureEvent dge) {
+        // When the drag begins, we need to grab a reference to the
+        // parent container so we can return it if the drop
+        // is rejected
+        Container parent = getPanel().getParent();
+        setParent(parent);
+
+        // Create our transferable wrapper
+        Transferable transferable = new PanelTransferable(getPanel());
+        // Start the "drag" process...
+        DragSource ds = dge.getDragSource();
+        ds.startDrag(dge, null, transferable, this);
+        
+        doDrag();
+    }
+
+    /**
+     * Do the visual action of the drag, by default, remove the panel from it's
+     * parent
+     *
+     * @deprecated
+     */
+    @Deprecated
+    protected void doDrag() {
+        parent.remove(getPanel());
+        // Update the display
+        parent.invalidate();
+        parent.repaint();
+    }
+
+    @Override
+    public void dragEnter(DragSourceDragEvent dsde) {
+    }
+
+    @Override
+    public void dragOver(DragSourceDragEvent dsde) {
+    }
+
+    @Override
+    public void dropActionChanged(DragSourceDragEvent dsde) {
+    }
+
+    @Override
+    public void dragExit(DragSourceEvent dse) {
+    }
+
+    @Override
+    public void dragDropEnd(DragSourceDropEvent dsde) {
+        // If the drop was not successful, we need to
+        // return the component back to it's previous
+        // parent
+        if (dsde.getDropSuccess()) {
+            dragSuccess();
+        } else {
+            dragFail();
+        }
+        getParent().invalidate();
+        getParent().repaint();
+    }
+
+    /**
+     * If success, by default, remove for good the panel from it's parent
+     *
+     * @deprecated
+     */
+    @Deprecated
+    protected void dragSuccess() {
+        getPanel().remove(getPanel());
+    }
+
+    /**
+     * If the drag fail, by default add the component to it's parent in order to
+     * return to it's original state
+     *
+     * @deprecated
+     */
+    @Deprecated
+    protected void dragFail() {
+        getParent().add(getPanel());
+    }
+}

@@ -2,7 +2,7 @@ plugins {
     id 'java'
 }
 
-group = 'com.jhw.swing.material'
+group = 'com.root101.swing.material'
 
 version = '5.4.0.SNAPSHOT.20201228'
 

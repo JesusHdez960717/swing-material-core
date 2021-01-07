@@ -1,0 +1,20 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.root101.swing.material.components.table;
+
+import java.util.List;
+
+/**
+ *
+ * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
+ */
+public interface TableByPage extends Table {
+
+    public void setPageVisibility(boolean visible);
+
+    public void setData(List<Object[]> rows);
+
+}
