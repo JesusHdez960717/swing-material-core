@@ -16,7 +16,7 @@
  */
 package com.root101.swing.material.components.button;
 
-import com.jhw.module.util.personalization.services.PersonalizationHandler;
+import com.root101.module.util.personalization.services.PersonalizationHandler;
 import com.root101.swing.material.components.popup.MaterialPopupFactory;
 import com.root101.swing.material.standards.MaterialIcons;
 import com.root101.swing.util.PersonalizationMaterial;

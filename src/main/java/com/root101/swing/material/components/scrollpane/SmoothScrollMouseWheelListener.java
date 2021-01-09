@@ -27,8 +27,8 @@ import org.jdesktop.core.animation.timing.Animator;
 import com.root101.swing.util.Utils;
 import com.root101.swing.ui.utils.MaterialManagerListener;
 import com.root101.swing.util.SafePropertySetter;
-import com.jhw.module.util.personalization.core.domain.Personalization;
-import com.jhw.module.util.personalization.services.PersonalizationHandler;
+import com.root101.module.util.personalization.core.domain.Personalization;
+import com.root101.module.util.personalization.services.PersonalizationHandler;
 
 /**
  * Class to add a smoot movement to a JScrollPane.
