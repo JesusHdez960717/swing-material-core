@@ -16,7 +16,7 @@
  */
 package com.root101.swing.material.components.textfield;
 
-import com.jhw.module.util.personalization.services.PersonalizationHandler;
+import com.root101.module.util.personalization.services.PersonalizationHandler;
 import com.root101.swing.util.PersonalizationMaterial;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
