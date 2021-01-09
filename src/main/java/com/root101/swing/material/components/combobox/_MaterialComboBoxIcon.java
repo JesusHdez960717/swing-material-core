@@ -16,7 +16,7 @@
  */
 package com.root101.swing.material.components.combobox;
 
-import com.jhw.module.util.personalization.services.PersonalizationHandler;
+import com.root101.module.util.personalization.services.PersonalizationHandler;
 import com.root101.swing.material.components.button.MaterialButtonIcon;
 import com.root101.swing.material.components.button.MaterialButtonsFactory;
 import com.root101.swing.material.standards.MaterialColors;
