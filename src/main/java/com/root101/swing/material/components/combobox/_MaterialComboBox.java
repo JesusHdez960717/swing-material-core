@@ -36,6 +36,11 @@ import com.root101.swing.derivable_icons.DerivableIcon;
 import java.awt.event.ActionEvent;
 import com.root101.swing.material.effects.Wrong;
 import static com.root101.swing.material.standards.Utils.*;
+import com.root101.utils.refraction.FiltrableRefraction;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
 /**
@@ -78,6 +83,8 @@ public class _MaterialComboBox<T> extends MaterialComboBox<T> {
                 return null;
             }
         });
+
+        this.addKeyListener(FilterListener.from(this));
 
         this.addActionListener((ActionEvent e) -> {
             clearWrong();
@@ -326,6 +333,72 @@ public class _MaterialComboBox<T> extends MaterialComboBox<T> {
         @Override
         public void paint(Graphics g) {
             super.paint(MaterialDrawingUtils.getAliasedGraphics(g));
+        }
+    }
+
+    private static class FilterListener extends KeyAdapter {
+
+        public static FilterListener from(JComboBox combo) {
+            return new FilterListener(combo);
+        }
+
+        public static int TIME_RESET_SEARCH = 2 * 1000;
+
+        private String key = "";
+        private long last = -1;
+        private final JComboBox combo;
+
+        public FilterListener(JComboBox combo) {
+            this.combo = combo;
+        }
+
+        @Override
+        public void keyTyped(KeyEvent e) {
+            if (e.getKeyCode() == KeyEvent.VK_ENTER || e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+                key = "";
+                return;
+            }
+
+            if (System.currentTimeMillis() - last > TIME_RESET_SEARCH) {
+                key = "";
+            }
+            last = System.currentTimeMillis();
+
+            key += e.getKeyChar();
+            DefaultComboBoxModel model = ((DefaultComboBoxModel) combo.getModel());
+
+            Object selectedItem = model.getSelectedItem();
+            int i, c;
+            int currentSelection = -1;
+
+            if (selectedItem != null) {
+                for (i = 0, c = model.getSize(); i < c; i++) {
+                    if (selectedItem == model.getElementAt(i)) {
+                        currentSelection = i;
+                        break;
+                    }
+                }
+            }
+            for (i = ++currentSelection, c = model.getSize(); i < c; i++) {
+                Object elem = model.getElementAt(i);
+                if (elem != null && elem.toString() != null) {
+                    if (elem.toString().toLowerCase().contains(key.toLowerCase())) {
+                        combo.setSelectedIndex(i);
+                        break;
+                    }
+                }
+            }
+
+            for (i = 0; i < currentSelection; i++) {
+                Object elem = model.getElementAt(i);
+                if (elem != null && elem.toString() != null) {
+                    if (elem.toString().toLowerCase().contains(key.toLowerCase())) {
+                        combo.setSelectedIndex(i);
+                        break;
+                    }
+                }
+            }
+
         }
     }
 
