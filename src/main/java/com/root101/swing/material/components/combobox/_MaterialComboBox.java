@@ -338,7 +338,7 @@ public class _MaterialComboBox<T> extends MaterialComboBox<T> {
 
     private static class FilterListener extends KeyAdapter {
 
-        public static FilterListener from(JComboBox combo) {
+        public static FilterListener from(MaterialComboBox combo) {
             return new FilterListener(combo);
         }
 
@@ -346,9 +346,9 @@ public class _MaterialComboBox<T> extends MaterialComboBox<T> {
 
         private String key = "";
         private long last = -1;
-        private final JComboBox combo;
+        private final MaterialComboBox combo;
 
-        public FilterListener(JComboBox combo) {
+        public FilterListener(MaterialComboBox combo) {
             this.combo = combo;
         }
 
