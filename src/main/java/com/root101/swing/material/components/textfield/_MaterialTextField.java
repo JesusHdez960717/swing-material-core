@@ -30,7 +30,7 @@ import com.root101.swing.material.standards.MaterialColors;
 import com.root101.swing.material.standards.MaterialFontRoboto;
 import com.root101.swing.material.effects.Wrong;
 import com.root101.utils.interfaces.Formateable;
-import com.root101.utils.services.ConverterService;
+import com.root101.clean.core.app.services.ConverterHandler;
 
 /**
  * A Material Design single-line text field is the basic way of getting user
@@ -271,7 +271,7 @@ public class _MaterialTextField<T> extends MaterialTextField<T> {
             throw new NullPointerException("Clase para convertir nula.");
         }
         try {
-            return ConverterService.convert(getText(), clazz);
+            return ConverterHandler.convert(getText(), clazz);
         } catch (Exception e) {
             throw new NullPointerException("Error convirtiendo.");
         }

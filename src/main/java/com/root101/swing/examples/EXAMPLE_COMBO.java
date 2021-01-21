@@ -22,13 +22,16 @@ import com.root101.swing.material.components.combobox.MaterialComboBoxIcon;
 import com.root101.swing.material.components.container.layout.VerticalLayoutContainer;
 import com.root101.swing.material.standards.MaterialColors;
 import com.root101.swing.ui.MaterialLookAndFeel;
+import com.root101.utils.refraction.FiltrableRefraction;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.util.Arrays;
 import javax.swing.AbstractAction;
+import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.UIManager;
 
 /**
@@ -48,7 +51,7 @@ public class EXAMPLE_COMBO extends javax.swing.JFrame {
 
         MaterialComboBox<Integer> combo = MaterialComboBoxFactory.build();
         combo.setLabel("simple");
-        combo.setModel(new DefaultComboBoxModel(new Object[]{1, 2, 3, 4, 5, 6}));
+        combo.setModel(new DefaultComboBoxModel(new Object[]{4, 4, 5, 45, 456789999, 2, 3, 4, 5, 6}));
         vlc.add(combo, true);
 
         MaterialComboBoxIcon<Integer> comboIcon = MaterialComboBoxFactory.buildIcon();
