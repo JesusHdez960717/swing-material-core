@@ -27,7 +27,7 @@ import com.root101.swing.util.MaterialDrawingUtils;
 import com.root101.swing.util.Utils;
 import com.root101.swing.material.effects.Wrong;
 import com.root101.utils.interfaces.Formateable;
-import com.root101.utils.services.ConverterService;
+import com.root101.clean.core.app.services.ConverterHandler;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FontMetrics;
@@ -273,7 +273,7 @@ public class _MaterialFormatedTextField<T> extends MaterialFormatedTextField<T> 
             throw new NullPointerException("Clase para convertir nula.");
         }
         try {
-            return ConverterService.convert(getValue(), clazz);
+            return ConverterHandler.convert(getValue(), clazz);
         } catch (Exception e) {
             //return null;
             throw new NullPointerException("Error convirtiendo.");
