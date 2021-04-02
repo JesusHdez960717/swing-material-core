@@ -4,7 +4,7 @@ plugins {
 
 group = 'com.root101.swing'
 
-version = '6.1.0.SNAPSHOT.20210120'
+version = '6.1.1.SNAPSHOT.20210402'
 
 repositories {
     jcenter()
