@@ -217,7 +217,7 @@ public class _MaterialTextField<T> extends MaterialTextField<T> {
         super.setText(s);
         clearWrong();
         this.setCaretPosition(getText().length());
-        firePropertyChange("text", null, null);
+        firePropertyChange("text", null, s);
     }
 
     @Override
