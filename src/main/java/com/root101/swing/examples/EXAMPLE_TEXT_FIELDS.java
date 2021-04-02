@@ -16,6 +16,7 @@
  */
 package com.root101.swing.examples;
 
+import com.root101.json.ConverterServiceJSONImpl;
 import com.root101.swing.material.components.container.layout.VerticalLayoutContainer;
 import com.root101.swing.material.components.textfield.MaterialFormatedTextField;
 import com.root101.swing.material.components.textfield.MaterialFormatedTextFieldIcon;
@@ -42,6 +43,8 @@ public class EXAMPLE_TEXT_FIELDS extends javax.swing.JFrame {
      * Creates new form NewJFrame
      */
     public EXAMPLE_TEXT_FIELDS() {
+        ConverterServiceJSONImpl.INSTANCE();
+
         initComponents();
 
         jPanel1.setLayout(new BorderLayout());
