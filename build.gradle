@@ -16,8 +16,7 @@ compileJava{
 }
 
 dependencies {
-    testCompile 'junit:junit:4.13'
-    
+     
     implementation project(':utils-core')
     implementation project(':clean-core')
     implementation project(':clean-swing')
@@ -26,10 +25,17 @@ dependencies {
     implementation project(':module-util-personalization')
 
     //SWINGX
-    compile group: 'org.swinglabs', name: 'swingx', version: '1.6.1'
+    implementation 'org.swinglabs:swingx:1.6.1'
     
     //timingframework
     implementation 'net.java.timingframework:timingframework-swing:7.3.0'
     
-    compile group: 'com.miglayout', name: 'miglayout-swing', version: '5.2'
+    implementation 'com.miglayout:miglayout-swing:5.2'
+    
+    implementation group: 'aopalliance', name: 'aopalliance', version: '1.0'
+    
+    implementation 'com.google.inject:guice:5.0.1'
+    implementation 'javax.validation:validation-api:2.0.1.Final'
+    //implementation group: 'com.sun.java', name: 'tools', version: '11.0.1'
+
 }
