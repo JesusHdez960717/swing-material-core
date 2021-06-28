@@ -17,7 +17,7 @@
 package com.root101.swing.material.components.popup;
 
 import com.root101.swing.material.standards.MaterialColors;
-import com.sun.awt.AWTUtilities;
+//import com.sun.awt.AWTUtilities;
 import java.awt.BorderLayout;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
@@ -105,7 +105,7 @@ public class PopupCircular extends JPopupMenu {
         Window w = SwingUtilities.getWindowAncestor(this);
         if (b) {
             try {
-                AWTUtilities.setWindowOpaque(w, false);
+                //AWTUtilities.setWindowOpaque(w, false);//TODO
             } catch (Exception e) {
                 System.out.println("Error poniendo el opaque a la ventana de popup, en realidad no afecta en nada.");
             }

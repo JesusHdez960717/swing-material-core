@@ -21,7 +21,6 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 import java.util.Date;
-import javafx.util.converter.LocalDateStringConverter;
 
 /**
  *
